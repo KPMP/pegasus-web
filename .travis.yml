@@ -1,7 +1,7 @@
 language: node_js
 
 node_js:
-  - 12.19.0 
+  - 11
 
 script:
   - CI=true npm test
@@ -11,3 +11,5 @@ notifications:
   email:
     - rlreamy@umich.edu
     - zwright@umich.edu
+    - cgates@umich.edu
+    - rossmith@umich.edu
