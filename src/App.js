@@ -7,7 +7,7 @@ import appReducer from './reducers';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import ReactGA from 'react-ga';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory }  from 'history';
 import { Route, Switch, Router } from 'react-router-dom';
 import ErrorBoundaryContainer from './components/Error/ErrorBoundaryContainer';
 import Oops from './components/Error/Oops';
@@ -35,7 +35,7 @@ function logPageView(location, action) {
   ReactGA.set({ page: location.pathname + location.search });
   ReactGA.pageview(location.pathname + location.search);
 }
-const history = createHistory();
+const history = createBrowserHistory();
 history.listen((location, action) => {
   logPageView(location, action);
 });
