@@ -10,7 +10,9 @@ class NavBar extends Component {
           <Link to="/" className="navbar-header">
             <NavbarBrand className="d-flex align-items-center">
               <img src="img/logo.png" alt="Kidney Tissue Atlas" className="logo" />
-              <span id="title-text" className="ml-2 text-dark">Kidney Tissue Atlas</span>
+              <span id="title-text" className="ml-2 text-dark">
+                Kidney Tissue Atlas
+              </span>
             </NavbarBrand>
           </Link>
         </Col>
