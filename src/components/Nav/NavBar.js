@@ -1,17 +1,35 @@
-import React, { Component } from 'react';
-import { Navbar, NavbarBrand, Nav, NavLink, NavbarText, NavItem } from 'reactstrap';
+import React, { Component, useState } from 'react';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  NavbarText
+} from 'reactstrap';
 
-class NavBar extends Component {
-  render() {
 
-    return (
-      <Navbar id="navbar" className="fixed-top px-1 py-1">
-        <NavbarBrand href="/" id="title-text" className="ml-2 text-dark">
+const NavBar = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggle = () => setIsOpen(!isOpen);
+
+  return (
+    <div>
+      <Navbar id="navbar" className="fixed-top px-1 py-1 container-fluid" expand="md" light>
+        <NavbarBrand href="/" className="ml-2 text-dark">
           <img src="img/logo.png" alt="Kidney Tissue Atlas" className="logo" />
-          <span className="ml-2">Kidney Tissue Atlas</span>
+          <span id="title-text" className="ml-2">Kidney Tissue Atlas</span>
         </NavbarBrand>
-        
-          <Nav className="mr-auto">
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
             <NavItem>
               <NavLink href="/">Dashboard (Home)</NavLink>
             </NavItem>
@@ -25,32 +43,12 @@ class NavBar extends Component {
               <NavLink href="/repository">Repository</NavLink>
             </NavItem>
           </Nav>
-        
+        </Collapse>
       </Navbar>
-      
-      
-    );
-  }
+
+       
+    </div>
+  );
 }
 
 export default NavBar;
-
-
-/* <Navbar id="navbar" className="px-1 py-1 fixed-top">
-          <div className="navbar-header">
-            <NavbarBrand href="/" >
-              <img src="img/logo.png" alt="Kidney Tissue Atlas" className="logo" />
-              <span id="title-text" className="ml-2 text-dark">
-                Kidney Tissue Atlas
-              </span>
-            </NavbarBrand>
-          </div>
-         
-          <Nav className="mr-auto" navbar>
-            <NavLink href="">Dashboard (Home)</NavLink>
-            <NavLink>Analysis</NavLink>
-            <NavLink href="">Explorer</NavLink>
-            <NavLink href="">Repository</NavLink>
-          </Nav>
-          
-      </Navbar> */
