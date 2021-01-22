@@ -1,0 +1,10 @@
+type Query {
+  genes(symbol: String): [MyGeneInfoHit]
+}
+
+type MyGeneInfoHit {
+  id: ID
+  symbol: String
+  name: String
+  entrezgene: String
+}
