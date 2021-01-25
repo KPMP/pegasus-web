@@ -151,3 +151,4 @@ yarn-error.log*
 
 
 *.css
+*.code-workspace
