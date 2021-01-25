@@ -7,4 +7,5 @@ type MyGeneInfoHit {
   symbol: String
   name: String
   entrezgene: String
+  alias: [String]
 }

@@ -14,6 +14,7 @@ import Oops from './components/Error/Oops';
 import Directions from './components/Directions';
 import { ApolloProvider } from '@apollo/client';
 import { apolloClient } from "./helpers/ApolloClient";
+import GeneSelect from "./components/GeneSelect";
 
 const cacheStore = window.sessionStorage.getItem('redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
@@ -63,6 +64,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path="/" component={Directions} store={store} />
                         <Route exact path="/oops" component={Oops} />
+                        <Route exact path="/select" component={GeneSelect} />
                     </Switch>
                     <NavFooter />
                   </ErrorBoundaryContainer>

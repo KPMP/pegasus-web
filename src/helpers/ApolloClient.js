@@ -10,7 +10,7 @@ export const apolloClient = new ApolloClient({
 
 export const fetchGenes = async (searchString) => {
 
-    if (searchString && searchString.trim().length < 2) {
+    if (searchString && searchString.trim().length < 3) {
         return [];
     }
 
@@ -21,17 +21,13 @@ export const fetchGenes = async (searchString) => {
                     id
                     symbol
                     name
+                    alias
                 }
             }`
     });
 
     if (response.data && response.data.genes) {
-        return response.data.genes.map(
-            ({symbol, id}) => ({
-                label: symbol,
-                value: id
-            })
-        );
+        return response.data.genes;
     }
 
     return [];
