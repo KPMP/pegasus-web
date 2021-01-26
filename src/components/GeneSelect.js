@@ -13,10 +13,19 @@ class GeneSelect extends Component {
     getOptions = async (searchString) => {
         const results = await fetchGenes(searchString);
         return results.map(
-            ({symbol, id, alias}) => ({
-                label: <span><FontAwesomeIcon icon={faDna} className="mr-2"/>{symbol} {alias && "(" + alias.join(", ") + ")"}</span>,
-                value: id
-            })
+            ({symbol, id, alias}) => {
+                let highlightedAliases = [];
+                if (alias) {
+                    highlightedAliases = alias.map((item, index) =>
+                        item.toLowerCase().includes(searchString.toLowerCase())?<strong>{index > 0 && ', '}{item}</strong>:<span>{index > 0 && ', '}{item}</span>
+                    , this);
+                }
+                return {
+                    label: <div><FontAwesomeIcon icon={faDna} className="mr-2"/>
+                        {symbol} {alias && <span>({highlightedAliases})</span>}</div>,
+                    value: id
+                }
+            }, this
         );
     };
 
