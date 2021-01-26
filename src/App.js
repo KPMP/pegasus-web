@@ -58,7 +58,7 @@ class App extends Component {
           <ErrorBoundaryContainer>
             <NavBar />
             <Switch>
-              <Route exact path="/" component={Directions} store={store} />
+              <Route exact path="/explorer" component={Directions} store={store} />
               <Route exact path="/oops" component={Oops} />
             </Switch>
             <NavFooter />
