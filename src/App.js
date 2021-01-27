@@ -12,6 +12,9 @@ import { Route, Switch, Router } from 'react-router-dom';
 import ErrorBoundaryContainer from './components/Error/ErrorBoundaryContainer';
 import Oops from './components/Error/Oops';
 import Home from './components/Home/Home';
+import { ApolloProvider } from '@apollo/client';
+import { apolloClient } from './helpers/ApolloClient';
+
 
 const cacheStore = window.sessionStorage.getItem('redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
@@ -54,16 +57,18 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <Router history={history}>
-          <ErrorBoundaryContainer>
-            <NavBar />
-            <Switch>
-              <Route exact path="/explorer" component={Home} store={store} />
-              <Route exact path="/oops" component={Oops} />
-            </Switch>
-            <NavFooter />
-          </ErrorBoundaryContainer>
-        </Router>
+          <ApolloProvider client={apolloClient}>
+              <Router history={history}>
+                  <ErrorBoundaryContainer>
+                    <NavBar />
+                    <Switch>
+                        <Route exact path="/" component={Home} store={store} />
+                        <Route exact path="/oops" component={Oops} />
+                    </Switch>
+                    <NavFooter />
+                  </ErrorBoundaryContainer>
+                </Router>
+          </ApolloProvider>
       </Provider>
     );
   }
