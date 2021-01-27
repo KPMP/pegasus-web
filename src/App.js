@@ -62,9 +62,8 @@ class App extends Component {
                   <ErrorBoundaryContainer>
                     <NavBar />
                     <Switch>
-                        <Route exact path="/" component={Directions} store={store} />
+                        <Route exact path="/" component={GeneSelect} store={store} />
                         <Route exact path="/oops" component={Oops} />
-                        <Route exact path="/select" component={GeneSelect} />
                     </Switch>
                     <NavFooter />
                   </ErrorBoundaryContainer>
