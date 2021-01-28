@@ -10,10 +10,6 @@ export const apolloClient = new ApolloClient({
 
 export const fetchGenes = async (searchString) => {
 
-    if (searchString && searchString.trim().length < 3) {
-        return [];
-    }
-
     const response = await apolloClient.query({
         query: gql`
             query {
@@ -28,6 +24,31 @@ export const fetchGenes = async (searchString) => {
 
     if (response.data && response.data.genes) {
         return response.data.genes;
+    }
+
+    return [];
+};
+
+export const fetchAutoComplete = async (searchString) => {
+
+    if (searchString && searchString.trim().length < 3) {
+        return [];
+    }
+
+    const response = await apolloClient.query({
+        query: gql`
+            query {
+                autocomplete(searchTerm: "${searchString}") {
+                    value
+                    type
+                    id
+                    aliases
+                }
+            }`
+    });
+
+    if (response.data && response.data.autocomplete) {
+        return response.data.autocomplete;
     }
 
     return [];
