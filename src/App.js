@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import ReactGA from 'react-ga';
 import { createBrowserHistory }  from 'history';
-import { Route, Switch, Router } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import ErrorBoundaryContainer from './components/Error/ErrorBoundaryContainer';
 import Oops from './components/Error/Oops';
 import Home from './components/Home/Home';
@@ -58,7 +58,7 @@ class App extends Component {
     return (
       <Provider store={store}>
           <ApolloProvider client={apolloClient}>
-              <Router history={history}>
+              <BrowserRouter basename="/explorer" history={history}>
                   <ErrorBoundaryContainer>
                     <NavBar />
                     <Switch>
@@ -67,7 +67,7 @@ class App extends Component {
                     </Switch>
                     <NavFooter />
                   </ErrorBoundaryContainer>
-                </Router>
+                </BrowserRouter>
           </ApolloProvider>
       </Provider>
     );
