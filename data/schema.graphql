@@ -1,5 +1,6 @@
 type Query {
   genes(symbol: String): [MyGeneInfoHit]
+  autocomplete(searchTerm: String): [AutoCompleteResult]
 }
 
 type MyGeneInfoHit {
@@ -8,4 +9,11 @@ type MyGeneInfoHit {
   name: String
   entrezgene: String
   alias: [String]
+}
+
+type AutoCompleteResult {
+  value: String
+  type: String
+  id: ID
+  aliases: [String]
 }

@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import AsyncSelect from "react-select/async";
-import {fetchGenes} from "../helpers/ApolloClient"
-import {faDna} from '@fortawesome/free-solid-svg-icons';
+import { fetchAutoComplete } from "../helpers/ApolloClient"
+import {faDna, faMicroscope} from '@fortawesome/free-solid-svg-icons';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 class GeneSelect extends Component {
@@ -10,19 +10,31 @@ class GeneSelect extends Component {
         this.setState({input: input})
     };
 
+    getLabelIcon = (type) => {
+        switch(type) {
+            case "cell_type":
+                return <FontAwesomeIcon icon={faMicroscope} className="mr-2"/>
+            case "gene":
+                return <FontAwesomeIcon icon={faDna} className="mr-2"/>
+            default:
+                return <FontAwesomeIcon icon={faDna} className="mr-2"/>
+        }
+    };
+
     getOptions = async (searchString) => {
-        const results = await fetchGenes(searchString);
+        const results = await fetchAutoComplete(searchString);
         return results.map(
-            ({symbol, id, alias}) => {
+            ({value, id, aliases, type}) => {
                 let highlightedAliases = [];
-                if (alias) {
-                    highlightedAliases = alias.map((item, index) =>
+                if (aliases) {
+                    highlightedAliases = aliases.map((item, index) =>
                         item.toLowerCase().includes(searchString.toLowerCase())?<strong>{index > 0 && ', '}{item}</strong>:<span>{index > 0 && ', '}{item}</span>
                     , this);
                 }
+                const labelIcon = this.getLabelIcon(type);
                 return {
-                    label: <div><FontAwesomeIcon icon={faDna} className="mr-2"/>
-                        {symbol} {alias && <span>({highlightedAliases})</span>}</div>,
+                    label: <div>{labelIcon}
+                        {value} {aliases && <span>({highlightedAliases})</span>}</div>,
                     value: id
                 }
             }, this
