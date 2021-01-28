@@ -61,8 +61,8 @@ class App extends Component {
                   <ErrorBoundaryContainer>
                     <NavBar />
                     <Switch>
-                        <Route exact path="/" component={GeneSelect} store={store} />
-                        <Route exact path="/oops" component={Oops} />
+                        <Route path="/" component={GeneSelect} store={store} />
+                        <Route path={`${process.env.PUBLIC_URL}/oops`} component={Oops} />
                     </Switch>
                     <NavFooter />
                   </ErrorBoundaryContainer>
