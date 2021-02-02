@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import AsyncSelect from "react-select/async";
-import { fetchAutoComplete } from "../helpers/ApolloClient"
 import {faDna, faMicroscope} from '@fortawesome/free-solid-svg-icons';
+import { fetchAutoComplete } from "../../helpers/ApolloClient";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 class GeneSelect extends Component {
