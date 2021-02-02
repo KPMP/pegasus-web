@@ -27,7 +27,7 @@ class NephronSchemaCard extends Component {
                                     <li>Vascular smooth muscle cells / pericytes</li>
                                 </ul>
                             </Col>
-                            <Col md='9'><img alt='nephron schema' src='/img/nephron-schema.png' className='nephron-schema'></img></Col>
+                            <Col md='9'><img alt='nephron schema' src='/explorer/img/nephron-schema.png' className='nephron-schema'></img></Col>
                         </Row>
                     </CardText>
                 </CardBody>
