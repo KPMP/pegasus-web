@@ -40,6 +40,7 @@ export const fetchAutoComplete = async (searchString) => {
             query {
                 autocomplete(searchTerm: "${searchString}") {
                     value
+                    name
                     type
                     id
                     aliases

@@ -13,6 +13,7 @@ type MyGeneInfoHit {
 
 type AutoCompleteResult {
   value: String
+  name: String
   type: String
   id: ID
   aliases: [String]
