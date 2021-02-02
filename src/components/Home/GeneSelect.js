@@ -1,7 +1,12 @@
 import React, {Component} from "react";
 import AsyncSelect from "react-select/async";
+<<<<<<< HEAD:src/components/Home/GeneSelect.js
+import {fetchGenes} from '../../helpers/ApolloClient';
+import {faDna} from '@fortawesome/free-solid-svg-icons';
+=======
 import { fetchAutoComplete } from "../helpers/ApolloClient"
 import {faDna, faMicroscope} from '@fortawesome/free-solid-svg-icons';
+>>>>>>> develop:src/components/GeneSelect.js
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 
 class GeneSelect extends Component {
