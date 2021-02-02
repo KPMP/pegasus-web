@@ -1,3 +1,54 @@
 {
-
+  "selectedConcept": {},
+  "conceptSummary": [
+    {
+      "omicsType": "Transcriptomics",
+      "dataType": "snRNASeq",
+      "refTissue": 26,
+      "akiTissue": 56,
+      "ckdTissue": 82
+    },
+    {
+      "omicsType": "Transcriptomics",
+      "dataType": "scRNASeq",
+      "refTissue": 2,
+      "akiTissue": 0,
+      "ckdTissue": 34
+    },
+    {
+      "omicsType": "Transcriptomics",
+      "dataType": "LMD RNASeq",
+      "refTissue": 2,
+      "akiTissue": 0,
+      "ckdTissue": 34
+    },
+    {
+      "omicsType": "Transcriptomics",
+      "dataType": "Bulk RNASeq",
+      "refTissue": 0,
+      "akiTissue": 0,
+      "ckdTissue": 0
+    },
+    {
+      "omicsType": "Proteomics",
+      "dataType": "LMD Proteomics",
+      "refTissue": 22,
+      "akiTissue": 2,
+      "ckdTissue": 34
+    },
+    {
+      "omicsType": "Imaging",
+      "dataType": "3D Cytometry",
+      "refTissue": 28,
+      "akiTissue": 0,
+      "ckdTissue": 34
+    },
+    {
+      "omicsType": "Metabolomics",
+      "dataType": "Spatial Metabolomics",
+      "refTissue": 2,
+      "akiTissue": 45,
+      "ckdTissue": 34
+    }
+  ]
 }

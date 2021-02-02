@@ -13,7 +13,8 @@ import ErrorBoundaryContainer from './components/Error/ErrorBoundaryContainer';
 import Oops from './components/Error/Oops';
 import { ApolloProvider } from '@apollo/client';
 import { apolloClient } from "./helpers/ApolloClient";
-import GeneSelect from "./components/GeneSelect";
+import SummaryContainer from "./components/Summary/SummaryContainer";
+import ConceptSelectContainer from "./components/ConceptSelectContainer";
 
 const cacheStore = window.sessionStorage.getItem('redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
@@ -61,7 +62,8 @@ class App extends Component {
                   <ErrorBoundaryContainer>
                     <NavBar />
                     <Switch>
-                        <Route exact path="/" component={GeneSelect} store={store} />
+                        <Route exact path="/" component={ConceptSelectContainer} store={store} />
+                        <Route exact path="/summary" component={SummaryContainer} store={store} />
                         <Route exact path="/oops" component={Oops} />
                     </Switch>
                     <NavFooter />
