@@ -1,15 +1,27 @@
 import React, {Component} from "react";
 import AsyncSelect from "react-select/async";
-import { Container, Row, Col } from 'reactstrap';
-import { fetchAutoComplete } from "../helpers/ApolloClient"
+import { Row, Col } from 'reactstrap';
+import { fetchAutoComplete } from "../../helpers/ApolloClient"
 import { faDna, faMicroscope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class ConceptSelect extends Component {
 
+    constructor(props) {
+        super(props);
+        this.selectRef = React.createRef();
+        this.state = {
+            inputValue: ""
+        }
+    }
+
     handleSelect = (input) => {
-        this.setState({input: input});
+        this.setState({inputValue: ""});
         this.props.setSelectedConcept(input.value);
+    };
+
+    handleInputChange = (input) => {
+        this.setState({inputValue: input})
     };
 
     getLabelIcon = (type) => {
@@ -20,6 +32,14 @@ class ConceptSelect extends Component {
                 return <FontAwesomeIcon icon={faDna} className="mr-2"/>
             default:
                 return <FontAwesomeIcon icon={faDna} className="mr-2"/>
+        }
+    };
+
+    handleNoOptions = ({inputValue}) => {
+        if (inputValue.trim().length < 3) {
+            return "Please enter 3 or more characters to start search"
+        } else {
+            return "No results found"
         }
     };
 
@@ -46,7 +66,7 @@ class ConceptSelect extends Component {
 
     render() {
         return (
-            <Container className="mt-2 rounded border p-3">
+            <React.Fragment>
                 <Row xs="12">
                     <Col>
                         <h5>Search</h5>
@@ -56,13 +76,16 @@ class ConceptSelect extends Component {
                 <Col>
                     <AsyncSelect
                         loadOptions={this.getOptions}
-                        onChange={(input) => this.handleSelect(input)}
+                        noOptionsMessage={this.handleNoOptions}
+                        onChange={this.handleSelect}
+                        value={this.state.inputValue}
+                        onInputChange={this.handleInputChange}
                         placeholder="Enter gene, protein, or cell type"
                         className="select"
                         />
                 </Col>
             </Row>
-            </Container>
+            </React.Fragment>
         )
     }
 }

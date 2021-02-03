@@ -7,6 +7,7 @@ import {
   Nav,
   NavItem,
   NavLink,
+  Container,
   NavbarText
 } from 'reactstrap';
 
@@ -17,33 +18,31 @@ const NavBar = (props) => {
   const toggle = () => setIsOpen(!isOpen);
 
   return (
-    <div>
+    <Container>
       <Navbar id="navbar" className="fixed-top px-1 py-1 container-fluid" expand="md" light>
-        <NavbarBrand href="/" className="ml-2 text-dark">
+        <NavbarBrand href="/" className="ml-2 text-dark d-flex align-items-center">
           <img src="/explorer/img/logo.png" alt="Kidney Tissue Atlas" className="logo" />
           <span id="title-text" className="ml-2">Kidney Tissue Atlas</span>
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            <NavItem>
-              <NavLink href="/">Dashboard (Home)</NavLink>
+            <NavItem className="px-1">
+              <NavLink href="/"><span className="nav-text px-1">Dashboard (Home)</span></NavLink>
             </NavItem>
-            <NavItem>
-              <NavbarText className="inactive">Analysis</NavbarText>
+            <NavItem className="px-1">
+              <NavbarText className="inactive"><span className="nav-text px-1">Analysis</span></NavbarText>
             </NavItem>
-            <NavItem className="active">
-              <NavLink href="/explorer">Explorer</NavLink>
+            <NavItem className="active px-1">
+              <NavLink href="/explorer"><span className="nav-text px-1">Explorer</span></NavLink>
             </NavItem>
-            <NavItem>
-              <NavLink href="/repository">Repository</NavLink>
+            <NavItem className="px-1">
+              <NavLink href="/repository"><span className="nav-text px-1">Repository</span></NavLink>
             </NavItem>
           </Nav>
         </Collapse>
       </Navbar>
-
-       
-    </div>
+    </Container>
   );
 }
 

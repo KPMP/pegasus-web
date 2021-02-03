@@ -1,4 +1,4 @@
-import actionNames from '../actions/actionNames';
+import actionNames from '../../actions/actionNames';
 
 export const selectedConcept = ( state = {}, action ) => {
     switch(action.type) {

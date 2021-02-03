@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import { Container, Row, Col } from 'reactstrap';
 import ReactTable from 'react-table';
-import ConceptSelectContainer from '../ConceptSelectContainer';
+import ConceptSelectContainer from '../Home/ConceptSelectContainer';
 import initialState from '../../initialState';
 
 class Summary extends Component {
@@ -51,12 +51,20 @@ class Summary extends Component {
         let {name, value} = this.props.selectedConcept;
         return (
             <div>
-                <ConceptSelectContainer/>
+                <Container className="mt-3 rounded border p-3">
+                    <ConceptSelectContainer/>
+                </Container>
                 <Container className="mt-3 rounded border p-3">
                     <Row xs="12">
                         <Col className="mb-4">
                             <h5>Summary of available data for: {value} {name && "(" + name + ")"}</h5>
                         </Col>
+                    </Row>
+                    <Row xs="12">
+                        <Col xs={{ size: 7, offset: 5 }} className="d-flex justify-content-center"><span>PARTICIPANTS PER DATA TYPE</span></Col>
+                    </Row>
+                    <Row xs="12">
+                        <Col sm={{ size: 7, offset: 5 }}><hr/></Col>
                     </Row>
                     <Row xs="12">
                         <Col>
