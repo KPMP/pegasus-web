@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import AsyncSelect from "react-select/async";
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import { fetchAutoComplete } from "../../helpers/ApolloClient"
 import { faDna, faMicroscope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card, CardBody, CardText, Col, Container, Row} from 'reactstrap';
+import {Col, Container, Row} from 'reactstrap';
 import ConceptSelectContainer from './ConceptSelectContainer';
 
 class NephronSchemaCard extends Component {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Card, CardBody, CardTitle, CardText, Row, Col, Container} from 'reactstrap';
+import {Row, Col, Container} from 'reactstrap';
 
 class WelcomeText extends Component {
     render() {
