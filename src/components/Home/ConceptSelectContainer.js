@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import ConceptSelect from './ConceptSelect';
-import { setSelectedConcept } from '../actions/Concepts/conceptActions'
+import { setSelectedConcept } from '../../actions/Concepts/conceptActions'
+import { withRouter } from 'react-router';
 
 const mapStateToProps = (state, props) =>
     ({
@@ -14,4 +15,4 @@ const mapDispatchToProps = (dispatch, props) =>
         }
     });
 
-export default connect(mapStateToProps, mapDispatchToProps)(ConceptSelect)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ConceptSelect))

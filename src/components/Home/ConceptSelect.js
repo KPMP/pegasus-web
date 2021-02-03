@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import AsyncSelect from "react-select/async";
 import { Container, Row, Col } from 'reactstrap';
-import { fetchAutoComplete } from "../helpers/ApolloClient"
+import { fetchAutoComplete } from "../../helpers/ApolloClient"
 import { faDna, faMicroscope } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -46,7 +46,7 @@ class ConceptSelect extends Component {
 
     render() {
         return (
-            <Container className="mt-2 rounded border p-3">
+            <React.Fragment>
                 <Row xs="12">
                     <Col>
                         <h5>Search</h5>
@@ -62,7 +62,7 @@ class ConceptSelect extends Component {
                         />
                 </Col>
             </Row>
-            </Container>
+            </React.Fragment>
         )
     }
 }
