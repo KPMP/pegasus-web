@@ -2,8 +2,6 @@ import React, {Component} from "react";
 import AsyncSelect from "react-select/async";
 import { Row, Col } from 'reactstrap';
 import { fetchAutoComplete } from "../../helpers/ApolloClient"
-import { faDna, faMicroscope } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 class ConceptSelect extends Component {
 
@@ -27,11 +25,11 @@ class ConceptSelect extends Component {
     getLabelIcon = (type) => {
         switch(type) {
             case "cell_type":
-                return <FontAwesomeIcon icon={faMicroscope} className="mr-2"/>
+                return <img src="/explorer/img/search-icon_cell.svg" className="mr-2" alt="cell type"/>;
             case "gene":
-                return <FontAwesomeIcon icon={faDna} className="mr-2"/>
+                return <img src="/explorer/img/search-icon_gene.svg" className="mr-2" alt="gene"/>;
             default:
-                return <FontAwesomeIcon icon={faDna} className="mr-2"/>
+                return <img src="/explorer/img/search-icon_gene.svg" className="mr-2" alt="gene"/>;
         }
     };
 
