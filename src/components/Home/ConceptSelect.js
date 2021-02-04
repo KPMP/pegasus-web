@@ -27,9 +27,9 @@ class ConceptSelect extends Component {
     getLabelIcon = (type) => {
         switch(type) {
             case "cell_type":
-                return <FontAwesomeIcon icon={faMicroscope} className="mr-2"/>
+                return <img src="/explorer/img/search-icon_cell.svg" className="mr-2"/>;
             case "gene":
-                return <FontAwesomeIcon icon={faDna} className="mr-2"/>
+                return <img src="/explorer/img/search-icon_gene.svg" className="mr-2"/>;
             default:
                 return <FontAwesomeIcon icon={faDna} className="mr-2"/>
         }
