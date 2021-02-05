@@ -1,4 +1,5 @@
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
+import packageJson from '../../package.json';
 
 export const apolloClient = new ApolloClient({
     uri: getBaseURL() + '/graphql',
