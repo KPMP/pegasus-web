@@ -1,6 +1,17 @@
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
 import packageJson from '../../package.json';
 
+const isDevelopment = () => {
+    return process.env.NODE_ENV === "development";
+};
+
+const getBaseURL = () => {
+    if (isDevelopment()) {
+        return packageJson.proxy;
+    }
+    return '';
+};
+
 export const apolloClient = new ApolloClient({
     uri: getBaseURL() + '/graphql',
     cache: new InMemoryCache(),
@@ -54,15 +65,4 @@ export const fetchAutoComplete = async (searchString) => {
     }
 
     return [];
-};
-
-const getBaseURL = () => {
-    if (this.isDevelopment()) {
-        return packageJson.proxy;
-    }
-    return '';
-};
-
-const isDevelopment = () => {
-    return process.env.NODE_ENV === "development";
 };
