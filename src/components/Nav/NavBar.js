@@ -30,9 +30,6 @@ const NavBar = (props) => {
             <NavItem className="px-1">
               <NavLink href="/"><span className="nav-text px-1">Dashboard (Home)</span></NavLink>
             </NavItem>
-            <NavItem className="px-1">
-              <NavbarText className="inactive"><span className="nav-text px-1">Analysis</span></NavbarText>
-            </NavItem>
             <NavItem className="active px-1">
               <NavLink href="/explorer"><span className="nav-text px-1">Explorer</span></NavLink>
             </NavItem>
