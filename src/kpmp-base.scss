@@ -19,6 +19,9 @@ body {
 
 	.nav-item.active {
 		.nav-text {
+          @media (max-width: 576px) {
+              padding-bottom: 5px;
+            }
             padding-bottom: 12px;
 			border-bottom: 3px solid #007bff;
 			margin-bottom: -6px;
