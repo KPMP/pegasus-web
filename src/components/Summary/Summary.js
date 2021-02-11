@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 import ReactTable from 'react-table';
 import ConceptSelectContainer from '../Home/ConceptSelectContainer';
 import initialState from '../../initialState';
+import { Link } from 'react-router-dom';
 
 class Summary extends Component {
 
@@ -21,28 +22,31 @@ class Summary extends Component {
         return [
             {
                 Header: "OMICS TYPE",
-                id: "dataType",
-                accessor: (row) => row["omicsType"]
+                id: "omicsType",
+                accessor: 'omicsType'
             },
             {
                 Header: "DATA TYPE",
                 id: "dataType",
-                accessor: (row) => row["dataType"]
+                accessor: 'dataType',
+                Cell: ({ row }) => (
+                    <Link to={{ pathname: '/umapViz'}} >{row.dataType}</Link>
+                )
             },
             {
                 Header: "HEALTHY REFERENCE TISSUE",
-                id: "dataType",
-                accessor: (row) => row["refTissue"]
+                id: "healthyRefType",
+                accessor: 'refTissue'
             },
             {
                 Header: "AKI TISSUE",
-                id: "dataType",
-                accessor: (row) => row["akiTissue"]
+                id: "akiTissue",
+                accessor: 'akiTissue'
             },
             {
                 Header: "CKD TISSUE",
-                id: "dataType",
-                accessor: (row) => row["ckdTissue"]
+                id: "ckdTissue",
+                accessor: 'ckdTissue'
             },
         ]
     };
