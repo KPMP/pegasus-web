@@ -8,7 +8,6 @@ import {
   NavItem,
   NavLink,
   Container,
-  NavbarText
 } from 'reactstrap';
 
 

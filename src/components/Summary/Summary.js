@@ -1,8 +1,9 @@
-import React, {Component} from "react";
+import React, {Component} from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import ReactTable from 'react-table';
 import ConceptSelectContainer from '../Home/ConceptSelectContainer';
 import initialState from '../../initialState';
+import { Link } from 'react-router-dom';
 
 class Summary extends Component {
 
@@ -21,55 +22,65 @@ class Summary extends Component {
         return [
             {
                 Header: "OMICS TYPE",
-                id: "dataType",
-                accessor: (row) => row["omicsType"]
+                id: "omicsType",
+                accessor: 'omicsType'
             },
             {
                 Header: "DATA TYPE",
                 id: "dataType",
-                accessor: (row) => row["dataType"]
+                accessor: 'dataType',
+                Cell: ({ row }) => (
+                    this.linkDataTypeCells(row)
+                )
             },
             {
                 Header: "HEALTHY REFERENCE TISSUE",
-                id: "dataType",
-                accessor: (row) => row["refTissue"]
+                id: "healthyRefType",
+                accessor: 'refTissue'
             },
             {
                 Header: "AKI TISSUE",
-                id: "dataType",
-                accessor: (row) => row["akiTissue"]
+                id: "akiTissue",
+                accessor: 'akiTissue'
             },
             {
                 Header: "CKD TISSUE",
-                id: "dataType",
-                accessor: (row) => row["ckdTissue"]
+                id: "ckdTissue",
+                accessor: 'ckdTissue'
             },
         ]
     };
+
+    linkDataTypeCells(row) {
+        if (row.dataType === 'snRNASeq' || row.dataType === 'scRNASeq') {
+            return <Link to={{ pathname: '/umapViz'}} >{row.dataType}</Link>;
+        }
+        return row.dataType;
+    }
 
     render() {
         let {name, value} = this.props.selectedConcept;
         return (
             <div>
-                <Container className="mt-3 rounded border p-3">
+                <Container className='mt-3 rounded border p-3'>
                     <ConceptSelectContainer/>
                 </Container>
-                <Container className="mt-3 rounded border p-3">
-                    <Row xs="12">
-                        <Col className="mb-4">
-                            <h5>Summary of available data for: {value} {name && "(" + name + ")"}</h5>
+                <Container className='mt-3 rounded border p-3'>
+                    <Row xs='12'>
+                        <Col className='mb-4'>
+                            <h5>Summary of available data for: {value} {name && '(' + name + ')'}</h5>
                         </Col>
                     </Row>
-                    <Row xs="12">
-                        <Col xs={{ size: 7, offset: 5 }} className="d-flex justify-content-center"><span>PARTICIPANTS PER DATA TYPE</span></Col>
+                    <Row xs='12'>
+                        <Col xs={{ size: 7, offset: 5 }} className='d-flex justify-content-center'><span>PARTICIPANTS PER DATA TYPE</span></Col>
                     </Row>
-                    <Row xs="12">
+                    <Row xs='12'>
                         <Col sm={{ size: 7, offset: 5 }}><hr/></Col>
                     </Row>
-                    <Row xs="12">
+                    <Row xs='12'>
                         <Col>
                             <ReactTable
-                                style={{border: "none"}}
+                                style={{border: 'none'}}
                                 data={this.state.conceptSummary}
                                 ref={this.reactTable}
                                 sortable={false}

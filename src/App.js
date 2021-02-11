@@ -13,8 +13,10 @@ import ErrorBoundaryContainer from './components/Error/ErrorBoundaryContainer';
 import Oops from './components/Error/Oops';
 import Home from './components/Home/Home';
 import { ApolloProvider } from '@apollo/client';
-import { apolloClient } from "./helpers/ApolloClient";
-import SummaryContainer from "./components/Summary/SummaryContainer";
+import { apolloClient } from './helpers/ApolloClient';
+import SummaryContainer from './components/Summary/SummaryContainer';
+import NotFoundPage from './components/Error/NotFoundPage';
+import UmapVisualizationContainer from './components/UmapVisualization/UmapVisualizationContainer';
 
 const cacheStore = window.sessionStorage.getItem('redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
@@ -58,13 +60,15 @@ class App extends Component {
     return (
       <Provider store={store}>
           <ApolloProvider client={apolloClient}>
-              <BrowserRouter basename="/explorer" history={history}>
+              <BrowserRouter basename='/explorer' history={history}>
                   <ErrorBoundaryContainer>
                     <NavBar />
                     <Switch>
-                        <Route exact path="/summary" component={SummaryContainer} store={store} />
-                        <Route exact path="/" component={Home} store={store} />
-                        <Route exact path="/oops" component={Oops} />
+                        <Route exact path='/summary' component={SummaryContainer} store={store} />
+                        <Route exact path='/' component={Home} store={store} />
+                        <Route path='/umapViz' component={UmapVisualizationContainer} store={store} />
+                        <Route exact path='/oops' component={Oops} />
+                        <Route path='*' component={NotFoundPage} />
                     </Switch>
                     <NavFooter />
                   </ErrorBoundaryContainer>
