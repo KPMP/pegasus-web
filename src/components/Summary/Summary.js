@@ -30,7 +30,7 @@ class Summary extends Component {
                 id: "dataType",
                 accessor: 'dataType',
                 Cell: ({ row }) => (
-                    <Link to={{ pathname: '/umapViz'}} >{row.dataType}</Link>
+                    this.linkDataTypeCells(row)
                 )
             },
             {
@@ -50,6 +50,13 @@ class Summary extends Component {
             },
         ]
     };
+
+    linkDataTypeCells(row) {
+        if (row.dataType === 'snRNASeq' || row.dataType === 'scRNASeq') {
+            return <Link to={{ pathname: '/umapViz'}} >{row.dataType}</Link>;
+        }
+        return row.dataType;
+    }
 
     render() {
         let {name, value} = this.props.selectedConcept;

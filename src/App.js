@@ -16,7 +16,7 @@ import { ApolloProvider } from '@apollo/client';
 import { apolloClient } from './helpers/ApolloClient';
 import SummaryContainer from './components/Summary/SummaryContainer';
 import NotFoundPage from './components/Error/NotFoundPage';
-import UmapVisualization from './components/UmapVisualization/UmapVisualization';
+import UmapVisualizationContainer from './components/UmapVisualization/UmapVisualizationContainer';
 
 const cacheStore = window.sessionStorage.getItem('redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
@@ -66,7 +66,7 @@ class App extends Component {
                     <Switch>
                         <Route exact path='/summary' component={SummaryContainer} store={store} />
                         <Route exact path='/' component={Home} store={store} />
-                        <Route exact path='/umapViz' component={UmapVisualization} store={store} />
+                        <Route path='/umapViz' component={UmapVisualizationContainer} store={store} />
                         <Route exact path='/oops' component={Oops} />
                         <Route path='*' component={NotFoundPage} />
                     </Switch>

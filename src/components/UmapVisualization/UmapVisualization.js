@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 
 class UmapVisualization extends Component {
     render() {
-        return(' Hey ho, this will show you awesome umaps!');
+        let {name, value} = this.props.selectedConcept;
+
+        return( <div>You selected {value}. This page will show you umaps</div>);
     }
 }
 
