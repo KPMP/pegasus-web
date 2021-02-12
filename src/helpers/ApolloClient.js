@@ -1,5 +1,6 @@
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
 import packageJson from '../../package.json';
+import 'isomorphic-unfetch'
 
 const isDevelopment = () => {
     return process.env.NODE_ENV === "development";
@@ -16,6 +17,7 @@ export const apolloClient = new ApolloClient({
     uri: getBaseURL() + '/graphql',
     cache: new InMemoryCache(),
     fetchOptions: {
+        fetchOptions: { fetch },
         mode: 'no-cors',
     },
 });
