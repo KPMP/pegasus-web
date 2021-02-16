@@ -53,9 +53,10 @@ class ConceptSelect extends Component {
                     , this);
                 }
                 const labelIcon = this.getLabelIcon(result.type);
+                const highlightedValue = result.value.toLowerCase().includes(searchString.toLowerCase())?<strong>{result.value}</strong>:<span>{result.value}</span>;
                 return {
                     label: <div>{labelIcon}
-                        {result.value} {result.aliases && <span>({highlightedAliases})</span>}</div>,
+                        {highlightedValue} {result.aliases && <span>({highlightedAliases})</span>}</div>,
                     value: result
                 }
             }, this
