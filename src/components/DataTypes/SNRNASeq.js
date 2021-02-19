@@ -21,12 +21,12 @@ class SNRNASeq extends Component {
                         <Col md='6' className='mb-4'>
                             <h5>UMAP</h5>
                             <hr/>
-                            <img src='img/umap_placeholder_color.png' className='img-fluid'/>
+                            <img src='img/umap_placeholder_color.png' alt='umap placeholder' className='img-fluid'/>
                         </Col>
                         <Col md='6' className='mb-4'>
                             <h5>AQP Expression</h5>
                             <hr/>
-                            <img src='img/umap_placeholder_gradient.png' className='img-fluid'/>
+                            <img src='img/umap_placeholder_gradient.png' alt='umap placeholder' className='img-fluid'/>
                         </Col>
                     </Row>
                     <ExpressionXCellType/>

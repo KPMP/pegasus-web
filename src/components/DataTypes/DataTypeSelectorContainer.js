@@ -1,6 +1,5 @@
 import { connect } from 'react-redux';
 import DataTypeSelector from './DataTypeSelector';
-import { setSelectedConcept } from '../../actions/Concepts/conceptActions'
 import { withRouter } from 'react-router';
 
 const mapStateToProps = (state, props) =>
