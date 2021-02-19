@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactTable from "react-table";
 import initialState from "../../initialState";
-import {Col, Container, Row} from "reactstrap";
+import {Col, Row} from "reactstrap";
 
 class ExpressionXCellType extends Component {
     constructor(props) {
