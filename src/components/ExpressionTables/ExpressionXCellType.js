@@ -62,9 +62,15 @@ class ExpressionXCellType extends Component {
         return (
             <React.Fragment>
                 <Row xs='12' className='mt-5'>
-                    <Col xs='12' className='mb-4'>
+                    <Col xs='12'>
                         <h5>Summary of available data ... </h5>
                     </Col>
+                </Row>
+                <Row xs='12'>
+                    <Col xs={{ size: 4, offset: 8 }} className='d-flex justify-content-center'><span>CLUSTER VS ALL OTHERS</span></Col>
+                </Row>
+                <Row xs='12'>
+                    <Col sm={{ size: 4, offset: 8 }}><hr/></Col>
                 </Row>
                 <Row xs='12'>
                     <Col xs='12'>

@@ -15,15 +15,13 @@ class SNRNASeq extends Component {
             <div>
                 <Container className='mt-3 rounded border p-3'>
                     <DataTypeSelectorContainer/>
-                </Container>
-                <Container className='mt-3 rounded border p-3'>
                     <Row xs='12'>
-                        <Col md='6' className='mb-4'>
+                        <Col md='6' className='my-4'>
                             <h5>UMAP</h5>
                             <hr/>
                             <img src='img/umap_placeholder_color.png' alt='umap placeholder' className='img-fluid'/>
                         </Col>
-                        <Col md='6' className='mb-4'>
+                        <Col md='6' className='my-4'>
                             <h5>AQP Expression</h5>
                             <hr/>
                             <img src='img/umap_placeholder_gradient.png' alt='umap placeholder' className='img-fluid'/>
