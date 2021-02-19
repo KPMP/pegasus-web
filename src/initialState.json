@@ -50,5 +50,77 @@
       "akiTissue": 45,
       "ckdTissue": 34
     }
+  ],
+  "expressionXCellType": [
+    {
+      "abbr": "Transcriptomics",
+      "cellType": "snRNASeq",
+      "totalCells": 26,
+      "medianExpression": 56,
+      "numCellsExp": 82,
+      "foldChange": 42,
+      "pValue": 0.034,
+      "adjPValue": 0.123
+    },
+    {
+      "abbr": "Transcriptomics",
+      "cellType": "snRNASeq",
+      "totalCells": 26,
+      "medianExpression": 56,
+      "numCellsExp": 82,
+      "foldChange": 42,
+      "pValue": 0.034,
+      "adjPValue": 0.123
+    },
+    {
+      "abbr": "Transcriptomics",
+      "cellType": "snRNASeq",
+      "totalCells": 26,
+      "medianExpression": 56,
+      "numCellsExp": 82,
+      "foldChange": 42,
+      "pValue": 0.034,
+      "adjPValue": 0.123
+    },
+    {
+      "abbr": "Transcriptomics",
+      "cellType": "snRNASeq",
+      "totalCells": 26,
+      "medianExpression": 56,
+      "numCellsExp": 82,
+      "foldChange": 42,
+      "pValue": 0.034,
+      "adjPValue": 0.123
+    },
+    {
+      "abbr": "Transcriptomics",
+      "cellType": "snRNASeq",
+      "totalCells": 26,
+      "medianExpression": 56,
+      "numCellsExp": 82,
+      "foldChange": 42,
+      "pValue": 0.034,
+      "adjPValue": 0.123
+    },
+    {
+      "abbr": "Transcriptomics",
+      "cellType": "snRNASeq",
+      "totalCells": 26,
+      "medianExpression": 56,
+      "numCellsExp": 82,
+      "foldChange": 42,
+      "pValue": 0.034,
+      "adjPValue": 0.123
+    },
+    {
+      "abbr": "Transcriptomics",
+      "cellType": "snRNASeq",
+      "totalCells": 26,
+      "medianExpression": 56,
+      "numCellsExp": 82,
+      "foldChange": 42,
+      "pValue": 0.034,
+      "adjPValue": 0.123
+    }
   ]
 }
