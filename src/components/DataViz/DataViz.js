@@ -4,7 +4,7 @@ import DataTypeSelectorContainer from './DataTypeSelectorContainer';
 import ExpressionXCellType from "../ExpressionTables/ExpressionXCellType";
 import ExpressionXTissueType from "../ExpressionTables/ExpressionXTissueType";
 
-class SNRNASeq extends Component {
+class DataViz extends Component {
     constructor(props) {
         super(props);
         this.state = {};
@@ -35,4 +35,4 @@ class SNRNASeq extends Component {
     }
 }
 
-export default SNRNASeq;
+export default DataViz;

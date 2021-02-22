@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import SNRNASeq from "./SNRNASeq";
+import DataViz from "./DataViz";
 
 const mapStateToProps = (state, props) =>
     ({
@@ -11,4 +11,4 @@ const mapDispatchToProps = (dispatch, props) =>
     ({
     });
 
-export default connect(mapStateToProps, mapDispatchToProps)(SNRNASeq)
+export default connect(mapStateToProps, mapDispatchToProps)(DataViz)
