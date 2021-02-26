@@ -8,10 +8,6 @@ class UMAPPlot extends Component {
         this.setData(props.data);
     }
 
-    componentDidMount() {
-        this.setData(this.props.data);
-    }
-
     componentDidUpdate(prevProps) {
         if (this.props.data !== prevProps.data) {
             this.setData(this.props.data);
