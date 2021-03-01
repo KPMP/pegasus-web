@@ -3,12 +3,25 @@ import { Container, Row, Col } from 'reactstrap';
 import DataTypeSelectorContainer from './DataTypeSelectorContainer';
 import ExpressionXCellType from "../ExpressionTables/ExpressionXCellType";
 import ExpressionXTissueType from "../ExpressionTables/ExpressionXTissueType";
+import Papa from "papaparse";
+import rawData from '../../tsneData.tsv';
+import UMAPPlot from '../Plots/UMAPPlot'
+
 
 class DataViz extends Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = { plotData: []};
     };
+
+    componentDidMount() {
+        Papa.parse(rawData, {
+            download: true,
+            header: true,
+            delimiter: '\t',
+            complete: (results) => { this.setState({plotData: results.data}) }
+        });
+    }
 
     render() {
         return (
@@ -19,12 +32,12 @@ class DataViz extends Component {
                         <Col md='6'>
                             <h5>UMAP</h5>
                             <hr/>
-                            <img src='img/umap_placeholder_color.png' alt='umap placeholder' className='img-fluid'/>
+                            <UMAPPlot data={this.state.plotData} />
                         </Col>
                         <Col md='6'>
                             <h5>AQP Expression</h5>
                             <hr/>
-                            <img src='img/umap_placeholder_gradient.png' alt='umap placeholder' className='img-fluid'/>
+                            <UMAPPlot data={this.state.plotData} />
                         </Col>
                     </Row>
                     <ExpressionXCellType/>
