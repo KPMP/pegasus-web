@@ -35,7 +35,6 @@ class UMAPPlot extends Component {
         let clusterLabelY = [];
         let clusterLabelText = [];
         for (const cluster in clusterData) {
-            console.log(clusterData[cluster].xValues);
             clusterLabelX.push(clusterData[cluster].xValues.reduce((a, b) => (a + b)) / clusterData[cluster].xValues.length);
             clusterLabelY.push(clusterData[cluster].yValues.reduce((a, b) => (a + b)) / clusterData[cluster].yValues.length);
             clusterLabelText.push(cluster)
