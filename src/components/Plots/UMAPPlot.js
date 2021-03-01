@@ -23,7 +23,7 @@ class UMAPPlot extends Component {
             const colorMatch = ["red", "orange", "yellow", "green", "cyan", "blue", "purple", "pink", "gray", "brown", "salmon", "gold", "peachpuff", "olive", "teal", "steelblue"];
             return colorMatch[clusterNum];
         };
-        inputData.map(function(line) {
+        inputData.forEach(function(line) {
             xaxis.push(line.tSNE_1);
             yaxis.push(line.tSNE_2);
             cluster.push(clusterToColor(line.cluster));
