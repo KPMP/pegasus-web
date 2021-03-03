@@ -55,7 +55,7 @@ class UMAPPlot extends Component {
             textfont : {
                 family:'Arial Black'
             },
-            marker: { size: '16', color: 'black' }
+            marker: { size: '24', color: 'black' }
         };
         this.setState({plotData: [clusterPlot, clusterLabelPlot]});
     };
@@ -64,7 +64,17 @@ class UMAPPlot extends Component {
 
     render() {
         return (
-            <Plot data={this.state.plotData} layout={ { width: 530, showlegend: false, yaxis: { zeroline: false, showgrid: false, showline: true }, xaxis: { zeroline: false, showgrid: false, showline: true } } }/>
+            <Plot data={this.state.plotData}
+                  layout={ { width: 500, showlegend: false,
+                      yaxis: { zeroline: false, showgrid: false, showline: true },
+                      xaxis: { zeroline: false, showgrid: false, showline: true },
+                      margin: {
+                          l: 25,
+                          r: 25,
+                          b: 25,
+                          t: 25,
+                          pad: 4
+                      } } }/>
         )
     }
 }
