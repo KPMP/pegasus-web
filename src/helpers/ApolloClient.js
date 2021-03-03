@@ -70,13 +70,16 @@ export const fetchAutoComplete = async (searchString) => {
 };
 
 export const fetchCellTypeHierarchy = async() => {
-    console.log("here");
     const response = await apolloClient.query({
         query: gql`
             query {
-                cellTypeHiearchy {
-                    cellTypeRegionMap {
-                        key
+                cellTypeHierarchy {
+                    cellTypeRegions {
+                        regionName
+                        cellTypeSubregions {
+                            subregionName
+                            cellTypeNames
+                        }
                     }
                 } 
             }`

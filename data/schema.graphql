@@ -1,7 +1,7 @@
 type Query {
   genes(symbol: String): [MyGeneInfoHit]
   autocomplete(searchTerm: String): [AutoCompleteResult]
-  cellTypeHiearchy: CellTypeHierarchy
+  cellTypeHierarchy: CellTypeHierarchy
 }
 
 type MyGeneInfoHit {
@@ -21,9 +21,15 @@ type AutoCompleteResult {
 }
 
 type CellTypeHierarchy {
-  cellTypeRegionMap: [RegionMapTuple]
+  cellTypeRegions: [CellTypeStructureRegion]
 }
 
-type RegionMapTuple {
-  key: String
+type CellTypeStructureRegion {
+  cellTypeSubregions: [CellTypeStructureSubregion]
+  regionName: String
+}
+
+type CellTypeStructureSubregion {
+  cellTypeNames: [String]
+  subregionName: String
 }
