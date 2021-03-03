@@ -1,9 +1,19 @@
 import React, { Component } from 'react';
 import {Col, Container, Row} from 'reactstrap';
 import ConceptSelectContainer from './ConceptSelectContainer';
+import { fetchCellTypeHierarchy } from "../../helpers/ApolloClient"
 
 class NephronSchemaCard extends Component {
+
+    getCellTypeHierarchy = async() => {
+        const results = await fetchCellTypeHierarchy();
+        console.log(results);
+    }
+
     render() {
+
+        this.getCellTypeHierarchy();
+
         return (
             <Container className="mt-3 rounded border p-3">
                 <Row className="mb-4"><Col><ConceptSelectContainer/></Col></Row>
