@@ -29,12 +29,12 @@ class DataViz extends Component {
                 <Container className='mt-3 rounded border p-3'>
                     <DataTypeSelectorContainer/>
                     <Row xs='12' className='mb-4'>
-                        <Col md='6'>
+                        <Col xl='6'>
                             <h5>UMAP</h5>
                             <hr/>
                             <UMAPPlot data={this.state.plotData} />
                         </Col>
-                        <Col md='6'>
+                        <Col xl='6'>
                             <h5>AQP Expression</h5>
                             <hr/>
                             <UMAPPlot data={this.state.plotData} />
