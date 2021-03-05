@@ -68,3 +68,26 @@ export const fetchAutoComplete = async (searchString) => {
 
     return [];
 };
+
+export const fetchCellTypeHierarchy = async() => {
+    const response = await apolloClient.query({
+        query: gql`
+            query {
+                cellTypeHierarchy {
+                    cellTypeRegions {
+                        regionName
+                        cellTypeSubregions {
+                            subregionName
+                            cellTypeNames
+                        }
+                    }
+                } 
+            }`
+    });
+
+    if (response.data && response.data.cellTypeHierarchy) {
+        return response.data.cellTypeHierarchy;
+    }
+    
+    return undefined;
+}
