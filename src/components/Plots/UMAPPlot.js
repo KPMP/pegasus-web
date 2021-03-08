@@ -65,9 +65,10 @@ class UMAPPlot extends Component {
     render() {
         return (
             <Plot data={this.state.plotData}
-                  layout={ { width: 500, showlegend: false,
+                  layout={ { width: 460, showlegend: false,
                       yaxis: { zeroline: false, showgrid: false, showline: true },
                       xaxis: { zeroline: false, showgrid: false, showline: true },
+                      autosize: false,
                       margin: {
                           l: 25,
                           r: 25,

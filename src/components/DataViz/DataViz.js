@@ -28,15 +28,21 @@ class DataViz extends Component {
             <div>
                 <Container className='mt-3 rounded border p-3'>
                     <DataTypeSelectorContainer/>
-                    <Row xs='12' className='mb-4'>
-                        <Col xl='6'>
+                    <Row xs='12'>
+                        <Col lg='6'>
                             <h5>UMAP</h5>
                             <hr/>
-                            <UMAPPlot data={this.state.plotData} />
                         </Col>
-                        <Col xl='6'>
+                        <Col lg='6'>
                             <h5>AQP Expression</h5>
                             <hr/>
+                        </Col>
+                    </Row>
+                    <Row xs='12' className='mb-4'>
+                        <Col lg='6' className="text-center">
+                            <UMAPPlot data={this.state.plotData} />
+                        </Col>
+                        <Col lg='6' className="text-center">
                             <UMAPPlot data={this.state.plotData} />
                         </Col>
                     </Row>
