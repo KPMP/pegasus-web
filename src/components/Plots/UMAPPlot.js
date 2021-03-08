@@ -64,7 +64,7 @@ class UMAPPlot extends Component {
 
     render() {
         return (
-            <Plot className="img-fluid" data={this.state.plotData}
+            <Plot data={this.state.plotData}
                   layout={ { width: 460, showlegend: false,
                       yaxis: { zeroline: false, showgrid: false, showline: true },
                       xaxis: { zeroline: false, showgrid: false, showline: true },
