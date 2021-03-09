@@ -4,6 +4,7 @@ import { Row, Col } from 'reactstrap';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer'
 
 class DataTypeSelector extends Component {
     constructor(props) {
@@ -27,13 +28,7 @@ class DataTypeSelector extends Component {
             <React.Fragment>
                 <Row xs="12" className='mb-4'>
                     <Col lg="2" className='text-center d-table'>
-                        <Select
-                            options={[]}
-                            onChange={this.handleSelect}
-                            value={this.state.inputValue}
-                            onInputChange={this.handleInputChange}
-                            className="select"
-                        />
+                        <ConceptSelectContainer placeHolder={false}/>
                     </Col>
                     <Col lg="2" className='d-table'>
                         <span className='d-table-cell'>in:</span>
