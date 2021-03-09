@@ -60,7 +60,7 @@ class NephronSchemaCard extends Component {
     render() {
         let hierarchyText = this.generateHierarchyText();
         return (
-            <Container className="mt-3 rounded border p-3">
+            <Container className="mt-3 rounded border p-3 shadow-sm">
                 <Row className="mb-4"><Col><ConceptSelectContainer/></Col></Row>
                 <Row>
                     <Col md='3'>
