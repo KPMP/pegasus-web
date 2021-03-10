@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, type ElementRef} from "react";
 import AsyncSelect from "react-select/async";
 import { fetchAutoComplete } from "../../helpers/ApolloClient"
 
@@ -8,17 +8,19 @@ class ConceptSelect extends Component {
         super(props);
         this.selectRef = React.createRef();
         this.state = {
-            inputValue: this.props.selectedConcept.value?this.props.selectedConcept.value:""
+            inputValue: this.props.selectedConcept.value ? this.props.selectedConcept.value : "",
+            value: null,
         }
     }
 
     handleSelect = (selected) => {
-        console.log(selected)
-        this.props.setSelectedConcept(selected.value);
+        if (selected !== null) {
+            this.props.setSelectedConcept(selected.value);
+            this.setState({value: [{label: selected.value.value, value: selected.value}]});
+        }
     };
 
     handleInputChange = (input, actionMeta) => {
-        console.log(input)
         this.setState({inputValue: input});
     };
 
@@ -35,14 +37,11 @@ class ConceptSelect extends Component {
 
     handleNoOptions = ({inputValue}) => {
 
-        if (inputValue.trim().length >= 3) {
-            return "No results found";
-        } else if (this.props.placeHolder) {
-            return "Please enter 3 or more characters to start search";
+        if (inputValue.trim().length < 3) {
+            return this.props.moreCharactersMessage;
         } else {
-            return "";
+            return "No results found";
         }
-
     };
 
     formatOption = (result, searchString) => {
@@ -68,28 +67,32 @@ class ConceptSelect extends Component {
     };
 
     render() {
+        const customStyles = {
+            singleValue: (provided, state) => ({
+                display: state.selectProps.menuIsOpen ? 'none' : 'block',
+            })
+        };
         return (
-            <span onClick={() => this.setState({inputValue: ""})}>
             <AsyncSelect
-                allowClear showSearch
-                innerRef={this.selectRef}
-                clearValue={() => this.setState({inputValue: ""}) }
+                allowClear
                 loadOptions={this.getOptions}
+                styles={customStyles}
                 noOptionsMessage={this.handleNoOptions}
                 onChange={this.handleSelect}
+                value={this.state.value}
                 inputValue={this.state.inputValue}
                 defaultInputValue={this.props.selectedConcept.value}
                 onInputChange={this.handleInputChange}
-                placeholder="Enter gene, protein, or cell type"
+                placeholder={this.props.placeHolderText}
+                onFocus={() => this.setState({inputValue: ""})}
                 className="select"
-                onClick={() => this.setState({inputValue: ""})}
             />
-            </span>
         )
     }
 }
 ConceptSelect.defaultProps = {
-    placeHolder: false
+    moreCharactersMessage: "Please enter 3 or more characters to start search",
+    placeHolderText: "Enter gene, protein, or cell type"
 };
 
 export default ConceptSelect;

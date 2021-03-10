@@ -63,7 +63,7 @@ class ExpressionXCellType extends Component {
             <React.Fragment>
                 <Row xs='12' className='mt-5'>
                     <Col xs='12'>
-                        <h5>Summary of available data ... </h5>
+                        <h5>Summary of available data for <span>{this.props.selectedConcept.value}</span> ... </h5>
                     </Col>
                 </Row>
                 <Row xs='12'>

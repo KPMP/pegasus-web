@@ -12,7 +12,9 @@ const mapDispatchToProps = (dispatch, props) =>
     ({
         setSelectedConcept(concept) {
             dispatch(setSelectedConcept(concept));
-            props.history.push("/summary");
+            if (props.redirect) {
+                props.history.push(props.redirect);
+            }
         }
     });
 

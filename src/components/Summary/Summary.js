@@ -63,7 +63,7 @@ class Summary extends Component {
         return (
             <div>
                 <Container className='mt-3 rounded border p-3'>
-                    <ConceptSelectFullWidth/>
+                    <ConceptSelectFullWidth />
                 </Container>
                 <Container className='mt-3 rounded border p-3'>
                     <Row xs='12'>
