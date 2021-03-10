@@ -1,5 +1,9 @@
 @import "common-values.scss";
 
+.container {
+	background: white;
+}
+
 body {
 	font-size: 16px;
 	background-color: $kpmp-gray;
