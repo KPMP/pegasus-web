@@ -5,13 +5,16 @@ import { withRouter } from 'react-router';
 
 const mapStateToProps = (state, props) =>
     ({
+        selectedConcept: state.selectedConcept
     });
 
 const mapDispatchToProps = (dispatch, props) =>
     ({
         setSelectedConcept(concept) {
-            dispatch(setSelectedConcept(concept))
-            props.history.push("/summary");
+            dispatch(setSelectedConcept(concept));
+            if (props.redirect) {
+                props.history.push(props.redirect);
+            }
         }
     });
 

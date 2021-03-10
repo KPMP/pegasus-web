@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Col, Container, Row, Spinner } from 'reactstrap';
-import ConceptSelectContainer from './ConceptSelectContainer';
+import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchCellTypeHierarchy } from "../../helpers/ApolloClient";
 
 class NephronSchemaCard extends Component {
@@ -61,7 +61,7 @@ class NephronSchemaCard extends Component {
         let hierarchyText = this.generateHierarchyText();
         return (
             <Container className="mt-3 rounded border p-3 shadow-sm">
-                <Row className="mb-4"><Col><ConceptSelectContainer/></Col></Row>
+                <Row className="mb-4"><Col><ConceptSelectFullWidth redirect="/summary" /></Col></Row>
                 <Row>
                     <Col md='3'>
                         <h5 className="mb-4">- OR -</h5>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import ReactTable from 'react-table';
-import ConceptSelectContainer from '../Home/ConceptSelectContainer';
+import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import initialState from '../../initialState';
 import { Link } from 'react-router-dom';
 
@@ -63,7 +63,7 @@ class Summary extends Component {
         return (
             <div>
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
-                    <ConceptSelectContainer/>
+                    <ConceptSelectFullWidth />
                 </Container>
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
                     <Row xs='12'>

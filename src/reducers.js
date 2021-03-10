@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import { resetStateReducer } from './resetStateReducer';
-import { selectedConcept } from "./components/Home/conceptSelectReducer";
+import { selectedConcept } from "./components/ConceptSelect/conceptSelectReducer";
 
 const appReducer = combineReducers({
   resetStateReducer,

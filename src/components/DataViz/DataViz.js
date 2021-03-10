@@ -34,7 +34,7 @@ class DataViz extends Component {
                             <hr/>
                         </Col>
                         <Col lg='6'>
-                            <h5>AQP Expression</h5>
+                            <h5>{this.props.selectedConcept.value} Expression</h5>
                             <hr/>
                         </Col>
                     </Row>
@@ -46,8 +46,8 @@ class DataViz extends Component {
                             <UMAPPlot data={this.state.plotData} />
                         </Col>
                     </Row>
-                    <ExpressionXCellType/>
-                    <ExpressionXTissueType/>
+                    <ExpressionXCellType selectedConcept={this.props.selectedConcept}/>
+                    <ExpressionXTissueType selectedConcept={this.props.selectedConcept}/>
                 </Container>
             </div>
         )
