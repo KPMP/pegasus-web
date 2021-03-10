@@ -1,4 +1,4 @@
-import React, {Component, type ElementRef} from "react";
+import React, { Component } from "react";
 import AsyncSelect from "react-select/async";
 import { fetchAutoComplete } from "../../helpers/ApolloClient"
 
