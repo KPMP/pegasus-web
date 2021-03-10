@@ -62,10 +62,10 @@ class Summary extends Component {
         let {name, value} = this.props.selectedConcept;
         return (
             <div>
-                <Container className='mt-3 rounded border p-3'>
+                <Container className='mt-3 rounded border p-3 shadow-sm'>
                     <ConceptSelectFullWidth />
                 </Container>
-                <Container className='mt-3 rounded border p-3'>
+                <Container className='mt-3 rounded border p-3 shadow-sm'>
                     <Row xs='12'>
                         <Col className='mb-4'>
                             <h5>Summary of available data for: {value} {name && '(' + name + ')'}</h5>

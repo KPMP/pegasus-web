@@ -26,7 +26,7 @@ class DataViz extends Component {
     render() {
         return (
             <div>
-                <Container className='mt-3 rounded border p-3'>
+                <Container className='mt-3 rounded border p-3 shadow-sm'>
                     <DataTypeSelectorContainer/>
                     <Row xs='12'>
                         <Col lg='6'>
