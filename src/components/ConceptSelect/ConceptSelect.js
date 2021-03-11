@@ -6,11 +6,10 @@ class ConceptSelect extends Component {
 
     constructor(props) {
         super(props);
-        this.selectRef = React.createRef();
         this.state = {
             inputValue: this.props.selectedConcept.value ? this.props.selectedConcept.value : "",
             value: null,
-        }
+        };
     }
 
     handleSelect = (selected) => {
@@ -67,14 +66,18 @@ class ConceptSelect extends Component {
     };
 
     render() {
-        const customStyles = {
-            menu: styles => ({ ...styles,
-                width: '460px'
-            }),
+        let customStyles = {
             singleValue: (provided, state) => ({
                 display: state.selectProps.menuIsOpen ? 'none' : 'block',
             })
         };
+
+        if (this.props.smallFormat) {
+            customStyles["menu"] = styles => ({ ...styles,
+                width: '460px'
+            })
+        }
+
         return (
             <AsyncSelect
                 allowClear
@@ -95,7 +98,8 @@ class ConceptSelect extends Component {
 }
 ConceptSelect.defaultProps = {
     moreCharactersMessage: "Please enter 3 or more characters to start search",
-    placeHolderText: "Enter gene, protein, or cell type"
+    placeHolderText: "Enter gene, protein, or cell type",
+    smallFormat: false
 };
 
 export default ConceptSelect;
