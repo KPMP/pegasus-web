@@ -68,6 +68,9 @@ class ConceptSelect extends Component {
 
     render() {
         const customStyles = {
+            menu: styles => ({ ...styles,
+                width: '460px'
+            }),
             singleValue: (provided, state) => ({
                 display: state.selectProps.menuIsOpen ? 'none' : 'block',
             })

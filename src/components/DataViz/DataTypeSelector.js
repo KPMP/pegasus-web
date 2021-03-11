@@ -27,7 +27,7 @@ class DataTypeSelector extends Component {
         return (
             <React.Fragment>
                 <Row xs="12" className='mb-4'>
-                    <Col lg="2" className='text-center d-table'>
+                    <Col lg="2" className='d-table'>
                         <ConceptSelectContainer moreCharactersMessage={""} placeHolderText={""}/>
                     </Col>
                     <Col lg="2" className='d-table'>
