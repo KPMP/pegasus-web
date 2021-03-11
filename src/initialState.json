@@ -122,5 +122,47 @@
       "pValue": 0.034,
       "adjPValue": 0.123
     }
+  ],
+  "cellTypeSummary": [
+    {
+      "structure_region": "Renal corpuscle",
+      "structure_subregion": "Bowman's Capsule",
+      "cell_type": "Parietal Epithelial Cell",
+      "sc_rnaseq": true,
+      "lmd_rnaseq": false,
+      "lmd_proteomics": true
+    },
+    {
+      "structure_region": "Renal corpuscle",
+      "structure_subregion": "Bowman's Capsule",
+      "cell_type": "Parietal Epithelial Cell",
+      "sc_rnaseq": false,
+      "lmd_rnaseq": false,
+      "lmd_proteomics": true
+    },
+    {
+      "structure_region": "Renal corpuscle",
+      "structure_subregion": "",
+      "cell_type": "Parietal Epithelial Cell",
+      "sc_rnaseq": false,
+      "lmd_rnaseq": false,
+      "lmd_proteomics": true
+    },
+    {
+      "structure_region": "Renal corpuscle",
+      "structure_subregion": "",
+      "cell_type": "Glomerular",
+      "sc_rnaseq": false,
+      "lmd_rnaseq": false,
+      "lmd_proteomics": true
+    },
+    {
+      "structure_region": "Renal corpuscle",
+      "structure_subregion": "Bowman's Capsule",
+      "cell_type": "Podocyte",
+      "sc_rnaseq": true,
+      "lmd_rnaseq": false,
+      "lmd_proteomics": true
+    }
   ]
 }

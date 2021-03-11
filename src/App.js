@@ -65,6 +65,7 @@ class App extends Component {
                     <NavBar />
                     <Switch>
                         <Route exact path='/summary' component={SummaryContainer} store={store} />
+                        <Route exact path='/celltypesummary' component={CellTypeSummary} store={store} />
                         <Route exact path='/' component={Home} store={store} />
                         <Route path='/dataViz' component={DataVizContainer} store={store}/>
                         <Route exact path='/oops' component={Oops} />
