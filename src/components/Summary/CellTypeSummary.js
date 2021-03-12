@@ -64,7 +64,7 @@ class CellTypeSummary extends Component {
     }
 
     render() {
-        let {name, value} = this.props.selectedConcept;
+        let {value} = this.props.selectedConcept;
         return (
             <div>
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
