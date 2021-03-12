@@ -96,4 +96,4 @@ class CellTypeSummary extends Component {
         )
     }
 }
-export default Summary;
+export default CellTypeSummary;

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import WelcomeText from './WelcomeText';
-import NephronSchemaCard from './NephronSchemaCard';
+import NephronSchemaCardContainer from './NephronSchemaCardContainer';
 import { setSelectedConcept } from '../../actions/Concepts/conceptActions'
 import { selectedConcept } from '../../initialState'
 import { connect } from "react-redux";
@@ -13,7 +13,7 @@ class Home extends Component {
         return (
             <article>
                 <WelcomeText/>
-                <NephronSchemaCard/>
+                <NephronSchemaCardContainer/>
             </article>
         );
     }

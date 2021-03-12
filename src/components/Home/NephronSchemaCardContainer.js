@@ -1,6 +1,7 @@
 import { connect } from 'react-redux';
 import NephronSchemaCard from './NephronSchemaCard';
 import { setSelectedConcept } from '../../actions/Concepts/conceptActions'
+import { withRouter } from 'react-router';
 
 const mapStateToProps = (state, props) =>
     ({
@@ -15,4 +16,4 @@ const mapDispatchToProps = (dispatch, props) =>
         }
     });
 
-export default connect(mapStateToProps, mapDispatchToProps)(NephronSchemaCard)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NephronSchemaCard))
