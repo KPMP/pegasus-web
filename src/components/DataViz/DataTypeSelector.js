@@ -9,7 +9,6 @@ import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer'
 class DataTypeSelector extends Component {
     constructor(props) {
         super(props);
-        this.selectRef = React.createRef();
         this.state = {
             inputValue: ""
         }
