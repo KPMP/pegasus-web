@@ -20,8 +20,8 @@ class NephronSchemaCard extends Component {
     };
 
     handleCellTypeClick = (cellType) => {
-        this.setState({cellTypeHierarchy: results, isProcessing: false});
-    }
+        this.props.setSelectedConcept(cellType);
+    };
 
     generateHierarchyText = () => {
         if (this.state.isProcessing) {
@@ -36,7 +36,7 @@ class NephronSchemaCard extends Component {
                 let subregions = region.cellTypeSubregions;
                 let subregionText = subregions.map((subregion) => {
                     let cellTypes = subregion.cellTypeNames.map((cellTypeName) => {
-                        return <li><a onClick={}>{cellTypeName}</a></li>
+                        return <li><a onClick={this.handleCellTypeClick(cellTypeName)}>{cellTypeName}</a></li>
                     });
                     return (
                         <section><li>{subregion.subregionName}</li>

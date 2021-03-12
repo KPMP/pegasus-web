@@ -11,7 +11,7 @@ const mapDispatchToProps = (dispatch, props) =>
     ({
         setSelectedConcept(concept) {
             dispatch(setSelectedConcept(concept));
-            dispatch(history.push("/celltypesummary"))
+            props.history.push("/celltypesummary");
         }
     });
 
