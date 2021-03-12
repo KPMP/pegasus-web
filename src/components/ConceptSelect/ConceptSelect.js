@@ -91,6 +91,7 @@ class ConceptSelect extends Component {
                 onInputChange={this.handleInputChange}
                 placeholder={this.props.placeHolderText}
                 onFocus={() => this.setState({inputValue: ""})}
+                onBlur={() => this.setState({inputValue: this.props.selectedConcept.value, value: [{label: this.props.selectedConcept.value, value: this.props.selectedConcept}]})}
                 className="select"
             />
         )
