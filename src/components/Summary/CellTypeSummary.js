@@ -75,7 +75,7 @@ class CellTypeSummary extends Component {
     };
 
     linkDataTypeCells(row, dataType) {
-        if (row[dataType] && (dataType == 'sn_rnaseq' || dataType == 'sc_rnaseq')) {
+        if (row[dataType] && (dataType === 'sn_rnaseq' || dataType === 'sc_rnaseq')) {
             return <Link to={{pathname: '/dataViz'}}>View</Link>;
         } else if (row[dataType]) {
             return <Link to={{pathname: '#'}} className='text-center'>View</Link>;
