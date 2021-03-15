@@ -14,7 +14,7 @@ import Oops from './components/Error/Oops';
 import Home from './components/Home/Home';
 import { ApolloProvider } from '@apollo/client';
 import { apolloClient } from './helpers/ApolloClient';
-import SummaryContainer from './components/Summary/SummaryContainer';
+import GeneSummaryContainer from './components/Summary/GeneSummaryContainer';
 import CellTypeSummaryContainer from './components/Summary/CellTypeSummaryContainer';
 import NotFoundPage from './components/Error/NotFoundPage';
 import DataVizContainer from "./components/DataViz/DataVizContainer";
@@ -65,7 +65,7 @@ class App extends Component {
                   <ErrorBoundaryContainer>
                     <NavBar />
                     <Switch>
-                        <Route exact path='/summary' component={SummaryContainer} store={store} />
+                        <Route exact path='/genesummary' component={GeneSummaryContainer} store={store} />
                         <Route exact path='/celltypesummary' component={CellTypeSummaryContainer} store={store} />
                         <Route exact path='/' component={Home} store={store} />
                         <Route path='/dataViz' component={DataVizContainer} store={store}/>
