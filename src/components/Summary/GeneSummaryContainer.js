@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Summary from './Summary';
+import GeneSummary from './GeneSummary';
 
 const mapStateToProps = (state, props) =>
     ({
@@ -11,4 +11,4 @@ const mapDispatchToProps = (dispatch, props) =>
     ({
     });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Summary)
+export default connect(mapStateToProps, mapDispatchToProps)(GeneSummary)

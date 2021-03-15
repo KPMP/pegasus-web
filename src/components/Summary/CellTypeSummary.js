@@ -29,9 +29,6 @@ class CellTypeSummary extends Component {
                 Header: "SUBSTRUCTURE/SUBREGION",
                 id: "structure_subregion",
                 accessor: 'structure_subregion',
-                Cell: ({ row }) => (
-                    this.linkDataTypeCells(row)
-                )
             },
             {
                 Header: "CELL TYPE",
@@ -41,26 +38,50 @@ class CellTypeSummary extends Component {
             {
                 Header: "scRNASeq",
                 id: "sc_rnaseq",
-                accessor: 'sc_rnaseq'
+                accessor: 'sc_rnaseq',
+                className: 'text-center',
+                Cell: ({ row }) => (
+                    this.linkDataTypeCells(row, 'sc_rnaseq')
+                )
+            },
+            {
+                Header: "snRNASeq",
+                id: "sn_rnaseq",
+                accessor: 'sn_rnaseq',
+                className: 'text-center',
+                Cell: ({ row }) => (
+                    this.linkDataTypeCells(row, 'sn_rnaseq')
+                )
             },
             {
                 Header: "LMD RNASeq",
                 id: "lmd_rnaseq",
-                accessor: 'lmd_rnaseq'
+                accessor: 'lmd_rnaseq',
+                className: 'text-center',
+                Cell: ({ row }) => (
+                    this.linkDataTypeCells(row, 'lmd_rnaseq')
+                )
             },
             {
                 Header: "LMD PROTEOMICS",
                 id: "lmd_proteomics",
-                accessor: 'lmd_proteomics'
+                accessor: 'lmd_proteomics',
+                className: 'text-center',
+                Cell: ({ row }) => (
+                    this.linkDataTypeCells(row, 'lmd_proteomics')
+                )
             },
         ]
     };
 
-    linkDataTypeCells(row) {
-        if (row.dataType === 'snRNASeq' || row.dataType === 'scRNASeq') {
-            return <Link to={{ pathname: '/dataViz'}} >{row.dataType}</Link>;
+    linkDataTypeCells(row, dataType) {
+        if (row[dataType] && (dataType === 'sn_rnaseq' || dataType === 'sc_rnaseq')) {
+            return <Link to={{pathname: '/dataViz'}}>View</Link>;
+        } else if (row[dataType]) {
+            return <Link to={{pathname: '#'}} className='text-center'>View</Link>;
+        } else {
+            return "";
         }
-        return row.dataType;
     }
 
     render() {

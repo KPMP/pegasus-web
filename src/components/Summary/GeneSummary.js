@@ -5,7 +5,7 @@ import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import initialState from '../../initialState';
 import { Link } from 'react-router-dom';
 
-class Summary extends Component {
+class GeneSummary extends Component {
 
     constructor(props) {
         super(props);
@@ -97,4 +97,4 @@ class Summary extends Component {
         )
     }
 }
-export default Summary;
+export default GeneSummary;
