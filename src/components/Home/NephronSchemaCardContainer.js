@@ -11,7 +11,7 @@ const mapStateToProps = (state, props) =>
 const mapDispatchToProps = (dispatch, props) =>
     ({
         setSelectedConcept(concept) {
-            dispatch(setSelectedConceptAndRedirect(concept));
+            dispatch(setSelectedConceptAndRedirect(concept, props));
         }
     });
 
