@@ -33,3 +33,18 @@ type CellTypeStructureSubregion {
   cellTypeNames: [String]
   subregionName: String
 }
+
+type GeneExpressionValue {
+  id: ID
+  tissueType: String
+  gene: String
+  pVal: Float
+  pValAdj: Float
+  foldChange: Float
+  pct1: Float
+  pct2: Float
+  avgExpression: Float
+  cluster: String
+  cellType: String
+  dataType: String
+}

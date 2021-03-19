@@ -37,7 +37,7 @@ class NephronSchemaCard extends Component {
                 let subregionText = subregions.map((subregion) => {
                     let cellTypes = subregion.cellTypeNames.map((cellTypeName) => {
                         return <li>
-                            <button onClick={() => this.handleCellTypeClick(cellTypeName)} type="button" className="btn btn-link text-left">{cellTypeName}</button></li>
+                            <button onClick={() => this.handleCellTypeClick(cellTypeName)} type="button" className="btn btn-link text-left p-0">{cellTypeName}</button></li>
                     });
                     return (
                         <section><li>{subregion.subregionName}</li>
@@ -59,8 +59,7 @@ class NephronSchemaCard extends Component {
             });
         }
 
-    }
-
+    };
 
     render() {
         let hierarchyText = this.generateHierarchyText();

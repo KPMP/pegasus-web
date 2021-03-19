@@ -2,19 +2,26 @@ import React, {Component} from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import DataTypeSelectorContainer from './DataTypeSelectorContainer';
 import ExpressionXCellType from "../ExpressionTables/ExpressionXCellType";
-import ExpressionXTissueType from "../ExpressionTables/ExpressionXTissueType";
 import Papa from "papaparse";
 import rawData from '../../tsneData.tsv';
 import UMAPPlot from '../Plots/UMAPPlot'
+import { fetchGeneExpression } from "../../helpers/ApolloClient";
 
 
 class DataViz extends Component {
     constructor(props) {
         super(props);
-        this.state = { plotData: []};
+        this.state = { plotData: [], geneExpressionData: []};
     };
 
     componentDidMount() {
+        fetchGeneExpression(this.props.dataType, this.props.tissueType, this.props.selectedConcept.value).then(
+            (geneExpressionData) => this.setState({geneExpressionData: geneExpressionData}),
+            (error) => {
+                this.setState({geneExpressionData: []});
+                console.log("There was a problem getting the data: " + error)
+            }
+        );
         Papa.parse(rawData, {
             download: true,
             header: true,
@@ -46,8 +53,7 @@ class DataViz extends Component {
                             <UMAPPlot data={this.state.plotData} />
                         </Col>
                     </Row>
-                    <ExpressionXCellType selectedConcept={this.props.selectedConcept}/>
-                    <ExpressionXTissueType selectedConcept={this.props.selectedConcept}/>
+                    <ExpressionXCellType data={this.state.geneExpressionData} selectedConcept={this.props.selectedConcept} tissueType={this.props.tissueType}/>
                 </Container>
             </div>
         )

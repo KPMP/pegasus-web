@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactTable from "react-table";
-import initialState from "../../initialState";
 import {Col, Row} from "reactstrap";
+import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
 
 class ExpressionXCellType extends Component {
     constructor(props) {
@@ -9,7 +9,6 @@ class ExpressionXCellType extends Component {
         this.getColumns = this.getColumns.bind(this);
         this.state = {
             columns: this.getColumns(),
-            expressionData: initialState.expressionXCellType
         };
     };
 
@@ -18,42 +17,46 @@ class ExpressionXCellType extends Component {
             {
                 Header: "ABBR",
                 id: "abbr",
-                accessor: 'abbr'
+                accessor: 'cluster'
             },
             {
                 Header: "CELL TYPE",
                 id: "cellType",
-                accessor: 'cellType',
+                accessor: 'clusterName',
             },
             {
                 Header: "TOTAL CELLS",
                 id: "totalCells",
-                accessor: 'totalCells'
+                accessor: 'cellCount'
             },
             {
                 Header: "MEDIAN EXPRESSION",
                 id: "medianExpression",
-                accessor: 'medianExpression'
+                accessor: 'avgExpression',
+                Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
-                Header: "# CELLS EXPRESSING",
+                Header: "% CELLS EXPRESSING",
                 id: "numCellsExp",
-                accessor: 'numCellsExp'
+                accessor: 'pct1'
             },
             {
                 Header: "FOLD CHANGE",
                 id: "foldChange",
-                accessor: 'foldChange'
+                accessor: 'foldChange',
+                Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
                 Header: "P VALUE",
                 id: "pValue",
-                accessor: 'pValue'
+                accessor: 'pVal',
+                Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
                 Header: "ADJ P VALUE",
                 id: "adjPValue",
-                accessor: 'adjPValue'
+                accessor: 'pValAdj',
+                Cell: ({ value }) => formatNumberToPrecision(value, 3)
             }
         ]
     };
@@ -63,7 +66,7 @@ class ExpressionXCellType extends Component {
             <React.Fragment>
                 <Row xs='12' className='mt-5'>
                     <Col xs='12'>
-                        <h5>Summary of available data for <span>{this.props.selectedConcept.value}</span> ... </h5>
+                        <h5>Summary of available data for <span>{this.props.selectedConcept.value}</span> in {formatTissueType(this.props.tissueType)}</h5>
                     </Col>
                 </Row>
                 <Row xs='12'>
@@ -76,7 +79,7 @@ class ExpressionXCellType extends Component {
                     <Col xs='12'>
                         <ReactTable
                             style={{border: 'none'}}
-                            data={this.state.expressionData}
+                            data={this.props.data}
                             ref={this.reactTable}
                             sortable={false}
                             columns={this.getColumns()}
