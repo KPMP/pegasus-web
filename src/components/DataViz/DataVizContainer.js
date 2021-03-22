@@ -4,7 +4,9 @@ import DataViz from "./DataViz";
 const mapStateToProps = (state, props) =>
     ({
         selectedConcept: state.selectedConcept,
-        conceptSummary: state.conceptSummary
+        conceptSummary: state.conceptSummary,
+        dataType: state.dataType,
+        tissueType: state.tissueType
     });
 
 const mapDispatchToProps = (dispatch, props) =>

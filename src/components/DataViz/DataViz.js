@@ -12,7 +12,7 @@ import {fetchUMAPPoints} from "../../helpers/ApolloClient";
 class DataViz extends Component {
     constructor(props) {
         super(props);
-        this.state = { umapRefData: [], plotData: []};
+        this.state = { umapRefData: [], plotData: [], geneExpressionData: []};
     };
 
     componentDidMount() {
@@ -23,12 +23,13 @@ class DataViz extends Component {
                 console.log("There was a problem getting the data: " + error)
             }
         );
-        Papa.parse(rawData, {
-            download: true,
-            header: true,
-            delimiter: '\t',
-            complete: (results) => { this.setState({plotData: results.data}) }
-        });
+        fetchGeneExpression(this.props.dataType, this.props.tissueType, this.props.selectedConcept.value).then(
+            (geneExpressionData) => this.setState({geneExpressionData: geneExpressionData}),
+            (error) => {
+                this.setState({geneExpressionData: []});
+                console.log("There was a problem getting the data: " + error)
+            }
+        );
     }
 
     render() {
@@ -51,11 +52,10 @@ class DataViz extends Component {
                             <UMAPPlot data={this.state.umapRefData} />
                         </Col>
                         <Col lg='6' className="text-center">
-                            <UMAPPlot data={this.state.plotData} />
+                            <UMAPPlot data={[]} />
                         </Col>
                     </Row>
-                    <ExpressionXCellType selectedConcept={this.props.selectedConcept}/>
-                    <ExpressionXTissueType selectedConcept={this.props.selectedConcept}/>
+                    <ExpressionXCellType data={this.state.geneExpressionData} selectedConcept={this.props.selectedConcept} tissueType={this.props.tissueType}/>
                 </Container>
             </div>
         )

@@ -1,5 +1,7 @@
 {
   "selectedConcept": {},
+  "dataType": "",
+  "tissueType": "",
   "conceptSummary": [
     {
       "omicsType": "Transcriptomics",
