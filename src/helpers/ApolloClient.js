@@ -90,4 +90,34 @@ export const fetchCellTypeHierarchy = async() => {
     }
     
     return undefined;
-}
+};
+
+export const fetchGeneExpression = async (dataType, tissueType, geneSymbol) => {
+
+    const response = await apolloClient.query({
+        query: gql`
+            query {
+                geneExpression(dataType:"${dataType}", geneSymbol: "${geneSymbol}", tissueType:"${tissueType}") {
+                    id
+                    tissueType
+                    gene
+                    pVal
+                    pValAdj
+                    foldChange
+                    pct1
+                    pct2
+                    avgExpression
+                    cluster
+                    clusterName
+                    cellCount
+                    dataType
+                }
+            }`
+    });
+
+    if (response.data && response.data.geneExpression) {
+        return response.data.geneExpression;
+    }
+
+    return [];
+};

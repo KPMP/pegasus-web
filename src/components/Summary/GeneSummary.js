@@ -3,7 +3,6 @@ import { Container, Row, Col } from 'reactstrap';
 import ReactTable from 'react-table';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import initialState from '../../initialState';
-import { Link } from 'react-router-dom';
 
 class GeneSummary extends Component {
 
@@ -16,6 +15,10 @@ class GeneSummary extends Component {
             columns: this.getColumns(),
             conceptSummary: initialState.conceptSummary
         };
+    };
+
+    handleLinkClick = (dataType) => {
+        this.props.setDataType(dataType)
     };
 
     getColumns() {
@@ -53,7 +56,7 @@ class GeneSummary extends Component {
 
     linkDataTypeCells(row) {
         if (row.dataType === 'snRNASeq' || row.dataType === 'scRNASeq') {
-            return <Link to={{ pathname: '/dataViz'}} >{row.dataType}</Link>;
+            return <button onClick={() => this.handleLinkClick(row.dataType)} type="button" className="btn btn-link text-left p-0">{row.dataType}</button>
         }
         return row.dataType;
     }
