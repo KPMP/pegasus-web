@@ -2,19 +2,24 @@ import React, {Component} from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import DataTypeSelectorContainer from './DataTypeSelectorContainer';
 import ExpressionXCellType from "../ExpressionTables/ExpressionXCellType";
-import Papa from "papaparse";
-import rawData from '../../tsneData.tsv';
 import UMAPPlot from '../Plots/UMAPPlot'
-import { fetchGeneExpression } from "../../helpers/ApolloClient";
+import {fetchUMAPPoints, fetchGeneExpression} from "../../helpers/ApolloClient";
 
 
 class DataViz extends Component {
     constructor(props) {
         super(props);
-        this.state = { plotData: [], geneExpressionData: []};
+        this.state = { umapRefData: [], plotData: [], geneExpressionData: []};
     };
 
     componentDidMount() {
+        fetchUMAPPoints(this.props.dataType).then(
+            (umapRefData) => this.setState({umapRefData: umapRefData}),
+            (error) => {
+                this.setState({umapRefData: []});
+                console.log("There was a problem getting the data: " + error)
+            }
+        );
         fetchGeneExpression(this.props.dataType, this.props.tissueType, this.props.selectedConcept.value).then(
             (geneExpressionData) => this.setState({geneExpressionData: geneExpressionData}),
             (error) => {
@@ -22,12 +27,6 @@ class DataViz extends Component {
                 console.log("There was a problem getting the data: " + error)
             }
         );
-        Papa.parse(rawData, {
-            download: true,
-            header: true,
-            delimiter: '\t',
-            complete: (results) => { this.setState({plotData: results.data}) }
-        });
     }
 
     render() {
@@ -47,10 +46,10 @@ class DataViz extends Component {
                     </Row>
                     <Row xs='12' className='mb-4'>
                         <Col lg='6' className="text-center">
-                            <UMAPPlot data={this.state.plotData} />
+                            <UMAPPlot data={this.state.umapRefData} />
                         </Col>
                         <Col lg='6' className="text-center">
-                            <UMAPPlot data={this.state.plotData} />
+                            <UMAPPlot data={[]} />
                         </Col>
                     </Row>
                     <ExpressionXCellType data={this.state.geneExpressionData} selectedConcept={this.props.selectedConcept} tissueType={this.props.tissueType}/>

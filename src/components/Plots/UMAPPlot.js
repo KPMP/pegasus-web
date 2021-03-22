@@ -19,17 +19,13 @@ class UMAPPlot extends Component {
         let yaxis = [];
         let cluster = [];
         let clusterData = {};
-        const clusterToColor = (clusterNum) => {
-            const colorMatch = ["red", "orange", "yellow", "green", "cyan", "blue", "purple", "pink", "gray", "brown", "salmon", "gold", "peachpuff", "olive", "teal", "steelblue"];
-            return colorMatch[clusterNum];
-        };
         inputData.forEach(function(line) {
-            xaxis.push(line.tSNE_1);
-            yaxis.push(line.tSNE_2);
-            cluster.push(clusterToColor(line.cluster));
-            clusterData[line.cluster] = clusterData[line.cluster] || {"xValues":[], "yValues":[]};
-            clusterData[line.cluster]["xValues"].push(parseFloat(line.tSNE_1));
-            clusterData[line.cluster]["yValues"].push(parseFloat(line.tSNE_2));
+            xaxis.push(line.umapX);
+            yaxis.push(line.umapY);
+            cluster.push(line.clusterColor);
+            clusterData[line.clusterName] = clusterData[line.clusterName] || {"xValues":[], "yValues":[]};
+            clusterData[line.clusterName]["xValues"].push(parseFloat(line.umapX));
+            clusterData[line.clusterName]["yValues"].push(parseFloat(line.umapY));
         }, this);
         let clusterLabelX = [];
         let clusterLabelY = [];
@@ -53,7 +49,7 @@ class UMAPPlot extends Component {
             y: clusterLabelY,
             text: clusterLabelText,
             textfont : {
-                family:'Arial Black'
+                family:'Arial'
             },
             marker: { size: '24', color: 'black' }
         };

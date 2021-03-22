@@ -92,8 +92,29 @@ export const fetchCellTypeHierarchy = async() => {
     return undefined;
 };
 
-export const fetchGeneExpression = async (dataType, tissueType, geneSymbol) => {
+export const fetchUMAPPoints = async(dataType) => {
+    const response = await apolloClient.query({
+        query: gql`
+            query {
+                umapPoints(dataType: "${dataType}") {
+                    umapX
+                    umapY
+                    clusterColor
+                    clusterName
+                    dataType
+                }
+            }`
+    });
 
+    if (response.data && response.data.umapPoints) {
+        return response.data.umapPoints;
+    }
+
+    return [];
+};
+
+
+export const fetchGeneExpression = async (dataType, tissueType, geneSymbol) => {
     const response = await apolloClient.query({
         query: gql`
             query {
@@ -118,6 +139,5 @@ export const fetchGeneExpression = async (dataType, tissueType, geneSymbol) => {
     if (response.data && response.data.geneExpression) {
         return response.data.geneExpression;
     }
-
     return [];
 };
