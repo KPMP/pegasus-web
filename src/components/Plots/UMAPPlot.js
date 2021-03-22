@@ -19,10 +19,6 @@ class UMAPPlot extends Component {
         let yaxis = [];
         let cluster = [];
         let clusterData = {};
-        const clusterToColor = (clusterNum) => {
-            const colorMatch = ["red", "orange", "yellow", "green", "cyan", "blue", "purple", "pink", "gray", "brown", "salmon", "gold", "peachpuff", "olive", "teal", "steelblue"];
-            return colorMatch[clusterNum];
-        };
         inputData.forEach(function(line) {
             xaxis.push(line.umapX);
             yaxis.push(line.umapY);
