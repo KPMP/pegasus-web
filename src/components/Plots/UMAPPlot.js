@@ -24,12 +24,12 @@ class UMAPPlot extends Component {
             return colorMatch[clusterNum];
         };
         inputData.forEach(function(line) {
-            xaxis.push(line.tSNE_1);
-            yaxis.push(line.tSNE_2);
-            cluster.push(clusterToColor(line.cluster));
-            clusterData[line.cluster] = clusterData[line.cluster] || {"xValues":[], "yValues":[]};
-            clusterData[line.cluster]["xValues"].push(parseFloat(line.tSNE_1));
-            clusterData[line.cluster]["yValues"].push(parseFloat(line.tSNE_2));
+            xaxis.push(line.umapX);
+            yaxis.push(line.umapY);
+            cluster.push(line.clusterColor);
+            clusterData[line.clusterName] = clusterData[line.clusterName] || {"xValues":[], "yValues":[]};
+            clusterData[line.clusterName]["xValues"].push(parseFloat(line.tSNE_1));
+            clusterData[line.clusterName]["yValues"].push(parseFloat(line.tSNE_2));
         }, this);
         let clusterLabelX = [];
         let clusterLabelY = [];

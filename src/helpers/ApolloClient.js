@@ -90,4 +90,25 @@ export const fetchCellTypeHierarchy = async() => {
     }
     
     return undefined;
-}
+};
+
+export const fetchUMAPPoints = async(dataType) => {
+    const response = await apolloClient.query({
+        query: gql`
+            query {
+                umapPoints(dataType: "${dataType}") {
+                    umapX
+                    umapY
+                    clusterColor
+                    clusterName
+                    dataType
+                }
+            }`
+    });
+
+    if (response.data && response.data.umapPoints) {
+        return response.data.umapPoints;
+    }
+
+    return undefined;
+};
