@@ -2,11 +2,8 @@ import React, {Component} from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import DataTypeSelectorContainer from './DataTypeSelectorContainer';
 import ExpressionXCellType from "../ExpressionTables/ExpressionXCellType";
-import ExpressionXTissueType from "../ExpressionTables/ExpressionXTissueType";
-import Papa from "papaparse";
-import rawData from '../../tsneData.tsv';
 import UMAPPlot from '../Plots/UMAPPlot'
-import {fetchUMAPPoints} from "../../helpers/ApolloClient";
+import {fetchUMAPPoints, fetchGeneExpression} from "../../helpers/ApolloClient";
 
 
 class DataViz extends Component {

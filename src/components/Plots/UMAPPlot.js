@@ -28,8 +28,8 @@ class UMAPPlot extends Component {
             yaxis.push(line.umapY);
             cluster.push(line.clusterColor);
             clusterData[line.clusterName] = clusterData[line.clusterName] || {"xValues":[], "yValues":[]};
-            clusterData[line.clusterName]["xValues"].push(parseFloat(line.tSNE_1));
-            clusterData[line.clusterName]["yValues"].push(parseFloat(line.tSNE_2));
+            clusterData[line.clusterName]["xValues"].push(parseFloat(line.umapX));
+            clusterData[line.clusterName]["yValues"].push(parseFloat(line.umapY));
         }, this);
         let clusterLabelX = [];
         let clusterLabelY = [];
@@ -53,7 +53,7 @@ class UMAPPlot extends Component {
             y: clusterLabelY,
             text: clusterLabelText,
             textfont : {
-                family:'Arial Black'
+                family:'Arial'
             },
             marker: { size: '24', color: 'black' }
         };
