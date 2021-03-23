@@ -46,10 +46,10 @@ class DataViz extends Component {
                     </Row>
                     <Row xs='12' className='mb-4'>
                         <Col lg='6' className="text-center">
-                            <UMAPPlot data={this.state.umapRefData} />
+                            {/*<UMAPPlot data={this.state.umapRefData} />*/}
                         </Col>
                         <Col lg='6' className="text-center">
-                            <UMAPPlot data={[]} />
+                            {/*<UMAPPlot data={[]} />*/}
                         </Col>
                     </Row>
                     <ExpressionXCellType data={this.state.geneExpressionData} selectedConcept={this.props.selectedConcept} tissueType={this.props.tissueType}/>
