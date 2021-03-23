@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import Plot from 'react-plotly.js';
+import { median } from '../../helpers/Utils'
 
 class UMAPPlot extends Component {
     constructor(props) {
         super(props);
-        this.state = { plotData: [] };
+        this.state = { plotData: [], plotAnnotations: [] };
         this.setData(props.data);
     }
 
@@ -15,45 +16,40 @@ class UMAPPlot extends Component {
     }
 
     setData(inputData) {
-        let xaxis = [];
-        let yaxis = [];
-        let cluster = [];
         let clusterData = {};
+        let annotations = [];
         inputData.forEach(function(line) {
-            xaxis.push(line.umapX);
-            yaxis.push(line.umapY);
-            cluster.push(line.clusterColor);
-            clusterData[line.clusterName] = clusterData[line.clusterName] || {"xValues":[], "yValues":[]};
-            clusterData[line.clusterName]["xValues"].push(parseFloat(line.umapX));
-            clusterData[line.clusterName]["yValues"].push(parseFloat(line.umapY));
+            clusterData[line.clusterName] = clusterData[line.clusterName] ||
+                {
+                    type: 'pointcloud',
+                    mode: 'markers',
+                    name: line.clusterName,
+                    text: line.clusterName,
+                    x:[],
+                    y:[],
+                    marker: { sizemin: 2, sizemax: 2, color: line.clusterColor }
+                };
+            clusterData[line.clusterName]["x"].push(parseFloat(line.umapX));
+            clusterData[line.clusterName]["y"].push(parseFloat(line.umapY));
         }, this);
-        let clusterLabelX = [];
-        let clusterLabelY = [];
-        let clusterLabelText = [];
         for (const cluster in clusterData) {
-            clusterLabelX.push(clusterData[cluster].xValues.reduce((a, b) => (a + b)) / clusterData[cluster].xValues.length);
-            clusterLabelY.push(clusterData[cluster].yValues.reduce((a, b) => (a + b)) / clusterData[cluster].yValues.length);
-            clusterLabelText.push(cluster)
+            annotations.push(
+            {
+                x: median(clusterData[cluster].x),
+                y: median(clusterData[cluster].y),
+                xref: 'x',
+                yref: 'y',
+                text: cluster,
+                ax: 0,
+                ay: 0,
+                font: {
+                    family: "Arial",
+                    color: "black"
+                }
+            });
         }
-        let clusterPlot = {
-            type: 'scatter',
-            mode: 'markers',
-            x: xaxis,
-            y: yaxis,
-            marker: { size: '2', color: cluster }
-        };
-        let clusterLabelPlot = {
-            type: 'scatter',
-            mode: 'text',
-            x: clusterLabelX,
-            y: clusterLabelY,
-            text: clusterLabelText,
-            textfont : {
-                family:'Arial'
-            },
-            marker: { size: '24', color: 'black' }
-        };
-        this.setState({plotData: [clusterPlot, clusterLabelPlot]});
+        const clusterPlotArray = Object.entries(clusterData).map(([key, value]) => value);
+        this.setState({plotData: clusterPlotArray, plotAnnotations: annotations});
     };
 
 
@@ -61,7 +57,7 @@ class UMAPPlot extends Component {
     render() {
         return (
             <Plot data={this.state.plotData}
-                  layout={ { width: 460, showlegend: false,
+                  layout={ { annotations: this.state.plotAnnotations, width: 460, showlegend: false,
                       yaxis: { zeroline: false, showgrid: false, showline: true },
                       xaxis: { zeroline: false, showgrid: false, showline: true },
                       autosize: false,
