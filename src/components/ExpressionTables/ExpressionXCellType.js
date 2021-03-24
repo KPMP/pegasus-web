@@ -16,46 +16,42 @@ class ExpressionXCellType extends Component {
         return [
             {
                 Header: "ABBR",
-                id: "abbr",
-                accessor: 'cluster'
+                accessor: 'cluster',
+                maxWidth: 70,
+                id: 'cluster'
             },
             {
                 Header: "CELL TYPE",
-                id: "cellType",
                 accessor: 'clusterName',
             },
             {
-                Header: "TOTAL CELLS",
-                id: "totalCells",
-                accessor: 'cellCount'
-            },
-            {
                 Header: "MEDIAN EXPRESSION",
-                id: "medianExpression",
                 accessor: 'avgExpression',
+                minWidth: 156,
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
                 Header: "% CELLS EXPRESSING",
-                id: "numCellsExp",
-                accessor: 'pct1'
+                accessor: 'pct1',
+                minWidth: 160,
+                Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
                 Header: "FOLD CHANGE",
-                id: "foldChange",
                 accessor: 'foldChange',
+                minWidth: 112,
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
                 Header: "P VALUE",
-                id: "pValue",
                 accessor: 'pVal',
+                minWidth: 112,
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
                 Header: "ADJ P VALUE",
-                id: "adjPValue",
                 accessor: 'pValAdj',
+                minWidth: 112,
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             }
         ]
@@ -86,7 +82,8 @@ class ExpressionXCellType extends Component {
                             className='-striped -highlight'
                             showPagination={false}
                             noDataText={'No data found'}
-                            minRows={0}
+                            minRows={this.props.data.length}
+                            defaultPageSize={100}
                         />
                     </Col>
                 </Row>
