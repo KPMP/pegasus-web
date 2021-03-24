@@ -17,3 +17,15 @@ export const formatTissueType = (tissueType) => {
 
     }
 };
+
+export const median = (numbers) => {
+    let clonedNumbers = [...numbers];
+    let median = 0, numsLen = clonedNumbers.length;
+    clonedNumbers.sort();
+    if (numsLen % 2 === 0) {
+        median = (clonedNumbers[numsLen / 2 - 1] + clonedNumbers[numsLen / 2]) / 2;
+    } else {
+        median = clonedNumbers[(numsLen - 1) / 2];
+    }
+    return median;
+};
