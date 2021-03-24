@@ -45,6 +45,7 @@ class ConceptSelect extends Component {
 
     formatOption = (result, searchString) => {
         let highlightedAliases = [];
+        let aliasSection = "";
         let aliases = result.aliases;
         if (aliases) {
             highlightedAliases = result.aliases.map((item, index) =>
@@ -53,9 +54,12 @@ class ConceptSelect extends Component {
         }
         const labelIcon = this.getLabelIcon(result.type);
         const highlightedValue = result.value.toLowerCase().includes(searchString.toLowerCase())?<strong>{result.value}</strong>:<span>{result.value}</span>;
+        if ((result.aliases !== null) && (result.aliases.length !== 0)) {
+            aliasSection = <span>({highlightedAliases})</span>
+        }
         return {
             label: <div>{labelIcon}
-                {highlightedValue} {result.aliases && <span>({highlightedAliases})</span>}</div>,
+                {highlightedValue} {aliasSection}</div>,
             value: result
         }
     };
