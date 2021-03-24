@@ -25,10 +25,6 @@ class ExpressionXCellType extends Component {
                 accessor: 'clusterName',
             },
             {
-                Header: "TOTAL CELLS",
-                accessor: 'cellCount'
-            },
-            {
                 Header: "MEDIAN EXPRESSION",
                 accessor: 'avgExpression',
                 minWidth: 156,
@@ -38,6 +34,7 @@ class ExpressionXCellType extends Component {
                 Header: "% CELLS EXPRESSING",
                 accessor: 'pct1',
                 minWidth: 160,
+                Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
                 Header: "FOLD CHANGE",
@@ -85,7 +82,8 @@ class ExpressionXCellType extends Component {
                             className='-striped -highlight'
                             showPagination={false}
                             noDataText={'No data found'}
-                            minRows={0}
+                            minRows={this.props.data.length}
+                            defaultPageSize={100}
                         />
                     </Col>
                 </Row>
