@@ -12,6 +12,15 @@ class ExpressionXCellType extends Component {
         };
     };
 
+    getTrProps = (state, rowInfo, instance) => {
+        if (rowInfo.row.clusterName === "TOTAL CELLS: ") {
+            return {
+                id: "total-row"
+            }
+        }
+        return {};
+    };
+
     getColumns() {
         return [
             {
@@ -23,6 +32,10 @@ class ExpressionXCellType extends Component {
             {
                 Header: "CELL TYPE",
                 accessor: 'clusterName',
+            },
+            {
+                Header: "# CELLS",
+                accessor: 'cellCount',
             },
             {
                 Header: "MEDIAN EXPRESSION",
@@ -83,6 +96,7 @@ class ExpressionXCellType extends Component {
                             showPagination={false}
                             noDataText={'No data found'}
                             minRows={this.props.data.length}
+                            getTrProps={this.getTrProps}
                             defaultPageSize={100}
                         />
                     </Col>

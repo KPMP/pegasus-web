@@ -1,5 +1,11 @@
-export const formatNumberToPrecision = (number, precision) => {
-    return number?number.toPrecision(precision):"N/A"
+export const formatNumberToPrecision = (number, precision, blanks = false) => {
+    if (number) {
+        return number.toPrecision(precision)
+    } else if (number === null) {
+        return "N/A"
+    } else {
+        return "";
+    }
 };
 
 export const formatTissueType = (tissueType) => {
@@ -28,4 +34,8 @@ export const median = (numbers) => {
         median = clonedNumbers[(numsLen - 1) / 2];
     }
     return median;
+};
+
+export const sum = (array, property) => {
+    return array.reduce((finalSum, item) => finalSum + item[property], 0);
 };
