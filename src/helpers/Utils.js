@@ -1,5 +1,11 @@
-export const formatNumberToPrecision = (number, precision) => {
-    return number?number.toPrecision(precision):"N/A"
+export const formatNumberToPrecision = (number, precision, blanks = false) => {
+    if (number) {
+        return number.toPrecision(precision)
+    } else if (number === null) {
+        return "N/A"
+    } else {
+        return "";
+    }
 };
 
 export const formatTissueType = (tissueType) => {

@@ -12,60 +12,65 @@ class ExpressionXCellType extends Component {
         };
     };
 
+    getTrProps = (state, rowInfo, instance) => {
+        if (rowInfo.row.clusterName === "TOTAL CELLS: ") {
+            return {
+                id: "total-row"
+            }
+        }
+        return {};
+    };
+
     getColumns() {
         return [
             {
                 Header: "ABBR",
-                id: "abbr",
-                accessor: 'cluster'
+                accessor: 'cluster',
+                maxWidth: 70,
+                id: 'cluster'
             },
             {
                 Header: "CELL TYPE",
-                id: "cellType",
                 accessor: 'clusterName',
             },
             {
-                Header: "TOTAL CELLS",
-                id: "totalCells",
-                accessor: 'cellCount'
+                Header: "# CELLS",
+                accessor: 'cellCount',
             },
             {
                 Header: "MEDIAN EXPRESSION",
-                id: "medianExpression",
                 accessor: 'avgExpression',
+                minWidth: 156,
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
                 Header: "% CELLS EXPRESSING",
-                id: "numCellsExp",
-                accessor: 'pct1'
+                accessor: 'pct1',
+                minWidth: 160,
+                Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
                 Header: "FOLD CHANGE",
-                id: "foldChange",
                 accessor: 'foldChange',
+                minWidth: 112,
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
                 Header: "P VALUE",
-                id: "pValue",
                 accessor: 'pVal',
+                minWidth: 112,
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
                 Header: "ADJ P VALUE",
-                id: "adjPValue",
                 accessor: 'pValAdj',
+                minWidth: 112,
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             }
         ]
     };
 
     render() {
-        this.props.data.push({
-            clusterName: "TOTAL CELLS: ",
-            cellCount: sum(this.props.data, "cellCount")
-        });
         return (
             <React.Fragment>
                 <Row xs='12' className='mt-5'>
@@ -90,14 +95,11 @@ class ExpressionXCellType extends Component {
                             className='-striped -highlight'
                             showPagination={false}
                             noDataText={'No data found'}
-                            minRows={0}
-                            trClassCallback={ rowInfo => (rowInfo.row.clusterName === "TOTAL CELLS: ") ? 'total-row' : '' }
+                            minRows={this.props.data.length}
+                            getTrProps={this.getTrProps}
+                            defaultPageSize={100}
                         />
                     </Col>
-                </Row>
-                <Row xs='12'>
-                    <Col xs={{ size: 2, offset: 1 }} className='d-flex justify-content-center'><span>TOTAL CELLS: </span></Col>
-                    <Col xs={{ size: 2, offset: 1 }} className='d-flex justify-content-center'><span>{sum(this.props.data, "cellCount")}</span></Col>
                 </Row>
             </React.Fragment>
         )

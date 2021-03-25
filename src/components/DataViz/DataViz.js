@@ -4,6 +4,7 @@ import DataTypeSelectorContainer from './DataTypeSelectorContainer';
 import ExpressionXCellType from "../ExpressionTables/ExpressionXCellType";
 import UMAPPlot from '../Plots/UMAPPlot'
 import {fetchUMAPPoints, fetchGeneExpression} from "../../helpers/ApolloClient";
+import {sum} from "../../helpers/Utils";
 
 
 class DataViz extends Component {
@@ -21,7 +22,13 @@ class DataViz extends Component {
             }
         );
         fetchGeneExpression(this.props.dataType, this.props.tissueType, this.props.selectedConcept.value).then(
-            (geneExpressionData) => this.setState({geneExpressionData: geneExpressionData}),
+            (geneExpressionData) => {
+                geneExpressionData.push({
+                    clusterName: "TOTAL CELLS: ",
+                    cellCount: sum(geneExpressionData, "cellCount")
+                });
+                this.setState({geneExpressionData: geneExpressionData})
+            },
             (error) => {
                 this.setState({geneExpressionData: []});
                 console.log("There was a problem getting the data: " + error)
@@ -32,7 +39,7 @@ class DataViz extends Component {
     render() {
         return (
             <div>
-                <Container className='mt-3 rounded border p-3 shadow-sm'>
+                <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
                     <DataTypeSelectorContainer/>
                     <Row xs='12'>
                         <Col lg='6'>
