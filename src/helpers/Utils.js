@@ -29,3 +29,7 @@ export const median = (numbers) => {
     }
     return median;
 };
+
+export const sum = (array, property) => {
+    return array.reduce((finalSum, item) => finalSum + item[property], 0);
+};

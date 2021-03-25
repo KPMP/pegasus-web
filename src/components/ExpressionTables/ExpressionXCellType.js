@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactTable from "react-table";
 import {Col, Row} from "reactstrap";
-import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
+import { formatTissueType, formatNumberToPrecision, sum } from "../../helpers/Utils"
 
 class ExpressionXCellType extends Component {
     constructor(props) {
@@ -62,6 +62,10 @@ class ExpressionXCellType extends Component {
     };
 
     render() {
+        this.props.data.push({
+            clusterName: "TOTAL CELLS: ",
+            cellCount: sum(this.props.data, "cellCount")
+        });
         return (
             <React.Fragment>
                 <Row xs='12' className='mt-5'>
@@ -87,8 +91,13 @@ class ExpressionXCellType extends Component {
                             showPagination={false}
                             noDataText={'No data found'}
                             minRows={0}
+                            trClassCallback={ rowInfo => (rowInfo.row.clusterName === "TOTAL CELLS: ") ? 'total-row' : '' }
                         />
                     </Col>
+                </Row>
+                <Row xs='12'>
+                    <Col xs={{ size: 2, offset: 1 }} className='d-flex justify-content-center'><span>TOTAL CELLS: </span></Col>
+                    <Col xs={{ size: 2, offset: 1 }} className='d-flex justify-content-center'><span>{sum(this.props.data, "cellCount")}</span></Col>
                 </Row>
             </React.Fragment>
         )
