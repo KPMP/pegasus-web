@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ReactTable from "react-table";
 import {Col, Row} from "reactstrap";
-import { formatTissueType, formatNumberToPrecision, sum } from "../../helpers/Utils"
+import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
 
 class ExpressionXCellType extends Component {
     constructor(props) {
