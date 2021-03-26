@@ -34,7 +34,7 @@ type CellTypeStructureSubregion {
   subregionName: String
 }
 
-type GeneExpressionValue {
+type GeneSummaryPerCluster {
   id: ID
   tissueType: String
   gene: String

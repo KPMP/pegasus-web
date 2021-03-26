@@ -118,7 +118,7 @@ export const fetchGeneExpression = async (dataType, tissueType, geneSymbol) => {
     const response = await apolloClient.query({
         query: gql`
             query {
-                geneExpression(dataType:"${dataType}", geneSymbol: "${geneSymbol}", tissueType:"${tissueType}") {
+                expressionSummaryPerClusterByGene(dataType:"${dataType}", geneSymbol: "${geneSymbol}", tissueType:"${tissueType}") {
                     id
                     tissueType
                     gene
@@ -136,8 +136,8 @@ export const fetchGeneExpression = async (dataType, tissueType, geneSymbol) => {
             }`
     });
 
-    if (response.data && response.data.geneExpression) {
-        return response.data.geneExpression;
+    if (response.data && response.data.expressionSummaryPerClusterByGene) {
+        return response.data.expressionSummaryPerClusterByGene;
     }
     return [];
 };
