@@ -16,3 +16,11 @@
     background: white !important;
 }
 
+.MuiPaper-elevation2 {
+    box-shadow: none !important;
+}
+
+tr.MuiTableRow-root:nth-child(even) {
+    background: #cee5ff;
+}
+

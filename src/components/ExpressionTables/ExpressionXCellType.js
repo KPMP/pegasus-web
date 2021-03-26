@@ -30,7 +30,7 @@ class ExpressionXCellType extends Component {
                 id: 'cluster'
             },
             {
-                Header: "CELL TYPE",
+                Header: "CLUSTER",
                 accessor: 'clusterName',
             },
             {

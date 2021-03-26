@@ -18,6 +18,7 @@ import GeneSummaryContainer from './components/Summary/GeneSummaryContainer';
 import CellTypeSummaryContainer from './components/Summary/CellTypeSummaryContainer';
 import NotFoundPage from './components/Error/NotFoundPage';
 import DataVizContainer from "./components/DataViz/DataVizContainer";
+import DiffexByCellTypeContainer from "./components/ExpressionTables/DiffexByCellTypeContainer";
 
 const cacheStore = window.sessionStorage.getItem('redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
@@ -69,6 +70,8 @@ class App extends Component {
                         <Route exact path='/celltypesummary' component={CellTypeSummaryContainer} store={store} />
                         <Route exact path='/' component={Home} store={store} />
                         <Route path='/dataViz' component={DataVizContainer} store={store}/>
+                        <Route path='/diffex' component={DiffexByCellTypeContainer} store={store}/>
+
                         <Route exact path='/oops' component={Oops} />
                         <Route path='*' component={NotFoundPage} />
                     </Switch>
