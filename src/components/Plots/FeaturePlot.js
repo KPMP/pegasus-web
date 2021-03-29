@@ -16,27 +16,24 @@ class FeaturePlot extends Component {
 
     setData(inputData) {
 
-        let allData = {};
+        let allData = { 
+            type: 'scattergl',
+            mode: 'markers',
+            expression: [],
+            x: [],
+            y: [],
+            marker: { size:2, colorscale: 'Viridis', showscale: true, color:[]}
+        };
         let annotations = [];
         inputData.forEach(function(line) {
-            allData[line.clusterName] = allData[line.clusterName] ||
-                {
-                    type: 'scattergl',
-                    mode: 'markers',
-                    name: line.expressionValue,
-                    text: line.expressionValue,
-                    expression:[],
-                    x: [],
-                    y: [],
-                    marker: { size: 2, colorscale: 'Viridis', showscale: true, color: line.expressionValue }
-                };
-                allData[line.clusterName]["expression"].push(parseFloat(line.expressionValue));
-                allData[line.clusterName]["x"].push(parseFloat(line.umapX));
-                allData[line.clusterName]["y"].push(parseFloat(line.umapY));
+            allData.x.push(line.umapX);
+            allData.y.push(line.umapY);
+            allData.expression.push(line.expressionValue);
+            allData.marker.color.push(line.expressionValue);
+
         }, this);
   
-        const clusterPlotArray = Object.entries(allData).map(([key, value]) => value);
-        this.setState({plotData: clusterPlotArray, plotAnnotations: annotations});
+        this.setState({plotData: [allData], plotAnnotations: annotations});
         
     };
 
