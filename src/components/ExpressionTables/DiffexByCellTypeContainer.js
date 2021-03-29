@@ -1,5 +1,7 @@
 import {connect} from "react-redux";
 import DiffexByCellType from "./DiffexByCellType";
+import { withRouter } from 'react-router';
+import {setSelectedConcept} from "../../actions/Concepts/conceptActions";
 
 const mapStateToProps = (state, props) =>
     ({
@@ -10,6 +12,10 @@ const mapStateToProps = (state, props) =>
 
 const mapDispatchToProps = (dispatch, props) =>
     ({
+        setSelectedConcept(concept) {
+            dispatch(setSelectedConcept(concept));
+            dispatch(props.history.push("/dataviz"));
+        }
     });
 
-export default connect(mapStateToProps, mapDispatchToProps)(DiffexByCellType)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DiffexByCellType))

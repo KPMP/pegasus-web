@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import ReactTable from 'react-table';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
-import initialState from '../../initialState';
+import { cellTypeSummary } from '../../initialState';
 import { Link } from 'react-router-dom';
 
 class CellTypeSummary extends Component {
@@ -14,8 +14,12 @@ class CellTypeSummary extends Component {
 
         this.state = {
             columns: this.getColumns(),
-            cellTypeSummary: initialState.cellTypeSummary
+            cellTypeSummary: cellTypeSummary
         };
+    };
+
+    handleLinkClick = (dataType) => {
+        this.props.setDataType(dataType)
     };
 
     getColumns() {
@@ -37,20 +41,20 @@ class CellTypeSummary extends Component {
             },
             {
                 Header: "scRNASeq",
-                id: "sc_rnaseq",
-                accessor: 'sc_rnaseq',
+                id: "sc",
+                accessor: 'sc',
                 className: 'text-center',
                 Cell: ({ row }) => (
-                    this.linkDataTypeCells(row, 'sc_rnaseq')
+                    this.linkDataTypeCells(row, 'sc')
                 )
             },
             {
                 Header: "snRNASeq",
-                id: "sn_rnaseq",
-                accessor: 'sn_rnaseq',
+                id: "sn",
+                accessor: 'sn',
                 className: 'text-center',
                 Cell: ({ row }) => (
-                    this.linkDataTypeCells(row, 'sn_rnaseq')
+                    this.linkDataTypeCells(row, 'sn')
                 )
             },
             {
@@ -75,8 +79,8 @@ class CellTypeSummary extends Component {
     };
 
     linkDataTypeCells(row, dataType) {
-        if (row[dataType] && (dataType === 'sn_rnaseq' || dataType === 'sc_rnaseq')) {
-            return <Link to={{pathname: '/dataViz'}}>View</Link>;
+        if (row[dataType] && (dataType === 'sn' || dataType === 'sc')) {
+            return <button onClick={() => this.handleLinkClick(dataType)} type="button" className="btn btn-link text-left p-0">View</button>
         } else if (row[dataType]) {
             return <Link to={{pathname: '#'}} className='text-center'>View</Link>;
         } else {

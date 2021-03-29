@@ -71,7 +71,6 @@ class App extends Component {
                         <Route exact path='/' component={Home} store={store} />
                         <Route path='/dataViz' component={DataVizContainer} store={store}/>
                         <Route path='/diffex' component={DiffexByCellTypeContainer} store={store}/>
-
                         <Route exact path='/oops' component={Oops} />
                         <Route path='*' component={NotFoundPage} />
                     </Switch>

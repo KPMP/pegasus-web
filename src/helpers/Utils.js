@@ -24,6 +24,18 @@ export const formatTissueType = (tissueType) => {
     }
 };
 
+export const formatDataType = (dataType) => {
+    switch (dataType) {
+        case "sn":
+            return "snRNASeq";
+        case "sc":
+            return "scRNASeq";
+        default:
+            return dataType
+
+    }
+};
+
 export const median = (numbers) => {
     let clonedNumbers = [...numbers];
     let median = 0, numsLen = clonedNumbers.length;
