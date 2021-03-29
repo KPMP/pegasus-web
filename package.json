@@ -13,6 +13,7 @@
     "@fortawesome/react-fontawesome": "0.1.7",
     "axios": "0.21.1",
     "bootstrap-css-only": "4.4.1",
+    "colormap": "2.3.2",
     "graphql": "15.4.0",
     "history": "5.0.0",
     "isomorphic-unfetch": "^3.1.0",
