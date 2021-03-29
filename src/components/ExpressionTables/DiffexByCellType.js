@@ -24,7 +24,7 @@ class DiffexByCellType extends Component {
     render() {
         return (
             <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
-                <Row xs='12' className='mt-5'>
+                <Row xs='12' className='mt-4'>
                     <Col xs='12'>
                         <h5>{formatDataType(this.props.dataType)} differential expression* [RNA] / abundance* [PROT] in {this.props.selectedConcept.value} </h5>
                     </Col>
