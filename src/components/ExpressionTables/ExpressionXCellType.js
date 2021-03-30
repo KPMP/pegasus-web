@@ -39,7 +39,7 @@ class ExpressionXCellType extends Component {
             },
             {
                 Header: "MEDIAN EXPRESSION",
-                accessor: 'avgExpression',
+                accessor: 'avgExp',
                 minWidth: 156,
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
