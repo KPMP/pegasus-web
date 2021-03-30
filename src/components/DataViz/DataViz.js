@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import DataTypeSelectorContainer from './DataTypeSelectorContainer';
 import ExpressionXCellType from "../ExpressionTables/ExpressionXCellType";
-import UMAPPlot from '../Plots/UMAPPlot'
+import UMAPPlot from '../Plots/UMAPPlot';
+import FeaturePlot from '../Plots/FeaturePlot';
 import {fetchUMAPPoints, fetchGeneExpression} from "../../helpers/ApolloClient";
 import {sum} from "../../helpers/Utils";
 
@@ -14,7 +15,7 @@ class DataViz extends Component {
     };
 
     componentDidMount() {
-        fetchUMAPPoints(this.props.dataType).then(
+        fetchUMAPPoints(this.props.dataType, this.props.selectedConcept.value).then(
             (umapRefData) => this.setState({umapRefData: umapRefData}),
             (error) => {
                 this.setState({umapRefData: []});
@@ -56,7 +57,7 @@ class DataViz extends Component {
                             <UMAPPlot data={this.state.umapRefData} />
                         </Col>
                         <Col lg='6' className="text-center">
-                            <UMAPPlot data={[]} />
+                            <FeaturePlot data={this.state.umapRefData} />
                         </Col>
                     </Row>
                     <ExpressionXCellType data={this.state.geneExpressionData} selectedConcept={this.props.selectedConcept} tissueType={this.props.tissueType}/>
