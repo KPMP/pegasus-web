@@ -114,11 +114,11 @@ export const fetchUMAPPoints = async(dataType) => {
 };
 
 
-export const fetchGeneExpression = async (dataType, tissueType, geneSymbol) => {
+export const fetchGeneExpression = async (dataType, geneSymbol, cellType, tissueType) => {
     const response = await apolloClient.query({
         query: gql`
             query {
-                geneExpression(dataType:"${dataType}", geneSymbol: "${geneSymbol}", tissueType:"${tissueType}") {
+                geneExpression(dataType:"${dataType}", geneSymbol: "${geneSymbol}", cellType: "${cellType}", tissueType:"${tissueType}") {
                     id
                     tissueType
                     gene
