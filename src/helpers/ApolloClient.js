@@ -1,6 +1,6 @@
 import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
 import packageJson from '../../package.json';
-import 'isomorphic-unfetch'
+import 'isomorphic-unfetch';
 
 const isDevelopment = () => {
     return process.env.NODE_ENV === "development";
@@ -91,6 +91,30 @@ export const fetchCellTypeHierarchy = async() => {
     
     return undefined;
 };
+
+export const fetchClusterHierarchy = async(cellType) => {
+    const response = await apolloClient.query({
+        query: gql`
+            query {
+                getClusterHieararchies(cellType: "${cellType}") {
+                   cellType
+                   clusterName
+                   structureRegion
+                   structureSubregion
+                   isSingleNucCluster
+                   isSingleCellCluster
+                   cellTypeId
+                   clusterId 
+                }
+            }`
+    });
+
+    if(response.data && response.data.getClusterHieararchies) {
+        return response.data.getClusterHieararchies;
+    }
+
+    return undefined;
+}
 
 export const fetchUMAPPoints = async(dataType, geneSymbol) => {
     const response = await apolloClient.query({

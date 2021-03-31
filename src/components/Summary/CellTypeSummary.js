@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import ReactTable from 'react-table';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
-import { cellTypeSummary } from '../../initialState';
-import { Link } from 'react-router-dom';
+import {fetchClusterHierarchy} from '../../helpers/ApolloClient';
 
 class CellTypeSummary extends Component {
 
@@ -14,9 +13,19 @@ class CellTypeSummary extends Component {
 
         this.state = {
             columns: this.getColumns(),
-            cellTypeSummary: cellTypeSummary
+            cellTypeSummary: []
         };
     };
+
+    componentDidMount() {
+        fetchClusterHierarchy(this.props.selectedConcept.value).then(
+            (cellTypeSummary) => this.setState({cellTypeSummary: cellTypeSummary}),
+            (error) => {
+                this.setState({cellTypeSummary: []});
+                console.log('There was a problem getting the data: ' + error)
+            }
+        );
+    }
 
     handleLinkClick = (dataType) => {
         this.props.setDataType(dataType)
@@ -25,67 +34,64 @@ class CellTypeSummary extends Component {
     getColumns() {
         return [
             {
-                Header: "STRUCTURE/REGION",
-                id: "structure_region",
-                accessor: 'structure_region'
+                Header: 'STRUCTURE/REGION',
+                id: 'structureRegion',
+                accessor: 'structureRegion'
             },
             {
-                Header: "SUBSTRUCTURE/SUBREGION",
-                id: "structure_subregion",
-                accessor: 'structure_subregion',
+                Header: 'SUBSTRUCTURE/SUBREGION',
+                id: 'structureSubregion',
+                accessor: 'structureSubregion',
             },
             {
-                Header: "CELL TYPE",
-                id: "cell_type",
-                accessor: 'cell_type'
+                Header: 'CELL TYPE / CLUSTER',
+                id: 'cellType',
+                accessor: 'cellType'
             },
             {
-                Header: "scRNASeq",
-                id: "sc",
-                accessor: 'sc',
+                Header: 'scRNASeq',
+                id: 'sc',
+                accessor: 'isSingleCellCluster',
                 className: 'text-center',
                 Cell: ({ row }) => (
-                    this.linkDataTypeCells(row, 'sc')
+                    this.linkDataTypeCells(row['sc'], 'sc')
                 )
             },
             {
-                Header: "snRNASeq",
-                id: "sn",
-                accessor: 'sn',
+                Header: 'snRNASeq',
+                id: 'sn',
+                accessor: 'isSingleNucCluster',
                 className: 'text-center',
                 Cell: ({ row }) => (
-                    this.linkDataTypeCells(row, 'sn')
+                    this.linkDataTypeCells(row['sn'], 'sn')
                 )
             },
             {
-                Header: "LMD RNASeq",
-                id: "lmd_rnaseq",
+                Header: 'LMD RNASeq',
+                id: 'lmd_rnaseq',
                 accessor: 'lmd_rnaseq',
                 className: 'text-center',
                 Cell: ({ row }) => (
-                    this.linkDataTypeCells(row, 'lmd_rnaseq')
+                    this.linkDataTypeCells('N')
                 )
             },
             {
-                Header: "LMD PROTEOMICS",
-                id: "lmd_proteomics",
+                Header: 'LMD PROTEOMICS',
+                id: 'lmd_proteomics',
                 accessor: 'lmd_proteomics',
                 className: 'text-center',
                 Cell: ({ row }) => (
-                    this.linkDataTypeCells(row, 'lmd_proteomics')
+                    this.linkDataTypeCells('N')
                 )
             },
         ]
     };
 
-    linkDataTypeCells(row, dataType) {
-        if (row[dataType] && (dataType === 'sn' || dataType === 'sc')) {
-            return <button onClick={() => this.handleLinkClick(dataType)} type="button" className="btn btn-link text-left p-0">View</button>
-        } else if (row[dataType]) {
-            return <Link to={{pathname: '#'}} className='text-center'>View</Link>;
-        } else {
-            return "";
+    linkDataTypeCells(isDataType, dataType) {
+        if (isDataType === 'Y') {
+            return <button onClick={() => this.handleLinkClick(dataType)} type='button' className='btn btn-link text-left p-0'>View</button>
         }
+        return '';
     }
 
     render() {
