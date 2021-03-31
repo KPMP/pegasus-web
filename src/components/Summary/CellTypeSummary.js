@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import ReactTable from 'react-table';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
-import {fetchClusterHierarchy} from "../../helpers/ApolloClient";
-import { Link } from 'react-router-dom';
+import {fetchClusterHierarchy} from '../../helpers/ApolloClient';
 
 class CellTypeSummary extends Component {
 
@@ -23,7 +22,7 @@ class CellTypeSummary extends Component {
             (cellTypeSummary) => this.setState({cellTypeSummary: cellTypeSummary}),
             (error) => {
                 this.setState({cellTypeSummary: []});
-                console.log("There was a problem getting the data: " + error)
+                console.log('There was a problem getting the data: ' + error)
             }
         );
     }
@@ -35,23 +34,23 @@ class CellTypeSummary extends Component {
     getColumns() {
         return [
             {
-                Header: "STRUCTURE/REGION",
-                id: "structureRegion",
+                Header: 'STRUCTURE/REGION',
+                id: 'structureRegion',
                 accessor: 'structureRegion'
             },
             {
-                Header: "SUBSTRUCTURE/SUBREGION",
-                id: "structureSubregion",
+                Header: 'SUBSTRUCTURE/SUBREGION',
+                id: 'structureSubregion',
                 accessor: 'structureSubregion',
             },
             {
-                Header: "CELL TYPE / CLUSTER",
-                id: "cellType",
+                Header: 'CELL TYPE / CLUSTER',
+                id: 'cellType',
                 accessor: 'cellType'
             },
             {
-                Header: "scRNASeq",
-                id: "sc",
+                Header: 'scRNASeq',
+                id: 'sc',
                 accessor: 'isSingleCellCluster',
                 className: 'text-center',
                 Cell: ({ row }) => (
@@ -59,8 +58,8 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                Header: "snRNASeq",
-                id: "sn",
+                Header: 'snRNASeq',
+                id: 'sn',
                 accessor: 'isSingleNucCluster',
                 className: 'text-center',
                 Cell: ({ row }) => (
@@ -68,31 +67,31 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                Header: "LMD RNASeq",
-                id: "lmd_rnaseq",
+                Header: 'LMD RNASeq',
+                id: 'lmd_rnaseq',
                 accessor: 'lmd_rnaseq',
                 className: 'text-center',
                 Cell: ({ row }) => (
-                    this.linkDataTypeCells("N")
+                    this.linkDataTypeCells('N')
                 )
             },
             {
-                Header: "LMD PROTEOMICS",
-                id: "lmd_proteomics",
+                Header: 'LMD PROTEOMICS',
+                id: 'lmd_proteomics',
                 accessor: 'lmd_proteomics',
                 className: 'text-center',
                 Cell: ({ row }) => (
-                    this.linkDataTypeCells("N")
+                    this.linkDataTypeCells('N')
                 )
             },
         ]
     };
 
     linkDataTypeCells(isDataType, dataType) {
-        if (isDataType === "Y") {
-            return <button onClick={() => this.handleLinkClick(dataType)} type="button" className="btn btn-link text-left p-0">View</button>
+        if (isDataType === 'Y') {
+            return <button onClick={() => this.handleLinkClick(dataType)} type='button' className='btn btn-link text-left p-0'>View</button>
         }
-        return "";
+        return '';
     }
 
     render() {
