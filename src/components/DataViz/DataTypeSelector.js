@@ -6,7 +6,6 @@ import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer'
 import {getTissueTypeOptions} from "../../helpers/Utils";
-import AsyncSelect from "react-select/async/dist/react-select.esm";
 
 class DataTypeSelector extends Component {
     constructor(props) {
