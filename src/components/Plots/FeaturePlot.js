@@ -28,7 +28,7 @@ class FeaturePlot extends Component {
         inputData.forEach(function(line) {
             allData.x.push(line.umapX);
             allData.y.push(line.umapY);
-            if (line.expressionValue == 0) {
+            if (line.expressionValue === 0) {
                 allData.marker.color.push('lightgray');
             } else {
                 allData.expression.push(line.expressionValue);
