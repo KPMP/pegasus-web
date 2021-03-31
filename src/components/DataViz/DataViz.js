@@ -22,7 +22,7 @@ class DataViz extends Component {
                 console.log("There was a problem getting the data: " + error)
             }
         );
-        fetchGeneExpression(this.props.dataType, this.props.tissueType, this.props.selectedConcept.value).then(
+        fetchGeneExpression(this.props.dataType, this.props.selectedConcept.value, "", this.props.tissueType).then(
             (geneExpressionData) => {
                 geneExpressionData.push({
                     clusterName: "TOTAL CELLS: ",

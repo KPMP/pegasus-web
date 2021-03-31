@@ -139,11 +139,11 @@ export const fetchUMAPPoints = async(dataType, geneSymbol) => {
 };
 
 
-export const fetchGeneExpression = async (dataType, tissueType, geneSymbol) => {
+export const fetchGeneExpression = async (dataType, geneSymbol, cellType, tissueType) => {
     const response = await apolloClient.query({
         query: gql`
             query {
-                expressionSummaryPerClusterByGene(dataType:"${dataType}", geneSymbol: "${geneSymbol}", tissueType:"${tissueType}") {
+                geneExpressionSummary(dataType:"${dataType}", geneSymbol:"${geneSymbol}", cellType:"${cellType}", tissueType:"${tissueType}") {
                     id
                     tissueType
                     gene
@@ -152,7 +152,7 @@ export const fetchGeneExpression = async (dataType, tissueType, geneSymbol) => {
                     foldChange
                     pct1
                     pct2
-                    avgExpression
+                    avgExp
                     cluster
                     clusterName
                     cellCount
@@ -161,8 +161,8 @@ export const fetchGeneExpression = async (dataType, tissueType, geneSymbol) => {
             }`
     });
 
-    if (response.data && response.data.expressionSummaryPerClusterByGene) {
-        return response.data.expressionSummaryPerClusterByGene;
+    if (response.data && response.data.geneExpressionSummary) {
+        return response.data.geneExpressionSummary;
     }
     return [];
 };

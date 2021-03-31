@@ -1,10 +1,29 @@
 import React, {Component} from 'react';
 import MaterialTable from 'material-table';
 import {Col, Row, Container} from "reactstrap";
-import { formatNumberToPrecision, formatDataType } from "../../helpers/Utils"
-import { diffexData } from '../../initialState'
+import {formatNumberToPrecision, formatDataType } from "../../helpers/Utils"
+import {fetchGeneExpression} from "../../helpers/ApolloClient";
 
 class DiffexByCellType extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            diffexData: []
+        };
+    };
+
+    componentDidMount() {
+        fetchGeneExpression(this.props.dataType, "", this.props.selectedConcept.value, this.props.tissueType).then(
+            (geneExpressionData) => {
+                this.setState({diffexData: geneExpressionData})
+            },
+            (error) => {
+                this.setState({diffexData: []});
+                console.log("There was a problem getting the data: " + error)
+            }
+        );
+    }
 
     getGeneLink = (gene) => {
         return  <button onClick={() => this.handleClick(gene)} type="button" className="btn btn-link text-left p-0">{gene}</button>
@@ -26,13 +45,13 @@ class DiffexByCellType extends Component {
             <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
                 <Row xs='12' className='mt-4'>
                     <Col xs='12'>
-                        <h5>{formatDataType(this.props.dataType)} differential expression* [RNA] / abundance* [PROT] in {this.props.selectedConcept.value} </h5>
+                        <h5>{formatDataType(this.props.dataType)} {(this.props.dataType === 'sn' || this.props.dataType === 'sc')?"differential expression*":"abundance*"} in {this.props.selectedConcept.value} </h5>
                     </Col>
                 </Row>
                 <Row xs='12'>
                     <Col xs='12'>
                         <MaterialTable
-                            data={diffexData}
+                            data={this.state.diffexData}
                             title=""
                             columns={this.getColumns()}
                             options={{
@@ -47,6 +66,11 @@ class DiffexByCellType extends Component {
                                 }
                             }
                         />
+                    </Col>
+                </Row>
+                <Row xs='12'>
+                    <Col xs='12'>
+                       <span>* Gene in selected cell type/region vs. all other cell types/regions</span>
                     </Col>
                 </Row>
             </Container>
