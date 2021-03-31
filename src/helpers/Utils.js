@@ -51,3 +51,30 @@ export const median = (numbers) => {
 export const sum = (array, property) => {
     return array.reduce((finalSum, item) => finalSum + item[property], 0);
 };
+
+export const getTissueTypeOptions = (value) => {
+    const options =  [
+        {
+            label: "All samples",
+            value: "all"
+        },
+        {
+            label: "Healthy Reference",
+            value: "hrt"
+        },
+        {
+            label: "AKI",
+            value: "aki"
+        },
+        {
+            label: "CKD",
+            value: "ckd"
+        }
+    ];
+
+    if (value) {
+        return options.find(item => value === item.value).label
+    } else {
+        return options
+    }
+};
