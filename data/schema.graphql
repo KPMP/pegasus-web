@@ -53,11 +53,11 @@ type GeneExpressionSummary {
 }
 
 type UmapPoint {
-  umapX: Float
-  umapY: Float
-  clusterColor: String
-  clusterName: String
-  dataType: String
-  expressionValue: Float
-  barcode: String
+	umapX: Float
+	umapY: Float
+	clusterColor: String
+	clusterName: String
+	dataType: String
+	expressionValue: Float
+	barcode: String
 }

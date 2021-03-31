@@ -21,13 +21,13 @@ class UMAPPlot extends Component {
         inputData.forEach(function(line) {
             clusterData[line.clusterName] = clusterData[line.clusterName] ||
                 {
-                    type: 'pointcloud',
+                    type: 'scattergl',
                     mode: 'markers',
                     name: line.clusterName,
                     text: line.clusterName,
                     x:[],
                     y:[],
-                    marker: { sizemin: 2, sizemax: 2, color: line.clusterColor }
+                    marker: { size: 2, color: line.clusterColor }
                 };
             clusterData[line.clusterName]["x"].push(parseFloat(line.umapX));
             clusterData[line.clusterName]["y"].push(parseFloat(line.umapY));
