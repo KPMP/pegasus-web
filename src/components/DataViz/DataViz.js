@@ -15,13 +15,13 @@ class DataViz extends Component {
     };
 
     componentDidMount() {
-        // fetchUMAPPoints(this.props.dataType, this.props.selectedConcept.value).then(
-        //     (umapRefData) => this.setState({umapRefData: umapRefData}),
-        //     (error) => {
-        //         this.setState({umapRefData: []});
-        //         console.log("There was a problem getting the data: " + error)
-        //     }
-        // );
+        fetchUMAPPoints(this.props.dataType, this.props.selectedConcept.value).then(
+            (umapRefData) => this.setState({umapRefData: umapRefData}),
+            (error) => {
+                this.setState({umapRefData: []});
+                console.log("There was a problem getting the data: " + error)
+            }
+        );
         fetchGeneExpression(this.props.dataType, this.props.selectedConcept.value, "", this.props.tissueType).then(
             (geneExpressionData) => {
                 geneExpressionData.push({
