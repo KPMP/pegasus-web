@@ -125,7 +125,6 @@ export const fetchUMAPPoints = async(dataType, geneSymbol) => {
                     umapY
                     clusterColor
                     clusterName
-                    dataType
                     expressionValue
                 }
             }`
