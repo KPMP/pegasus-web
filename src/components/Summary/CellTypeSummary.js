@@ -45,8 +45,8 @@ class CellTypeSummary extends Component {
             },
             {
                 Header: 'CELL TYPE / CLUSTER',
-                id: 'cellType',
-                accessor: 'cellType'
+                id: 'clusterName',
+                accessor: 'clusterName'
             },
             {
                 Header: 'scRNASeq',
