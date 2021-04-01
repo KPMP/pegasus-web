@@ -56,7 +56,7 @@ class UMAPPlot extends Component {
 
     render() {
         return (
-            <Plot data={this.state.plotData}
+            <Plot divId="umapPlot" data={this.state.plotData}
                   layout={ { annotations: this.state.plotAnnotations, width: 460, showlegend: false,
                       yaxis: { zeroline: false, showgrid: false, showline: true },
                       xaxis: { zeroline: false, showgrid: false, showline: true },
