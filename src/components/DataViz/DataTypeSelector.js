@@ -16,6 +16,24 @@ class DataTypeSelector extends Component {
         }
     }
 
+    getDataCounts = (dataType) => {
+        const dataInfo = {
+            sn: {
+                hrt: 3,
+                aki: 6,
+                ckd: 10,
+                all: 19
+            },
+            sc: {
+                hrt: 0,
+                aki: 12,
+                ckd: 15,
+                all: 27
+            }
+        };
+        return dataInfo[dataType];
+    };
+
     handleTissueSelect = (selected, actionMeta) => {
         this.props.setTissueType(selected.value);
         this.setState({tissueValue: selected});
@@ -56,7 +74,7 @@ class DataTypeSelector extends Component {
                         />
                     </Col>
                     <Col lg='5' className=''>
-                        <span className='d-table-cell pt-1'>(N=100 PARTICIPANTS; 50 HEALTHY REFERENCE; 30 CKD; 30 AKI)<FontAwesomeIcon icon={faQuestionCircle} className='ml-2'/></span>
+                        <span className='d-table-cell pt-1'>(N={this.getDataCounts(this.props.dataType).all} PARTICIPANTS; {this.getDataCounts(this.props.dataType).hrt} HEALTHY REFERENCE; {this.getDataCounts(this.props.dataType).ckd} CKD; {this.getDataCounts(this.props.dataType).aki} AKI)<FontAwesomeIcon icon={faQuestionCircle} className='ml-2'/></span>
                         <span className='d-table-cell pt-1 pl-4'><FontAwesomeIcon icon={faDownload} /></span>
                     </Col>
                 </Row>
