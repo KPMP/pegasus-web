@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import ReactTable from 'react-table';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
-import initialState from '../../initialState';
 
 class GeneSummary extends Component {
 
@@ -13,7 +12,6 @@ class GeneSummary extends Component {
 
         this.state = {
             columns: this.getColumns(),
-            conceptSummary: initialState.conceptSummary
         };
     };
 
@@ -26,6 +24,7 @@ class GeneSummary extends Component {
             {
                 omicsType: 'TRANSCRIPTOMICS',
                 dataType: 'Single-nucleus RNA-seq (snRNA-seq)',
+                dataTypeShort: 'sn',
                 hrt: 3,
                 aki: 6,
                 ckd: 10
@@ -33,6 +32,7 @@ class GeneSummary extends Component {
             {
                 omicsType: '',
                 dataType: 'Single-cell RNA-seq (scRNA-seq)',
+                dataTypeShort: 'sc',
                 hrt: '-',
                 aki: 12,
                 ckd: 15
@@ -40,6 +40,7 @@ class GeneSummary extends Component {
             {
                 omicsType: '',
                 dataType: 'Regional transcriptomics',
+                dataTypeShort: 'rt',
                 hrt: '-',
                 aki: '-',
                 ckd: '-'
@@ -47,6 +48,7 @@ class GeneSummary extends Component {
             {
                 omicsType: 'PROTEOMICS',
                 dataType: 'Regional proteomics',
+                dataTypeShort: 'rp',
                 hrt: '-',
                 aki: '-',
                 ckd: '-'
@@ -54,13 +56,15 @@ class GeneSummary extends Component {
             {
                 omicsType: 'IMAGING',
                 dataType: '3D Cytometry',
+                dataTypeShort: '3dc',
                 hrt: '-',
                 aki: '-',
                 ckd: '-'
             },
             {
                 omicsType: 'METABOLOMICS',
-                dataType: 'Spatial MEtabolomics',
+                dataType: 'Spatial Metabolomics',
+                dataTypeShort: 'sm',
                 hrt: '-',
                 aki: '-',
                 ckd: '-'
@@ -79,31 +83,43 @@ class GeneSummary extends Component {
                 Header: "DATA TYPE",
                 id: "dataType",
                 accessor: 'dataType',
+                minWidth: 160,
                 Cell: ({ row }) => (
                     this.linkDataTypeCells(row)
                 )
             },
             {
                 Header: "HEALTHY REFERENCE TISSUE",
-                id: "healthyRefType",
-                accessor: 'refTissue'
+                id: "hrt",
+                minWidth: 160,
+                accessor: 'hrt',
+                Cell: ({ row }) => (
+                    <div className={"text-center"}>{row.hrt}</div>
+                )
             },
             {
                 Header: "AKI TISSUE",
-                id: "akiTissue",
-                accessor: 'akiTissue'
+                id: "aki",
+                accessor: 'aki',
+                Cell: ({ row }) => (
+                    <div className={"text-center"}>{row.aki}</div>
+                )
             },
             {
                 Header: "CKD TISSUE",
-                id: "ckdTissue",
-                accessor: 'ckdTissue'
+                id: "ckd",
+                accessor: 'ckd',
+                Cell: ({ row }) => (
+                    <div className={"text-center"}>{row.ckd}</div>
+                )
             },
         ]
     };
 
     linkDataTypeCells(row) {
-        if (row.dataType === 'snRNASeq' || row.dataType === 'scRNASeq') {
-            return <button onClick={() => this.handleLinkClick(row.dataType)} type="button" className="btn btn-link text-left p-0">{row.dataType}</button>
+        console.log(row);
+        if (row._original.dataTypeShort === 'sn' || row._original.dataTypeShort === 'sc') {
+            return <button onClick={() => this.handleLinkClick(row._original.dataTypeShort)} type="button" className="btn btn-link text-left p-0">{row.dataType}</button>
         }
         return row.dataType;
     }
@@ -111,7 +127,7 @@ class GeneSummary extends Component {
     render() {
         let {name, value} = this.props.selectedConcept;
         return (
-            <div>
+            <div className='mb-4'>
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
                     <ConceptSelectFullWidth />
                 </Container>
@@ -131,7 +147,7 @@ class GeneSummary extends Component {
                         <Col>
                             <ReactTable
                                 style={{border: 'none'}}
-                                data={this.state.conceptSummary}
+                                data={this.getCellSummaryData()}
                                 ref={this.reactTable}
                                 sortable={false}
                                 columns={this.state.columns}
