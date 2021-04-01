@@ -5,7 +5,8 @@ import {setTissueType} from '../../actions/TissueType/tissueTypeActions'
 
 const mapStateToProps = (state, props) =>
     ({
-        tissueType: state.tissueType
+        tissueType: state.tissueType,
+        dataType: state.dataType
     });
 
 const mapDispatchToProps = (dispatch, props) =>
