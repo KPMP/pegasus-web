@@ -21,6 +21,53 @@ class GeneSummary extends Component {
         this.props.setDataType(dataType)
     };
 
+    getCellSummaryData = () => {
+        return [
+            {
+                omicsType: 'TRANSCRIPTOMICS',
+                dataType: 'Single-nucleus RNA-seq (snRNA-seq)',
+                hrt: 3,
+                aki: 6,
+                ckd: 10
+            },
+            {
+                omicsType: '',
+                dataType: 'Single-cell RNA-seq (scRNA-seq)',
+                hrt: '-',
+                aki: 12,
+                ckd: 15
+            },
+            {
+                omicsType: '',
+                dataType: 'Regional transcriptomics',
+                hrt: '-',
+                aki: '-',
+                ckd: '-'
+            },
+            {
+                omicsType: 'PROTEOMICS',
+                dataType: 'Regional proteomics',
+                hrt: '-',
+                aki: '-',
+                ckd: '-'
+            },
+            {
+                omicsType: 'IMAGING',
+                dataType: '3D Cytometry',
+                hrt: '-',
+                aki: '-',
+                ckd: '-'
+            },
+            {
+                omicsType: 'METABOLOMICS',
+                dataType: 'Spatial MEtabolomics',
+                hrt: '-',
+                aki: '-',
+                ckd: '-'
+            },
+        ]
+    };
+
     getColumns() {
         return [
             {
