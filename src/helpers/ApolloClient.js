@@ -116,11 +116,11 @@ export const fetchClusterHierarchy = async(cellType) => {
     return undefined;
 }
 
-export const fetchUMAPPoints = async(dataType, geneSymbol) => {
+export const fetchUMAPPoints = async(dataType, geneSymbol, tissueType) => {
     const response = await apolloClient.query({
         query: gql`
             query {
-                umapPoints(dataType: "${dataType}", geneSymbol: "${geneSymbol}") {
+                umapPoints(dataType: "${dataType}", geneSymbol: "${geneSymbol}", tissueType: "${tissueType}") {
                     umapX
                     umapY
                     clusterColor

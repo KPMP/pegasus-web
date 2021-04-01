@@ -34,7 +34,6 @@ class FeaturePlot extends Component {
                 allData.expression.push(line.expressionValue);
                 allData.marker.color.push(line.expressionValue);
             }
-            
 
         }, this);
   
@@ -46,7 +45,7 @@ class FeaturePlot extends Component {
 
     render() {
         return (
-            <Plot data={this.state.plotData}
+            <Plot divId="featurePlot" data={this.state.plotData}
                   layout={ { annotations: this.state.plotAnnotations, width: 460, showlegend: false,
                       yaxis: { zeroline: false, showgrid: false, showline: true },
                       xaxis: { zeroline: false, showgrid: false, showline: true },
@@ -57,7 +56,7 @@ class FeaturePlot extends Component {
                           b: 25,
                           t: 25,
                           pad: 4
-                      } } }/>
+            } } }/>
         )
     }
 }
