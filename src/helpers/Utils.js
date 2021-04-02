@@ -78,3 +78,47 @@ export const getTissueTypeOptions = (value) => {
         return options
     }
 };
+
+export const getDataTypeOptions = (value) => {
+    const options =  [
+        {
+            label: "SN RNAseq",
+            value: "sn"
+        },
+        {
+            label: "SC RNAseq",
+            value: "sc"
+        },
+        {
+            label: "LMD RNASeq",
+            value: "lmd",
+            isDisabled: true
+        },
+        {
+            label: "Bulk RNASeq",
+            value: "bulk",
+            isDisabled: true
+        },
+        {
+            label: "LMD Proteomics",
+            value: "lmd",
+            isDisabled: true
+        },
+        {
+            label: "3D Cytometry",
+            value: "3dc",
+            isDisabled: true
+        },
+        {
+            label: "Spatial Metabolomics",
+            value: "sm",
+            isDisabled: true
+        }
+    ];
+
+    if (value) {
+        return options.find(item => value === item.value).label
+    } else {
+        return options
+    }
+};

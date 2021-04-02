@@ -5,14 +5,17 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer'
-import {getTissueTypeOptions} from "../../helpers/Utils";
+import { getTissueTypeOptions, getDataTypeOptions } from "../../helpers/Utils";
+import AsyncSelect from "react-select/async/dist/react-select.esm";
 
 class DataTypeSelector extends Component {
     constructor(props) {
         super(props);
         this.state = {
             tissueInputValue: getTissueTypeOptions(this.props.tissueType),
-            tissueValue: null
+            tissueValue: null,
+            dataTypeInputValue: getDataTypeOptions(this.props.dataType),
+            dataTypeValue: null
         }
     }
 
@@ -39,8 +42,12 @@ class DataTypeSelector extends Component {
         this.setState({tissueValue: selected});
     };
 
-    handleInputChange = (input) => {
-        this.setState({inputValue: input})
+    handleDataTypeSelect = (selected, actionMeta) =>
+    {
+        if (this.props.dataType !== selected.value) {
+            this.props.setDataType(selected.value);
+            this.setState({dataTypeValue: selected});
+        }
     };
 
     render() {
@@ -66,11 +73,14 @@ class DataTypeSelector extends Component {
                     <Col lg="2" className='d-table'>
                         <label className='d-table-cell'>in:</label>
                         <Select
-                            options={[]}
-                            onChange={this.handleSelect}
-                            value={this.state.inputValue}
-                            onInputChange={this.handleInputChange}
-                            className='select d-table-cell w-100 pl-2'
+                            allowClear
+                            options={getDataTypeOptions()}
+                            onChange={this.handleDataTypeSelect}
+                            value={this.state.dataTypeValue}
+                            inputValue={this.state.dataTypeInputValue}
+                            defaultInputValue={getDataTypeOptions(this.props.dataType)}
+                            onFocus={() => this.setState({dataTypeInputValue: ""})}
+                            className='select pl-2 d-table-cell w-100 pl-2'
                         />
                     </Col>
                     <Col lg='5' className=''>
