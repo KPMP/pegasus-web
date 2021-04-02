@@ -31,7 +31,7 @@ class DiffexByCellType extends Component {
 
     getColumns = () => [
         { title: 'GENE', field: 'gene', cellStyle: { padding: "8px"}, render: rowData => this.getGeneLink(rowData.gene) },
-        { title: 'FOLD CHANGE', field: 'foldChange', sorting: true, defaultSort: 'ASC', cellStyle: { padding: "8px"}, type: 'numeric', render: rowData => formatNumberToPrecision(rowData.foldChange, 3)},
+        { title: 'FOLD CHANGE', field: 'foldChange', sorting: true, cellStyle: { padding: "8px"}, type: 'numeric', render: rowData => formatNumberToPrecision(rowData.foldChange, 3)},
         { title: 'PVALUE', field: 'pVal', sorting: true, type: 'numeric', cellStyle: { padding: "8px"}, render: rowData => formatNumberToPrecision(rowData.pVal, 3) },
         { title: 'ADJ PVALUE', field: 'pValAdj', sorting: true, type: 'numeric', cellStyle: { padding: "8px"}, render: rowData => formatNumberToPrecision(rowData.pValAdj, 3) }
     ];

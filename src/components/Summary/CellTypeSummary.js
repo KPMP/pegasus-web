@@ -27,8 +27,20 @@ class CellTypeSummary extends Component {
         );
     }
 
-    handleLinkClick = (dataType) => {
-        this.props.setDataType(dataType)
+    componentDidUpdate(prevProps, prevState, snapShot) {
+        if (this.props.selectedConcept.value !== prevProps.selectedConcept.value) {
+            fetchClusterHierarchy(this.props.selectedConcept.value).then(
+                (cellTypeSummary) => this.setState({cellTypeSummary: cellTypeSummary}),
+                (error) => {
+                    this.setState({cellTypeSummary: []});
+                    console.log('There was a problem getting the data: ' + error)
+                }
+            );
+        }
+    }
+
+    handleLinkClick = (dataType, cluster) => {
+        this.props.setDataTypeAndCluster(dataType, cluster);
     };
 
     getColumns() {
@@ -54,7 +66,7 @@ class CellTypeSummary extends Component {
                 accessor: 'isSingleCellCluster',
                 className: 'text-center',
                 Cell: ({ row }) => (
-                    this.linkDataTypeCells(row['sc'], 'sc')
+                    this.linkDataTypeCells(row, 'sc')
                 )
             },
             {
@@ -63,7 +75,7 @@ class CellTypeSummary extends Component {
                 accessor: 'isSingleNucCluster',
                 className: 'text-center',
                 Cell: ({ row }) => (
-                    this.linkDataTypeCells(row['sn'], 'sn')
+                    this.linkDataTypeCells(row, 'sn')
                 )
             },
             {
@@ -87,9 +99,9 @@ class CellTypeSummary extends Component {
         ]
     };
 
-    linkDataTypeCells(isDataType, dataType) {
-        if (isDataType === 'Y') {
-            return <button onClick={() => this.handleLinkClick(dataType)} type='button' className='btn btn-link text-left p-0'>View</button>
+    linkDataTypeCells(row, dataType) {
+        if (row[dataType] === 'Y') {
+            return <button onClick={() => this.handleLinkClick(dataType, row.clusterName)} type='button' className='btn btn-link text-left p-0'>View</button>
         }
         return '';
     }
