@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {Col, Container, Row, Spinner } from 'reactstrap';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchCellTypeHierarchy } from "../../helpers/ApolloClient";
+import CellTypeTabs from './CellTypeTabs';
 
 class NephronSchemaCard extends Component {
 
@@ -10,9 +11,16 @@ class NephronSchemaCard extends Component {
         let hierarchy = this.getCellTypeHierarchy();
         this.state = {
             cellTypeHierarchy: hierarchy,
-            isProcessing: true
+            isProcessing: true,
+            activeTab: '1'
         }
     }
+
+    toggle = (tab) => {
+        if(this.state.activeTab !== tab) {
+            this.setState({activeTab: tab});
+        }
+      }
 
     getCellTypeHierarchy = async() => {
         const results = await fetchCellTypeHierarchy();
@@ -23,61 +31,41 @@ class NephronSchemaCard extends Component {
         this.props.setSelectedConcept({type: "cell_type", value: cellType});
     };
 
-    generateHierarchyText = () => {
-        if (this.state.isProcessing) {
-            return (
-               <Spinner color='primary'/> 
-            )
-        } else {
+    processHierarchyText = () => {
+        if (!this.state.isProcessing) {
             let hierarchy = this.state.cellTypeHierarchy;
             let regions = hierarchy.cellTypeRegions;
-            return regions.map((region) => {
-                let regions = [];
-                let subregions = region.cellTypeSubregions;
-                let subregionText = subregions.map((subregion) => {
-                    let cellTypes = subregion.cellTypeNames.map((cellTypeName) => {
-                        return <li>
-                            <button onClick={() => this.handleCellTypeClick(cellTypeName)} type="button" className="btn btn-link text-left p-0">{cellTypeName}</button>
-                        </li>
-                    });
-                    return (
-                        <section><li>{subregion.subregionName}</li>
-                            <ul className='cell-type-list'>
-                                {cellTypes}
-                            </ul>
-                        </section>
-                    );
-                        
-                });
-                regions.push(
-                    <section>
-                        <strong>{region.regionName}</strong>
-                        <ul className='cell-type-list'>
-                            {subregionText}
-                        </ul>
-                    </section>)
-                return <div>{regions}</div>;
+            let regionMap = {};
+            regions.forEach(region => {
+                regionMap[region.regionName] = region.cellTypeSubregions;
             });
+            return regionMap;
         }
 
-    };
+    }
 
     render() {
-        let hierarchyText = this.generateHierarchyText();
+        let structures = this.processHierarchyText();
+        let tabs = <Col xs="12">
+            <CellTypeTabs data={structures}/>
+         </Col>;
+         if (this.state.isProcessing) {
+             tabs = <Spinner color='primary'/> ;
+         }
         return (
             <Container className="mt-3 rounded border p-3 shadow-sm">
                 <Row className="mb-4"><Col><ConceptSelectFullWidth redirect="/summary" /></Col></Row>
                 <Row>
-                    <Col md='3'>
+                    <Col md='12'>
                         <h5 className="mb-4">- OR -</h5>
                         <h5 className="mb-3">Select a cell type</h5>
-                        {hierarchyText}
-                    </Col>
-                    <Col md='9'><img alt='nephron schema' src='/explorer/img/Nephron_schematic.png' className='nephron-schema img-fluid'></img>
-                    <img alt='nephron schema' src='/explorer/img/Renal_corpuscle.png' className='nephron-schema img-fluid'></img>
                     </Col>
                 </Row>
+                <Row>
+                    {tabs}
+                </Row>
             </Container>
+
         );
     }
 }
