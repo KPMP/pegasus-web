@@ -73,7 +73,9 @@ class NephronSchemaCard extends Component {
                         <h5 className="mb-3">Select a cell type</h5>
                         {hierarchyText}
                     </Col>
-                    <Col md='9'><img alt='nephron schema' src='/explorer/img/nephron-schema.png' className='nephron-schema img-fluid'></img></Col>
+                    <Col md='9'><img alt='nephron schema' src='/explorer/img/Nephron_schematic.png' className='nephron-schema img-fluid'></img>
+                    <img alt='nephron schema' src='/explorer/img/Renal_corpuscle.png' className='nephron-schema img-fluid'></img>
+                    </Col>
                 </Row>
             </Container>
         );
