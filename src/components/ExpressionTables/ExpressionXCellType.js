@@ -26,45 +26,41 @@ class ExpressionXCellType extends Component {
             {
                 Header: "ABBR",
                 accessor: 'cluster',
-                maxWidth: 70,
                 id: 'cluster'
             },
             {
                 Header: "CLUSTER",
                 accessor: 'clusterName',
+                minWidth: 280,
+                Cell: ({ value }) => <span title={value}>{value}</span>
             },
             {
                 Header: "# CELLS",
                 accessor: 'cellCount',
             },
             {
-                Header: "MEDIAN EXPRESSION",
+                Header: <span>Median<br/>Expression</span>,
                 accessor: 'avgExp',
-                minWidth: 156,
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
-                Header: "% CELLS EXPRESSING",
+                Header: <span>% CELLS<br/>EXPRESSING</span>,
                 accessor: 'pct1',
-                minWidth: 160,
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
-                Header: "FOLD CHANGE",
+                Header: <span>FOLD<br/>CHANGE</span>,
                 accessor: 'foldChange',
-                minWidth: 112,
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
                 Header: "P VALUE",
                 accessor: 'pVal',
-                minWidth: 112,
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
-                Header: "ADJ P VALUE",
+                Header: <span>ADJ<br/>P VALUE</span>,
                 accessor: 'pValAdj',
-                minWidth: 112,
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             }
         ]
@@ -75,7 +71,7 @@ class ExpressionXCellType extends Component {
             <React.Fragment>
                 <Row xs='12' className='mt-5'>
                     <Col xs='12'>
-                        <h5>Summary of available data for <span>{this.props.selectedConcept.value}</span> in {formatTissueType(this.props.tissueType)}</h5>
+                        <h5><span>{this.props.selectedConcept.value}</span> Expression Comparison across Cell Types in {formatTissueType(this.props.tissueType)}</h5>
                     </Col>
                 </Row>
                 <Row xs='12'>
