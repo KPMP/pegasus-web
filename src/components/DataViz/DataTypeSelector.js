@@ -6,7 +6,6 @@ import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
 import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer'
 import { getTissueTypeOptions, getDataTypeOptions } from "../../helpers/Utils";
-import AsyncSelect from "react-select/async/dist/react-select.esm";
 
 class DataTypeSelector extends Component {
     constructor(props) {
@@ -44,10 +43,8 @@ class DataTypeSelector extends Component {
 
     handleDataTypeSelect = (selected, actionMeta) =>
     {
-        if (this.props.dataType !== selected.value) {
-            this.props.setDataType(selected.value);
-            this.setState({dataTypeValue: selected});
-        }
+        this.props.setDataType(selected.value);
+        this.setState({dataTypeValue: selected});
     };
 
     render() {
