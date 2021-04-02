@@ -24,3 +24,18 @@ tr.MuiTableRow-root:nth-child(even) {
     background: #cee5ff;
 }
 
+#cell-type-tabs {
+    .nav-link.active {
+        background-color: #007bff;
+        color: white;
+    }
+
+    .nav-link {
+        color: #007bff;
+    }
+
+    .cell-type-list {
+        background-color: #cee5ff;
+    }
+}
+
