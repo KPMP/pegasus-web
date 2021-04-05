@@ -39,7 +39,7 @@ class ExpressionXCellType extends Component {
                 accessor: 'cellCount',
             },
             {
-                Header: <span>Median<br/>Expression</span>,
+                Header: <span>MEDIAN<br/>EXPRESSION</span>,
                 accessor: 'avgExp',
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
@@ -88,7 +88,7 @@ class ExpressionXCellType extends Component {
                             ref={this.reactTable}
                             sortable={false}
                             columns={this.getColumns()}
-                            className='-striped -highlight'
+                            className='-striped -highlight expression-table'
                             showPagination={false}
                             noDataText={'No data found'}
                             minRows={this.props.data.length}

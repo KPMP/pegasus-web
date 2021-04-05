@@ -39,20 +39,20 @@ tr.MuiTableRow-root:nth-child(even) {
     }
 }
 
-.rt-td {
+.expression-table .rt-td {
   font-size: 14px;
   line-height: 13px;
   text-transform: uppercase;
 }
 
-.rt-th.rt-resizable-header {
+.expression-table .rt-th.rt-resizable-header {
   text-align: left;
   font-size: 13px;
   font-weight: 500;
   font-style: normal;
 }
 
-.d-flex.justify-content-center.col-4.offset-8:nth-child(1) > span:nth-child(1) {
+.expression-table .d-flex.justify-content-center.col-4.offset-8:nth-child(1) > span:nth-child(1) {
   font-size: 13px;
   font-weight: 500;
   font-style: normal;
