@@ -37,5 +37,13 @@ tr.MuiTableRow-root:nth-child(even) {
     .cell-type-list {
         background-color: #cee5ff;
     }
+
+    .nav-item {
+        cursor: pointer;
+    }
+
+    .shorten-img {
+        height: 650px;
+    }
 }
 
