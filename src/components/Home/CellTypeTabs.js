@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TabContent, Nav, NavItem, NavLink} from 'reactstrap';
 import classnames from 'classnames';
 import TabSection from './TabSection';
+import AccordionTabSection from './AccordionTabSection';
 
 const CellTypeTabs = (props) => {
   const [activeTab, setActiveTab] = useState('1');
@@ -48,8 +49,8 @@ const CellTypeTabs = (props) => {
       </Nav>
       <TabContent activeTab={activeTab}>
         <TabSection data={props.data['Renal Corpuscle']} tabId='1' img='/explorer/img/Renal_corpuscle.png'/>
-        <TabSection data={props.data.Tubules} tabId='2' img='/explorer/img/Nephron_schematic.png'/>
-        <TabSection data={props.data.Interstitium} tabId='3'/>
+        <AccordionTabSection data={props.data.Tubules} tabId='2' img='/explorer/img/Nephron_schematic.png' extraClassName='shorten-img'/>
+        <AccordionTabSection data={props.data.Interstitium} tabId='3'/>
         <TabSection data={props.data.Vessels} tabId='4'/>
       </TabContent>
     </div>
