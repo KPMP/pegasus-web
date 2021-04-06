@@ -13,7 +13,7 @@ class ExpressionXCellType extends Component {
     };
 
     getTrProps = (state, rowInfo, instance) => {
-        if (rowInfo.row && rowInfo.row.clusterName === "TOTAL CELLS: ") {
+        if (rowInfo && rowInfo.row.clusterName === "TOTAL CELLS: ") {
             return {
                 id: "total-row"
             }
