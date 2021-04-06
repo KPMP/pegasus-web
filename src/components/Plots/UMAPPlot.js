@@ -52,14 +52,9 @@ class UMAPPlot extends Component {
         this.setState({plotData: clusterPlotArray, plotAnnotations: annotations});
     };
 
-    onPlotUpdate = (figure, div) => {
-        console.log(figure.data.length);
-
-    }
-
     render() {
         return (
-            <Plot divId="umapPlot" data={this.state.plotData} onUpdate={this.onPlotUpdate}
+            <Plot divId="umapPlot" data={this.state.plotData}
                   layout={ { annotations: this.state.plotAnnotations, width: 460, showlegend: false,
                       yaxis: { zeroline: false, showgrid: false, showline: true },
                       xaxis: { zeroline: false, showgrid: false, showline: true },
