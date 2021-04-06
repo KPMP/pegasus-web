@@ -10,7 +10,7 @@ class AccordionTabSection extends Component {
 
     toggle = (toggleEvent) => {
         let event = toggleEvent.target.dataset.event;
-        this.setState({collapse: this.state.collapse == Number(event) ? 0 : Number(event)});
+        this.setState({collapse: this.state.collapse === Number(event) ? 0 : Number(event)});
     }
 
     processTerms = () => {
@@ -19,7 +19,7 @@ class AccordionTabSection extends Component {
         let subregionText = subregions.map((subregion, index) => {
             let cellTypes = subregion.cellTypes.map((cellType) => {
                 return <li>
-                    <button onClick={() => this.handleCellTypeClick(cellType.cellType)} type="button" className="btn btn-link text-left p-0">{cellType.cellType}</button>
+                    <button onClick={() => this.props.handleCellTypeClick(cellType.cellType)} type="button" className="btn btn-link text-left p-0">{cellType.cellType}</button>
                 </li>
             });
             let collapsed = this.state.collapse;
