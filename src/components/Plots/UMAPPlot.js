@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import Plot from 'react-plotly.js';
 import { median } from '../../helpers/Utils'
+import { Spinner } from "reactstrap";
 
 class UMAPPlot extends Component {
     constructor(props) {
         super(props);
-        this.state = { plotData: [], plotAnnotations: [] };
+        this.state = { plotData: [], plotAnnotations: [], isLoading: true };
         this.setData(props.data);
     }
 
@@ -49,28 +50,32 @@ class UMAPPlot extends Component {
             });
         }
         const clusterPlotArray = Object.entries(clusterData).map(([key, value]) => value);
-        this.setState({plotData: clusterPlotArray, plotAnnotations: annotations});
-    };
-
-    onPlotUpdate = (figure, div) => {
-        console.log(figure.data.length);
+        this.setState({plotData: clusterPlotArray, plotAnnotations: annotations, isLoading: false});
     };
 
     render() {
-        return (
-            <Plot divId="umapPlot" data={this.state.plotData} onUpdate={this.onPlotUpdate}
-                  layout={ { annotations: this.state.plotAnnotations, width: 460, showlegend: false,
-                      yaxis: { zeroline: false, showgrid: false, showline: true },
-                      xaxis: { zeroline: false, showgrid: false, showline: true },
-                      autosize: false,
-                      margin: {
-                          l: 25,
-                          r: 25,
-                          b: 25,
-                          t: 25,
-                          pad: 4
-                      } } }/>
-        )
+            if (this.state.isLoading) {
+                return (
+                    <div className='viz-spinner'>
+                        <Spinner color='primary' />
+                    </div>
+                )
+            } else {
+                return (
+                    <Plot divId="umapPlot" data={this.state.plotData}
+                          layout={ { annotations: this.state.plotAnnotations, width: 460, showlegend: false,
+                              yaxis: { zeroline: false, showgrid: false, showline: true },
+                              xaxis: { zeroline: false, showgrid: false, showline: true },
+                              autosize: false,
+                              margin: {
+                                  l: 25,
+                                  r: 25,
+                                  b: 25,
+                                  t: 25,
+                                  pad: 4
+                              } } }/>
+                )
+            }
     }
 }
 

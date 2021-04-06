@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
 import Plot from 'react-plotly.js';
+import {Spinner} from "reactstrap";
 
 class FeaturePlot extends Component {
     constructor(props) {
         super(props);
-        this.state = { plotData: [], plotAnnotations: [] };
+        this.state = { plotData: [], plotAnnotations: [], isLoading: true };
         this.setData(props.data);
     }
 
@@ -37,27 +38,37 @@ class FeaturePlot extends Component {
 
         }, this);
   
-        this.setState({plotData: [allData], plotAnnotations: annotations});
+        this.setState({plotData: [allData], plotAnnotations: annotations, isLoading: false});
         
     };
 
 
 
     render() {
-        return (
-            <Plot divId="featurePlot" data={this.state.plotData}
-                  layout={ { annotations: this.state.plotAnnotations, width: 460, showlegend: false,
-                      yaxis: { zeroline: false, showgrid: false, showline: true },
-                      xaxis: { zeroline: false, showgrid: false, showline: true },
-                      autosize: false,
-                      margin: {
-                          l: 25,
-                          r: 25,
-                          b: 25,
-                          t: 25,
-                          pad: 4
-            } } }/>
-        )
+        if (this.state.isLoading) {
+            return (
+                <div className='viz-spinner'>
+                    <Spinner color='primary' />
+                </div>
+            )
+        } else {
+            return (
+                <Plot divId="featurePlot" data={this.state.plotData}
+                      layout={{
+                          annotations: this.state.plotAnnotations, width: 460, showlegend: false,
+                          yaxis: {zeroline: false, showgrid: false, showline: true},
+                          xaxis: {zeroline: false, showgrid: false, showline: true},
+                          autosize: false,
+                          margin: {
+                              l: 25,
+                              r: 25,
+                              b: 25,
+                              t: 25,
+                              pad: 4
+                          }
+                      }}/>
+            )
+        }
     }
 }
 
