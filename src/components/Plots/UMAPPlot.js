@@ -52,8 +52,6 @@ class UMAPPlot extends Component {
         this.setState({plotData: clusterPlotArray, plotAnnotations: annotations});
     };
 
-
-
     render() {
         return (
             <Plot divId="umapPlot" data={this.state.plotData}
