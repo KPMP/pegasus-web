@@ -12,7 +12,6 @@ class UMAPPlot extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.data !== prevProps.data) {
-            this.setState({isLoading: true});
             this.setData(this.props.data);
         }
     }
@@ -51,7 +50,12 @@ class UMAPPlot extends Component {
             });
         }
         const clusterPlotArray = Object.entries(clusterData).map(([key, value]) => value);
-        this.setState({plotData: clusterPlotArray, plotAnnotations: annotations, isLoading: false});
+        if (this.props.data.length === 0) {
+            this.setState({isLoading: true});
+        } else {
+            this.setState({isLoading: false})
+        }
+        this.setState({plotData: clusterPlotArray, plotAnnotations: annotations});
     };
 
     render() {
