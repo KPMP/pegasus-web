@@ -1,10 +1,8 @@
 export const formatNumberToPrecision = (number, precision, blanks = false) => {
     if (number) {
         return number.toPrecision(precision)
-    } else if (number === null) {
-        return "N/A"
     } else {
-        return "";
+        return "N/A"
     }
 };
 

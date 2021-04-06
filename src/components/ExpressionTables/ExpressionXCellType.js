@@ -46,7 +46,7 @@ class ExpressionXCellType extends Component {
             {
                 Header: <span>% CELLS<br/>EXPRESSING</span>,
                 accessor: 'pct1',
-                Cell: ({ value }) => formatNumberToPrecision(value, 3)
+                Cell: ({ value }) => formatNumberToPrecision(value * 100, 3)
             },
             {
                 Header: <span>FOLD<br/>CHANGE</span>,
