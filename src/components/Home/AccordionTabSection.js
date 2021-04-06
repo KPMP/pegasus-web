@@ -10,7 +10,7 @@ class AccordionTabSection extends Component {
 
     toggle = (toggleEvent) => {
         let event = toggleEvent.target.dataset.event;
-        this.setState({collapse: this.state.collapse == Number(event) ? 0 : Number(event)});
+        this.setState({collapse: this.state.collapse === Number(event) ? 0 : Number(event)});
     }
 
     processTerms = () => {
