@@ -11,6 +11,7 @@ class FeaturePlot extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.data !== prevProps.data) {
+            this.setState({isLoading: true});
             this.setData(this.props.data);
         }
     }
