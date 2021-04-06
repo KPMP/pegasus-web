@@ -6,9 +6,9 @@ class TabSection extends Component {
     processTerms = () => {
         let subregions = this.props.data;
         let subregionText = subregions.map((subregion) => {
-            let cellTypes = subregion.cellTypeNames.map((cellTypeName) => {
+            let cellTypes = subregion.cellTypes.map((cellType) => {
                 return <li>
-                    <button onClick={() => this.handleCellTypeClick(cellTypeName)} type="button" className="btn btn-link text-left p-0">{cellTypeName}</button>
+                    <button onClick={() => this.props.handleCellTypeClick(cellType.cellType)} type="button" className="btn btn-link text-left p-0">{cellType.cellType}</button>
                 </li>
             });
             return (
@@ -25,6 +25,10 @@ class TabSection extends Component {
 
     render() {
         let cellTypes = this.processTerms();
+        let classNames = 'nephron-schema img-fluid ';
+        if (this.props.extraClassName) {
+            classNames = classNames + this.props.extraClassName;
+        }
         return (
             <TabPane tabId={this.props.tabId}>
                 <Row>
@@ -34,8 +38,10 @@ class TabSection extends Component {
                         </div>
                     </Col>
                     <Col sm="8">
-                        {this.props.img &&
-                            <img alt='nephron schema' src={this.props.img} className='nephron-schema img-fluid'></img>
+                        {this.props.img ?
+                            <img alt='nephron schema' src={this.props.img} className={classNames}></img>
+                        :
+                            <div className='tbd-schema'> Schematic TBD</div>
                         }
                     </Col>
                 </Row>

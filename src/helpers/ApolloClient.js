@@ -78,7 +78,9 @@ export const fetchCellTypeHierarchy = async() => {
                         regionName
                         cellTypeSubregions {
                             subregionName
-                            cellTypeNames
+                            cellTypes {
+                                cellType
+                            }
                         }
                     }
                 } 

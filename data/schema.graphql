@@ -32,8 +32,12 @@ type CellTypeStructureRegion {
 }
 
 type CellTypeStructureSubregion {
-  cellTypeNames: [String]
+  cellTypes: [CellType]
   subregionName: String
+}
+
+type CellType {
+	cellType: String
 }
 
 type GeneExpressionSummary {

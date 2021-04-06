@@ -1,4 +1,5 @@
 @import "kpmp-base.scss";
+@import url('//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css');
 
 .inactive {
     color: lightgray;
@@ -36,6 +37,44 @@ tr.MuiTableRow-root:nth-child(even) {
 
     .cell-type-list {
         background-color: #cee5ff;
+    }
+
+    .nav-item {
+        cursor: pointer;
+    }
+
+    .shorten-img {
+        height: 650px;
+    }
+
+    .collapsed {
+        cursor: pointer;
+    }
+
+    .open { 
+        cursor: pointer;
+    }
+
+    .collapsed::before {
+        font-family: 'FontAwesome';
+        content: "\f054";    
+        float: left;
+        padding-right: 10px;
+    }
+    .open::before {    
+        font-family: 'FontAwesome';
+        content: "\f078";    
+        float: left;
+        padding-right: 10px;
+    }
+
+    .tbd-schema {
+        background-color: lightgray;
+        height: 650px;
+        width: 650px;
+        text-align: center;
+        line-height: 650px;
+        font-size: xx-large;
     }
 }
 
