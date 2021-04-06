@@ -8,7 +8,7 @@ class TabSection extends Component {
         let subregionText = subregions.map((subregion) => {
             let cellTypes = subregion.cellTypes.map((cellType) => {
                 return <li>
-                    <button onClick={() => this.handleCellTypeClick(cellType.cellType)} type="button" className="btn btn-link text-left p-0">{cellType.cellType}</button>
+                    <button onClick={() => this.props.handleCellTypeClick(cellType.cellType)} type="button" className="btn btn-link text-left p-0">{cellType.cellType}</button>
                 </li>
             });
             return (
