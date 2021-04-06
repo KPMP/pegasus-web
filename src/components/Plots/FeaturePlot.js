@@ -38,9 +38,13 @@ class FeaturePlot extends Component {
             }
 
         }, this);
-  
-        this.setState({plotData: [allData], plotAnnotations: annotations, isLoading: false});
-        
+        if (this.props.data.length === 0) {
+            this.setState({isLoading: true});
+        } else {
+            this.setState({isLoading: false})
+        }
+        this.setState({plotData: [allData], plotAnnotations: annotations});
+
     };
 
 
