@@ -47,7 +47,7 @@ class NephronSchemaCard extends Component {
     render() {
         let structures = this.processHierarchyText();
         let tabs = <Col xs="12">
-            <CellTypeTabs data={structures}/>
+            <CellTypeTabs data={structures} handleCellTypeClick={this.handleCellTypeClick}/>
          </Col>;
          if (this.state.isProcessing) {
              tabs = <Spinner color='primary'/> ;

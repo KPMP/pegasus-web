@@ -75,7 +75,7 @@ class ExpressionXCellType extends Component {
                     </Col>
                 </Row>
                 <Row xs='12'>
-                    <Col xs={{ size: 4, offset: 8 }} className='d-flex justify-content-center'><span>CLUSTER VS ALL OTHERS</span></Col>
+                    <Col xs={{ size: 4, offset: 8 }} className='d-flex justify-content-center'><span id="cluster_v_others">CLUSTER VS ALL OTHERS</span></Col>
                 </Row>
                 <Row xs='12'>
                     <Col sm={{ size: 4, offset: 8 }}><hr/></Col>
