@@ -4,21 +4,21 @@ import DataTypeSelectorContainer from './DataTypeSelectorContainer';
 import ExpressionXCellType from "../ExpressionTables/ExpressionXCellType";
 import UMAPPlot from '../Plots/UMAPPlot';
 import FeaturePlot from '../Plots/FeaturePlot';
-import {fetchUMAPPoints, fetchGeneExpression} from "../../helpers/ApolloClient";
+import { fetchGeneExpression, fetchPlotlyData } from "../../helpers/ApolloClient";
 import {sum} from "../../helpers/Utils";
 
 
 class DataViz extends Component {
     constructor(props) {
         super(props);
-        this.state = { umapRefData: [], plotData: [], geneExpressionData: []};
+        this.state = { plotData: [], geneExpressionData: []};
     };
 
     componentDidMount() {
-        fetchUMAPPoints(this.props.dataType, this.props.selectedConcept.value,this.props.tissueType).then(
-            (umapRefData) => this.setState({umapRefData: umapRefData}),
+        fetchPlotlyData(this.props.dataType, this.props.selectedConcept.value,this.props.tissueType).then(
+            (plotData) => this.setState({plotData: plotData}),
             (error) => {
-                this.setState({umapRefData: []});
+                this.setState({plotData: []});
                 console.log("There was a problem getting the data: " + error)
             }
         );
@@ -39,7 +39,7 @@ class DataViz extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.tissueType !== prevProps.tissueType || this.props.dataType !== prevProps.dataType) {
-            this.setState({umapRefData:[], plotData:[], geneExpressionData:[]});
+            this.setState({ plotData:[], geneExpressionData:[]});
             this.getGeneExpression(this.props.dataType, this.props.selectedConcept.value, "", this.props.tissueType);
             this.getUmapPoints(this.props.dataType, this.props.selectedConcept.value, this.props.tissueType);
         }
@@ -52,8 +52,8 @@ class DataViz extends Component {
     }
 
     getUmapPoints = async (dataType, selectedConcept, tissueType) => {
-        const results = await fetchUMAPPoints(dataType, selectedConcept, tissueType);
-        this.setState({umapRefData: results});
+        const results = await fetchPlotlyData(dataType, selectedConcept, tissueType);
+        this.setState({plotData: results});
     };
 
     render() {
@@ -73,10 +73,10 @@ class DataViz extends Component {
                     </Row>
                     <Row xs='12' className='mb-4'>
                         <Col lg='6' className="text-center">
-                            <UMAPPlot data={this.state.umapRefData} />
+                            <UMAPPlot data={this.state.plotData}/>
                         </Col>
                         <Col lg='6' className="text-center">
-                            <FeaturePlot data={this.state.umapRefData} />
+                            <FeaturePlot data={this.state.plotData} />
                         </Col>
                     </Row>
                     <ExpressionXCellType data={this.state.geneExpressionData} selectedConcept={this.props.selectedConcept} tissueType={this.props.tissueType}/>

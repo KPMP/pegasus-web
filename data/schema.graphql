@@ -3,7 +3,8 @@ type Query {
   autocomplete(searchTerm: String): [AutoCompleteResult]
   cellTypeHierarchy: CellTypeHierarchy
   geneExpressionSummary(dataType: String, geneSymbol: String, cellType: String, tissueType: String) : [GeneExpressionSummary]
-  umapPoints(dataType: String!, geneSymbol: String!, tissueType: String): [UmapPoint]
+  getClusterHieararchies(cellType: String!): [ClusterHierarchy]
+  getUmapPlotData(dataType: String!, geneSymbol: String!, tissueType: String): PlotData
 }
 
 type MyGeneInfoHit {
@@ -41,26 +42,46 @@ type CellType {
 }
 
 type GeneExpressionSummary {
-  id: ID
-  tissueType: String
-  gene: String
-  pVal: Float
-  pValAdj: Float
-  foldChange: Float
-  pct1: Float
-  pct2: Float
-  avgExp: Float
-  cluster: String
-  clusterName: String
-  dataType: String
-  cellCount: Int
+    id: ID
+    tissueType: String
+    gene: String
+    pVal: Float
+    pValAdj: Float
+    foldChange: Float
+    pct1: Float
+    pct2: Float
+    avgExp: Float
+    cluster: String
+    clusterName: String
+    dataType: String
+    cellCount: Int
 }
 
-type UmapPoint {
-	umapX: Float
-	umapY: Float
-	clusterColor: String
+type ClusterHierarchy {
+	cellType: String
+	cellTypeId: Int
+	structureRegion: String
+	structureSubregion: String
+	clusterId: Int
 	clusterName: String
-	expressionValue: Float
-	barcode: String
+	isSingleNucCluster: String
+	isSingleCellCluster: String
+}
+
+type PlotData {
+	referenceData: [ReferenceCluster]
+	featureData: [FeatureData]
+}
+
+type FeatureData {
+	xValues: [Float]
+	yValues: [Float]
+	expression: [Float]
+}
+
+type ReferenceCluster {
+	xValues: [Float]
+	yValues: [Float]
+	color: String
+	clusterName: String
 }
