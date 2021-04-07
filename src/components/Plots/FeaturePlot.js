@@ -30,7 +30,6 @@ class FeaturePlot extends Component {
                     marker.color = grayColors;
                     marker.showscale = false;
                 }
-                console.log(group.expression);
                 groupData.push({
                     type: 'scattergl',
                     mode: 'markers',
