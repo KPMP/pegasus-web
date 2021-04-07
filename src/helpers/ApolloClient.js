@@ -139,6 +139,32 @@ export const fetchUMAPPoints = async(dataType, geneSymbol, tissueType) => {
     return [];
 };
 
+export const fetchPlotlyData = async(dataType, geneSymbol, tissueType) => {
+    const response = await apolloClient.query({
+        query: gql`
+            query {
+                getPlotlyData(dataType: "${dataType}", geneSymbol: "${geneSymbol}", tissueType: "${tissueType}") {
+                    referenceData {
+                        xValues
+                        yValues
+                        clusterName
+                        color
+                    }
+                    featureData {
+                        xValues
+                        yValues
+                        expression
+                    }  
+                }
+            }`
+    });
+
+    if (response.data && response.data.getPlotlyData) {
+        return response.data.getPlotlyData;
+    }
+
+    return [];
+};
 
 export const fetchGeneExpression = async (dataType, geneSymbol, cellType, tissueType) => {
     const response = await apolloClient.query({

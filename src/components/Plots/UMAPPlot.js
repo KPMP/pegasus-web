@@ -17,45 +17,38 @@ class UMAPPlot extends Component {
     }
 
     setData(inputData) {
-        let clusterData = {};
+        let clusterData = [];
         let annotations = [];
-        inputData.forEach(function(line) {
-            clusterData[line.clusterName] = clusterData[line.clusterName] ||
-                {
+        if (inputData && inputData.referenceData) {
+            inputData.referenceData.forEach(function(cluster) {
+                clusterData.push({
                     type: 'scattergl',
                     mode: 'markers',
-                    name: line.clusterName,
-                    text: line.clusterName,
-                    x:[],
-                    y:[],
-                    marker: { size: 2, color: line.clusterColor }
-                };
-            clusterData[line.clusterName]["x"].push(parseFloat(line.umapX));
-            clusterData[line.clusterName]["y"].push(parseFloat(line.umapY));
-        }, this);
-        for (const cluster in clusterData) {
-            annotations.push(
-            {
-                x: median(clusterData[cluster].x),
-                y: median(clusterData[cluster].y),
-                xref: 'x',
-                yref: 'y',
-                text: cluster,
-                ax: 0,
-                ay: 0,
-                font: {
-                    family: "Arial",
-                    color: "black"
-                }
+                    name: cluster.clusterName,
+                    text: cluster.clusterName,
+                    x: cluster.xValues,
+                    y: cluster.yValues,
+                    marker: { size:2, color: cluster.color}
+                });
+                annotations.push({
+                    x: median(cluster.xValues),
+                    y: median(cluster.yValues),
+                    xref: 'x',
+                    yref: 'y',
+                    text: cluster.clusterName,
+                    ax: 0,
+                    ay: 0,
+                    font: { 
+                        family: 'Arial',
+                        color: 'black'
+                    }
+                });
             });
-        }
-        const clusterPlotArray = Object.entries(clusterData).map(([key, value]) => value);
-        if (this.props.data.length === 0) {
-            this.setState({isLoading: true});
-        } else {
             this.setState({isLoading: false})
+        } else {
+            this.setState({isLoading: true});
         }
-        this.setState({plotData: clusterPlotArray, plotAnnotations: annotations});
+        this.setState({plotData: clusterData, plotAnnotations: annotations});
     };
 
     render() {

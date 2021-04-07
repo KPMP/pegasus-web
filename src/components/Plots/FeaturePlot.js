@@ -5,7 +5,7 @@ import {Spinner} from "reactstrap";
 class FeaturePlot extends Component {
     constructor(props) {
         super(props);
-        this.state = { plotData: [], plotAnnotations: [], isLoading: true };
+        this.state = { plotData: [], isLoading: true };
         this.setData(props.data);
     }
 
@@ -17,33 +17,34 @@ class FeaturePlot extends Component {
     }
 
     setData(inputData) {
+        let groupData = [];
+        if (inputData && inputData.featureData) {
+            inputData.featureData.forEach(function(group) {
 
-        let allData = { 
-            type: 'scattergl',
-            mode: 'markers',
-            expression: [],
-            x: [],
-            y: [],
-            marker: { size:2, colorscale: 'Viridis', showscale: true, color:[]}
-        };
-        let annotations = [];
-        inputData.forEach(function(line) {
-            allData.x.push(line.umapX);
-            allData.y.push(line.umapY);
-            if (line.expressionValue === 0) {
-                allData.marker.color.push('lightgray');
-            } else {
-                allData.expression.push(line.expressionValue);
-                allData.marker.color.push(line.expressionValue);
-            }
-
-        }, this);
-        if (this.props.data.length === 0) {
-            this.setState({isLoading: true});
-        } else {
+                let marker = { size:2, colorscale: 'Viridis', showscale: true};
+                if (group.expression[0] !== 0) {
+                    marker.color = group.expression;
+                } else {
+                    let grayColors = new Array(group.expression.length);
+                    grayColors.fill('lightgray');
+                    marker.color = grayColors;
+                    marker.showscale = false;
+                }
+                console.log(group.expression);
+                groupData.push({
+                    type: 'scattergl',
+                    mode: 'markers',
+                    x: group.xValues,
+                    y: group.yValues,
+                    marker: marker
+                });
+            });
             this.setState({isLoading: false})
+        } else {
+            this.setState({isLoading: true});
         }
-        this.setState({plotData: [allData], plotAnnotations: annotations});
+        
+        this.setState({plotData: groupData});
 
     };
 
@@ -60,7 +61,7 @@ class FeaturePlot extends Component {
             return (
                 <Plot divId="featurePlot" data={this.state.plotData}
                       layout={{
-                          annotations: this.state.plotAnnotations, width: 460, showlegend: false,
+                          width: 460, showlegend: false,
                           yaxis: {zeroline: false, showgrid: false, showline: true},
                           xaxis: {zeroline: false, showgrid: false, showline: true},
                           autosize: false,

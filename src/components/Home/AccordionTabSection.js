@@ -27,7 +27,7 @@ class AccordionTabSection extends Component {
                 <div className='cell-type-list mb-1 px-3 py-2' key={index}>
                     <span onClick={this.toggle} data-event={index} className={`${collapsed === index ? "open": "collapsed"}`}>{subregion.subregionName}</span>
                     <Collapse isOpen={collapse === index}>
-                        <div className="p-2">{cellTypes}</div>
+                        <div className="px-4 py-1">{cellTypes}</div>
                     </Collapse>
                 </div>
             );

@@ -4,14 +4,14 @@ import DataTypeSelectorContainer from './DataTypeSelectorContainer';
 import ExpressionXCellType from "../ExpressionTables/ExpressionXCellType";
 import UMAPPlot from '../Plots/UMAPPlot';
 import FeaturePlot from '../Plots/FeaturePlot';
-import {fetchUMAPPoints, fetchGeneExpression} from "../../helpers/ApolloClient";
+import {fetchUMAPPoints, fetchGeneExpression, fetchPlotlyData} from "../../helpers/ApolloClient";
 import {sum} from "../../helpers/Utils";
 
 
 class DataViz extends Component {
     constructor(props) {
         super(props);
-        this.state = { umapRefData: [], plotData: [], geneExpressionData: []};
+        this.state = { umapRefData: [], plotData: [], geneExpressionData: [], plotlyData:[]};
     };
 
     componentDidMount() {
@@ -19,6 +19,13 @@ class DataViz extends Component {
             (umapRefData) => this.setState({umapRefData: umapRefData}),
             (error) => {
                 this.setState({umapRefData: []});
+                console.log("There was a problem getting the data: " + error)
+            }
+        );
+        fetchPlotlyData(this.props.dataType, this.props.selectedConcept.value,this.props.tissueType).then(
+            (plotlyData) => this.setState({plotlyData: plotlyData}),
+            (error) => {
+                this.setState({plotlyData: []});
                 console.log("There was a problem getting the data: " + error)
             }
         );
@@ -73,10 +80,10 @@ class DataViz extends Component {
                     </Row>
                     <Row xs='12' className='mb-4'>
                         <Col lg='6' className="text-center">
-                            <UMAPPlot data={this.state.umapRefData} />
+                            <UMAPPlot data={this.state.plotlyData}/>
                         </Col>
                         <Col lg='6' className="text-center">
-                            <FeaturePlot data={this.state.umapRefData} />
+                            <FeaturePlot data={this.state.plotlyData} />
                         </Col>
                     </Row>
                     <ExpressionXCellType data={this.state.geneExpressionData} selectedConcept={this.props.selectedConcept} tissueType={this.props.tissueType}/>
