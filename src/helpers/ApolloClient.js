@@ -13,9 +13,15 @@ const getBaseURL = () => {
     return '';
 };
 
+const typePolicies = {
+    GeneExpressionSummary: {
+        keyFields: ["gene", "tissueType", "cluster"]
+    }
+};
+
 export const apolloClient = new ApolloClient({
     uri: getBaseURL() + '/graphql',
-    cache: new InMemoryCache(),
+    cache: new InMemoryCache({typePolicies: typePolicies}),
     fetchOptions: {
         fetchOptions: { fetch },
         mode: 'no-cors',
