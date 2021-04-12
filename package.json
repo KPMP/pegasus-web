@@ -36,8 +36,11 @@
     "redux": "4.0.5",
     "redux-thunk": "2.3.0"
   },
+  "devDependencies": {
+    "@babel/core": "7.7.7"
+  },
   "scripts": {
-    "start": "npm-run-all -p watch-css start-js",
+    "start": "npm-run-all --max-old-space-size=8192 -p watch-css start-js",
     "build": "npm-run-all build-css build-js",
     "test": "react-scripts test --passWithNoTests",
     "eject": "react-scripts eject",
@@ -49,6 +52,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "proxy": "http://localhost:3030",
   "browserslist": {
     "production": [
       ">0.2%",
