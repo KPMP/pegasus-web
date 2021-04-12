@@ -39,7 +39,6 @@ class DataViz extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.tissueType !== prevProps.tissueType || this.props.dataType !== prevProps.dataType) {
-            console.log("component updated");
             this.setState({ plotData:[], geneExpressionData:[]});
             this.getGeneExpression(this.props.dataType, this.props.selectedConcept.value, "", this.props.tissueType);
             this.getUmapPoints(this.props.dataType, this.props.selectedConcept.value, this.props.tissueType);
@@ -48,8 +47,9 @@ class DataViz extends Component {
 
     getGeneExpression = async (dataType, selectedConcept, cellType, tissueType) => {
         const results = await fetchGeneExpression(dataType, selectedConcept, cellType, tissueType);
-        results.push({clusterName: "TOTAL CELLS: ", cellCount: sum(results, "cellCount")});
-        this.setState({geneExpressionData: results});
+        const cleanResults = results.filter((result) => result.clusterName !== "TOTAL CELLS: ");
+        cleanResults.push({clusterName: "TOTAL CELLS: ", cellCount: sum(results, "cellCount")});
+        this.setState({geneExpressionData: cleanResults});
     }
 
     getUmapPoints = async (dataType, selectedConcept, tissueType) => {

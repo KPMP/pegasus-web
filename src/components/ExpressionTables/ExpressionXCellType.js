@@ -37,6 +37,7 @@ class ExpressionXCellType extends Component {
             {
                 Header: "# CELLS",
                 accessor: 'cellCount',
+                Cell: ({ value }) => value?value:0
             },
             {
                 Header: <span>MEDIAN<br/>EXPRESSION</span>,

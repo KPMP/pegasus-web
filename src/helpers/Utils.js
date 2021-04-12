@@ -1,4 +1,4 @@
-export const formatNumberToPrecision = (number, precision, blanks = false) => {
+export const formatNumberToPrecision = (number, precision) => {
     if (number) {
         return number.toPrecision(precision)
     } else {
