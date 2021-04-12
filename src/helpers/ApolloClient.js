@@ -15,7 +15,7 @@ const getBaseURL = () => {
 
 const typePolicies = {
     GeneExpressionSummary: {
-        keyFields: [gene, tissueType, cluster]
+        keyFields: ["gene", "tissueType", "cluster"]
     }
 };
 
