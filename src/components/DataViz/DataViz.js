@@ -39,6 +39,7 @@ class DataViz extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.tissueType !== prevProps.tissueType || this.props.dataType !== prevProps.dataType) {
+            console.log("component updated");
             this.setState({ plotData:[], geneExpressionData:[]});
             this.getGeneExpression(this.props.dataType, this.props.selectedConcept.value, "", this.props.tissueType);
             this.getUmapPoints(this.props.dataType, this.props.selectedConcept.value, this.props.tissueType);
