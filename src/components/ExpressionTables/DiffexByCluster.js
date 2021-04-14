@@ -14,7 +14,7 @@ class DiffexByCluster extends Component {
     };
 
     componentDidMount() {
-        fetchGeneExpression(this.props.dataType, "", this.props.cellType, this.props.tissueType).then(
+        fetchGeneExpression(this.props.dataType, "", this.props.cluster, this.props.tissueType).then(
             (geneExpressionData) => {
                 this.setState({diffexData: geneExpressionData})
             },
@@ -37,7 +37,7 @@ class DiffexByCluster extends Component {
     ];
 
     handleClick = (gene) => {
-        this.props.setSelectedConcept({type: "gene", value: gene});
+        this.props.setGene({symbol: gene, name: ""});
     };
 
     render() {

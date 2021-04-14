@@ -2,6 +2,7 @@ import {connect} from "react-redux";
 import DiffexByCluster from "./DiffexByCluster";
 import { withRouter } from 'react-router';
 import {setSelectedConcept} from "../../actions/Concepts/conceptActions";
+import { setGene } from "../../actions/Gene/geneActions";
 
 const mapStateToProps = (state, props) =>
     ({
@@ -12,8 +13,8 @@ const mapStateToProps = (state, props) =>
 
 const mapDispatchToProps = (dispatch, props) =>
     ({
-        setSelectedConcept(concept) {
-            dispatch(setSelectedConcept(concept));
+        setGene(gene) {
+            dispatch(setGene(gene));
             dispatch(props.history.push("/dataviz"));
         }
     });
