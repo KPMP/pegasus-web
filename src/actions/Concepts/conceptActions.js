@@ -1,10 +1,23 @@
 import actionNames from '../actionNames'
+import { setGene } from '../Gene/geneActions'
+import { setCellType } from "../CellType/cellTypeActions";
 
-export const setSelectedConcept = (concept) => {
+export const setSelectedConceptState = (concept) => {
     return {
         type: actionNames.SET_SELECTED_CONCEPT,
         payload: concept
     }
+};
+
+export const setSelectedConcept = (concept) => {
+    return (dispatch) => {
+        dispatch(setSelectedConceptState(concept));
+        if (concept.type === 'gene') {
+            dispatch(setGene({symbol: concept.value, name: concept.name}));
+        } else if (concept.type === 'cell_type') {
+            dispatch(setCellType(concept.value));
+        }
+    };
 };
 
 export const setSelectedConceptAndRedirect = (concept, props) => {
@@ -21,5 +34,4 @@ export const setSelectedConceptAndRedirect = (concept, props) => {
                 props.history.push('/');
         }
     }
-
 };

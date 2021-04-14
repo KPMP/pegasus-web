@@ -7,7 +7,8 @@ import { setDataType } from "../../actions/DataType/dataTypeActions";
 const mapStateToProps = (state, props) =>
     ({
         tissueType: state.tissueType,
-        dataType: state.dataType
+        dataType: state.dataType,
+        gene: state.gene
     });
 
 const mapDispatchToProps = (dispatch, props) =>

@@ -15,14 +15,14 @@ class DataViz extends Component {
     };
 
     componentDidMount() {
-        fetchPlotlyData(this.props.dataType, this.props.selectedConcept.value,this.props.tissueType).then(
+        fetchPlotlyData(this.props.dataType, this.props.gene.symbol, this.props.tissueType).then(
             (plotData) => this.setState({plotData: plotData}),
             (error) => {
                 this.setState({plotData: []});
                 console.log("There was a problem getting the data: " + error)
             }
         );
-        fetchGeneExpression(this.props.dataType, this.props.selectedConcept.value, "", this.props.tissueType).then(
+        fetchGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType).then(
             (geneExpressionData) => {
                 geneExpressionData.push({
                     clusterName: "TOTAL CELLS: ",
@@ -40,20 +40,20 @@ class DataViz extends Component {
     componentDidUpdate(prevProps) {
         if (this.props.tissueType !== prevProps.tissueType || this.props.dataType !== prevProps.dataType) {
             this.setState({ plotData:[], geneExpressionData:[]});
-            this.getGeneExpression(this.props.dataType, this.props.selectedConcept.value, "", this.props.tissueType);
-            this.getUmapPoints(this.props.dataType, this.props.selectedConcept.value, this.props.tissueType);
+            this.getGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType);
+            this.getUmapPoints(this.props.dataType, this.props.gene.symbol, this.props.tissueType);
         }
     }
 
-    getGeneExpression = async (dataType, selectedConcept, cellType, tissueType) => {
-        const results = await fetchGeneExpression(dataType, selectedConcept, cellType, tissueType);
+    getGeneExpression = async (dataType, gene, cellType, tissueType) => {
+        const results = await fetchGeneExpression(dataType, gene, cellType, tissueType);
         const cleanResults = results.filter((result) => result.clusterName !== "TOTAL CELLS: ");
         cleanResults.push({clusterName: "TOTAL CELLS: ", cellCount: sum(results, "cellCount")});
         this.setState({geneExpressionData: cleanResults});
     }
 
-    getUmapPoints = async (dataType, selectedConcept, tissueType) => {
-        const results = await fetchPlotlyData(dataType, selectedConcept, tissueType);
+    getUmapPoints = async (dataType, gene, tissueType) => {
+        const results = await fetchPlotlyData(dataType, gene, tissueType);
         this.setState({plotData: results});
     };
 
@@ -68,7 +68,7 @@ class DataViz extends Component {
                             <hr/>
                         </Col>
                         <Col lg='6'>
-                            <h5>{this.props.selectedConcept.value} Expression</h5>
+                            <h5>{this.props.gene.symbol} Expression</h5>
                             <hr/>
                         </Col>
                     </Row>
@@ -80,7 +80,7 @@ class DataViz extends Component {
                             <FeaturePlot data={this.state.plotData} />
                         </Col>
                     </Row>
-                    <ExpressionXCellType data={this.state.geneExpressionData} selectedConcept={this.props.selectedConcept} tissueType={this.props.tissueType}/>
+                    <ExpressionXCellType data={this.state.geneExpressionData} gene={this.props.gene.symbol} tissueType={this.props.tissueType}/>
                 </Container>
             </div>
         )

@@ -117,7 +117,6 @@ class GeneSummary extends Component {
     };
 
     linkDataTypeCells(row) {
-        console.log(row);
         if (row._original.dataTypeShort === 'sn' || row._original.dataTypeShort === 'sc') {
             return <button onClick={() => this.handleLinkClick(row._original.dataTypeShort)} type="button" className="btn btn-link text-left p-0">{row.dataType}</button>
         }
@@ -125,7 +124,7 @@ class GeneSummary extends Component {
     }
 
     render() {
-        let {name, value} = this.props.selectedConcept;
+        let {name, symbol} = this.props.gene;
         return (
             <div className='mb-4'>
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
@@ -134,7 +133,7 @@ class GeneSummary extends Component {
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
                     <Row xs='12'>
                         <Col className='mb-4'>
-                            <h5>Summary of available data for: {value} {name && '(' + name + ')'}</h5>
+                            <h5>Summary of available data for: {symbol} {name && '(' + name + ')'}</h5>
                         </Col>
                     </Row>
                     <Row xs='12'>

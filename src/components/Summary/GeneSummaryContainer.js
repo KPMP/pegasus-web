@@ -6,7 +6,7 @@ import { withRouter } from 'react-router';
 
 const mapStateToProps = (state, props) =>
     ({
-        selectedConcept: state.selectedConcept,
+        gene: state.gene,
         conceptSummary: state.conceptSummary
     });
 
