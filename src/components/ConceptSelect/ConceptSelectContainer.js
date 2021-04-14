@@ -4,10 +4,14 @@ import { setSelectedConceptAndRedirect } from '../../actions/Concepts/conceptAct
 import { withRouter } from 'react-router';
 
 const mapStateToProps = (state, props) =>
-    ({
-        selectedConcept: props.selectedConcept?props.selectedConcept:state.selectedConcept,
+{
+    let selectedConcept = props.selectedConcept?props.selectedConcept:state.selectedConcept;
+    return {
+        selectedConcept: selectedConcept,
         gene: state.gene
-    });
+
+    }
+};
 
 const mapDispatchToProps = (dispatch, props) =>
     ({
