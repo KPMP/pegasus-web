@@ -8,6 +8,7 @@ const mapStateToProps = (state, props) =>
     ({
         tissueType: state.tissueType,
         dataType: state.dataType
+        gene: state.gene
     });
 
 const mapDispatchToProps = (dispatch, props) =>

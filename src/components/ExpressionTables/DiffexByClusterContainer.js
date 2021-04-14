@@ -1,7 +1,6 @@
 import {connect} from "react-redux";
 import DiffexByCluster from "./DiffexByCluster";
 import { withRouter } from 'react-router';
-import {setSelectedConcept} from "../../actions/Concepts/conceptActions";
 import { setGene } from "../../actions/Gene/geneActions";
 
 const mapStateToProps = (state, props) =>
