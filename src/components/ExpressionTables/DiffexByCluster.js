@@ -1,10 +1,10 @@
 import React, {Component} from 'react';
 import MaterialTable from 'material-table';
-import {Col, Row, Container} from "reactstrap";
-import {formatNumberToPrecision, formatDataType } from "../../helpers/Utils"
-import {fetchGeneExpression} from "../../helpers/ApolloClient";
+import { Col, Row, Container } from "reactstrap";
+import { formatNumberToPrecision, formatDataType } from "../../helpers/Utils"
+import { fetchGeneExpression } from "../../helpers/ApolloClient";
 
-class DiffexByCellType extends Component {
+class DiffexByCluster extends Component {
 
     constructor(props) {
         super(props);
@@ -14,7 +14,7 @@ class DiffexByCellType extends Component {
     };
 
     componentDidMount() {
-        fetchGeneExpression(this.props.dataType, "", this.props.selectedConcept.value, this.props.tissueType).then(
+        fetchGeneExpression(this.props.dataType, "", this.props.cellType, this.props.tissueType).then(
             (geneExpressionData) => {
                 this.setState({diffexData: geneExpressionData})
             },
@@ -45,7 +45,7 @@ class DiffexByCellType extends Component {
             <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
                 <Row xs='12' className='mt-4'>
                     <Col xs='12'>
-                        <h5>{formatDataType(this.props.dataType)} {(this.props.dataType === 'sn' || this.props.dataType === 'sc')?"differential expression*":"abundance*"} in {this.props.selectedConcept.value} </h5>
+                        <h5>{formatDataType(this.props.dataType)} {(this.props.dataType === 'sn' || this.props.dataType === 'sc')?"differential expression*":"abundance*"} in {this.props.cluster} </h5>
                     </Col>
                 </Row>
                 <Row xs='12'>
@@ -78,4 +78,4 @@ class DiffexByCellType extends Component {
     }
 }
 
-export default DiffexByCellType;
+export default DiffexByCluster;

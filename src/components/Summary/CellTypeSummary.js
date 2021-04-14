@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import ReactTable from 'react-table';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
-import {fetchClusterHierarchy} from '../../helpers/ApolloClient';
+import { fetchClusterHierarchy } from '../../helpers/ApolloClient';
 
 class CellTypeSummary extends Component {
 
@@ -18,7 +18,7 @@ class CellTypeSummary extends Component {
     };
 
     componentDidMount() {
-        fetchClusterHierarchy(this.props.selectedConcept.value).then(
+        fetchClusterHierarchy(this.props.cellType).then(
             (cellTypeSummary) => this.setState({cellTypeSummary: cellTypeSummary}),
             (error) => {
                 this.setState({cellTypeSummary: []});
@@ -28,8 +28,8 @@ class CellTypeSummary extends Component {
     }
 
     componentDidUpdate(prevProps, prevState, snapShot) {
-        if (this.props.selectedConcept.value !== prevProps.selectedConcept.value) {
-            fetchClusterHierarchy(this.props.selectedConcept.value).then(
+        if (this.props.cellType !== prevProps.cellType) {
+            fetchClusterHierarchy(this.props.cellType).then(
                 (cellTypeSummary) => this.setState({cellTypeSummary: cellTypeSummary}),
                 (error) => {
                     this.setState({cellTypeSummary: []});
@@ -107,7 +107,7 @@ class CellTypeSummary extends Component {
     }
 
     render() {
-        let {value} = this.props.selectedConcept;
+        let cellType = this.props.cellType;
         return (
             <div>
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
@@ -116,7 +116,7 @@ class CellTypeSummary extends Component {
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
                     <Row xs='12'>
                         <Col className='mb-4'>
-                            <h5>Summary of available data for: {value}</h5>
+                            <h5>Summary of available data for: {cellType}</h5>
                         </Col>
                     </Row>
                     <Row xs='12'>
