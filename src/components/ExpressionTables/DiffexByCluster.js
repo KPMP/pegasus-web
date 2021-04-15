@@ -52,7 +52,7 @@ class DiffexByCluster extends Component {
                     <Col xs='12'>
                         {
                             this.state.isLoading ?
-                                <div className='diffex-spinner'>
+                                <div className='diffex-spinner text-center'>
                                     <Spinner color='primary'/>
                                 </div>
                                 :
