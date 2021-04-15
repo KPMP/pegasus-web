@@ -14,7 +14,8 @@ class DataViz extends Component {
         this.state = { plotData: [], geneExpressionData: []};
     };
 
-    cleanResults = (results) => {
+    static cleanResults = (results) => {
+        DataViz
         return results.filter((result) => result.clusterName !== "TOTAL CELLS: ");
     };
 
@@ -85,7 +86,7 @@ class DataViz extends Component {
                             <FeaturePlot data={this.state.plotData} />
                         </Col>
                     </Row>
-                    <ExpressionXCellType data={this.state.geneExpressionData} gene={this.props.gene.symbol} tissueType={this.props.tissueType}/>
+                    <ExpressionXCellType dataType={this.props.dataType} data={this.state.geneExpressionData} gene={this.props.gene.symbol} tissueType={this.props.tissueType}/>
                 </Container>
             </div>
         )

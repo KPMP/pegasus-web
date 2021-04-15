@@ -3,7 +3,6 @@ import Select from "react-select";
 import { Row, Col } from 'reactstrap';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
-import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer'
 import { getTissueTypeOptions, getDataTypeOptions } from "../../helpers/Utils";
 
@@ -82,7 +81,6 @@ class DataTypeSelector extends Component {
                     </Col>
                     <Col lg='5' className=''>
                         <span className='d-table-cell pt-1'>(N={this.getDataCounts(this.props.dataType).all} PARTICIPANTS; {this.getDataCounts(this.props.dataType).hrt} HEALTHY REFERENCE; {this.getDataCounts(this.props.dataType).ckd} CKD; {this.getDataCounts(this.props.dataType).aki} AKI)<FontAwesomeIcon icon={faQuestionCircle} className='ml-2'/></span>
-                        <span className='d-table-cell pt-1 pl-4'><FontAwesomeIcon icon={faDownload} /></span>
                     </Col>
                 </Row>
             </React.Fragment>
