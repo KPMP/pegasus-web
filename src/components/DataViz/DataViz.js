@@ -14,6 +14,10 @@ class DataViz extends Component {
         this.state = { plotData: [], geneExpressionData: []};
     };
 
+    cleanResults = (results) => {
+        return results.filter((result) => result.clusterName !== "TOTAL CELLS: ");
+    };
+
     componentDidMount() {
         fetchPlotlyData(this.props.dataType, this.props.gene.symbol, this.props.tissueType).then(
             (plotData) => this.setState({plotData: plotData}),
@@ -24,11 +28,12 @@ class DataViz extends Component {
         );
         fetchGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType).then(
             (geneExpressionData) => {
-                geneExpressionData.push({
+                const geneExpressionDataClean = this.cleanResults(geneExpressionData);
+                geneExpressionDataClean.push({
                     clusterName: "TOTAL CELLS: ",
-                    cellCount: sum(geneExpressionData, "cellCount")
+                    cellCount: sum(geneExpressionDataClean, "cellCount")
                 });
-                this.setState({geneExpressionData: geneExpressionData})
+                this.setState({geneExpressionData: geneExpressionDataClean})
             },
             (error) => {
                 this.setState({geneExpressionData: []});
@@ -47,7 +52,7 @@ class DataViz extends Component {
 
     getGeneExpression = async (dataType, gene, cellType, tissueType) => {
         const results = await fetchGeneExpression(dataType, gene, cellType, tissueType);
-        const cleanResults = results.filter((result) => result.clusterName !== "TOTAL CELLS: ");
+        const cleanResults = this.cleanResults(results);
         cleanResults.push({clusterName: "TOTAL CELLS: ", cellCount: sum(results, "cellCount")});
         this.setState({geneExpressionData: cleanResults});
     }
