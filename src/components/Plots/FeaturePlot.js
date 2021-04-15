@@ -33,6 +33,7 @@ class FeaturePlot extends Component {
                 groupData.push({
                     type: 'scattergl',
                     mode: 'markers',
+                    name: '',
                     x: group.xValues,
                     y: group.yValues,
                     marker: marker
@@ -64,6 +65,8 @@ class FeaturePlot extends Component {
                           yaxis: {zeroline: false, showgrid: false, showline: true},
                           xaxis: {zeroline: false, showgrid: false, showline: true},
                           autosize: false,
+                          hovermode: 'compare',
+                          dragmode: 'pan',
                           margin: {
                               l: 25,
                               r: 25,
@@ -71,7 +74,9 @@ class FeaturePlot extends Component {
                               t: 25,
                               pad: 4
                           }
-                      }}/>
+                      }}
+                      config={{displaylogo: false, modeBarButtonsToRemove: ['zoom2d', 'toggleSpikelines']}}
+                />
             )
         }
     }

@@ -24,8 +24,8 @@ class UMAPPlot extends Component {
                 clusterData.push({
                     type: 'scattergl',
                     mode: 'markers',
-                    name: cluster.clusterName,
                     text: cluster.clusterName,
+                    name: '',
                     x: cluster.xValues,
                     y: cluster.yValues,
                     marker: { size:2, color: cluster.color}
@@ -65,13 +65,17 @@ class UMAPPlot extends Component {
                               yaxis: { zeroline: false, showgrid: false, showline: true },
                               xaxis: { zeroline: false, showgrid: false, showline: true },
                               autosize: false,
+                              hovermode: 'compare',
+                              dragmode: 'pan',
                               margin: {
                                   l: 25,
                                   r: 25,
                                   b: 25,
                                   t: 25,
                                   pad: 4
-                              } } }/>
+                              } } }
+                          config={{displaylogo: false, modeBarButtonsToRemove: ['zoom2d', 'toggleSpikelines']}}
+                    />
                 )
             }
     }
