@@ -23,7 +23,7 @@ class ExpressionXCellType extends Component {
 
     cleanResults = (results) => {
         return results.filter((result) => result.clusterName !== "TOTAL CELLS: ")
-            .map(({__typename, id, gene, dataType, ...theRest}) => theRest);
+            .map(({__typename, id, gene, dataType, tissueType, ...theRest}) => theRest);
     };
 
     getTrProps = (state, rowInfo, instance) => {
