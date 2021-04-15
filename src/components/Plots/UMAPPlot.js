@@ -65,6 +65,8 @@ class UMAPPlot extends Component {
                               yaxis: { zeroline: false, showgrid: false, showline: true },
                               xaxis: { zeroline: false, showgrid: false, showline: true },
                               autosize: false,
+                              hovermode: 'compare',
+                              dragmode: 'pan',
                               margin: {
                                   l: 25,
                                   r: 25,
@@ -72,7 +74,7 @@ class UMAPPlot extends Component {
                                   t: 25,
                                   pad: 4
                               } } }
-                          config={{modeBarButtonsToRemove: ['zoom2d', 'toggleSpikelines']}}
+                          config={{modeBarButtonsToRemove: ['zoom2d', 'toggleSpikelines', 'displaylogo']}}
                     />
                 )
             }

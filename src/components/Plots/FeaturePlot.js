@@ -64,6 +64,8 @@ class FeaturePlot extends Component {
                           yaxis: {zeroline: false, showgrid: false, showline: true},
                           xaxis: {zeroline: false, showgrid: false, showline: true},
                           autosize: false,
+                          hovermode: 'compare',
+                          dragmode: 'pan',
                           margin: {
                               l: 25,
                               r: 25,
@@ -72,7 +74,7 @@ class FeaturePlot extends Component {
                               pad: 4
                           }
                       }}
-                      config={{modeBarButtonsToRemove: ['zoom2d', 'toggleSpikelines']}}
+                      config={{modeBarButtonsToRemove: ['zoom2d', 'toggleSpikelines', 'displaylogo']}}
                 />
             )
         }
