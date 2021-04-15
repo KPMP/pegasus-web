@@ -33,6 +33,7 @@ class FeaturePlot extends Component {
                 groupData.push({
                     type: 'scattergl',
                     mode: 'markers',
+                    name: '',
                     x: group.xValues,
                     y: group.yValues,
                     marker: marker
@@ -74,7 +75,7 @@ class FeaturePlot extends Component {
                               pad: 4
                           }
                       }}
-                      config={{displayLogo: false, modeBarButtonsToRemove: ['zoom2d', 'toggleSpikelines']}}
+                      config={{displaylogo: false, modeBarButtonsToRemove: ['zoom2d', 'toggleSpikelines']}}
                 />
             )
         }
