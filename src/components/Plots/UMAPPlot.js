@@ -24,7 +24,6 @@ class UMAPPlot extends Component {
                 clusterData.push({
                     type: 'scattergl',
                     mode: 'markers',
-                    name: cluster.clusterName,
                     text: cluster.clusterName,
                     x: cluster.xValues,
                     y: cluster.yValues,
@@ -74,7 +73,7 @@ class UMAPPlot extends Component {
                                   t: 25,
                                   pad: 4
                               } } }
-                          config={{modeBarButtonsToRemove: ['zoom2d', 'toggleSpikelines', 'displaylogo']}}
+                          config={{displayLogo: false, modeBarButtonsToRemove: ['zoom2d', 'toggleSpikelines']}}
                     />
                 )
             }
