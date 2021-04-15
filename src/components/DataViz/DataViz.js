@@ -14,7 +14,7 @@ class DataViz extends Component {
         this.state = { plotData: [], geneExpressionData: []};
     };
 
-    static cleanResults = (results) => {
+    cleanResults = (results) => {
         return results.filter((result) => result.clusterName !== "TOTAL CELLS: ");
     };
 
@@ -28,7 +28,7 @@ class DataViz extends Component {
         );
         fetchGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType).then(
             (geneExpressionData) => {
-                const geneExpressionDataClean = DataViz.cleanResults(geneExpressionData);
+                const geneExpressionDataClean = this.cleanResults(geneExpressionData);
                 geneExpressionDataClean.push({
                     clusterName: "TOTAL CELLS: ",
                     cellCount: sum(geneExpressionDataClean, "cellCount")
@@ -52,7 +52,7 @@ class DataViz extends Component {
 
     getGeneExpression = async (dataType, gene, cellType, tissueType) => {
         const results = await fetchGeneExpression(dataType, gene, cellType, tissueType);
-        const cleanResults = DataViz.cleanResults(results);
+        const cleanResults = this.cleanResults(results);
         cleanResults.push({clusterName: "TOTAL CELLS: ", cellCount: sum(results, "cellCount")});
         this.setState({geneExpressionData: cleanResults});
     }

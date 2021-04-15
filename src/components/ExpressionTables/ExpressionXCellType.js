@@ -22,6 +22,11 @@ class ExpressionXCellType extends Component {
         return "KPMP_" + formatDataType(this.props.dataType) + '-seq_gene-comparison_' + this.props.gene + '.csv';
     };
 
+    cleanResults = (results) => {
+        return results.filter((result) => result.clusterName !== "TOTAL CELLS: ")
+            .map(({__typename, id, ...theRest}) => theRest);
+    };
+
     getTrProps = (state, rowInfo, instance) => {
         if (rowInfo && rowInfo.row.clusterName === "TOTAL CELLS: ") {
             return {
@@ -86,7 +91,7 @@ class ExpressionXCellType extends Component {
                     </Col>
                     <Col xs='1'>
                         <CSVLink
-                            data={DataViz.cleanResults(this.props.data)}
+                            data={this.cleanResults(this.props.data)}
                             filename={this.getExportFilename()}
                             target="_blank"
                         >
