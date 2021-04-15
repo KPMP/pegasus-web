@@ -9,7 +9,6 @@ const mapStateToProps = (state, props) =>
     return {
         selectedConcept: selectedConcept,
         gene: state.gene
-
     }
 };
 
