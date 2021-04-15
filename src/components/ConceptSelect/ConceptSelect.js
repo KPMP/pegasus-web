@@ -35,7 +35,6 @@ class ConceptSelect extends Component {
     };
 
     handleNoOptions = ({inputValue}) => {
-
         if (inputValue.trim().length < 3) {
             return this.props.moreCharactersMessage;
         } else {
@@ -66,7 +65,16 @@ class ConceptSelect extends Component {
 
     getOptions = async (searchString) => {
         const results = await fetchAutoComplete(searchString);
-        return results.map((result) => this.formatOption(result, searchString), this);
+        const filteredResults = this.filterBySearchType(results);
+        return filteredResults.map((result) => this.formatOption(result, searchString), this);
+    };
+
+    filterBySearchType = (results) => {
+        if (!this.props.searchType || this.props.searchType === 'all') {
+            return results
+        } else {
+            return results.filter((result) => this.props.searchType === result.type)
+        }
     };
 
     render() {
@@ -104,7 +112,8 @@ class ConceptSelect extends Component {
 ConceptSelect.defaultProps = {
     moreCharactersMessage: "Please enter 3 or more characters to start search",
     placeHolderText: "Enter gene, protein, or cell type",
-    smallFormat: false
+    smallFormat: false,
+    searchType: 'all'
 };
 
 export default ConceptSelect;
