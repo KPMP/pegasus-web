@@ -71,7 +71,9 @@ class FeaturePlot extends Component {
                               t: 25,
                               pad: 4
                           }
-                      }}/>
+                      }}
+                      config={{modeBarButtonsToRemove: ['zoom2d', 'toggleSpikelines']}}
+                />
             )
         }
     }
