@@ -6,6 +6,7 @@ import { CSVLink } from "react-csv";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDataType } from "../../helpers/Utils";
+import DataViz from '../DataViz/DataViz';
 
 
 class ExpressionXCellType extends Component {
