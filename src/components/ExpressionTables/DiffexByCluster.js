@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import MaterialTable from 'material-table';
-import { Col, Row, Container } from "reactstrap";
+import {Col, Row, Container, Spinner} from "reactstrap";
 import { formatNumberToPrecision, formatDataType } from "../../helpers/Utils"
 import { fetchGeneExpression } from "../../helpers/ApolloClient";
 
@@ -9,14 +9,14 @@ class DiffexByCluster extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            diffexData: []
+            diffexData: [], isLoading: true
         };
     };
 
     componentDidMount() {
         fetchGeneExpression(this.props.dataType, "", this.props.cluster, this.props.tissueType).then(
             (geneExpressionData) => {
-                this.setState({diffexData: geneExpressionData})
+                this.setState({diffexData: geneExpressionData, isLoading: false})
             },
             (error) => {
                 this.setState({diffexData: []});
@@ -50,22 +50,27 @@ class DiffexByCluster extends Component {
                 </Row>
                 <Row xs='12'>
                     <Col xs='12'>
-                        <MaterialTable
-                            data={this.state.diffexData}
-                            title=""
-                            columns={this.getColumns()}
-                            options={{
-                                pageSize: 20,
-                                pageSizeOptions: [],
-                                rowStyle: row => {
-                                    let style = {
-                                        padding: "8px"
-                                    };
-                                    return style;
+                        {
+                            this.state.isLoading ?
+                                <Spinner color='primary'/>
+                                :
+                                <MaterialTable
+                                    data={this.state.diffexData}
+                                    title=""
+                                    columns={this.getColumns()}
+                                    options={{
+                                        pageSize: 20,
+                                        pageSizeOptions: [],
+                                        rowStyle: row => {
+                                            let style = {
+                                                padding: "8px"
+                                            };
+                                            return style;
+                                        }
                                     }
-                                }
-                            }
-                        />
+                                    }
+                                />
+                        }
                     </Col>
                 </Row>
                 <Row xs='12'>
