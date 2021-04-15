@@ -6,7 +6,6 @@ import { CSVLink } from "react-csv";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDataType } from "../../helpers/Utils";
-import DataViz from '../DataViz/DataViz';
 
 
 class ExpressionXCellType extends Component {
@@ -89,11 +88,12 @@ class ExpressionXCellType extends Component {
                     <Col xs='11'>
                         <h5><span>{this.props.gene}</span> Expression Comparison across Cell Types in {formatTissueType(this.props.tissueType)}</h5>
                     </Col>
-                    <Col xs='1'>
+                    <Col xs='1' className='text-right'>
                         <CSVLink
                             data={this.cleanResults(this.props.data)}
                             filename={this.getExportFilename()}
                             target="_blank"
+                            className="text-body"
                         >
                             <FontAwesomeIcon icon={faDownload} />
                         </CSVLink>
