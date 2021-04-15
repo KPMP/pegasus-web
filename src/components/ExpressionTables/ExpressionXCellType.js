@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
 import ReactTable from "react-table";
-import {Col, Row} from "reactstrap";
+import { Col, Row } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
+import { CSVLink } from "react-csv";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { formatDataType } from "../../helpers/Utils";
+
 
 class ExpressionXCellType extends Component {
     constructor(props) {
@@ -10,6 +15,15 @@ class ExpressionXCellType extends Component {
         this.state = {
             columns: this.getColumns(),
         };
+    };
+
+    getExportFilename = () => {
+        return "KPMP_" + formatDataType(this.props.dataType) + '-seq_gene-comparison_' + this.props.gene + '.csv';
+    };
+
+    cleanResults = (results) => {
+        return results.filter((result) => result.clusterName !== "TOTAL CELLS: ")
+            .map(({__typename, id, gene, dataType, tissueType, ...theRest}) => theRest);
     };
 
     getTrProps = (state, rowInfo, instance) => {
@@ -71,8 +85,18 @@ class ExpressionXCellType extends Component {
         return (
             <React.Fragment>
                 <Row xs='12' className='mt-5'>
-                    <Col xs='12'>
+                    <Col xs='11'>
                         <h5><span>{this.props.gene}</span> Expression Comparison across Cell Types in {formatTissueType(this.props.tissueType)}</h5>
+                    </Col>
+                    <Col xs='1' className='text-right'>
+                        <CSVLink
+                            data={this.cleanResults(this.props.data)}
+                            filename={this.getExportFilename()}
+                            target="_blank"
+                            className="text-body"
+                        >
+                            <FontAwesomeIcon icon={faDownload} />
+                        </CSVLink>
                     </Col>
                 </Row>
                 <Row xs='12'>

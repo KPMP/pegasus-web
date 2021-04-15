@@ -85,7 +85,7 @@ class DataViz extends Component {
                             <FeaturePlot data={this.state.plotData} />
                         </Col>
                     </Row>
-                    <ExpressionXCellType data={this.state.geneExpressionData} gene={this.props.gene.symbol} tissueType={this.props.tissueType}/>
+                    <ExpressionXCellType dataType={this.props.dataType} data={this.state.geneExpressionData} gene={this.props.gene.symbol} tissueType={this.props.tissueType}/>
                 </Container>
             </div>
         )
