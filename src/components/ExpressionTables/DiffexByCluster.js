@@ -49,8 +49,9 @@ class DiffexByCluster extends Component {
     };
 
     cleanResults = (results) => {
-        return results.map(({__typename, id, cellCount, tableData, clusterName, gene, dataType, tissueType, cluster, pct1, pct2, avgExp, ...theRest}) => {
+        return results.map(({__typename, gene, id, cellCount, tableData, clusterName, dataType, tissueType, cluster, pct1, pct2, avgExp, ...theRest}) => {
                 return {
+                    gene: gene,
                     medianExp: avgExp,
                     pctCellsExpressing: pct1,
                     ...theRest
