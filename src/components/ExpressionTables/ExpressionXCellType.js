@@ -18,7 +18,8 @@ class ExpressionXCellType extends Component {
     };
 
     getExportFilename = () => {
-        return "KPMP_" + formatDataType(this.props.dataType) + '-seq_gene-comparison_' + this.props.gene + '_' + this.props.tissueType + '.csv';
+        const tissueType = formatTissueType(this.props.tissueType).toLowerCase().replace(" ", "-");
+        return "KPMP_" + formatDataType(this.props.dataType) + '-seq_gene-comparison_' + this.props.gene + '_' + tissueType + '.csv';
     };
 
     cleanResults = (results) => {

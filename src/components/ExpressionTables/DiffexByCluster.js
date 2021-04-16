@@ -3,6 +3,10 @@ import MaterialTable from 'material-table';
 import {Col, Row, Container, Spinner} from "reactstrap";
 import { formatNumberToPrecision, formatDataType } from "../../helpers/Utils"
 import { fetchGeneExpression } from "../../helpers/ApolloClient";
+import {CSVDownload, CSVLink} from "react-csv";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faDownload} from "@fortawesome/free-solid-svg-icons";
+
 
 class DiffexByCluster extends Component {
 
@@ -14,7 +18,7 @@ class DiffexByCluster extends Component {
     };
 
     componentDidMount() {
-        fetchGeneExpression(this.props.dataType, "", this.props.cluster, this.props.tissueType).then(
+        fetchGeneExpression(this.props.dataType, "", this.props.cluster, "all").then(
             (geneExpressionData) => {
                 this.setState({diffexData: geneExpressionData, isLoading: false})
             },
@@ -40,6 +44,21 @@ class DiffexByCluster extends Component {
         this.props.setGene({symbol: gene, name: ""});
     };
 
+    getExportFilename = () => {
+        return "KPMP_" + formatDataType(this.props.dataType) + '-diffex_' + this.props.cluster + '_all-samples.csv';
+    };
+
+    cleanResults = (results) => {
+        return results.map(({__typename, gene, id, cellCount, tableData, clusterName, dataType, tissueType, cluster, pct1, pct2, avgExp, ...theRest}) => {
+                return {
+                    gene: gene,
+                    medianExp: avgExp,
+                    pctCellsExpressing: pct1,
+                    ...theRest
+                }
+            });
+    };
+
     render() {
         return (
             <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
@@ -48,14 +67,27 @@ class DiffexByCluster extends Component {
                         <h5>{formatDataType(this.props.dataType)} {(this.props.dataType === 'sn' || this.props.dataType === 'sc')?"differential expression*":"abundance*"} in {this.props.cluster} </h5>
                     </Col>
                 </Row>
+                {
+                    this.state.isLoading ?
+                        <div className='diffex-spinner text-center'>
+                            <Spinner color='primary'/>
+                        </div>
+                        :
+                        <React.Fragment>
+                <Row xs='12' className='mt-4'>
+                    <Col xs='12' className="text-right">
+                        <CSVLink
+                            data={this.cleanResults(this.state.diffexData)}
+                            filename={this.getExportFilename()}
+                            target="_blank"
+                            className="text-body"
+                        >
+                            <FontAwesomeIcon icon={faDownload} />
+                        </CSVLink>
+                    </Col>
+                </Row>
                 <Row xs='12'>
                     <Col xs='12'>
-                        {
-                            this.state.isLoading ?
-                                <div className='diffex-spinner text-center'>
-                                    <Spinner color='primary'/>
-                                </div>
-                                :
                                 <MaterialTable
                                     data={this.state.diffexData}
                                     title=""
@@ -72,7 +104,6 @@ class DiffexByCluster extends Component {
                                     }
                                     }
                                 />
-                        }
                     </Col>
                 </Row>
                 <Row xs='12'>
@@ -80,7 +111,9 @@ class DiffexByCluster extends Component {
                        <span>* Gene in selected cell type/region vs. all other cell types/regions</span>
                     </Col>
                 </Row>
-            </Container>
+                    </React.Fragment>
+                    }
+                    </Container>
         )
     }
 }
