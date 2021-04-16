@@ -18,7 +18,7 @@ class DiffexByCluster extends Component {
     };
 
     componentDidMount() {
-        fetchGeneExpression(this.props.dataType, "", this.props.cluster, this.props.tissueType).then(
+        fetchGeneExpression(this.props.dataType, "", this.props.cluster, "all").then(
             (geneExpressionData) => {
                 this.setState({diffexData: geneExpressionData, isLoading: false})
             },
@@ -45,7 +45,7 @@ class DiffexByCluster extends Component {
     };
 
     getExportFilename = () => {
-        return "KPMP_" + formatDataType(this.props.dataType) + '-diffex_' + this.props.cluster + '.csv';
+        return "KPMP_" + formatDataType(this.props.dataType) + '-diffex_' + this.props.cluster + '_all-samples.csv';
     };
 
     cleanResults = (results) => {
