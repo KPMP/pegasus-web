@@ -18,12 +18,19 @@ class ExpressionXCellType extends Component {
     };
 
     getExportFilename = () => {
-        return "KPMP_" + formatDataType(this.props.dataType) + '-seq_gene-comparison_' + this.props.gene + '.csv';
+        return "KPMP_" + formatDataType(this.props.dataType) + '-seq_gene-comparison_' + this.props.gene + '_' + this.props.tissueType + '.csv';
     };
 
     cleanResults = (results) => {
         return results.filter((result) => result.clusterName !== "TOTAL CELLS: ")
-            .map(({__typename, id, gene, dataType, tissueType, ...theRest}) => theRest);
+            .map(({__typename, id, gene, dataType, tissueType, cluster, pct1, pct2, avgExp, ...theRest}) => {
+                return {
+                    medianExp: avgExp,
+                    clusterAbbrev: cluster,
+                    pctCellsExpressing: pct1,
+                    ...theRest
+                }
+            });
     };
 
     getTrProps = (state, rowInfo, instance) => {
