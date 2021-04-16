@@ -3,13 +3,15 @@ import MaterialTable from 'material-table';
 import {Col, Row, Container, Spinner} from "reactstrap";
 import { formatNumberToPrecision, formatDataType } from "../../helpers/Utils"
 import { fetchGeneExpression } from "../../helpers/ApolloClient";
+import { CSVDownload } from "react-csv";
+
 
 class DiffexByCluster extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            diffexData: [], isLoading: true
+            diffexData: [], isLoading: true, isDownloading: false
         };
     };
 
@@ -42,6 +44,7 @@ class DiffexByCluster extends Component {
 
     render() {
         return (
+            <React.Fragment>{ this.state.isDownloading && (<CSVDownload data={this.state.diffexData} target="_blank" />) }
             <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
                 <Row xs='12' className='mt-4'>
                     <Col xs='12'>
@@ -63,6 +66,10 @@ class DiffexByCluster extends Component {
                                     options={{
                                         pageSize: 20,
                                         pageSizeOptions: [],
+                                        exportButton: true,
+                                        exportCsv: (columns, data) => {
+                                            this.setState({isDownloading:true});
+                                        },
                                         rowStyle: row => {
                                             let style = {
                                                 padding: "8px"
@@ -81,6 +88,7 @@ class DiffexByCluster extends Component {
                     </Col>
                 </Row>
             </Container>
+            </React.Fragment>
         )
     }
 }
