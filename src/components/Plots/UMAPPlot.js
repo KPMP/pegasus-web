@@ -74,7 +74,7 @@ class UMAPPlot extends Component {
                                   t: 25,
                                   pad: 4
                               } } }
-                          config={{displaylogo: false, modeBarButtonsToRemove: ['zoom2d', 'toggleSpikelines', 'toggleHover', 'select2d', 'lasso2d']}}
+                          config={{displaylogo: false, modeBarButtonsToRemove: ['hoverCompareCartesian', 'hoverClosestCartesian', 'zoom2d', 'toggleSpikelines', 'toggleHover', 'select2d', 'lasso2d']}}
                     />
                 )
             }
