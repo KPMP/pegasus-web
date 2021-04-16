@@ -6,6 +6,7 @@ import { fetchGeneExpression } from "../../helpers/ApolloClient";
 import {CSVDownload, CSVLink} from "react-csv";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faDownload} from "@fortawesome/free-solid-svg-icons";
+import DiffexInfoBar from './DiffexInfoBar';
 
 
 class DiffexByCluster extends Component {
@@ -61,59 +62,57 @@ class DiffexByCluster extends Component {
 
     render() {
         return (
-            <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
-                <Row xs='12' className='mt-4'>
-                    <Col xs='12'>
-                        <h5>{formatDataType(this.props.dataType)} {(this.props.dataType === 'sn' || this.props.dataType === 'sc')?"differential expression*":"abundance*"} in {this.props.cluster} </h5>
-                    </Col>
-                </Row>
-                {
-                    this.state.isLoading ?
-                        <div className='diffex-spinner text-center'>
-                            <Spinner color='primary'/>
-                        </div>
-                        :
-                        <React.Fragment>
-                <Row xs='12' className='mt-4'>
-                    <Col xs='12' className="text-right">
-                        <CSVLink
-                            data={this.cleanResults(this.state.diffexData)}
-                            filename={this.getExportFilename()}
-                            target="_blank"
-                            className="text-body"
-                        >
-                            <FontAwesomeIcon icon={faDownload} />
-                        </CSVLink>
-                    </Col>
-                </Row>
-                <Row xs='12'>
-                    <Col xs='12'>
-                                <MaterialTable
-                                    data={this.state.diffexData}
-                                    title=""
-                                    columns={this.getColumns()}
-                                    options={{
-                                        pageSize: 20,
-                                        pageSizeOptions: [],
-                                        rowStyle: row => {
-                                            let style = {
-                                                padding: "8px"
-                                            };
-                                            return style;
+            <section>
+                <DiffexInfoBar cluster={this.props.cluster} dataType={this.props.dataType} setDataType={this.props.setDataType}/>
+                <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
+                    {
+                        this.state.isLoading ?
+                            <div className='diffex-spinner text-center'>
+                                <Spinner color='primary'/>
+                            </div>
+                            :
+                            <React.Fragment>
+                    <Row xs='12' className='mt-4'>
+                        <Col xs='12' className="text-right">
+                            <CSVLink
+                                data={this.cleanResults(this.state.diffexData)}
+                                filename={this.getExportFilename()}
+                                target="_blank"
+                                className="text-body"
+                            >
+                                <FontAwesomeIcon icon={faDownload} />
+                            </CSVLink>
+                        </Col>
+                    </Row>
+                    <Row xs='12'>
+                        <Col xs='12'>
+                                    <MaterialTable
+                                        data={this.state.diffexData}
+                                        title=""
+                                        columns={this.getColumns()}
+                                        options={{
+                                            pageSize: 20,
+                                            pageSizeOptions: [],
+                                            rowStyle: row => {
+                                                let style = {
+                                                    padding: "8px"
+                                                };
+                                                return style;
+                                            }
                                         }
-                                    }
-                                    }
-                                />
-                    </Col>
-                </Row>
-                <Row xs='12'>
-                    <Col xs='12'>
-                       <span>* Gene in selected cell type/region vs. all other cell types/regions</span>
-                    </Col>
-                </Row>
-                    </React.Fragment>
-                    }
-                    </Container>
+                                        }
+                                    />
+                        </Col>
+                    </Row>
+                    <Row xs='12'>
+                        <Col xs='12'>
+                        <span>* Gene in selected cell type/region vs. all other cell types/regions</span>
+                        </Col>
+                    </Row>
+                        </React.Fragment>
+                        }
+                </Container>
+            </section>
         )
     }
 }
