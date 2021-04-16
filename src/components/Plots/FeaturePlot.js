@@ -65,7 +65,7 @@ class FeaturePlot extends Component {
                           yaxis: {zeroline: false, showgrid: false, showline: true},
                           xaxis: {zeroline: false, showgrid: false, showline: true},
                           autosize: false,
-                          hovermode: 'compare',
+                          hovermode: 'closest',
                           dragmode: 'pan',
                           margin: {
                               l: 25,
@@ -75,7 +75,7 @@ class FeaturePlot extends Component {
                               pad: 4
                           }
                       }}
-                      config={{displaylogo: false, modeBarButtonsToRemove: ['zoom2d', 'toggleSpikelines']}}
+                      config={{displaylogo: false, modeBarButtonsToRemove: ['zoom2d', 'toggleSpikelines', 'toggleHover', 'select2d', 'lasso2d']}}
                 />
             )
         }
