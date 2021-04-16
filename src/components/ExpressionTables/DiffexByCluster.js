@@ -13,7 +13,7 @@ class DiffexByCluster extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            diffexData: [], isLoading: true, isDownloading: false
+            diffexData: [], isLoading: true
         };
     };
 
@@ -49,8 +49,7 @@ class DiffexByCluster extends Component {
     };
 
     cleanResults = (results) => {
-        return results.filter((result) => result.clusterName !== "TOTAL CELLS: ")
-            .map(({__typename, id, cellCount, tableData, clusterName, gene, cluster, dataType, tissueType, cluster, pct1, pct2, avgExp, ...theRest}) => {
+        return results.map(({__typename, id, cellCount, tableData, clusterName, gene, cluster, dataType, tissueType, cluster, pct1, pct2, avgExp, ...theRest}) => {
                 return {
                     medianExp: avgExp,
                     pctCellsExpressing: pct1,
@@ -61,13 +60,19 @@ class DiffexByCluster extends Component {
 
     render() {
         return (
-            <React.Fragment>{ this.state.isDownloading && (<CSVDownload data={this.state.diffexData} target="_blank" />) }
             <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
                 <Row xs='12' className='mt-4'>
                     <Col xs='12'>
                         <h5>{formatDataType(this.props.dataType)} {(this.props.dataType === 'sn' || this.props.dataType === 'sc')?"differential expression*":"abundance*"} in {this.props.cluster} </h5>
                     </Col>
                 </Row>
+                {
+                    this.state.isLoading ?
+                        <div className='diffex-spinner text-center'>
+                            <Spinner color='primary'/>
+                        </div>
+                        :
+                        <React.Fragment>
                 <Row xs='12' className='mt-4'>
                     <Col xs='12' className="text-right">
                         <CSVLink
@@ -82,12 +87,6 @@ class DiffexByCluster extends Component {
                 </Row>
                 <Row xs='12'>
                     <Col xs='12'>
-                        {
-                            this.state.isLoading ?
-                                <div className='diffex-spinner text-center'>
-                                    <Spinner color='primary'/>
-                                </div>
-                                :
                                 <MaterialTable
                                     data={this.state.diffexData}
                                     title=""
@@ -104,7 +103,6 @@ class DiffexByCluster extends Component {
                                     }
                                     }
                                 />
-                        }
                     </Col>
                 </Row>
                 <Row xs='12'>
@@ -112,8 +110,9 @@ class DiffexByCluster extends Component {
                        <span>* Gene in selected cell type/region vs. all other cell types/regions</span>
                     </Col>
                 </Row>
-            </Container>
-            </React.Fragment>
+                    </React.Fragment>
+                    }
+                    </Container>
         )
     }
 }
