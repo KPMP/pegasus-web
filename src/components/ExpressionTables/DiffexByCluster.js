@@ -47,18 +47,18 @@ class DiffexByCluster extends Component {
     getExportFilename = () => {
         return "KPMP_" + formatDataType(this.props.dataType) + '-diffex_' + this.props.cluster + '.csv';
     };
+
     cleanResults = (results) => {
         return results.filter((result) => result.clusterName !== "TOTAL CELLS: ")
-            .map(({__typename, id, gene, dataType, tissueType, cluster, pct1, pct2, avgExp, ...theRest}) => {
+            .map(({__typename, id, cellCount, tableData, clusterName, gene, cluster, dataType, tissueType, cluster, pct1, pct2, avgExp, ...theRest}) => {
                 return {
                     medianExp: avgExp,
-                    clusterAbbrev: cluster,
                     pctCellsExpressing: pct1,
                     ...theRest
                 }
             });
     };
-    
+
     render() {
         return (
             <React.Fragment>{ this.state.isDownloading && (<CSVDownload data={this.state.diffexData} target="_blank" />) }
@@ -71,7 +71,7 @@ class DiffexByCluster extends Component {
                 <Row xs='12' className='mt-4'>
                     <Col xs='12' className="text-right">
                         <CSVLink
-                            data={this.state.diffexData}
+                            data={this.cleanResults(this.state.diffexData)}
                             filename={this.getExportFilename()}
                             target="_blank"
                             className="text-body"
