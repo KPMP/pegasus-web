@@ -76,19 +76,25 @@ class ExpressionXCellType extends Component {
             {
                 Header: <span>FOLD<br/>CHANGE
                             <FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} />
-                        <UncontrolledTooltip placement='bottom' target='fold-change-info' >
-                            Hello world!
+                        <UncontrolledTooltip className='bg-white text-dark' placement='bottom' target='fold-change-info' >
+                            Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in the this cluster.
                         </UncontrolledTooltip></span>,
                 accessor: 'foldChange',
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
-                Header: <span>P VALUE <FontAwesomeIcon className='kpmp-light-blue' icon={faInfoCircle} /></span>,
+                Header: <span>P VALUE <FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} />
+                            <UncontrolledTooltip className='bg-white text-dark' placement='bottom' target='pvalue-info' >
+                                p-value (unadjusted)
+                            </UncontrolledTooltip></span>,
                 accessor: 'pVal',
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
-                Header: <span>ADJ<br/>P VALUE <FontAwesomeIcon className='kpmp-light-blue' icon={faInfoCircle} /></span>,
+                Header: <span>ADJ<br/>P VALUE <FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} />
+                            <UncontrolledTooltip className='bg-white text-dark' placement='bottom' target='pvalue-adj-info' >
+                                Adjusted p-value, based on bonferroni correction using all features in the dataset.
+                            </UncontrolledTooltip></span>,
                 accessor: 'pValAdj',
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             }
