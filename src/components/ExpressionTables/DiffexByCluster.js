@@ -20,7 +20,8 @@ class DiffexByCluster extends Component {
     componentDidMount() {
         fetchGeneExpression(this.props.dataType, "", this.props.cluster, "all").then(
             (geneExpressionData) => {
-                this.setState({diffexData: geneExpressionData, isLoading: false})
+                let clonedData = [...geneExpressionData];
+                this.setState({diffexData: clonedData, isLoading: false})
             },
             (error) => {
                 this.setState({diffexData: []});

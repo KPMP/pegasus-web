@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import ReactTable from "react-table";
-import { Col, Row } from "reactstrap";
+import { Col, Row, UncontrolledTooltip } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDataType } from "../../helpers/Utils";
 
@@ -11,9 +12,8 @@ import { formatDataType } from "../../helpers/Utils";
 class ExpressionXCellType extends Component {
     constructor(props) {
         super(props);
-        this.getColumns = this.getColumns.bind(this);
         this.state = {
-            columns: this.getColumns(),
+            toolTipOpen: false
         };
     };
 
@@ -21,6 +21,8 @@ class ExpressionXCellType extends Component {
         const tissueType = formatTissueType(this.props.tissueType).toLowerCase().replace(" ", "-");
         return "KPMP_" + formatDataType(this.props.dataType) + '-seq_gene-comparison_' + this.props.gene + '_' + tissueType + '.csv';
     };
+
+   toggleTooltip = () => this.setState({toolTipOpen:!this.state.toolTipOpen});
 
     cleanResults = (results) => {
         return results.filter((result) => result.clusterName !== "TOTAL CELLS: ")
@@ -43,7 +45,7 @@ class ExpressionXCellType extends Component {
         return {};
     };
 
-    getColumns() {
+    getColumns = () => {
         return [
             {
                 Header: "ABBR",
@@ -72,17 +74,21 @@ class ExpressionXCellType extends Component {
                 Cell: ({ value }) => formatNumberToPrecision(value * 100, 3)
             },
             {
-                Header: <span>FOLD<br/>CHANGE</span>,
+                Header: <span>FOLD<br/>CHANGE
+                            <FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} />
+                        <UncontrolledTooltip placement='bottom' target='fold-change-info' >
+                            Hello world!
+                        </UncontrolledTooltip></span>,
                 accessor: 'foldChange',
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
-                Header: "P VALUE",
+                Header: <span>P VALUE <FontAwesomeIcon className='kpmp-light-blue' icon={faInfoCircle} /></span>,
                 accessor: 'pVal',
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
-                Header: <span>ADJ<br/>P VALUE</span>,
+                Header: <span>ADJ<br/>P VALUE <FontAwesomeIcon className='kpmp-light-blue' icon={faInfoCircle} /></span>,
                 accessor: 'pValAdj',
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             }
@@ -94,7 +100,7 @@ class ExpressionXCellType extends Component {
             <React.Fragment>
                 <Row xs='12' className='mt-5'>
                     <Col xs='11'>
-                        <h5><span>{this.props.gene}</span> Expression Comparison across Cell Types in {formatTissueType(this.props.tissueType)}</h5>
+                        <h5><span><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info2' icon={faInfoCircle} />{this.props.gene}</span> Expression Comparison across Cell Types in {formatTissueType(this.props.tissueType)}</h5>
                     </Col>
                     <Col xs='1' className='text-right'>
                         <CSVLink
