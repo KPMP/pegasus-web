@@ -12,17 +12,12 @@ import { formatDataType } from "../../helpers/Utils";
 class ExpressionXCellType extends Component {
     constructor(props) {
         super(props);
-        this.state = {
-            toolTipOpen: false
-        };
     };
 
     getExportFilename = () => {
         const tissueType = formatTissueType(this.props.tissueType).toLowerCase().replace(" ", "-");
         return "KPMP_" + formatDataType(this.props.dataType) + '-seq_gene-comparison_' + this.props.gene + '_' + tissueType + '.csv';
     };
-
-   toggleTooltip = () => this.setState({toolTipOpen:!this.state.toolTipOpen});
 
     cleanResults = (results) => {
         return results.filter((result) => result.clusterName !== "TOTAL CELLS: ")
