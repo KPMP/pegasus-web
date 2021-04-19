@@ -19,6 +19,10 @@ class DiffexByCluster extends Component {
     };
 
     componentDidMount() {
+        this.fetchGeneExpression();
+    }
+
+    fetchGeneExpression = () => {
         fetchGeneExpression(this.props.dataType, "", this.props.cluster, "all").then(
             (geneExpressionData) => {
                 this.setState({diffexData: geneExpressionData, isLoading: false})
@@ -28,6 +32,13 @@ class DiffexByCluster extends Component {
                 console.log("There was a problem getting the data: " + error)
             }
         );
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.dataType !== prevProps.dataType ) {
+            this.setState({ diffexData: [], isLoading: true });
+            this.fetchGeneExpression();
+        }
     }
 
     getGeneLink = (gene) => {
