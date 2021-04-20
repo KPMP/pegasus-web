@@ -87,7 +87,7 @@ class DiffexByCluster extends Component {
                     </Col>
                 </Row>
                 <Row xs='12'>
-                    <Col xs='12'>
+                    <Col xs='12' className="diffex-table">
                                 <MaterialTable
                                     data={this.state.diffexData}
                                     title=""
