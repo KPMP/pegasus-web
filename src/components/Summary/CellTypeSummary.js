@@ -49,7 +49,7 @@ class CellTypeSummary extends Component {
                 Header: 'STRUCTURE / REGION',
                 id: 'structureRegion',
                 accessor: 'structureRegion',
-                minWidth: 210,
+                minWidth: 170,
             },
             {
                 Header: 'SUBSTRUCTURE / SUBREGION',
@@ -61,10 +61,10 @@ class CellTypeSummary extends Component {
                 Header: 'CELL TYPE / CLUSTER',
                 id: 'clusterName',
                 accessor: 'clusterName',
-                minWidth: 210,
+                minWidth: 170,
             },
             {
-                Header: <span>SINGLE-NUCLEUS<br/>RNA-seq</span>,
+                Header: <span className='text-center'>SINGLE-NUCLEUS<br/>RNA-seq</span>,
                 id: 'sn',
                 accessor: 'isSingleNucCluster',
                 className: 'text-center',
@@ -73,7 +73,7 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                Header: <span>SINGLE-CELL<br/>RNA-seq</span>,
+                Header: <span className='text-center'>SINGLE-CELL<br/>RNA-seq</span>,
                 id: 'sc',
                 accessor: 'isSingleCellCluster',
                 className: 'text-center',
@@ -82,7 +82,7 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                Header: <span>REGIONAL<br/>TRANSCRIPTOMICS</span>,
+                Header: <span className='text-center'>REGIONAL<br/>TRANSCRIPTOMICS</span>,
                 id: 'lmd_rnaseq',
                 accessor: 'lmd_rnaseq',
                 className: 'text-center',
