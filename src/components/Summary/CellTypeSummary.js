@@ -127,7 +127,7 @@ class CellTypeSummary extends Component {
                                 ref={this.reactTable}
                                 sortable={false}
                                 columns={this.state.columns}
-                                className='-striped -highlight'
+                                className='-striped -highlight diffex-table'
                                 showPagination={false}
                                 noDataText={'No data found'}
                                 minRows = {0}
