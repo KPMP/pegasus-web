@@ -46,7 +46,7 @@ class CellTypeSummary extends Component {
     getColumns() {
         return [
             {
-                Header: <span className='cell-summary-table-header-left'>STRUCTURE / REGION</span>,
+                Header: <span className='cell-summary-table-header-left text-'>STRUCTURE / REGION</span>,
                 id: 'structureRegion',
                 accessor: 'structureRegion',
                 minWidth: 170,
