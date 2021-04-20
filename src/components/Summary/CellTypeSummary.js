@@ -46,19 +46,19 @@ class CellTypeSummary extends Component {
     getColumns() {
         return [
             {
-                Header: 'STRUCTURE / REGION',
+                Header: <span className='cell-summary-table-header'>STRUCTURE / REGION</span>,
                 id: 'structureRegion',
                 accessor: 'structureRegion',
                 minWidth: 170,
             },
             {
-                Header: 'SUBSTRUCTURE / SUBREGION',
+                Header: <span className='cell-summary-table-header'>SUBSTRUCTURE / SUBREGION</span>,
                 id: 'structureSubregion',
                 accessor: 'structureSubregion',
                 minWidth: 210,
             },
             {
-                Header: 'CELL TYPE / CLUSTER',
+                Header: <span className='cell-summary-table-header'>CELL TYPE / CLUSTER</span>,
                 id: 'clusterName',
                 accessor: 'clusterName',
                 minWidth: 170,
@@ -86,12 +86,13 @@ class CellTypeSummary extends Component {
                 id: 'lmd_rnaseq',
                 accessor: 'lmd_rnaseq',
                 className: 'text-center',
+                minWidth: 120,
                 Cell: ({ row }) => (
                     this.linkDataTypeCells('N')
                 )
             },
             {
-                Header: <span>REGIONAL<br/>PROTEOMICS</span>,
+                Header: <span className='text-center'>REGIONAL<br/>PROTEOMICS</span>,
                 id: 'lmd_proteomics',
                 accessor: 'lmd_proteomics',
                 className: 'text-center',

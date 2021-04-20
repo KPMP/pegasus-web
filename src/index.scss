@@ -83,12 +83,20 @@ tr.MuiTableRow-root:nth-child(even) {
   line-height: 13px;
 }
 
-.expression-table, .cell-summary-table .rt-th.rt-resizable-header {
+.expression-table .rt-th.rt-resizable-header {
   text-align: left;
   font-size: 13px;
   font-weight: 500;
   font-style: normal;
 }
+
+.cell-summary-table-header {
+  text-align: left;
+  font-size: 13px;
+  font-weight: 500;
+  font-style: normal;
+}
+
 
 .expression-table, .cell-summary-table .d-flex.justify-content-center.col-4.offset-8:nth-child(1) > span:nth-child(1) {
   font-size: 13px;
