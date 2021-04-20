@@ -46,19 +46,19 @@ class CellTypeSummary extends Component {
     getColumns() {
         return [
             {
-                Header: <span className='cell-summary-table-header'>STRUCTURE / REGION</span>,
+                Header: <span className='cell-summary-table-header-left'>STRUCTURE / REGION</span>,
                 id: 'structureRegion',
                 accessor: 'structureRegion',
                 minWidth: 170,
             },
             {
-                Header: <span className='cell-summary-table-header'>SUBSTRUCTURE / SUBREGION</span>,
+                Header: <span className='cell-summary-table-header-left'>SUBSTRUCTURE / SUBREGION</span>,
                 id: 'structureSubregion',
                 accessor: 'structureSubregion',
                 minWidth: 210,
             },
             {
-                Header: <span className='cell-summary-table-header'>CELL TYPE / CLUSTER</span>,
+                Header: <span className='cell-summary-table-header-left'>CELL TYPE / CLUSTER</span>,
                 id: 'clusterName',
                 accessor: 'clusterName',
                 minWidth: 170,
