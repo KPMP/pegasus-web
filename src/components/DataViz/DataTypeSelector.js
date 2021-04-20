@@ -2,8 +2,8 @@ import React, {Component} from "react";
 import Select from "react-select";
 import { Row, Col } from 'reactstrap';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons'
-import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer'
+import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
+import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer';
 import { getTissueTypeOptions, getDataTypeOptions } from "../../helpers/Utils";
 
 class DataTypeSelector extends Component {
@@ -12,7 +12,7 @@ class DataTypeSelector extends Component {
         this.state = {
             tissueInputValue: getTissueTypeOptions(this.props.tissueType),
             tissueValue: null,
-            dataTypeInputValue: getDataTypeOptions(this.props.dataType),
+            dataTypeInputValue: getDataTypeOptions(this.props.dataType, this.props.gene.symbol, ""),
             dataTypeValue: null
         }
     }
@@ -47,6 +47,7 @@ class DataTypeSelector extends Component {
     };
 
     render() {
+        console.log(this.props);
         return (
             <React.Fragment>
                 <Row xs="12" className='mb-4'>
@@ -74,7 +75,7 @@ class DataTypeSelector extends Component {
                             onChange={this.handleDataTypeSelect}
                             value={this.state.dataTypeValue}
                             inputValue={this.state.dataTypeInputValue}
-                            defaultInputValue={getDataTypeOptions(this.props.dataType)}
+                            defaultInputValue={getDataTypeOptions(this.props.dataType, this.props.gene.symbol, "")}
                             onFocus={() => this.setState({dataTypeInputValue: ""})}
                             className='select pl-2 d-table-cell w-100 pl-2'
                         />

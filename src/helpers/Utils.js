@@ -1,3 +1,5 @@
+import { fetchDataTypesForConcept } from './ApolloClient';
+
 export const formatNumberToPrecision = (number, precision) => {
     if (number) {
         return number.toPrecision(precision)
@@ -77,46 +79,47 @@ export const getTissueTypeOptions = (value) => {
     }
 };
 
-export const getDataTypeOptions = (value) => {
-    const options =  [
-        {
-            label: "SN RNAseq",
-            value: "sn"
-        },
-        {
-            label: "SC RNAseq",
-            value: "sc"
-        },
-        {
-            label: "LMD RNASeq",
-            value: "lmd",
-            isDisabled: true
-        },
-        {
-            label: "Bulk RNASeq",
-            value: "bulk",
-            isDisabled: true
-        },
-        {
-            label: "LMD Proteomics",
-            value: "lmd",
-            isDisabled: true
-        },
-        {
-            label: "3D Cytometry",
-            value: "3dc",
-            isDisabled: true
-        },
-        {
-            label: "Spatial Metabolomics",
-            value: "sm",
-            isDisabled: true
-        }
-    ];
-
-    if (value) {
-        return options.find(item => value === item.value).label
-    } else {
-        return options
-    }
+export const getDataTypeOptions = async (geneSymbol, cluster) => {
+     let options = fetchDataTypesForConcept(geneSymbol, cluster).then((result) => {
+        let dataTypes = result.dataTypesForConcept;
+        const options =  [
+            {
+                label: "SN RNAseq",
+                value: "sn",
+                isDisabled: !dataTypes.includes("sn")
+            },
+            {
+                label: "SC RNAseq",
+                value: "sc",
+                isDisabled: !dataTypes.includes("sc")
+            },
+            {
+                label: "LMD RNASeq",
+                value: "lmd",
+                isDisabled: !dataTypes.includes("lmd")
+            },
+            {
+                label: "Bulk RNASeq",
+                value: "bulk",
+                isDisabled: !dataTypes.includes("bulk")
+            },
+            {
+                label: "LMD Proteomics",
+                value: "lmd",
+                isDisabled: !dataTypes.includes("lmd")
+            },
+            {
+                label: "3D Cytometry",
+                value: "3dc",
+                isDisabled: !dataTypes.includes("3dc")
+            },
+            {
+                label: "Spatial Metabolomics",
+                value: "sm",
+                isDisabled: !dataTypes.includes("sm")
+            }
+        ];
+        return options;
+    });
+    return options;
 };

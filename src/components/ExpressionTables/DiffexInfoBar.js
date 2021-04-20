@@ -8,30 +8,48 @@ class DiffexInfoBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataTypeInputValue: getDataTypeOptions(this.props.dataType),
-            dataTypeValue: null
+            dataTypeInputValue: "",
+            dataTypeOptions: []
         }
+    }
+
+    componentDidMount() {
+        getDataTypeOptions("", this.props.cluster).then(
+            (options) => {
+                let selectedOption = options.find(item => this.props.dataType === item.value);
+                this.setState({dataTypeOptions: options, dataTypeInputValue: selectedOption})
+            },
+            (error) => {
+                this.setState({dataTypeOptions: []});
+                console.log("There was a problem getting the data: " + error)
+            }
+        );
+        
     }
 
     handleDataTypeSelect = (selected, actionMeta) =>
     {
         this.props.setDataType(selected.value);
-        this.setState({dataTypeValue: selected});
+        this.setState({dataTypeInputValue: selected});
     };
 
+    handleInputChange(inputValue, action) {
+        if (action.action !== "input-blur" && action.action !== "menu-close") {
+            this.setState({ dataTypeInputValue: inputValue });
+        }
+      }
+
     render () {
+        let selectedValue = this.state.dataTypeInputValue;
         return (
             <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
                 <Row xs='12' className='mt-4'>
                     <Col lg="2" className='d-table'>
                         <Select
-                            allowClear
-                            options={getDataTypeOptions()}
+                            value={selectedValue}
+                            options={this.state.dataTypeOptions}
+                            onInputChange={this.handleInputChange.bind(this)}
                             onChange={this.handleDataTypeSelect}
-                            value={this.state.dataTypeValue}
-                            inputValue={this.state.dataTypeInputValue}
-                            defaultInputValue={getDataTypeOptions(this.props.dataType)}
-                            onFocus={() => this.setState({dataTypeInputValue: ""})}
                             className='select pl-2 d-table-cell w-100 pl-2'
                             styles={{menu: provided => ({...provided, zIndex:999})}}
                         />

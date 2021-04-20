@@ -151,6 +151,19 @@ export const fetchPlotlyData = async(dataType, geneSymbol, tissueType) => {
     return [];
 };
 
+export const fetchDataTypesForConcept = async(geneSymbol, clusterName) => {
+    const response = await apolloClient.query ({
+        query: gql`
+            query{
+                dataTypesForConcept(geneSymbol:"${geneSymbol}", clusterName: "${clusterName}") 
+            }`
+    });
+    if (response.data && response.data) {
+        return response.data;
+    }
+    return [];
+}
+
 export const fetchGeneExpression = async (dataType, geneSymbol, cellType, tissueType) => {
     const response = await apolloClient.query({
         query: gql`
