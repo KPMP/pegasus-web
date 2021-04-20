@@ -46,31 +46,25 @@ class CellTypeSummary extends Component {
     getColumns() {
         return [
             {
-                Header: 'STRUCTURE/REGION',
+                Header: 'STRUCTURE / REGION',
                 id: 'structureRegion',
-                accessor: 'structureRegion'
+                accessor: 'structureRegion',
+                minWidth: 210,
             },
             {
-                Header: 'SUBSTRUCTURE/SUBREGION',
+                Header: 'SUBSTRUCTURE / SUBREGION',
                 id: 'structureSubregion',
                 accessor: 'structureSubregion',
+                minWidth: 210,
             },
             {
                 Header: 'CELL TYPE / CLUSTER',
                 id: 'clusterName',
-                accessor: 'clusterName'
+                accessor: 'clusterName',
+                minWidth: 210,
             },
             {
-                Header: 'scRNASeq',
-                id: 'sc',
-                accessor: 'isSingleCellCluster',
-                className: 'text-center',
-                Cell: ({ row }) => (
-                    this.linkDataTypeCells(row, 'sc')
-                )
-            },
-            {
-                Header: 'snRNASeq',
+                Header: <span>SINGLE-NUCLEUS<br/>RNA-seq</span>,
                 id: 'sn',
                 accessor: 'isSingleNucCluster',
                 className: 'text-center',
@@ -79,7 +73,16 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                Header: 'LMD RNASeq',
+                Header: <span>SINGLE-CELL<br/>RNA-seq</span>,
+                id: 'sc',
+                accessor: 'isSingleCellCluster',
+                className: 'text-center',
+                Cell: ({ row }) => (
+                    this.linkDataTypeCells(row, 'sc')
+                )
+            },
+            {
+                Header: <span>REGIONAL<br/>TRANSCRIPTOMICS</span>,
                 id: 'lmd_rnaseq',
                 accessor: 'lmd_rnaseq',
                 className: 'text-center',
@@ -88,7 +91,7 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                Header: 'LMD PROTEOMICS',
+                Header: <span>REGIONAL<br/>PROTEOMICS</span>,
                 id: 'lmd_proteomics',
                 accessor: 'lmd_proteomics',
                 className: 'text-center',
@@ -127,7 +130,7 @@ class CellTypeSummary extends Component {
                                 ref={this.reactTable}
                                 sortable={false}
                                 columns={this.state.columns}
-                                className='-striped -highlight diffex-table'
+                                className='-striped -highlight cell-summary-table'
                                 showPagination={false}
                                 noDataText={'No data found'}
                                 minRows = {0}
