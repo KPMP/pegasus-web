@@ -83,15 +83,15 @@ tr.MuiTableRow-root:nth-child(even) {
   line-height: 13px;
 }
 
-.expression-table .rt-th.rt-resizable-header {
+.expression-table, cell-summary-table-header-left .rt-th.rt-resizable-header {
   text-align: left;
   font-size: 13px;
   font-weight: 500;
   font-style: normal;
 }
 
-.cell-summary-table-header {
-  text-align: left;
+.cell-summary-table-header-center {
+  text-align: center;
   font-size: 13px;
   font-weight: 500;
   font-style: normal;

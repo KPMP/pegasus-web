@@ -64,7 +64,7 @@ class CellTypeSummary extends Component {
                 minWidth: 170,
             },
             {
-                Header: <span className='text-center'>SINGLE-NUCLEUS<br/>RNA-seq</span>,
+                Header: <span className='cell-summary-table-header-center'>SINGLE-NUCLEUS<br/>RNA-seq</span>,
                 id: 'sn',
                 accessor: 'isSingleNucCluster',
                 className: 'text-center',
@@ -73,7 +73,7 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                Header: <span className='text-center'>SINGLE-CELL<br/>RNA-seq</span>,
+                Header: <span className='cell-summary-table-header-center'>SINGLE-CELL<br/>RNA-seq</span>,
                 id: 'sc',
                 accessor: 'isSingleCellCluster',
                 className: 'text-center',
@@ -82,7 +82,7 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                Header: <span className='text-center'>REGIONAL<br/>TRANSCRIPTOMICS</span>,
+                Header: <span className='cell-summary-table-header-center'>REGIONAL<br/>TRANSCRIPTOMICS</span>,
                 id: 'lmd_rnaseq',
                 accessor: 'lmd_rnaseq',
                 className: 'text-center',
@@ -92,7 +92,7 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                Header: <span className='text-center'>REGIONAL<br/>PROTEOMICS</span>,
+                Header: <span className='cell-summary-table-header-center'>REGIONAL<br/>PROTEOMICS</span>,
                 id: 'lmd_proteomics',
                 accessor: 'lmd_proteomics',
                 className: 'text-center',
@@ -105,7 +105,7 @@ class CellTypeSummary extends Component {
 
     linkDataTypeCells(row, dataType) {
         if (row[dataType] === 'Y') {
-            return <button onClick={() => this.handleLinkClick(dataType, row.clusterName)} type='button' className='btn btn-link text-left p-0'>View</button>
+            return <button onClick={() => this.handleLinkClick(dataType, row.clusterName)} type='button' className='btn btn-link text-left p-0 cell-summary-table-header-center'>View</button>
         }
         return '';
     }
