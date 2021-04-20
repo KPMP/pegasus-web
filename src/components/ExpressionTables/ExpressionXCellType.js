@@ -75,7 +75,7 @@ class ExpressionXCellType extends Component {
             {
                 Header: <span>FOLD<br/>CHANGE <a href='https://kpmp.webflow.io/help-docs/data' target='_blank'><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></a>
                         <UncontrolledTooltip placement='bottom' target='fold-change-info' >
-                            Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in the this cluster.
+                            Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.
                         </UncontrolledTooltip></span>,
                 accessor: 'foldChange',
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
