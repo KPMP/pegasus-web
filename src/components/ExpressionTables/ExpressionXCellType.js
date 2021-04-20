@@ -74,7 +74,7 @@ class ExpressionXCellType extends Component {
             },
             {
                 Header: <span>FOLD<br/>CHANGE <a href='https://kpmp.webflow.io/help-docs/data' target='_blank'><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></a>
-                        <UncontrolledTooltip className='bg-white text-dark' placement='bottom' target='fold-change-info' >
+                        <UncontrolledTooltip placement='bottom' target='fold-change-info' >
                             Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in the this cluster.
                         </UncontrolledTooltip></span>,
                 accessor: 'foldChange',
@@ -82,7 +82,7 @@ class ExpressionXCellType extends Component {
             },
             {
                 Header: <span>P VALUE <a href='https://kpmp.webflow.io/help-docs/data' target='_blank'><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></a>
-                            <UncontrolledTooltip className='bg-white text-dark' placement='bottom' target='pvalue-info' >
+                            <UncontrolledTooltip placement='bottom' target='pvalue-info' >
                                 p-value (unadjusted)
                             </UncontrolledTooltip></span>,
                 accessor: 'pVal',
@@ -90,7 +90,7 @@ class ExpressionXCellType extends Component {
             },
             {
                 Header: <span>ADJ<br/>P VALUE <a href='https://kpmp.webflow.io/help-docs/data' target='_blank'><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></a>
-                            <UncontrolledTooltip className='bg-white text-dark' placement='bottom' target='pvalue-adj-info' >
+                            <UncontrolledTooltip placement='bottom' target='pvalue-adj-info' >
                                 Adjusted p-value, based on bonferroni correction using all features in the dataset.
                             </UncontrolledTooltip></span>,
                 accessor: 'pValAdj',
@@ -104,7 +104,7 @@ class ExpressionXCellType extends Component {
             <React.Fragment>
                 <Row xs='12' className='mt-5'>
                     <Col xs='11'>
-                        <h5><span><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info2' icon={faInfoCircle} />{this.props.gene}</span> Expression Comparison across Cell Types in {formatTissueType(this.props.tissueType)}</h5>
+                        <h5><span>{this.props.gene}</span> Expression Comparison across Cell Types in {formatTissueType(this.props.tissueType)}</h5>
                     </Col>
                     <Col xs='1' className='text-right'>
                         <CSVLink
