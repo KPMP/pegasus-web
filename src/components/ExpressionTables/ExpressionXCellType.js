@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
 import ReactTable from "react-table";
-import { Col, Row } from "reactstrap";
+import { Col, Row, UncontrolledTooltip } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDataType } from "../../helpers/Utils";
 
@@ -11,10 +12,6 @@ import { formatDataType } from "../../helpers/Utils";
 class ExpressionXCellType extends Component {
     constructor(props) {
         super(props);
-        this.getColumns = this.getColumns.bind(this);
-        this.state = {
-            columns: this.getColumns(),
-        };
     };
 
     getExportFilename = () => {
@@ -47,7 +44,7 @@ class ExpressionXCellType extends Component {
         return {};
     };
 
-    getColumns() {
+    getColumns = () => {
         return [
             {
                 Header: "ABBR",
@@ -76,17 +73,26 @@ class ExpressionXCellType extends Component {
                 Cell: ({ value }) => formatNumberToPrecision(value * 100, 3)
             },
             {
-                Header: <span>FOLD<br/>CHANGE</span>,
+                Header: <span>FOLD<br/>CHANGE <a href='https://kpmp.webflow.io/help-docs/data' target='_blank'><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></a>
+                        <UncontrolledTooltip className='bg-white text-dark' placement='bottom' target='fold-change-info' >
+                            Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in the this cluster.
+                        </UncontrolledTooltip></span>,
                 accessor: 'foldChange',
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
-                Header: "P VALUE",
+                Header: <span>P VALUE <a href='https://kpmp.webflow.io/help-docs/data' target='_blank'><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></a>
+                            <UncontrolledTooltip className='bg-white text-dark' placement='bottom' target='pvalue-info' >
+                                p-value (unadjusted)
+                            </UncontrolledTooltip></span>,
                 accessor: 'pVal',
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
-                Header: <span>ADJ<br/>P VALUE</span>,
+                Header: <span>ADJ<br/>P VALUE <a href='https://kpmp.webflow.io/help-docs/data' target='_blank'><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></a>
+                            <UncontrolledTooltip className='bg-white text-dark' placement='bottom' target='pvalue-adj-info' >
+                                Adjusted p-value, based on bonferroni correction using all features in the dataset.
+                            </UncontrolledTooltip></span>,
                 accessor: 'pValAdj',
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             }
@@ -98,7 +104,7 @@ class ExpressionXCellType extends Component {
             <React.Fragment>
                 <Row xs='12' className='mt-5'>
                     <Col xs='11'>
-                        <h5><span>{this.props.gene}</span> Expression Comparison across Cell Types in {formatTissueType(this.props.tissueType)}</h5>
+                        <h5><span><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info2' icon={faInfoCircle} />{this.props.gene}</span> Expression Comparison across Cell Types in {formatTissueType(this.props.tissueType)}</h5>
                     </Col>
                     <Col xs='1' className='text-right'>
                         <CSVLink
