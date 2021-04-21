@@ -43,22 +43,26 @@ class CellTypeSummary extends Component {
         this.props.setDataTypeAndCluster(dataType, cluster);
     };
 
+    getTheadThProps = (state, rowInfo, column, instance) => {
+            return { id: column.id };
+    };
+
     getColumns() {
         return [
             {
-                Header: <span className='cell-summary-table-header-left text-'>STRUCTURE / REGION</span>,
+                Header: 'STRUCTURE / REGION',
                 id: 'structureRegion',
                 accessor: 'structureRegion',
                 minWidth: 170,
             },
             {
-                Header: <span className='cell-summary-table-header-left'>SUBSTRUCTURE / SUBREGION</span>,
+                Header: 'SUBSTRUCTURE / SUBREGION',
                 id: 'structureSubregion',
                 accessor: 'structureSubregion',
                 minWidth: 210,
             },
             {
-                Header: <span className='cell-summary-table-header-left'>CELL TYPE / CLUSTER</span>,
+                Header: 'CELL TYPE / CLUSTER',
                 id: 'clusterName',
                 accessor: 'clusterName',
                 minWidth: 170,
@@ -135,6 +139,7 @@ class CellTypeSummary extends Component {
                                 className='-striped -highlight cell-summary-table'
                                 showPagination={false}
                                 noDataText={'No data found'}
+                                getTheadThProps={this.getTheadThProps}
                                 minRows = {0}
                             />
                         </Col>
