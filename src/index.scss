@@ -105,6 +105,7 @@ tr.MuiTableRow-root:nth-child(even) {
 }
 
 .expression-table, .cell-summary-table .d-flex.justify-content-center.col-4.offset-8:nth-child(1) > span:nth-child(1) {
+  text-align: left !important;
   font-size: 13px;
   font-weight: 500;
   font-style: normal;
