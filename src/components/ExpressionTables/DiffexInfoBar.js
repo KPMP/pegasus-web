@@ -29,6 +29,7 @@ class DiffexInfoBar extends Component {
 
     handleInputChange(inputValue, action) {
         if (action.action !== 'input-blur' && action.action !== 'menu-close') {
+            this.props.setDataType(inputValue.value);
             this.setState({ dataTypeInputValue: inputValue });
         }
     }
@@ -42,7 +43,7 @@ class DiffexInfoBar extends Component {
                         <Select
                             value={selectedValue}
                             options={this.state.dataTypeOptions}
-                            onInputChange={this.handleInputChange.bind(this)}
+                            onChange={this.handleInputChange.bind(this)}
                             className='select d-table-cell w-100 pl-2'
                             styles={{menu: provided => ({...provided, zIndex:999})}}
                         />
