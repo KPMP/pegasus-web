@@ -8,27 +8,27 @@ class DiffexInfoBar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            dataTypeInputValue: "",
+            dataTypeInputValue: '',
             dataTypeOptions: []
         }
     }
 
     componentDidMount() {
-        getDataTypeOptions("", this.props.cluster).then(
+        getDataTypeOptions('', this.props.cluster).then(
             (options) => {
                 let selectedOption = options.find(item => this.props.dataType === item.value);
                 this.setState({dataTypeOptions: options, dataTypeInputValue: selectedOption})
             },
             (error) => {
                 this.setState({dataTypeOptions: []});
-                console.log("There was a problem getting the data: " + error)
+                console.log('There was a problem getting the data: ' + error)
             }
         );
         
     }
 
     handleInputChange(inputValue, action) {
-        if (action.action !== "input-blur" && action.action !== "menu-close") {
+        if (action.action !== 'input-blur' && action.action !== 'menu-close') {
             this.setState({ dataTypeInputValue: inputValue });
         }
     }
@@ -36,19 +36,19 @@ class DiffexInfoBar extends Component {
     render () {
         let selectedValue = this.state.dataTypeInputValue;
         return (
-            <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
-                <Row xs='12' className='mt-4'>
-                    <Col lg="2" className='d-table'>
+            <Container className='mt-3 rounded border p-3 shadow-sm mb-4'>
+                <Row xs='12'>
+                    <Col lg='2' className='d-table'>
                         <Select
                             value={selectedValue}
                             options={this.state.dataTypeOptions}
                             onInputChange={this.handleInputChange.bind(this)}
-                            className='select pl-2 d-table-cell w-100 pl-2'
+                            className='select d-table-cell w-100 pl-2'
                             styles={{menu: provided => ({...provided, zIndex:999})}}
                         />
                     </Col>
-                    <Col xs='10'>
-                        <h5> {(this.props.dataType === 'sn' || this.props.dataType === 'sc')?"differential expression*":"abundance*"} in {this.props.cluster} </h5>
+                    <Col xs='10' className='mt-2'>
+                        <h5> {(this.props.dataType === 'sn' || this.props.dataType === 'sc')?'differential expression*':'abundance*'} in {this.props.cluster} </h5>
                     </Col>
                 </Row>
 

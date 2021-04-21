@@ -111,3 +111,15 @@ tr.MuiTableRow-root:nth-child(even) {
   font-weight: 500;
   font-style: normal;
 }
+
+.kpmp-light-blue {
+  color: $link-blue;
+}
+
+.tooltip-inner {
+  background-color: white;
+  color: black;
+  opacity: 1;
+  text-align: left;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
