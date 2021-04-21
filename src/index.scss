@@ -78,7 +78,7 @@ tr.MuiTableRow-root:nth-child(even) {
     }
 }
 
-.expression-table .rt-td {
+.expression-table, .cell-summary-table .rt-td {
   font-size: 14px;
   line-height: 13px;
 }
@@ -90,7 +90,22 @@ tr.MuiTableRow-root:nth-child(even) {
   font-style: normal;
 }
 
-.expression-table .d-flex.justify-content-center.col-4.offset-8:nth-child(1) > span:nth-child(1) {
+.cell-summary-table-header-center {
+  text-align: center !important;
+  font-size: 13px;
+  font-weight: 500;
+  font-style: normal;
+}
+
+.expression-table, .cell-summary-table .d-flex.justify-content-center.col-4.offset-8:nth-child(1) > span:nth-child(1) {
+  text-align: left !important;
+  font-size: 13px;
+  font-weight: 500;
+  font-style: normal;
+}
+
+#structureRegion, #structureSubregion, #clusterName {
+  text-align: left !important;
   font-size: 13px;
   font-weight: 500;
   font-style: normal;

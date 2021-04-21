@@ -43,25 +43,42 @@ class CellTypeSummary extends Component {
         this.props.setDataTypeAndCluster(dataType, cluster);
     };
 
+    getTheadThProps = (state, rowInfo, column, instance) => {
+            return { id: column.id };
+    };
+
     getColumns() {
         return [
             {
-                Header: 'STRUCTURE/REGION',
+                Header: 'STRUCTURE / REGION',
                 id: 'structureRegion',
-                accessor: 'structureRegion'
+                accessor: 'structureRegion',
+                minWidth: 170,
             },
             {
-                Header: 'SUBSTRUCTURE/SUBREGION',
+                Header: 'SUBSTRUCTURE / SUBREGION',
                 id: 'structureSubregion',
                 accessor: 'structureSubregion',
+                minWidth: 210,
             },
             {
                 Header: 'CELL TYPE / CLUSTER',
                 id: 'clusterName',
-                accessor: 'clusterName'
+                accessor: 'clusterName',
+                minWidth: 170,
             },
             {
-                Header: 'scRNASeq',
+                Header: <span className='cell-summary-table-header-center'>SINGLE-NUCLEUS<br/>RNA-seq</span>,
+                id: 'sn',
+                accessor: 'isSingleNucCluster',
+                className: 'text-center',
+                minWidth: 120,
+                Cell: ({ row }) => (
+                    this.linkDataTypeCells(row, 'sn')
+                )
+            },
+            {
+                Header: <span className='cell-summary-table-header-center'>SINGLE-CELL<br/>RNA-seq</span>,
                 id: 'sc',
                 accessor: 'isSingleCellCluster',
                 className: 'text-center',
@@ -70,25 +87,17 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                Header: 'snRNASeq',
-                id: 'sn',
-                accessor: 'isSingleNucCluster',
-                className: 'text-center',
-                Cell: ({ row }) => (
-                    this.linkDataTypeCells(row, 'sn')
-                )
-            },
-            {
-                Header: 'LMD RNASeq',
+                Header: <span className='cell-summary-table-header-center'>REGIONAL<br/>TRANSCRIPTOMICS</span>,
                 id: 'lmd_rnaseq',
                 accessor: 'lmd_rnaseq',
                 className: 'text-center',
+                minWidth: 120,
                 Cell: ({ row }) => (
                     this.linkDataTypeCells('N')
                 )
             },
             {
-                Header: 'LMD PROTEOMICS',
+                Header: <span className='cell-summary-table-header-center'>REGIONAL<br/>PROTEOMICS</span>,
                 id: 'lmd_proteomics',
                 accessor: 'lmd_proteomics',
                 className: 'text-center',
@@ -101,7 +110,7 @@ class CellTypeSummary extends Component {
 
     linkDataTypeCells(row, dataType) {
         if (row[dataType] === 'Y') {
-            return <button onClick={() => this.handleLinkClick(dataType, row.clusterName)} type='button' className='btn btn-link text-left p-0'>View</button>
+            return <button onClick={() => this.handleLinkClick(dataType, row.clusterName)} type='button' className='btn btn-link text-left p-0 cell-summary-table-header-center'>View</button>
         }
         return '';
     }
@@ -127,9 +136,10 @@ class CellTypeSummary extends Component {
                                 ref={this.reactTable}
                                 sortable={false}
                                 columns={this.state.columns}
-                                className='-striped -highlight'
+                                className='-striped -highlight cell-summary-table'
                                 showPagination={false}
                                 noDataText={'No data found'}
+                                getTheadThProps={this.getTheadThProps}
                                 minRows = {0}
                             />
                         </Col>
