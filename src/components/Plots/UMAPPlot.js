@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Plot from 'react-plotly.js';
-import { median } from '../../helpers/Utils'
+import {formatDataType, formatTissueType, median} from '../../helpers/Utils'
 import { Spinner } from "reactstrap";
 
 class UMAPPlot extends Component {
@@ -51,6 +51,11 @@ class UMAPPlot extends Component {
         this.setState({plotData: clusterData, plotAnnotations: annotations});
     };
 
+    getExportFilename = () => {
+        const tissueType = formatTissueType(this.props.tissueType).toLowerCase().replace(" ", "-");
+        return "KPMP_" + formatDataType(this.props.dataType) + '_UMAP_' + this.props.gene + '_' + tissueType + '.csv';
+    };
+
     render() {
             if (this.state.isLoading) {
                 return (
@@ -74,7 +79,10 @@ class UMAPPlot extends Component {
                                   t: 25,
                                   pad: 4
                               } } }
-                          config={{displaylogo: false, modeBarButtonsToRemove: ['hoverCompareCartesian', 'hoverClosestCartesian', 'zoom2d', 'toggleSpikelines', 'toggleHover', 'select2d', 'lasso2d']}}
+                          config={{
+                              displaylogo: false,
+                              toImageButtonOptions: { filename: this.getExportFilename() },
+                              modeBarButtonsToRemove: ['hoverCompareCartesian', 'hoverClosestCartesian', 'zoom2d', 'toggleSpikelines', 'toggleHover', 'select2d', 'lasso2d']}}
                     />
                 )
             }
