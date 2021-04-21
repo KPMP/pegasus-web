@@ -2,6 +2,7 @@ import {connect} from "react-redux";
 import DiffexByCluster from "./DiffexByCluster";
 import { withRouter } from 'react-router';
 import { setGene } from "../../actions/Gene/geneActions";
+import { setDataType } from "../../actions/DataType/dataTypeActions";
 
 const mapStateToProps = (state, props) =>
     ({
@@ -15,6 +16,9 @@ const mapDispatchToProps = (dispatch, props) =>
         setGene(gene) {
             dispatch(setGene(gene));
             dispatch(props.history.push("/dataviz"));
+        },
+        setDataType(dataType) {
+            dispatch(setDataType(dataType));
         }
     });
 
