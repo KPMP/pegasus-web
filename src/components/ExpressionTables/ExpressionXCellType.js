@@ -25,7 +25,7 @@ class ExpressionXCellType extends Component {
                 return {
                     clusterAbbrev: cluster,
                     clusterName: clusterName,
-                    cellCount: cellCount,
+                    cellCount: cellCount?cellCount:0,
                     medianExp: avgExp,
                     pctCellsExpressing: pct1,
                     foldChange: foldChange,
