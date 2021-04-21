@@ -12,9 +12,22 @@ class DataTypeSelector extends Component {
         this.state = {
             tissueInputValue: getTissueTypeOptions(this.props.tissueType),
             tissueValue: null,
-            dataTypeInputValue: getDataTypeOptions(this.props.dataType, this.props.gene.symbol, ""),
-            dataTypeValue: null
+            dataTypeInputValue: null,
+            dataTypeOptions: []
         }
+    }
+
+    componentDidMount() {
+        getDataTypeOptions(this.props.gene.symbol, "").then(
+            (options) => {
+                let selectedOption = options.find(item => this.props.dataType === item.value);
+                this.setState({dataTypeOptions: options, dataTypeInputValue: selectedOption})
+            },
+            (error) => {
+                this.setState({dataTypeOptions: []});
+                console.log("There was a problem getting the data: " + error)
+            }
+        );
     }
 
     getDataCounts = (dataType) => {
@@ -40,14 +53,14 @@ class DataTypeSelector extends Component {
         this.setState({tissueValue: selected});
     };
 
-    handleDataTypeSelect = (selected, actionMeta) =>
-    {
-        this.props.setDataType(selected.value);
-        this.setState({dataTypeValue: selected});
+    handleInputChange(inputValue, action) {
+        if (action.action !== "input-blur" && action.action !== "menu-close") {
+            this.setState({ dataTypeInputValue: inputValue });
+        }   
     };
 
     render() {
-        console.log(this.props);
+        let selectedValue = this.state.dataTypeInputValue;
         return (
             <React.Fragment>
                 <Row xs="12" className='mb-4'>
@@ -70,14 +83,11 @@ class DataTypeSelector extends Component {
                     <Col lg="2" className='d-table'>
                         <label className='d-table-cell'>in:</label>
                         <Select
-                            allowClear
-                            options={getDataTypeOptions()}
-                            onChange={this.handleDataTypeSelect}
-                            value={this.state.dataTypeValue}
-                            inputValue={this.state.dataTypeInputValue}
-                            defaultInputValue={getDataTypeOptions(this.props.dataType, this.props.gene.symbol, "")}
-                            onFocus={() => this.setState({dataTypeInputValue: ""})}
+                            value={selectedValue}
+                            options={this.state.dataTypeOptions}
+                            onInputChange={this.handleInputChange.bind(this)}
                             className='select pl-2 d-table-cell w-100 pl-2'
+                            styles={{menu: provided => ({...provided, zIndex:999})}}
                         />
                     </Col>
                     <Col lg='5' className=''>

@@ -27,17 +27,11 @@ class DiffexInfoBar extends Component {
         
     }
 
-    handleDataTypeSelect = (selected, actionMeta) =>
-    {
-        this.props.setDataType(selected.value);
-        this.setState({dataTypeInputValue: selected});
-    };
-
     handleInputChange(inputValue, action) {
         if (action.action !== "input-blur" && action.action !== "menu-close") {
             this.setState({ dataTypeInputValue: inputValue });
         }
-      }
+    }
 
     render () {
         let selectedValue = this.state.dataTypeInputValue;
@@ -49,7 +43,6 @@ class DiffexInfoBar extends Component {
                             value={selectedValue}
                             options={this.state.dataTypeOptions}
                             onInputChange={this.handleInputChange.bind(this)}
-                            onChange={this.handleDataTypeSelect}
                             className='select pl-2 d-table-cell w-100 pl-2'
                             styles={{menu: provided => ({...provided, zIndex:999})}}
                         />
