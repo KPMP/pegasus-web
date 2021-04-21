@@ -68,6 +68,7 @@ class CellTypeSummary extends Component {
                 id: 'sn',
                 accessor: 'isSingleNucCluster',
                 className: 'text-center',
+                minWidth: 120,
                 Cell: ({ row }) => (
                     this.linkDataTypeCells(row, 'sn')
                 )
