@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import Plot from 'react-plotly.js';
 import {Spinner} from "reactstrap";
+import {formatDataType, formatTissueType} from "../../helpers/Utils";
 
 class FeaturePlot extends Component {
     constructor(props) {
@@ -48,7 +49,10 @@ class FeaturePlot extends Component {
 
     };
 
-
+    getExportFilename = () => {
+        const tissueType = formatTissueType(this.props.tissueType).toLowerCase().replace(" ", "-");
+        return "KPMP_" + formatDataType(this.props.dataType) + '_feature-plot_' + this.props.gene + '_' + tissueType + '.csv';
+    };
 
     render() {
         if (this.state.isLoading) {
@@ -75,7 +79,10 @@ class FeaturePlot extends Component {
                               pad: 4
                           }
                       }}
-                      config={{displaylogo: false, modeBarButtonsToRemove: ['hoverCompareCartesian', 'hoverClosestCartesian', 'zoom2d', 'toggleSpikelines', 'toggleHover', 'select2d', 'lasso2d']}}
+                      config={{
+                          displaylogo: false,
+                          toImageButtonOptions: { filename: this.getExportFilename() },
+                          modeBarButtonsToRemove: ['hoverCompareCartesian', 'hoverClosestCartesian', 'zoom2d', 'toggleSpikelines', 'toggleHover', 'select2d', 'lasso2d']}}
                 />
             )
         }
