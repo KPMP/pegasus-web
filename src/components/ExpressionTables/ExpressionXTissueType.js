@@ -74,7 +74,7 @@ class ExpressionXTissueType extends Component {
                             ref={this.reactTable}
                             sortable={false}
                             columns={this.getColumns()}
-                            className='-striped -highlight'
+                            className='-striped'
                             showPagination={false}
                             noDataText={'No data found'}
                             minRows={0}

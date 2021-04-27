@@ -131,7 +131,7 @@ class ExpressionXCellType extends Component {
                             ref={this.reactTable}
                             sortable={false}
                             columns={this.getColumns()}
-                            className='-striped -highlight expression-table'
+                            className='-striped expression-table'
                             showPagination={false}
                             noDataText={'No data found'}
                             minRows={this.props.data.length}
