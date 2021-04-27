@@ -53,7 +53,7 @@ class UMAPPlot extends Component {
 
     getExportFilename = () => {
         const tissueType = formatTissueType(this.props.tissueType).toLowerCase().replace(" ", "-");
-        return "KPMP_" + formatDataType(this.props.dataType) + '_UMAP_' + this.props.gene + '_' + tissueType;
+        return "KPMP_" + formatDataType(this.props.dataType) + '_UMAP_' + tissueType;
     };
 
     render() {
