@@ -50,22 +50,20 @@ class CellTypeSummary extends Component {
     getColumns() {
         return [
             {
-                Header: 'STRUCTURE / REGION',
+                Header: <span>STRUCTURE /<br/>REGION</span>,
                 id: 'structureRegion',
                 accessor: 'structureRegion',
-                minWidth: 170,
             },
             {
-                Header: 'SUBSTRUCTURE / SUBREGION',
+                Header: <span>SUBSTRUCTURE /<br/>SUBREGION</span>,
                 id: 'structureSubregion',
                 accessor: 'structureSubregion',
-                minWidth: 210,
             },
             {
                 Header: 'CELL TYPE / CLUSTER',
                 id: 'clusterName',
                 accessor: 'clusterName',
-                minWidth: 170,
+                minWidth: 240,
             },
             {
                 Header: <span className='cell-summary-table-header-center'>SINGLE-NUCLEUS<br/>RNA-seq</span>,
