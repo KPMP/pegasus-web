@@ -79,7 +79,7 @@ class DataViz extends Component {
                     </Row>
                     <Row xs='12' className='mb-4'>
                         <Col lg='6' className="text-center">
-                            <UMAPPlot data={this.state.plotData} dataType={this.props.dataType} gene={this.props.gene.symbol} tissueType={this.props.tissueType}/>
+                            <UMAPPlot data={this.state.plotData} dataType={this.props.dataType} tissueType={this.props.tissueType}/>
                         </Col>
                         <Col lg='6' className="text-center">
                             <FeaturePlot data={this.state.plotData} dataType={this.props.dataType} gene={this.props.gene.symbol} tissueType={this.props.tissueType}/>
