@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import AsyncSelect from "react-select/async";
-import { fetchAutoComplete } from "../../helpers/ApolloClient"
+import { fetchAutoComplete, fetchDataTypesForConcept } from "../../helpers/ApolloClient"
 
 class ConceptSelect extends Component {
 
@@ -9,13 +9,33 @@ class ConceptSelect extends Component {
         this.state = {
             inputValue: this.props.selectedConcept.value ? this.props.selectedConcept.value : "",
             value: null,
+            hasResults: true,
+            noResultValue: ''
         };
     }
 
     handleSelect = (selected) => {
         if (selected !== null) {
-            this.props.setSelectedConcept(selected.value);
-            this.setState({value: [{label: selected.value.value, value: selected.value}]});
+            if (selected.value.type === 'gene') {
+                fetchDataTypesForConcept(selected.value.value, "").then(
+                    (results) => {
+                        let hasResults = results.dataTypesForConcept.length > 0;
+                        if (hasResults) {
+                            this.props.setSelectedConcept(selected.value);
+                            this.setState({value: {label: selected.value.value, value: selected.value}, hasResults: hasResults, noResultValue: ''});
+                        } else {
+                            this.setState({value: {label: selected.value.value, value: selected.value}, hasResults: hasResults, noResultValue: selected.value.value});
+                        }
+                        
+                    },
+                    (error) => {
+                        console.log("There was a problem getting the data: " + error)
+                    }
+                );
+            } else {
+                this.props.setSelectedConcept(selected.value);
+                this.setState({value: {label: selected.value.value, value: selected.value}, hasResults: true, noResultsValue: ''});
+            }
         }
     };
 
@@ -90,22 +110,30 @@ class ConceptSelect extends Component {
             })
         }
 
+        let noResultsAlert = '';
+        if (!this.state.hasResults) {
+            noResultsAlert = <div className='alert alert-warning mt-3' role='alert'>The gene, {this.state.noResultValue}, is not measured in any dataset.</div>;
+        }
+
         return (
-            <AsyncSelect
-                allowClear
-                loadOptions={this.getOptions}
-                styles={customStyles}
-                noOptionsMessage={this.handleNoOptions}
-                onChange={this.handleSelect}
-                value={this.state.value}
-                inputValue={this.state.inputValue}
-                defaultInputValue={this.props.selectedConcept.value}
-                onInputChange={this.handleInputChange}
-                placeholder={this.props.placeHolderText}
-                onFocus={() => this.setState({inputValue: ""})}
-                onBlur={() => this.setState({inputValue: this.props.selectedConcept.value, value: [{label: this.props.selectedConcept.value, value: this.props.selectedConcept}]})}
-                className="select"
-            />
+            <article>
+                <AsyncSelect
+                    allowClear
+                    loadOptions={this.getOptions}
+                    styles={customStyles}
+                    noOptionsMessage={this.handleNoOptions}
+                    onChange={this.handleSelect}
+                    value={this.state.value}
+                    inputValue={this.state.inputValue}
+                    defaultInputValue={this.props.selectedConcept.value}
+                    onInputChange={this.handleInputChange}
+                    placeholder={this.props.placeHolderText}
+                    onFocus={() => this.setState({inputValue: ""})}
+                    onBlur={() => this.setState({inputValue: this.props.selectedConcept.value, value: [{label: this.props.selectedConcept.value, value: this.props.selectedConcept}]})}
+                    className="select"
+                />
+                {noResultsAlert}
+            </article>
         )
     }
 }
