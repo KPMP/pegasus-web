@@ -134,7 +134,7 @@ class CellTypeSummary extends Component {
                                 ref={this.reactTable}
                                 sortable={false}
                                 columns={this.state.columns}
-                                className='-striped -highlight cell-summary-table'
+                                className='-striped cell-summary-table'
                                 showPagination={false}
                                 noDataText={'No data found'}
                                 getTheadThProps={this.getTheadThProps}
