@@ -58,7 +58,7 @@ class ExpressionXCellType extends Component {
                 Cell: ({ value }) => <span title={value}>{value}</span>
             },
             {
-                Header: "# CELLS",
+                Header: "# Cells in cluster",
                 accessor: 'cellCount',
                 Cell: ({ value }) => value?value:0
             },
@@ -104,7 +104,7 @@ class ExpressionXCellType extends Component {
             <React.Fragment>
                 <Row xs='12' className='mt-5'>
                     <Col xs='11'>
-                        <h5><span>{this.props.gene}</span> Expression Comparison across Cell Types in {formatTissueType(this.props.tissueType)}</h5>
+                        <h5><span>{this.props.gene}</span> Expression Comparison across Clusters in {formatTissueType(this.props.tissueType)}</h5>
                     </Col>
                     <Col xs='1' className='text-right'>
                         <CSVLink
