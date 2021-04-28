@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import AsyncSelect from "react-select/async";
+import { Alert } from 'reactstrap';
 import { fetchAutoComplete, fetchDataTypesForConcept } from "../../helpers/ApolloClient"
 
 class ConceptSelect extends Component {
@@ -10,7 +11,8 @@ class ConceptSelect extends Component {
             inputValue: this.props.selectedConcept.value ? this.props.selectedConcept.value : "",
             value: null,
             hasResults: true,
-            noResultValue: ''
+            noResultValue: '',
+            alertVisible: false
         };
     }
 
@@ -22,9 +24,9 @@ class ConceptSelect extends Component {
                         let hasResults = results.dataTypesForConcept.length > 0;
                         if (hasResults) {
                             this.props.setSelectedConcept(selected.value);
-                            this.setState({value: {label: selected.value.value, value: selected.value}, hasResults: hasResults, noResultValue: ''});
+                            this.setState({value: {label: selected.value.value, value: selected.value}, hasResults: hasResults, noResultValue: '', alertVisible: false});
                         } else {
-                            this.setState({value: {label: selected.value.value, value: selected.value}, hasResults: hasResults, noResultValue: selected.value.value});
+                            this.setState({value: {label: selected.value.value, value: selected.value}, hasResults: hasResults, noResultValue: selected.value.value, alertVisible: true});
                         }
                         
                     },
@@ -34,7 +36,7 @@ class ConceptSelect extends Component {
                 );
             } else {
                 this.props.setSelectedConcept(selected.value);
-                this.setState({value: {label: selected.value.value, value: selected.value}, hasResults: true, noResultsValue: ''});
+                this.setState({value: {label: selected.value.value, value: selected.value}, hasResults: true, noResultsValue: '', alertVisible: false});
             }
         }
     };
@@ -97,6 +99,10 @@ class ConceptSelect extends Component {
         }
     };
 
+    onDismiss = () => {
+        this.setState({alertVisible: false});
+    }
+
     render() {
         let customStyles = {
             singleValue: (provided, state) => ({
@@ -112,7 +118,9 @@ class ConceptSelect extends Component {
 
         let noResultsAlert = '';
         if (!this.state.hasResults) {
-            noResultsAlert = <div className='alert alert-warning mt-3' role='alert'>The gene, {this.state.noResultValue}, is not measured in any dataset.</div>;
+            noResultsAlert = <Alert color="warning" isOpen={this.state.alertVisible} toggle={this.onDismiss} className='mt-3'>
+                The gene, {this.state.noResultValue}, is not measured in any dataset.
+                </Alert>;
         }
 
         return (
