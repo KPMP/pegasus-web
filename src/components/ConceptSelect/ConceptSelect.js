@@ -84,11 +84,11 @@ class ConceptSelect extends Component {
             })
         };
 
-        // if (this.props.smallFormat) {
-        //     customStyles["menu"] = styles => ({ ...styles,
-        //         width: '460px'
-        //     })
-        // }
+        if (this.props.smallFormat) {
+            customStyles["menu"] = styles => ({ ...styles,
+                width: '460px'
+            })
+        }
 
         return (
             <AsyncSelect
@@ -104,7 +104,7 @@ class ConceptSelect extends Component {
                 placeholder={this.props.placeHolderText}
                 onFocus={() => this.setState({inputValue: ""})}
                 onBlur={() => this.setState({inputValue: this.props.selectedConcept.value, value: [{label: this.props.selectedConcept.value, value: this.props.selectedConcept}]})}
-                className="select w-33"
+                className="select"
             />
         )
     }
