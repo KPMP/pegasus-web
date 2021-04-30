@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import Plot from 'react-plotly.js';
+import Plotly from '../../helpers/Plotly';
+import createPlotlyComponent from 'react-plotly.js/factory';
 import {formatDataType, formatTissueType, median} from '../../helpers/Utils'
 import { Spinner } from "reactstrap";
+const Plot = createPlotlyComponent(Plotly);
 
 class UMAPPlot extends Component {
     constructor(props) {
