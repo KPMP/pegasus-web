@@ -118,9 +118,9 @@ class ConceptSelect extends Component {
 
         let noResultsAlert = '';
         if (!this.state.hasResults) {
-            noResultsAlert = <Alert color="warning" isOpen={this.state.alertVisible} toggle={this.onDismiss} className='mt-3'>
+            noResultsAlert = <div className='full-width mt-3'><Alert color="warning" isOpen={this.state.alertVisible} toggle={this.onDismiss}>
                 The gene, {this.state.noResultValue}, is not measured in any dataset.
-                </Alert>;
+                </Alert></div>;
         }
 
         return (

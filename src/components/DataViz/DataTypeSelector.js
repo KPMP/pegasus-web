@@ -65,7 +65,7 @@ class DataTypeSelector extends Component {
         return (
             <React.Fragment>
                 <Row xs="12" className='mb-4'>
-                    <Col lg="2" className='d-table'>
+                    <Col lg="2">
                         <ConceptSelectContainer searchType="gene" selectedConcept={{value: this.props.gene.symbol, name:""}} placeHolderText={""} smallFormat={true}/>
                     </Col>
                     <Col lg="3" className='d-table'>
