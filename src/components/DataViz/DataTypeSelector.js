@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import Select from "react-select";
-import { Row, Col } from 'reactstrap';
+import {Row, Col, Container} from 'reactstrap';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer';
@@ -63,13 +63,14 @@ class DataTypeSelector extends Component {
     render() {
         let selectedValue = this.state.dataTypeInputValue;
         return (
-            <React.Fragment>
-                <Row xs="12" className='mb-4'>
-                    <Col lg="2" className='d-table'>
+            <Container className='pb-3 pt-1 px-0 sticky-top' id='dt-select-container'>
+            <Container className='rounded border p-3 shadow-sm sticky-top'>
+                <Row xs="12">
+                    <Col lg="2" className='d-table pr-0'>
                         <ConceptSelectContainer searchType="gene" selectedConcept={{value: this.props.gene.symbol, name:""}} placeHolderText={""} smallFormat={true}/>
                     </Col>
-                    <Col lg="3" className='d-table'>
-                        <span className='d-table-cell'>in:</span>
+                    <Col lg="3" className='d-table pl-3 pr-0'>
+                        <span className='d-table-cell text-bigger'>in:</span>
                         <Select
                             allowClear
                             options={getTissueTypeOptions()}
@@ -78,24 +79,30 @@ class DataTypeSelector extends Component {
                             inputValue={this.state.tissueInputValue}
                             defaultInputValue={getTissueTypeOptions(this.props.tissueType)}
                             onFocus={() => this.setState({tissueInputValue: ""})}
-                            className='select pl-2 d-table-cell w-100 pl-2'
+                            className='select d-table-cell w-100 pl-3'
                         />
                     </Col>
                     <Col lg="2" className='d-table'>
-                        <label className='d-table-cell'>in:</label>
+                        <label className='d-table-cell text-bigger'>in:</label>
                         <Select
                             value={selectedValue}
                             options={this.state.dataTypeOptions}
                             onChange={this.handleInputChange.bind(this)}
-                            className='select pl-2 d-table-cell w-100 pl-2'
+                            className='select d-table-cell w-100 pl-3'
                             styles={{menu: provided => ({...provided, zIndex:999})}}
                         />
                     </Col>
-                    <Col lg='5' className=''>
-                        <span className='d-table-cell pt-1'>(N={this.getDataCounts(this.props.dataType).all} PARTICIPANTS; {this.getDataCounts(this.props.dataType).hrt} HEALTHY REFERENCE; {this.getDataCounts(this.props.dataType).ckd} CKD; {this.getDataCounts(this.props.dataType).aki} AKI)<FontAwesomeIcon icon={faQuestionCircle} className='ml-2'/></span>
+                    <Col lg='5' className='text-right'>
+                        <FontAwesomeIcon icon={faQuestionCircle} className='ml-2 kpmp-light-blue'/>
                     </Col>
                 </Row>
-            </React.Fragment>
+                <Row xs="12" className='mt-1' >
+                    <Col lg="6" className='d-table'>
+                        <span className='d-table-cell pt-1 dataset-info'>Dataset coverage: N={this.getDataCounts(this.props.dataType).all} PARTICIPANTS; {this.getDataCounts(this.props.dataType).hrt} HEALTHY REFERENCE; {this.getDataCounts(this.props.dataType).ckd} CKD; {this.getDataCounts(this.props.dataType).aki} AKI</span>
+                    </Col>
+                </Row>
+            </Container>
+            </Container>
         )
     }
 }

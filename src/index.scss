@@ -138,3 +138,16 @@ tr.MuiTableRow-root:nth-child(even) {
   text-align: left;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
 }
+
+#dt-select-container {
+    background: $kpmp-gray
+}
+
+.dataset-info {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.text-bigger {
+  font-size: 18px;
+}
