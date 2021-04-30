@@ -69,7 +69,7 @@ class DataViz extends Component {
                     <DataTypeSelectorContainer/>
                     <Row xs='12'>
                         <Col lg='6'>
-                            <h5>UMAP</h5>
+                            <h5>Reference UMAP</h5>
                             <hr/>
                         </Col>
                         <Col lg='6'>

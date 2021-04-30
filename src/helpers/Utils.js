@@ -84,37 +84,37 @@ export const getDataTypeOptions = async (geneSymbol, cluster) => {
         let dataTypes = result.dataTypesForConcept;
         const options =  [
             {
-                label: "SN RNAseq",
+                label: "snRNA-seq",
                 value: "sn",
                 isDisabled: !dataTypes.includes("sn")
             },
             {
-                label: "SC RNAseq",
+                label: "scRNA-seq",
                 value: "sc",
                 isDisabled: !dataTypes.includes("sc")
             },
             {
-                label: "LMD RNASeq",
+                label: "Regional transcriptomics",
                 value: "lmd",
                 isDisabled: !dataTypes.includes("lmd")
             },
             {
-                label: "Bulk RNASeq",
+                label: "Bulk RNA-seq",
                 value: "bulk",
                 isDisabled: !dataTypes.includes("bulk")
             },
             {
-                label: "LMD Proteomics",
+                label: "Regional proteomics",
                 value: "lmd",
                 isDisabled: !dataTypes.includes("lmd")
             },
             {
-                label: "3D Cytometry",
+                label: "3D cytometry",
                 value: "3dc",
                 isDisabled: !dataTypes.includes("3dc")
             },
             {
-                label: "Spatial Metabolomics",
+                label: "Spatial metabolomics",
                 value: "sm",
                 isDisabled: !dataTypes.includes("sm")
             }

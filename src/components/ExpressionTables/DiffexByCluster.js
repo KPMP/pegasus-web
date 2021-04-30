@@ -46,10 +46,10 @@ class DiffexByCluster extends Component {
     };
 
     getColumns = () => [
-        { title: 'GENE', field: 'gene', cellStyle: { padding: '8px'}, render: rowData => this.getGeneLink(rowData.gene) },
-        { title: 'FOLD CHANGE', field: 'foldChange', sorting: true, defaultSort: 'desc', cellStyle: { padding: '8px'}, type: 'numeric', render: rowData => formatNumberToPrecision(rowData.foldChange, 3)},
-        { title: 'PVALUE', field: 'pVal', sorting: true, type: 'numeric', cellStyle: { padding: '8px'}, render: rowData => formatNumberToPrecision(rowData.pVal, 3) },
-        { title: 'ADJ PVALUE', field: 'pValAdj', sorting: true, type: 'numeric', cellStyle: { padding: '8px'}, render: rowData => formatNumberToPrecision(rowData.pValAdj, 3) }
+        { title: 'GENE', field: 'gene', cellStyle: { fontSize: '13px', padding: "2px"}, render: rowData => this.getGeneLink(rowData.gene) },
+        { title: 'FOLD CHANGE', field: 'foldChange', sorting: true, defaultSort: 'desc', cellStyle: { fontSize: '13px', padding: "2px"}, type: 'numeric', render: rowData => formatNumberToPrecision(rowData.foldChange, 3)},
+        { title: 'PVALUE', field: 'pVal', sorting: true, type: 'numeric', cellStyle: { fontSize: '13px', padding: "2px"}, render: rowData => formatNumberToPrecision(rowData.pVal, 3) },
+        { title: 'ADJ PVALUE', field: 'pValAdj', sorting: true, type: 'numeric', cellStyle: { fontSize: '13px', padding: "2px"}, render: rowData => formatNumberToPrecision(rowData.pValAdj, 3) }
     ];
 
     handleClick = (gene) => {
@@ -107,7 +107,7 @@ class DiffexByCluster extends Component {
                                     pageSizeOptions: [],
                                     rowStyle: row => {
                                         let style = {
-                                            padding: '8px'
+                                            padding: '1px'
                                         };
                                         return style;
                                     }
