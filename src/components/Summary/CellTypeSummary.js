@@ -50,25 +50,28 @@ class CellTypeSummary extends Component {
     getColumns() {
         return [
             {
-                Header: <span>STRUCTURE /<br/>REGION</span>,
+                Header: <span>STRUCTURE/REGION</span>,
                 id: 'structureRegion',
                 accessor: 'structureRegion',
+                minWidth: 150,
             },
             {
-                Header: <span>SUBSTRUCTURE /<br/>SUBREGION</span>,
+                Header: <span>SUBSTRUCTURE/SUBREGION</span>,
                 id: 'structureSubregion',
                 accessor: 'structureSubregion',
+                minWidth: 195,
             },
             {
-                Header: 'CELL TYPE / CLUSTER',
+                Header: 'CELL TYPE/CLUSTER',
                 id: 'clusterName',
                 accessor: 'clusterName',
                 minWidth: 240,
             },
             {
-                Header: <span className='cell-summary-table-header-center'>snRNASeq</span>,
+                Header: <span className='cell-summary-table-header-center'>SINGLE-NUCLEUS<br/>RNA-seq</span>,
                 id: 'sn',
                 accessor: 'isSingleNucCluster',
+                headerClassName: 'text-center',
                 className: 'text-center',
                 minWidth: 120,
                 Cell: ({ row }) => (
@@ -76,18 +79,21 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                Header: <span className='cell-summary-table-header-center'>scRNASeq</span>,
+                Header: <span className='cell-summary-table-header-center'>SINGLE-CELL<br/>RNA-seq</span>,
                 id: 'sc',
                 accessor: 'isSingleCellCluster',
+                headerClassName: 'text-center',
                 className: 'text-center',
                 Cell: ({ row }) => (
                     this.linkDataTypeCells(row, 'sc')
                 )
             },
             {
-                Header: <span className='cell-summary-table-header-center'>LMD RNASeq</span>,
+                Header: <span className='cell-summary-table-header-center'>REGIONAL<br/>TRANSCRIPTOMICS
+                </span>,
                 id: 'lmd_rnaseq',
                 accessor: 'lmd_rnaseq',
+                headerClassName: 'text-center',
                 className: 'text-center',
                 minWidth: 120,
                 Cell: ({ row }) => (
@@ -95,9 +101,10 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                Header: <span className='cell-summary-table-header-center'>LMD PROTEOMICS</span>,
+                Header: <span className='cell-summary-table-header-center'>REGIONAL<br/>PROTEOMICS</span>,
                 id: 'lmd_proteomics',
                 accessor: 'lmd_proteomics',
+                headerClassName: 'text-center',
                 className: 'text-center',
                 Cell: ({ row }) => (
                     this.linkDataTypeCells('N')
