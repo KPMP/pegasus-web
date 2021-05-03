@@ -69,7 +69,7 @@ class DataViz extends Component {
                 <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
                     <Row xs='12'>
                         <Col lg='6'>
-                            <h5>UMAP</h5>
+                            <h5>Reference UMAP</h5>
                             <hr/>
                         </Col>
                         <Col lg='6'>

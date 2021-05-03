@@ -66,7 +66,7 @@ class DataTypeSelector extends Component {
             <Container className='pb-3 pt-1 px-0 sticky-top' id='dt-select-container'>
             <Container className='rounded border p-3 shadow-sm sticky-top'>
                 <Row xs="12">
-                    <Col lg="2" className='d-table pr-0'>
+                    <Col lg="2" className='pr-0'>
                         <ConceptSelectContainer searchType="gene" selectedConcept={{value: this.props.gene.symbol, name:""}} placeHolderText={""} smallFormat={true}/>
                     </Col>
                     <Col lg="3" className='d-table pl-3 pr-0'>
@@ -88,8 +88,9 @@ class DataTypeSelector extends Component {
                             value={selectedValue}
                             options={this.state.dataTypeOptions}
                             onChange={this.handleInputChange.bind(this)}
-                            className='select d-table-cell w-100 pl-3'
-                            styles={{menu: provided => ({...provided, zIndex:999})}}
+                            className='select d-table-cell w-100 pl-2'
+                            styles={{menu: provided => ({...provided, zIndex:999, width: '150%'})}}
+
                         />
                     </Col>
                     <Col lg='5' className='text-right'>

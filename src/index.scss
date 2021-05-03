@@ -16,6 +16,13 @@
 #total-row {
     background: white !important;
 }
+.MuiTableCell-root {
+  padding: 2px !important;
+}
+
+.MuiTableRow-root .btn {
+  font-size: 13px;
+}
 
 .MuiPaper-elevation2 {
     box-shadow: none !important;
@@ -26,6 +33,14 @@ tr.MuiTableRow-root:nth-child(even) {
 }
 
 #cell-type-tabs {
+  
+    .col-sm-4 {
+      @media (max-width: 992px) {
+        -webkit-flex: 0 0 100%;
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
     .nav-link.active {
         background-color: #007bff;
         color: white;
@@ -33,14 +48,40 @@ tr.MuiTableRow-root:nth-child(even) {
 
     .nav-link {
         color: #007bff;
+        border-radius: 5px;
+    }
+    
+    .nav-link:hover {
+      color: white;
+      background-color: #007bff;
     }
 
     .cell-type-list {
         background-color: #cee5ff;
+        padding-left: 0px;
+        @media (max-width: 992px) {
+          position: relative;
+          width: 100%;
+          .ul {
+            margin-bottom: .5rem;
+            margin-top: .5rem;
+          }
+        }
     }
 
     .nav-item {
         cursor: pointer;
+        @media (max-width: 992px) {
+          width: 100%;
+          padding-top: .5rem;
+        }
+    }
+    .nav-tabs {
+      border-bottom: 0px;
+    }
+
+    .tab-content {
+      padding-top: 1em;
     }
 
     .shorten-img {
@@ -90,6 +131,10 @@ tr.MuiTableRow-root:nth-child(even) {
   font-style: normal;
 }
 
+.rt-th.rt-resizable-header {
+  text-align: left;
+}
+
 .cell-summary-table-header-center {
   text-align: center !important;
   font-size: 13px;
@@ -99,7 +144,7 @@ tr.MuiTableRow-root:nth-child(even) {
 
 .expression-table, .cell-summary-table .d-flex.justify-content-center.col-4.offset-8:nth-child(1) > span:nth-child(1) {
   text-align: left !important;
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 500;
   font-style: normal;
 }
@@ -150,4 +195,7 @@ tr.MuiTableRow-root:nth-child(even) {
 
 .text-bigger {
   font-size: 18px;
+}
+.full-width {
+  width: 33vw;
 }

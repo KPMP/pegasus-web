@@ -24,7 +24,6 @@ body {
 
 #navbar {
 	background-color: white;
-	border-bottom: 1px solid #e7e7e7;
 
 	.nav-item.active {
 		.nav-text {
@@ -32,7 +31,6 @@ body {
               padding-bottom: 5px;
             }
             padding-bottom: 12px;
-			border-bottom: 3px solid #007bff;
 			margin-bottom: -6px;
 			content: " ";
 		}
@@ -47,7 +45,16 @@ body {
 		padding-top: 0px !important;
 		padding-bottom: 0px !important;
 	}
+	
+	.active .nav-link {
+		color: #0082f3 !important;
+		font-weight: bold;
+	}
 
+	.nav-link:hover {
+		color: #0275d8 !important;
+	}
+	
 	#nav-user-dropdown-menu {
 		a:hover {
 			text-decoration: none !important;
