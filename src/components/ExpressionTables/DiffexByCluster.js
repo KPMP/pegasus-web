@@ -3,9 +3,9 @@ import MaterialTable from 'material-table';
 import {Col, Row, Container, Spinner} from 'reactstrap';
 import { formatNumberToPrecision, formatDataType } from '../../helpers/Utils'
 import { fetchGeneExpression } from '../../helpers/ApolloClient';
-import {CSVDownload, CSVLink} from 'react-csv';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faDownload} from '@fortawesome/free-solid-svg-icons';
+import { CSVLink } from 'react-csv';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import DiffexInfoBar from './DiffexInfoBar';
 
 
