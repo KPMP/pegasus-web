@@ -64,13 +64,13 @@ class DataTypeSelector extends Component {
         let selectedValue = this.state.dataTypeInputValue;
         return (
             <Container className='pb-3 pt-1 px-0 sticky-top' id='dt-select-container'>
-            <Container className='rounded border p-3 shadow-sm sticky-top'>
+            <Container className='rounded border shadow-sm sticky-top pb-4 px-4'>
                 <Row xs="12">
-                    <Col lg="2" className='pr-0'>
+                    <Col lg="2" id='concept-selector' className='px-2 pt-3'>
                         <ConceptSelectContainer searchType="gene" selectedConcept={{value: this.props.gene.symbol, name:""}} placeHolderText={""} smallFormat={true}/>
                     </Col>
-                    <Col lg="3" className='d-table pl-3 pr-0'>
-                        <span className='d-table-cell text-bigger'>in:</span>
+                    <Col lg="3" className='d-table px-2 pt-3 datatype-selector'>
+                        <span className='d-table-cell text-bigger pr-2'>in:</span>
                         <Select
                             allowClear
                             options={getTissueTypeOptions()}
@@ -79,11 +79,11 @@ class DataTypeSelector extends Component {
                             inputValue={this.state.tissueInputValue}
                             defaultInputValue={getTissueTypeOptions(this.props.tissueType)}
                             onFocus={() => this.setState({tissueInputValue: ""})}
-                            className='select d-table-cell w-100 pl-3'
+                            className='select d-table-cell w-100 pl-2'
                         />
                     </Col>
-                    <Col lg="2" className='d-table'>
-                        <label className='d-table-cell text-bigger'>in:</label>
+                    <Col lg="3" className='d-table px-2 pt-3 datatype-selector'>
+                        <label className='d-table-cell text-bigger pr-2'>in:</label>
                         <Select
                             value={selectedValue}
                             options={this.state.dataTypeOptions}
@@ -93,12 +93,12 @@ class DataTypeSelector extends Component {
 
                         />
                     </Col>
-                    <Col lg='5' className='text-right'>
-                        <FontAwesomeIcon icon={faQuestionCircle} className='ml-2 kpmp-light-blue'/>
+                    <Col lg='4' className='text-right pt-3'>
+                        <a href='https://www.kpmp.org/help-docs/data' target='_blank'><FontAwesomeIcon icon={faQuestionCircle} className='ml-2 kpmp-light-blue'/></a>
                     </Col>
                 </Row>
-                <Row xs="12" className='mt-1' >
-                    <Col lg="6" className='d-table'>
+                <Row xs="12" className='mt-1 pl-0' >
+                    <Col lg="12" className='d-table pl-2'>
                         <span className='d-table-cell pt-1 dataset-info'>Dataset coverage: N={this.getDataCounts(this.props.dataType).all} PARTICIPANTS; {this.getDataCounts(this.props.dataType).hrt} HEALTHY REFERENCE; {this.getDataCounts(this.props.dataType).ckd} CKD; {this.getDataCounts(this.props.dataType).aki} AKI</span>
                     </Col>
                 </Row>
