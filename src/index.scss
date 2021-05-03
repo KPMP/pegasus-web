@@ -49,6 +49,7 @@ tr.MuiTableRow-root:nth-child(even) {
     .nav-link {
         color: #007bff;
         border-radius: 5px;
+        padding: 0.5rem 2rem;
     }
     
     .nav-link:hover {
@@ -135,9 +136,19 @@ tr.MuiTableRow-root:nth-child(even) {
   text-align: left;
 }
 
-.cell-summary-table-header-center {
-  text-align: center !important;
-  font-size: 13px;
+.ReactTable.cell-summary-table .rt-thead .rt-th, 
+.ReactTable.gene-summary-table .rt-thead .rt-th {
+  border-right: rgba(0, 0, 0, 0) !important;
+}
+.gene-summary-table {
+  text-align: left;
+}
+
+.gene-summary-table, .gene-summary-header, .cell-summary-table-header-center {
+  text-align: left;
+
+  text-transform: uppercase;
+  font-size: 0.7em;
   font-weight: 500;
   font-style: normal;
 }
@@ -151,9 +162,11 @@ tr.MuiTableRow-root:nth-child(even) {
 
 #structureRegion, #structureSubregion, #clusterName {
   text-align: left !important;
-  font-size: 13px;
+  font-size: 0.7em;
   font-weight: 500;
   font-style: normal;
+  text-transform: uppercase;
+  padding: 15px 5px;
 }
 
 .viz-spinner {
@@ -182,6 +195,13 @@ tr.MuiTableRow-root:nth-child(even) {
   opacity: 1;
   text-align: left;
   box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.datatypes__menu {
+  width: 165% !important;
+  @media (max-width: 992px) {
+    width: 100% !important;
+  }
 }
 
 #dt-select-container {

@@ -41,11 +41,13 @@ class DiffexInfoBar extends Component {
                 <Row xs='12'>
                     <Col lg='2' className='d-table'>
                         <Select
+                            menuIsOpen={true}
                             value={selectedValue}
                             options={this.state.dataTypeOptions}
                             onChange={this.handleInputChange.bind(this)}
                             className='select d-table-cell w-100 pl-2'
-                            styles={{menu: provided => ({...provided, zIndex:999, width: "150%"})}}
+                            classNamePrefix="datatypes"
+                            styles={{menu: provided => ({...provided, zIndex:999})}}
                         />
                     </Col>
                     <Col xs='10' className='mt-2'>

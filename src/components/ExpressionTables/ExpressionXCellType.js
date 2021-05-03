@@ -58,7 +58,7 @@ class ExpressionXCellType extends Component {
                 Cell: ({ value }) => <span title={value}>{value}</span>
             },
             {
-                Header: "# Cells in cluster",
+                Header: <span># CELLS IN<br/>CLUSTER</span>,
                 accessor: 'cellCount',
                 Cell: ({ value }) => value?value:0
             },
