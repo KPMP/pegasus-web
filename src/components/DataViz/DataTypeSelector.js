@@ -64,7 +64,7 @@ class DataTypeSelector extends Component {
         let selectedValue = this.state.dataTypeInputValue;
         return (
             <Container className='pb-3 pt-1 px-0 sticky-top' id='dt-select-container'>
-            <Container className='rounded border shadow-sm sticky-top pb-4 px-4'>
+            <Container className='rounded border shadow-sm pb-4 px-4'>
                 <Row xs="12">
                     <Col lg="2" id='concept-selector' className='px-2 pt-3'>
                         <ConceptSelectContainer searchType="gene" selectedConcept={{value: this.props.gene.symbol, name:""}} placeHolderText={""} smallFormat={true}/>

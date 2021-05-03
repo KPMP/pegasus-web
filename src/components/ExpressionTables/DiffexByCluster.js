@@ -73,7 +73,7 @@ class DiffexByCluster extends Component {
 
     render() {
         return (
-            <section>
+            <Container id='outer-wrapper'>
                 <DiffexInfoBar cluster={this.props.cluster} dataType={this.props.dataType} setDataType={this.props.setDataType}/>
                 <Container className='rounded border p-3 shadow-sm mb-5'>
                     {
@@ -122,7 +122,7 @@ class DiffexByCluster extends Component {
                     </React.Fragment>
                     }
                 </Container>
-            </section>
+            </Container>
         )
     }
 }
