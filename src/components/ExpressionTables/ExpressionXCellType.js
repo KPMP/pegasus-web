@@ -10,7 +10,7 @@ import { formatDataType } from "../../helpers/Utils";
 
 
 class ExpressionXCellType extends Component {
-    
+
     getExportFilename = () => {
         const tissueType = formatTissueType(this.props.tissueType).toLowerCase().replace(" ", "-");
         return "KPMP_" + formatDataType(this.props.dataType) + '-seq_gene-comparison_' + this.props.gene + '_' + tissueType + '.csv';

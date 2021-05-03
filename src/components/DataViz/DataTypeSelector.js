@@ -69,7 +69,7 @@ class DataTypeSelector extends Component {
                     <Col lg="2" id='concept-selector' className='px-2 pt-3'>
                         <ConceptSelectContainer searchType="gene" selectedConcept={{value: this.props.gene.symbol, name:""}} placeHolderText={""} smallFormat={true}/>
                     </Col>
-                    <Col lg="3" className='d-table px-2 pt-3 datatype-selector'>
+                    <Col lg="3" className='d-table px-2 pt-3'>
                         <span className='d-table-cell text-bigger pr-2'>in:</span>
                         <Select
                             allowClear
@@ -82,7 +82,7 @@ class DataTypeSelector extends Component {
                             className='select d-table-cell w-100 pl-2'
                         />
                     </Col>
-                    <Col lg="3" className='d-table px-2 pt-3 datatype-selector'>
+                    <Col lg="3" className='d-table px-2 pt-3'>
                         <label className='d-table-cell text-bigger pr-2'>in:</label>
                         <Select
                             value={selectedValue}
