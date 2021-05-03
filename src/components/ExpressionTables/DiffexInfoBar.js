@@ -37,7 +37,7 @@ class DiffexInfoBar extends Component {
     render () {
         let selectedValue = this.state.dataTypeInputValue;
         return (
-            <Container className='diffex mt-3 rounded border p-3 shadow-sm mb-4'>
+            <Container className='mt-3 rounded border p-3 shadow-sm mb-4'>
                 <Row xs='12'>
                     <Col lg='2' className='d-table'>
                         <Select
