@@ -83,7 +83,7 @@ class GeneSummary extends Component {
                 Header: "DATA TYPE",
                 id: "dataType",
                 accessor: 'dataType',
-                minWidth: 300,
+                minWidth: 160,
                 Cell: ({ row }) => (
                     this.linkDataTypeCells(row)
                 )
@@ -93,7 +93,6 @@ class GeneSummary extends Component {
                 id: "hrt",
                 minWidth: 160,
                 accessor: 'hrt',
-                headerClassName: 'text-center',
                 Cell: ({ row }) => (
                     <div className={"text-center"}>{row.hrt}</div>
                 )
@@ -102,7 +101,6 @@ class GeneSummary extends Component {
                 Header: "AKI TISSUE",
                 id: "aki",
                 accessor: 'aki',
-                headerClassName: 'text-center',
                 Cell: ({ row }) => (
                     <div className={"text-center"}>{row.aki}</div>
                 )
@@ -111,7 +109,6 @@ class GeneSummary extends Component {
                 Header: "CKD TISSUE",
                 id: "ckd",
                 accessor: 'ckd',
-                headerClassName: 'text-center',
                 Cell: ({ row }) => (
                     <div className={"text-center"}>{row.ckd}</div>
                 )
@@ -140,7 +137,7 @@ class GeneSummary extends Component {
                         </Col>
                     </Row>
                     <Row xs='12'>
-                        <Col xs={{ size: 7, offset: 5 }} className='d-flex justify-content-center gene-summary-header'><span>PARTICIPANTS PER DATA TYPE</span></Col>
+                        <Col xs={{ size: 7, offset: 5 }} className='d-flex justify-content-center'><span>PARTICIPANTS PER DATA TYPE</span></Col>
                     </Row>
                     <Row xs='12'>
                         <Col sm={{ size: 7, offset: 5 }}><hr/></Col>
@@ -153,7 +150,7 @@ class GeneSummary extends Component {
                                 ref={this.reactTable}
                                 sortable={false}
                                 columns={this.state.columns}
-                                className='-striped gene-summary-table'
+                                className='-striped'
                                 showPagination={false}
                                 noDataText={'No data found'}
                                 minRows = {0}

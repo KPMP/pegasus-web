@@ -89,7 +89,7 @@ class DataTypeSelector extends Component {
                             options={this.state.dataTypeOptions}
                             onChange={this.handleInputChange.bind(this)}
                             className='select d-table-cell w-100 pl-2'
-                            styles={{menu: provided => ({...provided, zIndex:999})}}
+                            styles={{menu: provided => ({...provided, zIndex:999, width: '150%'})}}
 
                         />
                     </Col>
