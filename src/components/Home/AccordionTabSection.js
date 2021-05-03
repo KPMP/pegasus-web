@@ -45,10 +45,10 @@ class AccordionTabSection extends Component {
         return (
             <TabPane tabId={this.props.tabId}>
                 <Row>
-                    <Col sm="4">
+                    <Col sm="5">
                         {cellTypes}
                     </Col>
-                    <Col sm="8">
+                    <Col sm="7">
                         {this.props.img ?
                             <img alt='nephron schema' src={this.props.img} className={classNames}></img>
                         :
