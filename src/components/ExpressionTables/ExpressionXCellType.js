@@ -10,9 +10,6 @@ import { formatDataType } from "../../helpers/Utils";
 
 
 class ExpressionXCellType extends Component {
-    constructor(props) {
-        super(props);
-    };
 
     getExportFilename = () => {
         const tissueType = formatTissueType(this.props.tissueType).toLowerCase().replace(" ", "-");
