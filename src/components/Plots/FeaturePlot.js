@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import Plot from 'react-plotly.js';
+import Plotly from '../../helpers/Plotly';
+import createPlotlyComponent from 'react-plotly.js/factory';
 import {Spinner} from "reactstrap";
 import {formatDataType, formatTissueType} from "../../helpers/Utils";
+const Plot = createPlotlyComponent(Plotly);
 
 class FeaturePlot extends Component {
     constructor(props) {
