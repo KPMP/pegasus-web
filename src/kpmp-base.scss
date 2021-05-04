@@ -4,6 +4,11 @@
 	background: white;
 }
 
+#outer-wrapper {
+	background-color: $kpmp-gray;
+	margin-top: 5px;
+}
+
 body {
 	font-size: 16px;
 	background-color: $kpmp-gray;
@@ -43,7 +48,7 @@ body {
 	
 	.active .nav-link {
 		color: #0082f3 !important;
-		font-weight: bold;
+		font-weight: 600;
 	}
 
 	.nav-link:hover {
@@ -102,6 +107,7 @@ body {
 
 #not-found-page {
     padding: 20px;
+    background-color: $kpmp-gray;
 
     .not-found-image {
         max-width: 90%;

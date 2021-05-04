@@ -42,11 +42,11 @@
   },
   "scripts": {
     "start": "npm-run-all --max-old-space-size=8192 -p watch-css start-js",
-    "build": "npm-run-all build-css build-js",
+    "build": "npm-run-all --max-old-space-size=10240 build-css build-js",
     "test": "react-scripts test --passWithNoTests",
     "eject": "react-scripts eject",
     "start-js": "react-scripts start",
-    "build-js": "react-scripts build",
+    "build-js": "react-scripts --max-old-space-size=10240 build",
     "build-css": "node-sass-chokidar src/ -o src/",
     "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
   },

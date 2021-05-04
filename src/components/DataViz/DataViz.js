@@ -64,9 +64,9 @@ class DataViz extends Component {
 
     render() {
         return (
-            <div>
+            <Container id='outer-wrapper'>
+                <DataTypeSelectorContainer/>
                 <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
-                    <DataTypeSelectorContainer/>
                     <Row xs='12'>
                         <Col lg='6'>
                             <h5>Reference UMAP</h5>
@@ -87,7 +87,7 @@ class DataViz extends Component {
                     </Row>
                     <ExpressionXCellType dataType={this.props.dataType} data={this.state.geneExpressionData} gene={this.props.gene.symbol} tissueType={this.props.tissueType}/>
                 </Container>
-            </div>
+            </Container>
         )
     }
 }

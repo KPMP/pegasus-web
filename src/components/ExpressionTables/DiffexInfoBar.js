@@ -37,7 +37,8 @@ class DiffexInfoBar extends Component {
     render () {
         let selectedValue = this.state.dataTypeInputValue;
         return (
-            <Container className='mt-3 rounded border p-3 shadow-sm mb-4'>
+            <Container className='pb-3 pt-1 px-0 sticky-top' id='dt-select-container'>
+                <Container className='rounded border shadow-sm pb-4 p-4'>
                 <Row xs='12'>
                     <Col lg='2' className='d-table'>
                         <Select
@@ -45,16 +46,15 @@ class DiffexInfoBar extends Component {
                             options={this.state.dataTypeOptions}
                             onChange={this.handleInputChange.bind(this)}
                             className='select d-table-cell w-100 pl-2'
-                            styles={{menu: provided => ({...provided, zIndex:999, width: "150%"})}}
+                            classNamePrefix="datatypes"
+                            styles={{menu: provided => ({...provided, zIndex:999})}}
                         />
                     </Col>
                     <Col xs='10' className='mt-2'>
                         <h5> {(this.props.dataType === 'sn' || this.props.dataType === 'sc')?'differential expression*':'abundance*'} in {this.props.cluster} </h5>
                     </Col>
                 </Row>
-
-
-                
+                </Container>
             </Container>
         );
     }

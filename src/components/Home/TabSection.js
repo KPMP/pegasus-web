@@ -32,12 +32,12 @@ class TabSection extends Component {
         return (
             <TabPane tabId={this.props.tabId}>
                 <Row>
-                    <Col sm="4">
+                    <Col sm="6">
                         <div className='cell-type-list p-3'>
                             {cellTypes}
                         </div>
                     </Col>
-                    <Col sm="8">
+                    <Col sm="6">
                         {this.props.img ?
                             <img alt='nephron schema' src={this.props.img} className={classNames}></img>
                         :
