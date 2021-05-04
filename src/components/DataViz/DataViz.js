@@ -19,27 +19,8 @@ class DataViz extends Component {
     };
 
     componentDidMount() {
-        fetchPlotlyData(this.props.dataType, this.props.gene.symbol, this.props.tissueType).then(
-            (plotData) => this.setState({plotData: plotData}),
-            (error) => {
-                this.setState({plotData: []});
-                console.log("There was a problem getting the data: " + error)
-            }
-        );
-        fetchGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType).then(
-            (geneExpressionData) => {
-                const geneExpressionDataClean = this.cleanResults(geneExpressionData);
-                geneExpressionDataClean.push({
-                    clusterName: "TOTAL CELLS: ",
-                    cellCount: sum(geneExpressionDataClean, "cellCount")
-                });
-                this.setState({geneExpressionData: geneExpressionDataClean})
-            },
-            (error) => {
-                this.setState({geneExpressionData: []});
-                console.log("There was a problem getting the data: " + error)
-            }
-        );
+        this.getGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType);
+        this.getUmapPoints(this.props.dataType, this.props.gene.symbol, this.props.tissueType);
     }
 
     componentDidUpdate(prevProps) {
