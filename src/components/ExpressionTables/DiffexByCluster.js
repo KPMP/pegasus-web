@@ -3,9 +3,9 @@ import MaterialTable from 'material-table';
 import {Col, Row, Container, Spinner} from 'reactstrap';
 import { formatNumberToPrecision, formatDataType } from '../../helpers/Utils'
 import { fetchGeneExpression } from '../../helpers/ApolloClient';
-import {CSVDownload, CSVLink} from 'react-csv';
-import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faDownload} from '@fortawesome/free-solid-svg-icons';
+import { CSVLink } from 'react-csv';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import DiffexInfoBar from './DiffexInfoBar';
 
 
@@ -73,7 +73,7 @@ class DiffexByCluster extends Component {
 
     render() {
         return (
-            <section>
+            <Container id='outer-wrapper'>
                 <DiffexInfoBar cluster={this.props.cluster} dataType={this.props.dataType} setDataType={this.props.setDataType}/>
                 <Container className='rounded border p-3 shadow-sm mb-5'>
                     {
@@ -122,7 +122,7 @@ class DiffexByCluster extends Component {
                     </React.Fragment>
                     }
                 </Container>
-            </section>
+            </Container>
         )
     }
 }

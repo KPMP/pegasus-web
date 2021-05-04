@@ -227,9 +227,15 @@ tr.MuiTableRow-root:nth-child(even) {
 .text-bigger {
   font-size: 18px;
 }
+
 .full-width {
   width: 33vw;
 }
 .gene-summary-info-header {
 	font-weight: 400;
+
+@media (max-width: 992px) {
+  #concept-selector {
+    padding-left: -5px !important;
+  }
 }

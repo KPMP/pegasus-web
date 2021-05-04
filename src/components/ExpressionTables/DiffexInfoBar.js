@@ -37,7 +37,8 @@ class DiffexInfoBar extends Component {
     render () {
         let selectedValue = this.state.dataTypeInputValue;
         return (
-            <Container className='mt-3 rounded border p-3 shadow-sm mb-4'>
+            <Container className='pb-3 pt-1 px-0 sticky-top' id='dt-select-container'>
+                <Container className='rounded border shadow-sm pb-4 p-4'>
                 <Row xs='12'>
                     <Col lg='2' className='d-table'>
                         <Select
@@ -53,9 +54,7 @@ class DiffexInfoBar extends Component {
                         <h5> {(this.props.dataType === 'sn' || this.props.dataType === 'sc')?'differential expression*':'abundance*'} in {this.props.cluster} </h5>
                     </Col>
                 </Row>
-
-
-                
+                </Container>
             </Container>
         );
     }
