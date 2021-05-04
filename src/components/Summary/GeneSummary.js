@@ -84,6 +84,7 @@ class GeneSummary extends Component {
                 id: "dataType",
                 accessor: 'dataType',
                 minWidth: 300,
+                className: 'data-type',
                 Cell: ({ row }) => (
                     this.linkDataTypeCells(row)
                 )
@@ -136,7 +137,7 @@ class GeneSummary extends Component {
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
                     <Row xs='12'>
                         <Col className='mb-4'>
-                            <h5>Summary of available data for: {symbol} {name && '(' + name + ')'}</h5>
+                            <h5 className="gene-summary-info-header">Summary of available data for: {symbol} {name && '(' + name + ')'}</h5>
                         </Col>
                     </Row>
                     <Row xs='12'>
