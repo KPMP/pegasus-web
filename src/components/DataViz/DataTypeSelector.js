@@ -63,7 +63,7 @@ class DataTypeSelector extends Component {
     render() {
         let selectedValue = this.state.dataTypeInputValue;
         return (
-            <Container className='pb-3 pt-1 px-0 sticky-top' id='dt-select-container'>
+            <Container className='pb-3 pt-2 px-0 sticky-top' id='dt-select-container'>
             <Container className='rounded border shadow-sm pb-4 px-4'>
                 <Row xs="12">
                     <Col lg="2" id='concept-selector' className='px-2 pt-3'>
