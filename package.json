@@ -18,7 +18,7 @@
     "graphql": "15.4.0",
     "history": "5.0.0",
     "isomorphic-unfetch": "3.1.0",
-    "kpmp-custom-plotly.js": "^2.0.0-rc.1",
+    "kpmp-custom-plotly.js": "2.0.0-rc.2",
     "material-table": "1.69.2",
     "node-sass-chokidar": "1.5.0",
     "npm-run-all": "4.1.5",
