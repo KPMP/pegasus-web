@@ -18,6 +18,16 @@ class CellTypeSummary extends Component {
     };
 
     componentDidMount() {
+        this.fetchClusterHierarchy();
+    }
+
+    componentDidUpdate(prevProps, prevState, snapShot) {
+        if (this.props.cellType !== prevProps.cellType) {
+            this.fetchClusterHierarchy();
+        }
+    }
+
+    fetchClusterHierarchy = () => {
         fetchClusterHierarchy(this.props.cellType).then(
             (cellTypeSummary) => this.setState({cellTypeSummary: cellTypeSummary}),
             (error) => {
@@ -25,18 +35,6 @@ class CellTypeSummary extends Component {
                 console.log('There was a problem getting the data: ' + error)
             }
         );
-    }
-
-    componentDidUpdate(prevProps, prevState, snapShot) {
-        if (this.props.cellType !== prevProps.cellType) {
-            fetchClusterHierarchy(this.props.cellType).then(
-                (cellTypeSummary) => this.setState({cellTypeSummary: cellTypeSummary}),
-                (error) => {
-                    this.setState({cellTypeSummary: []});
-                    console.log('There was a problem getting the data: ' + error)
-                }
-            );
-        }
     }
 
     handleLinkClick = (dataType, cluster) => {
