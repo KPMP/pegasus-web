@@ -1,4 +1,5 @@
 import actionNames from '../actionNames'
+import {setSelectedConcept} from "../Concepts/conceptActions";
 
 export const setDataType = (dataType) => {
     let shortDataType = "";
@@ -17,3 +18,25 @@ export const setDataType = (dataType) => {
         payload: shortDataType
     }
 };
+
+export const setDataTypeAndRedirect = (dataType, props) => {
+    return (dispatch) => {
+        dispatch(setDataType(dataType));
+        switch (dataType) {
+            case "sn":
+                props.history.push('/dataviz');
+                break;
+            case "sc":
+                props.history.push('/dataviz');
+                break;
+            case "rt":
+                props.history.push('/regionalviz');
+                break;
+            case "rp":
+                props.history.push('/regionalviz');
+                break;
+            default:
+                props.history.push('/');
+        }
+    }
+}

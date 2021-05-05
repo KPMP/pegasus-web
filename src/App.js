@@ -19,8 +19,7 @@ import CellTypeSummaryContainer from './components/Summary/CellTypeSummaryContai
 import NotFoundPage from './components/Error/NotFoundPage';
 import RNASeqVizContainer from "./components/DataViz/RNASeqVizContainer";
 import DiffexByClusterContainer from "./components/ExpressionTables/DiffexByClusterContainer";
-import LMDViz from "./components/DataViz/LMDViz";
-import LMDVizContainer from "./components/DataViz/LMDVizContainer";
+import RegionalVizContainer from "./components/DataViz/RegionalVizContainer";
 
 const cacheStore = window.sessionStorage.getItem('redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
@@ -72,7 +71,7 @@ class App extends Component {
                         <Route exact path='/celltypesummary' component={CellTypeSummaryContainer} store={store} />
                         <Route exact path='/' component={Home} store={store} />
                         <Route path='/dataViz' component={RNASeqVizContainer} store={store}/>
-                        <Route path='/lmdviz' component={LMDVizContainer} store={store}/>
+                        <Route path='/regionalviz' component={RegionalVizContainer} store={store}/>
                         <Route path='/diffex' component={DiffexByClusterContainer} store={store}/>
                         <Route exact path='/oops' component={Oops} />
                         <Route path='*' component={NotFoundPage} />

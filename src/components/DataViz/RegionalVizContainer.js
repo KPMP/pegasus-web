@@ -1,5 +1,5 @@
 import {connect} from "react-redux";
-import LMDViz from "./LMDViz";
+import RegionalViz from "./RegionalViz";
 
 const mapStateToProps = (state, props) =>
     ({
@@ -13,4 +13,4 @@ const mapDispatchToProps = (dispatch, props) =>
     ({
     });
 
-export default connect(mapStateToProps, mapDispatchToProps)(LMDViz)
+export default connect(mapStateToProps, mapDispatchToProps)(RegionalViz)

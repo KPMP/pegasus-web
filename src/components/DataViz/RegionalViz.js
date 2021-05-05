@@ -1,17 +1,13 @@
 import React, {Component} from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import DataTypeSelectorContainer from './DataTypeSelectorContainer';
-import ExpressionXCellType from "../ExpressionTables/ExpressionXCellType";
-import UMAPPlot from '../Plots/UMAPPlot';
-import FeaturePlot from '../Plots/FeaturePlot';
-import { fetchGeneExpression, fetchPlotlyData } from "../../helpers/ApolloClient";
 import {formatTissueType, sum} from "../../helpers/Utils";
 import LMDDotPlot from "../Plots/LMDDotPlot";
 import LMDBoxPlot from "../Plots/LMDBoxPlot";
 import Select from "react-select";
 
 
-class LMDViz extends Component {
+class RegionalViz extends Component {
     constructor(props) {
         super(props);
         this.state = { plotData: [], selectedPlot: { value: 'box', label: 'Box plot' } };
@@ -30,7 +26,7 @@ class LMDViz extends Component {
             { value: 'box', label: 'Box plot' },
             { value: 'dot', label: 'Dot plot' }
         ];
-    }
+    };
 
     render() {
         let plot = this.state.selectedPlot.value === 'dot'?<LMDDotPlot/>:<LMDBoxPlot/>;
@@ -76,4 +72,4 @@ class LMDViz extends Component {
     }
 }
 
-export default LMDViz;
+export default RegionalViz;
