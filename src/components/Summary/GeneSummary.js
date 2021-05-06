@@ -121,7 +121,7 @@ class GeneSummary extends Component {
     };
 
     linkDataTypeCells(row) {
-        if (row._original.dataTypeShort === 'sn' || row._original.dataTypeShort === 'sc' || row._original.dataTypeShort === 'rt' || row._original.dataTypeShort === 'rp') {
+        if (row._original.dataTypeShort === 'sn' || row._original.dataTypeShort === 'sc' || row._original.dataTypeShort === 'rt') {
             return <button onClick={() => this.handleLinkClick(row._original.dataTypeShort)} type="button" className="btn btn-link text-left p-0">{row.dataType}</button>
         }
         return row.dataType;
