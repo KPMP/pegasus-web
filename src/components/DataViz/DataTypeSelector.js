@@ -43,6 +43,18 @@ class DataTypeSelector extends Component {
                 aki: 12,
                 ckd: 15,
                 all: 27
+            },
+            rt: {
+                hrt: 0,
+                aki: 12,
+                ckd: 15,
+                all: 27
+            },
+            rp: {
+                hrt: 0,
+                aki: 12,
+                ckd: 15,
+                all: 27
             }
         };
         return dataInfo[dataType];

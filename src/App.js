@@ -17,8 +17,9 @@ import { apolloClient } from './helpers/ApolloClient';
 import GeneSummaryContainer from './components/Summary/GeneSummaryContainer';
 import CellTypeSummaryContainer from './components/Summary/CellTypeSummaryContainer';
 import NotFoundPage from './components/Error/NotFoundPage';
-import DataVizContainer from "./components/DataViz/DataVizContainer";
+import RNASeqVizContainer from "./components/DataViz/RNASeqVizContainer";
 import DiffexByClusterContainer from "./components/ExpressionTables/DiffexByClusterContainer";
+import RegionalVizContainer from "./components/DataViz/RegionalVizContainer";
 
 const cacheStore = window.sessionStorage.getItem('redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
@@ -69,7 +70,8 @@ class App extends Component {
                         <Route exact path='/genesummary' component={GeneSummaryContainer} store={store} />
                         <Route exact path='/celltypesummary' component={CellTypeSummaryContainer} store={store} />
                         <Route exact path='/' component={Home} store={store} />
-                        <Route path='/dataViz' component={DataVizContainer} store={store}/>
+                        <Route path='/dataViz' component={RNASeqVizContainer} store={store}/>
+                        <Route path='/regionalviz' component={RegionalVizContainer} store={store}/>
                         <Route path='/diffex' component={DiffexByClusterContainer} store={store}/>
                         <Route exact path='/oops' component={Oops} />
                         <Route path='*' component={NotFoundPage} />

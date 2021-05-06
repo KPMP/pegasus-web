@@ -8,7 +8,7 @@ import { fetchGeneExpression, fetchPlotlyData } from "../../helpers/ApolloClient
 import {sum} from "../../helpers/Utils";
 
 
-class DataViz extends Component {
+class RNASeqViz extends Component {
     constructor(props) {
         super(props);
         this.state = { plotData: [], geneExpressionData: []};
@@ -73,4 +73,4 @@ class DataViz extends Component {
     }
 }
 
-export default DataViz;
+export default RNASeqViz;
