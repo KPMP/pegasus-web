@@ -147,7 +147,7 @@ class ConceptSelect extends Component {
 }
 ConceptSelect.defaultProps = {
     moreCharactersMessage: "Please enter 3 or more characters to start search",
-    placeHolderText: "Enter gene, protein, or cell type",
+    placeHolderText: "Enter gene or cell type",
     smallFormat: false,
     searchType: 'all'
 };
