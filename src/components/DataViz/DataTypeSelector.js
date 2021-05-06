@@ -106,7 +106,7 @@ class DataTypeSelector extends Component {
                         />
                     </Col>
                     <Col lg='4' className='text-right pt-3'>
-                        <a href='https://www.kpmp.org/help-docs/data' target='_blank' rel="noreferrer"><FontAwesomeIcon icon={faQuestionCircle} className='ml-2 kpmp-light-blue'/></a>
+                        <a className="icon-container" href='https://www.kpmp.org/help-docs/data' target='_blank' rel="noreferrer"><FontAwesomeIcon icon={faQuestionCircle} className='ml-2 kpmp-light-blue'/></a>
                     </Col>
                 </Row>
                 <Row xs="12" className='mt-1 pl-0' >

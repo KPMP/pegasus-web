@@ -89,7 +89,7 @@ class DiffexByCluster extends Component {
                                 data={this.cleanResults(this.state.diffexData)}
                                 filename={this.getExportFilename()}
                                 target='_blank'
-                                className='text-body'
+                                className='text-body icon-container'
                             >
                                 <FontAwesomeIcon icon={faDownload} />
                             </CSVLink>
