@@ -100,16 +100,18 @@ tr.MuiTableRow-root:nth-child(even) {
     }
 
     .collapsed::before {
-        font-family: 'FontAwesome';
+        font-family: 'Font Awesome 6 Free';
         content: "\f054";    
         float: left;
         padding-right: 10px;
+        font-weight: 900;
     }
     .open::before {    
-        font-family: 'FontAwesome';
+        font-family: 'Font Awesome 6 Free';
         content: "\f078";    
         float: left;
         padding-right: 10px;
+        font-weight: 900;
     }
 
     .tbd-schema {
