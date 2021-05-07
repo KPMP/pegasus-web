@@ -19,8 +19,8 @@ class RNASeqViz extends Component {
     };
 
     componentDidMount() {
-        this.getGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType);
-        this.getUmapPoints(this.props.dataType, this.props.gene.symbol, this.props.tissueType);
+        this.getGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType, 'network-only');
+        this.getUmapPoints(this.props.dataType, this.props.gene.symbol, this.props.tissueType, 'network-only');
     }
 
     componentDidUpdate(prevProps) {
@@ -31,15 +31,15 @@ class RNASeqViz extends Component {
         }
     }
 
-    getGeneExpression = async (dataType, gene, cellType, tissueType) => {
-        const results = await fetchGeneExpression(dataType, gene, cellType, tissueType);
+    getGeneExpression = async (dataType, gene, cellType, tissueType, fetchPolicy) => {
+        const results = await fetchGeneExpression(dataType, gene, cellType, tissueType, fetchPolicy);
         const cleanResults = this.cleanResults(results);
         cleanResults.push({clusterName: "TOTAL CELLS: ", cellCount: sum(results, "cellCount")});
         this.setState({geneExpressionData: cleanResults});
     }
 
-    getUmapPoints = async (dataType, gene, tissueType) => {
-        const results = await fetchPlotlyData(dataType, gene, tissueType);
+    getUmapPoints = async (dataType, gene, tissueType, fetchPolicy) => {
+        const results = await fetchPlotlyData(dataType, gene, tissueType, fetchPolicy);
         this.setState({plotData: results});
     };
 
