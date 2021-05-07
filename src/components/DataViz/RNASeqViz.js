@@ -11,7 +11,7 @@ import {sum} from "../../helpers/Utils";
 class RNASeqViz extends Component {
     constructor(props) {
         super(props);
-        this.state = { plotData: [], geneExpressionData: []};
+        this.state = { plotData: [], geneExpressionData: [], isLoading: true};
     };
 
     cleanResults = (results) => {
@@ -25,7 +25,8 @@ class RNASeqViz extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.tissueType !== prevProps.tissueType || this.props.dataType !== prevProps.dataType) {
-            this.setState({ plotData:[], geneExpressionData:[]});
+            this.setState({ plotData:[], geneExpressionData:[], isLoading: true});
+
             this.getGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType);
             this.getUmapPoints(this.props.dataType, this.props.gene.symbol, this.props.tissueType);
         }
@@ -35,7 +36,7 @@ class RNASeqViz extends Component {
         const results = await fetchGeneExpression(dataType, gene, cellType, tissueType, fetchPolicy);
         const cleanResults = this.cleanResults(results);
         cleanResults.push({clusterName: "TOTAL CELLS: ", cellCount: sum(results, "cellCount")});
-        this.setState({geneExpressionData: cleanResults});
+        this.setState({geneExpressionData: cleanResults, isLoading: false});
     }
 
     getUmapPoints = async (dataType, gene, tissueType, fetchPolicy) => {
@@ -66,7 +67,7 @@ class RNASeqViz extends Component {
                             <FeaturePlot data={this.state.plotData} dataType={this.props.dataType} gene={this.props.gene.symbol} tissueType={this.props.tissueType}/>
                         </Col>
                     </Row>
-                    <ExpressionXCellType dataType={this.props.dataType} data={this.state.geneExpressionData} gene={this.props.gene.symbol} tissueType={this.props.tissueType}/>
+                    <ExpressionXCellType dataType={this.props.dataType} data={this.state.geneExpressionData} isLoading={this.state.isLoading} gene={this.props.gene.symbol} tissueType={this.props.tissueType}/>
                 </Container>
             </Container>
         )

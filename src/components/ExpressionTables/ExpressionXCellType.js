@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ReactTable from "react-table";
-import { Col, Row, UncontrolledTooltip } from "reactstrap";
+import { Col, Row, UncontrolledTooltip, Spinner } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
 import { faDownload, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
@@ -97,48 +97,56 @@ class ExpressionXCellType extends Component {
     };
 
     render() {
-        return (
-            <React.Fragment>
-                <Row xs='12' className='mt-5'>
-                    <Col xs='11'>
-                        <h5><span>{this.props.gene}</span> Expression Comparison across Clusters in {formatTissueType(this.props.tissueType)}</h5>
-                    </Col>
-                    <Col xs='1' className='text-right'>
-                        <CSVLink
-                            data={this.cleanResults(this.props.data)}
-                            filename={this.getExportFilename()}
-                            target="_blank"
-                            className="text-body icon-container"
-                        >
-                            <FontAwesomeIcon icon={faDownload} />
-                        </CSVLink>
-                    </Col>
-                </Row>
-                <Row xs='12'>
-                    <Col xs={{ size: 4, offset: 8 }} className='d-flex justify-content-center'><span id="cluster_v_others">CLUSTER VS ALL OTHERS</span></Col>
-                </Row>
-                <Row xs='12'>
-                    <Col sm={{ size: 4, offset: 8 }}><hr/></Col>
-                </Row>
-                <Row xs='12'>
-                    <Col xs='12'>
-                        <ReactTable
-                            style={{border: 'none'}}
-                            data={this.props.data}
-                            ref={this.reactTable}
-                            sortable={false}
-                            columns={this.getColumns()}
-                            className='-striped expression-table'
-                            showPagination={false}
-                            noDataText={'No data found'}
-                            minRows={this.props.data.length}
-                            getTrProps={this.getTrProps}
-                            defaultPageSize={100}
-                        />
-                    </Col>
-                </Row>
-            </React.Fragment>
-        )
+        if (this.props.isLoading) {
+            return (
+                <div className='viz-spinner text-center'>
+                    <Spinner color='primary' />
+                </div>
+            )
+        } else {
+            return (
+                <React.Fragment>
+                    <Row xs='12' className='mt-5'>
+                        <Col xs='11'>
+                            <h5><span>{this.props.gene}</span> Expression Comparison across Clusters in {formatTissueType(this.props.tissueType)}</h5>
+                        </Col>
+                        <Col xs='1' className='text-right'>
+                            <CSVLink
+                                data={this.cleanResults(this.props.data)}
+                                filename={this.getExportFilename()}
+                                target="_blank"
+                                className="text-body icon-container"
+                            >
+                                <FontAwesomeIcon icon={faDownload} />
+                            </CSVLink>
+                        </Col>
+                    </Row>
+                    <Row xs='12'>
+                        <Col xs={{ size: 4, offset: 8 }} className='d-flex justify-content-center'><span id="cluster_v_others">CLUSTER VS ALL OTHERS</span></Col>
+                    </Row>
+                    <Row xs='12'>
+                        <Col sm={{ size: 4, offset: 8 }}><hr/></Col>
+                    </Row>
+                    <Row xs='12'>
+                        <Col xs='12'>
+                            <ReactTable
+                                style={{border: 'none'}}
+                                data={this.props.data}
+                                ref={this.reactTable}
+                                sortable={false}
+                                columns={this.getColumns()}
+                                className='-striped expression-table'
+                                showPagination={false}
+                                noDataText={'No data found'}
+                                minRows={this.props.data.length}
+                                getTrProps={this.getTrProps}
+                                defaultPageSize={100}
+                            />
+                        </Col>
+                    </Row>
+                </React.Fragment>
+            )
+        }
     }
 }
 
