@@ -124,24 +124,28 @@ export const fetchClusterHierarchy = async(cellType) => {
     return undefined;
 }
 
-export const fetchPlotlyData = async(dataType, geneSymbol, tissueType) => {
-    const response = await apolloClient.query({
-        query: gql`
-            query {
-                getUmapPlotData(dataType: "${dataType}", geneSymbol: "${geneSymbol}", tissueType: "${tissueType}") {
-                    referenceData {
-                        xValues
-                        yValues
-                        clusterName
-                        color
-                    }
-                    featureData {
-                        xValues
-                        yValues
-                        expression
-                    }  
+export const fetchPlotlyData = async(dataType, geneSymbol, tissueType, fetchPolicy = 'cache-first') => {
+
+    const query = gql`
+        query {
+            getUmapPlotData(dataType: "${dataType}", geneSymbol: "${geneSymbol}", tissueType: "${tissueType}") {
+                referenceData {
+                    xValues
+                    yValues
+                    clusterName
+                    color
                 }
-            }`
+                featureData {
+                    xValues
+                    yValues
+                    expression
+                }
+            }
+        }`;
+
+    const response = await apolloClient.query({
+        query: query,
+        fetchPolicy: fetchPolicy
     });
 
     if (response.data && response.data.getUmapPlotData) {
@@ -164,26 +168,29 @@ export const fetchDataTypesForConcept = async(geneSymbol, clusterName) => {
     return [];
 }
 
-export const fetchGeneExpression = async (dataType, geneSymbol, cellType, tissueType) => {
+export const fetchGeneExpression = async (dataType, geneSymbol, cellType, tissueType, fetchPolicy = 'cache-first') => {
+    let query = gql`
+        query {
+            geneExpressionSummary(dataType:"${dataType}", geneSymbol:"${geneSymbol}", cellType:"${cellType}", tissueType:"${tissueType}") {
+                id
+                tissueType
+                gene
+                pVal
+                pValAdj
+                foldChange
+                pct1
+                pct2
+                avgExp
+                cluster
+                clusterName
+                cellCount
+                dataType
+            }
+        }`;
+
     const response = await apolloClient.query({
-        query: gql`
-            query {
-                geneExpressionSummary(dataType:"${dataType}", geneSymbol:"${geneSymbol}", cellType:"${cellType}", tissueType:"${tissueType}") {
-                    id
-                    tissueType
-                    gene
-                    pVal
-                    pValAdj
-                    foldChange
-                    pct1
-                    pct2
-                    avgExp
-                    cluster
-                    clusterName
-                    cellCount
-                    dataType
-                }
-            }`
+        query: query,
+        fetchPolicy: fetchPolicy
     });
 
     if (response.data && response.data.geneExpressionSummary) {
@@ -191,3 +198,4 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, tissue
     }
     return [];
 };
+

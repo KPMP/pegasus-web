@@ -70,7 +70,8 @@ class ExpressionXCellType extends Component {
                 Cell: ({ value }) => formatNumberToPrecision(value * 100, 3)
             },
             {
-                Header: <span>FOLD<br/>CHANGE <span className="icon-container icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
+                Header: <span>FOLD<br/>CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
+             
                         <UncontrolledTooltip placement='bottom' target='fold-change-info' >
                             Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.
                         </UncontrolledTooltip></span>,
@@ -78,7 +79,7 @@ class ExpressionXCellType extends Component {
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
-                Header: <span>P VALUE <span className="icon-container icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
+                Header: <span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
                             <UncontrolledTooltip placement='bottom' target='pvalue-info' >
                                 p-value (unadjusted)
                             </UncontrolledTooltip></span>,
@@ -86,7 +87,7 @@ class ExpressionXCellType extends Component {
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
-                Header: <span>ADJ<br/>P VALUE <span className="icon-container icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
+                Header: <span>ADJ<br/>P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
                             <UncontrolledTooltip placement='bottom' target='pvalue-adj-info' >
                                 Adjusted p-value, based on bonferroni correction using all features in the dataset.
                             </UncontrolledTooltip></span>,
