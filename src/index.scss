@@ -204,6 +204,10 @@ tr.MuiTableRow-root:nth-child(even) {
   color: $link-blue;
 }
 
+.icon-info {
+  cursor: pointer;
+}
+
 .tooltip-inner {
   background-color: white;
   color: black;
