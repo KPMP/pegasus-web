@@ -70,7 +70,7 @@ class ExpressionXCellType extends Component {
                 Cell: ({ value }) => formatNumberToPrecision(value * 100, 3)
             },
             {
-                Header: <span>FOLD<br/>CHANGE <a className="icon-container" href='https://kpmp.webflow.io/help-docs/data' target='_blank'><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></a>
+                Header: <span>FOLD<br/>CHANGE <a href='https://kpmp.webflow.io/help-docs/data' target='_blank'><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></a>
                         <UncontrolledTooltip placement='bottom' target='fold-change-info' >
                             Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.
                         </UncontrolledTooltip></span>,
@@ -78,7 +78,7 @@ class ExpressionXCellType extends Component {
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
-                Header: <span>P VALUE <a className="icon-container" href='https://kpmp.webflow.io/help-docs/data' target='_blank'><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></a>
+                Header: <span>P VALUE <a href='https://kpmp.webflow.io/help-docs/data' target='_blank'><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></a>
                             <UncontrolledTooltip placement='bottom' target='pvalue-info' >
                                 p-value (unadjusted)
                             </UncontrolledTooltip></span>,
@@ -86,7 +86,7 @@ class ExpressionXCellType extends Component {
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
-                Header: <span>ADJ<br/>P VALUE <a className="icon-container" href='https://kpmp.webflow.io/help-docs/data' target='_blank'><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></a>
+                Header: <span>ADJ<br/>P VALUE <a href='https://kpmp.webflow.io/help-docs/data' target='_blank'><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></a>
                             <UncontrolledTooltip placement='bottom' target='pvalue-adj-info' >
                                 Adjusted p-value, based on bonferroni correction using all features in the dataset.
                             </UncontrolledTooltip></span>,
