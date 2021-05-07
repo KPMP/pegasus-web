@@ -4,134 +4,132 @@
 @import "./assets/font-awesome-6/solid.scss";
 
 .inactive {
-    color: lightgray;
+  color: lightgray;
 }
 
 .rt-tr.-odd {
-    background: #cee5ff !important;
+  background: #cee5ff !important;
 }
 
 .cell-type-list {
-    list-style-type:none;
+  list-style-type: none;
 }
 
 #total-row {
-    background: white !important;
+  background: white !important;
 }
 .MuiTableCell-root {
   padding: 2px !important;
 }
 
 .MuiTableRow-root .btn {
-  font-size: 13px;
+  font-size: 16px;
 }
 
 .MuiPaper-elevation2 {
-    box-shadow: none !important;
+  box-shadow: none !important;
 }
 
 tr.MuiTableRow-root:nth-child(even) {
-    background: #cee5ff;
+  background: #cee5ff;
 }
 
 #cell-type-tabs {
-  
-    .col-sm-4 {
-      @media (max-width: 992px) {
-        -webkit-flex: 0 0 100%;
-        flex: 0 0 100%;
-        max-width: 100%;
+  .col-sm-4 {
+    @media (max-width: 992px) {
+      -webkit-flex: 0 0 100%;
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+  }
+  .nav-link.active {
+    background-color: #007bff;
+    color: white;
+  }
+
+  .nav-link {
+    color: #007bff;
+    border-radius: 5px;
+    padding: 0.5rem 2rem;
+  }
+
+  .nav-link:hover {
+    color: white;
+    background-color: #007bff;
+  }
+
+  .cell-type-list {
+    background-color: #cee5ff;
+    padding-left: 0px;
+    @media (max-width: 992px) {
+      position: relative;
+      width: 100%;
+      .ul {
+        margin-bottom: 0.5rem;
+        margin-top: 0.5rem;
       }
     }
-    .nav-link.active {
-        background-color: #007bff;
-        color: white;
-    }
+  }
 
-    .nav-link {
-        color: #007bff;
-        border-radius: 5px;
-        padding: 0.5rem 2rem;
+  .nav-item {
+    cursor: pointer;
+    @media (max-width: 992px) {
+      width: 100%;
+      padding-top: 0.5rem;
     }
-    
-    .nav-link:hover {
-      color: white;
-      background-color: #007bff;
-    }
+  }
+  .nav-tabs {
+    border-bottom: 0px;
+  }
 
-    .cell-type-list {
-        background-color: #cee5ff;
-        padding-left: 0px;
-        @media (max-width: 992px) {
-          position: relative;
-          width: 100%;
-          .ul {
-            margin-bottom: .5rem;
-            margin-top: .5rem;
-          }
-        }
-    }
+  .tab-content {
+    padding-top: 1em;
+  }
 
-    .nav-item {
-        cursor: pointer;
-        @media (max-width: 992px) {
-          width: 100%;
-          padding-top: .5rem;
-        }
-    }
-    .nav-tabs {
-      border-bottom: 0px;
-    }
+  .shorten-img {
+    height: 650px;
+  }
 
-    .tab-content {
-      padding-top: 1em;
-    }
+  .collapsed {
+    cursor: pointer;
+  }
 
-    .shorten-img {
-        height: 650px;
-    }
+  .open {
+    cursor: pointer;
+  }
 
-    .collapsed {
-        cursor: pointer;
-    }
+  .collapsed::before {
+    font-family: "Font Awesome 6 Free";
+    content: "\f054";
+    float: left;
+    padding-right: 10px;
+    font-weight: 900;
+  }
+  .open::before {
+    font-family: "Font Awesome 6 Free";
+    content: "\f078";
+    float: left;
+    padding-right: 10px;
+    font-weight: 900;
+  }
 
-    .open { 
-        cursor: pointer;
-    }
-
-    .collapsed::before {
-        font-family: 'Font Awesome 6 Free';
-        content: "\f054";    
-        float: left;
-        padding-right: 10px;
-        font-weight: 900;
-    }
-    .open::before {    
-        font-family: 'Font Awesome 6 Free';
-        content: "\f078";    
-        float: left;
-        padding-right: 10px;
-        font-weight: 900;
-    }
-
-    .tbd-schema {
-        background-color: lightgray;
-        height: 650px;
-        width: 650px;
-        text-align: center;
-        line-height: 650px;
-        font-size: xx-large;
-    }
+  .tbd-schema {
+    background-color: lightgray;
+    height: 650px;
+    width: 650px;
+    text-align: center;
+    line-height: 650px;
+    font-size: xx-large;
+  }
 }
 
-.expression-table, .cell-summary-table .rt-td {
-  font-size: 14px;
+.expression-table,
+.cell-summary-table .rt-td {
   line-height: 13px;
 }
 
 .expression-table .rt-th.rt-resizable-header {
   text-align: left;
-  font-size: 13px;
   font-weight: 500;
   font-style: normal;
 }
@@ -140,7 +138,7 @@ tr.MuiTableRow-root:nth-child(even) {
   text-align: left;
 }
 
-.ReactTable.cell-summary-table .rt-thead .rt-th, 
+.ReactTable.cell-summary-table .rt-thead .rt-th,
 .ReactTable.gene-summary-table .rt-thead .rt-th {
   border-right: rgba(0, 0, 0, 0) !important;
 }
@@ -148,19 +146,27 @@ tr.MuiTableRow-root:nth-child(even) {
   text-align: left;
 }
 
-.gene-summary-table, .gene-summary-header, .cell-summary-table-header-center {
+.gene-summary-table,
+.gene-summary-header,
+.cell-summary-table-header-center {
   text-align: left;
   text-transform: uppercase;
-  font-size: 0.7em;
+  font-size: 11px;
   font-weight: 500;
+  font-style: normal;
+}
+.cell-summary-table-button {
+  text-align: left;
+  text-transform: uppercase;
+  font-weight: 400;
   font-style: normal;
 }
 
 .gene-summary-table button {
   text-align: left;
   text-transform: uppercase;
-  font-size: 1em;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 400;
   font-style: normal;
 }
 
@@ -168,16 +174,21 @@ tr.MuiTableRow-root:nth-child(even) {
   font-weight: 400;
 }
 
-.expression-table, .cell-summary-table .d-flex.justify-content-center.col-4.offset-8:nth-child(1) > span:nth-child(1) {
+.expression-table,
+.cell-summary-table
+  .d-flex.justify-content-center.col-4.offset-8:nth-child(1)
+  > span:nth-child(1) {
   text-align: left !important;
   font-size: 11px;
-  font-weight: 500;
+  font-weight: 400;
   font-style: normal;
 }
 
-#structureRegion, #structureSubregion, #clusterName {
+#structureRegion,
+#structureSubregion,
+#clusterName {
   text-align: left !important;
-  font-size: 0.7em;
+  font-size: 11px;
   font-weight: 500;
   font-style: normal;
   text-transform: uppercase;
@@ -193,9 +204,9 @@ tr.MuiTableRow-root:nth-child(even) {
   height: 450px;
   line-height: 450px;
 }
-  
+
 #cluster_v_others {
-  font-size: 13px;
+  font-size: 11px;
   font-weight: 500;
   font-style: normal;
 }
@@ -220,7 +231,7 @@ tr.MuiTableRow-root:nth-child(even) {
 }
 
 #dt-select-container {
-    background: $kpmp-gray
+  background: $kpmp-gray;
 }
 
 .dataset-info {
@@ -251,4 +262,10 @@ tr.MuiTableRow-root:nth-child(even) {
 
 .icon-container {
   font-size: 25px;
+}
+.table-header {
+  font-size: 11px;
+}
+.table-column {
+  font-size: 16px;
 }

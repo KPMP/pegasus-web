@@ -46,27 +46,37 @@ class ExpressionXCellType extends Component {
             {
                 Header: "ABBR",
                 accessor: 'cluster',
-                id: 'cluster'
+                id: 'cluster',
+                headerClassName: 'table-header',
+                className: 'table-column'
             },
             {
                 Header: "CLUSTER",
                 accessor: 'clusterName',
+                headerClassName: 'table-header',
+                className: 'table-column',
                 minWidth: 280,
                 Cell: ({ value }) => <span title={value}>{value}</span>
             },
             {
                 Header: <span># CELLS IN<br/>CLUSTER</span>,
                 accessor: 'cellCount',
+                headerClassName: 'table-header',
+                className: 'table-column',
                 Cell: ({ value }) => value?value:0
             },
             {
                 Header: <span>MEDIAN<br/>EXPRESSION</span>,
                 accessor: 'avgExp',
+                headerClassName: 'table-header',
+                className: 'table-column',
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
                 Header: <span>% CELLS<br/>EXPRESSING</span>,
                 accessor: 'pct1',
+                headerClassName: 'table-header',
+                className: 'table-column',
                 Cell: ({ value }) => formatNumberToPrecision(value * 100, 3)
             },
             {
@@ -74,6 +84,8 @@ class ExpressionXCellType extends Component {
                         <UncontrolledTooltip placement='bottom' target='fold-change-info' >
                             Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.
                         </UncontrolledTooltip></span>,
+                headerClassName: 'table-header',
+                className: 'table-column',
                 accessor: 'foldChange',
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
@@ -82,6 +94,8 @@ class ExpressionXCellType extends Component {
                             <UncontrolledTooltip placement='bottom' target='pvalue-info' >
                                 p-value (unadjusted)
                             </UncontrolledTooltip></span>,
+                headerClassName: 'table-header',
+                className: 'table-column',
                 accessor: 'pVal',
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
@@ -90,6 +104,8 @@ class ExpressionXCellType extends Component {
                             <UncontrolledTooltip placement='bottom' target='pvalue-adj-info' >
                                 Adjusted p-value, based on bonferroni correction using all features in the dataset.
                             </UncontrolledTooltip></span>,
+                headerClassName: 'table-header',
+                className: 'table-column',
                 accessor: 'pValAdj',
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             }

@@ -42,14 +42,37 @@ class DiffexByCluster extends Component {
     }
 
     getGeneLink = (gene) => {
-        return  <button onClick={() => this.handleClick(gene)} type='button' className='btn btn-link text-left p-0'>{gene}</button>
+        return  <button onClick={() => this.handleClick(gene)} type='button' className='table-column btn btn-link text-left p-0'>{gene}</button>
     };
 
     getColumns = () => [
-        { title: 'GENE', field: 'gene', cellStyle: { fontSize: '13px', padding: "2px"}, render: rowData => this.getGeneLink(rowData.gene) },
-        { title: 'FOLD CHANGE', field: 'foldChange', sorting: true, defaultSort: 'desc', cellStyle: { fontSize: '13px', padding: "2px"}, type: 'numeric', render: rowData => formatNumberToPrecision(rowData.foldChange, 3)},
-        { title: 'PVALUE', field: 'pVal', sorting: true, type: 'numeric', cellStyle: { fontSize: '13px', padding: "2px"}, render: rowData => formatNumberToPrecision(rowData.pVal, 3) },
-        { title: 'ADJ PVALUE', field: 'pValAdj', sorting: true, type: 'numeric', cellStyle: { fontSize: '13px', padding: "2px"}, render: rowData => formatNumberToPrecision(rowData.pValAdj, 3) }
+        { title: 'GENE',
+          field: 'gene',
+          headerStyle: { fontSize: "11px" },
+          cellStyle: { fontSize: '16px', padding: "2px"},
+          render: rowData => this.getGeneLink(rowData.gene) },
+        { title: 'FOLD CHANGE',
+          field: 'foldChange',
+          sorting: true, defaultSort: 'desc',
+          headerStyle: { fontSize: '11px' },
+          cellStyle: { fontSize: '16px',
+          padding: '2px'},
+          type: 'numeric',
+          render: rowData => formatNumberToPrecision(rowData.foldChange, 3)},
+        { title: 'PVALUE',
+          field: 'pVal',
+          sorting: true,
+          type: 'numeric',
+          headerStyle: { fontSize: '11px' },
+          cellStyle: { fontSize: '16px', padding: '2px'},
+          render: rowData => formatNumberToPrecision(rowData.pVal, 3) },
+        { title: 'ADJ PVALUE',
+          field: 'pValAdj',
+          sorting: true,
+          type: 'numeric',
+          headerStyle: { fontSize: '11px' },
+          cellStyle: { fontSize: '16px', padding: '2px'},
+          render: rowData => formatNumberToPrecision(rowData.pValAdj, 3) }
     ];
 
     handleClick = (gene) => {
