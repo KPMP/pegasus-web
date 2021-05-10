@@ -140,7 +140,6 @@ export const fetchPlotlyData = async(dataType, geneSymbol, tissueType, fetchPoli
                     xValues
                     yValues
                     expression
-                    clusters
                     hoverDisplay
                 }
             }
