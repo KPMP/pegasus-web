@@ -26,8 +26,9 @@ class UMAPPlot extends Component {
                 clusterData.push({
                     type: 'scattergl',
                     mode: 'markers',
-                    text: cluster.clusterName,
                     name: '',
+                    hoverinfo: 'text',
+                    text: cluster.clusterAbbreviation + "<br>" + cluster.clusterName,
                     x: cluster.xValues,
                     y: cluster.yValues,
                     marker: { size:2, color: cluster.color}
@@ -37,7 +38,7 @@ class UMAPPlot extends Component {
                     y: median(cluster.yValues),
                     xref: 'x',
                     yref: 'y',
-                    text: cluster.clusterName,
+                    text: cluster.clusterAbbreviation,
                     ax: 0,
                     ay: 0,
                     font: { 

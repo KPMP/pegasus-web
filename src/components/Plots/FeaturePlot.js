@@ -37,6 +37,8 @@ class FeaturePlot extends Component {
                     type: 'scattergl',
                     mode: 'markers',
                     name: '',
+                    hoverinfo: 'text',
+                    text: group.hoverDisplay,
                     x: group.xValues,
                     y: group.yValues,
                     marker: marker

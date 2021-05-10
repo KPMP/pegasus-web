@@ -77,6 +77,8 @@ type FeatureData {
 	xValues: [Float]
 	yValues: [Float]
 	expression: [Float]
+    clusters: [String]
+    hoverDisplay: [String]
 }
 
 type ReferenceCluster {
@@ -84,4 +86,5 @@ type ReferenceCluster {
 	yValues: [Float]
 	color: String
 	clusterName: String
+    clusterAbbreviation: String
 }
