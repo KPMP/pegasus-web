@@ -42,26 +42,46 @@ class DiffexByCluster extends Component {
     }
 
     getGeneLink = (gene) => {
-        return  <button onClick={() => this.handleClick(gene)} type='button' className='btn btn-link text-left p-0'>{gene}</button>
+        return  <button onClick={() => this.handleClick(gene)} type='button' className='table-column btn btn-link text-left p-0'>{gene}</button>
     };
 
     getColumns = () => [
-        { title: 'GENE', field: 'gene', cellStyle: { fontSize: '13px', padding: "2px"}, render: rowData => this.getGeneLink(rowData.gene) },
-        { title: <span>FOLD CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
+        { title: 'GENE',
+          field: 'gene',
+          headerStyle: { fontSize: "11px" },
+          cellStyle: { fontSize: '16px', padding: "2px"},
+          render: rowData => this.getGeneLink(rowData.gene) },
+        { title:<span>FOLD CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
                 <UncontrolledTooltip placement='bottom' target='fold-change-info' >
                     Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.
                 </UncontrolledTooltip></span>,
-         field: 'foldChange', sorting: true, defaultSort: 'desc', cellStyle: { fontSize: '13px', padding: "2px"}, type: 'numeric', render: rowData => formatNumberToPrecision(rowData.foldChange, 3)},
-        { title: <span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
+          field: 'foldChange',
+          sorting: true, defaultSort: 'desc',
+          headerStyle: { fontSize: '11px' },
+          cellStyle: { fontSize: '16px',
+          padding: '2px'},
+          type: 'numeric',
+          render: rowData => formatNumberToPrecision(rowData.foldChange, 3)},
+        { title:<span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
                 <UncontrolledTooltip placement='bottom' target='pvalue-info' >
                     p-value (unadjusted)
                 </UncontrolledTooltip></span>,
-         field: 'pVal', sorting: true, type: 'numeric', cellStyle: { fontSize: '13px', padding: "2px"}, render: rowData => formatNumberToPrecision(rowData.pVal, 3) },
+          field: 'pVal',
+          sorting: true,
+          type: 'numeric',
+          headerStyle: { fontSize: '11px' },
+          cellStyle: { fontSize: '16px', padding: '2px'},
+          render: rowData => formatNumberToPrecision(rowData.pVal, 3) },
         { title:<span>ADJ P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
                 <UncontrolledTooltip placement='bottom' target='pvalue-adj-info' >
                     Adjusted p-value, based on bonferroni correction using all features in the dataset.
                 </UncontrolledTooltip></span>,
-         field: 'pValAdj', sorting: true, type: 'numeric', cellStyle: { fontSize: '13px', padding: "2px"}, render: rowData => formatNumberToPrecision(rowData.pValAdj, 3) }
+          field: 'pValAdj',
+          sorting: true,
+          type: 'numeric',
+          headerStyle: { fontSize: '11px' },
+          cellStyle: { fontSize: '16px', padding: '2px'},
+          render: rowData => formatNumberToPrecision(rowData.pValAdj, 3) }
     ];
 
     handleClick = (gene) => {

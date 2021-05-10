@@ -77,14 +77,18 @@ class GeneSummary extends Component {
             {
                 Header: "OMICS TYPE",
                 id: "omicsType",
-                accessor: 'omicsType'
+                accessor: 'omicsType',
+                headerClassName: 'table-header',
+                className: 'table-column',
+                minWidth: 200,
             },
             {
                 Header: "DATA TYPE",
                 id: "dataType",
                 accessor: 'dataType',
                 minWidth: 300,
-                className: 'data-type',
+                headerClassName: 'table-header',
+                className: 'table-column data-type',
                 Cell: ({ row }) => (
                     this.linkDataTypeCells(row)
                 )
@@ -94,7 +98,8 @@ class GeneSummary extends Component {
                 id: "hrt",
                 minWidth: 160,
                 accessor: 'hrt',
-                headerClassName: 'text-center',
+                headerClassName: 'table-header text-center',
+                className: 'table-column',
                 Cell: ({ row }) => (
                     <div className={"text-center"}>{row.hrt}</div>
                 )
@@ -103,7 +108,8 @@ class GeneSummary extends Component {
                 Header: "AKI TISSUE",
                 id: "aki",
                 accessor: 'aki',
-                headerClassName: 'text-center',
+                headerClassName: 'table-header text-center',
+                className: 'table-column',
                 Cell: ({ row }) => (
                     <div className={"text-center"}>{row.aki}</div>
                 )
@@ -112,7 +118,8 @@ class GeneSummary extends Component {
                 Header: "CKD TISSUE",
                 id: "ckd",
                 accessor: 'ckd',
-                headerClassName: 'text-center',
+                headerClassName: 'table-header text-center',
+                className: 'table-column',
                 Cell: ({ row }) => (
                     <div className={"text-center"}>{row.ckd}</div>
                 )
@@ -122,7 +129,7 @@ class GeneSummary extends Component {
 
     linkDataTypeCells(row) {
         if (row._original.dataTypeShort === 'sn' || row._original.dataTypeShort === 'sc' || row._original.dataTypeShort === 'rt') {
-            return <button onClick={() => this.handleLinkClick(row._original.dataTypeShort)} type="button" className="btn btn-link text-left p-0">{row.dataType}</button>
+            return <button onClick={() => this.handleLinkClick(row._original.dataTypeShort)} type="button" className="btn btn-link text-left p-0 table-column">{row.dataType}</button>
         }
         return row.dataType;
     }

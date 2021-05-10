@@ -51,26 +51,32 @@ class CellTypeSummary extends Component {
                 Header: <span>STRUCTURE/REGION</span>,
                 id: 'structureRegion',
                 accessor: 'structureRegion',
+                headerClassName: 'table-header',
+                className: 'table-column',
                 minWidth: 150,
             },
             {
                 Header: <span>SUBSTRUCTURE/SUBREGION</span>,
                 id: 'structureSubregion',
                 accessor: 'structureSubregion',
+                headerClassName: 'table-header',
+                className: 'table-column',
                 minWidth: 195,
             },
             {
                 Header: 'CELL TYPE/CLUSTER',
                 id: 'clusterName',
                 accessor: 'clusterName',
+                headerClassName: 'table-header',
+                className: 'table-column',
                 minWidth: 240,
             },
             {
                 Header: <span className='cell-summary-table-header-center'>SINGLE-NUCLEUS<br/>RNA-seq</span>,
                 id: 'sn',
                 accessor: 'isSingleNucCluster',
-                headerClassName: 'text-center',
-                className: 'text-center',
+                headerClassName: 'table-header text-center',
+                className: 'table-column text-center',
                 minWidth: 120,
                 Cell: ({ row }) => (
                     this.linkDataTypeCells(row, 'sn')
@@ -80,8 +86,8 @@ class CellTypeSummary extends Component {
                 Header: <span className='cell-summary-table-header-center'>SINGLE-CELL<br/>RNA-seq</span>,
                 id: 'sc',
                 accessor: 'isSingleCellCluster',
-                headerClassName: 'text-center',
-                className: 'text-center',
+                headerClassName: 'table-header text-center',
+                className: 'table-column text-center',
                 Cell: ({ row }) => (
                     this.linkDataTypeCells(row, 'sc')
                 )
@@ -91,8 +97,8 @@ class CellTypeSummary extends Component {
                 </span>,
                 id: 'lmd_rnaseq',
                 accessor: 'lmd_rnaseq',
-                headerClassName: 'text-center',
-                className: 'text-center',
+                headerClassName: 'table-header text-center',
+                className: 'table-column text-center',
                 minWidth: 120,
                 Cell: ({ row }) => (
                     this.linkDataTypeCells('N')
@@ -102,8 +108,8 @@ class CellTypeSummary extends Component {
                 Header: <span className='cell-summary-table-header-center'>REGIONAL<br/>PROTEOMICS</span>,
                 id: 'lmd_proteomics',
                 accessor: 'lmd_proteomics',
-                headerClassName: 'text-center',
-                className: 'text-center',
+                headerClassName: 'table-header text-center',
+                className: 'table-column text-center',
                 Cell: ({ row }) => (
                     this.linkDataTypeCells('N')
                 )
@@ -113,7 +119,7 @@ class CellTypeSummary extends Component {
 
     linkDataTypeCells(row, dataType) {
         if (row[dataType] === 'Y') {
-            return <button onClick={() => this.handleLinkClick(dataType, row.clusterName)} type='button' className='btn btn-link text-left p-0 cell-summary-table-header-center'>View</button>
+            return <button onClick={() => this.handleLinkClick(dataType, row.clusterName)} type='button' className='btn btn-link text-left p-0 cell-summary-table-button'>View</button>
         }
         return '';
     }
