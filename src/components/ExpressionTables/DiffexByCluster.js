@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import MaterialTable from 'material-table';
-import {Col, Row, Container, Spinner} from 'reactstrap';
+import {Col, Row, Container, Spinner, UncontrolledTooltip} from 'reactstrap';
 import { formatNumberToPrecision, formatDataType } from '../../helpers/Utils'
 import { fetchGeneExpression } from '../../helpers/ApolloClient';
 import { CSVLink } from 'react-csv';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload } from '@fortawesome/free-solid-svg-icons';
+import { faDownload, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import DiffexInfoBar from './DiffexInfoBar';
 
 
@@ -51,7 +51,10 @@ class DiffexByCluster extends Component {
           headerStyle: { fontSize: "11px" },
           cellStyle: { fontSize: '16px', padding: "2px"},
           render: rowData => this.getGeneLink(rowData.gene) },
-        { title: 'FOLD CHANGE',
+        { title:<span>FOLD CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
+                <UncontrolledTooltip placement='bottom' target='fold-change-info' >
+                    Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.
+                </UncontrolledTooltip></span>,
           field: 'foldChange',
           sorting: true, defaultSort: 'desc',
           headerStyle: { fontSize: '11px' },
@@ -59,14 +62,20 @@ class DiffexByCluster extends Component {
           padding: '2px'},
           type: 'numeric',
           render: rowData => formatNumberToPrecision(rowData.foldChange, 3)},
-        { title: 'PVALUE',
+        { title:<span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
+                <UncontrolledTooltip placement='bottom' target='pvalue-info' >
+                    p-value (unadjusted)
+                </UncontrolledTooltip></span>,
           field: 'pVal',
           sorting: true,
           type: 'numeric',
           headerStyle: { fontSize: '11px' },
           cellStyle: { fontSize: '16px', padding: '2px'},
           render: rowData => formatNumberToPrecision(rowData.pVal, 3) },
-        { title: 'ADJ PVALUE',
+        { title:<span>ADJ P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
+                <UncontrolledTooltip placement='bottom' target='pvalue-adj-info' >
+                    Adjusted p-value, based on bonferroni correction using all features in the dataset.
+                </UncontrolledTooltip></span>,
           field: 'pValAdj',
           sorting: true,
           type: 'numeric',
