@@ -134,11 +134,13 @@ export const fetchPlotlyData = async(dataType, geneSymbol, tissueType, fetchPoli
                     yValues
                     clusterName
                     color
+                    clusterAbbreviation
                 }
                 featureData {
                     xValues
                     yValues
                     expression
+                    hoverDisplay
                 }
             }
         }`;
