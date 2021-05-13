@@ -1,16 +1,15 @@
 import React, {Component} from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Button, ButtonGroup } from 'reactstrap';
 import DataTypeSelectorContainer from './DataTypeSelectorContainer';
 import {formatTissueType, sum} from "../../helpers/Utils";
 import LMDDotPlot from "../Plots/LMDDotPlot";
 import LMDBoxPlot from "../Plots/LMDBoxPlot";
-import Select from "react-select";
 
 
 class RegionalViz extends Component {
     constructor(props) {
         super(props);
-        this.state = { plotData: [], selectedPlot: { value: 'box', label: 'Box plot' } };
+        this.state = { plotData: [], selectedPlot: 'box'};
     };
 
     componentDidMount() {
@@ -21,15 +20,8 @@ class RegionalViz extends Component {
         // update data
     }
 
-    getPlotOptions = () => {
-        return [
-            { value: 'box', label: 'Box plot' },
-            { value: 'dot', label: 'Dot plot' }
-        ];
-    };
-
     render() {
-        let plot = this.state.selectedPlot.value === 'dot'?<LMDDotPlot/>:<LMDBoxPlot/>;
+        let plot = this.state.selectedPlot === 'dot'?<LMDDotPlot/>:<LMDBoxPlot/>;
         return (
             <Container id='outer-wrapper'>
                 <DataTypeSelectorContainer/>
@@ -42,14 +34,11 @@ class RegionalViz extends Component {
                     </Row>
                     <Row xs='12' className='mb-4'>
                         <Col lg='3'>
-                            <span className='d-table-cell pr-2 text-nowrap'>Display by: </span>
-                            <Select
-                                value={this.state.selectedPlot}
-                                defaultValue={this.state.selectedPlot}
-                                onChange={(option) => this.setState({selectedPlot: option})}
-                                options={this.getPlotOptions()}
-                                className='select d-table-cell w-100'
-                            />
+                            <span className='d-table-cell pr-2 pb-2 text-nowrap'>Display by: </span>
+                            <ButtonGroup>
+                                <Button color="primary" onClick={() => this.setState({selectedPlot: 'box'})} active={this.state.selectedPlot === 'box'}>Box plot</Button>
+                                <Button color="primary" onClick={() => this.setState({selectedPlot: 'dot'})} active={this.state.selectedPlot === 'dot'}>Dot plot</Button>
+                            </ButtonGroup>
                         </Col>
                     </Row>
                     <Row xs='12' className='mb-4'>
