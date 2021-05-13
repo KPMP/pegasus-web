@@ -1,7 +1,8 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import ReactTable from 'react-table';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
+import { fetchGeneDatasetSummary } from '../../helpers/ApolloClient';
 
 class GeneSummary extends Component {
 
@@ -12,64 +13,35 @@ class GeneSummary extends Component {
 
         this.state = {
             columns: this.getColumns(),
+            geneSummary: []
         };
     };
 
+    componentDidMount() {
+        this.fetchGeneDatasetSummary(this.props.gene.symbol);
+    }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.gene.symbol !== prevProps.gene.symbol) {
+            this.fetchGeneDatasetSummary(this.props.gene.symbol);
+        }
+    }
+
+    fetchGeneDatasetSummary = (geneSymbol) => {
+        fetchGeneDatasetSummary(geneSymbol).then(
+            (geneSummary) => {
+                this.setState({ geneSummary }
+                )
+            },
+            (error) => {
+                this.setState({ geneSummary: [] });
+                console.log('There was a problem fetching the gene summary data: ' + error)
+            }
+        );
+    }
+
     handleLinkClick = (dataType) => {
         this.props.setDataType(dataType)
-    };
-
-    getCellSummaryData = () => {
-        return [
-            {
-                omicsType: 'TRANSCRIPTOMICS',
-                dataType: 'Single-nucleus RNA-seq (snRNA-seq)',
-                dataTypeShort: 'sn',
-                hrt: 3,
-                aki: 6,
-                ckd: 10
-            },
-            {
-                omicsType: '',
-                dataType: 'Single-cell RNA-seq (scRNA-seq)',
-                dataTypeShort: 'sc',
-                hrt: '-',
-                aki: 12,
-                ckd: 15
-            },
-            {
-                omicsType: '',
-                dataType: 'Regional transcriptomics',
-                dataTypeShort: 'rt',
-                hrt: '-',
-                aki: '-',
-                ckd: '-'
-            },
-            {
-                omicsType: 'PROTEOMICS',
-                dataType: 'Regional proteomics',
-                dataTypeShort: 'rp',
-                hrt: '-',
-                aki: '-',
-                ckd: '-'
-            },
-            {
-                omicsType: 'IMAGING',
-                dataType: '3D Cytometry',
-                dataTypeShort: '3dc',
-                hrt: '-',
-                aki: '-',
-                ckd: '-'
-            },
-            {
-                omicsType: 'METABOLOMICS',
-                dataType: 'Spatial Metabolomics',
-                dataTypeShort: 'sm',
-                hrt: '-',
-                aki: '-',
-                ckd: '-'
-            },
-        ]
     };
 
     getColumns() {
@@ -135,7 +107,7 @@ class GeneSummary extends Component {
     }
 
     render() {
-        let {name, symbol} = this.props.gene;
+        let { name, symbol } = this.props.gene;
         return (
             <div className='mb-4'>
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
@@ -151,20 +123,20 @@ class GeneSummary extends Component {
                         <Col xs={{ size: 7, offset: 5 }} className='d-flex justify-content-center gene-summary-header'><span>PARTICIPANTS PER DATA TYPE</span></Col>
                     </Row>
                     <Row xs='12'>
-                        <Col sm={{ size: 7, offset: 5 }}><hr/></Col>
+                        <Col sm={{ size: 7, offset: 5 }}><hr /></Col>
                     </Row>
                     <Row xs='12'>
                         <Col>
                             <ReactTable
-                                style={{border: 'none'}}
-                                data={this.getCellSummaryData()}
+                                style={{ border: 'none' }}
+                                data={this.state.geneSummary}
                                 ref={this.reactTable}
                                 sortable={false}
                                 columns={this.state.columns}
                                 className='-striped gene-summary-table'
                                 showPagination={false}
                                 noDataText={'No data found'}
-                                minRows = {0}
+                                minRows={0}
                             />
                         </Col>
                     </Row>

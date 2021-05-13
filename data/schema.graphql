@@ -2,9 +2,18 @@ type Query {
   genes(symbol: String): [MyGeneInfoHit]
   autocomplete(searchTerm: String): [AutoCompleteResult]
   cellTypeHierarchy: CellTypeHierarchy
-  geneExpressionSummary(dataType: String, geneSymbol: String, cellType: String, tissueType: String) : [GeneExpressionSummary]
+  geneExpressionSummary(
+    dataType: String
+    geneSymbol: String
+    cellType: String
+    tissueType: String
+  ): [GeneExpressionSummary]
   getClusterHieararchies(cellType: String!): [ClusterHierarchy]
-  getUmapPlotData(dataType: String!, geneSymbol: String!, tissueType: String): PlotData
+  getUmapPlotData(
+    dataType: String!
+    geneSymbol: String!
+    tissueType: String
+  ): PlotData
 }
 
 type MyGeneInfoHit {
@@ -38,52 +47,50 @@ type CellTypeStructureSubregion {
 }
 
 type CellType {
-	cellType: String
+  cellType: String
 }
 
 type GeneExpressionSummary {
-    id: ID
-    tissueType: String
-    gene: String
-    pVal: Float
-    pValAdj: Float
-    foldChange: Float
-    pct1: Float
-    pct2: Float
-    avgExp: Float
-    cluster: String
-    clusterName: String
-    dataType: String
-    cellCount: Int
+  id: ID
+  tissueType: String
+  gene: String
+  pVal: Float
+  pValAdj: Float
+  foldChange: Float
+  pct1: Float
+  pct2: Float
+  avgExp: Float
+  cluster: String
+  clusterName: String
+  dataType: String
+  cellCount: Int
 }
 
 type ClusterHierarchy {
-	cellType: String
-	cellTypeId: Int
-	structureRegion: String
-	structureSubregion: String
-	clusterId: Int
-	clusterName: String
-	isSingleNucCluster: String
-	isSingleCellCluster: String
+  cellType: String
+  cellTypeId: Int
+  structureRegion: String
+  structureSubregion: String
+  clusterId: Int
+  clusterName: String
+  isSingleNucCluster: String
+  isSingleCellCluster: String
 }
 
 type PlotData {
-	referenceData: [ReferenceCluster]
-	featureData: [FeatureData]
+  referenceData: [ReferenceCluster]
+  featureData: [FeatureData]
 }
 
 type FeatureData {
-	xValues: [Float]
-	yValues: [Float]
-	expression: [Float]
-    hoverDisplay: [String]
+  xValues: [Float]
+  yValues: [Float]
+  expression: [Float]
 }
 
 type ReferenceCluster {
-	xValues: [Float]
-	yValues: [Float]
-	color: String
-	clusterName: String
-    clusterAbbreviation: String
+  xValues: [Float]
+  yValues: [Float]
+  color: String
+  clusterName: String
 }
