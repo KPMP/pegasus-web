@@ -28,10 +28,10 @@ class GeneSummary extends Component {
     }
 
     formatGeneDataset(geneSummary) {
-        for (const [index, dataset] of geneSummary.entries()) {
+        for (const [dataType, dataset] of geneSummary.entries()) {
             for (const property in dataset) {
-                if (geneSummary[index][property] === '0') {
-                    geneSummary[index][property] = '-';
+                if (geneSummary[dataType][property] === '0') {
+                    geneSummary[dataType][property] = '-';
                 }
             }
         }
@@ -112,10 +112,29 @@ class GeneSummary extends Component {
         ]
     };
 
-    linkDataTypeCells(row) {
-        if (row._original.dataTypeShort === 'sn' || row._original.dataTypeShort === 'sc' || row._original.dataTypeShort === 'rt') {
-            return <button onClick={() => this.handleLinkClick(row._original.dataTypeShort)} type="button" className="btn btn-link text-left p-0 table-column">{row.dataType}</button>
+    dataTypeHasData(row) {
+        if (row.hrt != '-' || row.aki != '-' || row.ckd != '-') {
+            return true;
         }
+        return false;
+    }
+
+    dataTypeIsClickable(datatype) {
+        if (datatype === 'sn' || datatype === 'sc' || datatype === 'rt') {
+            return true;
+        }
+        return false;
+    }
+
+    linkDataTypeCells(row) {
+        if (this.dataTypeHasData(row) && this.dataTypeIsClickable(row._original.dataTypeShort)) {
+            return <button onClick={() => this.handleLinkClick(row._original.dataTypeShort)}
+                type="button"
+                className="btn btn-link text-left p-0 table-column">
+                {row.dataType}
+            </button>
+        }
+
         return row.dataType;
     }
 
