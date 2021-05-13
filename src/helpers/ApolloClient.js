@@ -136,6 +136,7 @@ export const fetchGeneDatasetSummary = async (geneSymbol) => {
                     hrt
                     aki
                     ckd
+                    participants
                 }
             }`
     });
