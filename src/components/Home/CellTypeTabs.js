@@ -49,7 +49,7 @@ const CellTypeTabs = (props) => {
       </Nav>
       <TabContent activeTab={activeTab}>
         <TabSection data={props.data['Renal Corpuscle']} tabId='1' img='/explorer/img/Renal_corpuscle.png' handleCellTypeClick={props.handleCellTypeClick}/>
-        <AccordionTabSection data={props.data.Tubules} tabId='2' img='/explorer/img/Nephron_schematic.png' extraClassName='shorten-img' handleCellTypeClick={props.handleCellTypeClick}/>
+        <AccordionTabSection data={props.data.Tubules} tabId='2' img='/explorer/img/Nephron_schematic.png' handleCellTypeClick={props.handleCellTypeClick}/>
         <AccordionTabSection data={props.data.Interstitium} tabId='3' handleCellTypeClick={props.handleCellTypeClick}/>
         <TabSection data={props.data.Vessels} tabId='4' handleCellTypeClick={props.handleCellTypeClick}/>
       </TabContent>
