@@ -27,11 +27,24 @@ class GeneSummary extends Component {
         }
     }
 
+    formatGeneDataset(geneSummary) {
+        for (const [index, dataset] of geneSummary.entries()) {
+            for (const property in dataset) {
+                if (geneSummary[index][property] === '0') {
+                    geneSummary[index][property] = '-';
+                }
+            }
+        }
+        return geneSummary
+    }
+
     fetchGeneDatasetSummary = (geneSymbol) => {
         fetchGeneDatasetSummary(geneSymbol).then(
             (geneSummary) => {
-                this.setState({ geneSummary }
-                )
+                if (geneSummary) {
+                    geneSummary = this.formatGeneDataset(geneSummary)
+                    this.setState({ geneSummary });
+                }
             },
             (error) => {
                 this.setState({ geneSummary: [] });
