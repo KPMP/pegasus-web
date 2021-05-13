@@ -86,10 +86,6 @@ tr.MuiTableRow-root:nth-child(even) {
     padding-top: 1em;
   }
 
-  .shorten-img {
-    height: 650px;
-  }
-
   .collapsed {
     cursor: pointer;
   }
@@ -115,8 +111,6 @@ tr.MuiTableRow-root:nth-child(even) {
 
   .tbd-schema {
     background-color: lightgray;
-    height: 650px;
-    width: 650px;
     text-align: center;
     line-height: 650px;
     font-size: xx-large;
