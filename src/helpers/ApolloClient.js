@@ -136,14 +136,11 @@ export const fetchGeneDatasetSummary = async (geneSymbol) => {
                     hrt
                     aki
                     ckd
-                    all
                 }
             }`
     });
-
     if (response.data && response.data.getGeneDatasetInformation) {
-        delete response.data.getGeneDatasetInformation[0]["__typename"]
-        return [response.data.getGeneDatasetInformation[0]];
+        return response.data.getGeneDatasetInformation;
     }
 
     return undefined;
