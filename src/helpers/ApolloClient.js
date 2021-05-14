@@ -1,4 +1,4 @@
-import {ApolloClient, gql, InMemoryCache} from "@apollo/client";
+import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
 import packageJson from '../../package.json';
 import 'isomorphic-unfetch';
 
@@ -21,7 +21,7 @@ const typePolicies = {
 
 export const apolloClient = new ApolloClient({
     uri: getBaseURL() + '/graphql',
-    cache: new InMemoryCache({typePolicies: typePolicies}),
+    cache: new InMemoryCache({ typePolicies: typePolicies }),
     fetchOptions: {
         fetchOptions: { fetch },
         mode: 'no-cors',
@@ -75,7 +75,7 @@ export const fetchAutoComplete = async (searchString) => {
     return [];
 };
 
-export const fetchCellTypeHierarchy = async() => {
+export const fetchCellTypeHierarchy = async () => {
     const response = await apolloClient.query({
         query: gql`
             query {
@@ -96,11 +96,11 @@ export const fetchCellTypeHierarchy = async() => {
     if (response.data && response.data.cellTypeHierarchy) {
         return response.data.cellTypeHierarchy;
     }
-    
+
     return undefined;
 };
 
-export const fetchClusterHierarchy = async(cellType) => {
+export const fetchClusterHierarchy = async (cellType) => {
     const response = await apolloClient.query({
         query: gql`
             query {
@@ -117,14 +117,37 @@ export const fetchClusterHierarchy = async(cellType) => {
             }`
     });
 
-    if(response.data && response.data.getClusterHieararchies) {
+    if (response.data && response.data.getClusterHieararchies) {
         return response.data.getClusterHieararchies;
     }
 
     return undefined;
 }
 
-export const fetchPlotlyData = async(dataType, geneSymbol, tissueType, fetchPolicy = 'cache-first') => {
+export const fetchGeneDatasetSummary = async (geneSymbol) => {
+    const response = await apolloClient.query({
+        query: gql`
+            query {
+                getGeneDatasetInformation(geneSymbol: "${geneSymbol}")
+                 {
+                    omicsType
+                    dataType
+                    dataTypeShort
+                    hrt
+                    aki
+                    ckd
+                    participants
+                }
+            }`
+    });
+    if (response.data && response.data.getGeneDatasetInformation) {
+        return response.data.getGeneDatasetInformation;
+    }
+
+    return undefined;
+}
+
+export const fetchPlotlyData = async (dataType, geneSymbol, tissueType, fetchPolicy = 'cache-first') => {
 
     const query = gql`
         query {
@@ -157,8 +180,8 @@ export const fetchPlotlyData = async(dataType, geneSymbol, tissueType, fetchPoli
     return [];
 };
 
-export const fetchDataTypesForConcept = async(geneSymbol, clusterName) => {
-    const response = await apolloClient.query ({
+export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
+    const response = await apolloClient.query({
         query: gql`
             query{
                 dataTypesForConcept(geneSymbol:"${geneSymbol}", clusterName: "${clusterName}") 
