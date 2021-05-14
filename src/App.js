@@ -44,7 +44,7 @@ function logPageView(location, action) {
   ReactGA.set({ page: location.pathname + location.search });
   ReactGA.pageview(location.pathname + location.search);
 }
-export const history = createBrowserHistory();
+const history = createBrowserHistory();
 history.listen((location, action) => {
   logPageView(location, action);
 });
