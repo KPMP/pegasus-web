@@ -54,6 +54,7 @@
     "extends": "react-app"
   },
   "proxy": "http://localhost:3030",
+  "baseURL": "/explorer",
   "browserslist": {
     "production": [
       ">0.2%",
