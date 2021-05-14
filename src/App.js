@@ -20,10 +20,11 @@ import NotFoundPage from './components/Error/NotFoundPage';
 import RNASeqVizContainer from "./components/DataViz/RNASeqVizContainer";
 import DiffexByClusterContainer from "./components/ExpressionTables/DiffexByClusterContainer";
 import RegionalVizContainer from "./components/DataViz/RegionalVizContainer";
+import { baseURL } from '../package.json';
 
 const cacheStore = window.sessionStorage.getItem('redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
-const store = applyMiddleware(thunk)(createStore)(
+export const store = applyMiddleware(thunk)(createStore)(
   appReducer,
   initialState,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
@@ -63,7 +64,7 @@ class App extends Component {
     return (
       <Provider store={store}>
           <ApolloProvider client={apolloClient}>
-              <BrowserRouter basename='/explorer' history={history}>
+              <BrowserRouter basename={baseURL} history={history}>
                   <ErrorBoundaryContainer>
                     <NavBar />
                     <Switch>

@@ -1,18 +1,16 @@
-//import Api from '../../helpers/Api';
+import { baseURL } from '../../../package.json'
 
-//const api = Api.getInstance();
-
-export const handleError = () => {
+export const handleError = (error) => {
   return dispatch => {
-    window.location.href = '/oops';
+    console.log(error)
+    window.location.href = baseURL + '/oops';
   };
 };
 
 export const sendMessageToBackend = error => {
-  let errorMessage = { error: error.message, stackTrace: error.stack };
-  console.log(errorMessage);
-  handleError();
-
+  return dispatch => {
+    dispatch(handleError(error));
+  }
   // Uncomment this section once you have an api to send errors to
   //	return (dispatch) => {
   //		api.post('/api/v1/error', errorMessage)
