@@ -54,6 +54,7 @@ class CellTypeSummary extends Component {
                 headerClassName: 'table-header',
                 className: 'table-column',
                 minWidth: 150,
+                Cell: ({ value }) => <span title={value}>{value}</span>
             },
             {
                 Header: <span>SUBSTRUCTURE/SUBREGION</span>,
@@ -62,6 +63,7 @@ class CellTypeSummary extends Component {
                 headerClassName: 'table-header',
                 className: 'table-column',
                 minWidth: 195,
+                Cell: ({ value }) => <span title={value}>{value}</span>
             },
             {
                 Header: 'CELL TYPE/CLUSTER',
@@ -70,6 +72,7 @@ class CellTypeSummary extends Component {
                 headerClassName: 'table-header',
                 className: 'table-column',
                 minWidth: 240,
+                Cell: ({ value }) => <span title={value}>{value}</span>
             },
             {
                 Header: <span className='cell-summary-table-header-center'>SINGLE-NUCLEUS<br/>RNA-seq</span>,
