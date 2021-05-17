@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import ReactTable from "react-table";
 import { Col, Row, UncontrolledTooltip, Spinner } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
@@ -18,11 +18,11 @@ class ExpressionXCellType extends Component {
 
     cleanResults = (results) => {
         return results.filter((result) => result.clusterName !== "TOTAL CELLS: ")
-            .map(({cluster, foldChange, pVal, pValAdj, clusterName, cellCount, pct1, avgExp}) => {
+            .map(({ cluster, foldChange, pVal, pValAdj, clusterName, cellCount, pct1, avgExp }) => {
                 return {
                     clusterAbbrev: cluster,
                     clusterName: clusterName,
-                    cellCount: cellCount?cellCount:0,
+                    cellCount: cellCount ? cellCount : 0,
                     medianExp: avgExp,
                     pctCellsExpressing: pct1,
                     foldChange: foldChange,
@@ -59,31 +59,31 @@ class ExpressionXCellType extends Component {
                 Cell: ({ value }) => <span title={value}>{value}</span>
             },
             {
-                Header: <span># CELLS IN<br/>CLUSTER</span>,
+                Header: <span># CELLS IN<br />CLUSTER</span>,
                 accessor: 'cellCount',
                 headerClassName: 'table-header',
                 className: 'table-column',
-                Cell: ({ value }) => value?value:0
+                Cell: ({ value }) => value ? value : 0
             },
             {
-                Header: <span>MEDIAN<br/>EXPRESSION</span>,
+                Header: <span>MEDIAN<br />EXPRESSION</span>,
                 accessor: 'avgExp',
                 headerClassName: 'table-header',
                 className: 'table-column',
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
-                Header: <span>% CELLS<br/>EXPRESSING</span>,
+                Header: <span>% CELLS<br />EXPRESSING</span>,
                 accessor: 'pct1',
                 headerClassName: 'table-header',
                 className: 'table-column',
                 Cell: ({ value }) => formatNumberToPrecision(value * 100, 3)
             },
             {
-                Header: <span>FOLD<br/>CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
-             
-                        <UncontrolledTooltip placement='bottom' target='fold-change-info' >
-                            Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.
+                Header: <span>FOLD<br />CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
+
+                    <UncontrolledTooltip placement='bottom' target='fold-change-info' >
+                        Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.
                         </UncontrolledTooltip></span>,
                 headerClassName: 'table-header',
                 className: 'table-column',
@@ -92,8 +92,8 @@ class ExpressionXCellType extends Component {
             },
             {
                 Header: <span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
-                            <UncontrolledTooltip placement='bottom' target='pvalue-info' >
-                                p-value (unadjusted)
+                    <UncontrolledTooltip placement='bottom' target='pvalue-info' >
+                        p-value (unadjusted)
                             </UncontrolledTooltip></span>,
                 headerClassName: 'table-header',
                 className: 'table-column',
@@ -101,9 +101,9 @@ class ExpressionXCellType extends Component {
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
-                Header: <span>ADJ<br/>P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
-                            <UncontrolledTooltip placement='bottom' target='pvalue-adj-info' >
-                                Adjusted p-value, based on bonferroni correction using all features in the dataset.
+                Header: <span>ADJ<br />P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
+                    <UncontrolledTooltip placement='bottom' target='pvalue-adj-info' >
+                        Adjusted p-value, based on bonferroni correction using all features in the dataset.
                             </UncontrolledTooltip></span>,
                 headerClassName: 'table-header',
                 className: 'table-column',
@@ -138,16 +138,13 @@ class ExpressionXCellType extends Component {
                             </CSVLink>
                         </Col>
                     </Row>
-                    <Row xs='12'>
-                        <Col xs={{ size: 4, offset: 8 }} className='d-flex justify-content-center'><span id="cluster_v_others">CLUSTER VS ALL OTHERS</span></Col>
-                    </Row>
-                    <Row xs='12'>
-                        <Col sm={{ size: 4, offset: 8 }}><hr/></Col>
+                    <Row xs='12' className="cluster_v_others_container-offset-fix">
+                        <Col xs={{ size: 4, offset: 8 }} className='d-flex justify-content-center cluster_v_others_container'><span id="cluster_v_others">CLUSTER VS ALL OTHERS</span></Col>
                     </Row>
                     <Row xs='12'>
                         <Col xs='12'>
                             <ReactTable
-                                style={{border: 'none'}}
+                                style={{ border: 'none' }}
                                 data={this.props.data}
                                 ref={this.reactTable}
                                 sortable={false}
