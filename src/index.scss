@@ -86,10 +86,6 @@ tr.MuiTableRow-root:nth-child(even) {
     padding-top: 1em;
   }
 
-  .shorten-img {
-    height: 650px;
-  }
-
   .collapsed {
     cursor: pointer;
   }
@@ -115,8 +111,6 @@ tr.MuiTableRow-root:nth-child(even) {
 
   .tbd-schema {
     background-color: lightgray;
-    height: 650px;
-    width: 650px;
     text-align: center;
     line-height: 650px;
     font-size: xx-large;
@@ -142,6 +136,11 @@ tr.MuiTableRow-root:nth-child(even) {
 .ReactTable.gene-summary-table .rt-thead .rt-th {
   border-right: rgba(0, 0, 0, 0) !important;
 }
+
+.cell-summary-table.ReactTable .rt-tr {
+  align-items: center;
+}
+
 .gene-summary-table {
   text-align: left;
 }
@@ -150,7 +149,6 @@ tr.MuiTableRow-root:nth-child(even) {
 .gene-summary-header,
 .cell-summary-table-header-center {
   text-align: left;
-  text-transform: uppercase;
   font-size: 11px;
   font-weight: 500;
   font-style: normal;
@@ -160,11 +158,11 @@ tr.MuiTableRow-root:nth-child(even) {
   text-transform: uppercase;
   font-weight: 400;
   font-style: normal;
+  font-size: 14px;
 }
 
 .gene-summary-table button {
   text-align: left;
-  text-transform: uppercase;
   font-size: 14px;
   font-weight: 400;
   font-style: normal;
@@ -203,6 +201,16 @@ tr.MuiTableRow-root:nth-child(even) {
 .diffex-spinner {
   height: 450px;
   line-height: 450px;
+}
+
+.gene-summary-header-container,
+.cluster_v_others_container-offset-fix {
+  margin-right: 0px;
+}
+
+.cluster_v_others_container, .gene-summary-header {
+  padding: 5px;
+  background-color: #cee5ff;
 }
 
 #cluster_v_others {

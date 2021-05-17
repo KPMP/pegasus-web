@@ -82,7 +82,7 @@ class GeneSummary extends Component {
                 Header: "HEALTHY REFERENCE TISSUE",
                 id: "hrt",
                 minWidth: 160,
-                accessor: 'hrt',
+                accessor: 'hrtCount',
                 headerClassName: 'table-header text-center',
                 className: 'table-column',
                 Cell: ({ row }) => (
@@ -92,7 +92,7 @@ class GeneSummary extends Component {
             {
                 Header: "AKI TISSUE",
                 id: "aki",
-                accessor: 'aki',
+                accessor: 'akiCount',
                 headerClassName: 'table-header text-center',
                 className: 'table-column',
                 Cell: ({ row }) => (
@@ -102,7 +102,7 @@ class GeneSummary extends Component {
             {
                 Header: "CKD TISSUE",
                 id: "ckd",
-                accessor: 'ckd',
+                accessor: 'ckdCount',
                 headerClassName: 'table-header text-center',
                 className: 'table-column',
                 Cell: ({ row }) => (

@@ -1,6 +1,10 @@
-import { ApolloClient, gql, InMemoryCache } from "@apollo/client";
+import { ApolloClient, gql, InMemoryCache, HttpLink, from } from "@apollo/client";
+import { onError } from "@apollo/client/link/error";
 import packageJson from '../../package.json';
 import 'isomorphic-unfetch';
+import { sendMessageToBackend } from '../actions/Error/errorActions';
+import { store } from '../App'
+
 
 const isDevelopment = () => {
     return process.env.NODE_ENV === "development";
@@ -19,9 +23,26 @@ const typePolicies = {
     }
 };
 
+const httpLink = new HttpLink({
+    uri: getBaseURL() + '/graphql'
+});
+
+const errorLink = onError(({ graphQLErrors, networkError }) => {
+    if (graphQLErrors)
+        graphQLErrors.forEach(({ message, locations, path }) =>
+            store.dispatch(sendMessageToBackend(
+                `GraphQL error: Message: ${message}, Location: ${locations}, Path: ${path}`,
+            )),
+        );
+
+    if (networkError) {
+        store.dispatch(sendMessageToBackend("Could not connect to GraphQL: " + networkError));
+    };
+});
+
 export const apolloClient = new ApolloClient({
-    uri: getBaseURL() + '/graphql',
     cache: new InMemoryCache({ typePolicies: typePolicies }),
+    link: from([errorLink, httpLink]),
     fetchOptions: {
         fetchOptions: { fetch },
         mode: 'no-cors',
@@ -44,9 +65,9 @@ export const fetchGenes = async (searchString) => {
 
     if (response.data && response.data.genes) {
         return response.data.genes;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve gene data: " + response.error));
     }
-
-    return [];
 };
 
 export const fetchAutoComplete = async (searchString) => {
@@ -70,9 +91,9 @@ export const fetchAutoComplete = async (searchString) => {
 
     if (response.data && response.data.autocomplete) {
         return response.data.autocomplete;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve autocomplete data: " + response.error));
     }
-
-    return [];
 };
 
 export const fetchCellTypeHierarchy = async () => {
@@ -96,8 +117,9 @@ export const fetchCellTypeHierarchy = async () => {
     if (response.data && response.data.cellTypeHierarchy) {
         return response.data.cellTypeHierarchy;
     }
-
-    return undefined;
+    else {
+        store.dispatch(sendMessageToBackend("Could not retrieve cell type hierarchy data: " + response.error));
+    }
 };
 
 export const fetchClusterHierarchy = async (cellType) => {
@@ -119,9 +141,9 @@ export const fetchClusterHierarchy = async (cellType) => {
 
     if (response.data && response.data.getClusterHieararchies) {
         return response.data.getClusterHieararchies;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve cluster data: " + response.error));
     }
-
-    return undefined;
 }
 
 export const fetchGeneDatasetSummary = async (geneSymbol) => {
@@ -133,10 +155,10 @@ export const fetchGeneDatasetSummary = async (geneSymbol) => {
                     omicsType
                     dataType
                     dataTypeShort
-                    hrt
-                    aki
-                    ckd
-                    participants
+                    hrtCount
+                    akiCount
+                    ckdCount
+                    participantCount
                 }
             }`
     });
@@ -175,10 +197,10 @@ export const fetchPlotlyData = async (dataType, geneSymbol, tissueType, fetchPol
 
     if (response.data && response.data.getUmapPlotData) {
         return response.data.getUmapPlotData;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve UMAP plot data: " + response.error));
     }
-
-    return [];
-};
+}
 
 export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
     const response = await apolloClient.query({
@@ -189,8 +211,9 @@ export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
     });
     if (response.data && response.data) {
         return response.data;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve data types: " + response.error));
     }
-    return [];
 }
 
 export const fetchGeneExpression = async (dataType, geneSymbol, cellType, tissueType, fetchPolicy = 'cache-first') => {
@@ -220,7 +243,8 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, tissue
 
     if (response.data && response.data.geneExpressionSummary) {
         return response.data.geneExpressionSummary;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve gene expression data: " + response.error));
     }
-    return [];
 };
 
