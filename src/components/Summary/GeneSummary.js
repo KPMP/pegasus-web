@@ -155,9 +155,6 @@ class GeneSummary extends Component {
                         <Col xs={{ size: 7, offset: 5 }} className='d-flex justify-content-center gene-summary-header'><span>PARTICIPANTS PER DATA TYPE</span></Col>
                     </Row>
                     <Row xs='12'>
-                        <Col sm={{ size: 7, offset: 5 }}><hr /></Col>
-                    </Row>
-                    <Row xs='12'>
                         <Col>
                             <ReactTable
                                 style={{ border: 'none' }}
