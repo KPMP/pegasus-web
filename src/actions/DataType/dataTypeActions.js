@@ -1,5 +1,4 @@
 import actionNames from '../actionNames'
-import {setSelectedConcept} from "../Concepts/conceptActions";
 
 export const setDataType = (dataType) => {
     let shortDataType = "";

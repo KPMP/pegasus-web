@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import ReactTable from 'react-table';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
@@ -135,7 +135,7 @@ class GeneSummary extends Component {
     }
 
     render() {
-        let {name, symbol} = this.props.gene;
+        let { name, symbol } = this.props.gene;
         return (
             <div className='mb-4'>
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
@@ -147,16 +147,13 @@ class GeneSummary extends Component {
                             <h5 className="gene-summary-info-header">Summary of available data for: {symbol} {name && '(' + name + ')'}</h5>
                         </Col>
                     </Row>
-                    <Row xs='12'>
-                        <Col xs={{ size: 7, offset: 5 }} className='d-flex justify-content-center gene-summary-header'><span>PARTICIPANTS PER DATA TYPE</span></Col>
-                    </Row>
-                    <Row xs='12'>
-                        <Col sm={{ size: 7, offset: 5 }}><hr/></Col>
+                    <Row xs='12' className="gene-summary-header-container">
+                        <Col xs={{ size: 5, offset: 7 }} className='d-flex justify-content-center gene-summary-header'><span>PARTICIPANTS PER DATA TYPE</span></Col>
                     </Row>
                     <Row xs='12'>
                         <Col>
                             <ReactTable
-                                style={{border: 'none'}}
+                                style={{ border: 'none' }}
                                 data={this.getCellSummaryData()}
                                 ref={this.reactTable}
                                 sortable={false}
@@ -164,7 +161,7 @@ class GeneSummary extends Component {
                                 className='-striped gene-summary-table'
                                 showPagination={false}
                                 noDataText={'No data found'}
-                                minRows = {0}
+                                minRows={0}
                             />
                         </Col>
                     </Row>

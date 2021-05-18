@@ -1,6 +1,5 @@
 import {Spinner} from "reactstrap";
 import React, {Component} from 'react';
-import RNASeqViz from "../DataViz/RNASeqViz";
 
 class LMDBoxPlot extends Component {
 
