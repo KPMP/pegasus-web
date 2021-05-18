@@ -164,6 +164,8 @@ export const fetchGeneDatasetSummary = async (geneSymbol) => {
     });
     if (response.data && response.data.getGeneDatasetInformation) {
         return response.data.getGeneDatasetInformation;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve Gene Dataset: " + response.error));
     }
 
     return undefined;
