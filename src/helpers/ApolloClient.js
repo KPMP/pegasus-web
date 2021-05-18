@@ -155,10 +155,10 @@ export const fetchGeneDatasetSummary = async (geneSymbol) => {
                     omicsType
                     dataType
                     dataTypeShort
-                    hrt
-                    aki
-                    ckd
-                    participants
+                    hrtCount
+                    akiCount
+                    ckdCount
+                    participantCount
                 }
             }`
     });

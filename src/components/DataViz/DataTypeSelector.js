@@ -17,10 +17,10 @@ class DataTypeSelector extends Component {
             dataTypeOptions: [],
             availableData: [],
             selectedDataset: {
-                hrt: '-',
-                aki: '-',
-                ckd: '-',
-                participants: '-',
+                hrtCount: '-',
+                akiCount: '-',
+                ckdCount: '-',
+                participantsCount: '-',
 
             }
         }
@@ -83,10 +83,10 @@ class DataTypeSelector extends Component {
             },
             (error) => {
                 let selectedDataset = {
-                    participants: '-',
-                    hrt: '-',
-                    aki: '-',
-                    ckd: '-'
+                    participantCount: '-',
+                    hrtCount: '-',
+                    akiCount: '-',
+                    ckdCount: '-'
                 }
                 this.setState({ selectedDataset });
                 console.log('There was a problem fetching the gene summary data: ' + error)
@@ -145,7 +145,7 @@ class DataTypeSelector extends Component {
                     </Row>
                     <Row xs="12" className='mt-1 pl-0' >
                         <Col lg="12" className='d-table pl-2'>
-                            <span className='d-table-cell pt-1 dataset-info'>Dataset coverage: N={this.state.selectedDataset.participants} PARTICIPANTS; {this.state.selectedDataset.hrt} HEALTHY REFERENCE; {this.state.selectedDataset.ckd} CKD; {this.state.selectedDataset.aki} AKI</span>
+                            <span className='d-table-cell pt-1 dataset-info'>Dataset coverage: N={this.state.selectedDataset.participantCount} PARTICIPANTS; {this.state.selectedDataset.hrtCount} HEALTHY REFERENCE; {this.state.selectedDataset.ckdCount} CKD; {this.state.selectedDataset.akiCount} AKI</span>
                         </Col>
                     </Row>
                 </Container>
