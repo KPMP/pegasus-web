@@ -34,6 +34,10 @@ tr.MuiTableRow-root:nth-child(even) {
   background: #cee5ff;
 }
 
+.MuiTableCell-footer {
+  border-bottom: 0px !important;
+}
+
 #cell-type-tabs {
   .col-sm-4 {
     @media (max-width: 992px) {
