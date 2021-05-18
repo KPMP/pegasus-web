@@ -136,6 +136,11 @@ tr.MuiTableRow-root:nth-child(even) {
 .ReactTable.gene-summary-table .rt-thead .rt-th {
   border-right: rgba(0, 0, 0, 0) !important;
 }
+
+.cell-summary-table.ReactTable .rt-tr {
+  align-items: center;
+}
+
 .gene-summary-table {
   text-align: left;
 }
@@ -153,6 +158,7 @@ tr.MuiTableRow-root:nth-child(even) {
   text-transform: uppercase;
   font-weight: 400;
   font-style: normal;
+  font-size: 14px;
 }
 
 .gene-summary-table button {
@@ -195,6 +201,16 @@ tr.MuiTableRow-root:nth-child(even) {
 .diffex-spinner {
   height: 450px;
   line-height: 450px;
+}
+
+.gene-summary-header-container,
+.cluster_v_others_container-offset-fix {
+  margin-right: 0px;
+}
+
+.cluster_v_others_container, .gene-summary-header {
+  padding: 5px;
+  background-color: #cee5ff;
 }
 
 #cluster_v_others {
