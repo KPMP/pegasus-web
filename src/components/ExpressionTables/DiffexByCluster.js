@@ -156,11 +156,6 @@ class DiffexByCluster extends Component {
                                             }} />
                                     </Col>
                                 </Row>
-                                <Row xs='12'>
-                                    <Col xs='12'>
-                                        <span>* Gene in selected cell type/region vs. all other cell types/regions</span>
-                                    </Col>
-                                </Row>
                             </React.Fragment>
                     }
                 </Container>
