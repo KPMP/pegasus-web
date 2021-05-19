@@ -151,8 +151,8 @@ class GeneSummary extends Component {
                             <h5 className="gene-summary-info-header">Summary of available data for: {symbol} {name && '(' + name + ')'}</h5>
                         </Col>
                     </Row>
-                    <Row xs='12'>
-                        <Col xs={{ size: 7, offset: 5 }} className='d-flex justify-content-center gene-summary-header'><span>PARTICIPANTS PER DATA TYPE</span></Col>
+                    <Row xs='12' className="gene-summary-header-container">
+                        <Col xs={{ size: 5, offset: 7 }} className='d-flex justify-content-center gene-summary-header'><span>PARTICIPANTS PER DATA TYPE</span></Col>
                     </Row>
                     <Row xs='12'>
                         <Col>
