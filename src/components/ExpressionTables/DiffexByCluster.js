@@ -104,6 +104,7 @@ class DiffexByCluster extends Component {
         {
             title: 'hidden',
             field: 'hidden',
+            sorting: false,
             width: "40%",
             headerStyle: { fontSize: '11px', textAlign: 'center', color: "rgba(0,0,0,0)" },
             cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'center', color: "rgba(0,0,0,0)" },
