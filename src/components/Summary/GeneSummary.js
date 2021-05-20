@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Spinner } from 'reactstrap';
 import ReactTable from 'react-table';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchGeneDatasetSummary } from '../../helpers/ApolloClient';
@@ -13,7 +13,8 @@ class GeneSummary extends Component {
 
         this.state = {
             columns: this.getColumns(),
-            geneSummary: []
+            geneSummary: [],
+            isLoading: true,
         };
     };
 
@@ -39,15 +40,16 @@ class GeneSummary extends Component {
     }
 
     fetchGeneDatasetSummary = (geneSymbol) => {
+        this.setState({ isLoading: true });
         fetchGeneDatasetSummary(geneSymbol).then(
             (geneSummary) => {
                 if (geneSummary) {
                     geneSummary = this.formatGeneDataset(geneSummary)
-                    this.setState({ geneSummary });
+                    this.setState({ geneSummary, isLoading: false });
                 }
             },
             (error) => {
-                this.setState({ geneSummary: [] });
+                this.setState({ geneSummary: [], isLoading: false });
                 console.log('There was a problem fetching the gene summary data: ' + error)
             }
         );
@@ -151,24 +153,31 @@ class GeneSummary extends Component {
                             <h5 className="gene-summary-info-header">Summary of available data for: {symbol} {name && '(' + name + ')'}</h5>
                         </Col>
                     </Row>
-                    <Row xs='12' className="gene-summary-header-container">
-                        <Col xs={{ size: 5, offset: 7 }} className='d-flex justify-content-center gene-summary-header'><span>PARTICIPANTS PER DATA TYPE</span></Col>
-                    </Row>
-                    <Row xs='12'>
-                        <Col>
-                            <ReactTable
-                                style={{ border: 'none' }}
-                                data={this.state.geneSummary}
-                                ref={this.reactTable}
-                                sortable={false}
-                                columns={this.state.columns}
-                                className='-striped gene-summary-table'
-                                showPagination={false}
-                                noDataText={'No data found'}
-                                minRows={0}
-                            />
-                        </Col>
-                    </Row>
+                    {this.state.isLoading ?
+                        <div className='summary-spinner'>
+                            <Spinner color='primary' />
+                        </div>
+                        : <div>
+                            <Row xs='12' className="gene-summary-header-container">
+                                <Col xs={{ size: 5, offset: 7 }} className='d-flex justify-content-center gene-summary-header'><span>PARTICIPANTS PER DATA TYPE</span></Col>
+                            </Row>
+                            <Row xs='12'>
+                                <Col>
+                                    <ReactTable
+                                        style={{ border: 'none' }}
+                                        data={this.state.geneSummary}
+                                        ref={this.reactTable}
+                                        sortable={false}
+                                        columns={this.state.columns}
+                                        className='-striped gene-summary-table'
+                                        showPagination={false}
+                                        noDataText={'No data found'}
+                                        minRows={0}
+                                    />
+                                </Col>
+                            </Row>
+                        </div>
+                    }
                 </Container>
             </div>
         )
