@@ -131,3 +131,13 @@ body {
     }
   }
 }
+@media (max-width: 764px) {
+
+  .MuiTableRow-root.MuiTableRow-head th:nth-child(5) {
+    display: none;
+  }
+
+  .MuiTableBody-root tr td:nth-child(5) {
+    display: none;
+  }
+}

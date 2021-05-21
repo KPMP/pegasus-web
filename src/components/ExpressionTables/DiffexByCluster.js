@@ -49,6 +49,8 @@ class DiffexByCluster extends Component {
         {
             title: 'GENE',
             field: 'gene',
+            align: 'left',
+            width: "15%",
             headerStyle: { fontSize: "11px" },
             cellStyle: { fontSize: '14px', padding: "2px" },
             render: rowData => this.getGeneLink(rowData.gene)
@@ -59,11 +61,14 @@ class DiffexByCluster extends Component {
                     Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.
                 </UncontrolledTooltip></span>,
             field: 'foldChange',
+            align: 'right',
+            width: "15%",
             sorting: true, defaultSort: 'desc',
-            headerStyle: { fontSize: '11px' },
+            headerStyle: { fontSize: '11px', textAlign: 'center' },
             cellStyle: {
                 fontSize: '14px',
-                padding: '2px'
+                padding: '2px',
+                textAlign: 'center'
             },
             type: 'numeric',
             render: rowData => formatNumberToPrecision(rowData.foldChange, 3)
@@ -74,10 +79,12 @@ class DiffexByCluster extends Component {
                     p-value (unadjusted)
                 </UncontrolledTooltip></span>,
             field: 'pVal',
+            align: 'right',
+            width: "15%",
             sorting: true,
             type: 'numeric',
-            headerStyle: { fontSize: '11px' },
-            cellStyle: { fontSize: '14px', padding: '2px' },
+            headerStyle: { fontSize: '11px', textAlign: 'right' },
+            cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'right' },
             render: rowData => formatNumberToPrecision(rowData.pVal, 3)
         },
         {
@@ -86,11 +93,21 @@ class DiffexByCluster extends Component {
                     Adjusted p-value, based on bonferroni correction using all features in the dataset.
                 </UncontrolledTooltip></span>,
             field: 'pValAdj',
+            align: 'right',
+            width: "15%",
             sorting: true,
             type: 'numeric',
-            headerStyle: { fontSize: '11px' },
-            cellStyle: { fontSize: '14px', padding: '2px' },
+            headerStyle: { fontSize: '11px', textAlign: 'right' },
+            cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'right' },
             render: rowData => formatNumberToPrecision(rowData.pValAdj, 3)
+        },
+        {
+            title: 'hidden',
+            field: 'hidden',
+            sorting: false,
+            width: "40%",
+            headerStyle: { fontSize: '11px', textAlign: 'center', color: "rgba(0,0,0,0)" },
+            cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'center', color: "rgba(0,0,0,0)" },
         }
     ];
 
@@ -144,6 +161,7 @@ class DiffexByCluster extends Component {
                                             title=''
                                             columns={this.getColumns()}
                                             options={{
+                                                tableLayout: 'fixed',
                                                 thirdSortClick: false,
                                                 pageSize: 20,
                                                 pageSizeOptions: [],
