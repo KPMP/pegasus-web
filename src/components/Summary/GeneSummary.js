@@ -3,6 +3,7 @@ import { Container, Row, Col, Spinner } from 'reactstrap';
 import ReactTable from 'react-table';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchGeneDatasetSummary } from '../../helpers/ApolloClient';
+import { getDataTypeOptions } from "../../helpers/Utils";
 
 class GeneSummary extends Component {
 
@@ -14,18 +15,32 @@ class GeneSummary extends Component {
         this.state = {
             columns: this.getColumns(),
             geneSummary: [],
+            dataTypeOptions: [],
             isLoading: true,
         };
     };
 
     componentDidMount() {
-        this.fetchGeneDatasetSummary(this.props.gene.symbol);
+        this.fetchPageData();
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.gene.symbol !== prevProps.gene.symbol) {
-            this.fetchGeneDatasetSummary(this.props.gene.symbol);
+            this.fetchPageData();
         }
+    }
+
+    fetchPageData() {
+        this.fetchGeneDatasetSummary(this.props.gene.symbol);
+        getDataTypeOptions(this.props.gene.symbol, "").then(
+            (options) => {
+                this.setState({ dataTypeOptions: options })
+            },
+            (error) => {
+                this.setState({ dataTypeOptions: [] });
+                console.log("There was a problem getting the data: " + error)
+            }
+        );
     }
 
     formatGeneDataset(geneSummary) {
@@ -122,10 +137,12 @@ class GeneSummary extends Component {
     }
 
     dataTypeIsClickable(datatype) {
-        if (datatype === 'sn' || datatype === 'sc' || datatype === 'rt') {
-            return true;
-        }
-        return false;
+        let isClickable = Boolean(this.state.dataTypeOptions.find((e) => {
+            if (e.value === datatype && e.isDisabled === false) {
+                return true
+            }
+        }));
+        return isClickable
     }
 
     linkDataTypeCells(row) {
