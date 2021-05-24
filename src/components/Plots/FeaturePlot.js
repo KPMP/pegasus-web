@@ -23,13 +23,12 @@ class FeaturePlot extends Component {
         let groupData = [];
         if (inputData && inputData.featureData) {
             inputData.featureData.forEach(function (group) {
-
                 let marker = { size: 2, colorscale: 'Viridis', showscale: true };
                 if (group.expression[0] !== 0) {
                     marker.color = group.expression;
                 } else {
                     let grayColors = new Array(group.expression.length);
-                    grayColors.fill('lightgray');
+                    grayColors.fill('rgba(211,211,211,.15)');
                     marker.color = grayColors;
                     marker.showscale = false;
                 }
