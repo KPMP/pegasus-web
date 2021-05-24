@@ -11,7 +11,7 @@ class DataTypeSelector extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tissueInputValue: getTissueTypeOptions(this.props.tissueType),
+            tissueInputValue: getTissueTypeOptions({}, this.props.tissueType),
             tissueValue: null,
             dataTypeInputValue: null,
             dataTypeOptions: [],
@@ -21,7 +21,6 @@ class DataTypeSelector extends Component {
                 akiCount: '-',
                 ckdCount: '-',
                 participantsCount: '-',
-
             }
         }
     }
@@ -119,11 +118,11 @@ class DataTypeSelector extends Component {
                             <span className='d-table-cell text-bigger pr-2'>in:</span>
                             <Select
                                 allowClear
-                                options={getTissueTypeOptions()}
+                                options={getTissueTypeOptions(this.state.selectedDataset)}
                                 onChange={this.handleTissueSelect}
                                 value={this.state.tissueValue}
                                 inputValue={this.state.tissueInputValue}
-                                defaultInputValue={getTissueTypeOptions(this.props.tissueType)}
+                                defaultInputValue={getTissueTypeOptions(this.state.selectedDataset, this.props.tissueType)}
                                 onFocus={() => this.setState({ tissueInputValue: "" })}
                                 className='select d-table-cell w-100 pl-2'
                             />
