@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row, Col, Spinner } from 'reactstrap';
 import ReactTable from 'react-table';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchGeneDatasetSummary } from '../../helpers/ApolloClient';
+import { getDataTypeOptions } from "../../helpers/Utils";
 
 class GeneSummary extends Component {
 
@@ -13,18 +14,33 @@ class GeneSummary extends Component {
 
         this.state = {
             columns: this.getColumns(),
-            geneSummary: []
+            geneSummary: [],
+            dataTypeOptions: [],
+            isLoading: true,
         };
     };
 
     componentDidMount() {
-        this.fetchGeneDatasetSummary(this.props.gene.symbol);
+        this.fetchPageData();
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.gene.symbol !== prevProps.gene.symbol) {
-            this.fetchGeneDatasetSummary(this.props.gene.symbol);
+            this.fetchPageData();
         }
+    }
+
+    fetchPageData() {
+        this.fetchGeneDatasetSummary(this.props.gene.symbol);
+        getDataTypeOptions(this.props.gene.symbol, "").then(
+            (options) => {
+                this.setState({ dataTypeOptions: options })
+            },
+            (error) => {
+                this.setState({ dataTypeOptions: [] });
+                console.log("There was a problem getting the data: " + error)
+            }
+        );
     }
 
     formatGeneDataset(geneSummary) {
@@ -39,15 +55,16 @@ class GeneSummary extends Component {
     }
 
     fetchGeneDatasetSummary = (geneSymbol) => {
+        this.setState({ isLoading: true });
         fetchGeneDatasetSummary(geneSymbol).then(
             (geneSummary) => {
                 if (geneSummary) {
                     geneSummary = this.formatGeneDataset(geneSummary)
-                    this.setState({ geneSummary });
+                    this.setState({ geneSummary, isLoading: false });
                 }
             },
             (error) => {
-                this.setState({ geneSummary: [] });
+                this.setState({ geneSummary: [], isLoading: false });
                 console.log('There was a problem fetching the gene summary data: ' + error)
             }
         );
@@ -120,10 +137,12 @@ class GeneSummary extends Component {
     }
 
     dataTypeIsClickable(datatype) {
-        if (datatype === 'sn' || datatype === 'sc' || datatype === 'rt') {
-            return true;
-        }
-        return false;
+        let isClickable = Boolean(this.state.dataTypeOptions.find((e) => {
+            if (e.value === datatype && e.isDisabled === false) {
+                return true
+            }
+        }));
+        return isClickable
     }
 
     linkDataTypeCells(row) {
@@ -151,24 +170,31 @@ class GeneSummary extends Component {
                             <h5 className="gene-summary-info-header">Summary of available data for: {symbol} {name && '(' + name + ')'}</h5>
                         </Col>
                     </Row>
-                    <Row xs='12' className="gene-summary-header-container">
-                        <Col xs={{ size: 5, offset: 7 }} className='d-flex justify-content-center gene-summary-header'><span>PARTICIPANTS PER DATA TYPE</span></Col>
-                    </Row>
-                    <Row xs='12'>
-                        <Col>
-                            <ReactTable
-                                style={{ border: 'none' }}
-                                data={this.state.geneSummary}
-                                ref={this.reactTable}
-                                sortable={false}
-                                columns={this.state.columns}
-                                className='-striped gene-summary-table'
-                                showPagination={false}
-                                noDataText={'No data found'}
-                                minRows={0}
-                            />
-                        </Col>
-                    </Row>
+                    {this.state.isLoading ?
+                        <div className='summary-spinner'>
+                            <Spinner color='primary' />
+                        </div>
+                        : <div>
+                            <Row xs='12' className="gene-summary-header-container">
+                                <Col xs={{ size: 5, offset: 7 }} className='d-flex justify-content-center gene-summary-header'><span>PARTICIPANTS PER DATA TYPE</span></Col>
+                            </Row>
+                            <Row xs='12'>
+                                <Col>
+                                    <ReactTable
+                                        style={{ border: 'none' }}
+                                        data={this.state.geneSummary}
+                                        ref={this.reactTable}
+                                        sortable={false}
+                                        columns={this.state.columns}
+                                        className='-striped gene-summary-table'
+                                        showPagination={false}
+                                        noDataText={'No data found'}
+                                        minRows={0}
+                                    />
+                                </Col>
+                            </Row>
+                        </div>
+                    }
                 </Container>
             </div>
         )

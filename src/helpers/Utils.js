@@ -52,23 +52,27 @@ export const sum = (array, property) => {
     return array.reduce((finalSum, item) => finalSum + item[property], 0);
 };
 
-export const getTissueTypeOptions = (value) => {
-    const options =  [
+export const getTissueTypeOptions = (datasetSummary, value) => {
+    const options = [
         {
             label: "All samples",
-            value: "all"
+            value: "all",
+            isDisabled: !datasetSummary.hrtCount > 0 || !datasetSummary.akiCount > 0 || !datasetSummary.ckdCount > 0
         },
         {
             label: "Healthy Reference",
-            value: "hrt"
+            value: "hrt",
+            isDisabled: !datasetSummary.hrtCount > 0
         },
         {
             label: "AKI",
-            value: "aki"
+            value: "aki",
+            isDisabled: !datasetSummary.akiCount > 0
         },
         {
             label: "CKD",
-            value: "ckd"
+            value: "ckd",
+            isDisabled: !datasetSummary.ckdCount > 0
         }
     ];
 
@@ -80,9 +84,9 @@ export const getTissueTypeOptions = (value) => {
 };
 
 export const getDataTypeOptions = async (geneSymbol, cluster) => {
-     let options = fetchDataTypesForConcept(geneSymbol, cluster).then((result) => {
+    let options = fetchDataTypesForConcept(geneSymbol, cluster).then((result) => {
         let dataTypes = result.dataTypesForConcept;
-        const options =  [
+        const options = [
             {
                 label: "snRNA-seq",
                 value: "sn",

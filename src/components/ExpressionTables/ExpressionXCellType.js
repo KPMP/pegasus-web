@@ -48,14 +48,15 @@ class ExpressionXCellType extends Component {
                 accessor: 'cluster',
                 id: 'cluster',
                 headerClassName: 'table-header',
-                className: 'table-column'
+                className: 'table-column',
+                minWidth: 60,
             },
             {
                 Header: "CLUSTER",
                 accessor: 'clusterName',
                 headerClassName: 'table-header',
                 className: 'table-column',
-                minWidth: 280,
+                minWidth: 215,
                 Cell: ({ value }) => <span title={value}>{value}</span>
             },
             {
@@ -63,6 +64,7 @@ class ExpressionXCellType extends Component {
                 accessor: 'cellCount',
                 headerClassName: 'table-header',
                 className: 'table-column',
+                minWidth: 90,
                 Cell: ({ value }) => value ? value : 0
             },
             {
@@ -70,6 +72,7 @@ class ExpressionXCellType extends Component {
                 accessor: 'avgExp',
                 headerClassName: 'table-header',
                 className: 'table-column',
+                minWidth: 90,
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
@@ -77,6 +80,7 @@ class ExpressionXCellType extends Component {
                 accessor: 'pct1',
                 headerClassName: 'table-header',
                 className: 'table-column',
+                minWidth: 90,
                 Cell: ({ value }) => formatNumberToPrecision(value * 100, 3)
             },
             {
@@ -88,6 +92,7 @@ class ExpressionXCellType extends Component {
                 headerClassName: 'table-header',
                 className: 'table-column',
                 accessor: 'foldChange',
+                minWidth: 90,
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
@@ -98,6 +103,7 @@ class ExpressionXCellType extends Component {
                 headerClassName: 'table-header',
                 className: 'table-column',
                 accessor: 'pVal',
+                minWidth: 90,
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             },
             {
@@ -108,6 +114,7 @@ class ExpressionXCellType extends Component {
                 headerClassName: 'table-header',
                 className: 'table-column',
                 accessor: 'pValAdj',
+                minWidth: 90,
                 Cell: ({ value }) => formatNumberToPrecision(value, 3)
             }
         ]
@@ -139,7 +146,9 @@ class ExpressionXCellType extends Component {
                         </Col>
                     </Row>
                     <Row xs='12' className="cluster_v_others_container-offset-fix">
-                        <Col xs={{ size: 4, offset: 8 }} className='d-flex justify-content-center cluster_v_others_container'><span id="cluster_v_others">CLUSTER VS ALL OTHERS</span></Col>
+                        <Col xs={{ size: 4, offset: 8 }} className='d-flex justify-content-center cluster_v_others_container'>
+                            <span id="cluster_v_others">CLUSTER VS ALL OTHERS
+                            </span></Col>
                     </Row>
                     <Row xs='12'>
                         <Col xs='12'>

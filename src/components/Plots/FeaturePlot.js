@@ -68,7 +68,7 @@ class FeaturePlot extends Component {
             return (
                 <Plot divId="featurePlot" data={this.state.plotData}
                     layout={{
-                        width: 460, showlegend: false,
+                        width: 510, showlegend: false,
                         yaxis: { zeroline: false, showgrid: false, showline: true },
                         xaxis: { zeroline: false, showgrid: false, showline: true },
                         autosize: false,
