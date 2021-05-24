@@ -63,7 +63,7 @@ class RNASeqViz extends Component {
                         <Col lg='6' className="umapPlot-container">
                             <UMAPPlot data={this.state.plotData} dataType={this.props.dataType} tissueType={this.props.tissueType} />
                         </Col>
-                        <Col lg='6' className="feautrePlot-container">
+                        <Col lg='6' className="featurePlot-container">
                             <FeaturePlot data={this.state.plotData} dataType={this.props.dataType} gene={this.props.gene.symbol} tissueType={this.props.tissueType} />
                         </Col>
                     </Row>
