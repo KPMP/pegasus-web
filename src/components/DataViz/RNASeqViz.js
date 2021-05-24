@@ -24,7 +24,9 @@ class RNASeqViz extends Component {
     }
 
     componentDidUpdate(prevProps) {
-        if (this.props.tissueType !== prevProps.tissueType || this.props.dataType !== prevProps.dataType) {
+        if (this.props.tissueType !== prevProps.tissueType
+            || this.props.dataType !== prevProps.dataType
+            || this.props.gene.symbol !== prevProps.gene.symbol) {
             this.setState({ plotData: [], geneExpressionData: [], isLoading: true });
 
             this.getGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType);
