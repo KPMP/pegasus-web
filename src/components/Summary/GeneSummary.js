@@ -45,11 +45,17 @@ class GeneSummary extends Component {
 
     formatGeneDataset(geneSummary) {
         for (const [dataType, dataset] of geneSummary.entries()) {
-            for (const property in dataset) {
-                if (geneSummary[dataType][property] === '0') {
-                    geneSummary[dataType][property] = '-';
-                }
+            let dataTypeIsClickable = this.dataTypeIsClickable(geneSummary[dataType]["dataTypeShort"])
+            if (geneSummary[dataType]["hrtCount"] === '0' || !dataTypeIsClickable) {
+                geneSummary[dataType]["hrtCount"] = '-';
             }
+            if (geneSummary[dataType]["akiCount"] === '0' || !dataTypeIsClickable) {
+                geneSummary[dataType]["akiCount"] = '-';
+            }
+            if (geneSummary[dataType]["ckdCount"] === '0' || !dataTypeIsClickable) {
+                geneSummary[dataType]["ckdCount"] = '-';
+            }
+
         }
         return geneSummary
     }
@@ -130,7 +136,7 @@ class GeneSummary extends Component {
     };
 
     dataTypeHasData(row) {
-        if (row.hrt != '-' || row.aki != '-' || row.ckd != '-') {
+        if (row.hrtCount != '-' || row.akiCount != '-' || row.ckdCount != '-') {
             return true;
         }
         return false;
