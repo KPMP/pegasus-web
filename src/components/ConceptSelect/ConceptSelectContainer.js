@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import ConceptSelect from './ConceptSelect';
-import { setSelectedConcept } from '../../actions/Concepts/conceptActions'
+import { setSelectedConcept, setSelectedConceptAndRedirect } from '../../actions/Concepts/conceptActions'
 import { withRouter } from 'react-router';
 
 const mapStateToProps = (state, props) => {
@@ -14,7 +14,10 @@ const mapStateToProps = (state, props) => {
 const mapDispatchToProps = (dispatch, props) =>
 ({
     setSelectedConcept(concept) {
-        dispatch(setSelectedConcept(concept, props));
+        const action = props.useRedirection
+            ? setSelectedConceptAndRedirect(concept, props)
+            : setSelectedConcept(concept)
+        dispatch(action);
     }
 });
 

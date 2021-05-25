@@ -23,7 +23,7 @@ class ConceptSelect extends Component {
                 fetchDataTypesForConcept(selected.value.value, "").then(
                     (results) => {
                         let hasResults = results.dataTypesForConcept.length > 0;
-                        let hasResultsWithDataType = results.dataTypesForConcept.includes(this.props.dataType);
+                        let hasResultsWithDataType = this.props.dataType ? results.dataTypesForConcept.includes(this.props.dataType) : true;
                         if (hasResults && hasResultsWithDataType) {
                             this.props.setSelectedConcept(selected.value);
                             this.setState({ value: { label: selected.value.value, value: selected.value }, hasResults, hasResultsWithDataType, noResultValue: '', alertVisible: false });
