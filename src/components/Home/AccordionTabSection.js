@@ -1,5 +1,6 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { TabPane, Row, Col, Collapse } from 'reactstrap';
+import { ReactComponent as Corpuscle } from '../../assets/Renal-Corpuscle.svg';
 
 class AccordionTabSection extends Component {
 
@@ -10,12 +11,12 @@ class AccordionTabSection extends Component {
 
     toggle = (toggleEvent) => {
         let event = toggleEvent.target.dataset.event;
-        this.setState({collapse: this.state.collapse === Number(event) ? 0 : Number(event)});
+        this.setState({ collapse: this.state.collapse === Number(event) ? 0 : Number(event) });
     }
 
     processTerms = () => {
         let subregions = this.props.data;
-        const {collapse} = this.state;
+        const { collapse } = this.state;
         let subregionText = subregions.map((subregion, index) => {
             let cellTypes = subregion.cellTypes.map((cellType) => {
                 return <li>
@@ -25,13 +26,13 @@ class AccordionTabSection extends Component {
             let collapsed = this.state.collapse;
             return (
                 <div className='cell-type-list mb-1 px-3 py-2' key={index}>
-                    <span onClick={this.toggle} data-event={index} className={`${collapsed === index ? "open": "collapsed"}`}>{subregion.subregionName}</span>
+                    <span onClick={this.toggle} data-event={index} className={`${collapsed === index ? "open" : "collapsed"}`}>{subregion.subregionName}</span>
                     <Collapse isOpen={collapse === index}>
                         <div className="px-4 py-1">{cellTypes}</div>
                     </Collapse>
                 </div>
             );
-                
+
         });
         return subregionText;
     }
@@ -45,15 +46,16 @@ class AccordionTabSection extends Component {
         return (
             <TabPane tabId={this.props.tabId}>
                 <Row>
-                    <Col sm="6">
+                    <Col sm="4">
                         {cellTypes}
                     </Col>
-                    <Col sm="6">
-                        {this.props.img ?
+                    <Col sm="8">
+                        <Corpuscle />
+                        {/* {this.props.img ?
                             <img alt='nephron schema' src={this.props.img} className={classNames}></img>
                         :
                             <div className='tbd-schema'> Schematic TBD</div>
-                        }
+                        } */}
                     </Col>
                 </Row>
             </TabPane>
