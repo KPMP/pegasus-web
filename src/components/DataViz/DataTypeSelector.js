@@ -112,7 +112,7 @@ class DataTypeSelector extends Component {
                 <Container className='rounded border shadow-sm pb-4 px-4'>
                     <Row xs="12">
                         <Col lg="2" id='concept-selector' className='px-2 pt-3'>
-                            <ConceptSelectContainer searchType="gene" selectedConcept={{ value: this.props.gene.symbol, name: "" }} placeHolderText={""} smallFormat={true} />
+                            <ConceptSelectContainer searchType="gene" dataType={this.props.dataType} selectedConcept={{ value: this.props.gene.symbol, name: "" }} placeHolderText={""} smallFormat={true} />
                         </Col>
                         <Col lg="3" className='d-table px-2 pt-3'>
                             <span className='d-table-cell text-bigger pr-2'>in:</span>
