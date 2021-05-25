@@ -293,3 +293,10 @@ tr.MuiTableRow-root:nth-child(even) {
 .alert-warning {
   z-index: 99;
 }
+
+.featurePlot-container, .umapPlot-container {
+  text-align: center !important;
+  @media (max-width: 992px) {
+    text-align: left !important;
+  }
+}
