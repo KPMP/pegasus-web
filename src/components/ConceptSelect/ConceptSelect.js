@@ -11,6 +11,7 @@ class ConceptSelect extends Component {
             inputValue: this.props.selectedConcept.value ? this.props.selectedConcept.value : "",
             value: null,
             hasResults: true,
+            hasResultsWithDataType: true,
             noResultValue: '',
             alertVisible: false
         };
@@ -22,13 +23,14 @@ class ConceptSelect extends Component {
                 fetchDataTypesForConcept(selected.value.value, "").then(
                     (results) => {
                         let hasResults = results.dataTypesForConcept.length > 0;
-                        if (hasResults) {
+                        let hasResultsWithDataType = this.props.dataType ? results.dataTypesForConcept.includes(this.props.dataType) : true;
+                        if (hasResults && hasResultsWithDataType) {
                             this.props.setSelectedConcept(selected.value);
-                            this.setState({value: {label: selected.value.value, value: selected.value}, hasResults: hasResults, noResultValue: '', alertVisible: false});
+                            this.setState({ value: { label: selected.value.value, value: selected.value }, hasResults, hasResultsWithDataType, noResultValue: '', alertVisible: false });
                         } else {
-                            this.setState({value: {label: selected.value.value, value: selected.value}, hasResults: hasResults, noResultValue: selected.value.value, alertVisible: true});
+                            this.setState({ value: { label: selected.value.value, value: selected.value }, hasResults, hasResultsWithDataType, noResultValue: selected.value.value, alertVisible: true });
                         }
-                        
+
                     },
                     (error) => {
                         console.log("There was a problem getting the data: " + error)
@@ -36,27 +38,27 @@ class ConceptSelect extends Component {
                 );
             } else {
                 this.props.setSelectedConcept(selected.value);
-                this.setState({value: {label: selected.value.value, value: selected.value}, hasResults: true, noResultsValue: '', alertVisible: false});
+                this.setState({ value: { label: selected.value.value, value: selected.value }, hasResults: true, noResultsValue: '', alertVisible: false });
             }
         }
     };
 
     handleInputChange = (input, actionMeta) => {
-        this.setState({inputValue: input});
+        this.setState({ inputValue: input });
     };
 
     getLabelIcon = (type) => {
-        switch(type) {
+        switch (type) {
             case "cell_type":
-                return <img src="/explorer/img/search-icon_cell.svg" className="mr-2" alt="cell type"/>;
+                return <img src="/explorer/img/search-icon_cell.svg" className="mr-2" alt="cell type" />;
             case "gene":
-                return <img src="/explorer/img/search-icon_gene.svg" className="mr-2" alt="gene"/>;
+                return <img src="/explorer/img/search-icon_gene.svg" className="mr-2" alt="gene" />;
             default:
-                return <img src="/explorer/img/search-icon_gene.svg" className="mr-2" alt="gene"/>;
+                return <img src="/explorer/img/search-icon_gene.svg" className="mr-2" alt="gene" />;
         }
     };
 
-    handleNoOptions = ({inputValue}) => {
+    handleNoOptions = ({ inputValue }) => {
         if (inputValue.trim().length < 3) {
             return this.props.moreCharactersMessage;
         } else {
@@ -70,11 +72,11 @@ class ConceptSelect extends Component {
         let aliases = result.aliases;
         if (aliases) {
             highlightedAliases = result.aliases.map((item, index) =>
-                    item.toLowerCase().includes(searchString.toLowerCase())?<strong>{index > 0 && ', '}{item}</strong>:<span>{index > 0 && ', '}{item}</span>
+                item.toLowerCase().includes(searchString.toLowerCase()) ? <strong>{index > 0 && ', '}{item}</strong> : <span>{index > 0 && ', '}{item}</span>
                 , this);
         }
         const labelIcon = this.getLabelIcon(result.type);
-        const highlightedValue = result.value.toLowerCase().includes(searchString.toLowerCase())?<strong>{result.value}</strong>:<span>{result.value}</span>;
+        const highlightedValue = result.value.toLowerCase().includes(searchString.toLowerCase()) ? <strong>{result.value}</strong> : <span>{result.value}</span>;
         if ((result.aliases !== null) && (result.aliases.length !== 0)) {
             aliasSection = <span>({highlightedAliases})</span>
         }
@@ -100,7 +102,7 @@ class ConceptSelect extends Component {
     };
 
     onDismiss = () => {
-        this.setState({alertVisible: false});
+        this.setState({ alertVisible: false });
     }
 
     render() {
@@ -111,12 +113,18 @@ class ConceptSelect extends Component {
         };
 
         if (this.props.smallFormat) {
-            customStyles["menu"] = styles => ({ ...styles,
+            customStyles["menu"] = styles => ({
+                ...styles,
                 width: '460px'
             })
         }
 
         let noResultsAlert = '';
+        if (this.state.hasResults && !this.state.hasResultsWithDataType) {
+            noResultsAlert = <div className='full-width mt-3'><Alert color="warning" isOpen={this.state.alertVisible} toggle={this.onDismiss}>
+                The gene, {this.state.noResultValue}, is not detected in this dataset.
+            </Alert></div>;
+        }
         if (!this.state.hasResults) {
             noResultsAlert = <div className='full-width mt-3'><Alert color="warning" isOpen={this.state.alertVisible} toggle={this.onDismiss}>
                 The gene, {this.state.noResultValue}, is not measured in any dataset.
@@ -136,8 +144,8 @@ class ConceptSelect extends Component {
                     defaultInputValue={this.props.selectedConcept.value}
                     onInputChange={this.handleInputChange}
                     placeholder={this.props.placeHolderText}
-                    onFocus={() => this.setState({inputValue: ""})}
-                    onBlur={() => this.setState({inputValue: this.props.selectedConcept.value, value: [{label: this.props.selectedConcept.value, value: this.props.selectedConcept}]})}
+                    onFocus={() => this.setState({ inputValue: "" })}
+                    onBlur={() => this.setState({ inputValue: this.props.selectedConcept.value, value: [{ label: this.props.selectedConcept.value, value: this.props.selectedConcept }] })}
                     className="select"
                 />
                 {noResultsAlert}
