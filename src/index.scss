@@ -290,6 +290,9 @@ tr.MuiTableRow-root:nth-child(even) {
   font-size: 14px;
 }
 
+.alert-warning {
+  z-index: 99;
+}
 
 .featurePlot-container, .umapPlot-container {
   text-align: center !important;
