@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Col, Container, Row, Spinner } from 'reactstrap';
+import { Col, Container, Row, Spinner } from 'reactstrap';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchCellTypeHierarchy } from "../../helpers/ApolloClient";
 import CellTypeTabs from './CellTypeTabs';
@@ -17,18 +17,18 @@ class NephronSchemaCard extends Component {
     }
 
     toggle = (tab) => {
-        if(this.state.activeTab !== tab) {
-            this.setState({activeTab: tab});
+        if (this.state.activeTab !== tab) {
+            this.setState({ activeTab: tab });
         }
-      }
+    }
 
-    getCellTypeHierarchy = async() => {
+    getCellTypeHierarchy = async () => {
         const results = await fetchCellTypeHierarchy();
-        this.setState({cellTypeHierarchy: results, isProcessing: false});
+        this.setState({ cellTypeHierarchy: results, isProcessing: false });
     };
 
     handleCellTypeClick = (cellType) => {
-        this.props.setSelectedConcept({type: "cell_type", value: cellType});
+        this.props.setSelectedConcept({ type: "cell_type", value: cellType });
     };
 
     processHierarchyText = () => {
@@ -47,14 +47,14 @@ class NephronSchemaCard extends Component {
     render() {
         let structures = this.processHierarchyText();
         let tabs = <Col xs="12">
-            <CellTypeTabs data={structures} handleCellTypeClick={this.handleCellTypeClick}/>
-         </Col>;
-         if (this.state.isProcessing) {
-             tabs = <Spinner color='primary'/> ;
-         }
+            <CellTypeTabs data={structures} handleCellTypeClick={this.handleCellTypeClick} />
+        </Col>;
+        if (this.state.isProcessing) {
+            tabs = <Spinner color='primary' />;
+        }
         return (
             <Container className="mt-3 rounded border p-3 shadow-sm">
-                <Row className="mb-4"><Col><ConceptSelectFullWidth redirect="/summary" /></Col></Row>
+                <Row className="mb-4"><Col><ConceptSelectFullWidth useRedirection={true} redirect="/summary" /></Col></Row>
                 <Row>
                     <Col md='12'>
                         <h5 className="mb-4">- OR -</h5>

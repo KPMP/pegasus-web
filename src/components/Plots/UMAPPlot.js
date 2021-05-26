@@ -8,13 +8,46 @@ const Plot = createPlotlyComponent(Plotly);
 class UMAPPlot extends Component {
     constructor(props) {
         super(props);
-        this.state = { plotData: [], plotAnnotations: [], isLoading: true };
+        let { plotHeight, plotWidth } = this.getPlotSize();
+        this.state = {
+            plotData: [], plotAnnotations: [], isLoading: true,
+            plotHeight: plotHeight,
+            plotWidth: plotWidth,
+        };
         this.setData(props.data);
+        this.setPlotSize = this.setPlotSize.bind(this);
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.data !== prevProps.data) {
             this.setData(this.props.data);
+        }
+    }
+    componentDidMount() {
+        window.addEventListener("resize", this.setPlotSize);
+    }
+    componentWillUnmount() {
+        window.addEventListener("resize", null);
+    }
+
+    setPlotSize() {
+        let { plotHeight, plotWidth } = this.getPlotSize();
+        this.setState({ plotHeight, plotWidth })
+    }
+    getPlotSize() {
+
+        if (window.innerWidth > 1197) {
+            return { plotHeight: 400, plotWidth: 400 };
+        } else if (window.innerWidth > 991 && window.innerWidth <= 1197) {
+            return { plotHeight: 350, plotWidth: 350 }
+        } else if (window.innerWidth > 767 && window.innerWidth <= 991) {
+            return { plotHeight: 600, plotWidth: 600 }
+        } else if (window.innerWidth > 508 && window.innerWidth <= 767) {
+            return { plotHeight: 400, plotWidth: 400 }
+        } else if (window.innerWidth > 408 && window.innerWidth <= 508) {
+            return { plotHeight: 300, plotWidth: 300 }
+        } else if (window.innerWidth > 0 && window.innerWidth <= 408) {
+            return { plotHeight: 225, plotWidth: 225 }
         }
     }
 
@@ -70,7 +103,10 @@ class UMAPPlot extends Component {
             return (
                 <Plot divId="umapPlot" data={this.state.plotData}
                     layout={{
-                        annotations: this.state.plotAnnotations, width: 450, showlegend: false,
+                        annotations: this.state.plotAnnotations,
+                        width: this.state.plotWidth,
+                        height: this.state.plotHeight,
+                        showlegend: false,
                         yaxis: { zeroline: false, showgrid: false, showline: true },
                         xaxis: { zeroline: false, showgrid: false, showline: true },
                         autosize: false,
