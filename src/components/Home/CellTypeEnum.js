@@ -5,10 +5,10 @@ const CellTypeEnum = {
     VISCERAL: 'Visceral Epithelial Cell',
     MESANGIUM: 'Mesangial Cell',
 
-    PROXIMAL_TUBULE_EITHELIAL: 'Proximal Tubule Epithelial cell',
-    PROXIMAL_TUBULE_EITHELIAL_SEGMENT_1: 'Proximal Tubule Epithelial cell Segment 1',
-    PROXIMAL_TUBULE_EITHELIAL_SEGMENT_2: 'Proximal Tubule Epithelial cell Segment 2',
-    PROXIMAL_TUBULE_EITHELIAL_SEGMENT_3: 'Proximal Tubule Epithelial cell Segment 3',
+    PROXIMAL_TUBULE_EITHELIAL: 'Proximal Tubule Epithelial Cell',
+    PROXIMAL_TUBULE_EITHELIAL_SEGMENT_1: 'Proximal Tubule Epithelial Cell Segment 1',
+    PROXIMAL_TUBULE_EITHELIAL_SEGMENT_2: 'Proximal Tubule Epithelial Cell Segment 2',
+    PROXIMAL_TUBULE_EITHELIAL_SEGMENT_3: 'Proximal Tubule Epithelial Cell Segment 3',
 
     DESCENDING_THIN_LIMB: 'Descending Thin Limb Cell',
     DESCENDING_THIN_LIMB_TYPE_1: 'Descending Thin Limb Cell Type 1',
