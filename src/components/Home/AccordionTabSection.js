@@ -32,7 +32,7 @@ class AccordionTabSection extends Component {
                     <button
                         onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
                         onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType) }}
-                        onMouseLeave={() => { this.handleSchematicHoverLeave(cellType.cellType) }}
+                        // onMouseLeave={() => { this.handleSchematicHoverLeave(cellType.cellType) }}
                         type="button"
                         className={`btn btn-link text-left p-0 ${(this.state.activeCell === cellType.cellType) ? 'pseudohover' : ''}`}>
                         {cellType.cellType}</button>
