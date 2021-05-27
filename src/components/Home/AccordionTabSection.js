@@ -1,17 +1,26 @@
 import React, { Component } from 'react';
 import { TabPane, Row, Col, Collapse } from 'reactstrap';
-import { ReactComponent as Corpuscle } from '../../assets/Renal-Corpuscle.svg';
+import TubuleSchematic from './TubuleSchematic';
+import CellTypeEnum from './CellTypeEnum';
 
 class AccordionTabSection extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { collapse: 0 }
+        this.state = { collapse: 0, activeCell: CellTypeEnum.ALL }
     }
 
     toggle = (toggleEvent) => {
         let event = toggleEvent.target.dataset.event;
         this.setState({ collapse: this.state.collapse === Number(event) ? 0 : Number(event) });
+    }
+    handleSchematicHoverEnter = (cellType) => {
+        this.setState({ activeCell: cellType })
+        console.log('handleSchematicHoverEnter:', cellType)
+    }
+
+    handleSchematicHoverLeave = (cellType) => {
+        this.setState({ activeCell: CellTypeEnum.ALL })
     }
 
     processTerms = () => {
@@ -20,7 +29,13 @@ class AccordionTabSection extends Component {
         let subregionText = subregions.map((subregion, index) => {
             let cellTypes = subregion.cellTypes.map((cellType) => {
                 return <li>
-                    <button onClick={() => this.props.handleCellTypeClick(cellType.cellType)} type="button" className="btn btn-link text-left p-0">{cellType.cellType}</button>
+                    <button
+                        onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
+                        onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType) }}
+                        onMouseLeave={() => { this.handleSchematicHoverLeave(cellType.cellType) }}
+                        type="button"
+                        className={`btn btn-link text-left p-0 ${(this.state.activeCell === cellType.cellType) ? 'pseudohover' : ''}`}>
+                        {cellType.cellType}</button>
                 </li>
             });
             let collapsed = this.state.collapse;
@@ -46,19 +61,22 @@ class AccordionTabSection extends Component {
         return (
             <TabPane tabId={this.props.tabId}>
                 <Row>
-                    <Col sm="4">
+                    <Col sm="6">
                         {cellTypes}
                     </Col>
-                    <Col sm="8">
-                        <Corpuscle />
-                        {/* {this.props.img ?
-                            <img alt='nephron schema' src={this.props.img} className={classNames}></img>
-                        :
+                    <Col sm="6">
+                        {this.props.isNephronSchematic ?
+                            <TubuleSchematic
+                                activeCell={this.state.activeCell}
+                                handleCellTypeClick={this.props.handleCellTypeClick}
+                                handleSchematicHoverEnter={this.handleSchematicHoverEnter}
+                                handleSchematicHoverLeave={this.handleSchematicHoverLeave}
+                            /> :
                             <div className='tbd-schema'> Schematic TBD</div>
-                        } */}
+                        }
                     </Col>
                 </Row>
-            </TabPane>
+            </TabPane >
 
 
         );
