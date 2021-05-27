@@ -313,11 +313,14 @@
 #inner_medullary_collecting_duct.disabled {
   .cls-25,.cls-26{
     fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
+    stroke: #777777 
+  }
+  .cls-28 {
+    stroke: #777777
   }
 }
 #inner_medullary_collecting_duct {
-  .cls-25,.cls-26{
+  .cls-25,.cls-26,.cls-28{
     -webkit-transition: fill .05s ease;
     -moz-transition: fill .05s ease;
     -o-transition: fill .05s ease;
