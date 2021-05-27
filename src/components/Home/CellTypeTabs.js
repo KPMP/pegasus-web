@@ -48,10 +48,21 @@ const CellTypeTabs = (props) => {
         </NavItem>
       </Nav>
       <TabContent activeTab={activeTab}>
-        <TabSection data={props.data['Renal Corpuscle']} tabId='1' isGlomerulusSchematic={true} handleCellTypeClick={props.handleCellTypeClick} />
-        <AccordionTabSection data={props.data.Tubules} tabId='2' isNephronSchematic={true} handleCellTypeClick={props.handleCellTypeClick} />
-        <AccordionTabSection data={props.data.Interstitium} tabId='3' handleCellTypeClick={props.handleCellTypeClick} />
-        <TabSection data={props.data.Vessels} tabId='4' handleCellTypeClick={props.handleCellTypeClick} />
+        <TabSection data={props.data['Renal Corpuscle']}
+          tabId='1'
+          isGlomerulusSchematic={true}
+          handleCellTypeClick={props.handleCellTypeClick} />
+        <AccordionTabSection data={props.data.Tubules}
+          tabId='2'
+          isNephronSchematic={true}
+          handleCellTypeClick={props.handleCellTypeClick}
+          setActiveTab={toggle} />
+        <AccordionTabSection data={props.data.Interstitium}
+          tabId='3'
+          handleCellTypeClick={props.handleCellTypeClick} />
+        <TabSection data={props.data.Vessels}
+          tabId='4'
+          handleCellTypeClick={props.handleCellTypeClick} />
       </TabContent>
     </div>
   );

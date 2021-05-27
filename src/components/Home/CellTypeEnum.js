@@ -64,6 +64,7 @@ const CellTypeEnum = {
     MEDULLARY_COLLECTING_DUCT: 'Medullary Collecting Duct Cell',
     MEDULLARY_COLLECTING_DUCT_PRINCIPAL: 'Medullary Collecting Duct Principal Cell',
     INNER_MEDULLARY_COLLECTING_DUCT: 'Inner Medullary Collecting Duct Cell',
+    RENAL_CORPUSCLE: 'Renal Corpuscle',
 }
 
 export default CellTypeEnum;

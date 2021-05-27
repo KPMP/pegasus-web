@@ -4078,9 +4078,13 @@ class TubuleSchematic extends Component {
                             <path class="cls-35" d="M361,350.14c0-1.77,2.39-2.63,2.39-4.1" transform="translate(-115.65 -31.25)" />
                             <path class="cls-35" d="M245.45,345.54c0,1.77,2.36,2.63,2.36,4.1" transform="translate(-115.65 -31.25)" />
                             <path class="cls-35" d="M252.06,349.64c0-1.78,2.39-2.63,2.39-4.1" transform="translate(-115.65 -31.25)" />
-                        </g></g><g id="renal_corpuscle"
-                            className={`${(this.props.activeCell === '') ? '' : 'disabled'}`}
-                            data-name="renal corpuscle"><path class="cls-36" d="M381.78,283.5" transform="translate(-115.65 -31.25)" />
+                        </g>
+                    </g>
+                    <g id="renal_corpuscle"
+                        onClick={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.ALL); this.props.setActiveTab('1') }}
+                        onMouseEnter={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.RENAL_CORPUSCLE) }}
+                        className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.RENAL_CORPUSCLE || this.props.activeCell === '') ? '' : 'disabled'}`}
+                        data-name="renal corpuscle"><path class="cls-36" d="M381.78,283.5" transform="translate(-115.65 -31.25)" />
                         <circle class="cls-37" cx="246.51" cy="239.82" r="1.14" />
                         <path class="cls-21" d="M352.23,273.93h0c1.08-.2,1.72.94,2.12,1.69.7,1.37-.05,2.37-.17,3.92h0c0,.36.73,1.81.55,2.23h0a3.59,3.59,0,0,1,3.39-1.12c.89.08,1.94.95,1.86.79a9.77,9.77,0,0,1-.65-2.07h0c.08-.43,0-1.11.47-1.32a.65.65,0,0,1,.81.43c.3.61.44.95.78,1.55h0c.41.58,1.43,2.09,1.92,2.61a9.53,9.53,0,0,1,2.08,1.67,10.82,10.82,0,0,1,.14-1.49c.24-.66.75-.91,1.15-1.35h0a4.4,4.4,0,0,1,1.48-.71,8.16,8.16,0,0,1,1.3.1l.59,0c-.93-.17-6.22-3.39-5.35-4.47.45-.57,1.15.66,2.38,1.38a7,7,0,0,0,2.2.93c.06,0,.81-.18.86-.2.29-.14,1.07-.9,1.69-1.25h0c0-.05-1.18-.58-1.83-1.13h0a5.5,5.5,0,0,1-1.09-1.8,10.26,10.26,0,0,1-.38-1.39h0c-.92.68-2.82,1.6-3.23.38a2.24,2.24,0,0,1,.39-1.88h0l1.45-1.13h0c-1.12.06-5.46-1.06-6.19-1.7h0c-1.36-.43-1.9-.85-2.25-1.85v.05" transform="translate(-115.65 -31.25)" />
                         <path class="cls-38" d="M352.65,265.48" transform="translate(-115.65 -31.25)" />

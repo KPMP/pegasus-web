@@ -69,6 +69,7 @@ class AccordionTabSection extends Component {
                             <TubuleSchematic
                                 activeCell={this.state.activeCell}
                                 handleCellTypeClick={this.props.handleCellTypeClick}
+                                setActiveTab={this.props.setActiveTab}
                                 handleSchematicHoverEnter={this.handleSchematicHoverEnter}
                                 handleSchematicHoverLeave={this.handleSchematicHoverLeave}
                             /> :
