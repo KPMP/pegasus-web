@@ -173,215 +173,241 @@
 // #nephron_tubules_schematic{}
 
 #regional_boundaries.disabled {
-  .cls-2{
+  .cls-2,.cls-3,.cls-4,.cls-5{
     fill: rgb(119, 119, 119);
     stroke: #aaaaaa;
   }
-  .cls-3{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-4{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-5{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-
 }
+#regional_boundaries {
+  .cls-2,.cls-3,.cls-4,.cls-5{
+    -webkit-transition: fill .05s ease;
+    -moz-transition: fill .05s ease;
+    -o-transition: fill .05s ease;
+    transition: fill .05s ease;
+  }
+}
+
+
 #thick_ascending_limb.disabled {
-  .cls-13{
+  .cls-13,.cls-14,.cls-15{
     fill: rgb(119, 119, 119);
     stroke: #aaaaaa;
   }
-  .cls-14{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
+}
+#thick_ascending_limb {
+  .cls-13,.cls-14,.cls-15{
+    -webkit-transition: fill .05s ease;
+    -moz-transition: fill .05s ease;
+    -o-transition: fill .05s ease;
+    transition: fill .05s ease;
   }
-  .cls-15{
+}
+
+#nephron_macula_densa.disabled {
+  .cls-16{
     fill: rgb(119, 119, 119);
     stroke: #aaaaaa;
   }
 }
 
-#macula_densa.disabled {
-
+#nephron_macula_densa {
+  .cls-16{
+    -webkit-transition: fill .05s ease;
+    -moz-transition: fill .05s ease;
+    -o-transition: fill .05s ease;
+    transition: fill .05s ease;
+  }
 }
+
 #distal_convoluted_tubule.disabled {
-  .cls-17{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-18{
+  .cls-17,.cls-18{
     fill: rgb(119, 119, 119);
     stroke: #aaaaaa;
   }
 }
+#distal_convoluted_tubule {
+  .cls-17,.cls-18{
+    -webkit-transition: fill .05s ease;
+    -moz-transition: fill .05s ease;
+    -o-transition: fill .05s ease;
+    transition: fill .05s ease;
+  }
+}
+
 #descending_thin_limb.disabled {
-  .cls-19{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-20{
+  .cls-19,.cls-20{
     fill: rgb(119, 119, 119);
     stroke: #aaaaaa;
   }
 }
+#descending_thin_limb {
+  .cls-19,.cls-20{
+    -webkit-transition: fill .05s ease;
+    -moz-transition: fill .05s ease;
+    -o-transition: fill .05s ease;
+    transition: fill .05s ease;
+  }
+}
+
 #ascending_thin_limb.disabled {
-  .cls-21{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-22{
+  .cls-21,.cls-22{
     fill: rgb(119, 119, 119);
     stroke: #aaaaaa;
   }
 }
+#ascending_thin_limb {
+  .cls-21,.cls-22{
+    -webkit-transition: fill .05s ease;
+    -moz-transition: fill .05s ease;
+    -o-transition: fill .05s ease;
+    transition: fill .05s ease;
+  }
+}
+
 #connecting_tubule.disabled {
-  .cls-23{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-24{
+  .cls-23,.cls-24{
     fill: rgb(119, 119, 119);
     stroke: #aaaaaa;
   }
 }
+#connecting_tubule {
+  .cls-23,.cls-24{
+    -webkit-transition: fill .05s ease;
+    -moz-transition: fill .05s ease;
+    -o-transition: fill .05s ease;
+    transition: fill .05s ease;
+  }
+}
+
 #collecting_duct.disabled {
-  .cls-25{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-26{
+  .cls-25,.cls-26{
     fill: rgb(119, 119, 119);
     stroke: #aaaaaa;
   }
 }
+#collecting_duct {
+  .cls-25,.cls-26{
+    -webkit-transition: fill .05s ease;
+    -moz-transition: fill .05s ease;
+    -o-transition: fill .05s ease;
+    transition: fill .05s ease;
+  }
+}
+
 #cortical_collecting_duct.disabled {
-  .cls-25{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-26{
+  .cls-25,.cls-26{
     fill: rgb(119, 119, 119);
     stroke: #aaaaaa;
   }
 }
+#cortical_collecting_duct {
+  .cls-25,.cls-26{
+    -webkit-transition: fill .05s ease;
+    -moz-transition: fill .05s ease;
+    -o-transition: fill .05s ease;
+    transition: fill .05s ease;
+  }
+}
+
+
 #inner_medullary_collecting_duct.disabled {
-  .cls-25{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-26{
+  .cls-25,.cls-26{
     fill: rgb(119, 119, 119);
     stroke: #aaaaaa;
   }
 }
+#inner_medullary_collecting_duct {
+  .cls-25,.cls-26{
+    -webkit-transition: fill .05s ease;
+    -moz-transition: fill .05s ease;
+    -o-transition: fill .05s ease;
+    transition: fill .05s ease;
+  }
+}
+
 #outer_medullary_collecting_duct.disabled {
-  .cls-25{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-26{
+  .cls-25,.cls-26{
     fill: rgb(119, 119, 119);
     stroke: #aaaaaa;
   }
 }
-#proximal_tubule.disabled {
-  .cls-29{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-30{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
+#outer_medullary_collecting_duct {
+  .cls-25,.cls-26{
+    -webkit-transition: fill .05s ease;
+    -moz-transition: fill .05s ease;
+    -o-transition: fill .05s ease;
+    transition: fill .05s ease;
   }
 }
+// #proximal_tubule.disabled {
+//   .cls-29{
+//     fill: rgb(119, 119, 119);
+//     stroke: #aaaaaa;
+//   }
+//   .cls-30{
+//     fill: rgb(119, 119, 119);
+//     stroke: #aaaaaa;
+//   }
+// }
 
 #proximal_tubule_S1_.disabled {
-  .cls-29{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-30{
+  .cls-29,.cls-30{
     fill: rgb(119, 119, 119);
     stroke: #aaaaaa;
   }
 }
+#proximal_tubule_S1_ {
+  .cls-29,.cls-30{
+    -webkit-transition: fill .05s ease;
+    -moz-transition: fill .05s ease;
+    -o-transition: fill .05s ease;
+    transition: fill .05s ease;
+  }
+}
+
 #proximal_tubule_S2_.disabled {
-  .cls-31{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-32{
+  .cls-31,.cls-32{
     fill: rgb(119, 119, 119);
     stroke: #aaaaaa;
   }
 }
+#proximal_tubule_S2_ {
+  .cls-31,.cls-32{
+    -webkit-transition: fill .05s ease;
+    -moz-transition: fill .05s ease;
+    -o-transition: fill .05s ease;
+    transition: fill .05s ease;
+  }
+}
+
 #proximal_tubule_S3_.disabled {
-  .cls-33{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-34{
+  .cls-33,.cls-34{
     fill: rgb(119, 119, 119);
     stroke: #aaaaaa;
   }
 }
-
+#proximal_tubule_S3_ {
+  .cls-33,.cls-34{
+    -webkit-transition: fill .05s ease;
+    -moz-transition: fill .05s ease;
+    -o-transition: fill .05s ease;
+    transition: fill .05s ease;
+  }
+}
 #renal_corpuscle.disabled {
-  .cls-21{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-37{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-38{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-39{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-40{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-41{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-42{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-43{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-44{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-45{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-46{
-    fill: rgb(119, 119, 119);
-    stroke: #aaaaaa;
-  }
-  .cls-56{
+  .cls-21,.cls-37,.cls-38,.cls-39,.cls-40,.cls-41,.cls-42,.cls-43,.cls-44,.cls-45,.cls-46,.cls-56{
     fill: rgb(119, 119, 119);
     stroke: #aaaaaa;
   }
 }
-
+#renal_corpuscle {
+  .cls-21,.cls-37,.cls-38,.cls-39,.cls-40,.cls-41,.cls-42,.cls-43,.cls-44,.cls-45,.cls-46,.cls-56{
+    -webkit-transition: fill .05s ease;
+    -moz-transition: fill .05s ease;
+    -o-transition: fill .05s ease;
+    transition: fill .05s ease;
+  }
+}
 
 
 
