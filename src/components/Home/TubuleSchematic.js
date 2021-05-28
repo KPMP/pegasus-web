@@ -36,7 +36,6 @@ class TubuleSchematic extends Component {
                             this.props.handleSchematicHoverEnter(CellTypeEnum.THICK_ASCENDING_LIMB_CELL);
                             this.props.toggleCollapseTab({ target: { dataset: { event: 2 } } })
                         }}
-                        // onMouseLeave={() => { this.props.handleSchematicHoverLeave(CellTypeEnum.THICK_ASCENDING_LIMB_CELL) }}
                         className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.THICK_ASCENDING_LIMB_CELL || this.props.activeCell === '') ? '' : 'disabled'}`}
                         data-name="thick ascending limb"><path class="cls-13" d="M261.94,407.16c0,.44.61,1.25.71,1.37a3.45,3.45,0,0,1,1.05,2.74H268c-.07-1.42,1.69-2.44,1.61-4.11" transform="translate(-115.65 -31.25)" />
                         <path class="cls-14" d="M261.3,407.16c0,1.78,2.35,2.64,2.35,4.11" transform="translate(-115.65 -31.25)" />
@@ -773,7 +772,6 @@ class TubuleSchematic extends Component {
                                 this.props.handleSchematicHoverEnter(CellTypeEnum.MACULA_DENSA_CELL)
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 3 } } })
                             }}
-                            // onMouseLeave={() => { this.props.handleSchematicHoverLeave(CellTypeEnum.MACULA_DENSA_CELL) }}
                             className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.MACULA_DENSA_CELL || this.props.activeCell === '') ? '' : 'disabled'}`}
                             data-name="macula densa">
                             <path class="cls-16" d="M234.53,150.38a6.17,6.17,0,0,0-.36,4.47.9.9,0,0,0,.92.68c.44,0,.91-.11,1.36-.17a1.2,1.2,0,0,0,1-1.11c.06-.76.11-1.69.18-2.57a1.57,1.57,0,0,0-1.29-1.68l-.94-.15A.84.84,0,0,0,234.53,150.38Z" transform="translate(-115.65 -31.25)" />
@@ -785,7 +783,6 @@ class TubuleSchematic extends Component {
                                 this.props.handleSchematicHoverEnter(CellTypeEnum.DISTAL_CONVOLUTED_TUBULE)
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 3 } } })
                             }}
-                            // onMouseLeave={() => { this.props.handleSchematicHoverLeave(CellTypeEnum.DISTAL_CONVOLUTED_TUBULE) }}
                             className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.DISTAL_CONVOLUTED_TUBULE || this.props.activeCell === '') ? '' : 'disabled'}`}
                             data-name="distal convoluted tubule"><path class="cls-17" d="M330.56,198.5l6.52,4.79a6,6,0,0,0-.58,1l-7.36-3.37A14,14,0,0,1,330.56,198.5Z" transform="translate(-115.65 -31.25)" />
                         <path class="cls-18" d="M330.19,198.23a14.47,14.47,0,0,0-1.46,2.52" transform="translate(-115.65 -31.25)" />
@@ -1204,7 +1201,6 @@ class TubuleSchematic extends Component {
                             this.props.handleSchematicHoverEnter(CellTypeEnum.DESCENDING_THIN_LIMB);
                             this.props.toggleCollapseTab({ target: { dataset: { event: 1 } } })
                         }}
-                        // onMouseLeave={() => { this.props.handleSchematicHoverLeave(CellTypeEnum.DESCENDING_THIN_LIMB) }}
                         className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.DESCENDING_THIN_LIMB || this.props.activeCell === '') ? '' : 'disabled'}`}
                         data-name="descending thin limb"><polygon class="cls-19" points="132.27 318.39 136.31 318.39 136.33 320.42 132.28 320.39 132.27 318.39" />
                         <line class="cls-20" x1="132.04" y1="318.39" x2="132.05" y2="320.38" />
@@ -1680,7 +1676,6 @@ class TubuleSchematic extends Component {
                             this.props.handleSchematicHoverEnter(CellTypeEnum.ASCENDING_THIN_LIMB_CELL);
                             this.props.toggleCollapseTab({ target: { dataset: { event: 1 } } })
                         }}
-                        // onMouseLeave={() => { this.props.handleSchematicHoverLeave(CellTypeEnum.ASCENDING_THIN_LIMB_CELL) }}
                         className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.ASCENDING_THIN_LIMB_CELL || this.props.activeCell === '') ? '' : 'disabled'}`} data-name="ascending thin limb"><rect class="cls-21" x="215.79" y="390.31" width="4.05" height="2.01" />
                         <line class="cls-22" x1="215.57" y1="390.31" x2="215.57" y2="392.33" />
                         <line class="cls-22" x1="220.07" y1="390.31" x2="220.07" y2="392.33" />
@@ -1918,7 +1913,6 @@ class TubuleSchematic extends Component {
                             this.props.handleSchematicHoverEnter(CellTypeEnum.CONNECTING_TUBULE)
                             this.props.toggleCollapseTab({ target: { dataset: { event: 4 } } })
                         }}
-                        // onMouseLeave={() => { this.props.handleSchematicHoverLeave(CellTypeEnum.CONNECTING_TUBULE) }}
                         className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.CONNECTING_TUBULE || this.props.activeCell === '') ? '' : 'disabled'}`} data-name="connecting tubule"><polygon class="cls-23" points="204.23 107.83 205.63 99.85 207.74 100.26 206.08 108.18 204.23 107.83" />
                         <line class="cls-24" x1="204.15" y1="108.27" x2="205.98" y2="108.63" />
                         <line class="cls-24" x1="205.71" y1="99.41" x2="207.83" y2="99.82" />
@@ -2174,7 +2168,6 @@ class TubuleSchematic extends Component {
                                 this.props.handleSchematicHoverEnter(CellTypeEnum.CORTICAL_COLLECTING_DUCT)
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 5 } } })
                             }}
-                            // onMouseLeave={() => { this.props.handleSchematicHoverLeave(CellTypeEnum.CORTICAL_COLLECTING_DUCT) }}
                             className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.CORTICAL_COLLECTING_DUCT || this.props.activeCell === '') ? '' : 'disabled'}`}
                             data-name="cortical collecting duct"><path class="cls-25" d="M287.89,149.67,282.17,144c.54-.53,1.08-1,1.63-1.52l5.33,6.09C288.69,148.9,288.29,149.29,287.89,149.67Z" transform="translate(-115.65 -31.25)" />
                             <path class="cls-26" d="M288.21,150c.39-.37.79-.75,1.22-1.13" transform="translate(-115.65 -31.25)" />
@@ -2610,7 +2603,6 @@ class TubuleSchematic extends Component {
                                 this.props.handleSchematicHoverEnter(CellTypeEnum.INNER_MEDULLARY_COLLECTING_DUCT)
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 5 } } })
                             }}
-                            // onMouseLeave={() => { this.props.handleSchematicHoverLeave(CellTypeEnum.INNER_MEDULLARY_COLLECTING_DUCT) }}
                             className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.INNER_MEDULLARY_COLLECTING_DUCT || this.props.activeCell === '') ? '' : 'disabled'}`}
                             data-name="inner medullary collecting duct"><path class="cls-25" d="M299.45,571.56q.15.23.33.45H267.11q.18-.22.33-.45c7-10.18,8-37.34,9-49.25,2.26-26.91,1.82-62.55,2.52-98.09h8.94c.7,35.54.26,71.18,2.51,98.09C291.43,534.22,292.47,561.38,299.45,571.56Z" transform="translate(-115.65 -31.25)" />
                             <path class="cls-27" d="M267.44,571.56c7-10.18,8-37.34,9-49.25,2.26-26.91,1.82-62.55,2.52-98.09V424" transform="translate(-115.65 -31.25)" />
@@ -2736,7 +2728,6 @@ class TubuleSchematic extends Component {
                                 this.props.handleSchematicHoverEnter(CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT)
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 5 } } })
                             }}
-                            // onMouseLeave={() => { this.props.handleSchematicHoverLeave(CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT) }}
                             className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT || this.props.activeCell === '') ? '' : 'disabled'}`}
                             data-name="outer medullary collecting duct"><rect class="cls-25" x="163.8" y="270.37" width="8.09" height="2" />
                             <line class="cls-26" x1="163.35" y1="270.37" x2="163.34" y2="272.36" />
@@ -2936,7 +2927,6 @@ class TubuleSchematic extends Component {
                                 this.props.handleSchematicHoverEnter(CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_1);
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 0 } } })
                             }}
-                            // onMouseLeave={() => { this.props.handleSchematicHoverLeave(CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_1) }}
                             className={`hoverableSchematic ${(
                                 this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_1
                                 || this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL
@@ -3368,7 +3358,6 @@ class TubuleSchematic extends Component {
                                 this.props.handleSchematicHoverEnter(CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_2);
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 0 } } })
                             }}
-                            // onMouseLeave={() => { this.props.handleSchematicHoverLeave(CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_2) }}
                             className={`hoverableSchematic ${(
                                 this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_2
                                 || this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL
@@ -3826,7 +3815,6 @@ class TubuleSchematic extends Component {
                                 this.props.handleSchematicHoverEnter(CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_3);
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 0 } } })
                             }}
-                            // onMouseLeave={() => { this.props.handleSchematicHoverLeave(CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_3) }}
                             className={`hoverableSchematic ${(
                                 this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_3
                                 || this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL
