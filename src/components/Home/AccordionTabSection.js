@@ -10,10 +10,17 @@ class AccordionTabSection extends Component {
         this.state = { collapse: 0, activeCell: CellTypeEnum.ALL }
     }
 
+    static getDerivedStateFromProps = (props) => {
+        if (props.tabId !== props.activeTab) {
+            return { activeCell: CellTypeEnum.ALL }
+        }
+    }
+
     toggle = (toggleEvent) => {
         let event = toggleEvent.target.dataset.event;
         this.setState({ collapse: this.state.collapse === Number(event) ? 0 : Number(event) });
     }
+
     handleSchematicHoverEnter = (cellType) => {
         this.setState({ activeCell: cellType })
         console.log('handleSchematicHoverEnter:', cellType)
@@ -32,7 +39,6 @@ class AccordionTabSection extends Component {
                     <button
                         onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
                         onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType) }}
-                        // onMouseLeave={() => { this.handleSchematicHoverLeave(cellType.cellType) }}
                         type="button"
                         className={`btn btn-link text-left p-0 ${(this.state.activeCell === cellType.cellType) ? 'pseudohover' : ''}`}>
                         {cellType.cellType}</button>
@@ -70,6 +76,7 @@ class AccordionTabSection extends Component {
                                 activeCell={this.state.activeCell}
                                 handleCellTypeClick={this.props.handleCellTypeClick}
                                 setActiveTab={this.props.setActiveTab}
+                                toggleCollapseTab={this.toggle}
                                 handleSchematicHoverEnter={this.handleSchematicHoverEnter}
                                 handleSchematicHoverLeave={this.handleSchematicHoverLeave}
                             /> :
