@@ -1,25 +1,5 @@
 @import "common-values.scss";
 
-@font-face {
-  font-family: 'Libre Franklin';
-  src: url('./assets/libre-franklin/LibreFranklin-VariableFont_wght.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'LibreFranklin-Italic';
-  src: url('./assets/libre-franklin/LibreFranklin-Italic.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'LibreFranklin-Bold';
-  src: url('./assets/libre-franklin/LibreFranklin-Bold.ttf') format('truetype');
-}
-
-@font-face {
-  font-family: 'LibreFranklin-Regular';
-  src: url('./assets/libre-franklin/LibreFranklin-Regular.ttf') format('truetype');
-}
-
 .container {
   background: white;
 }

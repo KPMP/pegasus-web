@@ -3,6 +3,7 @@ import { TabContent, Nav, NavItem, NavLink } from 'reactstrap';
 import classnames from 'classnames';
 import TabSection from './TabSection';
 import AccordionTabSection from './AccordionTabSection';
+import '@fontsource/libre-franklin';
 
 const CellTypeTabs = (props) => {
   const [activeTab, setActiveTab] = useState('1');
