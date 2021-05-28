@@ -9,6 +9,13 @@ class TabSection extends Component {
         super(props);
         this.state = { activeCell: CellTypeEnum.ALL };
     }
+
+    static getDerivedStateFromProps = (props) => {
+        if (props.tabId !== props.activeTab) {
+            return { activeCell: CellTypeEnum.ALL }
+        }
+    }
+
     processTerms = () => {
         let subregions = this.props.data;
         let subregionText = subregions.map((subregion) => {
@@ -17,7 +24,6 @@ class TabSection extends Component {
                     <button
                         onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
                         onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType) }}
-                        onMouseLeave={() => { this.handleSchematicHoverLeave(cellType.cellType) }}
                         type="button"
                         className={`btn btn-link text-left p-0 ${(this.state.activeCell === cellType.cellType) ? 'pseudohover' : ''}`}>
                         {cellType.cellType}
