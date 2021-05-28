@@ -50,11 +50,13 @@ const CellTypeTabs = (props) => {
       <TabContent activeTab={activeTab}>
         <TabSection data={props.data['Renal Corpuscle']}
           tabId='1'
+          activeTab={activeTab}
           isGlomerulusSchematic={true}
           handleCellTypeClick={props.handleCellTypeClick} />
         <AccordionTabSection data={props.data.Tubules}
           tabId='2'
           isNephronSchematic={true}
+          activeTab={activeTab}
           handleCellTypeClick={props.handleCellTypeClick}
           setActiveTab={toggle} />
         <AccordionTabSection data={props.data.Interstitium}
