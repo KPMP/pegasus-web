@@ -285,3 +285,11 @@ tr.MuiTableRow-root:nth-child(even) {
 .table-column {
   font-size: 14px;
 }
+
+#diffexTable {
+  @media (max-width: 1200px) {
+    .MuiTableCell-alignLeft:not(:first-of-type) {
+      display: none !important;
+    }
+  }
+}

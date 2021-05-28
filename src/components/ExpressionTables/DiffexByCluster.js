@@ -106,6 +106,7 @@ class DiffexByCluster extends Component {
             field: 'hidden',
             sorting: false,
             width: "40%",
+            className: "diffex-hidden-column",
             headerStyle: { fontSize: '11px', textAlign: 'center', color: "rgba(0,0,0,0)" },
             cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'center', color: "rgba(0,0,0,0)" },
         }
@@ -154,7 +155,7 @@ class DiffexByCluster extends Component {
                                         </CSVLink>
                                     </Col>
                                 </Row>
-                                <Row xs='12'>
+                                <Row xs='12' id="diffexTable">
                                     <Col xs='12'>
                                         <MaterialTable
                                             data={this.state.diffexData}
