@@ -1,35 +1,68 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Plotly from '../../helpers/Plotly';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import {Spinner} from "reactstrap";
-import {formatDataType, formatTissueType} from "../../helpers/Utils";
+import { Spinner } from "reactstrap";
+import { formatDataType, formatTissueType } from "../../helpers/Utils";
 const Plot = createPlotlyComponent(Plotly);
 
 class FeaturePlot extends Component {
     constructor(props) {
         super(props);
-        this.state = { plotData: [], isLoading: true };
+        let { plotHeight, plotWidth } = this.getPlotSize();
+        this.state = {
+            plotData: [], isLoading: true,
+            plotHeight: plotHeight,
+            plotWidth: plotWidth,
+        };
         this.setData(props.data);
+        this.setPlotSize = this.setPlotSize.bind(this);
+
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.data !== prevProps.data) {
-            this.setState({isLoading: true});
+            this.setState({ isLoading: true });
             this.setData(this.props.data);
+
+        }
+    }
+    componentDidMount() {
+        window.addEventListener("resize", this.setPlotSize);
+    }
+    componentWillUnmount() {
+        window.addEventListener("resize", null);
+    }
+    setPlotSize() {
+        let { plotHeight, plotWidth } = this.getPlotSize();
+        this.setState({ plotHeight, plotWidth })
+    }
+    getPlotSize(plotSize, event) {
+
+        if (window.innerWidth > 1197) {
+            return { plotHeight: 400, plotWidth: 460 };
+        } else if (window.innerWidth > 991 && window.innerWidth <= 1197) {
+            return { plotHeight: 350, plotWidth: 410 }
+        } else if (window.innerWidth > 767 && window.innerWidth <= 991) {
+            return { plotHeight: 600, plotWidth: 660 }
+        } else if (window.innerWidth > 508 && window.innerWidth <= 767) {
+            return { plotHeight: 400, plotWidth: 460 }
+        } else if (window.innerWidth > 408 && window.innerWidth <= 508) {
+            return { plotHeight: 300, plotWidth: 360 }
+        } else if (window.innerWidth > 0 && window.innerWidth <= 408) {
+            return { plotHeight: 225, plotWidth: 285 }
         }
     }
 
     setData(inputData) {
         let groupData = [];
         if (inputData && inputData.featureData) {
-            inputData.featureData.forEach(function(group) {
-
-                let marker = { size:2, colorscale: 'Viridis', showscale: true};
+            inputData.featureData.forEach(function (group) {
+                let marker = { size: 2, colorscale: 'Viridis', showscale: true };
                 if (group.expression[0] !== 0) {
                     marker.color = group.expression;
                 } else {
                     let grayColors = new Array(group.expression.length);
-                    grayColors.fill('lightgray');
+                    grayColors.fill('rgba(211,211,211,.15)');
                     marker.color = grayColors;
                     marker.showscale = false;
                 }
@@ -44,12 +77,12 @@ class FeaturePlot extends Component {
                     marker: marker
                 });
             });
-            this.setState({isLoading: false})
+            this.setState({ isLoading: false })
         } else {
-            this.setState({isLoading: true});
+            this.setState({ isLoading: true });
         }
-        
-        this.setState({plotData: groupData});
+
+        this.setState({ plotData: groupData });
 
     };
 
@@ -68,25 +101,28 @@ class FeaturePlot extends Component {
         } else {
             return (
                 <Plot divId="featurePlot" data={this.state.plotData}
-                      layout={{
-                          width: 460, showlegend: false,
-                          yaxis: {zeroline: false, showgrid: false, showline: true},
-                          xaxis: {zeroline: false, showgrid: false, showline: true},
-                          autosize: false,
-                          hovermode: 'closest',
-                          dragmode: 'pan',
-                          margin: {
-                              l: 25,
-                              r: 25,
-                              b: 25,
-                              t: 25,
-                              pad: 4
-                          }
-                      }}
-                      config={{
-                          displaylogo: false,
-                          toImageButtonOptions: { filename: this.getExportFilename() },
-                          modeBarButtonsToRemove: ['hoverCompareCartesian', 'hoverClosestCartesian', 'zoom2d', 'toggleSpikelines', 'toggleHover', 'select2d', 'lasso2d']}}
+                    layout={{
+                        width: this.state.plotWidth,
+                        height: this.state.plotHeight,
+                        showlegend: false,
+                        yaxis: { zeroline: false, showgrid: false, showline: true },
+                        xaxis: { zeroline: false, showgrid: false, showline: true },
+                        autosize: false,
+                        hovermode: 'closest',
+                        dragmode: 'pan',
+                        margin: {
+                            l: 25,
+                            r: 25,
+                            b: 25,
+                            t: 25,
+                            pad: 4
+                        }
+                    }}
+                    config={{
+                        displaylogo: false,
+                        toImageButtonOptions: { filename: this.getExportFilename() },
+                        modeBarButtonsToRemove: ['hoverCompareCartesian', 'hoverClosestCartesian', 'zoom2d', 'toggleSpikelines', 'toggleHover', 'select2d', 'lasso2d']
+                    }}
                 />
             )
         }

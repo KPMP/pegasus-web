@@ -1,15 +1,21 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import Plotly from '../../helpers/Plotly';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import {formatDataType, formatTissueType, median} from '../../helpers/Utils'
+import { formatDataType, formatTissueType, median } from '../../helpers/Utils'
 import { Spinner } from "reactstrap";
 const Plot = createPlotlyComponent(Plotly);
 
 class UMAPPlot extends Component {
     constructor(props) {
         super(props);
-        this.state = { plotData: [], plotAnnotations: [], isLoading: true };
+        let { plotHeight, plotWidth } = this.getPlotSize();
+        this.state = {
+            plotData: [], plotAnnotations: [], isLoading: true,
+            plotHeight: plotHeight,
+            plotWidth: plotWidth,
+        };
         this.setData(props.data);
+        this.setPlotSize = this.setPlotSize.bind(this);
     }
 
     componentDidUpdate(prevProps) {
@@ -17,12 +23,39 @@ class UMAPPlot extends Component {
             this.setData(this.props.data);
         }
     }
+    componentDidMount() {
+        window.addEventListener("resize", this.setPlotSize);
+    }
+    componentWillUnmount() {
+        window.addEventListener("resize", null);
+    }
+
+    setPlotSize() {
+        let { plotHeight, plotWidth } = this.getPlotSize();
+        this.setState({ plotHeight, plotWidth })
+    }
+    getPlotSize() {
+
+        if (window.innerWidth > 1197) {
+            return { plotHeight: 400, plotWidth: 400 };
+        } else if (window.innerWidth > 991 && window.innerWidth <= 1197) {
+            return { plotHeight: 350, plotWidth: 350 }
+        } else if (window.innerWidth > 767 && window.innerWidth <= 991) {
+            return { plotHeight: 600, plotWidth: 600 }
+        } else if (window.innerWidth > 508 && window.innerWidth <= 767) {
+            return { plotHeight: 400, plotWidth: 400 }
+        } else if (window.innerWidth > 408 && window.innerWidth <= 508) {
+            return { plotHeight: 300, plotWidth: 300 }
+        } else if (window.innerWidth > 0 && window.innerWidth <= 408) {
+            return { plotHeight: 225, plotWidth: 225 }
+        }
+    }
 
     setData(inputData) {
         let clusterData = [];
         let annotations = [];
         if (inputData && inputData.referenceData) {
-            inputData.referenceData.forEach(function(cluster) {
+            inputData.referenceData.forEach(function (cluster) {
                 clusterData.push({
                     type: 'scattergl',
                     mode: 'markers',
@@ -31,7 +64,7 @@ class UMAPPlot extends Component {
                     text: cluster.clusterAbbreviation + "<br>" + cluster.clusterName,
                     x: cluster.xValues,
                     y: cluster.yValues,
-                    marker: { size:2, color: cluster.color}
+                    marker: { size: 2, color: cluster.color }
                 });
                 annotations.push({
                     x: median(cluster.xValues),
@@ -41,17 +74,17 @@ class UMAPPlot extends Component {
                     text: cluster.clusterAbbreviation,
                     ax: 0,
                     ay: 0,
-                    font: { 
+                    font: {
                         family: 'Arial',
                         color: 'black'
                     }
                 });
             });
-            this.setState({isLoading: false})
+            this.setState({ isLoading: false })
         } else {
-            this.setState({isLoading: true});
+            this.setState({ isLoading: true });
         }
-        this.setState({plotData: clusterData, plotAnnotations: annotations});
+        this.setState({ plotData: clusterData, plotAnnotations: annotations });
     };
 
     getExportFilename = () => {
@@ -60,35 +93,41 @@ class UMAPPlot extends Component {
     };
 
     render() {
-            if (this.state.isLoading) {
-                return (
-                    <div className='viz-spinner'>
-                        <Spinner color='primary' />
-                    </div>
-                )
-            } else {
-                return (
-                    <Plot divId="umapPlot" data={this.state.plotData}
-                          layout={ { annotations: this.state.plotAnnotations, width: 394, showlegend: false,
-                              yaxis: { zeroline: false, showgrid: false, showline: true },
-                              xaxis: { zeroline: false, showgrid: false, showline: true },
-                              autosize: false,
-                              hovermode: 'closest',
-                              dragmode: 'pan',
-                              margin: {
-                                  l: 25,
-                                  r: 25,
-                                  b: 25,
-                                  t: 25,
-                                  pad: 4
-                              } } }
-                          config={{
-                              displaylogo: false,
-                              toImageButtonOptions: { filename: this.getExportFilename() },
-                              modeBarButtonsToRemove: ['hoverCompareCartesian', 'hoverClosestCartesian', 'zoom2d', 'toggleSpikelines', 'toggleHover', 'select2d', 'lasso2d']}}
-                    />
-                )
-            }
+        if (this.state.isLoading) {
+            return (
+                <div className='viz-spinner'>
+                    <Spinner color='primary' />
+                </div>
+            )
+        } else {
+            return (
+                <Plot divId="umapPlot" data={this.state.plotData}
+                    layout={{
+                        annotations: this.state.plotAnnotations,
+                        width: this.state.plotWidth,
+                        height: this.state.plotHeight,
+                        showlegend: false,
+                        yaxis: { zeroline: false, showgrid: false, showline: true },
+                        xaxis: { zeroline: false, showgrid: false, showline: true },
+                        autosize: false,
+                        hovermode: 'closest',
+                        dragmode: 'pan',
+                        margin: {
+                            l: 25,
+                            r: 25,
+                            b: 25,
+                            t: 25,
+                            pad: 4
+                        }
+                    }}
+                    config={{
+                        displaylogo: false,
+                        toImageButtonOptions: { filename: this.getExportFilename() },
+                        modeBarButtonsToRemove: ['hoverCompareCartesian', 'hoverClosestCartesian', 'zoom2d', 'toggleSpikelines', 'toggleHover', 'select2d', 'lasso2d']
+                    }}
+                />
+            )
+        }
     }
 }
 
