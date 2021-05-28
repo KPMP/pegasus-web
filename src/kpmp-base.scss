@@ -141,3 +141,30 @@ body {
     display: none;
   }
 }
+#root #homepage {
+  .row {
+    margin-right: 15px;
+    margin-left: 15px;
+  }
+  .btn-primary {
+    background-color: $kpmp-button;
+  }
+
+  #summary-plot .row {
+    margin: 0px
+  }
+
+  #summary-plot .col-12 {
+    padding: 0px
+  }
+
+  .samples-plot-header {
+    margin-left: 265px;
+    font-size: 16px;
+  }
+
+  #title-text {
+    margin-bottom: 0;
+    font-size: 20px;
+  } 
+}
