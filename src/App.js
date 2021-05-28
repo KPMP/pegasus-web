@@ -7,11 +7,12 @@ import appReducer from './reducers';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import ReactGA from 'react-ga';
-import { createBrowserHistory }  from 'history';
+import { createBrowserHistory } from 'history';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import ErrorBoundaryContainer from './components/Error/ErrorBoundaryContainer';
 import Oops from './components/Error/Oops';
 import Home from './components/Home/Home';
+import Explorer from './components/Explorer/Explorer';
 import { ApolloProvider } from '@apollo/client';
 import { apolloClient } from './helpers/ApolloClient';
 import GeneSummaryContainer from './components/Summary/GeneSummaryContainer';
@@ -49,7 +50,7 @@ history.listen((location, action) => {
   logPageView(location, action);
 });
 
-store.subscribe(function() {
+store.subscribe(function () {
   console.log(store.getState());
 });
 
@@ -63,24 +64,25 @@ class App extends Component {
   render() {
     return (
       <Provider store={store}>
-          <ApolloProvider client={apolloClient}>
-              <BrowserRouter basename={baseURL} history={history}>
-                  <ErrorBoundaryContainer>
-                    <NavBar />
-                    <Switch>
-                        <Route exact path='/genesummary' component={GeneSummaryContainer} store={store} />
-                        <Route exact path='/celltypesummary' component={CellTypeSummaryContainer} store={store} />
-                        <Route exact path='/' component={Home} store={store} />
-                        <Route path='/dataViz' component={RNASeqVizContainer} store={store}/>
-                        <Route path='/regionalviz' component={RegionalVizContainer} store={store}/>
-                        <Route path='/diffex' component={DiffexByClusterContainer} store={store}/>
-                        <Route exact path='/oops' component={Oops} />
-                        <Route path='*' component={NotFoundPage} />
-                    </Switch>
-                    <NavFooter />
-                  </ErrorBoundaryContainer>
-                </BrowserRouter>
-          </ApolloProvider>
+        <ApolloProvider client={apolloClient}>
+          <BrowserRouter basename={baseURL} history={history}>
+            <ErrorBoundaryContainer>
+              <NavBar />
+              <Switch>
+                <Route exact path='/' component={Home} store={store} />
+                <Route exact path='/explorer' component={Explorer} store={store} />
+                <Route exact path='/genesummary' component={GeneSummaryContainer} store={store} />
+                <Route exact path='/celltypesummary' component={CellTypeSummaryContainer} store={store} />
+                <Route path='/dataViz' component={RNASeqVizContainer} store={store} />
+                <Route path='/regionalviz' component={RegionalVizContainer} store={store} />
+                <Route path='/diffex' component={DiffexByClusterContainer} store={store} />
+                <Route exact path='/oops' component={Oops} />
+                <Route path='*' component={NotFoundPage} />
+              </Switch>
+              <NavFooter />
+            </ErrorBoundaryContainer>
+          </BrowserRouter>
+        </ApolloProvider>
       </Provider>
     );
   }
