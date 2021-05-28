@@ -26,13 +26,13 @@ const NavBar = (props) => {
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            <NavItem className="px-1">
+            <NavItem className={`${window.location.pathname === '/' ? 'active' : ''} px-1`}>
               <NavLink href="/"><span className="nav-text px-1">Dashboard (Home)</span></NavLink>
             </NavItem>
-            <NavItem className="active px-1">
+            <NavItem className={`${window.location.pathname === '/explorer' ? 'active' : ''} px-1`}>
               <NavLink href="/explorer"><span className="nav-text px-1">Explorer</span></NavLink>
             </NavItem>
-            <NavItem className="px-1">
+            <NavItem className={`${window.location.pathname === '/repository' ? 'active' : ''} px-1`}>
               <NavLink href="/repository"><span className="nav-text px-1">Repository</span></NavLink>
             </NavItem>
           </Nav>
