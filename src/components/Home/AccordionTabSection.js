@@ -60,10 +60,6 @@ class AccordionTabSection extends Component {
 
     render() {
         let cellTypes = this.processTerms();
-        let classNames = 'nephron-schema img-fluid ';
-        if (this.props.extraClassName) {
-            classNames = classNames + this.props.extraClassName;
-        }
         return (
             <TabPane tabId={this.props.tabId}>
                 <Row>
