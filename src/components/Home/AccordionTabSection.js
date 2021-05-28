@@ -23,7 +23,6 @@ class AccordionTabSection extends Component {
 
     handleSchematicHoverEnter = (cellType) => {
         this.setState({ activeCell: cellType })
-        console.log('handleSchematicHoverEnter:', cellType)
     }
 
     handleSchematicHoverLeave = (cellType) => {
