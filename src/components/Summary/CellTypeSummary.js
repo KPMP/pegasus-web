@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import ReactTable from 'react-table';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
@@ -29,9 +29,9 @@ class CellTypeSummary extends Component {
 
     fetchClusterHierarchy = () => {
         fetchClusterHierarchy(this.props.cellType).then(
-            (cellTypeSummary) => this.setState({cellTypeSummary: cellTypeSummary}),
+            (cellTypeSummary) => this.setState({ cellTypeSummary: cellTypeSummary }),
             (error) => {
-                this.setState({cellTypeSummary: []});
+                this.setState({ cellTypeSummary: [] });
                 console.log('There was a problem getting the data: ' + error)
             }
         );
@@ -42,7 +42,7 @@ class CellTypeSummary extends Component {
     };
 
     getTheadThProps = (state, rowInfo, column, instance) => {
-            return { id: column.id };
+        return { id: column.id };
     };
 
     getColumns() {
@@ -75,7 +75,7 @@ class CellTypeSummary extends Component {
                 Cell: ({ value }) => <span title={value}>{value}</span>
             },
             {
-                Header: <span className='cell-summary-table-header-center'>SINGLE-NUCLEUS<br/>RNA-seq</span>,
+                Header: <span className='cell-summary-table-header-center'>SINGLE-NUCLEUS<br />RNA-seq</span>,
                 id: 'sn',
                 accessor: 'isSingleNucCluster',
                 headerClassName: 'table-header text-center',
@@ -86,35 +86,13 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                Header: <span className='cell-summary-table-header-center'>SINGLE-CELL<br/>RNA-seq</span>,
+                Header: <span className='cell-summary-table-header-center'>SINGLE-CELL<br />RNA-seq</span>,
                 id: 'sc',
                 accessor: 'isSingleCellCluster',
                 headerClassName: 'table-header text-center',
                 className: 'table-column text-center',
                 Cell: ({ row }) => (
                     this.linkDataTypeCells(row, 'sc')
-                )
-            },
-            {
-                Header: <span className='cell-summary-table-header-center'>REGIONAL<br/>TRANSCRIPTOMICS
-                </span>,
-                id: 'lmd_rnaseq',
-                accessor: 'lmd_rnaseq',
-                headerClassName: 'table-header text-center',
-                className: 'table-column text-center',
-                minWidth: 120,
-                Cell: ({ row }) => (
-                    this.linkDataTypeCells('N')
-                )
-            },
-            {
-                Header: <span className='cell-summary-table-header-center'>REGIONAL<br/>PROTEOMICS</span>,
-                id: 'lmd_proteomics',
-                accessor: 'lmd_proteomics',
-                headerClassName: 'table-header text-center',
-                className: 'table-column text-center',
-                Cell: ({ row }) => (
-                    this.linkDataTypeCells('N')
                 )
             },
         ]
@@ -143,7 +121,7 @@ class CellTypeSummary extends Component {
                     <Row xs='12'>
                         <Col>
                             <ReactTable
-                                style={{border: 'none'}}
+                                style={{ border: 'none' }}
                                 data={this.state.cellTypeSummary}
                                 ref={this.reactTable}
                                 sortable={false}
@@ -152,7 +130,7 @@ class CellTypeSummary extends Component {
                                 showPagination={false}
                                 noDataText={'No data found'}
                                 getTheadThProps={this.getTheadThProps}
-                                minRows = {0}
+                                minRows={0}
                             />
                         </Col>
                     </Row>
