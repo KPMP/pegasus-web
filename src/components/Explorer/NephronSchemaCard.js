@@ -53,7 +53,7 @@ class NephronSchemaCard extends Component {
             tabs = <Spinner color='primary' />;
         }
         return (
-            <Container className="mt-3 rounded border p-3 shadow-sm">
+            <Container className="mt-3 rounded border p-3 shadow-sm search-container">
                 <Row className="mb-4"><Col><ConceptSelectFullWidth useRedirection={true} redirect="/summary" /></Col></Row>
                 <Row>
                     <Col md='12'>

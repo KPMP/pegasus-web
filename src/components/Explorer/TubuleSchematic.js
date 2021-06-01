@@ -5,7 +5,7 @@ import CellTypeEnum from './CellTypeEnum';
 class TubuleSchematic extends Component {
     render() {
         return (
-            <div>
+            <div className="nephron_tubule_schematic-container">
                 <svg id="nephron_tubules_schematic" xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" viewBox="0 0 380.7 550.76"><clipPath id="clip-path" transform="translate(-115.65 -31.25)"><polygon class="cls-1" points="278.08 112.57 278.11 113.57 278.11 317.81 153.21 317.81 153.21 112.57 278.08 112.57" />
                 </clipPath><clipPath id="clip-path-2" transform="translate(-115.65 -31.25)"><polygon class="cls-1" points="278.08 112.57 278.11 113.57 289.79 317.48 414.48 310.33 402.74 105.42 278.08 112.57" />
                     </clipPath><g id="regional_boundaries"

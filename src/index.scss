@@ -609,3 +609,14 @@ tr.MuiTableRow-root:nth-child(even) {
     font-size: 25px;
   }
 }
+.search-container {
+  margin-bottom: 3rem;
+}
+
+#diffexTable {
+  @media (max-width: 1200px) {
+    .MuiTableCell-alignLeft:not(:first-of-type) {
+      display: none !important;
+    }
+  }
+}
