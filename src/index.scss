@@ -302,6 +302,10 @@ tr.MuiTableRow-root:nth-child(even) {
   }
 }
 
+.search-container {
+  margin-bottom: 3rem;
+}
+
 #diffexTable {
   @media (max-width: 1200px) {
     .MuiTableCell-alignLeft:not(:first-of-type) {
