@@ -301,3 +301,11 @@ tr.MuiTableRow-root:nth-child(even) {
     text-align: left !important;
   }
 }
+
+#diffexTable {
+  @media (max-width: 1200px) {
+    .MuiTableCell-alignLeft:not(:first-of-type) {
+      display: none !important;
+    }
+  }
+}
