@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
-import Plot from 'react-plotly.js';
+import Plotly from '../../helpers/Plotly';
+import createPlotlyComponent from 'react-plotly.js/factory';
 import initialState from '../../initialState';
+const Plot = createPlotlyComponent(Plotly);
+
 
 class SamplesPlot extends Component {
 
