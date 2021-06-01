@@ -201,7 +201,13 @@
   }
 }
 
+.nephron_tubule_schematic-container {
+  text-align: center;
+}
+
 #nephron_tubules_schematic{
+  max-height: 31rem;
+  text-align: center;
 
   #regional_boundaries.disabled {
     .cls-2,.cls-3,.cls-4,.cls-5{
