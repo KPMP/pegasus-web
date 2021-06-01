@@ -23,19 +23,19 @@ export const setDataTypeAndRedirect = (dataType, props) => {
         dispatch(setDataType(dataType));
         switch (dataType) {
             case "sn":
-                props.history.push('/dataviz');
+                props.history.push('/explorer/dataviz');
                 break;
             case "sc":
-                props.history.push('/dataviz');
+                props.history.push('/explorer/dataviz');
                 break;
             case "rt":
-                props.history.push('/regionalviz');
+                props.history.push('/explorer/regionalviz');
                 break;
             case "rp":
-                props.history.push('/regionalviz');
+                props.history.push('/explorer/regionalviz');
                 break;
             default:
-                props.history.push('/');
+                props.history.push('/explorer/');
         }
     }
 }

@@ -2,7 +2,7 @@
   "name": "pegasus-web",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/explorer",
+  "homepage": "/",
   "dependencies": {
     "@apollo/client": "3.3.7",
     "@babel/polyfill": "7.12.1",

@@ -20,7 +20,7 @@ const NavBar = (props) => {
     <Container>
       <Navbar id="navbar" className="fixed-top px-1 py-1 mb-3 container-fluid" expand="md" light>
         <NavbarBrand href="/" className="ml-2 text-dark d-flex align-items-center">
-          <img src="/explorer/img/logo.png" alt="Kidney Tissue Atlas" className="logo" />
+          <img src="/img/logo.png" alt="Kidney Tissue Atlas" className="logo" />
           <span id="title-text" className="ml-2">Kidney Tissue Atlas</span>
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />

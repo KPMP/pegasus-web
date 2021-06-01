@@ -71,11 +71,11 @@ class App extends Component {
               <Switch>
                 <Route exact path='/' component={Home} store={store} />
                 <Route exact path='/explorer' component={Explorer} store={store} />
-                <Route exact path='/genesummary' component={GeneSummaryContainer} store={store} />
-                <Route exact path='/celltypesummary' component={CellTypeSummaryContainer} store={store} />
-                <Route path='/dataViz' component={RNASeqVizContainer} store={store} />
-                <Route path='/regionalviz' component={RegionalVizContainer} store={store} />
-                <Route path='/diffex' component={DiffexByClusterContainer} store={store} />
+                <Route exact path='/explorer/genesummary' component={GeneSummaryContainer} store={store} />
+                <Route exact path='/explorer/celltypesummary' component={CellTypeSummaryContainer} store={store} />
+                <Route path='/explorer/dataViz' component={RNASeqVizContainer} store={store} />
+                <Route path='/explorer/regionalviz' component={RegionalVizContainer} store={store} />
+                <Route path='/explorer/diffex' component={DiffexByClusterContainer} store={store} />
                 <Route exact path='/oops' component={Oops} />
                 <Route path='*' component={NotFoundPage} />
               </Switch>

@@ -1,9 +1,7 @@
-import { baseURL } from '../../../package.json'
-
 export const handleError = (error) => {
   return dispatch => {
     console.log(error)
-    window.location.href = baseURL + '/oops';
+    window.location.href = '/oops';
   };
 };
 
