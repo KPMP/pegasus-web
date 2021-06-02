@@ -24,7 +24,7 @@ class SamplesPlot extends Component {
         let svg;
         // Interval as plotly renders the svg _slightly_ after component mount
         let svgCheck = setInterval(() => {
-            svg = document.getElementsByClassName('plotly-samples')[0].getElementsByTagName('svg')[0]
+            svg = document.getElementsByClassName('samples-plot')[0].getElementsByTagName('svg')[0]
             if (svg) {
                 clearInterval(svgCheck);
                 let strokeColor = "#ccc";
@@ -97,7 +97,6 @@ class SamplesPlot extends Component {
                 <div className="row tightrow">
                     <div className="samples-plot">
                         <Plot
-                            className="plotly-samples"
                             data={data}
                             layout={{
                                 autosize: false,
