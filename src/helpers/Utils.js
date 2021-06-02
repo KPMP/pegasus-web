@@ -57,7 +57,7 @@ export const getTissueTypeOptions = (datasetSummary, value) => {
         {
             label: "All samples",
             value: "all",
-            isDisabled: datasetSummary.hrtCount == 0 && datasetSummary.akiCount == 0 && datasetSummary.ckdCount > 0
+            isDisabled: datasetSummary.hrtCount === 0 && datasetSummary.akiCount === 0 && datasetSummary.ckdCount > 0
         },
         {
             label: "Healthy Reference",

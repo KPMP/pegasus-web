@@ -44,7 +44,7 @@ class GeneSummary extends Component {
     }
 
     formatGeneDataset(geneSummary) {
-        for (const [dataType, dataset] of geneSummary.entries()) {
+        for (const [dataType] of geneSummary.entries()) {
             let dataTypeIsClickable = this.dataTypeIsClickable(geneSummary[dataType]["dataTypeShort"])
             if (geneSummary[dataType]["hrtCount"] === '0' || !dataTypeIsClickable) {
                 geneSummary[dataType]["hrtCount"] = '-';
@@ -136,7 +136,7 @@ class GeneSummary extends Component {
     };
 
     dataTypeHasData(row) {
-        if (row.hrtCount != '-' || row.akiCount != '-' || row.ckdCount != '-') {
+        if (row.hrtCount !== '-' || row.akiCount !== '-' || row.ckdCount !== '-') {
             return true;
         }
         return false;
@@ -145,7 +145,9 @@ class GeneSummary extends Component {
     dataTypeIsClickable(datatype) {
         let isClickable = Boolean(this.state.dataTypeOptions.find((e) => {
             if (e.value === datatype && e.isDisabled === false) {
-                return true
+                return true;
+            } else {
+                return false;
             }
         }));
         return isClickable

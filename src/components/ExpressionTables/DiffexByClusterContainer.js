@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch, props) =>
     ({
         setGene(gene) {
             dispatch(setGene(gene));
-            dispatch(props.history.push("/dataviz"));
+            dispatch((dispatch) => props.history.push("/dataviz"));
         },
         setDataType(dataType) {
             dispatch(setDataType(dataType));
