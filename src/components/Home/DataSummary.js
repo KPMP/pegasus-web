@@ -28,7 +28,8 @@ class DataSummary extends Component {
 
 
                 <Row><p>Current data types in the repository include:</p></Row>
-                <Row><h5 className="controlled-data"><span className="controlled-data-asterisk">*</span> = Controlled data. <a className="learn-link" href="https://www.kpmp.org/controlled-data">Learn how to access controlled data.</a></h5></Row>
+                <Row><h5 className="controlled-data"><span className="controlled-data-asterisk">*</span> = <a className="learn-link" rel="noreferrer" target='_blank' href="https://www.kpmp.org/controlled-data">
+                    Controlled data</a></h5></Row>
                 <Row>
                     <h5 className="samples-plot-header">Number of files</h5>
                 </Row>
