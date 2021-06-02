@@ -9,6 +9,7 @@ Plotly.register([
     require('kpmp-custom-plotly.js/lib/scatter'), // for bubble https://plotly.com/python/bubble-charts/
     require('kpmp-custom-plotly.js/lib/scattergl'),
     require('kpmp-custom-plotly.js/lib/violin'),
+    require('kpmp-custom-plotly.js/lib/bar')
 ]);
 
 module.exports = Plotly;

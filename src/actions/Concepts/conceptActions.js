@@ -13,7 +13,7 @@ export const setSelectedConcept = (concept) => {
     return (dispatch) => {
         dispatch(setSelectedConceptState(concept));
         if (concept.type === 'gene') {
-            dispatch(setGene({symbol: concept.value, name: concept.name}));
+            dispatch(setGene({ symbol: concept.value, name: concept.name }));
         } else if (concept.type === 'cell_type') {
             dispatch(setCellType(concept.value));
         }
@@ -25,13 +25,13 @@ export const setSelectedConceptAndRedirect = (concept, props) => {
         dispatch(setSelectedConcept(concept));
         switch (concept.type) {
             case "cell_type":
-                props.history.push('/celltypesummary');
+                props.history.push('/explorer/celltypesummary');
                 break;
             case "gene":
-                props.history.push('/genesummary');
+                props.history.push('/explorer/genesummary');
                 break;
             default:
-                props.history.push('/');
+                props.history.push('/explorer');
         }
     }
 };

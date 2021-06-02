@@ -302,6 +302,313 @@ tr.MuiTableRow-root:nth-child(even) {
   }
 }
 
+#homepage {
+  p {
+    font-weight: 200;
+  }
+
+  .landing p {
+    font-size: 17px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue";
+    color: #373a3c;
+  }
+
+  .landing a {
+    color: #1c7cd5;
+    letter-spacing: 0px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    font-size: 17px;
+  }
+
+  .landing h2,
+  h3,
+  h4,
+  h5 {
+    font-weight: 300;
+  }
+
+  .landing .title {
+    margin-top: 15px;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 30px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    letter-spacing: 0.05rem;
+  }
+
+  .landing .subtitle {
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    font-size: 17px;
+    line-height: 1.2;
+    text-transform: uppercase;
+    font-weight: 300;
+  }
+
+  .landing .sub-header {
+    font-weight: 400;
+    font-size: 17px;
+  }
+
+  .landing .sub-header.lowered {
+    margin-top: 2rem;
+  }
+
+  .landing .data-summary {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    font-weight: 400;
+    text-transform: none;
+    font-size: 22px;
+    line-height: 2;
+    padding-top: 2em;
+    padding-bottom: 0.5em;
+    color: #373a3c;
+  }
+
+  .inactive {
+    color: lightgray;
+  }
+
+  .card {
+    margin-left: 15px;
+    margin-top: 15px;
+  }
+
+  .nephron-schema {
+    max-width: auto;
+    height: 50%;
+  }
+
+  .cell-type-list {
+    list-style-type: none;
+  }
+
+  .search-box {
+    margin-bottom: 15px;
+  }
+
+  .rt-tr.-odd {
+    background: #cee5ff !important;
+  }
+
+  .rt-resizable-header-content {
+    float: left;
+  }
+
+  .title {
+    margin-top: 0px;
+    font-size: 1.2em;
+    line-height: 1.4;
+    font-weight: 400;
+  }
+  #summary-plot {
+    overflow: auto;
+  }
+
+  .summary-stats {
+    display: flex;
+    -webkit-box-pack: justify;
+    justify-content: space-between;
+
+    .stats-container {
+      margin-right: 20px;
+      white-space: nowrap;
+      -webkit-box-orient: horizontal;
+      -webkit-box-direction: normal;
+      -webkit-box-flex: 0;
+
+      .stats-text {
+        margin-top: auto;
+        margin-bottom: auto;
+        text-align: center;
+        display: inline-block;
+
+        .stats-icon {
+          padding: 25px;
+          -webkit-box-flex: 1;
+        }
+
+        .inline-block {
+          display: inline-block;
+          vertical-align: middle;
+        }
+        .stats-number {
+          color: $kpmp-blue;
+          font-size: 3em;
+          line-height: 1;
+        }
+        .stats-label {
+          color: $kpmp-blue;
+          text-transform: uppercase;
+        }
+      }
+    }
+  }
+
+  .landing .samples-by-datatype {
+    font-size: 14px;
+  }
+
+  .landing .samples-by-datatype .rt-tbody .rt-td:not(:first-child),
+  .landing .samples-by-datatype .rt-thead .rt-th:not(:first-child) {
+    border-right: 1px solid rgba(0, 0, 0, 0);
+    text-align: center;
+  }
+
+  .rt-resizable-header-content {
+    text-align: center;
+    width: 100%;
+  }
+
+  #summary-plot .ReactTable .rt-thead .rt-th,
+  #summary-plot .ReactTable .rt-tbody .rt-td{
+    border-right: 1px solid rgba(0, 0, 0, 0.0);
+  }
+
+  .js-plotly-plot .plotly svg .y2tick:nth-child(3) text {
+    color: red;
+  }
+
+  .controlled-data, .landing .controlled-data a {
+    font-size: 14px;
+  }
+
+  .controlled-data-asterisk {
+    color: red;
+    font-size: 18px;
+  }
+
+  .js-plotly-plot .plotly svg .y2tick text tspan {
+    fill: red;
+  }
+
+  #summary-plot .ReactTable .rt-thead .rt-th,
+  .rt-th.omics.rt-resizable-header .rt-resizable-header-content {
+    text-align: left;
+    font-weight: 500;
+    font-size: 11px;
+    white-space: "pre-wrap";
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    font-style: normal;
+  }
+  #summary-plot .mt-4.row {
+    margin-right: 0;
+    margin-left: 0;
+  }
+  #summary-plot .mt-4.row .col-12 {
+    padding: 0px;
+  }
+
+  .data-type-table-header {
+    font-weight: 500;
+    font-size: 14px;
+    white-space: "pre-wrap";
+    text-align: center;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+  }
+
+  .data-type-table-content {
+    font-weight: "300";
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    font-size: "16px";
+    color: "#333";
+  }
+
+  .landing .samples-by-datatype .rt-tr.-odd {
+    background-color: #e6f1ff !important;
+  }
+
+  .landing .lock a {
+    font-size: 18px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+  }
+
+  .landing .lock {
+    font-size: 18px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+    color: #333;
+  }
+
+  .samples-plot {
+    overflow: auto;
+    width: 94%;
+  }
+
+  .landing .fa-lock {
+    color: #666666;
+  }
+
+  .landing .samples-plot-line {
+    width: 300px;
+    border-top: 2px solid #d1d1d1;
+    left: 0;
+    margin-left: 0;
+  }
+
+  .landing .samples-plot-files {
+    font-size: 18px !important;
+    color: #333 !important;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+  }
+
+  .lock-container {
+    width: 0%;
+    padding-top: 3px;
+    @media (max-width: 766px) {
+      display: none;
+    }
+  }
+
+  .y2tick {
+    max-height: 20px;
+  }
+
+  .y2tick a {
+    font-size: 16px !important;
+  }
+
+  .fa-lock {
+    min-height: 34px !important;
+  }
+
+  .hidden-lock {
+    opacity: 0;
+  }
+
+  .hidden-lock-fix {
+    min-height: 32px !important;
+  }
+
+  .tightrow {
+    margin-left: 4px !important;
+  }
+
+  .far.fa-question-circle {
+    font-size: 25px;
+  }
+}
 .search-container {
   margin-bottom: 3rem;
 }
