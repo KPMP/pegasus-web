@@ -149,6 +149,7 @@ class GeneSummary extends Component {
             } else {
                 return false;
             }
+            return false
         }));
         return isClickable
     }

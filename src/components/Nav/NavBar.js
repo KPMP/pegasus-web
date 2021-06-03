@@ -20,19 +20,19 @@ const NavBar = (props) => {
     <Container>
       <Navbar id="navbar" className="fixed-top px-1 py-1 mb-3 container-fluid" expand="md" light>
         <NavbarBrand href="/" className="ml-2 text-dark d-flex align-items-center">
-          <img src="/explorer/img/logo.png" alt="Kidney Tissue Atlas" className="logo" />
+          <img src="/img/logo.png" alt="Kidney Tissue Atlas" className="logo" />
           <span id="title-text" className="ml-2">Kidney Tissue Atlas</span>
         </NavbarBrand>
         <NavbarToggler onClick={toggle} />
         <Collapse isOpen={isOpen} navbar>
           <Nav className="mr-auto" navbar>
-            <NavItem className="px-1">
+            <NavItem className={`${window.location.pathname === '/' ? 'active' : ''} px-1`}>
               <NavLink href="/"><span className="nav-text px-1">Dashboard (Home)</span></NavLink>
             </NavItem>
-            <NavItem className="active px-1">
+            <NavItem className={`${window.location.pathname.replaceAll("/", "") === 'explorer' ? 'active' : ''} px-1`}>
               <NavLink href="/explorer"><span className="nav-text px-1">Explorer</span></NavLink>
             </NavItem>
-            <NavItem className="px-1">
+            <NavItem className={`${window.location.pathname.replaceAll("/", "") === 'repository' ? 'active' : ''} px-1`}>
               <NavLink href="/repository"><span className="nav-text px-1">Repository</span></NavLink>
             </NavItem>
           </Nav>

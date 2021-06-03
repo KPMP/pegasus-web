@@ -1,5 +1,25 @@
 {
   "selectedConcept": {},
   "dataType": "",
-  "tissueType": ""
+  "tissueType": "",
+  "summary": [
+    {
+      "dataType": "Single-nucleus RNA-seq (snRNA-seq)",
+      "healthyTissue": 22,
+      "ckdTissue": 18,
+      "akiTissue": 6
+    },
+    {
+      "dataType": "Single-cell RNA-seq (scRNA-seq)",
+      "healthyTissue": 21,
+      "ckdTissue": 12,
+      "akiTissue": 4
+    },
+    {
+      "dataType": "Regional transcripomics (LMD RNA-seq)",
+      "healthyTissue": 9,
+      "ckdTissue": 4,
+      "akiTissue": 2
+    }
+  ]
 }

@@ -97,31 +97,6 @@ export const getDataTypeOptions = async (geneSymbol, cluster) => {
                 value: "sc",
                 isDisabled: !dataTypes.includes("sc")
             },
-            {
-                label: "Regional transcriptomics",
-                value: "lmd",
-                isDisabled: !dataTypes.includes("lmd")
-            },
-            {
-                label: "Bulk RNA-seq",
-                value: "bulk",
-                isDisabled: !dataTypes.includes("bulk")
-            },
-            {
-                label: "Regional proteomics",
-                value: "lmd",
-                isDisabled: !dataTypes.includes("lmd")
-            },
-            {
-                label: "3D cytometry",
-                value: "3dc",
-                isDisabled: !dataTypes.includes("3dc")
-            },
-            {
-                label: "Spatial metabolomics",
-                value: "sm",
-                isDisabled: !dataTypes.includes("sm")
-            }
         ];
         return options;
     });

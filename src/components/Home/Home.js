@@ -1,29 +1,23 @@
 import React, { Component } from 'react';
-import WelcomeText from './WelcomeText';
-import NephronSchemaCardContainer from './NephronSchemaCardContainer';
-import { setSelectedConcept } from '../../actions/Concepts/conceptActions'
-import { selectedConcept } from '../../initialState'
-import { connect } from "react-redux";
+import { Row, Col } from 'reactstrap';
+import DataSummary from './DataSummary';
+import LeftContent from './LeftContent';
 
 class Home extends Component {
-
-
-    render() {
-        this.props.setSelectedConcept(selectedConcept);
-        return (
-            <article>
-                <WelcomeText/>
-                <NephronSchemaCardContainer/>
-            </article>
-        );
-    }
+  render() {
+    return (
+      <article id="homepage">
+        <Row>
+          <Col md='12' lg='4'>
+            <LeftContent />
+          </Col>
+          <Col md='12' lg='8'>
+            <DataSummary />
+          </Col>
+        </Row>
+      </article>
+    );
+  }
 }
 
-const mapDispatchToProps = (dispatch, props) =>
-    ({
-        setSelectedConcept(concept) {
-            dispatch(setSelectedConcept(concept))
-        }
-    });
-
-export default connect(null, mapDispatchToProps)(Home)
+export default Home;
