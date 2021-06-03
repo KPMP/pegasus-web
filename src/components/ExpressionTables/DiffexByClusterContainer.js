@@ -12,14 +12,14 @@ const mapStateToProps = (state, props) =>
 });
 
 const mapDispatchToProps = (dispatch, props) =>
-({
-    setGene(gene) {
-        dispatch(setGene(gene));
-        dispatch(props.history.push("/explorer/dataviz"));
-    },
-    setDataType(dataType) {
-        dispatch(setDataType(dataType));
-    }
-});
+    ({
+        setGene(gene) {
+            dispatch(setGene(gene));
+            dispatch((dispatch) => props.history.push("/explorer/dataviz"));
+        },
+        setDataType(dataType) {
+            dispatch(setDataType(dataType));
+        }
+    });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DiffexByCluster))

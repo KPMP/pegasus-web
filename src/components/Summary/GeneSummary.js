@@ -145,7 +145,9 @@ class GeneSummary extends Component {
     dataTypeIsClickable(datatype) {
         let isClickable = Boolean(this.state.dataTypeOptions.find((e) => {
             if (e.value === datatype && e.isDisabled === false) {
-                return true
+                return true;
+            } else {
+                return false;
             }
             return false
         }));

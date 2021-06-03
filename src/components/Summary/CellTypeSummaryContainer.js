@@ -12,13 +12,14 @@ const mapStateToProps = (state, props) =>
 });
 
 const mapDispatchToProps = (dispatch, props) =>
-({
-    setDataTypeAndCluster(dataType, cluster) {
-        dispatch(setDataType(dataType));
-        dispatch(setTissueType("all"));
-        dispatch(setCluster(cluster));
-        dispatch(props.history.push("/explorer/diffex"));
-    }
-});
+
+    ({
+        setDataTypeAndCluster(dataType, cluster) {
+            dispatch(setDataType(dataType));
+            dispatch(setTissueType("all"));
+            dispatch(setCluster(cluster));
+            dispatch((dispatch) => props.history.push("/explorer/diffex"));
+        }
+    });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(CellTypeSummary))
