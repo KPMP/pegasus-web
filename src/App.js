@@ -77,7 +77,7 @@ class App extends Component {
                 <Route exact path='/explorer/regionalviz' component={RegionalVizContainer} store={store} />
                 <Route exact path='/explorer/diffex' component={DiffexByClusterContainer} store={store} />
                 <Route exact path='/oops' component={Oops} />
-                <Route exact path='*' component={NotFoundPage} />
+                <Route path='*' component={NotFoundPage} />
               </Switch>
               <NavFooter />
             </ErrorBoundaryContainer>
