@@ -7,12 +7,9 @@ class TabSection extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { activeCell: CellTypeEnum.ALL };
-    }
-
-    static getDerivedStateFromProps = (props) => {
-        if (props.tabId !== props.activeTab) {
-            return { activeCell: CellTypeEnum.ALL }
+        console.log(this.props)
+        this.state = {
+            activeCell: ''
         }
     }
 
@@ -20,12 +17,13 @@ class TabSection extends Component {
         let subregions = this.props.data;
         let subregionText = subregions.map((subregion) => {
             let cellTypes = subregion.cellTypes.map((cellType) => {
+                console.log('celltype?', cellType.cellType, this.props.activeCell)
                 return <li>
                     <button
                         onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
-                        onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType) }}
+                        onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType); this.setState({ activeCell: cellType.cellType }) }}
                         type="button"
-                        className={`btn btn-link text-left p-0 ${(this.state.activeCell === cellType.cellType) ? 'pseudohover' : ''}`}>
+                        className={`btn btn-link text-left p-0 ${(this.props.activeCell === cellType.cellType) ? 'pseudohover' : ''}`}>
                         {cellType.cellType}
                     </button>
                 </li>
@@ -44,11 +42,11 @@ class TabSection extends Component {
     }
 
     handleSchematicHoverEnter = (cellType) => {
-        this.setState({ activeCell: cellType })
+        this.props.setActiveCell(cellType);
     }
 
     handleSchematicHoverLeave = (cellType) => {
-        this.setState({ activeCell: CellTypeEnum.ALL })
+        this.props.setActiveCell(CellTypeEnum.ALL);
     }
 
     render() {
@@ -65,7 +63,9 @@ class TabSection extends Component {
 
                         {this.props.isGlomerulusSchematic ?
                             <GlomerulusSchematic
-                                activeCell={this.state.activeCell}
+                                setActiveTab={this.props.setActiveTab}
+                                activeCell={this.props.activeCell}
+                                setActiveCell={this.props.setActiveCell}
                                 handleCellTypeClick={this.props.handleCellTypeClick}
                                 handleSchematicHoverEnter={this.handleSchematicHoverEnter}
                                 handleSchematicHoverLeave={this.handleSchematicHoverLeave}
