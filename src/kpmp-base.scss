@@ -141,6 +141,15 @@ body {
     display: none;
   }
 }
+
+body #homepage {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue";
+  p,h1,h2,h3,h4,h5,h6,a {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue";
+  }
+}
 #root #homepage {
   .row {
     margin-right: 15px;

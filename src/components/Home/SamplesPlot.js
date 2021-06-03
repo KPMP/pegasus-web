@@ -16,6 +16,53 @@ class SamplesPlot extends Component {
         };
     }
 
+    componentDidMount() {
+        this.loadSVGBars()
+    }
+
+    loadSVGBars() {
+        let svg;
+        // Interval as plotly renders the svg _slightly_ after component mount
+        let svgCheck = setInterval(() => {
+            svg = document.getElementsByClassName('samples-plot')[0].getElementsByTagName('svg')[0]
+            if (svg) {
+                clearInterval(svgCheck);
+                let strokeColor = "#ccc";
+                let strokeWidth = "2px";
+                let separatorLine_01 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+                separatorLine_01.setAttribute("d", "M 15 100 L 250 100");
+                separatorLine_01.style.stroke = strokeColor;
+                separatorLine_01.style.strokeWidth = strokeWidth;
+                svg.appendChild(separatorLine_01);
+
+                let separatorLine_02 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+                separatorLine_02.setAttribute("d", "M 15 200 L 250 200");
+                separatorLine_02.style.stroke = strokeColor;
+                separatorLine_02.style.strokeWidth = strokeWidth;
+                svg.appendChild(separatorLine_02);
+
+
+                let separatorLine_03 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+                separatorLine_03.setAttribute("d", "M 15 300 L 250 300");
+                separatorLine_03.style.stroke = strokeColor;
+                separatorLine_03.style.strokeWidth = strokeWidth;
+                svg.appendChild(separatorLine_03);
+
+
+                let separatorLine_04 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+                separatorLine_04.setAttribute("d", "M 15 400 L 250 400");
+                separatorLine_04.style.stroke = strokeColor;
+                separatorLine_04.style.strokeWidth = strokeWidth;
+                svg.appendChild(separatorLine_04);
+
+                let separatorLine_05 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+                separatorLine_05.setAttribute("d", "M 15 433 L 250 433");
+                separatorLine_05.style.stroke = strokeColor;
+                separatorLine_05.style.strokeWidth = strokeWidth;
+                svg.appendChild(separatorLine_05);
+            }
+        }, 50)
+    }
     render() {
         var data = [{
             type: 'bar',
@@ -45,9 +92,8 @@ class SamplesPlot extends Component {
             orientation: 'h'
         }];
 
-
         return (
-            <div className="s">
+            <div>
                 <div className="row tightrow">
                     <div className="samples-plot">
                         <Plot
@@ -81,7 +127,7 @@ class SamplesPlot extends Component {
                                     side: 'right'
                                 }
                             }}
-                            config={{ displayModeBar: false }}
+                            config={{ displayModeBar: false, staticPlot: true }}
                         />
                     </div>
                 </div>
