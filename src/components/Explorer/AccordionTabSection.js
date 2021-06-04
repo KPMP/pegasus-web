@@ -64,10 +64,10 @@ class AccordionTabSection extends Component {
         return (
             <TabPane tabId={this.props.tabId}>
                 <Row>
-                    <Col sm="6">
+                    <Col sm="5">
                         {cellTypes}
                     </Col>
-                    <Col sm="6">
+                    <Col sm="7">
                         {this.props.isNephronSchematic ?
                             <TubuleSchematic
                                 activeCell={this.state.activeCell}
