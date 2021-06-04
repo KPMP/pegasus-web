@@ -41,7 +41,7 @@ const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
         if (response) {
             store.dispatch(sendMessageToBackend("Could not connect to GraphQL: " + networkError));
         } else {
-            // No response resiceved, user is probably attempting to navigate away during a data fetch
+            // No response received, user is probably attempting to navigate away during a data fetch
             const shouldUseRedirect = false;
             store.dispatch(sendMessageToBackend("Could not connect to GraphQL: " + networkError, shouldUseRedirect));
         }
