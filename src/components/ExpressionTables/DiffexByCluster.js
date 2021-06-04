@@ -7,7 +7,7 @@ import { CSVLink } from 'react-csv';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import DiffexInfoBar from './DiffexInfoBar';
-
+import { displayMaterialTable } from '../../../package.json';
 
 class DiffexByCluster extends Component {
 
@@ -157,22 +157,28 @@ class DiffexByCluster extends Component {
                                 </Row>
                                 <Row xs='12' id="diffexTable">
                                     <Col xs='12'>
-                                        <MaterialTable
-                                            data={this.state.diffexData}
-                                            title=''
-                                            columns={this.getColumns()}
-                                            options={{
-                                                tableLayout: 'fixed',
-                                                thirdSortClick: false,
-                                                pageSize: 20,
-                                                pageSizeOptions: [],
-                                                rowStyle: row => {
-                                                    let style = {
-                                                        padding: '1px'
-                                                    };
-                                                    return style;
-                                                }
-                                            }} />
+                                        {(
+                                            process.env.NODE_ENV != 'development' ||
+                                            displayMaterialTable
+                                        ) &&
+                                            <MaterialTable
+                                                data={this.state.diffexData}
+                                                title=''
+                                                columns={this.getColumns()}
+                                                options={{
+                                                    tableLayout: 'fixed',
+                                                    thirdSortClick: false,
+                                                    pageSize: 20,
+                                                    pageSizeOptions: [],
+                                                    rowStyle: row => {
+                                                        let style = {
+                                                            padding: '1px'
+                                                        };
+                                                        return style;
+                                                    }
+                                                }}
+                                            />
+                                        }
                                     </Col>
                                 </Row>
                             </React.Fragment>
