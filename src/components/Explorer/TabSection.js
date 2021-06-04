@@ -32,7 +32,7 @@ class TabSection extends Component {
             });
 
             return (
-                <section><li>{subregion.subregionName}</li>
+                <section><li className="subregion-name">{subregion.subregionName}</li>
                     <ul className='cell-type-list'>
                         {cellTypes}
                     </ul>

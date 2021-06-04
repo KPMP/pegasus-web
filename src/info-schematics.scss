@@ -203,6 +203,9 @@
 
 .nephron_tubule_schematic-container {
   text-align: center;
+  position: -webkit-sticky; /* Safari & IE */
+  position: sticky;
+  top: 5%;
 }
 
 #nephron_tubules_schematic{

@@ -64,7 +64,6 @@ tr.MuiTableRow-root:nth-child(even) {
   }
 
   .cell-type-list {
-    background-color: #cee5ff;
     padding-left: 0px;
     @media (max-width: 992px) {
       position: relative;
@@ -120,6 +119,19 @@ tr.MuiTableRow-root:nth-child(even) {
     line-height: 650px;
     font-size: xx-large;
   }
+
+  .subregion-name {
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  .btn.btn-link{
+    font-size:14px;
+  }
+  .btn.btn-link:hover {
+    color: #cee5ff;
+  }
+
 }
 
 .expression-table,
