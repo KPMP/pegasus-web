@@ -51,22 +51,34 @@ class RNASeqViz extends Component {
             <Container id='outer-wrapper'>
                 <DataTypeSelectorContainer />
                 <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
+
                     <Row xs='12'>
                         <Col lg='6'>
-                            <h5>Reference UMAP</h5>
-                            <hr />
+                            <Row xs='12' className='mb-4'>
+                                <Col lg='12'>
+                                    <h5>Reference UMAP</h5>
+                                    <hr />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col lg='6' className="umapPlot-container">
+                                    <UMAPPlot data={this.state.plotData} dataType={this.props.dataType} tissueType={this.props.tissueType} />
+                                </Col>
+                            </Row>
                         </Col>
+
                         <Col lg='6'>
-                            <h5>{this.props.gene.symbol} Expression</h5>
-                            <hr />
-                        </Col>
-                    </Row>
-                    <Row xs='12' className='mb-4'>
-                        <Col lg='6' className="umapPlot-container">
-                            <UMAPPlot data={this.state.plotData} dataType={this.props.dataType} tissueType={this.props.tissueType} />
-                        </Col>
-                        <Col lg='6' className="featurePlot-container">
-                            <FeaturePlot data={this.state.plotData} dataType={this.props.dataType} gene={this.props.gene.symbol} tissueType={this.props.tissueType} />
+                            <Row xs='12' className='mb-4'>
+                                <Col lg='12'>
+                                    <h5>{this.props.gene.symbol} Expression</h5>
+                                    <hr />
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col lg='6' className="featurePlot-container">
+                                    <FeaturePlot data={this.state.plotData} dataType={this.props.dataType} gene={this.props.gene.symbol} tissueType={this.props.tissueType} />
+                                </Col>
+                            </Row>
                         </Col>
                     </Row>
                     <Row>
