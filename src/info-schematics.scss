@@ -20,7 +20,7 @@
 
 #glomerulus_schematic > * {
   #vascular_smooth_muscle_cell.disabled > * {    
-      fill: rgb(119, 119, 119);
+      fill: #aaaaaa;
       stroke: #aaaaaa;   
   }
   #vascular_smooth_muscle_cell > * {
@@ -30,8 +30,8 @@
       transition: fill .05s ease;
   }
   #proximal_tubule_S1_.disabled > * {
-      fill: rgb(119, 119, 119);
-      stroke: #aaaaaa;
+      fill: #aaaaaa;
+      stroke: rgb(119, 119, 119);
   }
   #proximal_tubule_S1_ > * {
       -webkit-transition: fill .05s ease;
@@ -40,8 +40,8 @@
       transition: fill .05s ease;
   }
   #glomerulus_proximal_tubule.disabled > * {
-      fill: rgb(119, 119, 119);
-      stroke: #aaaaaa;
+      fill: #aaaaaa;
+      stroke: rgb(119, 119, 119);
   }
 
   #glomerulus_proximal_tubule > * {
@@ -52,8 +52,8 @@
   }
 
   #mesangium.disabled > *{
-      fill: rgb(119, 119, 119);
-      stroke: #aaaaaa;
+      fill: #aaaaaa;
+      stroke: rgb(119, 119, 119);
   }
   #mesangium > *{
       -webkit-transition: fill .05s ease;
@@ -65,12 +65,12 @@
   #parietal_basement_membrane.disabled{
       .cls-8 {
         fill: rgba(119, 119, 119, 0);
-        stroke: #aaaaaa;
+        stroke: rgb(119, 119, 119);
       }
     }
     #glomerular_basement_membrane.disabled{
         fill: rgba(119, 119, 119, 0);
-        stroke: #aaaaaa;
+        stroke: rgb(119, 119, 119);
     }
   #basement_membranes{
     #parietal_basement_membrane{
@@ -91,8 +91,8 @@
 
   #distal_tubule.disabled{
     .cls-10,.cls-11{
-      fill: rgb(119, 119, 119);
-      stroke: #aaaaaa;
+      fill: #aaaaaa;
+      stroke: rgb(119, 119, 119);
     }
   }
   #distal_tubule{
@@ -102,8 +102,8 @@
       transition: fill .05s ease;
   }
   #macula_densa.disabled > * {
-      fill: rgb(119, 119, 119);
-      stroke: #aaaaaa;
+      fill: #aaaaaa;
+      stroke: rgb(119, 119, 119);
   }
   #macula_densa > * {
       -webkit-transition: fill .05s ease;
@@ -113,8 +113,8 @@
   }
 
   #endothelial_cells.disabled > * {
-      fill: rgb(119, 119, 119);
-      stroke: #aaaaaa;
+      fill: #aaaaaa;
+      stroke: rgb(119, 119, 119);
   }
 
   #endothelial_cells > * {
@@ -125,8 +125,8 @@
   }
 
   #parietal_epithelial_cells.disabled > * {
-      fill: rgb(119, 119, 119);
-      stroke: #aaaaaa;
+      fill: #aaaaaa;
+      stroke: rgb(119, 119, 119);
   }
   #parietal_epithelial_cells > * {
       -webkit-transition: fill .05s ease;
@@ -135,8 +135,8 @@
       transition: fill .05s ease;
   }
   #podocytes.disabled > * {
-      fill: rgb(119, 119, 119);
-      stroke: #aaaaaa;
+      fill: #aaaaaa;
+      stroke: rgb(119, 119, 119);
   }
   #podocytes > * {
       -webkit-transition: fill .05s ease;
@@ -146,8 +146,8 @@
   }
 
   #juxtaglomerular_granular_cell.disabled > * {
-      fill: rgb(119, 119, 119);
-      stroke: #aaaaaa;
+      fill: #aaaaaa;
+      stroke: rgb(119, 119, 119);
   }
   #juxtaglomerular_granular_cell > * {
       -webkit-transition: fill .05s ease;
@@ -157,8 +157,8 @@
   }
 
   #renin_granules.disabled > * {
-      fill: rgb(119, 119, 119);
-      stroke: #aaaaaa;
+      fill: #aaaaaa;
+      stroke: rgb(119, 119, 119);
   }
   #renin_granules > * {
       -webkit-transition: fill .05s ease;
@@ -168,7 +168,7 @@
   }
 
   #vascular_smooth_muscle_cell.disabled > * {
-      fill: rgb(119, 119, 119);
+      fill: #aaaaaa;
       stroke: #aaaaaa;
   }
   #vascular_smooth_muscle_cell > * {
