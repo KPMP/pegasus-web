@@ -127,9 +127,10 @@ tr.MuiTableRow-root:nth-child(even) {
 
   .btn.btn-link{
     font-size:14px;
+    width: 100%
   }
   .btn.btn-link:hover {
-    color: #cee5ff;
+    background-color: #cee5ff;
   }
 
 }
