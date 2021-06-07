@@ -5,9 +5,20 @@ export const handleError = (error) => {
   };
 };
 
-export const sendMessageToBackend = error => {
+export const handleErrorWithoutRedirect = (error) => {
   return dispatch => {
-    dispatch(handleError(error));
+    console.log(error)
+  };
+};
+
+export const sendMessageToBackend = (error, useRedirect = true) => {
+  return dispatch => {
+    if (useRedirect) {
+      dispatch(handleError(error));
+    } else {
+      dispatch(handleErrorWithoutRedirect(error));
+    }
+
   }
   // Uncomment this section once you have an api to send errors to
   //	return (dispatch) => {

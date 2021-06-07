@@ -27,7 +27,7 @@ const httpLink = new HttpLink({
     uri: getBaseURL() + '/graphql'
 });
 
-const errorLink = onError(({ graphQLErrors, networkError }) => {
+const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
     if (graphQLErrors)
         graphQLErrors.forEach(({ message, locations, path }) =>
             store.dispatch(sendMessageToBackend(
@@ -36,7 +36,15 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
         );
 
     if (networkError) {
-        store.dispatch(sendMessageToBackend("Could not connect to GraphQL: " + networkError));
+        let { response } = operation.getContext()
+
+        if (response) {
+            store.dispatch(sendMessageToBackend("Could not connect to GraphQL: " + networkError));
+        } else {
+            // No response received, user is probably attempting to navigate away during a data fetch
+            const shouldUseRedirect = false;
+            store.dispatch(sendMessageToBackend("Could not connect to GraphQL: " + networkError, shouldUseRedirect));
+        }
     };
 });
 
