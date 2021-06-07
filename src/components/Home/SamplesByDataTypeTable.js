@@ -46,8 +46,8 @@ class SamplesByDataTypeTable extends Component {
                 accessor: 'ckdTissue',
                 headerClassName: 'data-type-table-header',
                 className: 'data-type-table-content',
-                minHeaderWidth: 150,
-                minWidth: 150,
+                minHeaderWidth: 145,
+                minWidth: 145,
             },
             {
                 Header: () => (
@@ -57,8 +57,8 @@ class SamplesByDataTypeTable extends Component {
                 accessor: 'akiTissue',
                 headerClassName: 'data-type-table-header',
                 className: 'data-type-table-content',
-                minHeaderWidth: 150,
-                minWidth: 150
+                minHeaderWidth: 145,
+                minWidth: 145
             },
         ]
     };
