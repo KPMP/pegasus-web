@@ -39,7 +39,7 @@ class TubuleSchematic extends Component {
                             <path class="cls-3" d="M378.64,244.66l1.91.57" /></g>
 
                         <g id="distal_convoluted_tubule"
-                            onClick={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.DISTAL_CONVOLUTED_TUBULE); }}
+                            onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.DISTAL_CONVOLUTED_TUBULE); }}
                             onMouseEnter={() => {
                                 this.props.handleSchematicHoverEnter(CellTypeEnum.DISTAL_CONVOLUTED_TUBULE);
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 3 } } })
@@ -417,7 +417,7 @@ class TubuleSchematic extends Component {
                             <path class="cls-14" d="M98.7,12.72c.59.19,1.13.35,1.52.45" /></g>
 
                         <g id="descending_thin_limb"
-                            onClick={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.DESCENDING_THIN_LIMB); }}
+                            onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.DESCENDING_THIN_LIMB); }}
                             onMouseEnter={() => {
                                 this.props.handleSchematicHoverEnter(CellTypeEnum.DESCENDING_THIN_LIMB)
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 1 } } })
@@ -497,7 +497,7 @@ class TubuleSchematic extends Component {
                             <path class="cls-16" d="M232.91,489.6a16.8,16.8,0,0,1-2.34.2" /></g>
 
                         <g id="ascending_thin_limb"
-                            onClick={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.ASCENDING_THIN_LIMB); }}
+                            onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.ASCENDING_THIN_LIMB); }}
                             onMouseEnter={() => {
                                 this.props.handleSchematicHoverEnter(CellTypeEnum.ASCENDING_THIN_LIMB)
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 1 } } })
@@ -535,7 +535,7 @@ class TubuleSchematic extends Component {
                             <path class="cls-18" d="M228.85,485.19c.55.1,1.13.06,1.69.11" /></g>
 
                         <g id="connecting_tubule"
-                            onClick={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.CONNECTING_TUBULE); }}
+                            onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.CONNECTING_TUBULE); }}
                             onMouseEnter={() => {
                                 this.props.handleSchematicHoverEnter(CellTypeEnum.CONNECTING_TUBULE)
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 4 } } })
@@ -733,7 +733,7 @@ class TubuleSchematic extends Component {
                         <g id="collecting_duct" data-name="collecting duct">
 
                             <g id="cortical_collecting_duct"
-                                onClick={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.CORTICAL_COLLECTING_DUCT); }}
+                                onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.CORTICAL_COLLECTING_DUCT); }}
                                 onMouseEnter={() => {
                                     this.props.handleSchematicHoverEnter(CellTypeEnum.CORTICAL_COLLECTING_DUCT)
                                     this.props.toggleCollapseTab({ target: { dataset: { event: 5 } } })
@@ -886,7 +886,7 @@ class TubuleSchematic extends Component {
                                 <path class="cls-22" d="M173.22,57.34c-1.24.83-1.53,1.06-2.62,1.79,0,2.89.28,7.23.28,9.7,1.62-1.63,2.32-2,2.81-2.47C173.69,64.29,173.28,57.86,173.22,57.34Z" /><rect class="cls-22" x="159.62" y="38.21" width="6.17" height="7.79" transform="translate(7.23 105.94) rotate(-36.83)" /></g>
 
                             <g id="inner_medullary_collecting_duct"
-                                onClick={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.INNER_MEDULLARY_COLLECTING_DUCT); }}
+                                onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.INNER_MEDULLARY_COLLECTING_DUCT); }}
                                 onMouseEnter={() => {
                                     this.props.handleSchematicHoverEnter(CellTypeEnum.INNER_MEDULLARY_COLLECTING_DUCT)
                                     this.props.toggleCollapseTab({ target: { dataset: { event: 5 } } })
@@ -1018,7 +1018,7 @@ class TubuleSchematic extends Component {
                                 <path class="cls-23" d="M175,410.79a16.81,16.81,0,0,1,2.37-1.32" /><rect class="cls-22" x="163.77" y="356.39" width="7.16" height="17.6" transform="translate(4.4 -1.99) rotate(0.69)" /><rect class="cls-22" x="164.97" y="351.86" width="6.79" height="7.59" transform="translate(-9.17 4.49) rotate(-1.49)" /><polygon class="cls-22" points="172.28 400.23 163.38 399 163.6 381.66 172 382.04 172.28 400.23" /><polygon class="cls-22" points="172.13 458.95 160.44 453.06 161.63 440.43 171.17 440.67 172.13 458.95" /><polygon class="cls-22" points="173.21 428.89 163.13 429.85 163.15 410.87 172.49 410.69 173.21 428.89" /></g>
 
                             <g id="outer_medullary_collecting_duct"
-                                onClick={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT); }}
+                                onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT); }}
                                 onMouseEnter={() => {
                                     this.props.handleSchematicHoverEnter(CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT)
                                     this.props.toggleCollapseTab({ target: { dataset: { event: 5 } } })
@@ -1045,7 +1045,7 @@ class TubuleSchematic extends Component {
                         <g id="proximal_tubule" data-name="proximal tubule">
 
                             <g id="proximal_tubule_S1_"
-                                onClick={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_1); }}
+                                onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_1); }}
                                 onMouseEnter={() => {
                                     this.props.handleSchematicHoverEnter(CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_1)
                                     this.props.toggleCollapseTab({ target: { dataset: { event: 0 } } })
@@ -1414,7 +1414,7 @@ class TubuleSchematic extends Component {
                                 <path class="cls-27" d="M265.7,211.09a15.9,15.9,0,0,1-2.47-1.41" /></g>
 
                             <g id="proximal_tubule_S2_"
-                                onClick={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_2); }}
+                                onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_2); }}
                                 onMouseEnter={() => {
                                     this.props.handleSchematicHoverEnter(CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_2)
                                     this.props.toggleCollapseTab({ target: { dataset: { event: 0 } } })
@@ -1761,7 +1761,7 @@ class TubuleSchematic extends Component {
                                 <path class="cls-29" d="M319.11,174.36c-.61-.2-1.2-.38-2-.69" /></g>
 
                             <g id="proximal_tubule_S3_"
-                                onClick={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_3); }}
+                                onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_3); }}
                                 onMouseEnter={() => {
                                     this.props.handleSchematicHoverEnter(CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_3)
                                     this.props.toggleCollapseTab({ target: { dataset: { event: 0 } } })
@@ -1831,7 +1831,7 @@ class TubuleSchematic extends Component {
 
                         <g id="renal_corpuscle"
                             onClick={() => {
-                                this.props.handleSchematicHoverEnter(CellTypeEnum.ALL)
+                                this.props.handleCellTypeClick(CellTypeEnum.ALL)
                                 this.props.setActiveTab('1')
                             }}
                             onMouseEnter={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.RENAL_CORPUSCLE) }}
@@ -1870,7 +1870,7 @@ class TubuleSchematic extends Component {
                             <path class="cls-40" d="M88.43,72.6c-1-4.39-.63-10.12,2.29-13.72l-.55-.42a5.33,5.33,0,0,1-5.1,2.4l-1.43,8.91a3.81,3.81,0,0,1,4.18,3.1S88.18,72.69,88.43,72.6Z" /></g>
 
                         <g id="thick_ascending_limb"
-                            onClick={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.THICK_ASCENDING_LIMB_CELL); }}
+                            onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.THICK_ASCENDING_LIMB_CELL); }}
                             onMouseEnter={() => {
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 2 } } })
                                 this.props.handleSchematicHoverEnter(CellTypeEnum.THICK_ASCENDING_LIMB_CELL)
@@ -2041,7 +2041,7 @@ class TubuleSchematic extends Component {
                             <path class="cls-43" d="M120.51,50.92c-.22-.57-.48-1.15-.73-1.72" /><polygon class="cls-41" points="127.6 45.73 120.19 49.01 119.39 47.23 126.76 43.88 127.6 45.73" /><line class="cls-43" x1="128.01" y1="45.55" x2="127.17" y2="43.69" /><line class="cls-43" x1="119.78" y1="49.2" x2="118.98" y2="47.42" /><polygon class="cls-41" points="126.76 43.88 119.39 47.23 118.55 45.38 125.95 42.09 126.76 43.88" /><line class="cls-43" x1="127.17" y1="43.69" x2="126.36" y2="41.91" /><line class="cls-43" x1="118.98" y1="47.42" x2="118.14" y2="45.56" />
 
                             <g id="nephron_macula_densa"
-                                onClick={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.MACULA_DENSA_CELL); }}
+                                onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.MACULA_DENSA_CELL); }}
                                 onMouseEnter={() => {
                                     this.props.handleSchematicHoverEnter(CellTypeEnum.MACULA_DENSA_CELL)
                                     this.props.toggleCollapseTab({ target: { dataset: { event: 3 } } })
