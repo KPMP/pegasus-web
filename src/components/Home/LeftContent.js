@@ -7,8 +7,11 @@ class LeftContent extends Component {
       <Row>
         <Container className="mt-3 rounded border p-3 shadow-sm">
           <h5>Atlas Explorer</h5>
-          <div>Search for markers or cell types of interest and view summary data visualizations across the various KPMP 'omics' technologies.
-                  </div>
+          <div>
+            <p>
+              Search for markers or cell types of interest and view summary data visualizations across the various KPMP 'omics' technologies.
+            </p>
+          </div>
           <div className='mt-3'>
             <Button color='primary' href='/explorer' size='lg' block>Go to Explorer</Button>
           </div>
@@ -16,8 +19,10 @@ class LeftContent extends Component {
         <Container className="mt-3 rounded border p-3 shadow-sm">
           <h5>Atlas Repository</h5>
           <div>
-            Download raw gene data generated from KPMP participant biopsies and reference tissue samples.
-                  </div>
+            <p>
+              Download raw gene data generated from KPMP participant biopsies and reference tissue samples.
+            </p>
+          </div>
           <div className='mt-3'>
             <Button color='primary' href='/repository' size='lg' block>Go to Repository</Button>
           </div>
@@ -25,8 +30,10 @@ class LeftContent extends Component {
         <Container className="mt-3 rounded border p-3 shadow-sm">
           <h5>KPMP Central Biorepository</h5>
           <div>
-            Learn more about ancillary study opportunities using KPMP biospecimens and other resources.
-                  </div>
+            <p>
+              Learn more about ancillary study opportunities using KPMP biospecimens and other resources.
+            </p>
+          </div>
           <div className='mt-3'>
             <Button color='primary' href='/repository' size='lg' block>Collaborate with us</Button>
           </div>
