@@ -1,5 +1,6 @@
 import {connect} from "react-redux";
 import RegionalViz from "./RegionalViz";
+import { setTissueType } from '../../actions/TissueType/tissueTypeActions'
 
 const mapStateToProps = (state, props) =>
     ({
@@ -11,6 +12,9 @@ const mapStateToProps = (state, props) =>
 
 const mapDispatchToProps = (dispatch, props) =>
     ({
+        setTissueType(tissueType) {
+            dispatch(setTissueType(tissueType));
+        }
     });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RegionalViz)

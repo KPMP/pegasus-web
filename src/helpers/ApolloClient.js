@@ -258,3 +258,62 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, tissue
     }
 };
 
+export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) => {
+    let query = gql`
+        query {
+            getRTGeneExpressionByTissue(comparisonType:"${comparisonType}", geneSymbol: "${geneSymbol}") {
+                aki {
+                    id
+                    segment
+                    geneSymbol
+                    pVal
+                    foldChange
+                    pValLog10
+                    stdDev
+                    sampleCount
+                }
+                ckd {
+                    id
+                    segment
+                    geneSymbol
+                    pVal
+                    foldChange
+                    pValLog10
+                    stdDev
+                    sampleCount
+                }
+                all {
+                    id
+                    segment
+                    geneSymbol
+                    pVal
+                    foldChange
+                    pValLog10
+                    stdDev
+                    sampleCount
+                }
+                hrt {
+                    id
+                    segment
+                    geneSymbol
+                    pVal
+                    foldChange
+                    pValLog10
+                    stdDev
+                    sampleCount
+                }
+            }
+        }`;
+
+    const response = await apolloClient.query({
+        query: query,
+        fetchPolicy: 'cache-first'
+    });
+
+    if (response.data && response.data.getRTGeneExpressionByTissue) {
+        return response.data.getRTGeneExpressionByTissue;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve regional transcriptomics data: " + response.error));
+    }
+};
+

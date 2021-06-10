@@ -3,6 +3,7 @@
 @import "./assets/font-awesome-6/fontawesome.scss";
 @import "./assets/font-awesome-6/regular.scss";
 @import "./assets/font-awesome-6/solid.scss";
+@import "../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
 
 .inactive {
   color: lightgray;
@@ -246,6 +247,7 @@ tr.MuiTableRow-root:nth-child(even) {
 
 .icon-info {
   cursor: pointer;
+  z-index: 1000;
 }
 
 .tooltip-inner {
@@ -632,3 +634,79 @@ tr.MuiTableRow-root:nth-child(even) {
     }
   }
 }
+
+.ag-theme-material {
+
+  $cell-height: 30px;
+  $odd-cell-background-color:  #cee5ff;
+
+  .ag-header-cell {
+    background-color: white;
+  }
+
+  .ag-row {
+    height: $cell-height !important;
+  }
+
+  .ag-cell {
+    line-height: $cell-height !important;
+  }
+
+  .ag-row-odd {
+    background-color: $odd-cell-background-color !important;
+  }
+
+  .ag-row-odd.ag-row-hover  {
+    background-color: $odd-cell-background-color !important;
+  }
+
+  .ag-row-even.ag-row-hover  {
+    background-color: white !important;
+  }
+
+  .ag-header-cell-label {
+    font-weight: 500;
+    font-style: normal;
+    color: black;
+    font-size: 11px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  }
+
+  .ag-header {
+    height: 40px !important;
+    min-height: 40px !important;
+  }
+
+  .ag-header-active {
+    background-color: white !important;
+  }
+
+  .custom-tooltip {
+    position: absolute;
+    width: 165px;
+    height: 110px;
+    pointer-events: none;
+    transition: opacity 1s;
+    background-color: white;
+    border-radius: 0 !important;
+    box-shadow: 2px 2px 4px 0px rgba(161, 161, 161, 1);
+    padding: 2px;
+  }
+
+  .custom-tooltip.ag-tooltip-hiding {
+    opacity: 0;
+  }
+
+  .custom-tooltip p {
+    margin: 5px;
+    white-space: nowrap;
+  }
+
+  .custom-tooltip p:first-of-type {
+    font-weight: bold;
+  }
+
+}
+
