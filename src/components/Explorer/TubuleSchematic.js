@@ -9,8 +9,6 @@ class TubuleSchematic extends Component {
                     <defs>
                         <clipPath id="clip-path"><polygon class="cls-1" points="162.43 30.98 162.46 31.98 162.46 236.22 37.56 236.22 37.56 30.98 162.43 30.98" /></clipPath><clipPath id="clip-path-2"><polygon class="cls-1" points="162.43 30.98 162.46 31.98 174.14 235.89 298.83 228.74 287.08 23.83 162.43 30.98" /></clipPath></defs>
 
-
-
                     <g id="Layer_2" data-name="Layer 2">
 
                         <g id="regional_boundaries" data-name="regional boundaries">
@@ -1831,7 +1829,7 @@ class TubuleSchematic extends Component {
 
                         <g id="renal_corpuscle"
                             onClick={() => {
-                                this.props.handleCellTypeClick(CellTypeEnum.ALL)
+                                this.props.setActiveCell(CellTypeEnum.ALL)
                                 this.props.setActiveTab('1')
                             }}
                             onMouseEnter={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.RENAL_CORPUSCLE) }}

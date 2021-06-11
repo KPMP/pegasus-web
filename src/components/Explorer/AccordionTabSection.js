@@ -10,6 +10,22 @@ class AccordionTabSection extends Component {
         this.state = { collapse: 0 }
     }
 
+    componentDidUpdate(prevProps, prevState) {
+
+        // force the accordion to drop when coming from the glom tab
+        if (prevProps.activeCell !== CellTypeEnum.MACULA_DENSA_CELL
+            && this.props.activeCell == CellTypeEnum.MACULA_DENSA_CELL) {
+            this.toggleWithoutResetting({ target: { dataset: { event: 3 } } })
+            this.setState({ activeCellState: CellTypeEnum.MACULA_DENSA_CELL })
+        }
+        if (prevProps.activeCell !== CellTypeEnum.THICK_ASCENDING_LIMB_CELL
+            && this.props.activeCell == CellTypeEnum.THICK_ASCENDING_LIMB_CELL) {
+            this.toggleWithoutResetting({ target: { dataset: { event: 2 } } })
+            this.setState({ activeCellState: CellTypeEnum.THICK_ASCENDING_LIMB_CELL })
+        }
+
+
+    }
     toggle = (toggleEvent) => {
         let event = toggleEvent.target.dataset.event;
         this.setState({ collapse: this.state.collapse === Number(event) ? 0 : Number(event) });
