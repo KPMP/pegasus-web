@@ -65,7 +65,7 @@ class AccordionTabSection extends Component {
                     <Col sm="5">
                         {cellTypes}
                     </Col>
-                    <Col sm="7">
+                    <Col sm="6">
                         {this.props.isNephronSchematic ?
                             <TubuleSchematic
                                 activeCell={this.props.activeCell}

@@ -52,7 +52,7 @@ class TabSection extends Component {
         return (
             <TabPane tabId={this.props.tabId}>
                 <Row>
-                    <Col sm="6">
+                    <Col sm="5">
                         <div className='cell-type-list p-3'>
                             {cellTypes}
                         </div>
