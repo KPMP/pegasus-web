@@ -7,7 +7,6 @@ class TabSection extends Component {
 
     constructor(props) {
         super(props);
-        console.log(this.props)
         this.state = {
             activeCell: ''
         }
@@ -17,7 +16,6 @@ class TabSection extends Component {
         let subregions = this.props.data;
         let subregionText = subregions.map((subregion) => {
             let cellTypes = subregion.cellTypes.map((cellType) => {
-                console.log('celltype?', cellType.cellType, this.props.activeCell)
                 return <li>
                     <button
                         onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
@@ -54,7 +52,7 @@ class TabSection extends Component {
         return (
             <TabPane tabId={this.props.tabId}>
                 <Row>
-                    <Col sm="6">
+                    <Col sm="5">
                         <div className='cell-type-list p-3'>
                             {cellTypes}
                         </div>

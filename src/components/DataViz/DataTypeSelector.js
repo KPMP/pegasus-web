@@ -58,7 +58,7 @@ class DataTypeSelector extends Component {
     }
 
     setSelectedDatasetSummary(dataTypeShort, availableData) {
-        for (const [dataset] of availableData.entries()) {
+        for (const [dataType, dataset] of availableData.entries()) {
             if (dataset["dataTypeShort"] === dataTypeShort) {
                 this.setState({ selectedDataset: dataset })
             }
