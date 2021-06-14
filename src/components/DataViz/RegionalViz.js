@@ -41,7 +41,7 @@ class RegionalViz extends Component {
                 this.setState({rtGTTableData: result[this.props.tissueType]});
             }
         );
-    }
+    };
 
     render() {
         let plot = {};
