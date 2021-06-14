@@ -1,24 +1,172 @@
 import {Spinner} from "reactstrap";
 import React, {Component} from 'react';
+import Plotly from '../../helpers/Plotly';
+import createPlotlyComponent from 'react-plotly.js/factory';
+import { Col } from 'reactstrap';
+const Plot = createPlotlyComponent(Plotly);
 
 class LMDDotPlot extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { plotData: [], isLoading: false };
+        this.state = { plotData: [], legendPlotData: [], isLoading: false };
+        this.setData(props.data);
     }
+
+    componentDidUpdate(prevProps) {
+        if (this.props.data !== prevProps.data) {
+            this.setState({ isLoading: true });
+            this.setData(this.props.data);
+        }
+    }
+
+    getSizeRef = (valueArr) => {
+        return 2.0 * Math.max(...valueArr) / (40**2)
+    };
+
+    flattenResults = (resultObj) => {
+        let resultArr = [];
+        for (const [key, value] of Object.entries(resultObj)) {
+            if (key !== '__typename') {
+                resultArr = resultArr.concat(value)
+            }
+        }
+        return resultArr;
+    };
+
+    sortByTissueFunc = (resultA, resultB) => {
+        let tissueMap = new Map([['all', 4], ['hrt', 3], ['aki', 2], ['ckd', 1]]);
+        return (tissueMap.get(resultB.tissueType) - tissueMap.get(resultA.tissueType));
+    };
+
+    getSizeLegendPlot = (bubbles) => {
+        let max = Math.max(...bubbles);
+        let min = Math.min(...bubbles);
+        let middle = ((max - min)) / 2 + min;
+        let topQ = ((max - middle) / 2) + middle;
+        let bottomQ = ((middle - min)) / 2 + min;
+        let sizeValues = [max, topQ, middle, bottomQ, min];
+        let plotObj = {
+            x: sizeValues.map(element => element * 0),
+            y: sizeValues,
+            type: 'scatter',
+            mode: 'markers',
+            marker: {
+                size: sizeValues,
+                sizemode: 'area',
+                sizeref: this.getSizeRef(bubbles),
+                symbol: 'circle',
+                color: 'black'
+            }
+        };
+        return plotObj;
+
+    };
+
+    setData = (data) => {
+        let plotObj = {};
+        let legendPlotObj = {};
+        let xValues = [];
+        let yValues = [];
+        let bubbles = [];
+        let colors = [];
+
+        let resultArr = this.flattenResults(data).sort(this.sortByTissueFunc);
+
+        if (data) {
+            resultArr.forEach((row) => {
+                xValues.push(row.tissueType);
+                yValues.push(row.segment);
+                bubbles.push(row.pValLog10);
+                colors.push(row.foldChange);
+            });
+            plotObj = {
+                x: xValues,
+                y: yValues,
+                type: 'scatter',
+                mode: 'markers',
+                name: 'log2asdfasdfasdf',
+                marker: {
+                    size: bubbles,
+                    sizemode: 'area',
+                    sizeref: this.getSizeRef(bubbles),
+                    symbol: 'circle',
+                    colorscale: 'Viridis',
+                    showscale: true,
+                    reversescale: true,
+                    color: colors,
+                    colorbar: { title: 'log2 (Fold Change)' }
+                }
+            };
+            legendPlotObj = this.getSizeLegendPlot(bubbles);
+            this.setState({ isLoading: false })
+        } else {
+            this.setState({ isLoading: true });
+        }
+        this.setState({ plotData: [plotObj], legendPlotData: [legendPlotObj] });
+
+    };
 
     render() {
         if (this.state.isLoading) {
             return (
                 <div className='viz-spinner'>
-                    <Spinner color='primary'/>
+                    <Spinner color='primary' />
                 </div>
             )
         } else {
             return (
-                <div>[DotPlotGoesHere]</div>
-            )
+                <React.Fragment>
+                <Col lg={8} className='text-right pr-0 mr-0'>
+                <Plot divId="lmdPlot" data={this.state.plotData}
+                      layout={{
+                          colorbar:
+                              {title:'log2'},
+                          margin: {
+                            r:0,
+                            p:0,
+                              t:50
+                          },
+
+                      }}
+                      config={{
+                          displayModeBar: false,
+                          staticPlot: true
+                      }}
+                />
+                </Col>
+                <Col lg={4} className='text-left mt-4 pl-0'>
+                    <Plot divId="lmdLegendPlot" data={this.state.legendPlotData}
+                          layout={{
+                              title: {
+                                  text: '-log10(p value)',
+                                  font: { size: 12},
+                                  yref: 'paper',
+                                  y : 1,
+                                  xref: 'paper',
+                                  x: 1,
+                                  pad: {b: 10},
+                                  yanchor : 'bottom'
+                              },
+                              width: 195,
+                              height: 410,
+                              margin: {
+                                  l: 0,
+                                  r: 100,
+                                  t: 58,
+                                  pad: 4
+                              },
+                              yaxis: { zeroline: false, showgrid: true, showline: true, side: 'right' },
+                              xaxis: { zeroline: false, showgrid: false, showline: false, visible: false },
+                          }}
+                          config={{
+                              displayModeBar: false,
+                              staticPlot: true
+                          }}
+                    />
+                </Col>
+                </React.Fragment>
+    )
         }
     }
 }
