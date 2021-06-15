@@ -100,7 +100,7 @@ class SamplesPlot extends Component {
                             data={data}
                             layout={{
                                 autosize: false,
-                                width: 795,
+                                width: 815,
                                 height: 500,
                                 textposition: 'auto',
                                 margin: {
