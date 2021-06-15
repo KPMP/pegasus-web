@@ -52,7 +52,6 @@ class RegionalTranscriptomicsTable extends Component {
     render() {
         return (
             <React.Fragment>
-            <Row>
                 <Col lg='12'>
                     <div className="ag-theme-material" style={{height: '100%', width: '100%'}}>
                         <AgGridReact
@@ -78,7 +77,6 @@ class RegionalTranscriptomicsTable extends Component {
                         </AgGridReact>
                     </div>
                 </Col>
-            </Row>
             </React.Fragment>
         )
     }
