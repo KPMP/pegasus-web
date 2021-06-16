@@ -24,10 +24,10 @@ class AccordionTabSection extends Component {
             this.setState({ activeCellState: CellTypeEnum.THICK_ASCENDING_LIMB_CELL })
         }
 
-        if (prevProps.activeCell !== CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_1
-            && this.props.activeCell == CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_1) {
+        if (prevProps.activeCell !== CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1
+            && this.props.activeCell == CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1) {
             this.toggleWithoutResetting({ target: { dataset: { event: 0 } } })
-            this.setState({ activeCellState: CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL_SEGMENT_1 })
+            this.setState({ activeCellState: CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1 })
         }
 
 
