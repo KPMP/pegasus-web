@@ -75,6 +75,8 @@ type ClusterHierarchy {
   clusterName: String
   isSingleNucCluster: String
   isSingleCellCluster: String
+  isRegionalTranscriptomics: String
+  cellTypeOrder: Float
 }
 
 type PlotData {

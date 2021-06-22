@@ -31,9 +31,6 @@ export const setDataTypeAndRedirect = (dataType, props) => {
             case "rt":
                 props.history.push('/explorer/regionalviz');
                 break;
-            case "rp":
-                props.history.push('/explorer/regionalviz');
-                break;
             default:
                 props.history.push('/explorer/');
         }

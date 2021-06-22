@@ -30,6 +30,8 @@ export const formatDataType = (dataType) => {
             return "snRNASeq";
         case "sc":
             return "scRNASeq";
+        case "rt":
+            return "Regional transcriptomics";
         default:
             return dataType
 
@@ -96,6 +98,11 @@ export const getDataTypeOptions = async (geneSymbol, cluster) => {
                 label: "scRNA-seq",
                 value: "sc",
                 isDisabled: !dataTypes.includes("sc")
+            },
+            {
+                label: "Regional transcriptomics",
+                value: "rt",
+                isDisabled: !dataTypes.includes("rt")
             },
         ];
         return options;

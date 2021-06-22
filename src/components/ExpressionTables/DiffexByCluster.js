@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MaterialTable from 'material-table';
 import { Col, Row, Container, Spinner, UncontrolledTooltip } from 'reactstrap';
 import { formatNumberToPrecision, formatDataType } from '../../helpers/Utils'
-import { fetchGeneExpression } from '../../helpers/ApolloClient';
+import { fetchGeneExpression, fetchRegionalTranscriptomicsByStructure } from '../../helpers/ApolloClient';
 import { CSVLink } from 'react-csv';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
@@ -23,16 +23,29 @@ class DiffexByCluster extends Component {
     }
 
     fetchGeneExpression = () => {
-        fetchGeneExpression(this.props.dataType, '', this.props.cluster, 'all').then(
-            (geneExpressionData) => {
-                this.setState({ diffexData: geneExpressionData, isLoading: false })
-            },
-            (error) => {
-                this.setState({ diffexData: [] });
-                console.log('There was a problem getting the data: ' + error)
-            }
-        );
-    }
+        if (this.props.dataType === 'rt')
+        {
+            fetchRegionalTranscriptomicsByStructure(this.props.cluster).then(
+                (geneExpressionData) => {
+                    this.setState({ diffexData: geneExpressionData, isLoading: false })
+                },
+                (error) => {
+                    this.setState({ diffexData: [] });
+                    console.log('There was a problem getting the data: ' + error)
+                }
+            );
+        } else {
+            fetchGeneExpression(this.props.dataType, '', this.props.cluster, 'all').then(
+                (geneExpressionData) => {
+                    this.setState({ diffexData: geneExpressionData, isLoading: false })
+                },
+                (error) => {
+                    this.setState({ diffexData: [] });
+                    console.log('There was a problem getting the data: ' + error)
+                }
+            );
+        };
+    };
 
     componentDidUpdate(prevProps) {
         if (this.props.dataType !== prevProps.dataType) {
@@ -40,6 +53,10 @@ class DiffexByCluster extends Component {
             this.fetchGeneExpression();
         }
     }
+
+    getPvalAdjField = () => {
+        return this.props.dataType === 'rt'?'pValLog10':'pValAdj';
+    };
 
     getGeneLink = (gene) => {
         return <button onClick={() => this.handleClick(gene)} type='button' className='table-column btn btn-link text-left p-0'>{gene}</button>
@@ -92,7 +109,7 @@ class DiffexByCluster extends Component {
                 <UncontrolledTooltip placement='bottom' target='pvalue-adj-info' >
                     Adjusted p-value, based on bonferroni correction using all features in the dataset.
                 </UncontrolledTooltip></span>,
-            field: 'pValAdj',
+            field: this.getPvalAdjField(),
             align: 'right',
             width: "15%",
             sorting: true,
