@@ -75,7 +75,7 @@ class LMDDotPlot extends Component {
 
         if (data) {
             resultArr.forEach((row) => {
-                xValues.push(row.tissueType);
+                xValues.push(row.tissueType.toUpperCase());
                 yValues.push(row.segment);
                 bubbles.push(row.pValLog10);
                 colors.push(row.foldChange);
@@ -85,7 +85,7 @@ class LMDDotPlot extends Component {
                 y: yValues,
                 type: 'scatter',
                 mode: 'markers',
-                name: 'log2asdfasdfasdf',
+                name: 'RTDotPlot',
                 marker: {
                     size: bubbles,
                     sizemode: 'area',
