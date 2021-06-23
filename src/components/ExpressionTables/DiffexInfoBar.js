@@ -51,7 +51,7 @@ class DiffexInfoBar extends Component {
                         />
                     </Col>
                     <Col xs='9' className='mt-2 pl-0'>
-                        <h5> {(this.props.dataType === 'sn' || this.props.dataType === 'sc')?'Differential expression*':'abundance*'} in {this.props.cluster} </h5>
+                        <h5> {(this.props.dataType === 'sn' || this.props.dataType === 'sc' || this.props.dataType === 'rt')?' Differential expression*':'abundance*'} in {this.props.cluster} </h5>
                     </Col>
                 </Row>
                     <Row xs='12' className='pl-2 pt-2'>

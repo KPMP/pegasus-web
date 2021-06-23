@@ -54,10 +54,6 @@ class DiffexByCluster extends Component {
         }
     }
 
-    getPvalAdjField = () => {
-        return this.props.dataType === 'rt'?'pValLog10':'pValAdj';
-    };
-
     getGeneLink = (gene) => {
         return <button onClick={() => this.handleClick(gene)} type='button' className='table-column btn btn-link text-left p-0'>{gene}</button>
     };
@@ -109,7 +105,7 @@ class DiffexByCluster extends Component {
                 <UncontrolledTooltip placement='bottom' target='pvalue-adj-info' >
                     Adjusted p-value, based on bonferroni correction using all features in the dataset.
                 </UncontrolledTooltip></span>,
-            field: this.getPvalAdjField(),
+            field: 'pValAdj',
             align: 'right',
             width: "15%",
             sorting: true,
@@ -130,7 +126,7 @@ class DiffexByCluster extends Component {
     ];
 
     handleClick = (gene) => {
-        this.props.setGene({ symbol: gene, name: '' });
+        this.props.setGene({ symbol: gene, name: '' }, this.props.dataType);
     };
 
     getExportFilename = () => {
