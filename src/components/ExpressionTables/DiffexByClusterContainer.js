@@ -13,9 +13,13 @@ const mapStateToProps = (state, props) =>
 
 const mapDispatchToProps = (dispatch, props) =>
     ({
-        setGene(gene) {
+        setGene(gene, dataType) {
             dispatch(setGene(gene));
-            dispatch((dispatch) => props.history.push("/explorer/dataviz"));
+            if (dataType === 'rt') {
+                dispatch((dispatch) => props.history.push("/explorer/regionalviz"));
+            } else {
+                dispatch((dispatch) => props.history.push("/explorer/dataviz"));
+            }
         },
         setDataType(dataType) {
             dispatch(setDataType(dataType));

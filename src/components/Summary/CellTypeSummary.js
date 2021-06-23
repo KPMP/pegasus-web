@@ -35,9 +35,17 @@ class CellTypeSummary extends Component {
                 console.log('There was a problem getting the data: ' + error)
             }
         );
-    }
+    };
 
-    handleLinkClick = (dataType, cluster) => {
+    handleLinkClick = (dataType, row) => {
+        let cluster = row.clusterName;
+        if (!cluster) {
+            if(!row.structureSubregion) {
+                cluster = row.structureRegion;
+            } else {
+                cluster = row.structureSubregion;
+            }
+        }
         this.props.setDataTypeAndCluster(dataType, cluster);
     };
 
@@ -95,12 +103,22 @@ class CellTypeSummary extends Component {
                     this.linkDataTypeCells(row, 'sc')
                 )
             },
+            {
+                Header: <span className='cell-summary-table-header-center'>REGIONAL<br />TRASCRIPTOMICS</span>,
+                id: 'rt',
+                accessor: 'isRegionalTranscriptomics',
+                headerClassName: 'table-header text-center',
+                className: 'table-column text-center',
+                Cell: ({ row }) => (
+                    this.linkDataTypeCells(row, 'rt')
+                )
+            },
         ]
     };
 
     linkDataTypeCells(row, dataType) {
         if (row[dataType] === 'Y') {
-            return <button onClick={() => this.handleLinkClick(dataType, row.clusterName)} type='button' className='btn btn-link text-left p-0 cell-summary-table-button'>View</button>
+            return <button onClick={() => this.handleLinkClick(dataType, row)} type='button' className='btn btn-link text-left p-0 cell-summary-table-button'>View</button>
         }
         return '';
     }

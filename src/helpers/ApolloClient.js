@@ -141,8 +141,10 @@ export const fetchClusterHierarchy = async (cellType) => {
                    structureSubregion
                    isSingleNucCluster
                    isSingleCellCluster
+                   isRegionalTranscriptomics
                    cellTypeId
-                   clusterId 
+                   clusterId
+                   cellTypeOrder
                 }
             }`
     });
@@ -319,5 +321,35 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
     } else {
         store.dispatch(sendMessageToBackend("Could not retrieve regional transcriptomics data: " + response.error));
     }
+
 };
+
+export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
+    let query = gql`
+        query {
+            getRTGeneExpressionByStructure(structure: "${structure}") {
+                id
+                segment
+                gene: geneSymbol 
+                pVal
+                foldChange
+                pValAdj: pValLog10 
+                stdDev
+                sampleCount
+                tissueType
+            }
+        }`;
+
+    const response = await apolloClient.query({
+        query: query,
+        fetchPolicy: 'cache-first'
+    });
+
+    if (response.data && response.data.getRTGeneExpressionByStructure) {
+        return response.data.getRTGeneExpressionByStructure;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve regional transcriptomics data: " + response.error));
+    }
+}
+
 

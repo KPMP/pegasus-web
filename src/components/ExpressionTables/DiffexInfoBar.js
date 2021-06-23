@@ -40,7 +40,7 @@ class DiffexInfoBar extends Component {
             <Container className='pb-3 pt-1 px-0 sticky-top' id='dt-select-container'>
                 <Container className='rounded border shadow-sm pb-4 p-4'>
                 <Row xs='12'>
-                    <Col lg='2' className='d-table pr-1'>
+                    <Col lg='3' className='d-table pr-1'>
                         <Select
                             value={selectedValue}
                             options={this.state.dataTypeOptions}
@@ -50,8 +50,8 @@ class DiffexInfoBar extends Component {
                             styles={{menu: provided => ({...provided, zIndex:999})}}
                         />
                     </Col>
-                    <Col xs='10' className='mt-2 pl-0'>
-                        <h5> {(this.props.dataType === 'sn' || this.props.dataType === 'sc')?'Differential expression*':'abundance*'} in {this.props.cluster} </h5>
+                    <Col xs='9' className='mt-2 pl-0'>
+                        <h5> {(this.props.dataType === 'sn' || this.props.dataType === 'sc' || this.props.dataType === 'rt')?' Differential expression*':'abundance*'} in {this.props.cluster} </h5>
                     </Col>
                 </Row>
                     <Row xs='12' className='pl-2 pt-2'>
