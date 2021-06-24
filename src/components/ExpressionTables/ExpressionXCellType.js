@@ -68,7 +68,7 @@ class ExpressionXCellType extends Component {
                 Cell: ({ value }) => value ? value : 0
             },
             {
-                Header: <span>MEAN<br />EXPRESSION<span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='mean-expression-info' icon={faInfoCircle} /></span>
+                Header: <span>MEAN<br />EXPRESSION <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='mean-expression-info' icon={faInfoCircle} /></span>
                     <UncontrolledTooltip placement='bottom' target='mean-expression-info' >
                         Averaged expression values (logarithmic) for each cluster
                         </UncontrolledTooltip></span>,
