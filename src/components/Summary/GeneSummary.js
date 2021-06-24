@@ -171,7 +171,7 @@ class GeneSummary extends Component {
         return (
             <div className='mb-4'>
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
-                    <ConceptSelectFullWidth />
+                    <ConceptSelectFullWidth useRedirection={true} />
                 </Container>
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
                     <Row xs='12'>
