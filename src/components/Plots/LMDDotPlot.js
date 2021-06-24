@@ -9,7 +9,17 @@ class LMDDotPlot extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { plotData: [], legendPlotData: [], isLoading: false };
+        let { plotHeight, plotWidth } = this.getPlotSize();
+        let { legendPlotHeight, legendPlotWidth } = this.getLegendPlotSize();
+        this.state = {
+            plotData: [],
+            legendPlotData: [],
+            isLoading: false,
+            plotHeight: plotHeight,
+            plotWidth: plotWidth,
+            legendPlotHeight: legendPlotHeight,
+            legendPlotWidth: legendPlotWidth
+        };
         this.setData(props.data);
     }
 
@@ -19,6 +29,54 @@ class LMDDotPlot extends Component {
             this.setData(this.props.data);
         }
     }
+
+    componentDidMount() {
+        window.addEventListener("resize", this.setPlotSize);
+    }
+
+    componentWillUnmount() {
+        window.addEventListener("resize", null);
+    }
+
+    setPlotSize = () => {
+        let { plotHeight, plotWidth } = this.getPlotSize();
+        let { legendPlotHeight, legendPlotWidth } = this.getLegendPlotSize();
+        this.setState({ plotHeight, plotWidth, legendPlotHeight, legendPlotWidth })
+    };
+
+    getPlotSize = (plotSize, event) => {
+
+        if (window.innerWidth > 1197) {
+            return { plotHeight: 450, plotWidth: 700 };
+        } else if (window.innerWidth > 991 && window.innerWidth <= 1197) {
+            return { plotHeight: 400, plotWidth: 650 }
+        } else if (window.innerWidth > 767 && window.innerWidth <= 991) {
+            return { plotHeight: 400, plotWidth: 650 }
+        } else if (window.innerWidth > 508 && window.innerWidth <= 767) {
+            return { plotHeight: 290, plotWidth: 450 }
+        } else if (window.innerWidth > 408 && window.innerWidth <= 508) {
+            return { plotHeight: 290, plotWidth: 450 }
+        } else if (window.innerWidth > 0 && window.innerWidth <= 408) {
+            return { plotHeight: 290, plotWidth: 450 }
+        }
+    };
+
+    getLegendPlotSize = (plotSize, event) => {
+
+        if (window.innerWidth > 1197) {
+            return { legendPlotHeight: 410, legendPlotWidth: 195 };
+        } else if (window.innerWidth > 991 && window.innerWidth <= 1197) {
+            return { legendPlotHeight: 360, legendPlotWidth: 145 }
+        } else if (window.innerWidth > 767 && window.innerWidth <= 991) {
+            return { legendPlotHeight: 360, legendPlotWidth: 145 }
+        } else if (window.innerWidth > 508 && window.innerWidth <= 767) {
+            return { legendPlotHeight: 200, legendPlotWidth: 35 }
+        } else if (window.innerWidth > 408 && window.innerWidth <= 508) {
+            return { legendPlotHeight: 200, legendPlotWidth: 35 }
+        } else if (window.innerWidth > 0 && window.innerWidth <= 408) {
+            return { legendPlotHeight: 200, legendPlotWidth: 35 }
+        }
+    };
 
     getSizeRef = (valueArr) => {
         return 2.0 * Math.max(...valueArr) / (40**2)
@@ -117,9 +175,11 @@ class LMDDotPlot extends Component {
         } else {
             return (
                 <React.Fragment>
-                <Col lg={8} className='text-right pr-0 mr-0'>
+                <Col xs={8} className='text-right pr-0 mr-0'>
                 <Plot divId="lmdPlot" data={this.state.plotData}
                       layout={{
+                          width: this.state.plotWidth,
+                          height: this.state.plotHeight,
                           colorbar:
                               {title:'log2'},
                           margin: {
@@ -135,7 +195,7 @@ class LMDDotPlot extends Component {
                       }}
                 />
                 </Col>
-                <Col lg={4} className='text-left mt-4 pl-0'>
+                <Col xs={4} className='text-left mt-4 pl-0'>
                     <Plot divId="lmdLegendPlot" data={this.state.legendPlotData}
                           layout={{
                               title: {
@@ -148,8 +208,8 @@ class LMDDotPlot extends Component {
                                   pad: {b: 10},
                                   yanchor : 'bottom'
                               },
-                              width: 195,
-                              height: 410,
+                              width: this.state.legendPlotWidth,
+                              height: this.state.legendPlotHeight,
                               margin: {
                                   l: 0,
                                   r: 100,
