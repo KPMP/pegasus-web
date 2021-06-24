@@ -153,18 +153,18 @@ class ExpressionXCellType extends Component {
                     <Row xs='12'>
                         <Col xs='12'>
                             <ReactTable
-                            style={{ border: 'none' }}
-                            data={this.props.data}
-                            ref={this.reactTable}
-                            sortable={false}
-                            columns={this.getColumns()}
-                            className='-striped expression-table'
-                            showPagination={false}
-                            noDataText={'No data found'}
-                            minRows={this.props.data.length}
-                            getTrProps={this.getTrProps}
-                            defaultPageSize={100}
-                        />
+                                style={{ border: 'none' }}
+                                data={this.props.data}
+                                ref={this.reactTable}
+                                sortable={true}
+                                columns={this.getColumns()}
+                                className='-striped expression-table'
+                                showPagination={false}
+                                noDataText={'No data found'}
+                                minRows={this.props.data.length}
+                                getTrProps={this.getTrProps}
+                                defaultPageSize={100}
+                            />
                         </Col>
                     </Row>
                 </React.Fragment>
