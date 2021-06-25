@@ -4,7 +4,7 @@ export const formatNumberToPrecision = (number, precision) => {
     if (number) {
         return number.toPrecision(precision)
     } else {
-        return "N/A"
+        return "Not Significant"
     }
 };
 
