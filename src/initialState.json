@@ -16,7 +16,7 @@
       "akiTissue": 12
     },
     {
-      "dataType": "Regional transcripomics (LMD RNA-seq)",
+      "dataType": "Regional transcriptomics (LMD RNA-seq)",
       "healthyTissue": 0,
       "ckdTissue": 0,
       "akiTissue": 0
