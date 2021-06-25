@@ -159,7 +159,7 @@ class ExpressionXCellType extends Component {
                                 style={{ border: 'none' }}
                                 data={this.props.data}
                                 ref={this.reactTable}
-                                sortable={false}
+                                sortable={true}
                                 columns={this.getColumns()}
                                 className='-striped expression-table'
                                 showPagination={false}
