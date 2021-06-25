@@ -40,7 +40,7 @@ class CellTypeSummary extends Component {
     handleLinkClick = (dataType, row) => {
         let cluster = row.clusterName;
         if (!cluster) {
-            if(!row.structureSubregion) {
+            if (!row.structureSubregion) {
                 cluster = row.structureRegion;
             } else {
                 cluster = row.structureSubregion;
@@ -128,7 +128,7 @@ class CellTypeSummary extends Component {
         return (
             <div>
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
-                    <ConceptSelectFullWidth />
+                    <ConceptSelectFullWidth useRedirection={true} />
                 </Container>
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
                     <Row xs='12'>
