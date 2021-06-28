@@ -77,6 +77,7 @@ class FeaturePlot extends Component {
                     marker: marker
                 });
             });
+            groupData.sort((a, b) => (a.marker.showscale > b.marker.showscale) ? 1 : -1)
             this.setState({ isLoading: false })
         } else {
             this.setState({ isLoading: true });
