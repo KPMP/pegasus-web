@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import WelcomeText from './WelcomeText';
+import DataSelector from './DataSelector';
 import NephronSchemaCardContainer from './NephronSchemaCardContainer';
 import { setSelectedConcept } from '../../actions/Concepts/conceptActions'
+
 import { selectedConcept } from '../../initialState'
 import { connect } from "react-redux";
 
@@ -13,6 +15,7 @@ class Explorer extends Component {
         return (
             <article>
                 <WelcomeText />
+                <DataSelector />
                 <NephronSchemaCardContainer />
             </article>
         );
