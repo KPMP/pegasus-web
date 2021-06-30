@@ -136,6 +136,7 @@ class ExpressionXCellType extends Component {
                     <Row xs='12' className='mt-5'>
                         <Col xs='11'>
                             <h5><span>{this.props.gene}</span> Expression Comparison across Clusters in {formatTissueType(this.props.tissueType)}</h5>
+                            <h6>NS = Not Significant</h6>
                         </Col>
                         <Col xs='1' className='text-right'>
                             <CSVLink
