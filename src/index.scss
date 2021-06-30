@@ -316,6 +316,9 @@ tr.MuiTableRow-root:nth-child(even) {
     text-align: left !important;
   }
 }
+.expanded-search-container {
+  height: 95%;
+}
 
 #homepage {
   .landing p {
@@ -611,8 +614,10 @@ tr.MuiTableRow-root:nth-child(even) {
     font-size: 25px;
   }
 }
-.search-container {
-  margin-bottom: 3rem;
+
+.multi-container-container {
+  padding: 0px;
+  background-color:rgba(0, 0, 0, 0)
 }
 
 #diffexTable {
