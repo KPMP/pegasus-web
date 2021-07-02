@@ -103,7 +103,8 @@ class FeaturePlot extends Component {
             )
         } else if (Array.isArray(this.state.plotData) && this.state.plotData.length === 0) {
             return (
-                <div>
+                <div className="expression-search-copy">
+                    <i className="fa fa-share"></i>
                     <h6>Gene Expression:</h6>
                     <p>Enter a gene above to get started</p>
                 </div>
