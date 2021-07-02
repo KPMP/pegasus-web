@@ -95,7 +95,6 @@ class FeaturePlot extends Component {
     };
 
     render() {
-        console.log('this.state', this.state.plotData, this.state.isLoading, this.props.isLoading)
         if (this.state.isLoading || this.props.isLoading) {
             return (
                 <div className='viz-spinner'>
@@ -108,7 +107,6 @@ class FeaturePlot extends Component {
                     <h6>Gene Expression:</h6>
                     <p>Enter a gene above to get started</p>
                 </div>
-
             )
         } else {
             return (
