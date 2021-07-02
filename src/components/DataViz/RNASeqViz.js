@@ -82,7 +82,7 @@ class RNASeqViz extends Component {
                                     <div className={(!this.state.isLoadingUmap && this.state.plotData.length > 0) ? 'featurePlot-title' : 'featurePlot-title-hidden'}><h5>{this.props.gene.symbol} Expression</h5><hr /></div>
                                 </Col>
                             </Row>
-                            <Row className="featurePlot-loader-background">
+                            <Row className={(!this.state.isLoadingUmap && !this.props.gene.symbol && this.state.plotData.length >= 0) ? 'featurePlot-loader-background' : ''}>
                                 <Col lg='12' className="featurePlot-container">
                                     <FeaturePlot data={this.state.plotData} dataType={this.props.dataType} isLoading={this.state.isLoadingUmap} gene={this.props.gene.symbol} tissueType={this.props.tissueType} />
                                 </Col>
