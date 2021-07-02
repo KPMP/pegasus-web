@@ -11,7 +11,7 @@ import { sum } from "../../helpers/Utils";
 class RNASeqViz extends Component {
     constructor(props) {
         super(props);
-        this.state = { plotData: [], geneExpressionData: [], isLoading: true };
+        this.state = { plotData: [], geneExpressionData: [], isLoading: true, isLoadingUmap: true };
     };
 
     cleanResults = (results) => {
@@ -19,18 +19,23 @@ class RNASeqViz extends Component {
     };
 
     componentDidMount() {
-        this.getGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType, 'network-only');
-        this.getUmapPoints(this.props.dataType, this.props.gene.symbol, this.props.tissueType, 'network-only');
+        if (this.props.gene.symbol) {
+            this.getGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType, 'network-only');
+            this.getUmapPoints(this.props.dataType, this.props.gene.symbol, this.props.tissueType, 'network-only');
+        } else {
+            this.setState({ isLoading: false, isLoadingUmap: false })
+        }
     }
 
     componentDidUpdate(prevProps) {
         if (this.props.tissueType !== prevProps.tissueType
             || this.props.dataType !== prevProps.dataType
             || this.props.gene.symbol !== prevProps.gene.symbol) {
-            this.setState({ plotData: [], geneExpressionData: [], isLoading: true });
-
-            this.getGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType);
-            this.getUmapPoints(this.props.dataType, this.props.gene.symbol, this.props.tissueType);
+            this.setState({ plotData: [], geneExpressionData: [], isLoading: false });
+            if (this.props.gene.symbol) {
+                this.getGeneExpression(this.props.dataType ? this.props.dataType : 'sn', this.props.gene.symbol, "", this.props.tissueType ? this.props.tissueType : 'all');
+                this.getUmapPoints(this.props.dataType ? this.props.dataType : 'sn', this.props.gene.symbol, this.props.tissueType ? this.props.tissueType : 'all');
+            }
         }
     }
 
@@ -43,7 +48,7 @@ class RNASeqViz extends Component {
 
     getUmapPoints = async (dataType, gene, tissueType, fetchPolicy) => {
         const results = await fetchPlotlyData(dataType, gene, tissueType, fetchPolicy);
-        this.setState({ plotData: results });
+        this.setState({ plotData: results, isLoadingUmap: false });
     };
 
     render() {
@@ -70,20 +75,24 @@ class RNASeqViz extends Component {
                         <Col lg='6'>
                             <Row xs='12' className='mb-4'>
                                 <Col lg='12'>
-                                    <h5>{this.props.gene.symbol} Expression</h5>
-                                    <hr />
+
+                                    {(!this.state.isLoadingUmap && this.state.plotData.length > 0)
+                                        ?
+                                        <div><h5>{this.props.gene.symbol} Expression</h5><hr /></div>
+                                        : <div></div>}
+
                                 </Col>
                             </Row>
                             <Row>
                                 <Col lg='6' className="featurePlot-container">
-                                    <FeaturePlot data={this.state.plotData} dataType={this.props.dataType} gene={this.props.gene.symbol} tissueType={this.props.tissueType} />
+                                    <FeaturePlot data={this.state.plotData} dataType={this.props.dataType} isLoading={this.state.isLoadingUmap} gene={this.props.gene.symbol} tissueType={this.props.tissueType} />
                                 </Col>
                             </Row>
                         </Col>
                     </Row>
                     <Row>
                         <Col>
-                            <hr />
+                            {(!this.state.isLoading && this.state.geneExpressionData.length > 0) && <hr />}
                         </Col>
                     </Row>
                     <ExpressionXCellType dataType={this.props.dataType} data={this.state.geneExpressionData} isLoading={this.state.isLoading} gene={this.props.gene.symbol} tissueType={this.props.tissueType} />
