@@ -130,6 +130,8 @@ class ExpressionXCellType extends Component {
                     <Spinner color='primary' />
                 </div>
             )
+        } else if (this.props.data.length == 0) {
+            return (<div></div>)
         } else {
             return (
                 <React.Fragment>
