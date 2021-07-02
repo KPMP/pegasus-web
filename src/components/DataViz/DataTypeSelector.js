@@ -11,7 +11,7 @@ class DataTypeSelector extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tissueInputValue: getTissueTypeOptions({}, this.props.tissueType),
+            tissueInputValue: this.props.tissueType ? this.props.tissueType : "",
             tissueValue: null,
             dataTypeInputValue: null,
             dataTypeOptions: [],
@@ -44,7 +44,6 @@ class DataTypeSelector extends Component {
 
     componentDidMount() {
         this.fetchGeneDatasetSummary(this.props.gene.symbol)
-
         getDataTypeOptions(this.props.gene.symbol, "").then(
             (options) => {
                 let selectedOption = options.find(item => this.props.dataType === item.value);
@@ -58,9 +57,16 @@ class DataTypeSelector extends Component {
     }
 
     setSelectedDatasetSummary(dataTypeShort, availableData) {
+        if (!dataTypeShort && availableData && availableData.length > 0) {
+            this.props.setDataType(availableData[0].dataTypeShort);
+            this.setState({ selectedDataset: availableData[0], tissueInputValue: "all" })
+            return
+        }
+
         for (const [dataType, dataset] of availableData.entries()) {
             if (dataset["dataTypeShort"] === dataTypeShort) {
                 this.setState({ selectedDataset: dataset })
+                return
             }
 
         }
@@ -83,7 +89,6 @@ class DataTypeSelector extends Component {
                 if (datasetSummary) {
                     datasetSummary = this.formatGeneDataset(datasetSummary)
                     this.setSelectedDatasetSummary(this.props.dataType, datasetSummary)
-
                     this.setState({
                         availableData: datasetSummary
                     });
@@ -116,13 +121,17 @@ class DataTypeSelector extends Component {
     };
 
     render() {
-        let selectedValue = this.state.dataTypeInputValue;
+        let selectedValue = this.state.dataTypeInputValue ? this.state.dataTypeInputValue : null;
         return (
             <Container className='pb-3 pt-2 px-0 sticky-top' id='dt-select-container'>
                 <Container className='rounded border shadow-sm pb-4 px-4'>
                     <Row xs="12">
                         <Col lg="2" id='concept-selector' className='px-2 pt-3'>
-                            <ConceptSelectContainer searchType="gene" dataType={this.props.dataType} selectedConcept={{ value: this.props.gene.symbol, name: "" }} placeHolderText={""} smallFormat={true} />
+                            <ConceptSelectContainer searchType="gene"
+                                dataType={this.props.dataType}
+                                selectedConcept={{ value: this.props.gene.symbol, name: "" }}
+                                placeHolderText={"Enter a gene"}
+                                smallFormat={true} />
                         </Col>
                         <Col lg="3" className='d-table px-2 pt-3'>
                             <span className='d-table-cell text-bigger pr-2'>in:</span>
@@ -132,7 +141,6 @@ class DataTypeSelector extends Component {
                                 onChange={this.handleTissueSelect}
                                 value={this.state.tissueValue}
                                 inputValue={this.state.tissueInputValue}
-                                defaultInputValue={getTissueTypeOptions(this.state.selectedDataset, this.props.tissueType)}
                                 onFocus={() => this.setState({ tissueInputValue: "" })}
                                 className='select d-table-cell w-100 pl-2'
                             />
