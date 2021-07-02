@@ -17,7 +17,9 @@ class RegionalViz extends Component {
     };
 
     componentDidMount() {
-        this.getRTData();
+        if (this.props.gene.symbol) {
+            this.getRTData();
+        }
     };
 
     componentDidUpdate(prevProps, prevState, snapShot) {
@@ -57,38 +59,53 @@ class RegionalViz extends Component {
         return (
             <Container id='outer-wrapper'>
                 <DataTypeSelectorContainer />
-                <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
-                    <Row xs='12'>
-                        <Col lg='12'>
-                            <h5>{this.props.gene.symbol} Expression</h5>
+                {!this.props.gene.symbol ?
+                    <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
+                        <div className="regional-search-copy">
+                            <Row xs='12'>
+                                <Col lg={{ size: 1, offset: 4 }}>
+                                    <i className="fa fa-share"></i>
+                                </Col>
+                                <Col lg='7'>
+                                    <h6>Gene Expression:</h6>
+                                    <p>Enter a gene above to get started</p>
+                                </Col>
+                            </Row>
+                        </div>
+                    </Container >
+                    : <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
+                        <Row xs='12'>
+                            <Col lg='12'>
+                                <h5>{this.props.gene.symbol} Expression</h5>
+                                <hr />
+                            </Col>
+                        </Row>
+                        <Row xs='12'>
+                            <Col lg='12' className='text-left'>
+                                <span className='d-table-cell pr-4 pb-2 text-nowrap'>Display by: </span>
+                                <span className='d-table-cell'>
+                                    <ButtonGroup>
+                                        <Button color="primary" onClick={() => this.setState({ selectedComparison: 'all_segments' })} active={this.state.selectedComparison === 'all_segments'}>Regions</Button>
+                                        <Button color="primary" onClick={() => this.setState({ selectedComparison: 'glom_tub' })} active={this.state.selectedComparison === 'glom_tub'}>Glom vs TI</Button>
+                                    </ButtonGroup>
+                                </span>
+                            </Col>
+                        </Row>
+                        <Row xs='12' className='mb-4'>
+                            {plot}
                             <hr />
-                        </Col>
-                    </Row>
-                    <Row xs='12'>
-                        <Col lg='12' className='text-left'>
-                            <span className='d-table-cell pr-4 pb-2 text-nowrap'>Display by: </span>
-                            <span className='d-table-cell'>
-                                <ButtonGroup>
-                                    <Button color="primary" onClick={() => this.setState({ selectedComparison: 'all_segments' })} active={this.state.selectedComparison === 'all_segments'}>Regions</Button>
-                                    <Button color="primary" onClick={() => this.setState({ selectedComparison: 'glom_tub' })} active={this.state.selectedComparison === 'glom_tub'}>Glom vs TI</Button>
-                                </ButtonGroup>
-                            </span>
-                        </Col>
-                    </Row>
-                    <Row xs='12' className='mb-4'>
-                        {plot}
-                        <hr />
-                    </Row>
-                    <Row xs='12'>
-                        <Col lg='12'>
-                            <h5>{this.props.gene.symbol} expression comparison across regions in {formatTissueType(this.props.tissueType)}</h5>
-                            <h6>NS = Not Significant</h6>
-                        </Col>
-                    </Row>
-                    <Row xs='12'>
-                        {table}
-                    </Row>
-                </Container>
+                        </Row>
+                        <Row xs='12'>
+                            <Col lg='12'>
+                                <h5>{this.props.gene.symbol} expression comparison across regions in {formatTissueType(this.props.tissueType)}</h5>
+                                <h6>NS = Not Significant</h6>
+                            </Col>
+                        </Row>
+                        <Row xs='12'>
+                            {table}
+                        </Row>
+                    </Container>
+                }
             </Container>
         )
     }

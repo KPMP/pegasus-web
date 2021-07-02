@@ -344,7 +344,26 @@ tr.MuiTableRow-root:nth-child(even) {
 .expression-search-copy {
   .fa-share {
     transform: rotate(-90deg);
+    color: #1c4587;
     font-size: 7em;
+  }
+}
+.regional-search-copy {
+  background-color: #e6f1ff;
+  height: 150px;
+  @media (max-width: 992px) {
+    margin-top: 5%;
+    margin-bottom: 5%;
+    text-align: center;
+    height: 200px;
+  }
+  .fa-share {
+    color: #1c4587;
+    transform: rotate(-90deg);
+    font-size: 3em;
+  }
+  .row {
+    padding-top:5%;
   }
 }
 .expanded-search-container {
