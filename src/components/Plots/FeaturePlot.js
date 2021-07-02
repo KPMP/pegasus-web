@@ -23,7 +23,9 @@ class FeaturePlot extends Component {
         if (this.props.data !== prevProps.data) {
             this.setState({ isLoading: true });
             this.setData(this.props.data);
-
+        }
+        if (this.props.isLoading !== prevProps.isLoading && !this.props.isLoading && this.state !== false) {
+            this.setState({ isLoading: false });
         }
     }
     componentDidMount() {
@@ -93,38 +95,49 @@ class FeaturePlot extends Component {
     };
 
     render() {
-        if (this.state.isLoading) {
+        console.log('this.state', this.state.plotData, this.state.isLoading, this.props.isLoading)
+        if (this.state.isLoading || this.props.isLoading) {
             return (
                 <div className='viz-spinner'>
                     <Spinner color='primary' />
                 </div>
             )
+        } else if (Array.isArray(this.state.plotData) && this.state.plotData.length === 0) {
+            return (
+                <div>
+                    <h6>Gene Expression:</h6>
+                    <p>Enter a gene above to get started</p>
+                </div>
+
+            )
         } else {
             return (
-                <Plot divId="featurePlot" data={this.state.plotData}
-                    layout={{
-                        width: this.state.plotWidth,
-                        height: this.state.plotHeight,
-                        showlegend: false,
-                        yaxis: { zeroline: false, showgrid: false, showline: true },
-                        xaxis: { zeroline: false, showgrid: false, showline: true },
-                        autosize: false,
-                        hovermode: 'closest',
-                        dragmode: 'pan',
-                        margin: {
-                            l: 25,
-                            r: 25,
-                            b: 25,
-                            t: 25,
-                            pad: 4
-                        }
-                    }}
-                    config={{
-                        displaylogo: false,
-                        toImageButtonOptions: { filename: this.getExportFilename() },
-                        modeBarButtonsToRemove: ['hoverCompareCartesian', 'hoverClosestCartesian', 'zoom2d', 'toggleSpikelines', 'toggleHover', 'select2d', 'lasso2d']
-                    }}
-                />
+                <div>
+                    <Plot divId="featurePlot" data={this.state.plotData}
+                        layout={{
+                            width: this.state.plotWidth,
+                            height: this.state.plotHeight,
+                            showlegend: false,
+                            yaxis: { zeroline: false, showgrid: false, showline: true },
+                            xaxis: { zeroline: false, showgrid: false, showline: true },
+                            autosize: false,
+                            hovermode: 'closest',
+                            dragmode: 'pan',
+                            margin: {
+                                l: 25,
+                                r: 25,
+                                b: 25,
+                                t: 25,
+                                pad: 4
+                            }
+                        }}
+                        config={{
+                            displaylogo: false,
+                            toImageButtonOptions: { filename: this.getExportFilename() },
+                            modeBarButtonsToRemove: ['hoverCompareCartesian', 'hoverClosestCartesian', 'zoom2d', 'toggleSpikelines', 'toggleHover', 'select2d', 'lasso2d']
+                        }}
+                    />
+                </div>
             )
         }
     }
