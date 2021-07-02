@@ -11,7 +11,7 @@ import { sum } from "../../helpers/Utils";
 class RNASeqViz extends Component {
     constructor(props) {
         super(props);
-        this.state = { plotData: [], geneExpressionData: [], isLoading: true, isLoadingUmap: true };
+        this.state = { prevPath: '', plotData: [], geneExpressionData: [], isLoading: true, isLoadingUmap: true };
     };
 
     cleanResults = (results) => {
@@ -19,7 +19,9 @@ class RNASeqViz extends Component {
     };
 
     componentDidMount() {
+        console.log('componmentDid?', this.props.gene.symbol)
         if (this.props.gene.symbol) {
+            console.log(';eh???ssss')
             this.getGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType, 'network-only');
             this.getUmapPoints(this.props.dataType, this.props.gene.symbol, this.props.tissueType, 'network-only');
         } else {
@@ -28,6 +30,7 @@ class RNASeqViz extends Component {
     }
 
     componentDidUpdate(prevProps) {
+
         if (this.props.tissueType !== prevProps.tissueType
             || this.props.dataType !== prevProps.dataType
             || this.props.gene.symbol !== prevProps.gene.symbol) {
@@ -76,11 +79,7 @@ class RNASeqViz extends Component {
                             <Row xs='12' className='mb-4'>
                                 <Col lg='12'>
 
-                                    {(!this.state.isLoadingUmap && this.state.plotData.length > 0)
-                                        ?
-                                        <div><h5>{this.props.gene.symbol} Expression</h5><hr /></div>
-                                        : <div></div>}
-
+                                    <div className={(!this.state.isLoadingUmap && this.state.plotData.length > 0) ? 'featurePlot-title' : 'featurePlot-title-hidden'}><h5>{this.props.gene.symbol} Expression</h5><hr /></div>
                                 </Col>
                             </Row>
                             <Row>

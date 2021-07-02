@@ -310,6 +310,13 @@ tr.MuiTableRow-root:nth-child(even) {
   z-index: 99;
 }
 
+.featurePlot-title-hidden {
+  color:rgba(0, 0, 0, 0);
+  hr {
+    border-top: 1px solid rgba(0, 0, 0, 0);
+  }
+
+}
 .featurePlot-container, .umapPlot-container {
   text-align: center !important;
   @media (max-width: 992px) {
