@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import WelcomeText from './WelcomeText';
-import DataSelector from './DataSelector';
+import DataSelectorContainer from './DataSelectorContainer';
 import NephronSchemaCardContainer from './NephronSchemaCardContainer';
 import { setSelectedConcept } from '../../actions/Concepts/conceptActions'
 
@@ -15,7 +15,7 @@ class Explorer extends Component {
         return (
             <article>
                 <WelcomeText />
-                <DataSelector />
+                <DataSelectorContainer />
                 <NephronSchemaCardContainer />
             </article>
         );
