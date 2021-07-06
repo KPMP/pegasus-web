@@ -18,7 +18,13 @@ const mapDispatchToProps = (dispatch, props) =>
         },
         setDataType(dataType) {
             dispatch(setDataType(dataType));
+            if (dataType === 'rt') {
+                dispatch((dispatch) => props.history.push("/explorer/regionalviz"));
+            } else if (dataType === 'sc' || dataType === 'sn') {
+                dispatch((dispatch) => props.history.push("/explorer/dataViz"));
+            }
         }
+        
     });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DataTypeSelector))
