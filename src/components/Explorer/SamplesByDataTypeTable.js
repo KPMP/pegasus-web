@@ -9,6 +9,7 @@ class SamplesByDataTypeTable extends Component {
     constructor(props) {
         super(props);
         this.getColumns = this.getColumns.bind(this);
+        this.handleDataTypeClick = this.handleDataTypeClick.bind(this);
         this.reactTable = React.createRef();
 
         this.state = {
@@ -16,13 +17,18 @@ class SamplesByDataTypeTable extends Component {
             summary: initialState.summary
         };
     }
+    handleDataTypeClick(dataType) {
+
+        let dataLinkageMapping = {
+            'Single-nucleus RNA-seq (snRNA-seq)': 'sn',
+            'Single-cell RNA-seq (scRNA-seq)': 'sc',
+            'Regional transcriptomics (LMD RNA-seq)': 'rt',
+        };
+
+        this.props.setSelectedConcept(dataLinkageMapping[dataType], this.props);
+    }
 
     getColumns() {
-        let dataLinkageMapping = {
-            'Single-nucleus RNA-seq (snRNA-seq)': 'foo',
-            'Single-cell RNA-seq (scRNA-seq)': 'bar',
-            'Regional transcriptomics (LMD RNA-seq)': 'car',
-        };
         return [
             {
                 Header: 'DATA TYPE',
@@ -31,7 +37,7 @@ class SamplesByDataTypeTable extends Component {
                 headerClassName: 'omics data-type-table-header',
                 className: 'data-type-table-content',
                 minWidth: 330,
-                Cell: e => <a href={dataLinkageMapping[e.value] ? dataLinkageMapping[e.value] : '404'}>
+                Cell: e => <a onClick={() => this.handleDataTypeClick(e.value)} href="#">
                     {e.value}
                 </a>
             },

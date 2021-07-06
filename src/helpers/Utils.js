@@ -54,35 +54,32 @@ export const sum = (array, property) => {
     return array.reduce((finalSum, item) => finalSum + item[property], 0);
 };
 
-export const getTissueTypeOptions = (datasetSummary, value) => {
+export const getTissueTypeOptions = (datasetSummary) => {
     const options = [
         {
             label: "All samples",
             value: "all",
-            isDisabled: datasetSummary.hrtCount === 0 && datasetSummary.akiCount === 0 && datasetSummary.ckdCount > 0
+            isDisabled: (datasetSummary.hrtCount === 0 && datasetSummary.akiCount === 0
+                && datasetSummary.ckdCount > 0) || typeof datasetSummary.hrtCount !== 'number'
         },
         {
             label: "Healthy Reference",
             value: "hrt",
-            isDisabled: !datasetSummary.hrtCount > 0
+            isDisabled: !datasetSummary.hrtCount > 0 || typeof datasetSummary.hrtCount !== 'number'
         },
         {
             label: "AKI",
             value: "aki",
-            isDisabled: !datasetSummary.akiCount > 0
+            isDisabled: !datasetSummary.akiCount > 0 || typeof datasetSummary.hrtCount !== 'number'
         },
         {
             label: "CKD",
             value: "ckd",
-            isDisabled: !datasetSummary.ckdCount > 0
+            isDisabled: !datasetSummary.ckdCount > 0 || typeof datasetSummary.hrtCount !== 'number'
         }
     ];
 
-    if (value) {
-        return options.find(item => value === item.value).label
-    } else {
-        return options
-    }
+    return options
 };
 
 export const getDataTypeOptions = async (geneSymbol, cluster) => {
