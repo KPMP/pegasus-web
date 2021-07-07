@@ -319,7 +319,11 @@ tr.MuiTableRow-root:nth-child(even) {
 }
 #umapPlot {
   width: 200%;
+  @media (max-width: 992px) {
+    width: 100%;
+  }
 }
+
 .featurePlot-container, .umapPlot-container {
   text-align: center !important;
   @media (max-width: 992px) {
