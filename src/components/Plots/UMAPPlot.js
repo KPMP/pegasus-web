@@ -1,99 +1,14 @@
 import React, { Component } from 'react';
-import Plotly from '../../helpers/Plotly';
-import createPlotlyComponent from 'react-plotly.js/factory';
-import { formatDataType, formatTissueType, median } from '../../helpers/Utils'
 import { Spinner } from "reactstrap";
-const Plot = createPlotlyComponent(Plotly);
+
+const DataTypeEnum = {
+    SINGLE_NUCLEUS: 'sn',
+    SINGLE_CELL: 'sc'
+}
 
 class UMAPPlot extends Component {
-    constructor(props) {
-        super(props);
-        let { plotHeight, plotWidth } = this.getPlotSize();
-        this.state = {
-            plotData: [], plotAnnotations: [], isLoading: true,
-            plotHeight: plotHeight,
-            plotWidth: plotWidth,
-        };
-        this.setData(props.data);
-        this.setPlotSize = this.setPlotSize.bind(this);
-    }
-
-    componentDidUpdate(prevProps) {
-        if (this.props.data !== prevProps.data) {
-            this.setData(this.props.data);
-        }
-    }
-    componentDidMount() {
-        window.addEventListener("resize", this.setPlotSize);
-    }
-    componentWillUnmount() {
-        window.addEventListener("resize", null);
-    }
-
-    setPlotSize() {
-        let { plotHeight, plotWidth } = this.getPlotSize();
-        this.setState({ plotHeight, plotWidth })
-    }
-    getPlotSize() {
-
-        if (window.innerWidth > 1197) {
-            return { plotHeight: 400, plotWidth: 400 };
-        } else if (window.innerWidth > 991 && window.innerWidth <= 1197) {
-            return { plotHeight: 350, plotWidth: 350 }
-        } else if (window.innerWidth > 767 && window.innerWidth <= 991) {
-            return { plotHeight: 600, plotWidth: 600 }
-        } else if (window.innerWidth > 508 && window.innerWidth <= 767) {
-            return { plotHeight: 400, plotWidth: 400 }
-        } else if (window.innerWidth > 408 && window.innerWidth <= 508) {
-            return { plotHeight: 300, plotWidth: 300 }
-        } else if (window.innerWidth > 0 && window.innerWidth <= 408) {
-            return { plotHeight: 225, plotWidth: 225 }
-        }
-    }
-
-    setData(inputData) {
-        let clusterData = [];
-        let annotations = [];
-        if (inputData && inputData.referenceData) {
-            inputData.referenceData.forEach(function (cluster) {
-                clusterData.push({
-                    type: 'scattergl',
-                    mode: 'markers',
-                    name: '',
-                    hoverinfo: 'text',
-                    text: cluster.clusterAbbreviation + "<br>" + cluster.clusterName,
-                    x: cluster.xValues,
-                    y: cluster.yValues,
-                    marker: { size: 2, color: cluster.color }
-                });
-                annotations.push({
-                    x: median(cluster.xValues),
-                    y: median(cluster.yValues),
-                    xref: 'x',
-                    yref: 'y',
-                    text: cluster.clusterAbbreviation,
-                    ax: 0,
-                    ay: 0,
-                    font: {
-                        family: 'Arial',
-                        color: 'black'
-                    }
-                });
-            });
-            this.setState({ isLoading: false })
-        } else {
-            this.setState({ isLoading: true });
-        }
-        this.setState({ plotData: clusterData, plotAnnotations: annotations });
-    };
-
-    getExportFilename = () => {
-        const tissueType = formatTissueType(this.props.tissueType).toLowerCase().replace(" ", "-");
-        return "KPMP_" + formatDataType(this.props.dataType) + '_UMAP_' + tissueType;
-    };
-
     render() {
-        if (this.state.isLoading) {
+        if (!this.props.dataType) {
             return (
                 <div className='viz-spinner'>
                     <Spinner color='primary' />
@@ -101,31 +16,21 @@ class UMAPPlot extends Component {
             )
         } else {
             return (
-                <Plot divId="umapPlot" data={this.state.plotData}
-                    layout={{
-                        annotations: this.state.plotAnnotations,
-                        width: this.state.plotWidth,
-                        height: this.state.plotHeight,
-                        showlegend: false,
-                        yaxis: { zeroline: false, showgrid: false, showline: true },
-                        xaxis: { zeroline: false, showgrid: false, showline: true },
-                        autosize: false,
-                        hovermode: 'closest',
-                        dragmode: 'pan',
-                        margin: {
-                            l: 25,
-                            r: 25,
-                            b: 25,
-                            t: 25,
-                            pad: 4
-                        }
-                    }}
-                    config={{
-                        displaylogo: false,
-                        toImageButtonOptions: { filename: this.getExportFilename() },
-                        modeBarButtonsToRemove: ['hoverCompareCartesian', 'hoverClosestCartesian', 'zoom2d', 'toggleSpikelines', 'toggleHover', 'select2d', 'lasso2d']
-                    }}
-                />
+                <div id="umapPlot-container">
+                    { this.props.dataType === DataTypeEnum.SINGLE_CELL &&
+                        <img
+                            id="umapPlot"
+                            alt="all samples of single cell UMAP"
+                            src="/img/sc_reference-UMAP_all-samples_single-cell.png" />
+                    }
+                    { this.props.dataType === DataTypeEnum.SINGLE_NUCLEUS &&
+                        <img
+                            id="umapPlot"
+                            alt="all samples of single nucleus UMAP"
+                            src="/img/sn_reference-UMAP_all-samples.png" />
+                    }
+
+                </div>
             )
         }
     }
