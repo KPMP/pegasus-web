@@ -53,27 +53,29 @@ class RegionalTranscriptomicsTable extends Component {
         return (
             <React.Fragment>
                 <Col lg='12'>
-                    <div className="ag-theme-material" style={{height: '100%', width: '100%'}}>
+                    <div className="ag-theme-material img-fluid" style={{height: '100%', width: '100%'}}>
                         <AgGridReact
                             rowData={this.props.data}
                             domLayout={'autoHeight'}
                             frameworkComponents={{customTooltip: CustomTooltip}}
                             tooltipShowDelay={0}
                         >
-                            <AgGridColumn headerName='ABBR' field='segment'></AgGridColumn>
+                            <AgGridColumn headerName='ABBR' field='segment' width={175}></AgGridColumn>
                             <AgGridColumn headerName='REGION' field='segment' width={180}></AgGridColumn>
-                            <AgGridColumn headerName='# SAMPLES' field='sampleCount'></AgGridColumn>
-                            <AgGridColumn headerName='STD DEVIATION' field='stdDev' valueFormatter={this.numberFormatter}></AgGridColumn>
+                            <AgGridColumn headerName='# SAMPLES' field='sampleCount' width={175}></AgGridColumn>
+                            <AgGridColumn headerName='STD DEVIATION' field='stdDev' valueFormatter={this.numberFormatter} width={175}></AgGridColumn>
                             <AgGridColumn headerName="FOLD CHANGE"
                                           tooltipComponent="customTooltip"
                                           headerTooltip='foldChange'
                                           tooltipComponentParams={{tooltipText:'Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.'}}
                                           headerComponentFramework={CustomHeader}
-                                          field='foldChange' sort='desc' valueFormatter={this.numberFormatter}></AgGridColumn>
+                                          field='foldChange' sort='desc' valueFormatter={this.numberFormatter}
+                                          width={175}></AgGridColumn>
                             <AgGridColumn headerName='P VALUE'
                                           headerTooltip='p-value (unadjusted).'
                                           headerComponentFramework={CustomHeader}
-                                          field='pVal' valueFormatter={this.numberFormatter}></AgGridColumn>
+                                          field='pVal' valueFormatter={this.numberFormatter}
+                                          width={175}></AgGridColumn>
                         </AgGridReact>
                     </div>
                 </Col>

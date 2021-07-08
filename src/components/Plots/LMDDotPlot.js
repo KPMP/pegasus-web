@@ -9,7 +9,11 @@ class LMDDotPlot extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { plotData: [], legendPlotData: [], isLoading: false };
+        this.state = {
+            plotData: [],
+            legendPlotData: [],
+            isLoading: false,
+        };
         this.setData(props.data);
     }
 
@@ -75,7 +79,7 @@ class LMDDotPlot extends Component {
 
         if (data) {
             resultArr.forEach((row) => {
-                xValues.push(row.tissueType);
+                xValues.push(row.tissueType.toUpperCase());
                 yValues.push(row.segment);
                 bubbles.push(row.pValLog10);
                 colors.push(row.foldChange);
@@ -85,7 +89,7 @@ class LMDDotPlot extends Component {
                 y: yValues,
                 type: 'scatter',
                 mode: 'markers',
-                name: 'log2asdfasdfasdf',
+                name: 'RTDotPlot',
                 marker: {
                     size: bubbles,
                     sizemode: 'area',
@@ -117,52 +121,57 @@ class LMDDotPlot extends Component {
         } else {
             return (
                 <React.Fragment>
-                <Col lg={8} className='text-right pr-0 mr-0'>
-                <Plot divId="lmdPlot" data={this.state.plotData}
+                <Col xs={10} id='lmdPlot' className='pr-0 mr-0'>
+                <Plot divId="lmdPlotCanvas" data={this.state.plotData}
                       layout={{
+                          autosize: true,
                           colorbar:
                               {title:'log2'},
                           margin: {
-                            r:0,
-                            p:0,
-                              t:50
-                          },
-
+                              r: 0,
+                              l: 35
+                          }
                       }}
                       config={{
                           displayModeBar: false,
-                          staticPlot: true
+                          staticPlot: true,
+                          responsive: true
                       }}
+                      style={{width: "100%", height: "100%"}}
+                      useResizeHandler={true}
                 />
                 </Col>
-                <Col lg={4} className='text-left mt-4 pl-0'>
-                    <Plot divId="lmdLegendPlot" data={this.state.legendPlotData}
+                <Col xs={2} id='lmdLegendPlot' className='mt-4 pl-0 text-left'>
+                    <Plot divId="lmdLegendPlotCanvas" data={this.state.legendPlotData}
                           layout={{
+                              autosize: true,
                               title: {
-                                  text: '-log10(p value)',
+                                  text: '-log10(pval)',
                                   font: { size: 12},
                                   yref: 'paper',
                                   y : 1,
                                   xref: 'paper',
-                                  x: 1,
+                                  x: 0.8,
+                                  xanchor: 'center',
                                   pad: {b: 10},
                                   yanchor : 'bottom'
                               },
-                              width: 195,
-                              height: 410,
                               margin: {
                                   l: 0,
-                                  r: 100,
-                                  t: 58,
-                                  pad: 4
+                                  r: 18,
+                                  t: 108,
+                                  pad: 0
                               },
                               yaxis: { zeroline: false, showgrid: true, showline: true, side: 'right' },
                               xaxis: { zeroline: false, showgrid: false, showline: false, visible: false },
                           }}
                           config={{
                               displayModeBar: false,
-                              staticPlot: true
+                              staticPlot: true,
+                              responsive: true
                           }}
+                          style={{width: "100%", height: "100%"}}
+                          useResizeHandler={true}
                     />
                 </Col>
                 </React.Fragment>
