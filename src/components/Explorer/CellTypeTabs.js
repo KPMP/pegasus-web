@@ -24,7 +24,7 @@ const CellTypeTabs = (props) => {
               setActiveCell(CellTypeEnum.ALL)
             }}
           >
-            Glomerular / Renal Corpuscle
+            Glomerulus / Renal Corpuscle
           </NavLink>
         </NavItem>
         <NavItem>
@@ -62,7 +62,7 @@ const CellTypeTabs = (props) => {
         </NavItem>
       </Nav>
       <TabContent activeTab={activeTab}>
-        <TabSection data={props.data['Renal Corpuscle']}
+        <TabSection data={props.data['Glomerulus / Renal Corpuscle']}
           tabId='1'
           activeTab={activeTab}
           isGlomerulusSchematic={true}
