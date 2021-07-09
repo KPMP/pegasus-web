@@ -4,6 +4,7 @@ import { Col, Row, UncontrolledTooltip, Spinner } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
 import { faDownload, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { sum } from "../../helpers/Utils";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDataType } from "../../helpers/Utils";
@@ -53,6 +54,7 @@ class ExpressionXCellType extends Component {
             },
             {
                 Header: "CLUSTER",
+                Footer: "TOTAL CELLS: ",
                 accessor: 'clusterName',
                 headerClassName: 'table-header',
                 className: 'table-column',
@@ -65,6 +67,7 @@ class ExpressionXCellType extends Component {
                 headerClassName: 'table-header',
                 className: 'table-column',
                 minWidth: 90,
+                Footer: (sum(this.props.data, "cellCount")),
                 Cell: ({ value }) => value ? value : 0
             },
             {
