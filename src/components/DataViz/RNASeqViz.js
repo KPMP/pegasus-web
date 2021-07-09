@@ -5,8 +5,6 @@ import ExpressionXCellType from "../ExpressionTables/ExpressionXCellType";
 import UMAPPlot from '../Plots/UMAPPlot';
 import FeaturePlot from '../Plots/FeaturePlot';
 import { fetchGeneExpression, fetchPlotlyData } from "../../helpers/ApolloClient";
-import { sum } from "../../helpers/Utils";
-
 
 class RNASeqViz extends Component {
     constructor(props) {
@@ -43,7 +41,6 @@ class RNASeqViz extends Component {
     getGeneExpression = async (dataType, gene, cellType, tissueType, fetchPolicy) => {
         const results = await fetchGeneExpression(dataType, gene, cellType, tissueType, fetchPolicy);
         const cleanResults = this.cleanResults(results);
-        cleanResults.push({ clusterName: "TOTAL CELLS: ", cellCount: sum(results, "cellCount") });
         this.setState({ geneExpressionData: cleanResults, isLoading: false });
     }
 
