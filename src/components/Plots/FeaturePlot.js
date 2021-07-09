@@ -59,12 +59,12 @@ class FeaturePlot extends Component {
         let groupData = [];
         if (inputData && inputData.featureData) {
             inputData.featureData.forEach(function (group) {
-                let marker = { size: 2, colorscale: 'Viridis', showscale: true };
+                let marker = { size: 2, colorscale: 'Blues', showscale: true, reversescale: true };
                 if (group.expression[0] !== 0) {
                     marker.color = group.expression;
                 } else {
                     let grayColors = new Array(group.expression.length);
-                    grayColors.fill('rgba(211,211,211,.15)');
+                    grayColors.fill('rgba(211,211,211,1)');
                     marker.color = grayColors;
                     marker.showscale = false;
                 }
@@ -76,7 +76,8 @@ class FeaturePlot extends Component {
                     text: group.hoverDisplay,
                     x: group.xValues,
                     y: group.yValues,
-                    marker: marker
+                    marker: marker,
+
                 });
             });
             groupData.sort((a, b) => (a.marker.showscale > b.marker.showscale) ? 1 : -1)
