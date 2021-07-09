@@ -54,7 +54,7 @@ class AccordionTabSection extends Component {
         const { collapse } = this.state;
         let subregionText = subregions.map((subregion, index) => {
             let cellTypes = subregion.cellTypes.map((cellType) => {
-                return <li>
+                return <li key={cellType.cellType}>
                     <button
                         onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
                         onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType) }}
@@ -65,7 +65,7 @@ class AccordionTabSection extends Component {
             });
             let collapsed = this.state.collapse;
             return (
-                <div className='cell-type-list mb-1 px-3 py-2 subregion-name' key={index}>
+                <div className='cell-type-list mb-1 px-3 py-2 subregion-name' key={subregion.subregionName}>
                     <span onClick={this.toggle} data-event={index} className={`${collapsed === index ? "open" : "collapsed"}`}>
                         {subregion.subregionName}
                     </span>
