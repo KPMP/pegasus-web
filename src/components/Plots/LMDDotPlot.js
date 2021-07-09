@@ -146,7 +146,7 @@ class LMDDotPlot extends Component {
                           layout={{
                               autosize: true,
                               title: {
-                                  text: '-log10(pval)',
+                                  text: '-log10 (pval)',
                                   font: { size: 12},
                                   yref: 'paper',
                                   y : 1,
@@ -158,7 +158,7 @@ class LMDDotPlot extends Component {
                               },
                               margin: {
                                   l: 0,
-                                  r: 18,
+                                  r: 22,
                                   t: 108,
                                   pad: 0
                               },
