@@ -171,7 +171,7 @@ class DiffexByCluster extends Component {
                                 <Row xs='12' id="diffexTable">
                                     <Col xs='12'>
                                         {(
-                                            process.env.NODE_ENV != 'development' ||
+                                            process.env.NODE_ENV !== 'development' ||
                                             displayMaterialTable
                                         ) &&
                                             <MaterialTable

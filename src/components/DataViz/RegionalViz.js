@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button, ButtonGroup } from 'reactstrap';
 import DataTypeSelectorContainer from './DataTypeSelectorContainer';
-import { formatTissueType, sum } from "../../helpers/Utils";
+import { formatTissueType } from "../../helpers/Utils";
 import LMDDotPlot from "../Plots/LMDDotPlot";
 import { fetchRegionalTranscriptomics } from "../../helpers/ApolloClient";
 import RegionalTranscriptomicsTable from "../ExpressionTables/RegionalTranscriptomicsTable";
