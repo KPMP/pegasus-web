@@ -79,8 +79,8 @@ class LMDDotPlot extends Component {
 
         if (data) {
             resultArr.forEach((row) => {
-                xValues.push(row.tissueType.toUpperCase());
-                yValues.push(row.segment);
+                xValues.push(row.segment);
+                yValues.push(row.tissueType.toUpperCase());
                 bubbles.push(row.pValLog10);
                 colors.push(row.foldChange);
             });
