@@ -156,7 +156,7 @@ class DataTypeSelector extends Component {
                                 className='select d-table-cell w-100 pl-2'
                             />
                         </Col>
-                        <Col lg="3" className='d-table px-2 pt-3'>
+                        <Col lg="4" className='d-table px-2 pt-3'>
                             <label className='d-table-cell text-bigger pr-2'>in:</label>
                             <Select
                                 value={selectedValue}
