@@ -23,8 +23,7 @@ class DiffexByCluster extends Component {
     }
 
     fetchGeneExpression = () => {
-        if (this.props.dataType === 'rt')
-        {
+        if (this.props.dataType === 'rt') {
             fetchRegionalTranscriptomicsByStructure(this.props.cluster).then(
                 (geneExpressionData) => {
                     this.setState({ diffexData: geneExpressionData, isLoading: false })
@@ -98,7 +97,7 @@ class DiffexByCluster extends Component {
             type: 'numeric',
             headerStyle: { fontSize: '11px', textAlign: 'right' },
             cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'right' },
-            render: rowData => formatNumberToPrecision(rowData.pVal, 3)
+            render: rowData => formatNumberToPrecision(rowData.pVal, 3, true)
         },
         {
             title: <span>ADJ P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
@@ -112,7 +111,7 @@ class DiffexByCluster extends Component {
             type: 'numeric',
             headerStyle: { fontSize: '11px', textAlign: 'right' },
             cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'right' },
-            render: rowData => formatNumberToPrecision(rowData.pValAdj, 3)
+            render: rowData => formatNumberToPrecision(rowData.pValAdj, 3, true)
         },
         {
             title: 'hidden',
