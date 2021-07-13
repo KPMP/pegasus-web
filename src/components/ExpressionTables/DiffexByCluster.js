@@ -23,8 +23,7 @@ class DiffexByCluster extends Component {
     }
 
     fetchGeneExpression = () => {
-        if (this.props.dataType === 'rt')
-        {
+        if (this.props.dataType === 'rt') {
             fetchRegionalTranscriptomicsByStructure(this.props.cluster).then(
                 (geneExpressionData) => {
                     this.setState({ diffexData: geneExpressionData, isLoading: false })
@@ -137,9 +136,9 @@ class DiffexByCluster extends Component {
         return results.map(({ gene, foldChange, pVal, pValAdj }) => {
             return {
                 gene: gene,
-                foldChange: foldChange,
-                pVal: pVal,
-                pValAdj: pValAdj,
+                foldChange: foldChange ? foldChange : "NS",
+                pVal: pVal ? pVal : 0,
+                pValAdj: pValAdj ? pValAdj : 0,
             }
         });
     };

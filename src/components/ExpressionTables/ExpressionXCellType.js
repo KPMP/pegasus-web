@@ -23,12 +23,12 @@ class ExpressionXCellType extends Component {
                 return {
                     clusterAbbrev: cluster,
                     clusterName: clusterName,
-                    cellCount: cellCount ? cellCount : 0,
-                    medianExp: avgExp,
-                    pctCellsExpressing: pct1,
-                    foldChange: foldChange,
-                    pVal: pVal,
-                    pValAdj: pValAdj
+                    cellCount: cellCount ? cellCount : "NS",
+                    medianExp: avgExp ? pct1 : "NS",
+                    pctCellsExpressing: pct1 ? pct1 : "NS",
+                    foldChange: foldChange ? foldChange : "NS",
+                    pVal: pVal ? pVal : 0,
+                    pValAdj: pValAdj ? pValAdj : 0
                 }
             });
     };
