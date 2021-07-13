@@ -32,8 +32,8 @@ class RNASeqViz extends Component {
             || this.props.gene.symbol !== prevProps.gene.symbol) {
             this.setState({ plotData: [], geneExpressionData: [], isLoading: false });
             if (this.props.gene.symbol) {
-                this.getGeneExpression(this.props.dataType ? this.props.dataType : 'sn', this.props.gene.symbol, "", this.props.tissueType ? this.props.tissueType : 'all');
-                this.getUmapPoints(this.props.dataType ? this.props.dataType : 'sn', this.props.gene.symbol, this.props.tissueType ? this.props.tissueType : 'all');
+                this.getGeneExpression(this.props.dataType ? this.props.dataType : 'sc', this.props.gene.symbol, "", this.props.tissueType ? this.props.tissueType : 'all');
+                this.getUmapPoints(this.props.dataType ? this.props.dataType : 'sc', this.props.gene.symbol, this.props.tissueType ? this.props.tissueType : 'all');
             }
         }
     }
@@ -65,7 +65,7 @@ class RNASeqViz extends Component {
                             </Row>
                             <Row>
                                 <Col lg='6' className="umapPlot-container">
-                                    <UMAPPlot data={this.state.plotData} dataType={this.props.dataType} tissueType={this.props.tissueType} />
+                                    <UMAPPlot data={this.state.plotData} dataType={this.props.dataType ? this.props.dataType : 'sc'} tissueType={this.props.tissueType} />
                                 </Col>
                             </Row>
                         </Col>
