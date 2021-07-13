@@ -136,9 +136,9 @@ class DiffexByCluster extends Component {
         return results.map(({ gene, foldChange, pVal, pValAdj }) => {
             return {
                 gene: gene,
-                foldChange: foldChange,
-                pVal: pVal,
-                pValAdj: pValAdj,
+                foldChange: foldChange ? foldChange : "NS",
+                pVal: (pVal || pVal === 0) ? pVal : "NS",
+                pValAdj: (pValAdj || pValAdj) === 0 ? pValAdj : "NS"
             }
         });
     };
