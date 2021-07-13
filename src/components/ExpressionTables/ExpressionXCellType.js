@@ -4,6 +4,7 @@ import { Col, Row, UncontrolledTooltip, Spinner } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
 import { faDownload, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { sum } from "../../helpers/Utils";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDataType } from "../../helpers/Utils";
@@ -22,12 +23,12 @@ class ExpressionXCellType extends Component {
                 return {
                     clusterAbbrev: cluster,
                     clusterName: clusterName,
-                    cellCount: cellCount ? cellCount : 0,
-                    medianExp: avgExp,
-                    pctCellsExpressing: pct1,
-                    foldChange: foldChange,
-                    pVal: pVal,
-                    pValAdj: pValAdj
+                    cellCount: cellCount ? cellCount : "NS",
+                    medianExp: avgExp ? pct1 : "NS",
+                    pctCellsExpressing: pct1 ? pct1 : "NS",
+                    foldChange: foldChange ? foldChange : "NS",
+                    pVal: (pVal || pVal === 0) ? pVal : "NS",
+                    pValAdj: (pValAdj || pValAdj) === 0 ? pValAdj : "NS"
                 }
             });
     };
@@ -53,6 +54,7 @@ class ExpressionXCellType extends Component {
             },
             {
                 Header: "CLUSTER",
+                Footer: "TOTAL CELLS: ",
                 accessor: 'clusterName',
                 headerClassName: 'table-header',
                 className: 'table-column',
@@ -65,6 +67,7 @@ class ExpressionXCellType extends Component {
                 headerClassName: 'table-header',
                 className: 'table-column',
                 minWidth: 90,
+                Footer: (sum(this.props.data, "cellCount")),
                 Cell: ({ value }) => value ? value : 0
             },
             {
@@ -130,7 +133,7 @@ class ExpressionXCellType extends Component {
                     <Spinner color='primary' />
                 </div>
             )
-        } else if (this.props.data.length == 0) {
+        } else if (this.props.data.length === 0) {
             return (<div></div>)
         } else {
             return (

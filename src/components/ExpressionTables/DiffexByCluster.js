@@ -23,8 +23,7 @@ class DiffexByCluster extends Component {
     }
 
     fetchGeneExpression = () => {
-        if (this.props.dataType === 'rt')
-        {
+        if (this.props.dataType === 'rt') {
             fetchRegionalTranscriptomicsByStructure(this.props.cluster).then(
                 (geneExpressionData) => {
                     this.setState({ diffexData: geneExpressionData, isLoading: false })
@@ -112,7 +111,7 @@ class DiffexByCluster extends Component {
             type: 'numeric',
             headerStyle: { fontSize: '11px', textAlign: 'right' },
             cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'right' },
-            render: rowData => formatNumberToPrecision(rowData.pValAdj, 3)
+            render: rowData => formatNumberToPrecision(rowData.pValAdj, 3, true)
         },
         {
             title: 'hidden',
@@ -137,9 +136,9 @@ class DiffexByCluster extends Component {
         return results.map(({ gene, foldChange, pVal, pValAdj }) => {
             return {
                 gene: gene,
-                foldChange: foldChange,
-                pVal: pVal,
-                pValAdj: pValAdj,
+                foldChange: foldChange ? foldChange : "NS",
+                pVal: (pVal || pVal === 0) ? pVal : "NS",
+                pValAdj: (pValAdj || pValAdj) === 0 ? pValAdj : "NS"
             }
         });
     };
@@ -171,7 +170,7 @@ class DiffexByCluster extends Component {
                                 <Row xs='12' id="diffexTable">
                                     <Col xs='12'>
                                         {(
-                                            process.env.NODE_ENV != 'development' ||
+                                            process.env.NODE_ENV !== 'development' ||
                                             displayMaterialTable
                                         ) &&
                                             <MaterialTable

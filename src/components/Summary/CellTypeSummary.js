@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 import ReactTable from 'react-table';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchClusterHierarchy } from '../../helpers/ApolloClient';
+import { Spinner } from "reactstrap";
 
 class CellTypeSummary extends Component {
 
@@ -28,10 +29,11 @@ class CellTypeSummary extends Component {
     }
 
     fetchClusterHierarchy = () => {
+        this.setState({ isLoading: true });
         fetchClusterHierarchy(this.props.cellType).then(
-            (cellTypeSummary) => this.setState({ cellTypeSummary: cellTypeSummary }),
+            (cellTypeSummary) => this.setState({ cellTypeSummary: cellTypeSummary, isLoading: false }),
             (error) => {
-                this.setState({ cellTypeSummary: [] });
+                this.setState({ cellTypeSummary: [], isLoading: false });
                 console.log('There was a problem getting the data: ' + error)
             }
         );
@@ -125,36 +127,44 @@ class CellTypeSummary extends Component {
 
     render() {
         let cellType = this.props.cellType;
-        return (
-            <div>
-                <Container className='mt-3 rounded border p-3 shadow-sm'>
-                    <ConceptSelectFullWidth useRedirection={true} />
-                </Container>
-                <Container className='mt-3 rounded border p-3 shadow-sm'>
-                    <Row xs='12'>
-                        <Col className='mb-4'>
-                            <h5>Summary of available data for: {cellType}</h5>
-                        </Col>
-                    </Row>
-                    <Row xs='12'>
-                        <Col>
-                            <ReactTable
-                                style={{ border: 'none' }}
-                                data={this.state.cellTypeSummary}
-                                ref={this.reactTable}
-                                sortable={false}
-                                columns={this.state.columns}
-                                className='-striped cell-summary-table'
-                                showPagination={true}
-                                noDataText={'No data found'}
-                                getTheadThProps={this.getTheadThProps}
-                                minRows={0}
-                            />
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
-        )
+        if (this.state.isLoading) {
+            return (
+                <div className='viz-spinner'>
+                    <Spinner color='primary' />
+                </div>
+            )
+        } else {
+            return (
+                <div>
+                    <Container className='mt-3 rounded border p-3 shadow-sm'>
+                        <ConceptSelectFullWidth useRedirection={true} />
+                    </Container>
+                    <Container className='mt-3 rounded border p-3 shadow-sm'>
+                        <Row xs='12'>
+                            <Col className='mb-4'>
+                                <h5>Summary of available data for: {cellType}</h5>
+                            </Col>
+                        </Row>
+                        <Row xs='12'>
+                            <Col>
+                                <ReactTable
+                                    style={{ border: 'none' }}
+                                    data={this.state.cellTypeSummary}
+                                    ref={this.reactTable}
+                                    sortable={false}
+                                    columns={this.state.columns}
+                                    className='-striped cell-summary-table'
+                                    showPagination={true}
+                                    noDataText={'No data found'}
+                                    getTheadThProps={this.getTheadThProps}
+                                    minRows={0}
+                                />
+                            </Col>
+                        </Row>
+                    </Container>
+                </div>
+            )
+        }
     }
 }
 export default CellTypeSummary;

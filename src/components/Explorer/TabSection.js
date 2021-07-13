@@ -16,19 +16,26 @@ class TabSection extends Component {
         let subregions = this.props.data;
         let subregionText = subregions.map((subregion) => {
             let cellTypes = subregion.cellTypes.map((cellType) => {
-                return <li>
+                return <li key={cellType.cellType} className='indent-2'>
                     <button
                         onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
                         onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType); this.setState({ activeCell: cellType.cellType }) }}
                         type="button"
-                        className={`btn btn-link text-left p-0 ${(this.props.activeCell === cellType.cellType) ? 'pseudohover' : ''}`}>
+                        className={`btn btn-link text-left p-0 ${(this.props.activeCell === cellType.cellType) ? 'pseudohover' : ''}`} >
                         {cellType.cellType}
                     </button>
                 </li>
             });
 
             return (
-                <section><li className="subregion-name">{subregion.subregionName}</li>
+                <section key={subregion.subregionName}><li className="subregion-name indent-1">
+                    <button
+                        onClick={() => this.props.handleCellTypeClick(subregion.subregionName)}
+                        onMouseEnter={() => { this.handleSchematicHoverEnter(subregion.subregionName); this.setState({ activeCell: subregion.subregionName }) }}
+                        type="button"
+                        className={`btn btn-link text-left p-0 ${(this.props.activeCell === subregion.subregionName) ? 'pseudohover' : ''}`} >
+                            {subregion.subregionName}   
+                    </button></li>
                     <ul className='cell-type-list'>
                         {cellTypes}
                     </ul>
@@ -40,11 +47,15 @@ class TabSection extends Component {
     }
 
     handleSchematicHoverEnter = (cellType) => {
-        this.props.setActiveCell(cellType);
+        if(this.props.setActiveCell) {
+            this.props.setActiveCell(cellType);
+        }
     }
 
     handleSchematicHoverLeave = (cellType) => {
-        this.props.setActiveCell(CellTypeEnum.ALL);
+        if (this.props.setActiveCell) {
+            this.props.setActiveCell(CellTypeEnum.ALL);
+        }
     }
 
     render() {
@@ -54,6 +65,13 @@ class TabSection extends Component {
                 <Row>
                     <Col sm="5">
                         <div className='cell-type-list p-3'>
+                            <button
+                                onClick={() => this.props.handleCellTypeClick(this.props.topLevelLink)}
+                                onMouseEnter={() => { this.handleSchematicHoverEnter(this.props.topLevelLink); this.setState({ activeCell: this.props.topLevelLink }) }}
+                                type="button"
+                                className={`btn btn-link text-left p-0 ${(this.props.activeCell === this.props.topLevelLink) ? 'pseudohover' : ''}`}>
+                                    {this.props.topLevelLink}
+                                </button>
                             {cellTypes}
                         </div>
                     </Col>

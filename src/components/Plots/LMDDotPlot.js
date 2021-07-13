@@ -1,5 +1,5 @@
-import {Spinner} from "reactstrap";
-import React, {Component} from 'react';
+import { Spinner } from "reactstrap";
+import React, { Component } from 'react';
 import Plotly from '../../helpers/Plotly';
 import createPlotlyComponent from 'react-plotly.js/factory';
 import { Col } from 'reactstrap';
@@ -25,7 +25,7 @@ class LMDDotPlot extends Component {
     }
 
     getSizeRef = (valueArr) => {
-        return 2.0 * Math.max(...valueArr) / (40**2)
+        return 2.0 * Math.max(...valueArr) / (40 ** 2)
     };
 
     flattenResults = (resultObj) => {
@@ -40,7 +40,7 @@ class LMDDotPlot extends Component {
 
     sortByTissueFunc = (resultA, resultB) => {
         let tissueMap = new Map([['all', 4], ['hrt', 3], ['aki', 2], ['ckd', 1]]);
-        return (tissueMap.get(resultB.tissueType) - tissueMap.get(resultA.tissueType));
+        return (tissueMap.get(resultA.tissueType) - tissueMap.get(resultB.tissueType));
     };
 
     getSizeLegendPlot = (bubbles) => {
@@ -79,8 +79,8 @@ class LMDDotPlot extends Component {
 
         if (data) {
             resultArr.forEach((row) => {
-                xValues.push(row.tissueType.toUpperCase());
-                yValues.push(row.segment);
+                xValues.push(row.segment);
+                yValues.push(row.tissueType.toUpperCase());
                 bubbles.push(row.pValLog10);
                 colors.push(row.foldChange);
             });
@@ -121,61 +121,61 @@ class LMDDotPlot extends Component {
         } else {
             return (
                 <React.Fragment>
-                <Col xs={10} id='lmdPlot' className='pr-0 mr-0'>
-                <Plot divId="lmdPlotCanvas" data={this.state.plotData}
-                      layout={{
-                          autosize: true,
-                          colorbar:
-                              {title:'log2'},
-                          margin: {
-                              r: 0,
-                              l: 35
-                          }
-                      }}
-                      config={{
-                          displayModeBar: false,
-                          staticPlot: true,
-                          responsive: true
-                      }}
-                      style={{width: "100%", height: "100%"}}
-                      useResizeHandler={true}
-                />
-                </Col>
-                <Col xs={2} id='lmdLegendPlot' className='mt-4 pl-0 text-left'>
-                    <Plot divId="lmdLegendPlotCanvas" data={this.state.legendPlotData}
-                          layout={{
-                              autosize: true,
-                              title: {
-                                  text: '-log10 (pval)',
-                                  font: { size: 12},
-                                  yref: 'paper',
-                                  y : 1,
-                                  xref: 'paper',
-                                  x: 0.8,
-                                  xanchor: 'center',
-                                  pad: {b: 10},
-                                  yanchor : 'bottom'
-                              },
-                              margin: {
-                                  l: 0,
-                                  r: 22,
-                                  t: 108,
-                                  pad: 0
-                              },
-                              yaxis: { zeroline: false, showgrid: true, showline: true, side: 'right' },
-                              xaxis: { zeroline: false, showgrid: false, showline: false, visible: false },
-                          }}
-                          config={{
-                              displayModeBar: false,
-                              staticPlot: true,
-                              responsive: true
-                          }}
-                          style={{width: "100%", height: "100%"}}
-                          useResizeHandler={true}
-                    />
-                </Col>
+                    <Col xs={10} id='lmdPlot' className='pr-0 mr-0'>
+                        <Plot divId="lmdPlotCanvas" data={this.state.plotData}
+                            layout={{
+                                autosize: true,
+                                colorbar:
+                                    { title: 'log2' },
+                                margin: {
+                                    r: 0,
+                                    l: 35
+                                }
+                            }}
+                            config={{
+                                displayModeBar: false,
+                                staticPlot: true,
+                                responsive: true
+                            }}
+                            style={{ width: "100%", height: "100%" }}
+                            useResizeHandler={true}
+                        />
+                    </Col>
+                    <Col xs={2} id='lmdLegendPlot' className='mt-4 pl-0 text-left'>
+                        <Plot divId="lmdLegendPlotCanvas" data={this.state.legendPlotData}
+                            layout={{
+                                autosize: true,
+                                title: {
+                                    text: '-log10 (pval)',
+                                    font: { size: 12 },
+                                    yref: 'paper',
+                                    y: 1,
+                                    xref: 'paper',
+                                    x: 0.8,
+                                    xanchor: 'center',
+                                    pad: { b: 10 },
+                                    yanchor: 'bottom'
+                                },
+                                margin: {
+                                    l: 0,
+                                    r: 22,
+                                    t: 108,
+                                    pad: 0
+                                },
+                                yaxis: { zeroline: false, showgrid: true, showline: true, side: 'right' },
+                                xaxis: { zeroline: false, showgrid: false, showline: false, visible: false },
+                            }}
+                            config={{
+                                displayModeBar: false,
+                                staticPlot: true,
+                                responsive: true
+                            }}
+                            style={{ width: "100%", height: "100%" }}
+                            useResizeHandler={true}
+                        />
+                    </Col>
                 </React.Fragment>
-    )
+            )
         }
     }
 }

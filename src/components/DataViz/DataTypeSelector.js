@@ -122,6 +122,15 @@ class DataTypeSelector extends Component {
         }
     };
 
+    getInputValue = () => {
+        let options = getTissueTypeOptions(this.state.selectedDataset);
+        try {
+            return options.find(element => element.value === this.state.tissueInputValue).label
+        } catch (e) {
+            return ''
+        }
+    }
+
     render() {
         let selectedValue = this.state.dataTypeInputValue ? this.state.dataTypeInputValue : null;
         return (
@@ -142,12 +151,12 @@ class DataTypeSelector extends Component {
                                 options={getTissueTypeOptions(this.state.selectedDataset)}
                                 onChange={this.handleTissueSelect}
                                 value={this.state.tissueValue}
-                                inputValue={this.state.tissueInputValue}
+                                inputValue={this.getInputValue()}
                                 onFocus={() => this.setState({ tissueInputValue: "" })}
                                 className='select d-table-cell w-100 pl-2'
                             />
                         </Col>
-                        <Col lg="3" className='d-table px-2 pt-3'>
+                        <Col lg="4" className='d-table px-2 pt-3'>
                             <label className='d-table-cell text-bigger pr-2'>in:</label>
                             <Select
                                 value={selectedValue}
@@ -158,7 +167,7 @@ class DataTypeSelector extends Component {
 
                             />
                         </Col>
-                        <Col lg='4' className='text-right pt-3'>
+                        <Col lg='3' className='text-right pt-3'>
                             <a className="icon-container" href='https://www.kpmp.org/help-docs/data' target='_blank' rel="noreferrer"><FontAwesomeIcon icon={faQuestionCircle} className='ml-2 kpmp-light-blue' /></a>
                         </Col>
                     </Row>

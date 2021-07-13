@@ -1,13 +1,14 @@
 import { fetchDataTypesForConcept } from './ApolloClient';
 
-export const formatNumberToPrecision = (number, precision) => {
+export const formatNumberToPrecision = (number, precision, keepAsInt = false) => {
     if (number) {
         return number.toPrecision(precision)
+    } else if (number === 0) {
+        return 0
     } else {
         return "NS"
     }
 };
-
 export const formatTissueType = (tissueType) => {
     switch (tissueType) {
         case "all":

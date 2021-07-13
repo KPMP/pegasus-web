@@ -14,18 +14,18 @@ class AccordionTabSection extends Component {
 
         // force the accordion to drop when coming from the glom tab
         if (prevProps.activeCell !== CellTypeEnum.MACULA_DENSA_CELL
-            && this.props.activeCell == CellTypeEnum.MACULA_DENSA_CELL) {
+            && this.props.activeCell === CellTypeEnum.MACULA_DENSA_CELL) {
             this.toggleWithoutResetting({ target: { dataset: { event: 3 } } })
             this.setState({ activeCellState: CellTypeEnum.MACULA_DENSA_CELL })
         }
         if (prevProps.activeCell !== CellTypeEnum.THICK_ASCENDING_LIMB_CELL
-            && this.props.activeCell == CellTypeEnum.THICK_ASCENDING_LIMB_CELL) {
+            && this.props.activeCell === CellTypeEnum.THICK_ASCENDING_LIMB_CELL) {
             this.toggleWithoutResetting({ target: { dataset: { event: 2 } } })
             this.setState({ activeCellState: CellTypeEnum.THICK_ASCENDING_LIMB_CELL })
         }
 
         if (prevProps.activeCell !== CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1
-            && this.props.activeCell == CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1) {
+            && this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1) {
             this.toggleWithoutResetting({ target: { dataset: { event: 0 } } })
             this.setState({ activeCellState: CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1 })
         }
@@ -42,11 +42,16 @@ class AccordionTabSection extends Component {
     }
 
     handleSchematicHoverEnter = (cellType) => {
-        this.props.setActiveCell(cellType);
+        if(this.props.setActiveCell) {
+            this.props.setActiveCell(cellType);
+        }
+        
     }
 
     handleSchematicHoverLeave = (cellType) => {
-        this.props.setActiveCell(CellTypeEnum.ALL);
+        if(this.props.setActiveCell) {
+            this.props.setActiveCell(CellTypeEnum.ALL);
+        }
     }
 
     processTerms = () => {
@@ -54,7 +59,7 @@ class AccordionTabSection extends Component {
         const { collapse } = this.state;
         let subregionText = subregions.map((subregion, index) => {
             let cellTypes = subregion.cellTypes.map((cellType) => {
-                return <li>
+                return <li key={cellType.cellType}>
                     <button
                         onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
                         onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType) }}
@@ -65,9 +70,13 @@ class AccordionTabSection extends Component {
             });
             let collapsed = this.state.collapse;
             return (
-                <div className='cell-type-list mb-1 px-3 py-2 subregion-name' key={index}>
+                <div className='cell-type-list mb-1 px-3 py-2 subregion-name' key={subregion.subregionName}>
                     <span onClick={this.toggle} data-event={index} className={`${collapsed === index ? "open" : "collapsed"}`}>
-                        {subregion.subregionName}
+                        <span onClick={() => this.props.handleCellTypeClick(subregion.subregionName)}
+                             onMouseEnter={() => { this.handleSchematicHoverEnter(subregion.subregionName) }}
+                             type='button'
+                             className={`btn-link text-left p-0 ${(this.props.activeCell === subregion.subregionName) ? 'pseudohover' : ''}`}>
+                                 {subregion.subregionName}</span>
                     </span>
                     <Collapse isOpen={collapse === index}>
                         <div className="px-4 py-1">{cellTypes}</div>
@@ -85,7 +94,16 @@ class AccordionTabSection extends Component {
             <TabPane tabId={this.props.tabId}>
                 <Row>
                     <Col sm="5">
-                        {cellTypes}
+                        <div className='cell-type-list p-3'>
+                            <button
+                                onClick={() => this.props.handleCellTypeClick(this.props.topLevelLink)}
+                                onMouseEnter={() => { this.handleSchematicHoverEnter(this.props.topLevelLink);  }}
+                                type="button"
+                                className={`btn btn-link text-left p-0 ${(this.props.activeCell === this.props.topLevelLink) ? 'pseudohover' : ''}`}>
+                                    {this.props.topLevelLink}
+                                </button>
+                            {cellTypes}
+                        </div>
                     </Col>
                     <Col sm="6">
                         {this.props.isNephronSchematic ?
