@@ -145,7 +145,7 @@ class CellTypeSummary extends Component {
                                 sortable={false}
                                 columns={this.state.columns}
                                 className='-striped cell-summary-table'
-                                showPagination={false}
+                                showPagination={true}
                                 noDataText={'No data found'}
                                 getTheadThProps={this.getTheadThProps}
                                 minRows={0}
