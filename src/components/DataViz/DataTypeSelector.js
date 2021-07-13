@@ -122,6 +122,15 @@ class DataTypeSelector extends Component {
         }
     };
 
+    getInputValue = () => {
+        let options = getTissueTypeOptions(this.state.selectedDataset);
+        try {
+            return options.find(element => element.value === this.state.tissueInputValue).label
+        } catch (e) {
+            return ''
+        }
+    }
+
     render() {
         let selectedValue = this.state.dataTypeInputValue ? this.state.dataTypeInputValue : null;
         return (
@@ -142,7 +151,7 @@ class DataTypeSelector extends Component {
                                 options={getTissueTypeOptions(this.state.selectedDataset)}
                                 onChange={this.handleTissueSelect}
                                 value={this.state.tissueValue}
-                                inputValue={this.state.tissueInputValue}
+                                inputValue={this.getInputValue()}
                                 onFocus={() => this.setState({ tissueInputValue: "" })}
                                 className='select d-table-cell w-100 pl-2'
                             />
