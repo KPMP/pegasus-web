@@ -72,7 +72,11 @@ class AccordionTabSection extends Component {
             return (
                 <div className='cell-type-list mb-1 px-3 py-2 subregion-name' key={subregion.subregionName}>
                     <span onClick={this.toggle} data-event={index} className={`${collapsed === index ? "open" : "collapsed"}`}>
-                        {subregion.subregionName}
+                        <span onClick={() => this.props.handleCellTypeClick(subregion.subregionName)}
+                             onMouseEnter={() => { this.handleSchematicHoverEnter(subregion.subregionName) }}
+                             type='button'
+                             className={`btn-link text-left p-0 ${(this.props.activeCell === subregion.subregionName) ? 'pseudohover' : ''}`}>
+                                 {subregion.subregionName}</span>
                     </span>
                     <Collapse isOpen={collapse === index}>
                         <div className="px-4 py-1">{cellTypes}</div>
@@ -100,7 +104,6 @@ class AccordionTabSection extends Component {
                                 </button>
                             {cellTypes}
                         </div>
-                        {cellTypes}
                     </Col>
                     <Col sm="6">
                         {this.props.isNephronSchematic ?

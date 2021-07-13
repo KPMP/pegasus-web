@@ -16,7 +16,7 @@ class TabSection extends Component {
         let subregions = this.props.data;
         let subregionText = subregions.map((subregion) => {
             let cellTypes = subregion.cellTypes.map((cellType) => {
-                return <li key={cellType.cellType}>
+                return <li key={cellType.cellType} className='indent-2'>
                     <button
                         onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
                         onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType); this.setState({ activeCell: cellType.cellType }) }}
@@ -28,7 +28,14 @@ class TabSection extends Component {
             });
 
             return (
-                <section key={subregion.subregionName}><li className="subregion-name">{subregion.subregionName}</li>
+                <section key={subregion.subregionName}><li className="subregion-name indent-1">
+                    <button
+                        onClick={() => this.props.handleCellTypeClick(subregion.subregionName)}
+                        onMouseEnter={() => { this.handleSchematicHoverEnter(subregion.subregionName); this.setState({ activeCell: subregion.subregionName }) }}
+                        type="button"
+                        className={`btn btn-link text-left p-0 ${(this.props.activeCell === subregion.subregionName) ? 'pseudohover' : ''}`} >
+                            {subregion.subregionName}   
+                    </button></li>
                     <ul className='cell-type-list'>
                         {cellTypes}
                     </ul>
