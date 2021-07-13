@@ -40,11 +40,15 @@ class TabSection extends Component {
     }
 
     handleSchematicHoverEnter = (cellType) => {
-        this.props.setActiveCell(cellType);
+        if(this.props.setActiveCell) {
+            this.props.setActiveCell(cellType);
+        }
     }
 
     handleSchematicHoverLeave = (cellType) => {
-        this.props.setActiveCell(CellTypeEnum.ALL);
+        if (this.props.setActiveCell) {
+            this.props.setActiveCell(CellTypeEnum.ALL);
+        }
     }
 
     render() {

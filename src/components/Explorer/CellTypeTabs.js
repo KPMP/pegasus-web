@@ -83,7 +83,7 @@ const CellTypeTabs = (props) => {
         <AccordionTabSection data={props.data.Interstitium}
           tabId='3'
           handleCellTypeClick={props.handleCellTypeClick}
-          topLevelLink='Intersitium' />
+          topLevelLink='Interstitium' />
         <TabSection data={props.data.Vessels}
           tabId='4'
           handleCellTypeClick={props.handleCellTypeClick}
