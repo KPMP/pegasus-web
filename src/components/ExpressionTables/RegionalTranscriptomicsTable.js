@@ -67,12 +67,14 @@ class RegionalTranscriptomicsTable extends Component {
                             <AgGridColumn headerName="FOLD CHANGE"
                                           tooltipComponent="customTooltip"
                                           headerTooltip='foldChange'
-                                          tooltipComponentParams={{tooltipText:'Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.'}}
+                                          tooltipComponentParams={{tooltipText:'Fold change of a gene is calculated by dividing the average expression of the gene in the segment of interest by its average expression in all other segments being compared.'}}
                                           headerComponentFramework={CustomHeader}
                                           field='foldChange' sort='desc' valueFormatter={this.numberFormatter}
                                           width={175}></AgGridColumn>
                             <AgGridColumn headerName='P VALUE'
-                                          headerTooltip='p-value (unadjusted).'
+                                          tooltipComponent="customTooltip"
+                                          tooltipComponentParams={{tooltipText:'P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment of interest and its expression in all other segments.'}}
+                                          headerTooltip='pVal'
                                           headerComponentFramework={CustomHeader}
                                           field='pVal' valueFormatter={this.numberFormatter}
                                           width={175}></AgGridColumn>
