@@ -97,7 +97,7 @@ class LMDDotPlot extends Component {
                     symbol: 'circle',
                     colorscale: 'Viridis',
                     showscale: true,
-                    reversescale: true,
+                    reversescale: false,
                     color: colors,
                     colorbar: { title: 'log2 (Fold Change)' }
                 }

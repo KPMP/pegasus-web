@@ -5,6 +5,11 @@ import { formatTissueType } from "../../helpers/Utils";
 import LMDDotPlot from "../Plots/LMDDotPlot";
 import { fetchRegionalTranscriptomics } from "../../helpers/ApolloClient";
 import RegionalTranscriptomicsTable from "../ExpressionTables/RegionalTranscriptomicsTable";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { CSVLink } from "react-csv";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { formatDataType } from "../../helpers/Utils";
 
 
 class RegionalViz extends Component {
@@ -45,15 +50,38 @@ class RegionalViz extends Component {
         );
     };
 
+    getExportFilename = () => {
+        const grouping = this.state.selectedComparison === 'glom_tub' ? 'GlomVsTI' : 'Regions';
+        const tissueType = formatTissueType(this.props.tissueType).toLowerCase().replace(" ", "-");
+        return "KPMP_" + formatDataType(this.props.dataType) + '_gene-comparison_' + this.props.gene.symbol + '_' + tissueType + '_' + grouping + '.csv';
+    };
+
+    cleanResults = (results) => {
+        return results.map(({ segment, segmentName, geneSymbol, pVal, stddev, foldChange, sampleCount }) => {
+            return {
+                abbr: segment,
+                region: segmentName,
+                numSamples: sampleCount,
+                stdDeviation: stddev,
+                gene: geneSymbol,
+                foldChange: foldChange ? foldChange : "NS",
+                pVal: (pVal || pVal === 0) ? pVal : "NS",
+            }
+        });
+    };
+
     render() {
         let plot = {};
         let table = {};
+        let downloadData = {};
         if (this.state.selectedComparison === 'glom_tub') {
             table = <RegionalTranscriptomicsTable data={this.state.rtGTTableData} />;
             plot = <LMDDotPlot data={this.state.rtGTPlotData} />
+            downloadData = this.state.rtGTTableData;
         } else {
             table = <RegionalTranscriptomicsTable data={this.state.rtAllTableData} />;
             plot = <LMDDotPlot data={this.state.rtAllPlotData} />
+            downloadData = this.state.rtAllTableData;
         }
 
         return (
@@ -86,7 +114,7 @@ class RegionalViz extends Component {
                                 <span className='d-table-cell'>
                                     <ButtonGroup>
                                         <Button color="primary" onClick={() => this.setState({ selectedComparison: 'all_segments' })} active={this.state.selectedComparison === 'all_segments'}>Regions</Button>
-                                        <Button color="primary" onClick={() => this.setState({ selectedComparison: 'glom_tub' })} active={this.state.selectedComparison === 'glom_tub'}>Glom vs TI</Button>
+                                        <Button color="primary" onClick={() => this.setState({ selectedComparison: 'glom_tub' })} active={this.state.selectedComparison === 'glom_tub'}>Glom vs Tubulo-interstitium</Button>
                                     </ButtonGroup>
                                 </span>
                             </Col>
@@ -96,10 +124,20 @@ class RegionalViz extends Component {
                             <hr />
                         </Row>
                         <Row xs='12'>
-                            <Col lg='12'>
+                            <Col lg='11'>
                                 <h5>{this.props.gene.symbol} expression comparison across regions in {formatTissueType(this.props.tissueType)}</h5>
                                 <h6>NS = Not Significant</h6>
                             </Col>
+                            <Col xs='1' className='text-right'>
+                            <CSVLink
+                                data={this.cleanResults(downloadData)}
+                                filename={this.getExportFilename()}
+                                target="_blank"
+                                className="text-body icon-container"
+                            >
+                                <FontAwesomeIcon icon={faDownload} />
+                            </CSVLink>
+                        </Col>
                         </Row>
                         <Row xs='12'>
                             {table}

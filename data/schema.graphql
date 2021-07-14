@@ -2,18 +2,23 @@ type Query {
   genes(symbol: String): [MyGeneInfoHit]
   autocomplete(searchTerm: String): [AutoCompleteResult]
   cellTypeHierarchy: CellTypeHierarchy
-  geneExpressionSummary(
-    dataType: String
-    geneSymbol: String
-    cellType: String
-    tissueType: String
-  ): [GeneExpressionSummary]
+  geneExpressionSummary(dataType: String, geneSymbol: String, cellType: String, tissueType: String) : [GeneExpressionSummary]
   getClusterHieararchies(cellType: String!): [ClusterHierarchy]
-  getUmapPlotData(
-    dataType: String!
-    geneSymbol: String!
-    tissueType: String
-  ): PlotData
+  getUmapPlotData(dataType: String!, geneSymbol: String!, tissueType: String): PlotData
+  dataTypesForConcept(geneSymbol: String, clusterName: String): [String]
+  getGeneDatasetInformation(geneSymbol: String): [GeneDatasetInformation]
+  getRTGeneExpressionByTissue(comparisonType: String, geneSymbol: String): RTGeneExpressionByTissue
+  getRTGeneExpressionByStructure(structure: String): [RTGeneExpression]
+}
+
+type GeneDatasetInformation {
+  omicsType: String
+  dataType: String
+  dataTypeShort: String
+  akiCount: Long
+  ckdCount: Long
+  hrtCount: Long
+  participantCount: Long
 }
 
 type MyGeneInfoHit {
@@ -47,52 +52,74 @@ type CellTypeStructureSubregion {
 }
 
 type CellType {
-  cellType: String
+	cellType: String
 }
 
 type GeneExpressionSummary {
-  id: ID
-  tissueType: String
-  gene: String
-  pVal: Float
-  pValAdj: Float
-  foldChange: Float
-  pct1: Float
-  pct2: Float
-  avgExp: Float
-  cluster: String
-  clusterName: String
-  dataType: String
-  cellCount: Int
+    id: ID
+    tissueType: String
+    gene: String
+    pVal: Float
+    pValAdj: Float
+    foldChange: Float
+    pct1: Float
+    pct2: Float
+    avgExp: Float
+    cluster: String
+    clusterName: String
+    dataType: String
+    cellCount: Int
 }
 
 type ClusterHierarchy {
-  cellType: String
-  cellTypeId: Int
-  structureRegion: String
-  structureSubregion: String
-  clusterId: Int
-  clusterName: String
-  isSingleNucCluster: String
-  isSingleCellCluster: String
-  isRegionalTranscriptomics: String
-  cellTypeOrder: Float
+	cellType: String
+	cellTypeId: Int
+	structureRegion: String
+	structureSubregion: String
+	clusterId: Int
+	clusterName: String
+	isSingleNucCluster: String
+	isSingleCellCluster: String
+    isRegionalTranscriptomics: String
+    cellTypeOrder: Float
 }
 
 type PlotData {
-  referenceData: [ReferenceCluster]
-  featureData: [FeatureData]
+	referenceData: [ReferenceCluster]
+	featureData: [FeatureData]
 }
 
 type FeatureData {
-  xValues: [Float]
-  yValues: [Float]
-  expression: [Float]
+	xValues: [Float]
+	yValues: [Float]
+	expression: [Float]
+    hoverDisplay: [String]
 }
 
 type ReferenceCluster {
-  xValues: [Float]
-  yValues: [Float]
-  color: String
-  clusterName: String
+	xValues: [Float]
+	yValues: [Float]
+	color: String
+	clusterName: String
+    clusterAbbreviation: String
+}
+
+type RTGeneExpression {
+    id: ID
+    geneSymbol: String
+    segment: String
+    segmentName: String
+    foldChange: Float
+    pVal: Float
+    stdDev: Float
+    pValLog10: Float
+    tissueType: String
+    sampleCount: Int
+}
+
+type RTGeneExpressionByTissue {
+    all: [RTGeneExpression]
+    hrt: [RTGeneExpression]
+    ckd: [RTGeneExpression]
+    aki: [RTGeneExpression]
 }

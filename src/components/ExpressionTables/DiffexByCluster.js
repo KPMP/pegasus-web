@@ -97,7 +97,7 @@ class DiffexByCluster extends Component {
             type: 'numeric',
             headerStyle: { fontSize: '11px', textAlign: 'right' },
             cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'right' },
-            render: rowData => formatNumberToPrecision(rowData.pVal, 3, true)
+            render: rowData => formatNumberToPrecision(rowData.pVal, 3)
         },
         {
             title: <span>ADJ P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>

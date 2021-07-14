@@ -69,7 +69,8 @@ const CellTypeTabs = (props) => {
           handleCellTypeClick={props.handleCellTypeClick}
           setActiveTab={toggle}
           setActiveCell={setActiveCell}
-          activeCell={activeCell} />
+          activeCell={activeCell}
+          topLevelLink='Glomerulus / Renal Corpuscle' />
         <AccordionTabSection data={props.data.Tubules}
           tabId='2'
           isNephronSchematic={true}
@@ -77,13 +78,16 @@ const CellTypeTabs = (props) => {
           handleCellTypeClick={props.handleCellTypeClick}
           setActiveTab={toggle}
           setActiveCell={setActiveCell}
-          activeCell={activeCell} />
+          activeCell={activeCell}
+          topLevelLink='Tubules' />
         <AccordionTabSection data={props.data.Interstitium}
           tabId='3'
-          handleCellTypeClick={props.handleCellTypeClick} />
+          handleCellTypeClick={props.handleCellTypeClick}
+          topLevelLink='Interstitium' />
         <TabSection data={props.data.Vessels}
           tabId='4'
-          handleCellTypeClick={props.handleCellTypeClick} />
+          handleCellTypeClick={props.handleCellTypeClick}
+          topLevelLink='Vessels' />
       </TabContent>
     </div>
   );
