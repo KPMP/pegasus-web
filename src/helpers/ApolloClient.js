@@ -267,6 +267,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
                 aki {
                     id
                     segment
+                    segmentName
                     geneSymbol
                     pVal
                     foldChange
@@ -278,6 +279,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
                 ckd {
                     id
                     segment
+                    segmentName
                     geneSymbol
                     pVal
                     foldChange
@@ -289,6 +291,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
                 all {
                     id
                     segment
+                    segmentName
                     geneSymbol
                     pVal
                     foldChange
@@ -300,6 +303,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
                 hrt {
                     id
                     segment
+                    segmentName
                     geneSymbol
                     pVal
                     foldChange

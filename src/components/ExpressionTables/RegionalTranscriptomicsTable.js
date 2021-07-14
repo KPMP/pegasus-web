@@ -61,7 +61,7 @@ class RegionalTranscriptomicsTable extends Component {
                             tooltipShowDelay={0}
                         >
                             <AgGridColumn headerName='ABBR' field='segment' width={175}></AgGridColumn>
-                            <AgGridColumn headerName='REGION' field='segment' width={180}></AgGridColumn>
+                            <AgGridColumn headerName='REGION' field='segmentName' width={180}></AgGridColumn>
                             <AgGridColumn headerName='# SAMPLES' field='sampleCount' width={175}></AgGridColumn>
                             <AgGridColumn headerName='STD DEVIATION' field='stdDev' valueFormatter={this.numberFormatter} width={175}></AgGridColumn>
                             <AgGridColumn headerName="FOLD CHANGE"
