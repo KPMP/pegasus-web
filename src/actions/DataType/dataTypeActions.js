@@ -4,9 +4,11 @@ export const setDataType = (dataType) => {
     let shortDataType = "";
     switch (dataType) {
         case "snRNASeq":
+        case "sn":
             shortDataType = "sn";
             break;
         case "scRNASeq":
+        case "sc":
             shortDataType = "sc";
             break;
         default:

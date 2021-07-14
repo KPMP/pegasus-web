@@ -28,7 +28,7 @@ class DataTypeSelector extends Component {
 
     componentDidUpdate(prevProps) {
         if (this.props.gene.symbol !== prevProps.gene.symbol || this.props.dataType !== prevProps.dataType) {
-            this.fetchGeneDatasetSummary(this.props.gene.symbol);
+            // this.fetchGeneDatasetSummary(this.props.gene.symbol);
             getDataTypeOptions(this.props.gene.symbol, "").then(
                 (options) => {
                     let selectedOption = options.find(item => this.props.dataType === item.value);

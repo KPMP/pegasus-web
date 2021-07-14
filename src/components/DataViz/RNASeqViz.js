@@ -5,6 +5,7 @@ import ExpressionXCellType from "../ExpressionTables/ExpressionXCellType";
 import UMAPPlot from '../Plots/UMAPPlot';
 import FeaturePlot from '../Plots/FeaturePlot';
 import { fetchGeneExpression, fetchPlotlyData } from "../../helpers/ApolloClient";
+import { getDataTypeOptions } from "../../helpers/Utils";
 
 class RNASeqViz extends Component {
     constructor(props) {
@@ -16,28 +17,47 @@ class RNASeqViz extends Component {
         return results.filter((result) => result.clusterName !== "TOTAL CELLS: ");
     };
 
-    componentDidMount() {
-        if (!this.props.tissueType) {
-            this.props.setTissueType('all')
-        }
+    async componentDidMount() {
         if (this.props.gene.symbol) {
-            this.getGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType, 'network-only');
-            this.getUmapPoints(this.props.dataType, this.props.gene.symbol, this.props.tissueType, 'network-only');
+            await this.fetchDataType(this.props.gene.symbol)
+            if (!this.props.tissueType) {
+                this.props.setTissueType('all')
+            }
+            if (this.props.dataType) {
+                this.getGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType, 'network-only');
+                this.getUmapPoints(this.props.dataType, this.props.gene.symbol, this.props.tissueType, 'network-only');
+            }
         } else {
             this.setState({ isLoading: false, isLoadingUmap: false })
         }
     }
 
-    componentDidUpdate(prevProps) {
-
+    async componentDidUpdate(prevProps) {
         if (this.props.tissueType !== prevProps.tissueType
             || this.props.dataType !== prevProps.dataType
             || this.props.gene.symbol !== prevProps.gene.symbol) {
-            this.setState({ plotData: [], geneExpressionData: [], isLoading: false });
-            if (this.props.gene.symbol) {
-                this.getGeneExpression(this.props.dataType ? this.props.dataType : 'sc', this.props.gene.symbol, "", this.props.tissueType);
-                this.getUmapPoints(this.props.dataType ? this.props.dataType : 'sc', this.props.gene.symbol, this.props.tissueType);
+            this.setState({ plotData: [], geneExpressionData: [], isLoading: true, isLoadingUmap: true });
+            if (this.props.gene.symbol && this.props.dataType) {
+                if (!this.props.tissueType) {
+                    this.props.setTissueType('all')
+                }
+                this.getGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType);
+                this.getUmapPoints(this.props.dataType, this.props.gene.symbol, this.props.tissueType);
             }
+        }
+    }
+
+    fetchDataType = async (geneSymbol) => {
+        this.setState({ isLoading: true });
+        let options = await getDataTypeOptions(this.props.gene.symbol, "");
+        let availableOption = options.find((e) => {
+            if (e.isDisabled === false && (e.value === 'sc' || e.value === 'sn')) {
+                return e;
+            }
+        });
+        if (availableOption) {
+            this.props.setDataType(availableOption.value)
+            return availableOption.value
         }
     }
 

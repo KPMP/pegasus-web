@@ -3,6 +3,7 @@ import Plotly from '../../helpers/Plotly';
 import createPlotlyComponent from 'react-plotly.js/factory';
 import { Spinner } from "reactstrap";
 import { formatDataType, formatTissueType } from "../../helpers/Utils";
+
 const Plot = createPlotlyComponent(Plotly);
 
 class FeaturePlot extends Component {
@@ -96,13 +97,8 @@ class FeaturePlot extends Component {
     };
 
     render() {
-        if (this.state.isLoading || this.props.isLoading) {
-            return (
-                <div className='viz-spinner'>
-                    <Spinner color='primary' />
-                </div>
-            )
-        } else if (Array.isArray(this.state.plotData) && this.state.plotData.length === 0) {
+        if ((!this.state.isLoading || !this.props.isLoading)
+            && Array.isArray(this.state.plotData) && this.state.plotData.length == 0) {
             return (
                 <div className="expression-search-copy">
                     <i className="fa fa-share"></i>
@@ -110,7 +106,7 @@ class FeaturePlot extends Component {
                     <p>Enter a gene above to get started</p>
                 </div>
             )
-        } else {
+        } else if (Array.isArray(this.state.plotData) && this.state.plotData.length > 0 && this.state.plotData[0].text.length > 0) {
             return (
                 <div>
                     <Plot divId="featurePlot" data={this.state.plotData}
@@ -137,6 +133,12 @@ class FeaturePlot extends Component {
                             modeBarButtonsToRemove: ['hoverCompareCartesian', 'hoverClosestCartesian', 'zoom2d', 'toggleSpikelines', 'toggleHover', 'select2d', 'lasso2d']
                         }}
                     />
+                </div>
+            )
+        } else {
+            return (
+                <div className='viz-spinner'>
+                    <Spinner color='primary' />
                 </div>
             )
         }
