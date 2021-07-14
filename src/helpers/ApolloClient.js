@@ -334,6 +334,7 @@ export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
             getRTGeneExpressionByStructure(structure: "${structure}") {
                 id
                 segment
+                segmentName
                 gene: geneSymbol 
                 pVal
                 foldChange
