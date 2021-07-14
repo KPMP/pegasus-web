@@ -86,7 +86,7 @@ class RegionalViz extends Component {
                                 <span className='d-table-cell'>
                                     <ButtonGroup>
                                         <Button color="primary" onClick={() => this.setState({ selectedComparison: 'all_segments' })} active={this.state.selectedComparison === 'all_segments'}>Regions</Button>
-                                        <Button color="primary" onClick={() => this.setState({ selectedComparison: 'glom_tub' })} active={this.state.selectedComparison === 'glom_tub'}>Glom vs TI</Button>
+                                        <Button color="primary" onClick={() => this.setState({ selectedComparison: 'glom_tub' })} active={this.state.selectedComparison === 'glom_tub'}>Glom vs Tubulo-interstitium</Button>
                                     </ButtonGroup>
                                 </span>
                             </Col>
