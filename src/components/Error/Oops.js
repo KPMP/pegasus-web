@@ -26,7 +26,7 @@ class Oops extends Component {
             <p className="oops-button-container">
               <Button
                 className="btn btn-primary"
-                onClick={() => (window.location.href = '/')}
+                onClick={() => (window.location.href = '/explorer')}
               >
                 Back to Home
               </Button>
