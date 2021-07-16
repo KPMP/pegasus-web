@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { Container, Row, Button } from 'reactstrap';
-import ReactGA from 'react-ga';
+import { trackClickEvent } from '../../helpers/googleAnalyticsHelper';
 
 class LeftContent extends Component {
 
-  trackClickEvent = (clickEvent) => {
-      ReactGA.event({
-        category: 'Navigation',
-        action: clickEvent
-      });
-  }
+  constructor(props) {
+      super(props);
 
+      this.trackClickEvent = trackClickEvent.bind(this);
+  }
   render() {
     return (
       <Row>
@@ -22,7 +20,7 @@ class LeftContent extends Component {
             </p>
           </div>
           <div className='mt-3'>
-            <Button color='primary' href='/explorer' size='lg' block onClick={this.trackClickEvent('explorer')}>Go to Explorer</Button>
+            <Button color='primary' href='/explorer' size='lg' block onClick={() => {this.trackClickEvent('explorer')}}>Go to Explorer</Button>
           </div>
         </Container>
         <Container className="mt-3 rounded border p-3 shadow-sm">
@@ -33,7 +31,7 @@ class LeftContent extends Component {
             </p>
           </div>
           <div className='mt-3'>
-            <Button color='primary' href='/repository' size='lg' block onClick={this.trackClickEvent('repository')}>Go to Repository</Button>
+            <Button color='primary' href='/repository' size='lg' block onClick={() => {this.trackClickEvent('repository')}}>Go to Repository</Button>
           </div>
         </Container>
         <Container className="mt-3 rounded border p-3 shadow-sm">
@@ -44,7 +42,7 @@ class LeftContent extends Component {
             </p>
           </div>
           <div className='mt-3'>
-            <Button color='primary' href='https://www.kpmp.org/ancillary-studies' size='lg' block onClick={this.trackClickEvent('collaborate')}>Collaborate with us</Button>
+            <Button color='primary' href='https://www.kpmp.org/ancillary-studies' size='lg' block onClick={() => {this.trackClickEvent('collaborate')}}>Collaborate with us</Button>
           </div>
         </Container>
       </Row>

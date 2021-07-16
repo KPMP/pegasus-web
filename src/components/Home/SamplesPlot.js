@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Plotly from '../../helpers/Plotly';
 import createPlotlyComponent from 'react-plotly.js/factory';
 import initialState from '../../initialState';
-import ReactGA from 'react-ga';
+import { trackClickEvent } from '../../helpers/googleAnalyticsHelper';
 
 const Plot = createPlotlyComponent(Plotly);
 
@@ -15,19 +15,14 @@ class SamplesPlot extends Component {
         this.state = {
             summary: initialState.summary
         };
-    }
-
-    trackClickEvent = (clickEvent, label) => {
-        ReactGA.event({
-          category: 'Navigation',
-          action: clickEvent,
-          label: label
-        });
+        this.trackClickEvent = trackClickEvent.bind(this);
     }
 
     componentDidMount() {
         this.loadSVGBars()
     }
+
+    
 
     loadSVGBars() {
         let svg;
@@ -81,7 +76,13 @@ class SamplesPlot extends Component {
             textposition: 'outside',
             yaxis: 'y2',
             y: [
-                `<a onClick={this.trackClickEvent('repository', 'snRNA-seq FASTQs')} href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"data_format","value":["fastq"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Single-nucleus RNA-Seq"]}}]}'>snRNA-seq FASTQs</a><span>*</span>`,
+                `<script  type="text/ecmascript"> <![CDATA[
+                    function trackClickEvent(clickEvent, label) {
+                        console.log(clickEvent, label)
+                    }
+                ]]>
+                </script>`,
+                `<a onClick={trackClickEvent('repository', 'snRNA-seq FASTQs')} href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"data_format","value":["fastq"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Single-nucleus RNA-Seq"]}}]}'>snRNA-seq FASTQs</a><span>*</span>`,
                 `<a onClick={this.trackClickEvent('repository', 'snRNA-seq BAMs')} href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"data_format","value":["bam"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Single-nucleus RNA-Seq"]}}]}'>snRNA-seq BAMs</a><span>*</span>`,
                 `<a onClick={this.trackClickEvent('repository', 'snRNA-seq expression matrices')} href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["Single-nucleus RNA-Seq"]}},{"op":"in","content":{"field":"workflow_type","value":["Expression Matrix"]}}]}'>snRNA-seq expression matrices</a>`,
                 `<a onClick={this.trackClickEvent('repository', 'scRNA-seq FASTQs')} href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"data_format","value":["fastq"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Single-cell RNA-Seq"]}}]}'>scRNA-seq FASTQs</a><span>*</span>`,
