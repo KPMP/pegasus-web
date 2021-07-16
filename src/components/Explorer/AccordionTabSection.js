@@ -36,6 +36,7 @@ class AccordionTabSection extends Component {
         let event = toggleEvent.target.dataset.event;
         this.setState({ collapse: this.state.collapse === Number(event) ? 0 : Number(event) });
     }
+    
     toggleWithoutResetting = (toggleEvent) => {
         let event = toggleEvent.target.dataset.event;
         this.setState({ collapse: Number(event) });

@@ -8,3 +8,11 @@ export const trackClickEvent = (clickEvent, label) => {
       label: label
     });
 }
+
+export const handleGoogleAnalyticsEvent = (category, action, label) => {
+    ReactGA.event ({
+        category: category,
+        action: action,
+        label: label
+    });
+}
