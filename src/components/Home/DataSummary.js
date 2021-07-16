@@ -2,8 +2,17 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import SamplesPlot from './SamplesPlot';
 import SamplesByDataTypeTable from './SamplesByDataTypeTable';
+import ReactGA from 'react-ga';
 
 class DataSummary extends Component {
+
+    trackClickEvent = (clickEvent) => {
+        ReactGA.event({
+          category: 'Navigation',
+          action: clickEvent
+        });
+    }
+
     render() {
         return (
             <Container className="landing mt-3 rounded border p-3 shadow-sm">
@@ -12,7 +21,7 @@ class DataSummary extends Component {
                 <Row><p>The Kidney Tissue Atlas is a set of interactive tools built to promote retrieval, exploration, discovery, and analysis of the KPMP data by the greater research community.</p></Row>
 
                 <Col xs='12'>
-                    <a rel="noreferrer" target='_blank' href='https://www.kpmp.org/help-docs/data'>Learn more about our data types and methodologies</a>
+                    <a rel="noreferrer" target='_blank' href='https://www.kpmp.org/help-docs/data' onClick={this.trackClickEvent('learn about data types')}>Learn more about our data types and methodologies</a>
                 </Col>
 
                 <Row><h2 className="data-summary">Atlas Data Summary</h2></Row>

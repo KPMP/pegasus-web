@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import ReactGA from 'react-ga';
 import { createBrowserHistory } from 'history';
-import { Route, Switch, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, Router } from 'react-router-dom';
 import ErrorBoundaryContainer from './components/Error/ErrorBoundaryContainer';
 import Oops from './components/Error/Oops';
 import Home from './components/Home/Home';
@@ -57,7 +57,7 @@ store.subscribe(function () {
 store.subscribe(saveState);
 
 class App extends Component {
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     logPageView(window.location, '');
   }
 
@@ -65,7 +65,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <ApolloProvider client={apolloClient}>
-          <BrowserRouter basename={baseURL} history={history}>
+          <Router basename={baseURL} history={history}>
             <ErrorBoundaryContainer>
               <NavBar />
               <Switch>
@@ -81,7 +81,7 @@ class App extends Component {
               </Switch>
               <NavFooter />
             </ErrorBoundaryContainer>
-          </BrowserRouter>
+          </Router>
         </ApolloProvider>
       </Provider>
     );
