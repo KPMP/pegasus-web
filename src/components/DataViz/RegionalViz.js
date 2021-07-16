@@ -57,12 +57,12 @@ class RegionalViz extends Component {
     };
 
     cleanResults = (results) => {
-        return results.map(({ segment, segmentName, geneSymbol, pVal, stddev, foldChange, sampleCount }) => {
+        return results.map(({ segment, segmentName, geneSymbol, pVal, stdDev, foldChange, sampleCount }) => {
             return {
                 abbr: segment,
                 region: segmentName,
                 numSamples: sampleCount,
-                stdDeviation: stddev,
+                stdDeviation: stdDev,
                 gene: geneSymbol,
                 foldChange: foldChange ? foldChange : "NS",
                 pVal: (pVal || pVal === 0) ? pVal : "NS",
