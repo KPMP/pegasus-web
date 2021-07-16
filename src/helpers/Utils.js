@@ -56,6 +56,7 @@ export const sum = (array, property) => {
 };
 
 export const getTissueTypeOptions = (datasetSummary) => {
+    console.log('datasetSummary..', datasetSummary)
     const options = [
         {
             label: "All samples",
@@ -105,5 +106,22 @@ export const getDataTypeOptions = async (geneSymbol, cluster) => {
         ];
         return options;
     });
+    return options;
+};
+
+export const getDataTypeOptionsWithTissueType = async (geneSymbol, cluster, datasetSummary, currentTissueType) => {
+    let options = await getDataTypeOptions(geneSymbol, cluster, datasetSummary);
+    for (let index in options) {
+        for (let indexDS in datasetSummary) {
+            const tissues = {
+                "aki": datasetSummary[indexDS].akiCount,
+                "ckd": datasetSummary[indexDS].ckdCount,
+                "hrt": datasetSummary[indexDS].hrtCount
+            }
+            if (options[index].value == datasetSummary[indexDS].dataTypeShort && tissues[currentTissueType] == 0) {
+                options[index].isDisabled = true
+            }
+        }
+    }
     return options;
 };
