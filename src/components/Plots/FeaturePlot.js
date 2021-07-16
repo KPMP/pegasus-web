@@ -115,6 +115,17 @@ class FeaturePlot extends Component {
                 <div>
                     <Plot divId="featurePlot" data={this.state.plotData}
                         layout={{
+                            title: {
+                                text: '-log10 (pval)',
+                                font: { size: 12 },
+                                yref: 'paper',
+                                y: 1,
+                                xref: 'paper',
+                                x: 0.9,
+                                xanchor: 'center',
+                                pad: { b: 10 },
+                                yanchor: 'bottom'
+                            },
                             width: this.state.plotWidth,
                             height: this.state.plotHeight,
                             showlegend: false,
