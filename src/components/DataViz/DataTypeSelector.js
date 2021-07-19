@@ -162,7 +162,7 @@ class DataTypeSelector extends Component {
                     </Row>
                     <Row xs="12" className='mt-1 pl-0' >
                         <Col lg="12" className='d-table pl-2'>
-                            <span className='d-table-cell pt-1 dataset-info'>Dataset coverage: N={this.state.selectedDataset.participantCount} PARTICIPANTS; {this.state.selectedDataset.hrtCount} HEALTHY REFERENCE; {this.state.selectedDataset.ckdCount} CKD; {this.state.selectedDataset.akiCount} AKI</span>
+                            <span className='d-table-cell pt-1 dataset-info'>Dataset coverage: N={this.state.selectedDataset.participantCount} PARTICIPANTS; {this.state.selectedDataset.hrtCount} HEALTHY REFERENCE (HRT); {this.state.selectedDataset.ckdCount} CKD; {this.state.selectedDataset.akiCount} AKI</span>
                         </Col>
                     </Row>
                 </Container>
