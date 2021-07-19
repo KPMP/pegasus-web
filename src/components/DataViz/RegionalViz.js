@@ -7,9 +7,9 @@ import { fetchRegionalTranscriptomics } from "../../helpers/ApolloClient";
 import RegionalTranscriptomicsTable from "../ExpressionTables/RegionalTranscriptomicsTable";
 import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { CSVLink } from "react-csv";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDataType } from "../../helpers/Utils";
+import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
 
 class RegionalViz extends Component {
@@ -130,6 +130,7 @@ class RegionalViz extends Component {
                             </Col>
                             <Col xs='1' className='text-right'>
                             <CSVLink
+                                onClick={() => handleGoogleAnalyticsEvent('Download', this.getExportFilename())}
                                 data={this.cleanResults(downloadData)}
                                 filename={this.getExportFilename()}
                                 target="_blank"

@@ -110,6 +110,7 @@ class FeaturePlot extends Component {
             return (
                 <div>
                     <Plot divId="featurePlot" data={this.state.plotData}
+                        
                         layout={{
                             title: {
                                 text: '-log10 (pval)',

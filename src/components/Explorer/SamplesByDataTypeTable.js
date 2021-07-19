@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import initialState from '../../initialState';
 import { Row, Col } from 'reactstrap';
+import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
 class SamplesByDataTypeTable extends Component {
 
@@ -18,7 +19,7 @@ class SamplesByDataTypeTable extends Component {
         };
     }
     handleDataTypeClick(dataType) {
-
+        handleGoogleAnalyticsEvent('Navigation', 'blank slate visualization', dataType);
         let dataLinkageMapping = {
             'Single-nucleus RNA-seq (snRNA-seq)': 'sn',
             'Single-cell RNA-seq (scRNA-seq)': 'sc',

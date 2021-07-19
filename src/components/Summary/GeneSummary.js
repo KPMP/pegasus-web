@@ -4,6 +4,7 @@ import ReactTable from 'react-table';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchGeneDatasetSummary } from '../../helpers/ApolloClient';
 import { getDataTypeOptions } from "../../helpers/Utils";
+import { handleGoogleAnalyticsEvent } from  '../../helpers/googleAnalyticsHelper';
 
 class GeneSummary extends Component {
 
@@ -77,6 +78,7 @@ class GeneSummary extends Component {
     }
 
     handleLinkClick = (dataType) => {
+        handleGoogleAnalyticsEvent('Navigation', 'visualiztion', dataType);
         this.props.setDataType(dataType)
     };
 

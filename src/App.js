@@ -57,7 +57,7 @@ store.subscribe(function () {
 store.subscribe(saveState);
 
 class App extends Component {
-  componentWillMount() {
+  UNSAFE_componentWillMount() {
     logPageView(window.location, '');
   }
 

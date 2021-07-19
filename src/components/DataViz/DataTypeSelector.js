@@ -6,6 +6,7 @@ import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer';
 import { getTissueTypeOptions, getDataTypeOptionsWithTissueType } from "../../helpers/Utils";
 import { fetchGeneDatasetSummary } from '../../helpers/ApolloClient';
+import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
 class DataTypeSelector extends Component {
     constructor(props) {
@@ -97,12 +98,14 @@ class DataTypeSelector extends Component {
     }
 
     handleTissueSelect = (selected, actionMeta) => {
+        handleGoogleAnalyticsEvent('Subset', 'Tissue', selected.value);
         this.props.setTissueType(selected.value);
         this.setState({ tissueValue: selected });
     };
 
     handleInputChange(inputValue, action) {
         if (action.action !== "input-blur" && action.action !== "menu-close") {
+            handleGoogleAnalyticsEvent('Navigation', 'via data type', inputValue.value);
             this.props.setDataType(inputValue.value);
             this.setState({ dataTypeInputValue: inputValue });
         }

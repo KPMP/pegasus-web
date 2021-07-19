@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Col, Container, Row, Spinner } from 'reactstrap';
 import { fetchCellTypeHierarchy } from "../../helpers/ApolloClient";
 import CellTypeTabs from './CellTypeTabs';
+import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
 class NephronSchemaCard extends Component {
 
@@ -27,7 +28,8 @@ class NephronSchemaCard extends Component {
     };
 
     handleCellTypeClick = (cellType) => {
-        this.props.setSelectedConcept({ type: "cell_type", value: cellType });
+        handleGoogleAnalyticsEvent('Search', 'cell_type', cellType);
+        this.props.setSelectedConcept({ type: 'cell_type', value: cellType });
     };
 
     processHierarchyText = () => {
