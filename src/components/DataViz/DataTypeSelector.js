@@ -143,6 +143,7 @@ class DataTypeSelector extends Component {
                                 inputValue={this.getInputValue()}
                                 onFocus={() => this.setState({ tissueInputValue: "" })}
                                 className='select d-table-cell w-100 pl-2'
+                                isDisabled={this.props.isLoadingUmap ? true : false}
                             />
                         </Col>
                         <Col lg="4" className='d-table px-2 pt-3'>
@@ -153,7 +154,7 @@ class DataTypeSelector extends Component {
                                 onChange={this.handleInputChange.bind(this)}
                                 className='select d-table-cell w-100 pl-2'
                                 styles={{ menu: provided => ({ ...provided, zIndex: 999 }) }}
-
+                                isDisabled={this.props.isLoadingUmap ? true : false}
                             />
                         </Col>
                         <Col lg='3' className='text-right pt-3'>
