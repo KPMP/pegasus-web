@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import SamplesPlot from './SamplesPlot';
 import SamplesByDataTypeTable from './SamplesByDataTypeTable';
-import { trackClickEvent } from '../../helpers/googleAnalyticsHelper';
+import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
 class DataSummary extends Component {
 
     constructor(props) {
         super(props);
 
-        this.trackClickEvent = trackClickEvent.bind(this);
+        this.handleGoogleAnalyticsEvent = handleGoogleAnalyticsEvent.bind(this);
     }
 
     render() {
@@ -20,7 +20,7 @@ class DataSummary extends Component {
                 <Row><p>The Kidney Tissue Atlas is a set of interactive tools built to promote retrieval, exploration, discovery, and analysis of the KPMP data by the greater research community.</p></Row>
 
                 <Col xs='12'>
-                    <a rel="noreferrer" target='_blank' href='https://www.kpmp.org/help-docs/data' onClick={() => {this.trackClickEvent('learn about data types')}}>Learn more about our data types and methodologies</a>
+                    <a rel="noreferrer" target='_blank' href='https://www.kpmp.org/help-docs/data' onClick={() => {this.handleGoogleAnalyticsEvent('Navigation', 'Help', 'learn about data types')}}>Learn more about our data types and methodologies</a>
                 </Col>
 
                 <Row><h2 className="data-summary">Atlas Data Summary</h2></Row>
@@ -36,7 +36,7 @@ class DataSummary extends Component {
 
 
                 <Row><p>Current data types in the repository include:</p></Row>
-                <Row><h5 className="controlled-data"><span className="controlled-data-asterisk">*</span> = <a className="learn-link" rel="noreferrer" target='_blank' href="https://www.kpmp.org/controlled-data">
+                <Row><h5 className="controlled-data"><span className="controlled-data-asterisk">*</span> = <a  onClick={() => {this.handleGoogleAnalyticsEvent('Navigation', 'controlled data')}} className="learn-link" rel="noreferrer" target='_blank' href="https://www.kpmp.org/controlled-data">
                     Controlled data</a></h5></Row>
                 <Row>
                     <h5 className="samples-plot-header">Number of files</h5>

@@ -114,6 +114,7 @@ class FeaturePlot extends Component {
             return (
                 <div>
                     <Plot divId="featurePlot" data={this.state.plotData}
+                        
                         layout={{
                             width: this.state.plotWidth,
                             height: this.state.plotHeight,
