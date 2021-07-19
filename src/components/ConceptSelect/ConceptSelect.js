@@ -23,6 +23,9 @@ class ConceptSelect extends Component {
                 fetchDataTypesForConcept(selected.value.value, "").then(
                     (results) => {
                         let hasResults = results.dataTypesForConcept.length > 0;
+                        if (hasResults && !this.props.dataType) {
+                            this.props.setDataType(results.dataTypesForConcept[0])
+                        }
                         let hasResultsWithDataType = this.props.dataType ? results.dataTypesForConcept.includes(this.props.dataType) : true;
                         if (hasResults && hasResultsWithDataType) {
                             this.props.setSelectedConcept(selected.value);
@@ -128,7 +131,7 @@ class ConceptSelect extends Component {
         if (!this.state.hasResults) {
             noResultsAlert = <div className='full-width mt-3'><Alert color="warning" isOpen={this.state.alertVisible} toggle={this.onDismiss}>
                 The gene, {this.state.noResultValue}, is not detected in any dataset.
-                </Alert></div>;
+            </Alert></div>;
         }
 
         return (

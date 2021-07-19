@@ -4,7 +4,7 @@ import { Row, Col, Container } from 'reactstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer';
-import { getTissueTypeOptions, getDataTypeOptions } from "../../helpers/Utils";
+import { getTissueTypeOptions, getDataTypeOptionsWithTissueType } from "../../helpers/Utils";
 import { fetchGeneDatasetSummary } from '../../helpers/ApolloClient';
 
 class DataTypeSelector extends Component {
@@ -27,34 +27,14 @@ class DataTypeSelector extends Component {
 
 
     componentDidUpdate(prevProps) {
-        if (this.props.gene.symbol !== prevProps.gene.symbol || this.props.dataType !== prevProps.dataType) {
+        if (this.props.gene.symbol !== prevProps.gene.symbol || this.props.dataType !== prevProps.dataType || this.props.tissueType !== prevProps.tissueType) {
             this.fetchGeneDatasetSummary(this.props.gene.symbol);
-            getDataTypeOptions(this.props.gene.symbol, "").then(
-                (options) => {
-                    let selectedOption = options.find(item => this.props.dataType === item.value);
-                    this.setState({ dataTypeOptions: options, dataTypeInputValue: selectedOption })
-                },
-                (error) => {
-                    this.setState({ dataTypeOptions: [] });
-                    console.log("There was a problem getting the data: " + error)
-                }
-            );
         }
     }
 
     componentDidMount() {
         if (this.props.gene.symbol) {
-            this.fetchGeneDatasetSummary(this.props.gene.symbol)
-            getDataTypeOptions(this.props.gene.symbol, "").then(
-                (options) => {
-                    let selectedOption = options.find(item => this.props.dataType === item.value);
-                    this.setState({ dataTypeOptions: options, dataTypeInputValue: selectedOption })
-                },
-                (error) => {
-                    this.setState({ dataTypeOptions: [] });
-                    console.log("There was a problem getting the data: " + error)
-                }
-            );
+            this.fetchGeneDatasetSummary(this.props.gene.symbol);
         }
     }
 
@@ -70,7 +50,6 @@ class DataTypeSelector extends Component {
                 this.setState({ selectedDataset: dataset })
                 return
             }
-
         }
     }
 
@@ -91,9 +70,16 @@ class DataTypeSelector extends Component {
                 if (datasetSummary) {
                     datasetSummary = this.formatGeneDataset(datasetSummary)
                     this.setSelectedDatasetSummary(this.props.dataType, datasetSummary)
-                    this.setState({
-                        availableData: datasetSummary
-                    });
+                    getDataTypeOptionsWithTissueType(this.props.gene.symbol, "", datasetSummary, this.props.tissueType).then(
+                        (options) => {
+                            let selectedOption = options.find(item => this.props.dataType === item.value);
+                            this.setState({ dataTypeOptions: options, dataTypeInputValue: selectedOption, availableData: datasetSummary })
+                        },
+                        (error) => {
+                            this.setState({ dataTypeOptions: [] });
+                            console.log("There was a problem getting the data: " + error)
+                        }
+                    );
                     return datasetSummary
                 }
             },
@@ -104,8 +90,8 @@ class DataTypeSelector extends Component {
                     akiCount: '-',
                     ckdCount: '-'
                 }
-                this.setState({ selectedDataset });
                 console.log('There was a problem fetching the gene summary data: ' + error)
+                this.setState({ selectedDataset });
             }
         );
     }
