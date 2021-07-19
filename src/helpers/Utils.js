@@ -56,7 +56,6 @@ export const sum = (array, property) => {
 };
 
 export const getTissueTypeOptions = (datasetSummary) => {
-    console.log('datasetSummary..', datasetSummary)
     const options = [
         {
             label: "All samples",
