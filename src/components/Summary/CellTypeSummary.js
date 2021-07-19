@@ -5,6 +5,7 @@ import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchClusterHierarchy } from '../../helpers/ApolloClient';
 import { Spinner } from "reactstrap";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
+import Parser from 'html-react-parser';
 
 class CellTypeSummary extends Component {
 
@@ -57,6 +58,14 @@ class CellTypeSummary extends Component {
         return { id: column.id };
     };
 
+    parseClusterName = (value) => {
+        if (value !== null) {
+            return <span title={Parser(value)}>{Parser(value)}</span>
+        } else {
+            return ''
+        }
+    }
+
     getColumns() {
         return [
             {
@@ -84,7 +93,9 @@ class CellTypeSummary extends Component {
                 headerClassName: 'table-header',
                 className: 'table-column',
                 minWidth: 240,
-                Cell: ({ value }) => <span title={value}>{value}</span>
+                Cell: ({ value }) => (
+                    this.parseClusterName(value)
+                )
             },
             {
                 Header: <span className='cell-summary-table-header-center'>SINGLE-NUCLEUS<br />RNA-seq</span>,
@@ -161,6 +172,15 @@ class CellTypeSummary extends Component {
                                     getTheadThProps={this.getTheadThProps}
                                     minRows={0}
                                 />
+                            </Col>
+                        </Row>
+                        <Row xs='12'>
+                            <Col><small>
+                                <sup>1</sup>adaptive/maladaptive/repairing: Represented by cells that retain differentiation markers of reference states, albeit at lower levels, but also show expression of known injury associated genes, mesenchymal markers or factors promoting inflammation or fibrosis. 
+                                <sup>2</sup>cycling: Represented by enrichment of cell cycle genes. 
+                                <sup>3</sup>degenerative: Marked loss of differentiation markers, and/or increased %ERT, %MT, and/or marked decrease in genes detected. These cells could represent an early injury state or cells that will not recover function. 
+                                <sup>4</sup>transitional: Represented by an intermediate state showing markers of cells sharing the same parental lineage.
+                                </small>
                             </Col>
                         </Row>
                     </Container>

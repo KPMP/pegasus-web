@@ -20,6 +20,7 @@
     "colormap": "2.3.2",
     "graphql": "15.4.0",
     "history": "5.0.0",
+    "html-react-parser": "^1.2.7",
     "isomorphic-unfetch": "3.1.0",
     "kpmp-custom-plotly.js": "2.0.0-rc.2",
     "material-table": "1.69.1",

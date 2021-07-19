@@ -117,7 +117,7 @@ export const getDataTypeOptionsWithTissueType = async (geneSymbol, cluster, data
                 "ckd": datasetSummary[indexDS].ckdCount,
                 "hrt": datasetSummary[indexDS].hrtCount
             }
-            if (options[index].value == datasetSummary[indexDS].dataTypeShort && tissues[currentTissueType] == 0) {
+            if (options[index].value === datasetSummary[indexDS].dataTypeShort && tissues[currentTissueType] === 0) {
                 options[index].isDisabled = true
             }
         }
