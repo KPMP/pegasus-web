@@ -4,6 +4,7 @@ import ReactTable from 'react-table';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchClusterHierarchy } from '../../helpers/ApolloClient';
 import { Spinner } from "reactstrap";
+import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
 class CellTypeSummary extends Component {
 
@@ -48,6 +49,7 @@ class CellTypeSummary extends Component {
                 cluster = row.structureSubregion;
             }
         }
+        handleGoogleAnalyticsEvent('Navigation', 'diffex', 'data type: ' + dataType + ' and cluster: ' + cluster );
         this.props.setDataTypeAndCluster(dataType, cluster);
     };
 

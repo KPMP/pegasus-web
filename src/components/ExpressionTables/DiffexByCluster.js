@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import DiffexInfoBar from './DiffexInfoBar';
 import { displayMaterialTable } from '../../../package.json';
+import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
 class DiffexByCluster extends Component {
 
@@ -158,6 +159,7 @@ class DiffexByCluster extends Component {
                                 <Row xs='12'>
                                     <Col xs='12' className='text-right'>
                                         <CSVLink
+                                            onClick={() => handleGoogleAnalyticsEvent('Download', this.getExportFilename())}
                                             data={this.cleanResults(this.state.diffexData)}
                                             filename={this.getExportFilename()}
                                             target='_blank'
