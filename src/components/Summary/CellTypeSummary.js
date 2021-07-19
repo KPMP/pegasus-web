@@ -69,30 +69,30 @@ class CellTypeSummary extends Component {
     getColumns() {
         return [
             {
-                Header: <span>STRUCTURE/REGION</span>,
+                Header: <span>STRUCTURE/<br/>REGION</span>,
                 id: 'structureRegion',
                 accessor: 'structureRegion',
                 headerClassName: 'table-header',
                 className: 'table-column',
-                minWidth: 150,
+                minWidth: 75,
                 Cell: ({ value }) => <span title={value}>{value}</span>
             },
             {
-                Header: <span>SUBSTRUCTURE/SUBREGION</span>,
+                Header: <span>SUBSTRUCTURE/<br/>SUBREGION</span>,
                 id: 'structureSubregion',
                 accessor: 'structureSubregion',
                 headerClassName: 'table-header',
                 className: 'table-column',
-                minWidth: 195,
+                minWidth: 125,
                 Cell: ({ value }) => <span title={value}>{value}</span>
             },
             {
-                Header: 'CELL TYPE/CLUSTER',
+                Header: <span>CELL TYPE/<br/>CLUSTER</span>,
                 id: 'clusterName',
                 accessor: 'clusterName',
                 headerClassName: 'table-header',
                 className: 'table-column',
-                minWidth: 240,
+                minWidth: 450,
                 Cell: ({ value }) => (
                     this.parseClusterName(value)
                 )
@@ -103,7 +103,6 @@ class CellTypeSummary extends Component {
                 accessor: 'isSingleNucCluster',
                 headerClassName: 'table-header text-center',
                 className: 'table-column text-center',
-                minWidth: 120,
                 Cell: ({ row }) => (
                     this.linkDataTypeCells(row, 'sn')
                 )
