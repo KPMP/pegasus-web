@@ -87,7 +87,7 @@ class CellTypeSummary extends Component {
                 Cell: ({ value }) => <span title={value}>{value}</span>
             },
             {
-                Header: <span>CELL TYPE/<br/>CLUSTER</span>,
+                Header: <span>CELL TYPE/<br/>CLUSTER (predictive state)</span>,
                 id: 'clusterName',
                 accessor: 'clusterName',
                 headerClassName: 'table-header',
