@@ -134,7 +134,7 @@ class RegionalViz extends Component {
                             <Col xs='1' className='text-right'>
                             <CSVLink
                                 onClick={() => handleGoogleAnalyticsEvent('Download', this.getExportFilename())}
-                                data={this.cleanResults(downloadData)}
+                                data={downloadData && this.cleanResults(downloadData)}
                                 filename={this.getExportFilename()}
                                 target="_blank"
                                 className="text-body icon-container"
