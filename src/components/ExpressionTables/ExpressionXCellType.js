@@ -58,15 +58,15 @@ class ExpressionXCellType extends Component {
                 id: 'cluster',
                 headerClassName: 'table-header',
                 className: 'table-column',
-                minWidth: 60,
+                minWidth: 90,
             },
             {
-                Header: "CLUSTER",
+                Header: "CLUSTER (predictive state)",
                 Footer: "TOTAL CELLS: ",
                 accessor: 'clusterName',
                 headerClassName: 'table-header',
                 className: 'table-column',
-                minWidth: 495,
+                minWidth: 465,
                 Cell: ({ value }) => (
                     this.parseClusterName(value)
                 )
