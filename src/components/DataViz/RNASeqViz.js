@@ -75,7 +75,7 @@ class RNASeqViz extends Component {
     render() {
         return (
             <Container id='outer-wrapper'>
-                <DataTypeSelectorContainer />
+                <DataTypeSelectorContainer isLoadingUmap={this.state.isLoadingUmap} />
                 <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
 
                     <Row xs='12'>
