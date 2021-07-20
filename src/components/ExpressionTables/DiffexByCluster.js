@@ -71,7 +71,7 @@ class DiffexByCluster extends Component {
         {
             title: <span>FOLD CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
                 <UncontrolledTooltip placement='bottom' target='fold-change-info' >
-                    Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.
+                    Fold change of a gene is calculated by dividing the average expression of the gene in the segment/cluster of interest by its average expression in all other segments/clusters being compared.
                 </UncontrolledTooltip></span>,
             field: 'foldChange',
             align: 'right',
@@ -89,7 +89,7 @@ class DiffexByCluster extends Component {
         {
             title: <span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
                 <UncontrolledTooltip placement='bottom' target='pvalue-info' >
-                    p-value (unadjusted)
+                    P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment/cluster of interest and its expression in all other segments/clusters.
                 </UncontrolledTooltip></span>,
             field: 'pVal',
             align: 'right',
