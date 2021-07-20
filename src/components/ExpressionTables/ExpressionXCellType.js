@@ -99,7 +99,7 @@ class ExpressionXCellType extends Component {
                 minWidth: 90,
                 Cell: ({ value }) => {
                     let newValue = (value > 0)?(value * 100):value;
-                    formatNumberToPrecision(newValue, 3)
+                    return formatNumberToPrecision(newValue, 3);
                 }
             },
             {
