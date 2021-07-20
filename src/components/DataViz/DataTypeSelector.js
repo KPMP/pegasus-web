@@ -118,7 +118,7 @@ class DataTypeSelector extends Component {
         } catch (e) {
             return ''
         }
-    }
+    };
 
     render() {
         let selectedValue = this.state.dataTypeInputValue ? this.state.dataTypeInputValue : null;

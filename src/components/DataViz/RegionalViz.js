@@ -76,7 +76,7 @@ class RegionalViz extends Component {
     render() {
         let plot = {};
         let table = {};
-        let downloadData = {};
+        let downloadData = [];
         if (this.state.selectedComparison === 'glom_tub') {
             table = <RegionalTranscriptomicsTable data={this.state.rtGTTableData} />;
             plot = <LMDDotPlot data={this.state.rtGTPlotData} />
