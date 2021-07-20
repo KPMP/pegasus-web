@@ -92,8 +92,8 @@ class ExpressionXCellType extends Component {
                 Header: <span>FOLD<br />CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
 
                     <UncontrolledTooltip placement='bottom' target='fold-change-info' >
-                        Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.
-                        </UncontrolledTooltip></span>,
+                        Fold change of a gene is calculated by dividing the average expression of the gene in the segment/cluster of interest by its average expression in all other segments/clusters being compared.
+                    </UncontrolledTooltip></span>,
                 headerClassName: 'table-header',
                 className: 'table-column',
                 accessor: 'foldChange',
@@ -103,8 +103,8 @@ class ExpressionXCellType extends Component {
             {
                 Header: <span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
                     <UncontrolledTooltip placement='bottom' target='pvalue-info' >
-                        p-value (unadjusted)
-                            </UncontrolledTooltip></span>,
+                        P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment/cluster of interest and its expression in all other segments/clusters.
+                    </UncontrolledTooltip></span>,
                 headerClassName: 'table-header',
                 className: 'table-column',
                 accessor: 'pVal',
@@ -115,7 +115,7 @@ class ExpressionXCellType extends Component {
                 Header: <span>ADJ<br />P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
                     <UncontrolledTooltip placement='bottom' target='pvalue-adj-info' >
                         Adjusted p-value, based on bonferroni correction using all features in the dataset.
-                            </UncontrolledTooltip></span>,
+                    </UncontrolledTooltip></span>,
                 headerClassName: 'table-header',
                 className: 'table-column',
                 accessor: 'pValAdj',
