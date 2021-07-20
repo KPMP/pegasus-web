@@ -98,7 +98,7 @@ class FeaturePlot extends Component {
 
     render() {
         if ((!this.state.isLoading || !this.props.isLoading)
-            && Array.isArray(this.state.plotData) && this.state.plotData.length == 0) {
+            && Array.isArray(this.state.plotData) && this.state.plotData.length === 0) {
             return (
                 <div className="expression-search-copy">
                     <i className="fa fa-share"></i>

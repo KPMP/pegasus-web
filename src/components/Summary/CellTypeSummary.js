@@ -5,6 +5,7 @@ import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchClusterHierarchy } from '../../helpers/ApolloClient';
 import { Spinner } from "reactstrap";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
+import Parser from 'html-react-parser';
 
 class CellTypeSummary extends Component {
 
@@ -57,34 +58,44 @@ class CellTypeSummary extends Component {
         return { id: column.id };
     };
 
+    parseClusterName = (value) => {
+        if (value !== null) {
+            return <span title={Parser(value)}>{Parser(value)}</span>
+        } else {
+            return ''
+        }
+    }
+
     getColumns() {
         return [
             {
-                Header: <span>STRUCTURE/REGION</span>,
+                Header: <span>STRUCTURE/<br/>REGION</span>,
                 id: 'structureRegion',
                 accessor: 'structureRegion',
                 headerClassName: 'table-header',
                 className: 'table-column',
-                minWidth: 150,
+                minWidth: 75,
                 Cell: ({ value }) => <span title={value}>{value}</span>
             },
             {
-                Header: <span>SUBSTRUCTURE/SUBREGION</span>,
+                Header: <span>SUBSTRUCTURE/<br/>SUBREGION</span>,
                 id: 'structureSubregion',
                 accessor: 'structureSubregion',
                 headerClassName: 'table-header',
                 className: 'table-column',
-                minWidth: 195,
+                minWidth: 125,
                 Cell: ({ value }) => <span title={value}>{value}</span>
             },
             {
-                Header: 'CELL TYPE/CLUSTER',
+                Header: <span>CELL TYPE/<br/>CLUSTER</span>,
                 id: 'clusterName',
                 accessor: 'clusterName',
                 headerClassName: 'table-header',
                 className: 'table-column',
-                minWidth: 240,
-                Cell: ({ value }) => <span title={value}>{value}</span>
+                minWidth: 450,
+                Cell: ({ value }) => (
+                    this.parseClusterName(value)
+                )
             },
             {
                 Header: <span className='cell-summary-table-header-center'>SINGLE-NUCLEUS<br />RNA-seq</span>,
@@ -92,7 +103,6 @@ class CellTypeSummary extends Component {
                 accessor: 'isSingleNucCluster',
                 headerClassName: 'table-header text-center',
                 className: 'table-column text-center',
-                minWidth: 120,
                 Cell: ({ row }) => (
                     this.linkDataTypeCells(row, 'sn')
                 )
@@ -161,6 +171,15 @@ class CellTypeSummary extends Component {
                                     getTheadThProps={this.getTheadThProps}
                                     minRows={0}
                                 />
+                            </Col>
+                        </Row>
+                        <Row xs='12'>
+                            <Col><small>
+                                <sup>1</sup>adaptive/maladaptive/repairing: Represented by cells that retain differentiation markers of reference states, albeit at lower levels, but also show expression of known injury associated genes, mesenchymal markers or factors promoting inflammation or fibrosis. 
+                                <sup>2</sup>cycling: Represented by enrichment of cell cycle genes. 
+                                <sup>3</sup>degenerative: Marked loss of differentiation markers, and/or increased %ERT, %MT, and/or marked decrease in genes detected. These cells could represent an early injury state or cells that will not recover function. 
+                                <sup>4</sup>transitional: Represented by an intermediate state showing markers of cells sharing the same parental lineage.
+                                </small>
                             </Col>
                         </Row>
                     </Container>
