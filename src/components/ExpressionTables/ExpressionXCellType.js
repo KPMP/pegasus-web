@@ -97,7 +97,10 @@ class ExpressionXCellType extends Component {
                 headerClassName: 'table-header',
                 className: 'table-column',
                 minWidth: 90,
-                Cell: ({ value }) => formatNumberToPrecision(value * 100, 3)
+                Cell: ({ value }) => {
+                    let newValue = (value > 0)?(value * 100):value;
+                    formatNumberToPrecision(newValue, 3)
+                }
             },
             {
                 Header: <span>FOLD<br />CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
