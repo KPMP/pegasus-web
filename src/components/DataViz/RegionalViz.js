@@ -77,6 +77,7 @@ class RegionalViz extends Component {
         let plot = {};
         let table = {};
         let downloadData = [];
+        let cleanDownloadData = [];
         if (this.state.selectedComparison === 'glom_tub') {
             table = <RegionalTranscriptomicsTable data={this.state.rtGTTableData} />;
             plot = <LMDDotPlot data={this.state.rtGTPlotData} />
@@ -86,7 +87,9 @@ class RegionalViz extends Component {
             plot = <LMDDotPlot data={this.state.rtAllPlotData} />
             downloadData = this.state.rtAllTableData;
         }
-
+        if (downloadData.length > 0) {
+            cleanDownloadData = this.cleanResults(downloadData);
+        }
         return (
             <Container id='outer-wrapper'>
                 <DataTypeSelectorContainer />
@@ -134,7 +137,7 @@ class RegionalViz extends Component {
                             <Col xs='1' className='text-right'>
                             <CSVLink
                                 onClick={() => handleGoogleAnalyticsEvent('Download', this.getExportFilename())}
-                                data={downloadData && this.cleanResults(downloadData)}
+                                data={cleanDownloadData}
                                 filename={this.getExportFilename()}
                                 target="_blank"
                                 className="text-body icon-container"
