@@ -81,7 +81,7 @@ class DataTypeSelector extends Component {
         return datasetSummary
     }
     fetchGeneDatasetSummary = async (geneSymbol) => {
-        fetchGeneDatasetSummary(geneSymbol).then(
+        return fetchGeneDatasetSummary(geneSymbol).then(
             (datasetSummary) => {
                 if (datasetSummary) {
                     datasetSummary = this.formatGeneDataset(datasetSummary)
