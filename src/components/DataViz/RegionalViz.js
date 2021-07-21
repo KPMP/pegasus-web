@@ -60,7 +60,7 @@ class RegionalViz extends Component {
         // This next line was needed to avoid a strange error complaining that I couldn't modify the array
         let tempResults = JSON.parse(JSON.stringify(results));
         // The order b - a is important here because we want a reverse sort
-        let sortedResults = tempResults.sort(function(a,b) { return b.foldChange - a.foldChange;});
+        let sortedResults = tempResults.sort(function (a, b) { return b.foldChange - a.foldChange; });
         return sortedResults.map(({ segment, segmentName, pVal, stdDev, foldChange, sampleCount }) => {
             return {
                 abbr: segment,
@@ -87,7 +87,8 @@ class RegionalViz extends Component {
             plot = <LMDDotPlot data={this.state.rtAllPlotData} />
             downloadData = this.state.rtAllTableData;
         }
-        if (downloadData.length > 0) {
+
+        if (downloadData && downloadData.length > 0) {
             cleanDownloadData = this.cleanResults(downloadData);
         }
         return (
@@ -135,16 +136,16 @@ class RegionalViz extends Component {
                                 <h6>NS = Not Significant</h6>
                             </Col>
                             <Col xs='1' className='text-right'>
-                            <CSVLink
-                                onClick={() => handleGoogleAnalyticsEvent('Download', this.getExportFilename())}
-                                data={cleanDownloadData}
-                                filename={this.getExportFilename()}
-                                target="_blank"
-                                className="text-body icon-container"
-                            >
-                                <FontAwesomeIcon icon={faDownload} />
-                            </CSVLink>
-                        </Col>
+                                <CSVLink
+                                    onClick={() => handleGoogleAnalyticsEvent('Download', this.getExportFilename())}
+                                    data={cleanDownloadData}
+                                    filename={this.getExportFilename()}
+                                    target="_blank"
+                                    className="text-body icon-container"
+                                >
+                                    <FontAwesomeIcon icon={faDownload} />
+                                </CSVLink>
+                            </Col>
                         </Row>
                         <Row xs='12'>
                             {table}
