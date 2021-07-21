@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import Select from "react-select";
 import { Row, Col, Container } from 'reactstrap';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faQuestionCircle } from '@fortawesome/free-regular-svg-icons';
 import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer';
-import { getTissueTypeOptions, getDataTypeOptionsWithTissueType } from "../../helpers/Utils";
+import { getTissueTypeOptions, getAllDataTypeOptions, getDataTypeOptionsWithTissueType } from "../../helpers/Utils";
 import { fetchGeneDatasetSummary } from '../../helpers/ApolloClient';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
@@ -28,14 +26,26 @@ class DataTypeSelector extends Component {
 
 
     componentDidUpdate(prevProps) {
-        if (this.props.gene.symbol !== prevProps.gene.symbol || this.props.dataType !== prevProps.dataType || this.props.tissueType !== prevProps.tissueType) {
-            this.fetchGeneDatasetSummary(this.props.gene.symbol);
+        if ((this.props.gene.symbol !== prevProps.gene.symbol || this.props.dataType !== prevProps.dataType || this.props.tissueType !== prevProps.tissueType)) {
+            if (this.props.gene.symbol) {
+                this.reloadPageData(this.props.gene.symbol);
+            } else {
+                this.fetchGeneDatasetSummary();
+
+            }
         }
     }
 
     componentDidMount() {
+        let options = getAllDataTypeOptions()
+        console.log('options', options)
+        let selectedOption = options.find(item => this.props.dataType === item.value);
+        this.setState({ dataTypeOptions: options, dataTypeInputValue: selectedOption })
+
         if (this.props.gene.symbol) {
-            this.fetchGeneDatasetSummary(this.props.gene.symbol);
+            this.reloadPageData(this.props.gene.symbol);
+        } else {
+            this.fetchGeneDatasetSummary();
         }
     }
 
@@ -64,9 +74,34 @@ class DataTypeSelector extends Component {
         }
         return datasetSummary
     }
-
     fetchGeneDatasetSummary = async (geneSymbol) => {
         fetchGeneDatasetSummary(geneSymbol).then(
+            (datasetSummary) => {
+                if (datasetSummary) {
+                    datasetSummary = this.formatGeneDataset(datasetSummary)
+                    console.log('data', this.props.dataType, datasetSummary)
+                    this.setState({ selectedDataset: datasetSummary, tissueInputValue: "all" })
+
+                    this.setSelectedDatasetSummary(this.props.dataType, datasetSummary)
+                    return datasetSummary
+                }
+            },
+            (error) => {
+                let selectedDataset = {
+                    participantCount: '-',
+                    hrtCount: '-',
+                    akiCount: '-',
+                    ckdCount: '-'
+                }
+                console.log('There was a problem fetching the gene summary data: ' + error)
+                this.setState({ selectedDataset });
+            }
+        );
+    }
+
+
+    reloadPageData = async (geneSymbol) => {
+        this.fetchGeneDatasetSummary(geneSymbol).then(
             (datasetSummary) => {
                 if (datasetSummary) {
                     datasetSummary = this.formatGeneDataset(datasetSummary)
@@ -96,6 +131,8 @@ class DataTypeSelector extends Component {
             }
         );
     }
+
+
 
     handleTissueSelect = (selected, actionMeta) => {
         handleGoogleAnalyticsEvent('Subset', 'Tissue', selected.value);

@@ -400,6 +400,18 @@ tr.MuiTableRow-root:nth-child(even) {
   height: 94%;
 }
 
+.buttonhref {
+  cursor: pointer;
+  color: #007bff ;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.buttonhref:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
 #homepage {
   .landing p {
     font-size: 17px;
