@@ -17,7 +17,10 @@ class GlomerulusSchematic extends Component {
                                     this.props.setActiveTab('2')
                                 }}
                                 onMouseEnter={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1) }}
-                                className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1 || this.props.activeCell === '') ? '' : 'disabled'}`}
+                                className={`hoverableSchematic ${(
+                                    this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1
+                                    || this.props.activeCell === CellTypeEnum.GLOM
+                                    || this.props.activeCell === '') ? '' : 'disabled'}`}
                                 data-name="proximal tubule (S1)">
                                 <path className="cls-1" d="M320.65,144.5c.53.12,1.45,1.55,1.5,1.91a.39.39,0,0,0,.16.3c.33.2.76-.18.87-.5a2.57,2.57,0,0,0,.13-1.13c0-.28-.09-.76.29-.77s.51.49.48.79a1.71,1.71,0,0,0,.55,1.38.43.43,0,0,0,.38.14.34.34,0,0,0,.19-.2,3,3,0,0,0,.3-1.67c0-.16,0-.38.16-.46s.51.15.6.37c.29.66.38,1.88.86,2s.39-.91.34-1.4.06-1.24.68-1.1.36,2.1,1.29,2.21c.54.06,1-.79,1-1.22s.29-1.38.69-1.08c.65.49.23,2.35,1.34,2.41.6,0,.38-.87.44-1.34s.51-1.35,1-1c.62.39.25,1.23.38,1.85a.61.61,0,0,0,.11.29c.27.31.93.09,1.09-.26a3.35,3.35,0,0,0,.11-1.1c.06-.36.56-.93.9-.67.52.4.39,1.12.58,1.68a.42.42,0,0,0,.19.26c.26.12.52-.15.57-.38s0-.7.14-1,.24-.67.48-.57c.51.19.31,5.56,0,10.8,0,.19.08,5.66-.38,6.08s-3.75.09-4.09.1c-2.4,0-3.52.08-4.64.14s-2.23.09-4.57.12a7.66,7.66,0,0,1-2.26-.13c-.48-.38-.6-2.37-.92-4.21-.11-.64,0-3-.12-3.64a20.18,20.18,0,0,1-.51-2.86,47.26,47.26,0,0,0-.41-5.26C320.5,145.06,320.38,144.44,320.65,144.5Z" />
                                 <path className="cls-1" d="M339.6,144.16c.48.18,1.17,1.72,1.18,2.08a.44.44,0,0,0,.12.32c.29.23.74-.09.88-.4a2.67,2.67,0,0,0,.25-1.1c0-.29,0-.77.35-.74s.43.54.37.84a1.73,1.73,0,0,0,.38,1.43.37.37,0,0,0,.34.17.35.35,0,0,0,.2-.18,3,3,0,0,0,.42-1.63c0-.17,0-.38.2-.44s.44.19.5.41c.21.69.19,1.91.62,2.06s.43-.9.42-1.4.14-1.23.69-1.07.21,2.11,1.08,2.24c.5.08.95-.77,1-1.2s.32-1.38.68-1.07c.58.49.13,2.35,1.18,2.41.56,0,.37-.88.44-1.34s.5-1.35.93-1.05.22,1.23.33,1.84a.64.64,0,0,0,.11.3c.25.3.88.07,1-.28a3.67,3.67,0,0,0,.1-1.1c.06-.37.52-.95.84-.69.49.39.38,1.1.57,1.66a.37.37,0,0,0,.18.26c.25.11.49-.17.53-.4s0-.7.12-1,.2-.67.44-.59c.47.18.44,5.54.22,10.8,0,.19.24,5.65-.23,6.09s-4,.19-4.39.19c-2.59,0-3.72.08-4.84.12l-1.87,0c-.77,0-1.72-.11-3-.22a10.52,10.52,0,0,1-2.69-.3c-.46-.44-.38-2.58-.46-4.44,0-.65.36-3,.36-3.63a18.7,18.7,0,0,1-.13-2.89,49.44,49.44,0,0,0,.28-5.28C339.39,144.7,339.35,144.06,339.6,144.16Z" />
@@ -34,7 +37,11 @@ class GlomerulusSchematic extends Component {
                                 this.props.handleCellTypeClick(CellTypeEnum.MESANGIUM);
                             }}
                             onMouseEnter={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.MESANGIUM) }}
-                            className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.MESANGIUM || this.props.activeCell === '') ? '' : 'disabled'}`}>
+                            className={`hoverableSchematic ${(
+                                this.props.activeCell === CellTypeEnum.MESANGIUM
+                                || this.props.activeCell === CellTypeEnum.GLOMERULAR_MESANGIUM
+                                || this.props.activeCell === CellTypeEnum.GLOM
+                                || this.props.activeCell === '') ? '' : 'disabled'}`}>
                             <path className="cls-3" d="M125.54,178.91a39.61,39.61,0,0,0,8.74,18.88A20.59,20.59,0,0,1,131,195.2h0c-5.9-10-5.59-19.16-15.68-24.53-3.55-1.77-8.34-4.09-12.84-4.09a9.74,9.74,0,0,0-7.25,2.94c-2.15,2.87-2.37,6.95-2.37,10.41,0,.4,0,.79,0,1.17.61,6.17,1,11.63,2.93,18.4,0,0,0,0,0,0-7.37-4.06-17.56-8.13-25.43-11.2-3.35-1.34-6-2.47-8.73-3.63,1.18-1.91,2.6-4.2,3.11-4.78,2.15-2.12,7.07-7.27,10.2-9.88,7.1-6.69,17.1-8.73,26.35-11.32C114.53,160.19,119.76,166.36,125.54,178.91Z" />
                             <path className="cls-3" d="M143.57,205.53l.44-.31c0,.39,0,.78,0,1.18h0A2.86,2.86,0,0,0,143.57,205.53Z" />
                             <path className="cls-3" d="M67.49,78.56A291,291,0,0,1,96,63.41a0,0,0,0,1,0,0c-.54,12.45-.13,15.3.86,21.84.85,7.27,1.79,8.11,7.17,13.49h0c6.38,4.55,11.19,4.46,21.24,1.29h0a11.32,11.32,0,0,0,2.33-.08c-4.58,4.66-14.43,8-21.62,6.88C89,105.59,75.5,93.05,67.49,78.56Z" />
@@ -59,14 +66,20 @@ class GlomerulusSchematic extends Component {
                         <g id="basement_membranes" data-name="basement membranes">
                             <g id="parietal_basement_membrane"
                                 onMouseEnter={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.PARIETAL_BASEMENT_MEMBRANE) }}
-                                className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.PARIETAL_BASEMENT_MEMBRANE || this.props.activeCell === '') ? '' : 'disabled'}`}
+                                className={`hoverableSchematic ${(
+                                    this.props.activeCell === CellTypeEnum.PARIETAL_BASEMENT_MEMBRANE
+                                    || this.props.activeCell === CellTypeEnum.GLOM
+                                    || this.props.activeCell === '') ? '' : 'disabled'}`}
                                 data-name="parietal basement membrane">
                                 <path className="cls-8" d="M355.61,92.71c-11.11-.86-2.88-.15-19.25-.74-10.71-.39-18.07-.59-25.49-5.2-12-7.47-16.08-26.48-23.82-38.35C274.2,28.71,251.62,12.5,228.83,6.65c-18.17-4.66-40-8.19-63.72-3.29C149.83,6.53,137,8.43,119.62,20.56,107.22,29.21,97.39,49.87,95.56,68c-.86,8.59.15,17.84,2.54,23.65,2.17,5.26,4.34,6.69,8.79,9.81" />
                                 <path className="cls-8" d="M96.33,169.64c-1.91,1.91-3.51,6.39-3.65,9.18-.47,9.42.12,15.85,4.91,28.5,4.23,11.17,11.34,20.11,20.6,27.64,6.35,5.16,13.74,8.86,21.05,12.52,7.72,3.86,18.58,6.27,27.08,7.71,10.3,1.75,32.81.28,43.06-1.69,15.83-3,26.62-7.62,40.9-15.08,17-8.88,27.08-19.78,39.08-37.09,6.28-9.05,7.55-16.79,12.85-26.55,7.21-13.29,18.88-12.29,31.26-12.29,17.66,0,23.58.21,23.58.21" />
                             </g>
                             <g id="glomerular_basement_membrane"
                                 onMouseEnter={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.GLOMERULAR_BASEMENT_MEMBRANE) }}
-                                className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.GLOMERULAR_BASEMENT_MEMBRANE || this.props.activeCell === '') ? '' : 'disabled'}`}
+                                className={`hoverableSchematic ${(
+                                    this.props.activeCell === CellTypeEnum.GLOMERULAR_BASEMENT_MEMBRANE
+                                    || this.props.activeCell === CellTypeEnum.GLOM
+                                    || this.props.activeCell === '') ? '' : 'disabled'}`}
                                 data-name="glomerular basement membrane">
                                 <path className="cls-9" d="M106.89,101.44c4.38,3.08,14.81.93,16.8-.67,3.13-2.51,4.22-7.75,3.8-11.16-1.2-9.66-3.69-15-3.09-26.52.51-9.72,6.89-18.79,15-24.24,8.87-6,25.6-10.36,35-5.23s14.93,18,9.69,27.31c-2.7,4.81-4.51,6.94-7.26,12.67-1.64,3.41-6.25,8.74-7.47,12.32-2.74,8-5.31,14.69-1.25,20.83,6.31,9.5,12.21,4.36,15.36,0,11.64-16.08,1.19-24.83,13.83-39.67,7.56-8.87,34.65-15.61,45.36-11S276.24,73.35,269,82.5c-5.7,7.25-18.34,11.19-31.27,16.64-11.36,4.78-10.81,13.84-16.5,24.23-2.22,4-13.31,8.56-35.19,5.82-4.29-.53-8.52,3.65-3.06,6.54,12,6.33,38.83,3,44.47,1.21,13.45-4.35,26.24,1.18,29.82,5.95,3.43,4.59,4.75,11,5.18,15.46.9,9.44-.44,14.67-6.88,21-3.36,3.31-13.37,5.62-18.06,6.16-11.15,1.3-15-2.89-20.75-8.69-3.89-3.89-13.19.54-25.19-2.92S170,163.82,165.56,162.1c-2.39-.93-10.57-.55-7.64,5.66,3.62,7.66,6,7.82,13.74,13.31s19.13,4.28,24.44,9.59c5.81,5.8,10.45,13.84,11.29,20.87s-2.16,11.64-7.16,16.65c-8.38,8.4-39.47,5.09-45.47-.35-6.48-5.9-.89-8.39-14.53-23.78-3.41-3.85-9-5.56-11.49-10.07-3.75-6.82-3.76-14.1-9.47-19.39-6.7-6.19-17.31-10.59-22.94-5" />
                             </g>
@@ -77,7 +90,10 @@ class GlomerulusSchematic extends Component {
                                 this.props.setActiveTab('2')
                             }}
                             onMouseEnter={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.THICK_ASCENDING_LIMB_CELL) }}
-                            className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.THICK_ASCENDING_LIMB_CELL || this.props.activeCell === '') ? '' : 'disabled'}`}
+                            className={`hoverableSchematic ${(
+                                this.props.activeCell === CellTypeEnum.THICK_ASCENDING_LIMB_CELL
+                                || this.props.activeCell === CellTypeEnum.GLOM
+                                || this.props.activeCell === '') ? '' : 'disabled'}`}
                             data-name="distal tubule">
                             <path className="cls-10" d="M53.58,111.32a8.77,8.77,0,0,1,1.71-.35c.58-.09,1.1-.2,1.28-.6a2.33,2.33,0,0,0,.16-1.09,3,3,0,0,0-.16-1,5.89,5.89,0,0,0-.48-1.07c-.19-.29-.41-.58-.66-.89a34.12,34.12,0,0,0-3.67-3.31c-.27-.2-1.16-1.11-2.1-1.83a6.08,6.08,0,0,0-2.12-1.33c-.51.1-1.23,1.65-1.43,2-1,1.8-2,3.93-3,5.69-.47.83-1.52,2.22-1.42,3.27,0,.26,1.11,1.19,2.12,2.1a15.72,15.72,0,0,0,1.85,1.68.85.85,0,0,0,.59-.09c.18-.09.41-.18.66-.28.52-.16,1-.49,1.38-.66A37.57,37.57,0,0,1,53.58,111.32Z" />
                             <path className="cls-11" d="M46.74,111.38a2.54,2.54,0,0,1-1.4-3.35,2.83,2.83,0,0,1,3.57-1.93,2.76,2.76,0,0,1,1.64,1.53,2.61,2.61,0,0,1-.11,2.2,3.26,3.26,0,0,1-1.68,1.44A3,3,0,0,1,46.74,111.38Z" />
@@ -112,7 +128,10 @@ class GlomerulusSchematic extends Component {
                                 this.props.setActiveTab('2')
                             }}
                             onMouseEnter={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.MACULA_DENSA_CELL) }}
-                            className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.MACULA_DENSA_CELL || this.props.activeCell === '') ? '' : 'disabled'}`}>
+                            className={`hoverableSchematic ${(
+                                this.props.activeCell === CellTypeEnum.MACULA_DENSA_CELL
+                                || this.props.activeCell === CellTypeEnum.GLOM
+                                || this.props.activeCell === '') ? '' : 'disabled'}`}>
                             <path className="cls-12" d="M57.15,120a27.45,27.45,0,0,0,4-1.38c2.14-1.44-.06-2.77-1.13-5-.21-.44-1-3.68-1.61-3.75s-2.77,1.18-3.29,1.4c-2.52,1.09-5.36,2.44-7.88,3.53a8.75,8.75,0,0,0-3.45,2.8c-.32.49,1.26,4.8,1.82,5.1a5.77,5.77,0,0,0,4.15,0C53.56,121.18,54.32,121,57.15,120Z" /><ellipse className="cls-13" cx="50.26" cy="118.14" rx="3.7" ry="2.92" transform="translate(-12.35 6.06) rotate(-6.14)" />
                             <path className="cls-12" d="M57.56,146.58a28.28,28.28,0,0,0,4.21.91c2.74-.07,1.94-2.24,2.68-4.55.15-.46,1.81-3.47,1.41-3.81s-3.06-.45-3.64-.53c-2.8-.4-6-.74-8.83-1.14a11,11,0,0,0-4.78.51c-.6.23-2.44,4.47-2.21,5,.44,1,2.1,1.85,3.35,2C53.86,145.69,54.6,145.94,57.56,146.58Z" /><ellipse className="cls-13" cx="53.42" cy="141.6" rx="2.91" ry="3.72" transform="translate(-91.78 184.27) rotate(-85.71)" />
                             <path className="cls-12" d="M59.66,129.28a28.71,28.71,0,0,0,4.29-.61c2.46-1,.66-2.71.2-5.07-.09-.47-.05-3.78-.59-4s-3,.64-3.57.77c-2.75.59-5.87,1.39-8.62,2a9.75,9.75,0,0,0-4.1,2.11c-.43.41,0,4.91.44,5.3a5.56,5.56,0,0,0,4.06.72C55.85,129.74,56.65,129.71,59.66,129.28Z" /><ellipse className="cls-13" cx="53.44" cy="126.16" rx="3.73" ry="2.9" transform="translate(-5.78 2.61) rotate(-2.65)" />
@@ -124,7 +143,11 @@ class GlomerulusSchematic extends Component {
                                 this.props.handleCellTypeClick(CellTypeEnum.GLOMERULAR);
                             }}
                             onMouseEnter={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.GLOMERULAR) }}
-                            className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.GLOMERULAR || this.props.activeCell === '') ? '' : 'disabled'}`}>
+                            className={`hoverableSchematic ${(
+                                this.props.activeCell === CellTypeEnum.GLOMERULAR
+                                || this.props.activeCell === CellTypeEnum.GLOMERULAR_ENDOTHELIUM
+                                || this.props.activeCell === CellTypeEnum.GLOM
+                                || this.props.activeCell === '') ? '' : 'disabled'}`}>
                             <path className="cls-14" d="M125.89,72.17c-.06-.62,0-1.38.43-1.72.3-.23.37-.2.73.27s.22,1.13.42,1.68.3,1.36.48,1.92a16.91,16.91,0,0,1,.57,2.71A7.53,7.53,0,0,0,130,80.78a5.3,5.3,0,0,1,.64,2.33c.08,1.8-.49,1.79-.62,2.55a10.4,10.4,0,0,0-.14,2c0,.92,0,.8,0,1.74-.15,2.3.15,3,0,4.45-.12.57-.31,1.67-.78,1.73s-.49-.4-.55-.58a5.69,5.69,0,0,1-.14-1.3,12.93,12.93,0,0,1,0-1.54c0-4-.75-8.22-1.27-12.45a19.29,19.29,0,0,0-.35-2.13c-.16-.68-.43-1.56-.52-2.25a16.59,16.59,0,0,1-.25-3.2" />
                             <path className="cls-15" d="M129.05,83.87c-.35,0-.73-.43-.84-1.08s.09-1.23.45-1.29.73.42.84,1.08S129.41,83.81,129.05,83.87Z" />
                             <path className="cls-14" d="M127.7,97.47c.24-.48.43-1.1,1-1.28.36-.12.42-.09.62.47s-.2,1.14-.3,1.73a7.67,7.67,0,0,1-.73,1.91,5.64,5.64,0,0,1-.75,1.22,6.32,6.32,0,0,1-1,1.08c-.47.43-.82.79-1.11,1.09a6.06,6.06,0,0,0-.72.73c-.38.44-.58.88-1,1.33a4.73,4.73,0,0,1-2.14,1.38c-1.81.59-1.92,0-2.7,0-.52,0-1.51.15-2,.22a13.86,13.86,0,0,1-1.73.22c-2.3.15-3,.52-4.42.57-.58,0-1.69,0-1.85-.47s.31-.58.48-.65a6.12,6.12,0,0,1,1.3-.35,13.9,13.9,0,0,1,1.55-.26,12.77,12.77,0,0,0,1.51-.22c.5-.09,1-.17,1.5-.27,1-.26,2-.46,2.92-.8a29.4,29.4,0,0,0,2.8-1.07,21.51,21.51,0,0,0,2.58-1.43,8,8,0,0,0,.83-.55c.24-.21.48-.44.7-.67.47-.43.85-1.17,1.25-1.62a18.82,18.82,0,0,0,1.44-2.32" />
@@ -355,7 +378,11 @@ class GlomerulusSchematic extends Component {
                                 this.props.handleCellTypeClick(CellTypeEnum.PARIETAL);
                             }}
                             onMouseEnter={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.PARIETAL) }}
-                            className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.PARIETAL || this.props.activeCell === '') ? '' : 'disabled'}`}>
+                            className={`hoverableSchematic ${(
+                                this.props.activeCell === CellTypeEnum.PARIETAL
+                                || this.props.activeCell === CellTypeEnum.GLOMERULAR_PARIETAL_EPITHELIUM
+                                || this.props.activeCell === CellTypeEnum.GLOM
+                                || this.props.activeCell === '') ? '' : 'disabled'}`}>
                             <path className="cls-18" d="M296.58,69.57a55.29,55.29,0,0,1-2.87-5.41c-.89-1.9-1.67-3.88-2.57-5.95a44.29,44.29,0,0,0-3.21-6.05c-1.23-1.93-2.46-3.66-3.76-5.4-2.19-2.89-4.25-5.82-6.53-8.52a54.37,54.37,0,0,0-7.47-7.47c-.51-.4-1.5-.64-1.69.05-.09.35.18.65.43.88A76.6,76.6,0,0,1,279.7,43.53a6.2,6.2,0,0,1,1.37,2.82c.12,1-.2,2-.07,3,.26,1.92,2.18,3.06,3.69,4.19a15.67,15.67,0,0,1,3.61,4,40.21,40.21,0,0,1,2.53,4.82c1.22,2.6,2.6,5.13,3.88,7.69.23.5.65,2.15,1.36,2.17C297.77,72.22,297,70.19,296.58,69.57Z" />
                             <path className="cls-18" d="M267.6,28.59c.39.34.83.82.63,1.36-1.09.33-2.05-.37-2.89-1-1.31-1-2.59-2-3.92-2.95s-2.67-1.88-4.05-2.76a3.16,3.16,0,0,0-1-.49,5.11,5.11,0,0,0-1.11-.05,7.66,7.66,0,0,1-4.66-1.93c-1.31-1.09-2.46-2.38-3.74-3.57-3.3-3-7.54-4.66-11.76-6C233,10.59,231,10,228.87,9.52c-.5-.13-1.08-.3-1.28-.82-.6-1.51,1.66-1,2.1-.83a31.4,31.4,0,0,1,4.56,1.35c2.59,1.17,5.94,2.07,8.81,3.39a78.37,78.37,0,0,1,16.25,9.44c1.37,1.11,2.8,2.14,4.19,3.22S266.27,27.44,267.6,28.59Z" />
                             <path className="cls-19" d="M285.43,52.22c.3-.22-.12-1.3-.95-2.38s-1.73-1.79-2-1.56.12,1.28.94,2.38S285.12,52.44,285.43,52.22Z" />
@@ -392,7 +419,11 @@ class GlomerulusSchematic extends Component {
                                 this.props.handleCellTypeClick(CellTypeEnum.VISCERAL);
                             }}
                             onMouseEnter={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.VISCERAL) }}
-                            className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.VISCERAL || this.props.activeCell === '') ? '' : 'disabled'}`}>
+                            className={`hoverableSchematic ${(
+                                this.props.activeCell === CellTypeEnum.VISCERAL
+                                || this.props.activeCell === CellTypeEnum.VISCERAL_EPITHELIUM
+                                || this.props.activeCell === CellTypeEnum.GLOM
+                                || this.props.activeCell === '') ? '' : 'disabled'}`}>
                             <path className="cls-22" d="M108.43,100.18c.69-.23,1-.9,1.61-1.31a.73.73,0,0,1,.51-.19c.08,0,.28-.12.34-.09a2.32,2.32,0,0,0,.42.32c.19.09.23.35.31.58s0,.37,0,.61a1.47,1.47,0,0,0,.17.55,1.8,1.8,0,0,1,.22.69c.07.25.33.38.55.56a1,1,0,0,1,.21.2c0,.08-.16.08-.26.1a1.46,1.46,0,0,1-.42,0,16.7,16.7,0,0,1-2.65-.68,5.72,5.72,0,0,1-1.06-.55,3.4,3.4,0,0,1-.79-.72c-.12-.23,0-.21.24-.17A2,2,0,0,0,108.43,100.18Z" />
                             <path className="cls-22" d="M116.49,100.35c-.09-.7-.22-1.47-.25-2.25a6.61,6.61,0,0,0-.15-.89.73.73,0,0,0-.39-.57.59.59,0,0,0-.67,0,1,1,0,0,0-.34.38,1.43,1.43,0,0,0-.29.64,4,4,0,0,0,0,1.58c.1.31.09.55.18.87a.8.8,0,0,1-.11.8,6,6,0,0,0-.54.92s-.09.16-.07.21.3,0,.42,0l2.25-.3c.43-.07.93,0,.81-.25S116.53,100.72,116.49,100.35Z" />
                             <path className="cls-22" d="M118.41,100.93a16.5,16.5,0,0,0-.22-2.08.64.64,0,0,1,.19-.54c.08,0,.16-.31.25-.32s.43,0,.6,0,.4.17.6.32.16.32.33.5a1.18,1.18,0,0,0,.42.38c.23.09.36.31.54.48a1.21,1.21,0,0,0,.78.19,1.35,1.35,0,0,1,.29,0c.06,0-.1.17-.18.24a1.29,1.29,0,0,1-.36.25c-.72.25-1.41.49-2.07.77a6.32,6.32,0,0,1-1.36.52C117.9,101.69,118.39,101.13,118.41,100.93Z" />
@@ -634,7 +665,10 @@ class GlomerulusSchematic extends Component {
                                 this.props.setActiveTab('3')
                             }}
                             onMouseEnter={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.JUXTAGLOMERULAR_GRANULAR_CELL) }}
-                            className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.JUXTAGLOMERULAR_GRANULAR_CELL || this.props.activeCell === '') ? '' : 'disabled'}`}>
+                            className={`hoverableSchematic ${(
+                                this.props.activeCell === CellTypeEnum.JUXTAGLOMERULAR_GRANULAR_CELL
+                                || this.props.activeCell === CellTypeEnum.GLOM
+                                || this.props.activeCell === '') ? '' : 'disabled'}`}>
                             <path className="cls-24" d="M77.07,89.74c.42,1.7,3.29,3.63,5,5.38.87.9,3.77,1.52,3.94.76A3.59,3.59,0,0,0,85.84,93c-.48-1.51.43-1.73-.67-2.52a10.61,10.61,0,0,1-3-2.72,6.67,6.67,0,0,0-1.82-1.15,3.6,3.6,0,0,0-3.8.49C75.86,88,76.92,89.13,77.07,89.74Z" />
                             <path className="cls-24" d="M90.52,100.09a12.75,12.75,0,0,0,3.42,2.1,5.13,5.13,0,0,0,3.36.2c.66-.27.19-1.58-.27-2.56-.7-1.51-1.38-2.89-2.81-3.38-.71-.25-2.1-.47-3.31-.78-1-.27-1.76-1.18-2.5-.53-.32.29-1.77,1.08-2,1.37A1.49,1.49,0,0,0,87,98.68,14.36,14.36,0,0,1,90.52,100.09Z" />
                             <path className="cls-24" d="M57.59,101a6.24,6.24,0,0,0,1.76,1.07c1.2.29,1.81,2,3,2a1.86,1.86,0,0,0,1.77-1.68,5.42,5.42,0,0,0-.14-1.76c-.13-.45-1.21-.7-1.52-1a8.27,8.27,0,0,1-1.29-2.15,21.79,21.79,0,0,0-2-2,4.93,4.93,0,0,1-.72-1,3.29,3.29,0,0,0-2.61-1.55c-1.07.06-1.29.69-1.73,1.67s-1,2.26-.23,3c.34.34,1.19.49,1.53.82S57.44,100.85,57.59,101Z" />

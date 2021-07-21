@@ -1,21 +1,25 @@
 const CellTypeEnum = {
     ALL: '',
+    GLOMERULAR_ENDOTHELIUM: 'Glomerular Capillary Endothelium',
     GLOMERULAR: 'Glomerular Capillary Endothelial Cell',
     PARIETAL: 'Parietal Epithelial Cell',
+    VISCERAL_EPITHELIUM: 'Glomerular Visceral Epithelium',
     VISCERAL: 'Visceral Epithelial Cell',
+    GLOMERULAR_MESANGIUM: 'Glomerular Mesangium',
     MESANGIUM: 'Mesangial Cell',
 
+    PROXIMAL_TUBULEL: 'Proximal Tubule',
     PROXIMAL_TUBULE_EITHELIAL: 'Proximal Tubule Epithelial Cell',
     PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1: 'Proximal Tubule Epithelial Cell Segment 1',
     PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_2: 'Proximal Tubule Epithelial Cell Segment 2',
     PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_3: 'Proximal Tubule Epithelial Cell Segment 3',
 
+    LOOP_OF_HENLE_THIN: 'Loop of Henle (Thin Limb)',
     DESCENDING_THIN_LIMB: 'Descending Thin Limb Cell',
     DESCENDING_THIN_LIMB_TYPE_1: 'Descending Thin Limb Cell Type 1',
     DESCENDING_THIN_LIMB_TYPE_2: 'Descending Thin Limb Cell Type 2',
     DESCENDING_THIN_LIMB_TYPE_3: 'Descending Thin Limb Cell Type 3',
     ASCENDING_THIN_LIMB: 'Ascending Thin Limb Cell',
-
 
     DESCENDING_THIN_LIMB_CELL: 'Descending Thin Limb',
     DESCENDING_THIN_LIMB_CELL_TYPE_1: 'Descending Thin Limb Cell Type 1',
@@ -23,20 +27,28 @@ const CellTypeEnum = {
     DESCENDING_THIN_LIMB_CELL_TYPE_3: 'Descending Thin Limb Cell Type 3',
     ASCENDING_THIN_LIMB_CELL: 'Ascending Thin Limb Cell',
 
+    LOOP_OF_HENLE_THICK: 'Loop of Henle (Thick Limb)',
     THICK_ASCENDING_LIMB_CELL: 'Thick Ascending Limb Cell',
     CORTICAL_THICK_ASCENDING_LIMB_CELL: 'Cortical Thick Ascending Limb Cell',
     MEDULLARY_THICK_ASCENDING_LIMB_CELL: 'Medullary Thick Ascending Limb Cell',
 
+    DISTAL_CONVOLUTED: 'Distal Convolution',
     DISTAL_CONVOLUTED_TUBULE: 'Distal Convoluted Tubule Cell',
     DISTAL_CONVOLUTED_TUBULE_TYPE_1: 'Distal Convoluted Tubule Cell Type 1',
     DISTAL_CONVOLUTED_TUBULE_TYPE_2: 'Distal Convoluted Tubule Cell Type 2',
     MACULA_DENSA_CELL: 'Macula Densa Cell',
 
+
+    TUBULES: 'Tubules',
+    CONNECTING_TUBULES: 'Connecting Tubule',
     CONNECTING_TUBULE: 'Connecting Tubule Cell',
     CONNECTING_TUBULE_PRINCIPAL: 'Connecting Tubule Principal Cell',
     CONNECTING_TUBULE_INTERCALATED: 'Connecting Tubule Intercalated Cell',
     CONNECTING_TUBULE_INTERCALATED_TYPE_A: 'Connecting Tubule Intercalated Cell Type A',
 
+    GLOM: 'Glomerulus / Renal Corpuscle',
+    GLOMERULAR_PARIETAL_EPITHELIUM: 'Glomerular Parietal Epithelium',
+    COLLECTING_DUCTS: 'Collecting Duct',
     PRINCIPAL_CELL: 'Principal Cell',
     CORTICAL_PRINCIPAL: 'Cortical Principal Cell',
     CORTICAL_COLLECTING_DUCT_PRINCIPAL: 'Cortical Collecting Duct Principal Cell',
