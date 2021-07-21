@@ -31,7 +31,6 @@ class DataTypeSelector extends Component {
                 this.reloadPageData(this.props.gene.symbol);
             } else {
                 this.fetchGeneDatasetSummary();
-
             }
         }
     }
@@ -58,7 +57,7 @@ class DataTypeSelector extends Component {
 
         for (const [dataType, dataset] of availableData.entries()) {
             if (dataset["dataTypeShort"] === dataTypeShort) {
-                this.setState({ selectedDataset: dataset })
+                this.setState({ selectedDataset: dataset, tissueInputValue: this.props.tissueType ? this.props.tissueType : "all" })
                 return
             }
         }
@@ -80,7 +79,7 @@ class DataTypeSelector extends Component {
                 if (datasetSummary) {
                     datasetSummary = this.formatGeneDataset(datasetSummary)
                     console.log('data', this.props.dataType, datasetSummary)
-                    this.setState({ selectedDataset: datasetSummary, tissueInputValue: "all" })
+
 
                     this.setSelectedDatasetSummary(this.props.dataType, datasetSummary)
                     return datasetSummary
@@ -149,10 +148,12 @@ class DataTypeSelector extends Component {
     };
 
     getInputValue = () => {
-        let options = getTissueTypeOptions(this.state.selectedDataset);
+        let options = getTissueTypeOptions(this.state.selectedDataset, this.props.gene.symbol);
+        console.log('options', options,)
         try {
             return options.find(element => element.value === this.state.tissueInputValue).label
         } catch (e) {
+            console.log('e', e)
             return ''
         }
     };
@@ -174,11 +175,11 @@ class DataTypeSelector extends Component {
                             <span className='d-table-cell text-bigger pr-2'>in:</span>
                             <Select
                                 allowClear
-                                options={getTissueTypeOptions(this.state.selectedDataset)}
+                                options={getTissueTypeOptions(this.state.selectedDataset, this.props.gene.symbol)}
                                 onChange={this.handleTissueSelect}
                                 value={this.state.tissueValue}
                                 inputValue={this.getInputValue()}
-                                onFocus={() => this.setState({ tissueInputValue: "" })}
+                                onFocus={() => this.setState({ tissueInputValue: '' })}
                                 className='select d-table-cell w-100 pl-2'
                                 isDisabled={this.props.isLoadingUmap ? true : false}
                             />
