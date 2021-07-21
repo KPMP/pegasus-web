@@ -1,3 +1,4 @@
+import { gene } from '../components/ConceptSelect/conceptReducer';
 import { fetchDataTypesForConcept } from './ApolloClient';
 
 export const formatNumberToPrecision = (number, precision, keepAsInt = false) => {
@@ -55,28 +56,28 @@ export const sum = (array, property) => {
     return array.reduce((finalSum, item) => finalSum + item[property], 0);
 };
 
-export const getTissueTypeOptions = (datasetSummary) => {
+export const getTissueTypeOptions = (datasetSummary, geneSymbol) => {
     const options = [
         {
             label: "All samples",
             value: "all",
-            isDisabled: (datasetSummary.hrtCount === 0 && datasetSummary.akiCount === 0
+            isDisabled: !geneSymbol || (datasetSummary.hrtCount === 0 && datasetSummary.akiCount === 0
                 && datasetSummary.ckdCount > 0) || typeof datasetSummary.hrtCount !== 'number'
         },
         {
             label: "Healthy Reference",
             value: "hrt",
-            isDisabled: !datasetSummary.hrtCount > 0 || typeof datasetSummary.hrtCount !== 'number'
+            isDisabled: !geneSymbol || !datasetSummary.hrtCount > 0 || typeof datasetSummary.hrtCount !== 'number'
         },
         {
             label: "AKI",
             value: "aki",
-            isDisabled: !datasetSummary.akiCount > 0 || typeof datasetSummary.hrtCount !== 'number'
+            isDisabled: !geneSymbol || !datasetSummary.akiCount > 0 || typeof datasetSummary.akiCount !== 'number'
         },
         {
             label: "CKD",
             value: "ckd",
-            isDisabled: !datasetSummary.ckdCount > 0 || typeof datasetSummary.hrtCount !== 'number'
+            isDisabled: !geneSymbol || !datasetSummary.ckdCount > 0 || typeof datasetSummary.ckdCount !== 'number'
         }
     ];
 
