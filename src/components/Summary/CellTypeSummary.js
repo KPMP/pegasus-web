@@ -87,7 +87,7 @@ class CellTypeSummary extends Component {
                 Cell: ({ value }) => <span title={value}>{value}</span>
             },
             {
-                Header: <span>CELL TYPE/<br/>CLUSTER (predictive state)</span>,
+                Header: <span>CELL TYPE/<br/>CLUSTER (<i>predicted state</i>)</span>,
                 id: 'clusterName',
                 accessor: 'clusterName',
                 headerClassName: 'table-header',
@@ -175,9 +175,9 @@ class CellTypeSummary extends Component {
                         </Row>
                         <Row xs='12'>
                             <Col><small>
-                                <sup>1</sup>adaptive/maladaptive/repairing: Represented by cells that retain differentiation markers of reference states, albeit at lower levels, but also show expression of known injury associated genes, mesenchymal markers or factors promoting inflammation or fibrosis. 
-                                <sup>2</sup>cycling: Represented by enrichment of cell cycle genes. 
-                                <sup>3</sup>degenerative: Marked loss of differentiation markers, and/or increased %ERT, %MT, and/or marked decrease in genes detected. These cells could represent an early injury state or cells that will not recover function. 
+                                <sup>1</sup>adaptive/maladaptive/repairing: Represented by cells that retain differentiation markers of reference states, albeit at lower levels, but also show expression of known injury associated genes, mesenchymal markers or factors promoting inflammation or fibrosis. &nbsp;
+                                <sup>2</sup>cycling: Represented by enrichment of cell cycle genes. &nbsp;
+                                <sup>3</sup>degenerative: Marked loss of differentiation markers, and/or increased %ERT, %MT, and/or marked decrease in genes detected. These cells could represent an early injury state or cells that will not recover function. &nbsp;
                                 <sup>4</sup>transitional: Represented by an intermediate state showing markers of cells sharing the same parental lineage.
                                 </small>
                             </Col>
