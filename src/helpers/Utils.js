@@ -83,6 +83,27 @@ export const getTissueTypeOptions = (datasetSummary) => {
     return options
 };
 
+export const getAllDataTypeOptions = () => {
+    const options = [
+        {
+            label: "snRNA-seq",
+            value: "sn",
+            isDisabled: false
+        },
+        {
+            label: "scRNA-seq",
+            value: "sc",
+            isDisabled: false,
+        },
+        {
+            label: "Regional transcriptomics",
+            value: "rt",
+            isDisabled: false
+        },
+    ];
+    return options;
+};
+
 export const getDataTypeOptions = async (geneSymbol, cluster) => {
     let options = fetchDataTypesForConcept(geneSymbol, cluster).then((result) => {
         let dataTypes = result.dataTypesForConcept;

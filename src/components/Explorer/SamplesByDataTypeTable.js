@@ -38,9 +38,9 @@ class SamplesByDataTypeTable extends Component {
                 headerClassName: 'omics data-type-table-header',
                 className: 'data-type-table-content',
                 minWidth: 330,
-                Cell: e => <a onClick={() => this.handleDataTypeClick(e.value)} href="#">
+                Cell: e => <span className="buttonhref" onClick={() => { this.handleDataTypeClick(e.value) }}>
                     {e.value}
-                </a>
+                </span>
             },
             {
                 Header: () => (
