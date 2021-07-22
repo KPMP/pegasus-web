@@ -906,6 +906,7 @@ class TubuleSchematic extends Component {
                                     || this.props.activeCell === CellTypeEnum.INTERCALATED_TYPE_A
                                     || this.props.activeCell === CellTypeEnum.INTERCALATED_TYPE_B
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT
+                                    || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_PRINCIPAL
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_INTERCALATED
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_INTERCALATED_TYPE_A
                                     || this.props.activeCell === CellTypeEnum.INNER_MEDULLARY_COLLECTING_DUCT
@@ -1047,6 +1048,7 @@ class TubuleSchematic extends Component {
                                     || this.props.activeCell === CellTypeEnum.INTERCALATED_TYPE_A
                                     || this.props.activeCell === CellTypeEnum.INTERCALATED_TYPE_B
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT
+                                    || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_PRINCIPAL
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_INTERCALATED
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_INTERCALATED_TYPE_A
                                     || this.props.activeCell === CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT_INTERCALATED
