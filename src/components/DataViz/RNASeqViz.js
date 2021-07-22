@@ -51,8 +51,14 @@ class RNASeqViz extends Component {
         this.setState({ isLoading: true });
         let options = await getDataTypeOptions(this.props.gene.symbol, "");
         let availableOption = options.find((e) => {
-            if (e.isDisabled === false && (e.value === 'sc' || e.value === 'sn')) {
-                return e;
+            if (!this.props.dataType) {
+                if (e.isDisabled === false && (e.value === 'sc' || e.value === 'sn')) {
+                    return e;
+                }
+            } else {
+                if (e.isDisabled === false && (e.value === this.props.dataType)) {
+                    return e;
+                }
             }
         });
         if (availableOption) {
