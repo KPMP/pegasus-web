@@ -11,6 +11,7 @@ class DataTypeSelector extends Component {
         super(props);
         this.state = {
             tissueInputValue: this.props.tissueType ? this.props.tissueType : "all",
+            isDatasetSummaryLoading: false,
             tissueValue: null,
             dataTypeInputValue: null,
             dataTypeOptions: [],
@@ -64,7 +65,7 @@ class DataTypeSelector extends Component {
         for (const [dataType, dataset] of availableData.entries()) {
             if (dataset["dataTypeShort"] === dataTypeShort) {
                 this.props.setTissueType(this.props.tissueType ? this.props.tissueType : "all");
-                this.setState({ selectedDataset: dataset })
+                this.setState({ selectedDataset: dataset, })
                 return
             }
         }
@@ -81,11 +82,13 @@ class DataTypeSelector extends Component {
         return datasetSummary
     }
     fetchGeneDatasetSummary = async (geneSymbol) => {
+        this.setState({ isDatasetSummaryLoading: true });
         return fetchGeneDatasetSummary(geneSymbol).then(
             (datasetSummary) => {
                 if (datasetSummary) {
                     datasetSummary = this.formatGeneDataset(datasetSummary)
                     this.setSelectedDatasetSummary(this.props.dataType, datasetSummary)
+                    this.setState({ isDatasetSummaryLoading: false });
                     return datasetSummary
                 }
             },
@@ -96,8 +99,9 @@ class DataTypeSelector extends Component {
                     akiCount: '-',
                     ckdCount: '-'
                 }
+
                 console.log('There was a problem fetching the gene summary data: ' + error)
-                this.setState({ selectedDataset });
+                this.setState({ selectedDataset, isDatasetSummaryLoading: false });
             }
         );
     }
@@ -186,7 +190,7 @@ class DataTypeSelector extends Component {
                                 inputValue={this.getInputValue()}
                                 onFocus={() => this.setState({ tissueInputValue: '' })}
                                 className='select d-table-cell w-100 pl-2'
-                                isDisabled={this.props.isLoadingUmap ? true : false}
+                                isDisabled={this.state.isDatasetSummaryLoading ? true : false}
                             />
                         </Col>
                         <Col lg="4" className='d-table px-2 pt-3'>
@@ -197,7 +201,7 @@ class DataTypeSelector extends Component {
                                 onChange={this.handleInputChange.bind(this)}
                                 className='select d-table-cell w-100 pl-2'
                                 styles={{ menu: provided => ({ ...provided, zIndex: 999 }) }}
-                                isDisabled={this.props.isLoadingUmap ? true : false}
+                                isDisabled={this.state.isDatasetSummaryLoading ? true : false}
                             />
                         </Col>
                     </Row>
