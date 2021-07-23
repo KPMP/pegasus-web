@@ -6,6 +6,7 @@ import { fetchClusterHierarchy } from '../../helpers/ApolloClient';
 import { Spinner } from "reactstrap";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import Parser from 'html-react-parser';
+import { stripHtml } from "string-strip-html";
 
 class CellTypeSummary extends Component {
 
@@ -60,11 +61,14 @@ class CellTypeSummary extends Component {
 
     parseClusterName = (value) => {
         if (value !== null) {
-            return <span title={Parser(value)}>{Parser(value)}</span>
+            let titleVal = stripHtml(value.replace('<sup>', ' ^')).result
+                .replace('( ', '(')
+                .replace(' )', ')');
+            return <span title={titleVal}>{Parser(value)}</span>
         } else {
             return ''
         }
-    }
+    };
 
     getColumns() {
         return [
