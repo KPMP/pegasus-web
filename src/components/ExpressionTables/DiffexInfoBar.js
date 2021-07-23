@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { getDataTypeOptions } from '../../helpers/Utils';
 import Select from 'react-select';
+import Parser from "html-react-parser";
 
 class DiffexInfoBar extends Component {
 
@@ -34,6 +35,14 @@ class DiffexInfoBar extends Component {
         }
     }
 
+    parseClusterName = (value) => {
+        if (value !== null) {
+            return <span>{Parser(value)}</span>
+        } else {
+            return ''
+        }
+    };
+
     render () {
         let selectedValue = this.state.dataTypeInputValue;
         return (
@@ -51,7 +60,7 @@ class DiffexInfoBar extends Component {
                         />
                     </Col>
                     <Col xs='9' className='mt-2 pl-0'>
-                        <h5> {(this.props.dataType === 'sn' || this.props.dataType === 'sc' || this.props.dataType === 'rt')?' Differential expression*':'abundance*'} in {this.props.cluster} </h5>
+                        <h5> {(this.props.dataType === 'sn' || this.props.dataType === 'sc' || this.props.dataType === 'rt')?' Differential expression*':'abundance*'} in {this.parseClusterName(this.props.cluster)} </h5>
                     </Col>
                 </Row>
                     <Row xs='12' className='pl-2 pt-2'>

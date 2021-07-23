@@ -42,7 +42,6 @@ class CustomTooltip extends Component {
 
 }
 
-
 class RegionalTranscriptomicsTable extends Component {
 
     numberFormatter = (params) => {

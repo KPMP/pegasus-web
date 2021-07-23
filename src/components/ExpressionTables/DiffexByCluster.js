@@ -9,6 +9,8 @@ import { faDownload, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import DiffexInfoBar from './DiffexInfoBar';
 import { displayMaterialTable } from '../../../package.json';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
+import {stripHtml} from "string-strip-html";
+import Parser from "html-react-parser";
 
 class DiffexByCluster extends Component {
 
