@@ -1,4 +1,3 @@
-import { gene } from '../components/ConceptSelect/conceptReducer';
 import { fetchDataTypesForConcept } from './ApolloClient';
 
 export const formatNumberToPrecision = (number, precision, keepAsInt = false) => {
