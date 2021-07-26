@@ -45,7 +45,8 @@ class ExpressionXCellType extends Component {
 
     parseClusterName = (value) => {
         if (value !== null) {
-            let titleVal = stripHtml(value.replace('<sup>', ' ^')).result
+            const regex = /<sup>*.<\/sup>/i;
+            let titleVal = stripHtml(value.replace(regex, '')).result
                 .replace('( ', '(')
                 .replace(' )', ')');
             return <span title={titleVal}>{Parser(value)}</span>
