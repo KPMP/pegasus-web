@@ -37,7 +37,8 @@ class DiffexInfoBar extends Component {
 
     parseClusterName = (value) => {
         if (value !== null) {
-            return <span>{Parser(value)}</span>
+            const regex = /<sup>*.<\/sup>/i;
+            return <span>{Parser(value.replace(regex, ''))}</span>
         } else {
             return ''
         }
