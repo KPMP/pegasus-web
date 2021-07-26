@@ -275,6 +275,11 @@ tr.MuiTableRow-root:nth-child(even) {
   font-weight: 500;
 }
 
+.dataset-info svg {
+  fill: #1c7cd5;
+  cursor: pointer;
+}
+
 .text-bigger {
   font-size: 18px;
 }
