@@ -62,7 +62,7 @@ class DataTypeSelector extends Component {
             return
         }
         // Coming from search on viz page (has datatype)
-        for (const [dataType, dataset] of availableData.entries()) {  // eslint-disable-line
+        for (const [, dataset] of availableData.entries()) {
             if (dataset["dataTypeShort"] === dataTypeShort) {
                 this.props.setTissueType(this.props.tissueType ? this.props.tissueType : "all");
                 this.setState({ selectedDataset: dataset, })
