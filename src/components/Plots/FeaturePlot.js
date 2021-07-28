@@ -39,8 +39,7 @@ class FeaturePlot extends Component {
         let { plotHeight, plotWidth } = this.getPlotSize();
         this.setState({ plotHeight, plotWidth })
     }
-    getPlotSize(plotSize, event) {
-
+    getPlotSize() {
         if (window.innerWidth > 1197) {
             return { plotHeight: 400, plotWidth: 460 };
         } else if (window.innerWidth > 991 && window.innerWidth <= 1197) {
@@ -81,7 +80,6 @@ class FeaturePlot extends Component {
 
                 });
             });
-            groupData.sort((a, b) => (a.marker.showscale > b.marker.showscale) ? 1 : -1)
             this.setState({ isLoading: false })
         } else {
             this.setState({ isLoading: true });
