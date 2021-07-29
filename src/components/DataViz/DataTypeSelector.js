@@ -169,8 +169,8 @@ class DataTypeSelector extends Component {
 
     getRepositoryLink = () => {
         const linkMapping = {
-            'sn': '/repository/?facetTab=files&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22experimental_strategy%22%2C%22value%22%3A%5B%22Single-nucleus%20RNA-Seq%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22workflow_type%22%2C%22value%22%3A%5B%22Clustered%20Dataset%22%5D%7D%7D%5D%7D',
-            'sc': '/repository/?facetTab=files&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22experimental_strategy%22%2C%22value%22%3A%5B%22Single-cell%20RNA-Seq%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22workflow_type%22%2C%22value%22%3A%5B%22Clustered%20Dataset%22%5D%7D%7D%5D%7D',
+            'sn': '/repository/?facetTab=files&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22experimental_strategy%22%2C%22value%22%3A%5B%22Single-nucleus%20RNA-Seq%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22workflow_type%22%2C%22value%22%3A%5B%22Aggregated%20Clustered%20Data%22%5D%7D%7D%5D%7D',
+            'sc': '/repository/?facetTab=files&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22experimental_strategy%22%2C%22value%22%3A%5B%22Single-cell%20RNA-Seq%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22workflow_type%22%2C%22value%22%3A%5B%22Aggregated%20Clustered%20Data%22%5D%7D%7D%5D%7D',
             'rt': '/repository/?facetTab=files&filters={"op"%3A"and"%2C"content"%3A[{"op"%3A"in"%2C"content"%3A{"field"%3A"experimental_strategy"%2C"value"%3A["Regional Transcriptomics"]}}%2C{"op"%3A"in"%2C"content"%3A{"field"%3A"workflow_type"%2C"value"%3A["Aggregated Data"]}}]}',
             'default': '/repository',
         }
