@@ -60,7 +60,7 @@ class FeaturePlot extends Component {
         let groupData = [];
         if (inputData && inputData.featureData) {
             inputData.featureData.forEach(function (group) {
-                let marker = { size: 2, colorscale: 'deep', showscale: true, reversescale: true };
+                let marker = { size: 2, colorscale: 'Blackbody', showscale: true, reversescale: true };
                 if (group.expression[0] !== 0) {
                     marker.color = group.expression;
                 } else {
