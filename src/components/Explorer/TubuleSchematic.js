@@ -2093,7 +2093,7 @@ class TubuleSchematic extends Component {
                                 }}
                                 className={`hoverableSchematic ${(
                                     this.props.activeCell === CellTypeEnum.MACULA_DENSA_CELL
-                                    || this.props.activeCell === CellTypeEnum.DISTAL_CONVOLUTED
+                                    || this.props.activeCell === CellTypeEnum.LOOP_OF_HENLE_THICK
                                     || this.props.activeCell === CellTypeEnum.TUBULES
                                     || this.props.activeCell === '') ? '' : 'disabled'}`}
                                 data-name="macula densa">

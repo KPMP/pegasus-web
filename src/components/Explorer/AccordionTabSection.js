@@ -15,7 +15,7 @@ class AccordionTabSection extends Component {
         // force the accordion to drop when coming from the glom tab
         if (prevProps.activeCell !== CellTypeEnum.MACULA_DENSA_CELL
             && this.props.activeCell === CellTypeEnum.MACULA_DENSA_CELL) {
-            this.toggleWithoutResetting({ target: { dataset: { event: 3 } } })
+            this.toggleWithoutResetting({ target: { dataset: { event: 2 } } })
             this.setState({ activeCellState: CellTypeEnum.MACULA_DENSA_CELL })
         }
         if (prevProps.activeCell !== CellTypeEnum.THICK_ASCENDING_LIMB_CELL
