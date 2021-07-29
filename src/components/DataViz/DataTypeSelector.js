@@ -171,7 +171,7 @@ class DataTypeSelector extends Component {
         const linkMapping = {
             'sn': '/repository/?facetTab=files&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22experimental_strategy%22%2C%22value%22%3A%5B%22Single-nucleus%20RNA-Seq%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22workflow_type%22%2C%22value%22%3A%5B%22Clustered%20Dataset%22%5D%7D%7D%5D%7D',
             'sc': '/repository/?facetTab=files&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22experimental_strategy%22%2C%22value%22%3A%5B%22Single-cell%20RNA-Seq%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22workflow_type%22%2C%22value%22%3A%5B%22Clustered%20Dataset%22%5D%7D%7D%5D%7D',
-            'rt': '',
+            'rt': '/repository/?facetTab=files&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22experimental_strategy%22%2C%22value%22%3A%5B%22Regional%20Transcriptomics%22%5D%7D%7D%5D%7D',
             'default': '/repository/?facetTab=files&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22experimental_strategy%22%2C%22value%22%3A%5B%22Single-nucleus%20RNA-Seq%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22workflow_type%22%2C%22value%22%3A%5B%22Clustered%20Dataset%22%5D%7D%7D%5D%7D',
         }
         if (linkMapping[this.props.dataType]) {
