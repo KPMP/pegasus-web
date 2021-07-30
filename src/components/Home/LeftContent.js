@@ -42,7 +42,7 @@ class LeftContent extends Component {
             </p>
           </div>
           <div className='mt-3'>
-            <Button color='primary' href='https://www.kpmp.org/ancillary-studies' size='lg' block onClick={() => {this.handleGoogleAnalyticsEvent('Navigation', 'collaborate')}}>Collaborate with us</Button>
+            <Button color='primary' href='https://www.kpmp.org/collaboration' size='lg' block onClick={() => {this.handleGoogleAnalyticsEvent('Navigation', 'collaborate')}}>Collaborate with us</Button>
           </div>
         </Container>
       </Row>
