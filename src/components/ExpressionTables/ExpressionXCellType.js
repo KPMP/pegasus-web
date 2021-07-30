@@ -9,7 +9,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDataType } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import Parser from 'html-react-parser';
-import {stripHtml} from "string-strip-html";
+import { stripHtml } from "string-strip-html";
 
 class ExpressionXCellType extends Component {
 
@@ -89,7 +89,7 @@ class ExpressionXCellType extends Component {
                 Header: <span>MEAN<br />EXPRESSION <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='mean-expression-info' icon={faInfoCircle} /></span>
                     <UncontrolledTooltip placement='bottom' target='mean-expression-info' >
                         Averaged expression values (logarithmic) for each cluster
-                        </UncontrolledTooltip></span>,
+                    </UncontrolledTooltip></span>,
                 accessor: 'avgExp',
                 headerClassName: 'table-header',
                 className: 'table-column',
@@ -103,7 +103,7 @@ class ExpressionXCellType extends Component {
                 className: 'table-column',
                 minWidth: 90,
                 Cell: ({ value }) => {
-                    let newValue = (value > 0)?(value * 100):value;
+                    let newValue = (value > 0) ? (value * 100) : value;
                     return formatNumberToPrecision(newValue, 3);
                 }
             },
@@ -201,6 +201,10 @@ class ExpressionXCellType extends Component {
                             <sup>2</sup>cycling: Represented by enrichment of cell cycle genes. &nbsp;
                             <sup>3</sup>degenerative: Marked loss of differentiation markers, and/or increased %ERT, %MT, and/or marked decrease in genes detected. These cells could represent an early injury state or cells that will not recover function. &nbsp;
                             <sup>4</sup>transitional: Represented by an intermediate state showing markers of cells sharing the same parental lineage. &nbsp;
+                        </small>
+
+                            <small>
+                                For more information about the cell type, cluster, and state definitions, see the following pre-print: <a href="/https://www.biorxiv.org/content/10.1101/2021.07.28.454201v1">https://www.biorxiv.org/content/10.1101/2021.07.28.454201v1</a>
                             </small>
                         </Col>
                     </Row>
