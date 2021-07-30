@@ -51,7 +51,7 @@ class CellTypeSummary extends Component {
                 cluster = row.structureSubregion;
             }
         }
-        handleGoogleAnalyticsEvent('Navigation', 'diffex', 'data type: ' + dataType + ' and cluster: ' + cluster );
+        handleGoogleAnalyticsEvent('Navigation', 'diffex', 'data type: ' + dataType + ' and cluster: ' + cluster);
         this.props.setDataTypeAndCluster(dataType, cluster);
     };
 
@@ -73,7 +73,7 @@ class CellTypeSummary extends Component {
     getColumns() {
         return [
             {
-                Header: <span>STRUCTURE/<br/>REGION</span>,
+                Header: <span>STRUCTURE/<br />REGION</span>,
                 id: 'structureRegion',
                 accessor: 'structureRegion',
                 headerClassName: 'table-header',
@@ -82,7 +82,7 @@ class CellTypeSummary extends Component {
                 Cell: ({ value }) => <span title={value}>{value}</span>
             },
             {
-                Header: <span>SUBSTRUCTURE/<br/>SUBREGION</span>,
+                Header: <span>SUBSTRUCTURE/<br />SUBREGION</span>,
                 id: 'structureSubregion',
                 accessor: 'structureSubregion',
                 headerClassName: 'table-header',
@@ -91,7 +91,7 @@ class CellTypeSummary extends Component {
                 Cell: ({ value }) => <span title={value}>{value}</span>
             },
             {
-                Header: <span>CELL TYPE/<br/>CLUSTER (<i>predicted state</i>)</span>,
+                Header: <span>CELL TYPE/<br />CLUSTER (<i>predicted state</i>)</span>,
                 id: 'clusterName',
                 accessor: 'clusterName',
                 headerClassName: 'table-header',
@@ -183,6 +183,9 @@ class CellTypeSummary extends Component {
                                 <sup>2</sup>cycling: Represented by enrichment of cell cycle genes. &nbsp;
                                 <sup>3</sup>degenerative: Marked loss of differentiation markers, and/or increased %ERT, %MT, and/or marked decrease in genes detected. These cells could represent an early injury state or cells that will not recover function. &nbsp;
                                 <sup>4</sup>transitional: Represented by an intermediate state showing markers of cells sharing the same parental lineage.
+                            </small>
+                                <small>
+                                    For more information about the cell type, cluster, and state definitions, see the following pre-print: <a href="/https://www.biorxiv.org/content/10.1101/2021.07.28.454201v1">https://www.biorxiv.org/content/10.1101/2021.07.28.454201v1</a>
                                 </small>
                             </Col>
                         </Row>
