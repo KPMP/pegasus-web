@@ -184,6 +184,8 @@ class CellTypeSummary extends Component {
                                 <sup>3</sup>degenerative: Marked loss of differentiation markers, and/or increased %ERT, %MT, and/or marked decrease in genes detected. These cells could represent an early injury state or cells that will not recover function. &nbsp;
                                 <sup>4</sup>transitional: Represented by an intermediate state showing markers of cells sharing the same parental lineage.
                             </small>
+                                <p></p>
+
                                 <small>
                                     For more information about the cell type, cluster, and state definitions, see the following pre-print: <a target="_blank" href="https://www.biorxiv.org/content/10.1101/2021.07.28.454201v1">https://www.biorxiv.org/content/10.1101/2021.07.28.454201v1</a>
                                 </small>
