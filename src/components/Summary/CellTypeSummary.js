@@ -185,7 +185,7 @@ class CellTypeSummary extends Component {
                                 <sup>4</sup>transitional: Represented by an intermediate state showing markers of cells sharing the same parental lineage.
                             </small>
                                 <small>
-                                    For more information about the cell type, cluster, and state definitions, see the following pre-print: <a href="/https://www.biorxiv.org/content/10.1101/2021.07.28.454201v1">https://www.biorxiv.org/content/10.1101/2021.07.28.454201v1</a>
+                                    For more information about the cell type, cluster, and state definitions, see the following pre-print: <a target="_blank" href="https://www.biorxiv.org/content/10.1101/2021.07.28.454201v1">https://www.biorxiv.org/content/10.1101/2021.07.28.454201v1</a>
                                 </small>
                             </Col>
                         </Row>
