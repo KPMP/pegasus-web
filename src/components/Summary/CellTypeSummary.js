@@ -187,7 +187,7 @@ class CellTypeSummary extends Component {
                                 <p></p>
 
                                 <small>
-                                    For more information about the cell type, cluster, and state definitions, see the following pre-print: <a target="_blank" href="https://www.biorxiv.org/content/10.1101/2021.07.28.454201v1">https://www.biorxiv.org/content/10.1101/2021.07.28.454201v1</a>
+                                    For more information about the cell type, cluster, and state definitions, see the following pre-print: <a target="_blank" rel="noreferrer" href="https://www.biorxiv.org/content/10.1101/2021.07.28.454201v1">https://www.biorxiv.org/content/10.1101/2021.07.28.454201v1</a>
                                 </small>
                             </Col>
                         </Row>
