@@ -5,9 +5,9 @@ import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper'
 class LeftContent extends Component {
 
   constructor(props) {
-      super(props);
+    super(props);
 
-      this.handleGoogleAnalyticsEvent = handleGoogleAnalyticsEvent.bind(this);
+    this.handleGoogleAnalyticsEvent = handleGoogleAnalyticsEvent.bind(this);
   }
   render() {
     return (
@@ -20,7 +20,7 @@ class LeftContent extends Component {
             </p>
           </div>
           <div className='mt-3'>
-            <Button color='primary' href='/explorer' size='lg' block onClick={() => {this.handleGoogleAnalyticsEvent('Navigation', 'explorer')}}>Go to Explorer</Button>
+            <Button color='primary' href='/explorer' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Navigation', 'explorer') }}>Go to Explorer</Button>
           </div>
         </Container>
         <Container className="mt-3 rounded border p-3 shadow-sm">
@@ -31,7 +31,18 @@ class LeftContent extends Component {
             </p>
           </div>
           <div className='mt-3'>
-            <Button color='primary' href='/repository' size='lg' block onClick={() => {this.handleGoogleAnalyticsEvent('Navigation','repository')}}>Go to Repository</Button>
+            <Button color='primary' href='/repository' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Navigation', 'repository') }}>Go to Repository</Button>
+          </div>
+        </Container>
+        <Container className="mt-3 rounded border p-3 shadow-sm">
+          <h5>Spacial Data</h5>
+          <div>
+            <p>
+              View and interact with KPMP participant spacial data.
+            </p>
+          </div>
+          <div className='mt-3'>
+            <Button color='primary' href='/vitessce' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Navigation', 'vitessce') }}>Go to Spacial Data</Button>
           </div>
         </Container>
         <Container className="mt-3 rounded border p-3 shadow-sm">
@@ -42,7 +53,7 @@ class LeftContent extends Component {
             </p>
           </div>
           <div className='mt-3'>
-            <Button color='primary' href='https://www.kpmp.org/collaboration' size='lg' block onClick={() => {this.handleGoogleAnalyticsEvent('Navigation', 'collaborate')}}>Collaborate with us</Button>
+            <Button color='primary' href='https://www.kpmp.org/collaboration' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Navigation', 'collaborate') }}>Collaborate with us</Button>
           </div>
         </Container>
       </Row>
