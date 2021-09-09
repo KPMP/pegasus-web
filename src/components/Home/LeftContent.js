@@ -38,7 +38,7 @@ class LeftContent extends Component {
           <h5>Spatial Viewer</h5>
           <div>
             <p>
-              View and interact with KPMP spatial data from various KPMP imaging technologies.
+              View and interact with spatial data from various KPMP imaging technologies.
             </p>
           </div>
           <div className='mt-3'>
