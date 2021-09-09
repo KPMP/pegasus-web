@@ -5,6 +5,7 @@ import LeftContent from './LeftContent';
 
 class Home extends Component {
   render() {
+    document.title = 'Kidney Tissue Atlas'
     return (
       <article id="homepage">
         <Row>
