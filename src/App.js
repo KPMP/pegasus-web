@@ -7,7 +7,7 @@ import appReducer from './reducers';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import ReactGA from 'react-ga';
-import { ReactGa as ReactGA4 } from 'react-ga4';
+import { default as ReactGA4 } from 'react-ga4';
 import { createBrowserHistory } from 'history';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import ErrorBoundaryContainer from './components/Error/ErrorBoundaryContainer';

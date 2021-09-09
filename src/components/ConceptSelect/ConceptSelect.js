@@ -3,7 +3,7 @@ import AsyncSelect from "react-select/async";
 import { Alert } from 'reactstrap';
 import { fetchAutoComplete, fetchDataTypesForConcept } from "../../helpers/ApolloClient";
 import ReactGA from 'react-ga';
-import { ReactGA as ReactGA4 } from 'react-ga4';
+import { default as ReactGA4 } from 'react-ga4';
 
 class ConceptSelect extends Component {
 

@@ -1,5 +1,5 @@
 import ReactGA from 'react-ga';
-import { ReactGA as ReactGA4 } from 'react-ga4';
+import { default as ReactGA4 } from 'react-ga4';
 
 export const handleGoogleAnalyticsEvent = (category, action, label) => {
     ReactGA.event({
