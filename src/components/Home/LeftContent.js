@@ -35,14 +35,14 @@ class LeftContent extends Component {
           </div>
         </Container>
         <Container className="mt-3 rounded border p-3 shadow-sm">
-          <h5>Spatial Data</h5>
+          <h5>Spatial Viewer</h5>
           <div>
             <p>
-              View and interact with KPMP participant spatial data.
+              View and interact with KPMP spatial data from various KPMP imaging technologies.
             </p>
           </div>
           <div className='mt-3'>
-            <Button color='primary' href='/vitessce' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Navigation', 'vitessce') }}>Go to Spatial Data</Button>
+            <Button color='primary' href='/spatial-viewer”' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Navigation', 'vitessce') }}>Go to Spatial Data</Button>
           </div>
         </Container>
         <Container className="mt-3 rounded border p-3 shadow-sm">
