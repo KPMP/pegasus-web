@@ -42,7 +42,7 @@ class LeftContent extends Component {
             </p>
           </div>
           <div className='mt-3'>
-            <Button color='primary' href='/spatial-viewer”' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Navigation', 'vitessce') }}>Go to Spatial Data</Button>
+            <Button color='primary' href='/spatial-viewer' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Navigation', 'vitessce') }}>Go to Spatial Data</Button>
           </div>
         </Container>
         <Container className="mt-3 rounded border p-3 shadow-sm">
