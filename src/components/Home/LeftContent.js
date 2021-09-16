@@ -35,7 +35,7 @@ class LeftContent extends Component {
           </div>
         </Container>
         <Container className="mt-3 rounded border p-3 shadow-sm">
-          <h5>Spatial Viewer</h5>
+          <h5>Spatial Viewer (beta)</h5>
           <div>
             <p>
               View and interact with spatial data from various KPMP imaging technologies.
