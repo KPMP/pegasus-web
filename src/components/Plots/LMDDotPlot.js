@@ -124,6 +124,9 @@ class LMDDotPlot extends Component {
                     <Col xs={10} id='lmdPlot' className='pr-0 mr-0'>
                         <Plot divId="lmdPlotCanvas" data={this.state.plotData}
                             layout={{
+                                xaxis: {
+                                    showgrid: false
+                                },
                                 autosize: true,
                                 colorbar:
                                     { title: 'log2' },
