@@ -102,7 +102,7 @@ class RNASeqViz extends Component {
                         <Col lg='6'>
                             <Row xs='12' className='mb-4'>
                                 <Col lg='12'>
-                                    <div className={(this.props.gene.symbol) ? 'featurePlot-title' : 'featurePlot-title-hidden'}><h5>{this.props.gene.symbol} Expression</h5><hr /></div>
+                                    <div className={(this.props.gene.symbol) ? 'featurePlot-title' : 'featurePlot-title-hidden'}><h5>{this.props.gene.symbol} expression comparison across regions</h5><hr /></div>
                                 </Col>
                             </Row>
                             <Row className={(!this.state.isLoadingUmap && !this.props.gene.symbol && this.state.plotData.length >= 0) ? 'featurePlot-loader-background' : ''}>
