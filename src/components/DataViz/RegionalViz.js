@@ -111,8 +111,8 @@ class RegionalViz extends Component {
                     : <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
                         <Row xs='12'>
                             <Col lg='12'>
-                                <h5>{this.props.gene.symbol} Expression</h5>
-                                <hr />
+                                <h5>{this.props.gene.symbol} expression comparison across regions in {formatTissueType(this.props.tissueType)}</h5>
+                            <hr />
                             </Col>
                         </Row>
                         <Row xs='12'>
@@ -129,6 +129,13 @@ class RegionalViz extends Component {
                         <Row xs='12' className='mb-4'>
                             {plot}
                             <hr />
+                        </Row>
+                        <Row cs='12' className='mb-4'>
+                          <Col>
+                            <small>
+                              The comparisons in the plot and data table were performed across different segments in the same condition. The plot data should be read and interpreted following the horizontal guides. The fold change and significance of a segment are related to the average expression of all segments in the same condition. Due to the experiment design, is not possible to draw direct comparisons in the same segment across conditions.
+                            </small>
+                          </Col>
                         </Row>
                         <Row xs='12'>
                             <Col lg='11'>
