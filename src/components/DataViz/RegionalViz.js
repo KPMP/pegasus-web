@@ -116,7 +116,7 @@ class RegionalViz extends Component {
                             </Col>
                         </Row>
                         <Row xs='12'>
-                            <Col lg='12' className='text-left'>
+                            <Col lg='12' className='text-left lmd-plot-toggle'>
                                 <span className='d-table-cell pr-4 pb-2 text-nowrap'>Display by: </span>
                                 <span className='d-table-cell'>
                                     <ButtonGroup>
@@ -126,11 +126,11 @@ class RegionalViz extends Component {
                                 </span>
                             </Col>
                         </Row>
-                        <Row xs='12' className='mb-4'>
+                        <Row xs='12' className='mb-4 lmd-plot-container'>
                             {plot}
                             <hr />
                         </Row>
-                        <Row cs='12' className='mb-4'>
+                        <Row cs='12' className='mb-4 footnote'>
                           <Col>
                             <small>
                               The comparisons in the plot and data table were performed across different segments in the same condition. The plot data should be read and interpreted following the horizontal guides. The fold change and significance of a segment are related to the average expression of all segments in the same condition. Due to the experiment design, is not possible to draw direct comparisons in the same segment across conditions.

@@ -814,6 +814,19 @@ tr.MuiTableRow-root:nth-child(even) {
   height: 410px;
 }
 
+.lmd-plot-toggle {
+  z-index: 1;
+}
+
+.lmd-plot-container {
+  margin-top: -3.3rem;
+  margin-bottom: -2rem !important;
+}
+.footnote {
+ line-height: 16px;
+ margin-bottom: 3.0625rem !important;
+}
+
 .indent-1 {
   padding-left: 15px;
 }
