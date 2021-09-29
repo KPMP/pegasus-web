@@ -100,7 +100,8 @@ class LMDDotPlot extends Component {
                     showscale: true,
                     reversescale: false,
                     color: colors,
-                    colorbar: { title: 'log2 (Fold Change)' }
+                    colorbar: { title: 'log2 (Fold Change)' },
+                    line: { width: 1, color: 'DarkSlateGrey'}
                 }
             };
             legendPlotObj = this.getSizeLegendPlot(bubbles);
