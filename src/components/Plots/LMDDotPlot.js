@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Plotly from '../../helpers/Plotly';
 import createPlotlyComponent from 'react-plotly.js/factory';
 import { Col } from 'reactstrap';
-import { addAbsLegendValues } from '../DataViz/regionalVizHelper';
+import { addAbsLegendValues } from './LMDPlotHelper';
 const Plot = createPlotlyComponent(Plotly);
 
 class LMDDotPlot extends Component {
@@ -96,7 +96,7 @@ class LMDDotPlot extends Component {
                     sizemode: 'area',
                     sizeref: this.getSizeRef(bubbles),
                     symbol: 'circle',
-                    colorscale: 'Viridis',
+                    colorscale: 'RdBu',
                     showscale: true,
                     reversescale: false,
                     color: colors,
