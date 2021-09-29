@@ -43,9 +43,10 @@ describe("addAbsLegendvalues", () => {
     expect(addAbsLegendValues(plotData)).toBe(expectedPlotData);
   }),
   it("should return the object if marker is undefined", () => {
-    const plotData = undefined;
+    const plotData = {};
 
-    const expectedPlotData = undefined;
-    expect(addAbsLegendValues(plotData)).toBe(expectedPlotData);
+    const expectedPlotData = {};
+    expect(addAbsLegendValues(plotData).toString()).toBe(expectedPlotData.toString());
+
   });
 });
