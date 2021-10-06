@@ -133,7 +133,7 @@ class RegionalViz extends Component {
                         <Row cs='12' className='mb-4 footnote'>
                           <Col>
                             <small>
-                              The comparisons in the plot and data table were performed across different segments in the same condition. The plot data should be read and interpreted following the horizontal guides. The fold change and significance of a segment are related to the average expression of all segments in the same condition. Due to the experiment design, is not possible to draw direct comparisons in the same segment across conditions.
+                              The comparisons in the plot and data table were performed across different segments in the same condition. The plot data should be read and interpreted following the horizontal guides. The fold change and significance of a segment are related to the average expression of all segments in the same condition. Due to the experiment design, it is not possible to draw direct comparisons in the same segment across conditions.
                             </small>
                           </Col>
                         </Row>
