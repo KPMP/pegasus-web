@@ -6,7 +6,9 @@ class LeftContent extends Component {
 
   constructor(props) {
     super(props);
-
+    this.state = {
+        show_vitessce_button: false
+    }
     this.handleGoogleAnalyticsEvent = handleGoogleAnalyticsEvent.bind(this);
   }
   render() {
@@ -34,6 +36,7 @@ class LeftContent extends Component {
             <Button color='primary' href='/repository' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Navigation', 'repository') }}>Go to Repository</Button>
           </div>
         </Container>
+        {this.state.show_vitessce_button &&
         <Container className="mt-3 rounded border p-3 shadow-sm">
           <h5>Spatial Viewer (beta)</h5>
           <div>
@@ -45,6 +48,7 @@ class LeftContent extends Component {
             <Button color='primary' href='/spatial-viewer' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Navigation', 'vitessce') }}>Go to Spatial Viewer</Button>
           </div>
         </Container>
+        }
         <Container className="mt-3 rounded border p-3 shadow-sm">
           <h5>KPMP Central Biorepository</h5>
           <div>
