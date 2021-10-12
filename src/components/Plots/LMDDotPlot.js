@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import Plotly from '../../helpers/Plotly';
 import createPlotlyComponent from 'react-plotly.js/factory';
 import { Col } from 'reactstrap';
+import { addAbsLegendValues } from './LMDPlotHelper';
 const Plot = createPlotlyComponent(Plotly);
 
 class LMDDotPlot extends Component {
@@ -95,14 +96,16 @@ class LMDDotPlot extends Component {
                     sizemode: 'area',
                     sizeref: this.getSizeRef(bubbles),
                     symbol: 'circle',
-                    colorscale: 'Viridis',
+                    colorscale: 'RdBu',
                     showscale: true,
                     reversescale: false,
                     color: colors,
-                    colorbar: { title: 'log2 (Fold Change)' }
+                    colorbar: { title: 'log2 (Fold Change)' },
+                    line: { width: 1, color: 'DarkSlateGrey'}
                 }
             };
             legendPlotObj = this.getSizeLegendPlot(bubbles);
+            plotObj = addAbsLegendValues(plotObj);
             this.setState({ isLoading: false })
         } else {
             this.setState({ isLoading: true });
@@ -124,6 +127,9 @@ class LMDDotPlot extends Component {
                     <Col xs={10} id='lmdPlot' className='pr-0 mr-0'>
                         <Plot divId="lmdPlotCanvas" data={this.state.plotData}
                             layout={{
+                                xaxis: {
+                                    showgrid: false
+                                },
                                 autosize: true,
                                 colorbar:
                                     { title: 'log2' },

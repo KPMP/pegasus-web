@@ -5,9 +5,11 @@ import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper'
 class LeftContent extends Component {
 
   constructor(props) {
-      super(props);
-
-      this.handleGoogleAnalyticsEvent = handleGoogleAnalyticsEvent.bind(this);
+    super(props);
+    this.state = {
+        show_vitessce_button: false
+    }
+    this.handleGoogleAnalyticsEvent = handleGoogleAnalyticsEvent.bind(this);
   }
   render() {
     return (
@@ -20,7 +22,7 @@ class LeftContent extends Component {
             </p>
           </div>
           <div className='mt-3'>
-            <Button color='primary' href='/explorer' size='lg' block onClick={() => {this.handleGoogleAnalyticsEvent('Navigation', 'explorer')}}>Go to Explorer</Button>
+            <Button color='primary' href='/explorer' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Navigation', 'explorer') }}>Go to Explorer</Button>
           </div>
         </Container>
         <Container className="mt-3 rounded border p-3 shadow-sm">
@@ -31,9 +33,22 @@ class LeftContent extends Component {
             </p>
           </div>
           <div className='mt-3'>
-            <Button color='primary' href='/repository' size='lg' block onClick={() => {this.handleGoogleAnalyticsEvent('Navigation','repository')}}>Go to Repository</Button>
+            <Button color='primary' href='/repository' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Navigation', 'repository') }}>Go to Repository</Button>
           </div>
         </Container>
+        {this.state.show_vitessce_button &&
+        <Container className="mt-3 rounded border p-3 shadow-sm">
+          <h5>Spatial Viewer (beta)</h5>
+          <div>
+            <p>
+              View and interact with spatial data from various KPMP imaging technologies.
+            </p>
+          </div>
+          <div className='mt-3'>
+            <Button color='primary' href='/spatial-viewer' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Navigation', 'vitessce') }}>Go to Spatial Viewer</Button>
+          </div>
+        </Container>
+        }
         <Container className="mt-3 rounded border p-3 shadow-sm">
           <h5>KPMP Central Biorepository</h5>
           <div>
@@ -42,7 +57,7 @@ class LeftContent extends Component {
             </p>
           </div>
           <div className='mt-3'>
-            <Button color='primary' href='https://www.kpmp.org/collaboration' size='lg' block onClick={() => {this.handleGoogleAnalyticsEvent('Navigation', 'collaborate')}}>Collaborate with us</Button>
+            <Button color='primary' href='https://www.kpmp.org/collaboration' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Navigation', 'collaborate') }}>Collaborate with us</Button>
           </div>
         </Container>
       </Row>

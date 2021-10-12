@@ -7,6 +7,7 @@ import appReducer from './reducers';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import ReactGA from 'react-ga';
+import { default as ReactGA4 } from 'react-ga4';
 import { createBrowserHistory } from 'history';
 import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import ErrorBoundaryContainer from './components/Error/ErrorBoundaryContainer';
@@ -40,10 +41,15 @@ const saveState = () => {
 // *** Get a new tracking Id and add it here *** //
 const GA_TRACKING_ID = 'UA-124331187-10';
 
+ReactGA4.initialize(GA_TRACKING_ID, { testMode: process.env.NODE_ENV === 'test' });
 ReactGA.initialize(GA_TRACKING_ID, { testMode: process.env.NODE_ENV === 'test' });
+
 function logPageView(location, action) {
   ReactGA.set({ page: location.pathname + location.search });
   ReactGA.pageview(location.pathname + location.search);
+
+  ReactGA4.set({ page: location.pathname + location.search });
+  ReactGA4.pageview(location.pathname + location.search);
 }
 const history = createBrowserHistory();
 history.listen((location, action) => {
