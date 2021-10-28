@@ -2,6 +2,7 @@
   "selectedConcept": {},
   "dataType": "",
   "tissueType": "",
+  "recreateUmaps": true,
   "summary": [
     {
       "dataType": "Single-nucleus RNA-seq (snRNA-seq)",
