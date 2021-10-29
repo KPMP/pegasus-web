@@ -3,6 +3,8 @@ import Plotly from '../../helpers/Plotly';
 import createPlotlyComponent from 'react-plotly.js/factory';
 import { median } from '../../helpers/Utils';
 import { fetchPlotlyData } from "../../helpers/ApolloClient";
+import { Container, Row, Col } from 'reactstrap';
+import { Spinner } from "reactstrap";
 const Plot = createPlotlyComponent(Plotly);
 
 class UMAP extends Component {
@@ -13,6 +15,7 @@ class UMAP extends Component {
             plotData: [], plotAnnotations: [],
             plotHeight: 600,
             plotWidth: 600,
+            isLoading: true
         };
         
     }
@@ -57,7 +60,7 @@ class UMAP extends Component {
             });
          
         }
-        this.setState({ plotData: clusterData, plotAnnotations: annotations });
+        this.setState({ plotData: clusterData, plotAnnotations: annotations, isLoading: false });
     };
 
     getUmapPoints = async (dataType, gene, tissueType, fetchPolicy) => {
@@ -66,33 +69,54 @@ class UMAP extends Component {
     };
 
     render() {
+        if (this.state.isLoading) {
+            return (
+                <Container className='mt-3 rounded border p-3 shadow-sm mb-5' >
+                    <Row>
+                        <Col xs='12'>
+                            <Spinner color='primary'/>
+                        </Col>
+                    </Row>
+                </Container>
+            )
+        }
        return (
-        <Plot divId="umapPlot" data={this.state.plotData}
-            layout={{
-                annotations: this.state.plotAnnotations,
-                width: this.state.plotWidth,
-                height: this.state.plotHeight,
-                showlegend: false,
-                yaxis: { zeroline: false, showgrid: false, showline: true },
-                xaxis: { zeroline: false, showgrid: false, showline: true },
-                autosize: false,
-                hovermode: 'closest',
-                dragmode: 'pan',
-                margin: {
-                    l: 25,
-                    r: 25,
-                    b: 25,
-                    t: 25,
-                    pad: 4
-                }
-            }}
-            config={{
-                displaylogo: false,
-                toImageButtonOptions: { filename: 'export-umap.png' },
-                modeBarButtonsToRemove: ['hoverCompareCartesian', 'hoverClosestCartesian', 'zoom2d', 'toggleSpikelines', 'toggleHover', 'select2d', 'lasso2d']
-            }}
-        />
-
+        <Container className='mt-3 rounded border p-3 shadow-sm mb-5' style={{height:'800px'}}>
+            <Row>
+                <Col xs='12'>
+                    Reference UMAP for: {this.props.dataType}
+                </Col>
+            </Row>
+            <Row>
+                <Col xs='12'>
+                    <Plot divId="umapPlot" data={this.state.plotData}
+                        layout={{
+                            annotations: this.state.plotAnnotations,
+                            width: this.state.plotWidth,
+                            height: this.state.plotHeight,
+                            showlegend: false,
+                            yaxis: { zeroline: false, showgrid: false, showline: true },
+                            xaxis: { zeroline: false, showgrid: false, showline: true },
+                            autosize: false,
+                            hovermode: 'closest',
+                            dragmode: 'pan',
+                            margin: {
+                                l: 25,
+                                r: 25,
+                                b: 25,
+                                t: 25,
+                                pad: 4
+                            }
+                        }}
+                        config={{
+                            displaylogo: false,
+                            toImageButtonOptions: { filename: 'export-umap.png' },
+                            modeBarButtonsToRemove: ['hoverCompareCartesian', 'hoverClosestCartesian', 'zoom2d', 'toggleSpikelines', 'toggleHover', 'select2d', 'lasso2d']
+                        }}
+                    />
+                </Col>
+            </Row>
+        </Container>
        );
     }
 }
