@@ -238,10 +238,10 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, tissue
 		},
 		data: {
 			query: `{geneExpressionSummary(
-				dataType: "sn"
-				geneSymbol: ""
-				cellType: "Glomerular Capillary Endothelial Cell"
-				tissueType: "all"
+				dataType: "${dataType}"
+				geneSymbol: "${geneSymbol}"
+				cellType: "${cellType}"
+				tissueType: "${tissueType}"
 				) {
 					id
 					tissueType
