@@ -60,6 +60,7 @@ class RNASeqViz extends Component {
                     return e;
                 }
             }
+            return null;
         });
         if (availableOption) {
             this.props.setDataType(availableOption.value)
