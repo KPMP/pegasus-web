@@ -12,3 +12,19 @@
 # Safely bring down services
 There are some potential issue with closing docker that are eliminated with the following command
 - `cd ~/{your-path}/heavans-docker/atlas && sh repository-explorer-dev.sh down`
+
+# Create Reference UMAPs
+
+ 1. Ensure you either:
+	  a) have the latest data loaded on your local machine
+	  b) have pointed your local instance to qa KE with the latest data
+ 2. Change initialState.json 'recreateUmaps' to true
+ 3. `npm run build`
+ 4. Start up your local Atlas docker environment (see steps in initial setup)
+ 5. Point your browser at localhost
+ 6. Go to Explorer home page
+ 7. Do a gene search
+ 8. Pick the dataset type you want to recreate
+ 9. Wait until it has loaded the expression plot
+ 10. Change your url to `http://localhost/explorer/dataviz/umap` 
+ 11. The updated UMAP will load
