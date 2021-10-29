@@ -30,3 +30,4 @@ There are some potential issue with closing docker that are eliminated with the 
  11. The updated UMAP will load
  12. Download the image
  13. Provide the image to Michael to update as needed
+ 14. Make sure to put initialState.json back so recreateUmaps is false
