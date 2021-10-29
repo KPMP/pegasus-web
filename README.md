@@ -28,3 +28,5 @@ There are some potential issue with closing docker that are eliminated with the 
  9. Wait until it has loaded the expression plot
  10. Change your url to `http://localhost/explorer/dataviz/umap` 
  11. The updated UMAP will load
+ 12. Download the image
+ 13. Provide the image to Michael to update as needed
