@@ -4,7 +4,7 @@ import packageJson from '../../package.json';
 import 'isomorphic-unfetch';
 import { sendMessageToBackend } from '../actions/Error/errorActions';
 import { store } from '../App'
-
+const axios = require('axios').default;
 
 const isDevelopment = () => {
     return process.env.NODE_ENV === "development";
@@ -229,37 +229,44 @@ export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
     }
 }
 
-export const fetchGeneExpression = async (dataType, geneSymbol, cellType, tissueType, fetchPolicy = 'cache-first') => {
-    let query = gql`
-        query {
-            geneExpressionSummary(dataType:"${dataType}", geneSymbol:"${geneSymbol}", cellType:"${cellType}", tissueType:"${tissueType}") {
-                id
-                tissueType
-                gene
-                pVal
-                pValAdj
-                foldChange
-                pct1
-                pct2
-                avgExp
-                cluster
-                clusterName
-                cellCount
-                dataType
-            }
-        }`;
-
-    const response = await apolloClient.query({
-        query: query,
-        fetchPolicy: fetchPolicy
-    });
-
-    if (response.data && response.data.geneExpressionSummary) {
-        return response.data.geneExpressionSummary;
-    } else {
-        store.dispatch(sendMessageToBackend("Could not retrieve gene expression data: " + response.error));
-    }
+export const fetchGeneExpression = async (dataType, geneSymbol, cellType, tissueType) => {
+	const response = await axios({
+		url: getBaseURL() + '/graphql',
+		method: 'post',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		data: {
+			query: `{geneExpressionSummary(
+				dataType: "sn"
+				geneSymbol: ""
+				cellType: "Glomerular Capillary Endothelial Cell"
+				tissueType: "all"
+				) {
+					id
+					tissueType
+					gene
+					pVal
+					pValAdj
+					foldChange
+					pct1
+					pct2
+					avgExp
+					cluster
+					clusterName
+					cellCount
+					dataType
+				}
+		}`,variables:{}}
+	})
+	if(response.data && response.data.data && response.data.data.geneExpressionSummary) {
+		return response.data.data.geneExpressionSummary;
+	} else {
+		store.dispatch(sendMessageToBackend("Could not retrieve gene expression data: " + response.error));
+	}
 };
+
+
 
 export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) => {
     let query = gql`
