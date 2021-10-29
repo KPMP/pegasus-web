@@ -1,3 +1,5 @@
+[![Node.js CI](https://github.com/KPMP/pegasus-web/actions/workflows/node.js.yml/badge.svg)](https://github.com/KPMP/pegasus-web/actions/workflows/node.js.yml)
+
 # Inital Setup
 - Install NVM (https://github.com/nvm-sh/nvm)
 - `nvm use v12.22.1` // Use Node.js version 12.22.1
