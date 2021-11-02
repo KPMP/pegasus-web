@@ -7,7 +7,7 @@ import { setGene } from '../../actions/Gene/geneActions';
 import { setTissueType } from '../../actions/TissueType/tissueTypeActions';
 import { setDataType } from '../../actions/DataType/dataTypeActions';
 
-import { selectedConcept } from '../../initialState'
+import { selectedConcept } from '../../initialState';
 import { connect } from "react-redux";
 
 class Explorer extends Component {

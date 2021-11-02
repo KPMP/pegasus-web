@@ -23,6 +23,8 @@ import RNASeqVizContainer from "./components/DataViz/RNASeqVizContainer";
 import DiffexByClusterContainer from "./components/ExpressionTables/DiffexByClusterContainer";
 import RegionalVizContainer from "./components/DataViz/RegionalVizContainer";
 import { baseURL } from '../package.json';
+import { PrivateUmapRoute } from './PrivateRoutes';
+import UMAPContainer from './components/DataViz/UMAPContainer';
 
 const cacheStore = window.sessionStorage.getItem('redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
@@ -83,6 +85,7 @@ class App extends Component {
                 <Route exact path='/explorer/regionalviz' component={RegionalVizContainer} store={store} />
                 <Route exact path='/explorer/diffex' component={DiffexByClusterContainer} store={store} />
                 <Route exact path='/oops' component={Oops} />
+                <PrivateUmapRoute exact path='/explorer/dataViz/umap' component={UMAPContainer} store={store} />
                 <Route path='*' component={NotFoundPage} />
               </Switch>
               <NavFooter />

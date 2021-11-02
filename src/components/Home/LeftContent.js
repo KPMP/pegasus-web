@@ -7,7 +7,7 @@ class LeftContent extends Component {
   constructor(props) {
     super(props);
     this.state = {
-        show_vitessce_button: false
+        show_vitessce_button: true
     }
     this.handleGoogleAnalyticsEvent = handleGoogleAnalyticsEvent.bind(this);
   }
