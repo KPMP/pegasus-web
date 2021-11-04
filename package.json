@@ -59,7 +59,7 @@
   "eslintConfig": {
     "extends": "react-app"
   },
-  "proxy": "https://qa-atlas.kpmp.org",
+  "proxy": "http://localhost:3030",
   "baseURL": "/",
   "displayMaterialTable": false,
   "browserslist": {
