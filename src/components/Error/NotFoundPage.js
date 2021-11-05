@@ -1,7 +1,16 @@
 import React, { Component } from 'react';
 import { Row, Col, Button } from 'reactstrap';
 
+export function getBackToHomePath(pathname) {       
+        if (pathname.split('/')[1].indexOf('explorer') >= 0) {
+            return '/explorer';
+        } else {
+            return '/'
+        }
+    }
+ 
 class NotFoundPage extends Component {
+    
     render() {
         return (
             <article className="container" id='not-found-page'>
@@ -17,7 +26,7 @@ class NotFoundPage extends Component {
                         <p className="oops-button-container">
                         <Button color='primary'
                             className="btn btn-primary"
-                            onClick={() => (window.location.href = '/explorer')}
+                            onClick={() =>(window.location.href = getBackToHomePath(window.location.pathname))}
                         >
                             Back to Home
                         </Button>
