@@ -3,7 +3,6 @@ import { Row, Col, Button } from 'reactstrap';
 import { isExpectedPath } from 'kpmp-common-components';
  
 export function getBackToHomePath(pathname) {
-    console.log('isep', isExpectedPath);
     const expectedPath = 'explorer'
 
     if(isExpectedPath(pathname, expectedPath)) {

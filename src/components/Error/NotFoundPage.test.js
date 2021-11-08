@@ -43,20 +43,6 @@ describe('getBackToHomePath', () => {
         
         expect(resultedPathname).toBe(expectedPathname)
     });
-    it('should return the path /explorer when given a path with explorer in it but mis-typed', async () => {
-        const pathname = '/xeplorer/foo'
-        const expectedPathname = '/explorer'
-        const resultedPathname = await getBackToHomePath(pathname)
-        
-        expect(resultedPathname).toBe(expectedPathname)
-    });
-    it('should return the path /explorer when given a path with explorer in it but mis-typed', async () => {
-        const pathname = '/xeweplorer/foo'
-        const expectedPathname = '/explorer'
-        const resultedPathname = await getBackToHomePath(pathname)
-
-        expect(resultedPathname).toBe(expectedPathname)
-    });
     it('should return the path /explorer when given a path with explorer in it but slightly-mis-typed', async () => {
         const pathname = '/explorerffff/foo'
         const expectedPathname = '/explorer'
