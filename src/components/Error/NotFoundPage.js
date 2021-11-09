@@ -1,7 +1,19 @@
 import React, { Component } from 'react';
 import { Row, Col, Button } from 'reactstrap';
+import { isExpectedPath } from 'kpmp-common-components';
+ 
+export function getBackToHomePath(pathname) {
+    const expectedPath = 'explorer'
 
+    if(isExpectedPath(pathname, expectedPath)) {
+        return '/explorer'
+    } else {
+        return '/'
+    }
+}
+ 
 class NotFoundPage extends Component {
+    
     render() {
         return (
             <article className="container" id='not-found-page'>
@@ -17,7 +29,7 @@ class NotFoundPage extends Component {
                         <p className="oops-button-container">
                         <Button color='primary'
                             className="btn btn-primary"
-                            onClick={() => (window.location.href = '/explorer')}
+                                onClick={async () =>(window.location.href = getBackToHomePath(window.location.pathname))}
                         >
                             Back to Home
                         </Button>
