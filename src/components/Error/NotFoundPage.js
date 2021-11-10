@@ -11,10 +11,20 @@ export function getBackToHomePath(pathname) {
         return '/'
     }
 }
+
+export function getPageTitle(pathname) {
+    const expectedPath = 'explorer'
+    if(isExpectedPath(pathname, expectedPath)) {
+        return 'Explorer'
+    } else {
+        return 'Kidney Tissue Atlas'
+    }
+}
  
 class NotFoundPage extends Component {
     
     render() {
+        document.title = getPageTitle(window.location.pathname)
         return (
             <article className="container" id='not-found-page'>
                 <Row id="not-found-container" className='mr-5 p-5'>
