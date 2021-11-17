@@ -69,7 +69,7 @@ class LMDDotPlot extends Component {
     };
 
     abbreviate = (tissueType) => {
-        return tissueType === 'healthy reference'?'hrt':tissueType;
+        return tissueType === 'Healthy Reference'?'hrt':tissueType;
     };
 
     setData = (data) => {
