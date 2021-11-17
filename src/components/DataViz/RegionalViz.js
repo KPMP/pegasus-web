@@ -37,23 +37,14 @@ class RegionalViz extends Component {
         }
     };
 
-    renameProperties = (data) => {
-        return {
-            aki: data['aki'],
-            hrt: data['healthy reference'],
-            ckd: data['ckd'],
-            all: data['all']
-        }
-    };
-
     getRTData = () => {
         fetchRegionalTranscriptomics('all_segments', this.props.gene.symbol).then((result) => {
-            this.setState({ rtAllPlotData: this.renameProperties(result) });
+            this.setState({ rtAllPlotData: result });
             this.setState({ rtAllTableData: result[this.props.tissueType] });
         }
         );
         fetchRegionalTranscriptomics('glom_tub', this.props.gene.symbol).then((result) => {
-            this.setState({ rtGTPlotData: this.renameProperties(result) })
+            this.setState({ rtGTPlotData: result })
             this.setState({ rtGTTableData: result[this.props.tissueType] });
         }
         );

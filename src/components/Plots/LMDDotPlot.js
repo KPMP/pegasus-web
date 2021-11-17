@@ -68,6 +68,10 @@ class LMDDotPlot extends Component {
 
     };
 
+    abbreviate = (tissueType) => {
+        return tissueType === 'healthy reference'?'hrt':tissueType;
+    };
+
     setData = (data) => {
         let plotObj = {};
         let legendPlotObj = {};
@@ -81,7 +85,7 @@ class LMDDotPlot extends Component {
         if (data) {
             resultArr.forEach((row) => {
                 xValues.push(row.segment);
-                yValues.push(row.tissueType.toUpperCase());
+                yValues.push(this.abbreviate(row.tissueType).toUpperCase());
                 bubbles.push(row.pValLog10);
                 colors.push(row.foldChange);
             });
