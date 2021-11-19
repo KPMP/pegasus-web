@@ -29,6 +29,13 @@ describe('getBackToHomePath', () => {
         
         expect(resultedPathname).toBe(expectedPathname)
     });
+    it('should return the path /repository when given a path with just repository', () => {
+        const pathname = '/repository'
+        const expectedPathname = '/repository'
+        const resultedPathname = getBackToHomePath(pathname)
+        
+        expect(resultedPathname).toBe(expectedPathname)
+    });
     it('should return the path /explorer when given a path with explorer in it', () => {
         const pathname = '/explorer/foo'
         const expectedPathname = '/explorer'
@@ -77,6 +84,13 @@ describe('gePageTitle', () => {
     it('should return the page title of Kidney Tissue Atlas when path is /explorer', () => {
         const pathname = '/explorer'
         const expectedTitle = 'Explorer'
+        const result = getPageTitle(pathname)
+        
+        expect(result).toBe(expectedTitle)
+    });
+    it('should return the page title of Repository when path is /repository', () => {
+        const pathname = '/repository'
+        const expectedTitle = 'Repository'
         const result = getPageTitle(pathname)
         
         expect(result).toBe(expectedTitle)
