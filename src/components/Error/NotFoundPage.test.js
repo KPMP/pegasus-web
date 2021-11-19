@@ -88,4 +88,11 @@ describe('gePageTitle', () => {
         
         expect(result).toBe(expectedTitle)
     });
+    it('should return the page title of Repository when path is /repository', () => {
+        const pathname = '/repository'
+        const expectedTitle = 'Repository'
+        const result = getPageTitle(pathname)
+        
+        expect(result).toBe(expectedTitle)
+    });
 });

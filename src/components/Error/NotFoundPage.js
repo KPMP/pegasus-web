@@ -6,16 +6,17 @@ export function getBackToHomePath(pathname) {
     if(isExpectedPath(pathname, 'explorer')) {
         return '/explorer'
     } else if(isExpectedPath(pathname, 'repository')) {
-	return '/repository'
+    	return '/repository'
     } else {
         return '/'
     }
 }
 
 export function getPageTitle(pathname) {
-    const expectedPath = 'explorer'
-    if(isExpectedPath(pathname, expectedPath)) {
+    if(isExpectedPath(pathname, 'explorer')) {
         return 'Explorer'
+    } else if (isExpectedPath(pathname, 'repository')) {
+	    return 'Repository'
     } else {
         return 'Kidney Tissue Atlas'
     }
