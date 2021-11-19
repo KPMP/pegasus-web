@@ -29,6 +29,13 @@ describe('getBackToHomePath', () => {
         
         expect(resultedPathname).toBe(expectedPathname)
     });
+    it('should return the path /repository when given a path with just repository', () => {
+        const pathname = '/repository'
+        const expectedPathname = '/repository'
+        const resultedPathname = getBackToHomePath(pathname)
+        
+        expect(resultedPathname).toBe(expectedPathname)
+    });
     it('should return the path /explorer when given a path with explorer in it', () => {
         const pathname = '/explorer/foo'
         const expectedPathname = '/explorer'
