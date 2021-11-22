@@ -29,7 +29,7 @@ const NavBar = (props) => {
             <NavItem className={`${window.location.pathname === '/' ? 'active' : ''} px-1`}>
               <NavLink href="/"><span className="nav-text px-1">Dashboard (Home)</span></NavLink>
             </NavItem>
-            <NavItem className={`${window.location.pathname.replaceAll("/", "") === 'explorer' ? 'active' : ''} px-1`}>
+            <NavItem className={`${window.location.pathname.includes('explorer') ? 'active' : ''} px-1`}>
               <NavLink href="/explorer"><span className="nav-text px-1">Explorer</span></NavLink>
             </NavItem>
             <NavItem className={`${window.location.pathname.replaceAll("/", "") === 'repository' ? 'active' : ''} px-1`}>
