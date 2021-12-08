@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import NavBar from './components/Nav/NavBar';
-import NavFooter from './components/Nav/NavFooter';
+import { NavBar, NavFooter } from 'kpmp-common-components';
 import loadedState from './initialState';
 import { createStore, applyMiddleware } from 'redux';
 import appReducer from './reducers';
@@ -75,7 +74,7 @@ class App extends Component {
         <ApolloProvider client={apolloClient}>
           <BrowserRouter basename={baseURL} history={history}>
             <ErrorBoundaryContainer>
-              <NavBar />
+              <NavBar app='atlas' />
               <Switch>
                 <Route exact path='/' component={Home} store={store} />
                 <Route exact path='/explorer' component={Explorer} store={store} />
@@ -88,7 +87,7 @@ class App extends Component {
                 <PrivateUmapRoute exact path='/explorer/dataViz/umap' component={UMAPContainer} store={store} />
                 <Route path='*' component={NotFoundPage} />
               </Switch>
-              <NavFooter />
+              <NavFooter app='atlas' />
             </ErrorBoundaryContainer>
           </BrowserRouter>
         </ApolloProvider>
