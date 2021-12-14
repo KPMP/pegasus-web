@@ -46,7 +46,7 @@ class DataSummary extends Component {
                     <hr className="samples-plot-line" />
                 </Row>
                 <Row>
-                    <p className="samples-plot-files">Total Files: 1,537</p>
+                    <p className="samples-plot-files">Total Files: 2,835</p>
                 </Row>
 
                 <Row className='mt-4'>
