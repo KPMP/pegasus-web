@@ -169,9 +169,9 @@ class DataTypeSelector extends Component {
 
     getRepositoryLink = () => {
         const linkMapping = {
-            'sn': '/repository/?facetTab=files&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22experimental_strategy%22%2C%22value%22%3A%5B%22Single-nucleus%20RNA-Seq%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22workflow_type%22%2C%22value%22%3A%5B%22Aggregated%20Clustered%20Data%22%5D%7D%7D%5D%7D',
-            'sc': '/repository/?facetTab=files&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22experimental_strategy%22%2C%22value%22%3A%5B%22Single-cell%20RNA-Seq%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22workflow_type%22%2C%22value%22%3A%5B%22Aggregated%20Clustered%20Data%22%5D%7D%7D%5D%7D',
-            'rt': '/repository/?facetTab=files&filters={"op"%3A"and"%2C"content"%3A[{"op"%3A"in"%2C"content"%3A{"field"%3A"experimental_strategy"%2C"value"%3A["Regional Transcriptomics"]}}%2C{"op"%3A"in"%2C"content"%3A{"field"%3A"workflow_type"%2C"value"%3A["Aggregated Data"]}}]}',
+            'sn': '/repository/?facetTab=files&files_size=60&files_sort=%5B%7B%22field%22%3A%22file_name%22%2C%22order%22%3A%22asc%22%7D%5D&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22dois%22%2C%22value%22%3A%5B%2210.48698%2Fyyvc-ak78%22%5D%7D%7D%5D%7D',
+            'sc': '/repository/?facetTab=files&files_size=60&files_sort=%5B%7B%22field%22%3A%22file_name%22%2C%22order%22%3A%22asc%22%7D%5D&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22dois%22%2C%22value%22%3A%5B%2210.48698%2F92nk-e805%22%5D%7D%7D%5D%7D',
+            'rt': '/repository/?facetTab=files&files_size=60&files_sort=%5B%7B%22field%22%3A%22file_name%22%2C%22order%22%3A%22asc%22%7D%5D&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22dois%22%2C%22value%22%3A%5B%2210.48698%2Ft9fh-qn48%22%5D%7D%7D%5D%7D',
             'default': '/repository',
         }
         if (linkMapping[this.props.dataType]) {
