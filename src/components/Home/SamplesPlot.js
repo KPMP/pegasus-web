@@ -137,7 +137,7 @@ class SamplesPlot extends Component {
                                 hovermode: false,
                                 xaxis: {
                                     range: [0, 1200],
-                                    domain: [0.37, 1.3],
+                                    domain: [0.39, 1.3],
                                     showticklabels: false,
                                     zerolinecolor: '#cccccc',
                                     showgrid: false,
