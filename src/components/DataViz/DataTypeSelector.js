@@ -245,6 +245,7 @@ class DataTypeSelector extends Component {
                             </span>
                         </Col>
                     </Row>
+                    <div className="dataset-details">
                     <Row xs="12" className='mt-1 pl-0' >
                     
                         <Col lg="12" className='d-table pl-2'>
@@ -266,6 +267,7 @@ class DataTypeSelector extends Component {
                             }
                         </Col>
                     </Row>
+                    </div>
                 </Container>
             </Container>
         )
