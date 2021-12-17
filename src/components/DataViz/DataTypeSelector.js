@@ -251,9 +251,9 @@ class DataTypeSelector extends Component {
                         <Col lg="12" className='d-table pl-2'>
                             {dataInfo && 
                             <div>
-                                {this.state.datasetToggle == 'collapsed'
-                                    ? <a className="a-button" onClick={this.toggleDataset}>Show dataset details <i class="fas fa-chevron-down"></i></a>
-                                    : <a className="a-button" onClick={this.toggleDataset}>Hide dataset details <i class="fas fa-chevron-up"></i></a>
+                                {this.state.datasetToggle === 'collapsed'
+                                    ? <span className="a-button" onClick={this.toggleDataset}>Show dataset details <i class="fas fa-chevron-down"></i></span>
+                                    : <span className="a-button" onClick={this.toggleDataset}>Hide dataset details <i class="fas fa-chevron-up"></i></span>
                                 }    
                             </div>
                             }
@@ -261,7 +261,7 @@ class DataTypeSelector extends Component {
                     </Row>
                     <Row xs="12" className='mt-1 pl-0' >
                         <Col lg="12" className='d-table pl-2'>
-                            {this.state.datasetToggle == 'collapsed'
+                            {this.state.datasetToggle === 'collapsed'
                                 ? ''
                                 : <p>{dataInfo}</p>
                             }
