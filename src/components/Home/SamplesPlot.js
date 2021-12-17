@@ -34,45 +34,45 @@ class SamplesPlot extends Component {
                 let strokeColor = "#ccc";
                 let strokeWidth = "2px";
                 let separatorLine_01 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_01.setAttribute("d", "M 15 90 L 250 90");
+                separatorLine_01.setAttribute("d", "M 15 90 L 295 90");
                 separatorLine_01.style.stroke = strokeColor;
                 separatorLine_01.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_01);
 
                 let separatorLine_02 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_02.setAttribute("d", "M 15 182 L 250 182");
+                separatorLine_02.setAttribute("d", "M 15 182 L 295 182");
                 separatorLine_02.style.stroke = strokeColor;
                 separatorLine_02.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_02);
 
 
                 let separatorLine_03 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_03.setAttribute("d", "M 15 272 L 250 272");
+                separatorLine_03.setAttribute("d", "M 15 272 L 295 272");
                 separatorLine_03.style.stroke = strokeColor;
                 separatorLine_03.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_03);
 
 
                 let separatorLine_04 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_04.setAttribute("d", "M 15 340 L 250 340");
+                separatorLine_04.setAttribute("d", "M 15 340 L 295 340");
                 separatorLine_04.style.stroke = strokeColor;
                 separatorLine_04.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_04);
 
                 let separatorLine_05 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_05.setAttribute("d", "M 15 430 L 250 430");
+                separatorLine_05.setAttribute("d", "M 15 430 L 295 430");
                 separatorLine_05.style.stroke = strokeColor;
                 separatorLine_05.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_05);
 
                 let separatorLine_06 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_06.setAttribute("d", "M 15 454 L 250 454");
+                separatorLine_06.setAttribute("d", "M 15 454 L 295 454");
                 separatorLine_06.style.stroke = strokeColor;
                 separatorLine_06.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_06);
 
                 let separatorLine_07 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_07.setAttribute("d", "M 15 477 L 250 477");
+                separatorLine_07.setAttribute("d", "M 15 477 L 295 477");
                 separatorLine_07.style.stroke = strokeColor;
                 separatorLine_07.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_07);
