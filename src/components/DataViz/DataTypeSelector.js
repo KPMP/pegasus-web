@@ -194,7 +194,7 @@ class DataTypeSelector extends Component {
     }
     toggleDataset = () => {
         this.setState({
-            datasetToggle: (this.state.datasetToggle == 'collapsed' ? 'open' : 'collapsed')
+            datasetToggle: (this.state.datasetToggle === 'collapsed' ? 'open' : 'collapsed')
         })
     }
     render() {
