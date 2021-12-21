@@ -43,7 +43,7 @@ class UMAP extends Component {
                     text: cluster.clusterAbbreviation + "<br>" + cluster.clusterName,
                     x: cluster.xValues,
                     y: cluster.yValues,
-                    marker: { size: 2, color: cluster.color }
+                    marker: { size: 2, color: cluster.color, opacity: 0.4 }
                 });
                 annotations.push({
                     x: median(cluster.xValues),

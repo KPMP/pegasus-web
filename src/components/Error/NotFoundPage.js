@@ -1,8 +1,31 @@
 import React, { Component } from 'react';
 import { Row, Col, Button } from 'reactstrap';
+import { isExpectedPath } from 'kpmp-common-components';
+ 
+export function getBackToHomePath(pathname) {
+    if(isExpectedPath(pathname, 'explorer')) {
+        return '/explorer'
+    } else if(isExpectedPath(pathname, 'repository')) {
+    	return '/repository'
+    } else {
+        return '/'
+    }
+}
 
+export function getPageTitle(pathname) {
+    if(isExpectedPath(pathname, 'explorer')) {
+        return 'Explorer'
+    } else if (isExpectedPath(pathname, 'repository')) {
+	    return 'Repository'
+    } else {
+        return 'Kidney Tissue Atlas'
+    }
+}
+ 
 class NotFoundPage extends Component {
+    
     render() {
+        document.title = getPageTitle(window.location.pathname)
         return (
             <article className="container" id='not-found-page'>
                 <Row id="not-found-container" className='mr-5 p-5'>
@@ -17,7 +40,7 @@ class NotFoundPage extends Component {
                         <p className="oops-button-container">
                         <Button color='primary'
                             className="btn btn-primary"
-                            onClick={() => (window.location.href = '/explorer')}
+                                onClick={async () =>(window.location.href = getBackToHomePath(window.location.pathname))}
                         >
                             Back to Home
                         </Button>
