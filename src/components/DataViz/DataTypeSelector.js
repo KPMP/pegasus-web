@@ -255,6 +255,13 @@ class DataTypeSelector extends Component {
                                     ? <span className="a-button" onClick={this.toggleDataset}>Show dataset details <i class="fas fa-chevron-down"></i></span>
                                     : <span className="a-button" onClick={this.toggleDataset}>Hide dataset details <i class="fas fa-chevron-up"></i></span>
                                 }    
+                                {(this.props.dataType === 'sc' ) &&
+                                    <span> | <a rel='noreferrer'target='_blank' href='https://cellxgene.cziscience.com/e/95d1e97d-c61e-4e39-9df8-e7be707d3c48.cxg/'>View additional information in cellxgene</a> </span>
+                                }
+                                {
+                                    (this.props.dataType === 'sn') &&
+                                    <span> | <a rel='noreferrer' target='_blank' href='https://cellxgene.cziscience.com/e/d1cab47a-d082-43f8-b149-5011253a3aac.cxg/'>View additional information in cellxgene</a> </span>
+                                }
                             </div>
                             }
                         </Col>
