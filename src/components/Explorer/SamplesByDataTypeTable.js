@@ -35,7 +35,7 @@ class SamplesByDataTypeTable extends Component {
 
             return (
                 <span className="buttonhref" onClick={() => { this.handleDataTypeClick(value) }}>
-                    {value} <span style={{color: 'red'}}>*</span>
+                    {value}<span style={{color: 'red'}}>*</span>
                  </span>
             );
         } else {
