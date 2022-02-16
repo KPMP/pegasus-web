@@ -18,6 +18,7 @@ class SamplesByDataTypeTable extends Component {
             summary: initialState.summary
         };
     }
+
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Navigation', 'blank slate visualization', dataType);
         let dataLinkageMapping = {
@@ -29,6 +30,24 @@ class SamplesByDataTypeTable extends Component {
         this.props.setSelectedConcept(dataLinkageMapping[dataType], this.props);
     }
 
+    formatDataTypeCell(value) {
+        if (value === 'Single-cell RNA-seq (scRNA-seq)' || value === 'Single-nucleus RNA-seq (snRNA-seq)') {
+
+            return (
+                <span className="buttonhref" onClick={() => { this.handleDataTypeClick(value) }}>
+                    {value}<span style={{color: 'red'}}>*</span>
+                 </span>
+            );
+        } else {
+            return (
+                <span className="buttonhref" onClick={() => { this.handleDataTypeClick(value) }}>
+                    {value}
+                 </span>
+            );
+        }
+
+    }
+
     getColumns() {
         return [
             {
@@ -38,9 +57,9 @@ class SamplesByDataTypeTable extends Component {
                 headerClassName: 'omics data-type-table-header',
                 className: 'data-type-table-content',
                 minWidth: 330,
-                Cell: e => <span className="buttonhref" onClick={() => { this.handleDataTypeClick(e.value) }}>
-                    {e.value}
-                </span>
+                Cell: row => (
+                    this.formatDataTypeCell(row.value)
+                )
             },
             {
                 Header: () => (
@@ -95,6 +114,11 @@ class SamplesByDataTypeTable extends Component {
                             noDataText={'No data found'}
                             minRows={0}
                         />
+                    </Col>
+                </Row>
+                <Row>
+                    <Col xs='12'>
+                        <small><span style={{color: 'red'}}>*</span> Additional information available in <a rel='noreferrer' target='_blank' href='https://cellxgene.cziscience.com/collections/bcb61471-2a44-4d00-a0af-ff085512674c'>cellxgene</a></small>
                     </Col>
                 </Row>
             </article>
