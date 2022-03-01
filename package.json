@@ -22,7 +22,7 @@
     "history": "5.0.0",
     "html-react-parser": "1.4.0",
     "isomorphic-unfetch": "3.1.0",
-    "kpmp-common-components": "1.1.7",
+    "kpmp-common-components": "1.1.8",
     "kpmp-common-styles": "^1.0.9",
     "kpmp-custom-plotly.js": "2.0.0-rc.2",
     "material-table": "1.69.3",
