@@ -38,7 +38,7 @@ class LeftContent extends Component {
         </Container>
         {this.state.show_vitessce_button &&
         <Container className="mt-3 rounded border p-3 shadow-sm">
-          <h5>Spatial Viewer (beta)</h5>
+          <h5>Spatial Viewer</h5>
           <div>
             <p>
               View and interact with spatial data from various KPMP imaging technologies.
