@@ -1,8 +1,5 @@
 @import "kpmp-base.scss";
 @import "info-schematics.scss";
-@import "./assets/font-awesome-6/fontawesome.scss";
-@import "./assets/font-awesome-6/regular.scss";
-@import "./assets/font-awesome-6/solid.scss";
 @import "../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
 @import "../node_modules/kpmp-common-styles/index.scss";
 
@@ -371,7 +368,7 @@ tr.MuiTableRow-root:nth-child(even) {
   }
 }
 .expression-search-copy {
-  margin-top: 15%;
+  margin-top: 20%;
   @media (max-width: 992px) {
     margin-top: 5%;
     margin-bottom: 5%;
@@ -383,6 +380,7 @@ tr.MuiTableRow-root:nth-child(even) {
     transform: rotate(-90deg);
     color: #1c4587;
     font-size: 7em;
+    margin-bottom: 30px;
   }
 }
 .regional-search-copy {

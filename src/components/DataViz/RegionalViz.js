@@ -5,12 +5,11 @@ import { formatTissueType } from "../../helpers/Utils";
 import LMDDotPlot from "../Plots/LMDDotPlot";
 import { fetchRegionalTranscriptomics } from "../../helpers/ApolloClient";
 import RegionalTranscriptomicsTable from "../ExpressionTables/RegionalTranscriptomicsTable";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { CSVLink } from "react-csv";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDataType } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
-
+import { faDownload, faShare } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class RegionalViz extends Component {
     constructor(props) {
@@ -99,7 +98,7 @@ class RegionalViz extends Component {
                         <div className="regional-search-copy">
                             <Row xs='12'>
                                 <Col lg={{ size: 1, offset: 4 }}>
-                                    <i className="fa fa-share"></i>
+                                    <FontAwesomeIcon className={"fa fa-share"} icon={faShare} />
                                 </Col>
                                 <Col lg='7'>
                                     <h6>Gene Expression:</h6>
