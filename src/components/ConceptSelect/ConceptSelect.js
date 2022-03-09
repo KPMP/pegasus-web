@@ -65,11 +65,11 @@ class ConceptSelect extends Component {
     getLabelIcon = (type) => {
         switch (type) {
             case "cell_type":
-                return <img src="/explorer/img/search-icon_cell.svg" className="mr-2" alt="cell type" />;
+                return <img src="/img/search-icon_cell.svg" className="mr-2" alt="cell type" />;
             case "gene":
-                return <img src="/explorer/img/search-icon_gene.svg" className="mr-2" alt="gene" />;
+                return <img src="/img/search-icon_gene.svg" className="mr-2" alt="gene" />;
             default:
-                return <img src="/explorer/img/search-icon_gene.svg" className="mr-2" alt="gene" />;
+                return <img src="/img/search-icon_gene.svg" className="mr-2" alt="gene" />;
         }
     };
 
