@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
-import initialState from '../../initialState';
 import { Row, Col } from 'reactstrap';
 
 class SamplesByDataTypeTable extends Component {
@@ -12,7 +11,6 @@ class SamplesByDataTypeTable extends Component {
 
         this.state = {
             columns: this.getColumns(),
-            summary: initialState.summary
         };
     }
 
@@ -70,7 +68,7 @@ class SamplesByDataTypeTable extends Component {
                     <Col xs='12'>
                         <ReactTable
                             style={{ border: 'none' }}
-                            data={this.state.summary}
+                            data={this.props.summary}
                             ref={this.reactTable}
                             sortable={false}
                             columns={this.state.columns}

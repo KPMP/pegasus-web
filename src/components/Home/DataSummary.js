@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 import SamplesPlot from './SamplesPlot';
 import SamplesByDataTypeTable from './SamplesByDataTypeTable';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
+import initialState from '../../initialState';
 
 class DataSummary extends Component {
 
@@ -28,8 +29,16 @@ class DataSummary extends Component {
                 <Row><p>A subset of the raw data from the Data Repository has been analyzed and made available for interactive mining in the Atlas Explorer.</p></Row>
 
                 <Row>
-                    <SamplesByDataTypeTable />
+                    <SamplesByDataTypeTable summary={initialState.explorerSummary}/>
                 </Row>
+
+                <Row><h5 className="sub-header">What data can I find in the Spatial Viewer?</h5></Row>
+                <Row><p>A collection of spatial datasets that may be visualized in the Vitessce visual integration tool.</p></Row>
+
+                <Row>
+                    <SamplesByDataTypeTable summary={initialState.spatialViewerSummary} />
+                </Row>
+
 
                 <Row><h5 className="sub-header lowered">What data can I find in the Data Repository?</h5></Row>
                 <Row><p>The datasets available in the repository are a combination of raw and processed data from KPMP participant biopsies and reference tissue samples.</p></Row>
