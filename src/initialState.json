@@ -26,15 +26,15 @@
   "spatialViewerSummary": [
     {
       "dataType": "3D tissue imaging and cytometry",
-      "healthyTissue": 99,
-      "ckdTissue": 99,
-      "akiTissue": 99
+      "healthyTissue": 0,
+      "ckdTissue": 14,
+      "akiTissue": 14
     },
     {
       "dataType": "Light microscopic whole slide images",
-      "healthyTissue": 99,
-      "ckdTissue": 99,
-      "akiTissue": 99
+      "healthyTissue": 0,
+      "ckdTissue": 56,
+      "akiTissue": 50
     }
   ]
 }
