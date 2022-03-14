@@ -15,7 +15,7 @@ class SamplesByDataTypeTable extends Component {
 
         this.state = {
             columns: this.getColumns(),
-            summary: initialState.summary
+            summary: initialState.explorerSummary
         };
     }
 
