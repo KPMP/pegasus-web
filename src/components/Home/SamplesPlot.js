@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Plotly from '../../helpers/Plotly';
 import createPlotlyComponent from 'react-plotly.js/factory';
-import initialState from '../../initialState';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
 const Plot = createPlotlyComponent(Plotly);
@@ -11,10 +10,6 @@ class SamplesPlot extends Component {
     constructor(props) {
         super(props);
         this.reactTable = React.createRef();
-
-        this.state = {
-            summary: initialState.summary
-        };
         this.handleGoogleAnalyticsEvent = handleGoogleAnalyticsEvent.bind(this);
     }
 
