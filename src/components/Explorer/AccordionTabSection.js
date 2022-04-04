@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { TabPane, Row, Col, Collapse } from 'reactstrap';
 import TubuleSchematic from './TubuleSchematic';
 import CellTypeEnum from './CellTypeEnum';
+import { faChevronDown, faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class AccordionTabSection extends Component {
 
@@ -32,9 +34,8 @@ class AccordionTabSection extends Component {
 
 
     }
-    toggle = (toggleEvent) => {
-        let event = toggleEvent.target.dataset.event;
-        this.setState({ collapse: this.state.collapse === Number(event) ? 0 : Number(event) });
+    toggle = (index) => {
+        this.setState({ collapse: this.state.collapse === index ? 0 : index });
     }
     
     toggleWithoutResetting = (toggleEvent) => {
@@ -72,7 +73,11 @@ class AccordionTabSection extends Component {
             let collapsed = this.state.collapse;
             return (
                 <div className='cell-type-list mb-1 px-3 py-2 subregion-name' key={subregion.subregionName}>
-                    <span onClick={this.toggle} data-event={index} className={`${collapsed === index ? "open" : "collapsed"}`}>
+                    <span className={`${collapsed === index ? "open" : "collapsed"}`}>
+                        <span onClick={() => {this.toggle(index)}} data-event={index}>
+                            <FontAwesomeIcon  className={`${collapsed === index ? "" : "hidden"}`} icon={faChevronDown} />
+                            <FontAwesomeIcon  className={`${collapsed === index ? "hidden" : ""}`} icon={faChevronRight} />
+                        </span>
                         <span onClick={() => this.props.handleCellTypeClick(subregion.subregionName)}
                              onMouseEnter={() => { this.handleSchematicHoverEnter(subregion.subregionName) }}
                              type='button'
