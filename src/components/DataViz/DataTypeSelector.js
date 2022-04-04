@@ -5,6 +5,8 @@ import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer';
 import { getTissueTypeOptions, getAllDataTypeOptions, getDataTypeOptionsWithTissueType } from "../../helpers/Utils";
 import { fetchGeneDatasetSummary } from '../../helpers/ApolloClient';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
+import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 class DataTypeSelector extends Component {
     constructor(props) {
@@ -252,8 +254,8 @@ class DataTypeSelector extends Component {
                             {dataInfo && 
                             <div>
                                 {this.state.datasetToggle === 'collapsed'
-                                    ? <span className="a-button" onClick={this.toggleDataset}>Show dataset details <i class="fas fa-chevron-down"></i></span>
-                                    : <span className="a-button" onClick={this.toggleDataset}>Hide dataset details <i class="fas fa-chevron-up"></i></span>
+                                    ? <span className="a-button" onClick={this.toggleDataset}>Show dataset details <FontAwesomeIcon icon={faChevronDown} /></span>
+                                    : <span className="a-button" onClick={this.toggleDataset}>Hide dataset details <FontAwesomeIcon icon={faChevronUp} /></span>
                                 }    
                                 {(this.props.dataType === 'sc' ) &&
                                     <span> | <a rel='noreferrer'target='_blank' href='https://cellxgene.cziscience.com/e/32b9bdce-2481-4c85-ba1b-6ad5fcea844c.cxg/'>View additional information in cellxgene</a> </span>

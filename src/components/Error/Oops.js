@@ -11,7 +11,7 @@ class Oops extends Component {
           </Col>
           <Col xs={12} md={4} className={'text-center'}>
             <img
-              src="img/oops.png"
+              src="/img/oops.png"
               alt="Oops, something went wrong"
               id="oops-image"
             />

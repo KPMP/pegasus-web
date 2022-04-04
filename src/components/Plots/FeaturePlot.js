@@ -3,6 +3,8 @@ import Plotly from '../../helpers/Plotly';
 import createPlotlyComponent from 'react-plotly.js/factory';
 import { Spinner } from "reactstrap";
 import { formatDataType, formatTissueType } from "../../helpers/Utils";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faShare } from "@fortawesome/free-solid-svg-icons";
 
 const Plot = createPlotlyComponent(Plotly);
 
@@ -100,7 +102,7 @@ class FeaturePlot extends Component {
             && Array.isArray(this.state.plotData) && this.state.plotData.length === 0) {
             return (
                 <div className="expression-search-copy">
-                    <i className="fa fa-share"></i>
+                    <FontAwesomeIcon className={"fa fa-share"} icon={faShare} />
                     <h6>Gene Expression:</h6>
                     <p>Enter a gene above to get started</p>
                 </div>
