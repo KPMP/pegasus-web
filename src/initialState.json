@@ -27,14 +27,14 @@
     {
       "dataType": "3D tissue imaging and cytometry",
       "healthyTissue": 0,
-      "ckdTissue": 14,
-      "akiTissue": 14
+      "ckdTissue": 7,
+      "akiTissue": 6
     },
     {
       "dataType": "Light microscopic whole slide images",
       "healthyTissue": 0,
-      "ckdTissue": 56,
-      "akiTissue": 50
+      "ckdTissue": 7,
+      "akiTissue": 6
     }
   ]
 }
