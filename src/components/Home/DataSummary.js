@@ -33,7 +33,7 @@ class DataSummary extends Component {
                 </Row>
 
                 <Row><h5 className="sub-header">What data can I find in the Spatial Viewer?</h5></Row>
-                <Row><p>A collection of spatial datasets that may be visualized in the Vitessce visual integration tool.</p></Row>
+                <Row><p>The collection of spacial datasets that may be visualized in the Vitessce visual integration tool. The table below shows the total number of participants for which we have data in the tool. </p></Row>
 
                 <Row>
                     <SamplesByDataTypeTable summary={initialState.spatialViewerSummary} />
@@ -41,7 +41,7 @@ class DataSummary extends Component {
 
 
                 <Row><h5 className="sub-header lowered">What data can I find in the Data Repository?</h5></Row>
-                <Row><p>The table below shows the total number of participants for which we have data in the tool. The collection of spacial datasets that may be visualized in the Vitessce visual integration tool.</p></Row>
+                <Row><p>The datasets available in the repository are a combination of raw and processed data from KPMP participant biopsies and reference tissue samples.</p></Row>
 
 
                 <Row><p>Current data types in the repository include:</p></Row>
