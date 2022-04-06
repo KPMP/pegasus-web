@@ -3,6 +3,9 @@
 @import "../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
 @import "../node_modules/kpmp-common-styles/index.scss";
 
+.hidden {
+  display: none;
+}
 .inactive {
   color: lightgray;
 }
@@ -97,19 +100,11 @@ tr.MuiTableRow-root:nth-child(even) {
     cursor: pointer;
   }
 
-  .collapsed::before {
-    font-family: "Font Awesome 6 Free";
-    content: "\f054";
-    float: left;
+  .collapsed svg {
     padding-right: 10px;
-    font-weight: 900;
   }
-  .open::before {
-    font-family: "Font Awesome 6 Free";
-    content: "\f078";
-    float: left;
+  .open svg {
     padding-right: 10px;
-    font-weight: 900;
   }
 
   .tbd-schema {
