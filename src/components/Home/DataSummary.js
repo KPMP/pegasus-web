@@ -26,7 +26,7 @@ class DataSummary extends Component {
 
                 <Row><h2 className="data-summary">Atlas Data Summary</h2></Row>
                 <Row><h5 className="sub-header">What data can I find in the Atlas Explorer?</h5></Row>
-                <Row><p>A subset of the raw data from the Data Repository has been analyzed and made available for interactive mining in the Atlas Explorer.</p></Row>
+                <Row><p>A subset of the raw data from the Data Repository has been analyzed and made available for interactive mining in the Atlas Explorer. The table below shows the total number of participants for which we have data in the tool.</p></Row>
 
                 <Row>
                     <SamplesByDataTypeTable summary={initialState.explorerSummary}/>
