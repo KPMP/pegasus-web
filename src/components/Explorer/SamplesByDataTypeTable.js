@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import initialState from '../../initialState';
@@ -15,7 +14,7 @@ class SamplesByDataTypeTable extends Component {
 
         this.state = {
             columns: this.getColumns(),
-            summary: initialState.explorerSummary
+            summary: initialState.explorerHomepageSummary
         };
     }
 
@@ -25,9 +24,16 @@ class SamplesByDataTypeTable extends Component {
             'Single-nucleus RNA-seq (snRNA-seq)': 'sn',
             'Single-cell RNA-seq (scRNA-seq)': 'sc',
             'Regional transcriptomics (LMD RNA-seq)': 'rt',
+            'Spatial metabolomics': 'sm',
+            'Spatial lipidomics': 'sl',
+            'Spatial N-Glycomics': 'sng'
         };
 
-        this.props.setSelectedConcept(dataLinkageMapping[dataType], this.props);
+        if (dataLinkageMapping[dataType]) {
+            this.props.setSelectedConcept(dataLinkageMapping[dataType], this.props);
+        } else {
+            throw new Error('Datatype not found', dataType)
+        }
     }
 
     formatDataTypeCell(value) {
