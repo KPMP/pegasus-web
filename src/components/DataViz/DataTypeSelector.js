@@ -207,7 +207,9 @@ class DataTypeSelector extends Component {
                 <Container className='rounded border shadow-sm pb-4 px-4'>
                     <Row xs="12">
                         <Col lg="2" id='concept-selector' className='px-2 pt-3'>
-                            <ConceptSelectContainer searchType="gene"
+                            <ConceptSelectContainer 
+                                overflowWarningContainer={true}
+                                searchType="gene"
                                 dataType={this.props.dataType}
                                 selectedConcept={{ value: this.props.gene.symbol, name: "" }}
                                 placeHolderText={"Enter a gene"}
