@@ -24,21 +24,21 @@
     },
     {
       "dataType": "Spatial metabolomics",
-      "healthyTissue": 0,
-      "ckdTissue": 0,
-      "akiTissue": 0
+      "healthyTissue": 2,
+      "ckdTissue": 9,
+      "akiTissue": 3
     },
     {
       "dataType": "Spatial lipidomics",
-      "healthyTissue": 0,
-      "ckdTissue": 0,
-      "akiTissue": 0
+      "healthyTissue": 6,
+      "ckdTissue": 7,
+      "akiTissue": 4
     },
     {
       "dataType": "Spatial N-Glycomics",
       "healthyTissue": 0,
-      "ckdTissue": 0,
-      "akiTissue": 0
+      "ckdTissue": 5,
+      "akiTissue": 2
     }
   ],
   "explorerSummary": [
