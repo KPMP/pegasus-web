@@ -34,13 +34,13 @@ export const setDataTypeAndRedirect = (dataType, props) => {
                 props.history.push('/explorer/regionalviz');
                 break;
             case "sm":
-                window.location.href = 'https://metaspace2020.eu/datasets?prj=0d9a6710-8389-11eb-96db-73c89a357a89&q=_SM_'; 
+                window.open('https://metaspace2020.eu/datasets?prj=0d9a6710-8389-11eb-96db-73c89a357a89&q=_SM_', '_blank');
                 break
             case "sl":
-                window.location.href = 'https://metaspace2020.eu/datasets?prj=0d9a6710-8389-11eb-96db-73c89a357a89&q=_lip_'; 
+                window.open('https://metaspace2020.eu/datasets?prj=0d9a6710-8389-11eb-96db-73c89a357a89&q=_lip_', '_blank');
                 break
             case "sng":
-                window.location.href = 'https://metaspace2020.eu/datasets?prj=8f102fc4-62a8-11ec-89bf-bba413a122a2&q=_glyc'; 
+                window.open('https://metaspace2020.eu/datasets?prj=8f102fc4-62a8-11ec-89bf-bba413a122a2&q=_glyc', '_blank');
                 break
             default:
                 props.history.push('/explorer/');
