@@ -32,7 +32,7 @@
       "dataType": "Spatial lipidomics",
       "healthyTissue": 6,
       "ckdTissue": 7,
-      "akiTissue": 4
+      "akiTissue": 5
     },
     {
       "dataType": "Spatial N-Glycomics",
