@@ -15,7 +15,7 @@ class LeftContent extends Component {
     return (
       <Row>
         <Container className="mt-3 rounded border p-3 shadow-sm">
-          <h5>Atlas Explorer</h5>
+          <h5>Explorer</h5>
           <div>
             <p>
               Search for markers or cell types of interest and view summary data visualizations across the various KPMP 'omics' technologies.
@@ -26,7 +26,7 @@ class LeftContent extends Component {
           </div>
         </Container>
         <Container className="mt-3 rounded border p-3 shadow-sm">
-          <h5>Atlas Repository</h5>
+          <h5>Repository</h5>
           <div>
             <p>
               Download raw gene data generated from KPMP participant biopsies and reference tissue samples.
