@@ -25,22 +25,14 @@ class DataSummary extends Component {
                 </Col>
 
                 <Row><h2 className="data-summary">Atlas Data Summary</h2></Row>
-                <Row><h5 className="sub-header">What data can I find in the Atlas Explorer?</h5></Row>
-                <Row><p>A subset of the raw data from the Data Repository has been analyzed and made available for interactive mining in the Atlas Explorer. The table below shows the total number of participants for which we have data in the tool.</p></Row>
+                <Row><h5 className="sub-header">What data can I find in the Explorer?</h5></Row>
+                <Row><p>A subset of the raw data from the Repository has been analyzed and made available for interactive mining in the Atlas Explorer. The table below shows the total number of participants for which we have data in the tool.</p></Row>
 
                 <Row>
                     <SamplesByDataTypeTable summary={initialState.explorerSummary}/>
                 </Row>
 
-                <Row><h5 className="sub-header">What data can I find in the Spatial Viewer?</h5></Row>
-                <Row><p>The collection of spatial datasets that may be visualized in the Vitessce visual integration tool. The table below shows the total number of participants for which we have data in the tool.</p></Row>
-
-                <Row>
-                    <SamplesByDataTypeTable summary={initialState.spatialViewerSummary} />
-                </Row>
-
-
-                <Row><h5 className="sub-header lowered">What data can I find in the Data Repository?</h5></Row>
+                <Row><h5 className="sub-header lowered">What data can I find in the Repository?</h5></Row>
                 <Row><p>The datasets available in the repository are a combination of raw and processed data from KPMP participant biopsies and reference tissue samples.</p></Row>
 
 
@@ -59,6 +51,12 @@ class DataSummary extends Component {
                 </Row>
 
                 <Row className='mt-4'>
+                </Row>
+                <Row><h5 className="sub-header">What data can I find in the Spatial Viewer?</h5></Row>
+                <Row><p>The collection of spatial datasets that may be visualized in the Vitessce visual integration tool. The table below shows the total number of participants for which we have data in the tool.</p></Row>
+
+                <Row>
+                    <SamplesByDataTypeTable summary={initialState.spatialViewerSummary} />
                 </Row>
             </Container>
 
