@@ -34,13 +34,13 @@ export const setDataTypeAndRedirect = (dataType, props) => {
                 props.history.push('/explorer/regionalviz');
                 break;
             case "wsi":
-                props.history.push('/spatial-viewer/?size=n_1000_n&filters%5B0%5D%5Bfield%5D=datatype&filters%5B0%5D%5Bvalues%5D%5B0%5D=Light%20Microscopic%20Whole%20Slide%20Images&filters%5B0%5D%5Btype%5D=any')
+                window.open('/spatial-viewer/?size=n_1000_n&filters%5B0%5D%5Bfield%5D=datatype&filters%5B0%5D%5Bvalues%5D%5B0%5D=Light%20Microscopic%20Whole%20Slide%20Images&filters%5B0%5D%5Btype%5D=any')
                 break;
             case "3d":
-                props.history.push('/spatial-viewer/?size=n_1000_n&filters[0][field]=datatype&filters[0][values][0]=3D Tissue Imaging and Cytometry&filters[0][type]=any')
+                window.open('/spatial-viewer/?size=n_1000_n&filters[0][field]=datatype&filters[0][values][0]=3D Tissue Imaging and Cytometry&filters[0][type]=any')
                 break;
             case "codex":
-                props.history.push('/spatial-viewer/?size=n_1000_n&filters[0][field]=datatype&filters[0][values][0]=CODEX&filters[0][type]=any')
+                window.open('/spatial-viewer/?size=n_1000_n&filters[0][field]=datatype&filters[0][values][0]=CODEX&filters[0][type]=any')
                 break;
             case "sm":
                 window.open('https://metaspace2020.eu/datasets?prj=0d9a6710-8389-11eb-96db-73c89a357a89&q=_SM_', '_blank');
