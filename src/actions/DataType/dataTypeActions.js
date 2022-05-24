@@ -39,8 +39,8 @@ export const setDataTypeAndRedirect = (dataType, props) => {
             case "3d":
                 props.history.push('/spatial-viewer/?size=n_1000_n&filters[0][field]=datatype&filters[0][values][0]=3D Tissue Imaging and Cytometry&filters[0][type]=any')
                 break;
-            case "st":
-                props.history.push('/spatial-viewer/?size=n_1000_n&filters[0][field]=datatype&filters[0][values][0]=Spatial Transcriptomics&filters[0][type]=any')
+            case "codex":
+                props.history.push('/spatial-viewer/?size=n_1000_n&filters[0][field]=datatype&filters[0][values][0]=CODEX&filters[0][type]=any')
                 break;
             case "sm":
                 window.open('https://metaspace2020.eu/datasets?prj=0d9a6710-8389-11eb-96db-73c89a357a89&q=_SM_', '_blank');

@@ -26,7 +26,7 @@ class SamplesByDataTypeTable extends Component {
             'Regional transcriptomics (LMD RNA-seq)': 'rt',
             'Light Microscopy Whole slide Images': 'wsi',
             '3D tissue imaging and cytometry': '3d',
-            'CODEX': 'st',
+            'CODEX': 'codex',
             'Spatial metabolomics': 'sm',
             'Spatial lipidomics': 'sl',
             'Spatial N-Glycomics': 'sng'
