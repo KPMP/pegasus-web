@@ -26,17 +26,17 @@ class DataSummary extends Component {
 
                 <Row><h2 className="data-summary">Atlas Data Summary</h2></Row>
                 <Row><h5 className="sub-header">What data can I find in the Explorer?</h5></Row>
-                <Row><p>A subset of the raw data from the Repository has been analyzed and made available for interactive mining in the Atlas Explorer. The table below shows the total number of participants for which we have data in the tool.</p></Row>
+                <Row><p>A subset of the raw data from the Repository has been analyzed and made available for interactive mining in the Explorer. The table below shows the total number of participants for which we have data in the tool.</p></Row>
 
                 <Row>
                     <SamplesByDataTypeTable summary={initialState.explorerSummary}/>
                 </Row>
 
                 <Row><h5 className="sub-header lowered">What data can I find in the Repository?</h5></Row>
-                <Row><p>The datasets available in the repository are a combination of raw and processed data from KPMP participant biopsies and reference tissue samples.</p></Row>
+                <Row><p>The datasets available in the Repository are a combination of raw and processed data from KPMP participant biopsies and reference tissue samples.</p></Row>
 
 
-                <Row><p>Current data types in the repository include:</p></Row>
+                <Row><p>Current data types in the Repository include:</p></Row>
                 <Row><h5 className="controlled-data"><span className="controlled-data-asterisk">*</span> = <a  onClick={() => {this.handleGoogleAnalyticsEvent('Navigation', 'controlled data')}} className="learn-link" rel="noreferrer" target='_blank' href="https://www.kpmp.org/controlled-data">
                     Controlled data</a></h5></Row>
                 <Row>
