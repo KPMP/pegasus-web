@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
-import initialState from '../../initialState';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
+import { fetchSummaryData } from '../../helpers/ApolloClient';
 
 class SamplesByDataTypeTable extends Component {
 
@@ -14,8 +14,13 @@ class SamplesByDataTypeTable extends Component {
 
         this.state = {
             columns: this.getColumns(),
-            summary: initialState.explorerHomepageSummary
+            summary: []
         };
+    }
+
+    async componentDidMount() {
+        const summary = await fetchSummaryData("explorerHomepageSummary")
+        this.setState({summary})
     }
 
     handleDataTypeClick(dataType) {

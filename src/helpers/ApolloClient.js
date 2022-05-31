@@ -4,6 +4,7 @@ import packageJson from '../../package.json';
 import 'isomorphic-unfetch';
 import { sendMessageToBackend } from '../actions/Error/errorActions';
 import { store } from '../App'
+
 const axios = require('axios').default;
 
 const isDevelopment = () => {
@@ -362,6 +363,29 @@ export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
         return response.data.getRTGeneExpressionByStructure;
     } else {
         store.dispatch(sendMessageToBackend("Could not retrieve regional transcriptomics data: " + response.error));
+    }
+}
+
+export const fetchSummaryData = async (dataType) => {
+    let query = gql`
+        query {
+            getDataSummary(dataType: "${dataType}") {
+                dataType
+                healthyTissue
+                ckdTissue
+                akiTissue
+            }
+        }`;
+
+    const response = await apolloClient.query({
+        query: query,
+        fetchPolicy: 'cache-first'
+    });
+
+    if (response.data && response.data.summary) {
+        return response.data.summary;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve summary data: " + response.error));
     }
 }
 
