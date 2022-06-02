@@ -31,14 +31,14 @@
     {
       "dataType": "CODEX",
       "healthyTissue": 0,
-      "ckdTissue": 10,
-      "akiTissue": 5
+      "ckdTissue": 6,
+      "akiTissue": 6
     },
     {
       "dataType": "Light Microscopy Whole slide Images",
       "healthyTissue": 0,
-      "ckdTissue": 303,
-      "akiTissue": 103
+      "ckdTissue": 480,
+      "akiTissue": 185
     },
     {
       "dataType": "Spatial metabolomics",
@@ -83,8 +83,8 @@
     {
       "dataType": "3D tissue imaging and cytometry",
       "healthyTissue": 0,
-      "ckdTissue": 7,
-      "akiTissue": 6
+      "ckdTissue": 28,
+      "akiTissue": 28
     },
     {
       "dataType": "Light microscopic whole slide images",
