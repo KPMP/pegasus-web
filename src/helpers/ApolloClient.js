@@ -4,6 +4,7 @@ import packageJson from '../../package.json';
 import 'isomorphic-unfetch';
 import { sendMessageToBackend } from '../actions/Error/errorActions';
 import { store } from '../App'
+import initialState from '../initialState';
 
 const axios = require('axios').default;
 
@@ -369,11 +370,14 @@ export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
 export const fetchSummaryData = async (dataType) => {
     let query = gql`
         query {
-            getDataSummary(dataType: "${dataType}") {
+            getSummaryData() {
+                omicsType
                 dataType
-                healthyTissue
-                ckdTissue
-                akiTissue
+                dataTypeShort
+                hrtCount
+                akiCount
+                ckdCount
+                participantCount
             }
         }`;
 
@@ -385,8 +389,7 @@ export const fetchSummaryData = async (dataType) => {
     if (response.data && response.data.summary) {
         return response.data.summary;
     } else {
-        store.dispatch(sendMessageToBackend("Could not retrieve summary data: " + response.error));
+        console.log('response.error',response.error)
+        store.dispatch(sendMessageToBackend("Could not retrieve summary: " + response.error));
     }
 }
-
-

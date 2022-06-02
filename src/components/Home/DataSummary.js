@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 import SamplesPlot from './SamplesPlot';
 import SamplesByDataTypeTable from './SamplesByDataTypeTable';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
-import { fetchSummaryData } from '../../helpers/ApolloClient';
+import { fetchSummaryData, fetchGeneDatasetSummary} from '../../helpers/ApolloClient';
 
 class DataSummary extends Component {
 
@@ -18,7 +18,7 @@ class DataSummary extends Component {
 
     async componentDidMount() {  
        const spatialViewerSummary = await fetchSummaryData("spatialViewerSummary")
-       const explorerSummary = await fetchSummaryData("explorerSummary")
+       const explorerSummary = await fetchGeneDatasetSummary("")
        this.setState({ spatialViewerSummary, explorerSummary})
     }
 
