@@ -7,7 +7,7 @@ const mapStateToProps = (state, props) => ({});
 
 const mapDispatchToProps = (dispatch, props) => ({
   handleError(error) {
-    dispatch(sendMessageToBackend(error));
+    dispatch(sendMessageToBackend(error, true));
   },
 });
 

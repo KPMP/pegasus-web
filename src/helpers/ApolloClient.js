@@ -31,7 +31,7 @@ const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
     if (graphQLErrors)
         graphQLErrors.forEach(({ message, locations, path }) =>
             store.dispatch(sendMessageToBackend(
-                `GraphQL error: Message: ${message}, Location: ${locations}, Path: ${path}`,
+                `GraphQL error: Message: ${message}, Location: ${locations}, Path: ${path}`,true
             )),
         );
 
@@ -39,7 +39,7 @@ const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
         let { response } = operation.getContext()
 
         if (response) {
-            store.dispatch(sendMessageToBackend("Could not connect to GraphQL: " + networkError));
+            store.dispatch(sendMessageToBackend("Could not connect to GraphQL: " + networkError, true));
         } else {
             // No response received, user is probably attempting to navigate away during a data fetch
             const shouldUseRedirect = false;
@@ -74,7 +74,7 @@ export const fetchGenes = async (searchString) => {
     if (response.data && response.data.genes) {
         return response.data.genes;
     } else {
-        store.dispatch(sendMessageToBackend("Could not retrieve gene data: " + response.error));
+        store.dispatch(sendMessageToBackend("Could not retrieve gene data: " + response.error, true));
     }
 };
 
@@ -100,7 +100,7 @@ export const fetchAutoComplete = async (searchString) => {
     if (response.data && response.data.autocomplete) {
         return response.data.autocomplete;
     } else {
-        store.dispatch(sendMessageToBackend("Could not retrieve autocomplete data: " + response.error));
+        store.dispatch(sendMessageToBackend("Could not retrieve autocomplete data: " + response.error, true));
     }
 };
 
