@@ -370,7 +370,7 @@ export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
 export const fetchSummaryData = async (dataType) => {
     let query = gql`
         query {
-            getSummaryData() {
+            getSummaryData {
                 omicsType
                 dataType
                 dataTypeShort

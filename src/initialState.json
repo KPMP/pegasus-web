@@ -5,40 +5,10 @@
   "recreateUmaps": true,
   "explorerHomepageSummary": [
     {
-      "dataType": "Single-nucleus RNA-seq (snRNA-seq)",
-      "healthyTissue": 13,
-      "ckdTissue": 10,
-      "akiTissue": 6
-    },
-    {
-      "dataType": "Single-cell RNA-seq (scRNA-seq)",
-      "healthyTissue": 20,
-      "ckdTissue": 15,
-      "akiTissue": 12
-    },
-    {
-      "dataType": "Regional transcriptomics (LMD RNA-seq)",
-      "healthyTissue": 9,
-      "ckdTissue": 22,
-      "akiTissue": 5
-    },
-    {
-      "dataType": "3D tissue imaging and cytometry",
-      "healthyTissue": 0,
-      "ckdTissue": 28,
-      "akiTissue": 28
-    },
-    {
       "dataType": "CODEX",
       "healthyTissue": 0,
       "ckdTissue": 10,
       "akiTissue": 5
-    },
-    {
-      "dataType": "Light Microscopy Whole slide Images",
-      "healthyTissue": 0,
-      "ckdTissue": 303,
-      "akiTissue": 103
     },
     {
       "dataType": "Spatial metabolomics",
@@ -57,46 +27,6 @@
       "healthyTissue": 0,
       "ckdTissue": 5,
       "akiTissue": 2
-    }
-  ],
-  "explorerSummary": [
-    {
-      "dataType": "Single-nucleus RNA-seq (snRNA-seq)",
-      "healthyTissue": 13,
-      "ckdTissue": 10,
-      "akiTissue": 6
-    },
-    {
-      "dataType": "Single-cell RNA-seq (scRNA-seq)",
-      "healthyTissue": 20,
-      "ckdTissue": 15,
-      "akiTissue": 12
-    },
-    {
-      "dataType": "Regional transcriptomics (LMD RNA-seq)",
-      "healthyTissue": 9,
-      "ckdTissue": 22,
-      "akiTissue": 5
-    }
-  ],
-  "spatialViewerSummary": [
-    {
-      "dataType": "3D tissue imaging and cytometry",
-      "healthyTissue": 0,
-      "ckdTissue": 7,
-      "akiTissue": 6
-    },
-    {
-      "dataType": "Light microscopic whole slide images",
-      "healthyTissue": 0,
-      "ckdTissue": 38,
-      "akiTissue": 13
-    },
-    {
-      "dataType": "Spatial Transcriptomics",
-      "healthyTissue": 0,
-      "ckdTissue": 9,
-      "akiTissue": 5
     }
   ]
 }

@@ -3,6 +3,7 @@ import ReactTable from 'react-table';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { fetchSummaryData } from '../../helpers/ApolloClient';
+import { explorerHomepageSummary } from '../../initialState.json';
 
 class SamplesByDataTypeTable extends Component {
 
@@ -20,6 +21,7 @@ class SamplesByDataTypeTable extends Component {
 
     async componentDidMount() {
         const summary = await fetchSummaryData("explorerHomepageSummary")
+        summary.append(explorerHomepageSummary)
         this.setState({summary})
     }
 
