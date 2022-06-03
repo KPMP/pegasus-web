@@ -29,7 +29,8 @@ class SamplesByDataTypeTable extends Component {
             'CODEX': 'codex',
             'Spatial metabolomics': 'sm',
             'Spatial lipidomics': 'sl',
-            'Spatial N-Glycomics': 'sng'
+            'Spatial N-Glycomics': 'sng',
+            'Spatial transcriptomics': 'st'
         };
 
         if (dataLinkageMapping[dataType]) {

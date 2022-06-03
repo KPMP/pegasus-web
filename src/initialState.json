@@ -57,6 +57,12 @@
       "healthyTissue": 0,
       "ckdTissue": 5,
       "akiTissue": 2
+    },
+    {
+      "dataType": "Spatial transcriptomics",
+      "healthyTissue": 0,
+      "ckdTissue": 9,
+      "akiTissue": 5
     }
   ],
   "explorerSummary": [
