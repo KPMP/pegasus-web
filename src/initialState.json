@@ -93,10 +93,16 @@
       "akiTissue": 28
     },
     {
+      "dataType": "CODEX",
+      "healthyTissue": 0,
+      "ckdTissue": 6,
+      "akiTissue": 6
+    },
+    {
       "dataType": "Light microscopic whole slide images",
       "healthyTissue": 0,
-      "ckdTissue": 38,
-      "akiTissue": 13
+      "ckdTissue": 480,
+      "akiTissue": 185
     },
     {
       "dataType": "Spatial Transcriptomics",
