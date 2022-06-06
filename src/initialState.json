@@ -37,8 +37,8 @@
     {
       "dataType": "Light Microscopy Whole slide Images",
       "healthyTissue": 0,
-      "ckdTissue": 480,
-      "akiTissue": 185
+      "ckdTissue": 59,
+      "akiTissue": 23
     },
     {
       "dataType": "Spatial metabolomics",
@@ -101,8 +101,8 @@
     {
       "dataType": "Light microscopic whole slide images",
       "healthyTissue": 0,
-      "ckdTissue": 480,
-      "akiTissue": 185
+      "ckdTissue": 59,
+      "akiTissue": 23
     },
     {
       "dataType": "Spatial Transcriptomics",
