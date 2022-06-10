@@ -54,8 +54,8 @@
     },
     {
       "dataType": "Spatial N-Glycomics",
-      "healthyTissue": 0,
-      "ckdTissue": 5,
+      "healthyTissue": 1,
+      "ckdTissue": 6,
       "akiTissue": 2
     },
     {
