@@ -4,7 +4,6 @@ import packageJson from '../../package.json';
 import 'isomorphic-unfetch';
 import { sendMessageToBackend } from '../actions/Error/errorActions';
 import { store } from '../App'
-import initialState from '../initialState';
 
 const axios = require('axios').default;
 
@@ -178,6 +177,7 @@ export const fetchGeneDatasetSummary = async (geneSymbol, fetchPolicy = 'no-cach
     if (response.data && response.data.getGeneDatasetInformation) {
         return response.data.getGeneDatasetInformation;
     } else {
+        console.log('response.error',response.error)
         store.dispatch(sendMessageToBackend("Could not retrieve Gene Dataset: " + response.error));
     }
 
@@ -386,10 +386,9 @@ export const fetchSummaryData = async (dataType) => {
         fetchPolicy: 'cache-first'
     });
 
-    if (response.data && response.data.summary) {
-        return response.data.summary;
+    if (response.data && response.data.getSummaryData) {
+        return response.data.getSummaryData;
     } else {
-        console.log('response.error',response.error)
         store.dispatch(sendMessageToBackend("Could not retrieve summary: " + response.error));
     }
 }

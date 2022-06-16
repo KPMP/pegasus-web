@@ -6,27 +6,27 @@
   "explorerHomepageSummary": [
     {
       "dataType": "CODEX",
-      "healthyTissue": 0,
-      "ckdTissue": 10,
-      "akiTissue": 5
+      "hrtCount": 0,
+      "ckdCount": 10,
+      "akiCount": 5
     },
     {
       "dataType": "Spatial metabolomics",
-      "healthyTissue": 2,
-      "ckdTissue": 9,
-      "akiTissue": 3
+      "hrtCount": 2,
+      "ckdCount": 9,
+      "akiCount": 3
     },
     {
       "dataType": "Spatial lipidomics",
-      "healthyTissue": 6,
-      "ckdTissue": 7,
-      "akiTissue": 5
+      "hrtCount": 6,
+      "ckdCount": 7,
+      "akiCount": 5
     },
     {
       "dataType": "Spatial N-Glycomics",
-      "healthyTissue": 0,
-      "ckdTissue": 5,
-      "akiTissue": 2
+      "hrtCount": 0,
+      "ckdCount": 5,
+      "akiCount": 2
     }
   ]
 }

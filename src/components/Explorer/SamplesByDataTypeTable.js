@@ -20,8 +20,8 @@ class SamplesByDataTypeTable extends Component {
     }
 
     async componentDidMount() {
-        const summary = await fetchSummaryData("explorerHomepageSummary")
-        summary.append(explorerHomepageSummary)
+        let summary = await fetchSummaryData("explorerHomepageSummary")
+        summary = summary.concat(explorerHomepageSummary)
         this.setState({summary})
     }
 
@@ -83,7 +83,7 @@ class SamplesByDataTypeTable extends Component {
                     <span>HEALTHY REFERENCE</span>
                 ),
                 id: 'healthyTissue',
-                accessor: 'healthyTissue',
+                accessor: 'hrtCount',
                 headerClassName: 'data-type-table-header',
                 className: 'data-type-table-content text-center',
                 minHeaderWidth: 175,
@@ -94,7 +94,7 @@ class SamplesByDataTypeTable extends Component {
                     <span>CKD</span>
                 ),
                 id: 'ckdTissue',
-                accessor: 'ckdTissue',
+                accessor: 'ckdCount',
                 headerClassName: 'data-type-table-header text-center',
                 className: 'data-type-table-content text-center',
                 minHeaderWidth: 100,
@@ -105,7 +105,7 @@ class SamplesByDataTypeTable extends Component {
                     <span>AKI</span>
                 ),
                 id: 'akiTissue',
-                accessor: 'akiTissue',
+                accessor: 'akiCount',
                 headerClassName: 'data-type-table-header text-center',
                 className: 'data-type-table-content text-center',
                 minHeaderWidth: 100,
