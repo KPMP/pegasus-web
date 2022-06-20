@@ -9,6 +9,7 @@ type Query {
   getGeneDatasetInformation(geneSymbol: String): [GeneDatasetInformation]
   getRTGeneExpressionByTissue(comparisonType: String, geneSymbol: String): RTGeneExpressionByTissue
   getRTGeneExpressionByStructure(structure: String): [RTGeneExpression]
+  getDataSummary(dataType: String): [SummaryData]
 }
 
 type GeneDatasetInformation {
@@ -122,4 +123,11 @@ type RTGeneExpressionByTissue {
     hrt: [RTGeneExpression]
     ckd: [RTGeneExpression]
     aki: [RTGeneExpression]
+}
+
+type SummaryData {
+    dataType: String
+    healthyTissue: Int
+    ckdTissue: Int
+    akiTissue: Int
 }

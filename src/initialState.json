@@ -5,110 +5,86 @@
   "recreateUmaps": true,
   "explorerHomepageSummary": [
     {
-      "dataType": "Single-nucleus RNA-seq (snRNA-seq)",
-      "healthyTissue": 13,
-      "ckdTissue": 10,
-      "akiTissue": 6
-    },
-    {
-      "dataType": "Single-cell RNA-seq (scRNA-seq)",
-      "healthyTissue": 20,
-      "ckdTissue": 15,
-      "akiTissue": 12
-    },
-    {
-      "dataType": "Regional transcriptomics (LMD RNA-seq)",
-      "healthyTissue": 9,
-      "ckdTissue": 22,
-      "akiTissue": 5
-    },
-    {
-      "dataType": "3D tissue imaging and cytometry",
-      "healthyTissue": 0,
-      "ckdTissue": 28,
-      "akiTissue": 28
-    },
-    {
       "dataType": "CODEX",
-      "healthyTissue": 0,
-      "ckdTissue": 6,
-      "akiTissue": 6
+      "hrtCount": 0,
+      "ckdCount": 6,
+      "akiCount": 6
     },
     {
       "dataType": "Light Microscopy Whole slide Images",
-      "healthyTissue": 0,
-      "ckdTissue": 59,
-      "akiTissue": 23
+      "hrtCount": 0,
+      "ckdCount": 59,
+      "akiCount": 23
     },
     {
       "dataType": "Spatial metabolomics",
-      "healthyTissue": 2,
-      "ckdTissue": 9,
-      "akiTissue": 3
+      "hrtCount": 2,
+      "ckdCount": 9,
+      "akiCount": 3
     },
     {
       "dataType": "Spatial lipidomics",
-      "healthyTissue": 6,
-      "ckdTissue": 7,
-      "akiTissue": 5
+      "hrtCount": 6,
+      "ckdCount": 7,
+      "akiCount": 5
     },
     {
       "dataType": "Spatial N-Glycomics",
-      "healthyTissue": 1,
-      "ckdTissue": 6,
-      "akiTissue": 2
+      "hrtCount": 1,
+      "ckdCount": 6,
+      "akiCount": 2
     },
     {
       "dataType": "Spatial transcriptomics",
-      "healthyTissue": 0,
-      "ckdTissue": 9,
-      "akiTissue": 5
+      "hrtCount": 0,
+      "ckdCount": 9,
+      "akiCount": 5
     }
   ],
   "explorerSummary": [
     {
       "dataType": "Single-nucleus RNA-seq (snRNA-seq)",
-      "healthyTissue": 13,
-      "ckdTissue": 10,
-      "akiTissue": 6
+      "hrtCount": 13,
+      "ckdCount": 10,
+      "akiCount": 6
     },
     {
       "dataType": "Single-cell RNA-seq (scRNA-seq)",
-      "healthyTissue": 20,
-      "ckdTissue": 15,
-      "akiTissue": 12
+      "hrtCount": 20,
+      "ckdCount": 15,
+      "akiCount": 12
     },
     {
       "dataType": "Regional transcriptomics (LMD RNA-seq)",
-      "healthyTissue": 9,
-      "ckdTissue": 22,
-      "akiTissue": 5
+      "hrtCount": 9,
+      "ckdCount": 22,
+      "akiCount": 5
     }
   ],
   "spatialViewerSummary": [
     {
       "dataType": "3D tissue imaging and cytometry",
-      "healthyTissue": 0,
-      "ckdTissue": 28,
-      "akiTissue": 28
+      "hrtCount": 0,
+      "ckdCount": 28,
+      "akiCount": 28
     },
     {
       "dataType": "CODEX",
-      "healthyTissue": 0,
-      "ckdTissue": 6,
-      "akiTissue": 6
+      "hrtCount": 0,
+      "ckdCount": 6,
+      "akiCount": 6
     },
     {
       "dataType": "Light microscopic whole slide images",
-      "healthyTissue": 0,
-      "ckdTissue": 59,
-      "akiTissue": 23
+      "hrtCount": 0,
+      "ckdCount": 59,
+      "akiCount": 23
     },
     {
       "dataType": "Spatial Transcriptomics",
-      "healthyTissue": 0,
-      "ckdTissue": 9,
-      "akiTissue": 5
+      "hrtCount": 0,
+      "ckdCount": 9,
+      "akiCount": 5
     }
   ]
 }

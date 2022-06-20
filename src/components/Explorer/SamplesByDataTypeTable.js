@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
-import initialState from '../../initialState';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
+import { fetchSummaryData } from '../../helpers/ApolloClient';
+import { explorerHomepageSummary } from '../../initialState.json';
 
 class SamplesByDataTypeTable extends Component {
 
@@ -14,8 +15,14 @@ class SamplesByDataTypeTable extends Component {
 
         this.state = {
             columns: this.getColumns(),
-            summary: initialState.explorerHomepageSummary
+            summary: []
         };
+    }
+
+    async componentDidMount() {
+        let summary = await fetchSummaryData("explorerHomepageSummary")
+        summary = summary.concat(explorerHomepageSummary)
+        this.setState({summary})
     }
 
     handleDataTypeClick(dataType) {
@@ -77,7 +84,7 @@ class SamplesByDataTypeTable extends Component {
                     <span>HEALTHY REFERENCE</span>
                 ),
                 id: 'healthyTissue',
-                accessor: 'healthyTissue',
+                accessor: 'hrtCount',
                 headerClassName: 'data-type-table-header',
                 className: 'data-type-table-content text-center',
                 minHeaderWidth: 175,
@@ -88,7 +95,7 @@ class SamplesByDataTypeTable extends Component {
                     <span>CKD</span>
                 ),
                 id: 'ckdTissue',
-                accessor: 'ckdTissue',
+                accessor: 'ckdCount',
                 headerClassName: 'data-type-table-header text-center',
                 className: 'data-type-table-content text-center',
                 minHeaderWidth: 100,
@@ -99,7 +106,7 @@ class SamplesByDataTypeTable extends Component {
                     <span>AKI</span>
                 ),
                 id: 'akiTissue',
-                accessor: 'akiTissue',
+                accessor: 'akiCount',
                 headerClassName: 'data-type-table-header text-center',
                 className: 'data-type-table-content text-center',
                 minHeaderWidth: 100,
