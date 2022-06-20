@@ -31,13 +31,13 @@ class SamplesByDataTypeTable extends Component {
             'Single-nucleus RNA-seq (snRNA-seq)': 'sn',
             'Single-cell RNA-seq (scRNA-seq)': 'sc',
             'Regional transcriptomics (LMD RNA-seq)': 'rt',
-            'Light Microscopy Whole slide Images': 'wsi',
-            '3D tissue imaging and cytometry': '3d',
+            'Light Microscopic Whole Slide Images': 'wsi',
+            '3D Tissue Imaging and Cytometry': '3d',
             'CODEX': 'codex',
             'Spatial metabolomics': 'sm',
             'Spatial lipidomics': 'sl',
             'Spatial N-Glycomics': 'sng',
-            'Spatial transcriptomics': 'st'
+            'Spatial Transcriptomics': 'st'
         };
 
         if (dataLinkageMapping[dataType]) {
