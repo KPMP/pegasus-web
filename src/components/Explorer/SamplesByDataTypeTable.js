@@ -18,10 +18,21 @@ class SamplesByDataTypeTable extends Component {
             summary: []
         };
     }
-
+    compare( a, b ) {
+        if ( a.dataType < b.dataType ){
+          return -1;
+        }
+        if ( a.dataType > b.dataType ){
+          return 1;
+        }
+        return 0;
+    }
+      
+      
     async componentDidMount() {
         let summary = await fetchSummaryData("explorerHomepageSummary")
         summary = summary.concat(explorerSummary)
+        summary = summary.sort( this.compare );
         this.setState({summary})
     }
 
