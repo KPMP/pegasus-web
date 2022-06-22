@@ -74,7 +74,7 @@ class ConceptSelect extends Component {
     };
 
     handleNoOptions = ({ inputValue }) => {
-        if (inputValue.trim().length < 3) {
+        if (inputValue.trim().length < 2) {
             return this.props.moreCharactersMessage;
         } else {
             return "No results found";
@@ -169,7 +169,7 @@ class ConceptSelect extends Component {
     }
 }
 ConceptSelect.defaultProps = {
-    moreCharactersMessage: "Please enter 3 or more characters to start search",
+    moreCharactersMessage: "Please enter 2 or more characters to start search",
     placeHolderText: "Enter a gene or cell type",
     smallFormat: false,
     searchType: 'all'
