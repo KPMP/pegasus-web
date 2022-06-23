@@ -15,10 +15,21 @@ class DataSummary extends Component {
             explorerSummary: []
         }
     }
+    compare( a, b ) {
+        if ( a && b && a.dataType < b.dataType ){
+          return -1;
+        }
+        if ( a.dataType > b.dataType ){
+          return 1;
+        }
+        return 0;
+    }
 
     async componentDidMount() {  
-       const spatialViewerSummary = await fetchSummaryData("spatialViewerSummary")
-       const explorerSummary = await fetchGeneDatasetSummary("")
+       let spatialViewerSummary = await fetchSummaryData("spatialViewerSummary")
+       let explorerSummary = await fetchGeneDatasetSummary("")
+       explorerSummary = explorerSummary.slice().sort(this.compare)
+       spatialViewerSummary = spatialViewerSummary.slice().sort(this.compare)
        this.setState({ spatialViewerSummary, explorerSummary})
     }
 
