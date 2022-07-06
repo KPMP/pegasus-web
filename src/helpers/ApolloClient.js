@@ -80,7 +80,7 @@ export const fetchGenes = async (searchString) => {
 
 export const fetchAutoComplete = async (searchString) => {
 
-    if (searchString && searchString.trim().length < 3) {
+    if (searchString && searchString.trim().length < 2) {
         return [];
     }
 
