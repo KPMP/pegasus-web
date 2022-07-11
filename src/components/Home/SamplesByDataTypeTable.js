@@ -29,8 +29,8 @@ class SamplesByDataTypeTable extends Component {
                 Header: () => (
                     <span>HEALTHY REFERENCE</span>
                 ),
-                id: 'healthyTissue',
-                accessor: 'healthyTissue',
+                id: 'hrtCount',
+                accessor: 'hrtCount',
                 headerClassName: 'data-type-table-header',
                 className: 'data-type-table-content',
                 minHeaderWidth: 250,
@@ -40,8 +40,8 @@ class SamplesByDataTypeTable extends Component {
                 Header: () => (
                     <span>CKD</span>
                 ),
-                id: 'ckdTissue',
-                accessor: 'ckdTissue',
+                id: 'ckdCount',
+                accessor: 'ckdCount',
                 headerClassName: 'data-type-table-header',
                 className: 'data-type-table-content',
                 minHeaderWidth: 145,
@@ -51,8 +51,8 @@ class SamplesByDataTypeTable extends Component {
                 Header: () => (
                     <span>AKI</span>
                 ),
-                id: 'akiTissue',
-                accessor: 'akiTissue',
+                id: 'akiCount',
+                accessor: 'akiCount',
                 headerClassName: 'data-type-table-header',
                 className: 'data-type-table-content',
                 minHeaderWidth: 145,

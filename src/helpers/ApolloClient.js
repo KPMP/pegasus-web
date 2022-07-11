@@ -4,6 +4,7 @@ import packageJson from '../../package.json';
 import 'isomorphic-unfetch';
 import { sendMessageToBackend } from '../actions/Error/errorActions';
 import { store } from '../App'
+
 const axios = require('axios').default;
 
 const isDevelopment = () => {
@@ -31,7 +32,7 @@ const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
     if (graphQLErrors)
         graphQLErrors.forEach(({ message, locations, path }) =>
             store.dispatch(sendMessageToBackend(
-                `GraphQL error: Message: ${message}, Location: ${locations}, Path: ${path}`,
+                `GraphQL error: Message: ${message}, Location: ${locations}, Path: ${path}`,true
             )),
         );
 
@@ -39,7 +40,7 @@ const errorLink = onError(({ graphQLErrors, networkError, operation }) => {
         let { response } = operation.getContext()
 
         if (response) {
-            store.dispatch(sendMessageToBackend("Could not connect to GraphQL: " + networkError));
+            store.dispatch(sendMessageToBackend("Could not connect to GraphQL: " + networkError, true));
         } else {
             // No response received, user is probably attempting to navigate away during a data fetch
             const shouldUseRedirect = false;
@@ -74,7 +75,7 @@ export const fetchGenes = async (searchString) => {
     if (response.data && response.data.genes) {
         return response.data.genes;
     } else {
-        store.dispatch(sendMessageToBackend("Could not retrieve gene data: " + response.error));
+        store.dispatch(sendMessageToBackend("Could not retrieve gene data: " + response.error, true));
     }
 };
 
@@ -100,7 +101,7 @@ export const fetchAutoComplete = async (searchString) => {
     if (response.data && response.data.autocomplete) {
         return response.data.autocomplete;
     } else {
-        store.dispatch(sendMessageToBackend("Could not retrieve autocomplete data: " + response.error));
+        store.dispatch(sendMessageToBackend("Could not retrieve autocomplete data: " + response.error, true));
     }
 };
 
@@ -176,6 +177,7 @@ export const fetchGeneDatasetSummary = async (geneSymbol, fetchPolicy = 'no-cach
     if (response.data && response.data.getGeneDatasetInformation) {
         return response.data.getGeneDatasetInformation;
     } else {
+        console.log('response.error',response.error)
         store.dispatch(sendMessageToBackend("Could not retrieve Gene Dataset: " + response.error));
     }
 
@@ -365,4 +367,28 @@ export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
     }
 }
 
+export const fetchSummaryData = async (dataType) => {
+    let query = gql`
+        query {
+            getSummaryData {
+                omicsType
+                dataType
+                dataTypeShort
+                hrtCount
+                akiCount
+                ckdCount
+                participantCount
+            }
+        }`;
 
+    const response = await apolloClient.query({
+        query: query,
+        fetchPolicy: 'cache-first'
+    });
+
+    if (response.data && response.data.getSummaryData) {
+        return response.data.getSummaryData;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve summary: " + response.error));
+    }
+}

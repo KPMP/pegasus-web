@@ -1,9 +1,9 @@
-
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
-import initialState from '../../initialState';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
+import { fetchSummaryData } from '../../helpers/ApolloClient';
+import { explorerSummary } from '../../initialState.json';
 
 class SamplesByDataTypeTable extends Component {
 
@@ -15,8 +15,25 @@ class SamplesByDataTypeTable extends Component {
 
         this.state = {
             columns: this.getColumns(),
-            summary: initialState.explorerSummary
+            summary: []
         };
+    }
+    compare( a, b ) {
+        if ( a.dataType < b.dataType ){
+          return -1;
+        }
+        if ( a.dataType > b.dataType ){
+          return 1;
+        }
+        return 0;
+    }
+      
+      
+    async componentDidMount() {
+        let summary = await fetchSummaryData("explorerHomepageSummary")
+        summary = summary.concat(explorerSummary)
+        summary = summary.sort( this.compare );
+        this.setState({summary})
     }
 
     handleDataTypeClick(dataType) {
@@ -25,9 +42,21 @@ class SamplesByDataTypeTable extends Component {
             'Single-nucleus RNA-seq (snRNA-seq)': 'sn',
             'Single-cell RNA-seq (scRNA-seq)': 'sc',
             'Regional transcriptomics (LMD RNA-seq)': 'rt',
+            'Light Microscopic Whole Slide Images': 'wsi',
+            '3D Tissue Imaging and Cytometry': '3d',
+            'CODEX': 'codex',
+            'Spatial metabolomics': 'sm',
+            'Spatial lipidomics': 'sl',
+            'Spatial N-Glycomics': 'sng',
+            'Spatial Transcriptomics': 'st'
         };
 
-        this.props.setSelectedConcept(dataLinkageMapping[dataType], this.props);
+        if (dataLinkageMapping[dataType]) {
+            this.props.setSelectedConcept(dataLinkageMapping[dataType], this.props);
+        } else {
+            this.props.history.push('/oops');
+            throw new Error('Datatype not found', dataType)
+        }
     }
 
     formatDataTypeCell(value) {
@@ -66,7 +95,7 @@ class SamplesByDataTypeTable extends Component {
                     <span>HEALTHY REFERENCE</span>
                 ),
                 id: 'healthyTissue',
-                accessor: 'healthyTissue',
+                accessor: 'hrtCount',
                 headerClassName: 'data-type-table-header',
                 className: 'data-type-table-content text-center',
                 minHeaderWidth: 175,
@@ -77,7 +106,7 @@ class SamplesByDataTypeTable extends Component {
                     <span>CKD</span>
                 ),
                 id: 'ckdTissue',
-                accessor: 'ckdTissue',
+                accessor: 'ckdCount',
                 headerClassName: 'data-type-table-header text-center',
                 className: 'data-type-table-content text-center',
                 minHeaderWidth: 100,
@@ -88,7 +117,7 @@ class SamplesByDataTypeTable extends Component {
                     <span>AKI</span>
                 ),
                 id: 'akiTissue',
-                accessor: 'akiTissue',
+                accessor: 'akiCount',
                 headerClassName: 'data-type-table-header text-center',
                 className: 'data-type-table-content text-center',
                 minHeaderWidth: 100,

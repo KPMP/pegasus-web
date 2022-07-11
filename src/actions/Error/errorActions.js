@@ -1,3 +1,8 @@
+import Api from '../../helpers/Api';
+  
+const api = Api.getInstance();
+
+
 export const handleError = (error) => {
   return dispatch => {
     console.log(error)
@@ -13,18 +18,14 @@ export const handleErrorWithoutRedirect = (error) => {
 
 export const sendMessageToBackend = (error, useRedirect = true) => {
   return dispatch => {
-    if (useRedirect) {
-      dispatch(handleError(error));
-    } else {
-      dispatch(handleErrorWithoutRedirect(error));
-    }
-
+      api.post('/explorer/v1/error', error)
+      .then(res=> {
+        if (useRedirect) {
+          dispatch(handleError(error));
+        } else {
+          dispatch(handleErrorWithoutRedirect(error));
+        }
+      });
   }
-  // Uncomment this section once you have an api to send errors to
-  //	return (dispatch) => {
-  //		api.post('/api/v1/error', errorMessage)
-  //		.then(res=> {
-  //			 dispatch(handleError());
-  //		});
-  //	};
+
 };

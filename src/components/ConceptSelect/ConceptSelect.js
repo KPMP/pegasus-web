@@ -136,12 +136,12 @@ class ConceptSelect extends Component {
 
         let noResultsAlert = '';
         if (this.state.hasResults && !this.state.hasResultsWithDataType) {
-            noResultsAlert = <div className='full-width mt-3'><Alert color="warning" isOpen={this.state.alertVisible} toggle={this.onDismiss}>
+            noResultsAlert = <div className={`${this.props.overflowWarningContainer ? 'full-width' : ''} mt-3`}><Alert color="warning" isOpen={this.state.alertVisible} toggle={this.onDismiss}>
                 The gene, {this.state.noResultValue}, is not detected in this dataset.
             </Alert></div>;
         }
         if (!this.state.hasResults) {
-            noResultsAlert = <div className='full-width mt-3'><Alert color="warning" isOpen={this.state.alertVisible} toggle={this.onDismiss}>
+            noResultsAlert = <div className={`${this.props.overflowWarningContainer ? 'full-width' : ''} mt-3`}><Alert  color="warning" isOpen={this.state.alertVisible} toggle={this.onDismiss}>
                 The gene, {this.state.noResultValue}, is not detected in any dataset.
             </Alert></div>;
         }
@@ -172,7 +172,8 @@ ConceptSelect.defaultProps = {
     moreCharactersMessage: "Please enter 2 or more characters to start search",
     placeHolderText: "Enter a gene or cell type",
     smallFormat: false,
-    searchType: 'all'
+    searchType: 'all',
+    overflowWarningContainer: false
 };
 
 export default ConceptSelect;

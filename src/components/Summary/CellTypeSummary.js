@@ -153,7 +153,7 @@ class CellTypeSummary extends Component {
             return (
                 <div>
                     <Container className='mt-3 rounded border p-3 shadow-sm'>
-                        <ConceptSelectFullWidth useRedirection={true} />
+                        <ConceptSelectFullWidth overflowWarningContainer={true} useRedirection={true} />
                     </Container>
                     <Container className='mt-3 rounded border p-3 shadow-sm'>
                         <Row xs='12'>
