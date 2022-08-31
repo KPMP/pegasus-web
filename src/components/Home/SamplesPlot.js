@@ -27,48 +27,66 @@ class SamplesPlot extends Component {
                 let strokeColor = "#ccc";
                 let strokeWidth = "2px";
                 let separatorLine_01 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_01.setAttribute("d", "M 15 68 L 295 68");
+                separatorLine_01.setAttribute("d", "M 15 83 L 295 83");
                 separatorLine_01.style.stroke = strokeColor;
                 separatorLine_01.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_01);
 
                 let separatorLine_02 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_02.setAttribute("d", "M 15 90 L 295 90");
+                separatorLine_02.setAttribute("d", "M 15 146 L 295 146");
                 separatorLine_02.style.stroke = strokeColor;
                 separatorLine_02.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_02);
 
 
                 let separatorLine_03 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_03.setAttribute("d", "M 15 113 L 295 113");
+                separatorLine_03.setAttribute("d", "M 15 166 L 295 166");
                 separatorLine_03.style.stroke = strokeColor;
                 separatorLine_03.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_03);
 
 
                 let separatorLine_04 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_04.setAttribute("d", "M 15 135 L 295 135");
+                separatorLine_04.setAttribute("d", "M 15 187 L 295 187");
                 separatorLine_04.style.stroke = strokeColor;
                 separatorLine_04.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_04);
 
                 let separatorLine_05 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_05.setAttribute("d", "M 15 228 L 295 228");
+                separatorLine_05.setAttribute("d", "M 15 208 L 295 208");
                 separatorLine_05.style.stroke = strokeColor;
                 separatorLine_05.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_05);
 
                 let separatorLine_06 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_06.setAttribute("d", "M 15 318 L 295 318");
+                separatorLine_06.setAttribute("d", "M 15 229 L 295 229");
                 separatorLine_06.style.stroke = strokeColor;
                 separatorLine_06.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_06);
 
                 let separatorLine_07 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_07.setAttribute("d", "M 15 408 L 295 408");
+                separatorLine_07.setAttribute("d", "M 15 313 L 295 313");
                 separatorLine_07.style.stroke = strokeColor;
                 separatorLine_07.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_07);
+
+                let separatorLine_08 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+                separatorLine_08.setAttribute("d", "M 15 396 L 295 396");
+                separatorLine_08.style.stroke = strokeColor;
+                separatorLine_08.style.strokeWidth = strokeWidth;
+                svg.appendChild(separatorLine_08);
+
+                let separatorLine_09 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+                separatorLine_09.setAttribute("d", "M 15 479 L 295 479");
+                separatorLine_09.style.stroke = strokeColor;
+                separatorLine_09.style.strokeWidth = strokeWidth;
+                svg.appendChild(separatorLine_09);
+
+                let separatorLine_10 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+                separatorLine_10.setAttribute("d", "M 15 499 L 295 499");
+                separatorLine_10.style.stroke = strokeColor;
+                separatorLine_10.style.strokeWidth = strokeWidth;
+                svg.appendChild(separatorLine_10);
             }
         }, 50)
     }
@@ -76,17 +94,24 @@ class SamplesPlot extends Component {
         // the reverse is needed to get the correct ordering due to the way Plotly renders data
         var data = [{
             type: 'bar',
-            x: [8, 4, 4, 1, 155, 1100, 48, 49, 5, 1, 380, 74, 69, 2, 652, 100, 85, 2, 14, 14, 14, 14].reverse(),
+            x: [14, 14, 14, 14, 8, 4, 4, 1, 0, 155, 1100, 48, 49, 5, 1, 380, 74, 69, 2, 652, 100, 85, 2, 0].reverse(),
             marker: { color: 'rgb(40, 60, 94)' },
-            text: [8, 4, 4, 1, 155, 1100, 48, 49, 5, 1, 380, 74, 69, 2, 652, 100, 85, 2, 14, 14, 14, 14].reverse(),
+            text: [14, 14, 14, 14, 8, 4, 4, 1, 0, 155, 1100, 48, 49, 5, 1, 380, 74, 69, 2, 652, 100, 85, 2, 0].reverse(),
             textposition: 'outside',
             yaxis: 'y2',
             y: [
+                `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}},{"op":"in","content":{"field":"workflow_type","value":["RGB max proj of 8-ch IF image volume"]}}]}'>3D imaging 8-ch RGB max projection</a>`,
+                `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}},{"op":"in","content":{"field":"workflow_type","value":["Composite max proj of 8-ch IF image volume"]}}]}''>3D imaging 8-ch composite max projection</a>`,
+                `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}},{"op":"in","content":{"field":"workflow_type","value":["Composite 3D 8-ch IF image volume"]}}]}''>3D imaging 8-ch composite 3D</a>`,
+                `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}},{"op":"in","content":{"field":"workflow_type","value":["RGB max proj of 2-ch (autofluorescence and second harmonic generation) image volume"]}}]}''>3D imaging 2-ch RGB max projection</a>`,
+
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"data_format","value":["fastq"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Bulk Total/mRNA"]}}]}'>Bulk RNA-seq FASTQs</a><span>*</span>`,
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"data_format","value":["bam"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Bulk Total/mRNA"]}}]}'>Bulk RNA-seq BAMs</a><span>*</span>`,
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["Bulk Total/mRNA"]}},{"op":"in","content":{"field":"workflow_type","value":["Non-normalized Expression Matrix"]}}]}'>Bulk RNA-seq expression matrices</a>`,
 
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"data_type","value":["Clinical Study Data"]}}]}'>Clinical dataset</a>`,
+
+                `<a href='/repository/'>CODEX</a>`,
 
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"workflow_type","value":["Experimental Metadata"]}}]}'>Experiment metadata</a>`,
 
@@ -107,11 +132,7 @@ class SamplesPlot extends Component {
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["Single-nucleus RNA-Seq"]}},{"op":"in","content":{"field":"workflow_type","value":["Expression Matrix"]}}]}'>snRNA-seq expression matrices</a>`,
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["Single-nucleus RNA-Seq"]}},{"op":"in","content":{"field":"workflow_type","value":["Aggregated Clustered Data"]}}]}'>snRNA-Seq aggregated clustered data</a>`,
 
-                `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}},{"op":"in","content":{"field":"workflow_type","value":["RGB max proj of 8-ch IF image volume"]}}]}'>3D imaging 8-ch RGB max projection</a>`,
-                `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}},{"op":"in","content":{"field":"workflow_type","value":["Composite max proj of 8-ch IF image volume"]}}]}''>3D imaging 8-ch composite max projection</a>`,
-                `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}},{"op":"in","content":{"field":"workflow_type","value":["Composite 3D 8-ch IF image volume"]}}]}''>3D imaging 8-ch composite 3D</a>`,
-                `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}},{"op":"in","content":{"field":"workflow_type","value":["RGB max proj of 2-ch (autofluorescence and second harmonic generation) image volume"]}}]}''>3D imaging 2-ch RGB max projection</a>`,
-
+                `<a href='/repository/'>Spatial Transcriptomics</a>`,
             ].reverse(),
             orientation: 'h'
         }];
