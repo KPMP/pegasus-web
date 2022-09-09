@@ -27,63 +27,63 @@ class SamplesPlot extends Component {
                 let strokeColor = "#ccc";
                 let strokeWidth = "2px";
                 let separatorLine_01 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_01.setAttribute("d", "M 15 66 L 295 66");
+                separatorLine_01.setAttribute("d", "M 15 86 L 295 86");
                 separatorLine_01.style.stroke = strokeColor;
                 separatorLine_01.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_01);
 
                 let separatorLine_02 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_02.setAttribute("d", "M 15 116 L 295 116");
+                separatorLine_02.setAttribute("d", "M 15 151 L 295 151");
                 separatorLine_02.style.stroke = strokeColor;
                 separatorLine_02.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_02);
 
 
                 let separatorLine_03 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_03.setAttribute("d", "M 15 133 L 295 133");
+                separatorLine_03.setAttribute("d", "M 15 171 L 295 171");
                 separatorLine_03.style.stroke = strokeColor;
                 separatorLine_03.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_03);
 
 
                 let separatorLine_04 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_04.setAttribute("d", "M 15 166 L 295 166");
+                separatorLine_04.setAttribute("d", "M 15 215 L 295 215");
                 separatorLine_04.style.stroke = strokeColor;
                 separatorLine_04.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_04);
 
                 let separatorLine_05 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_05.setAttribute("d", "M 15 183 L 295 183");
+                separatorLine_05.setAttribute("d", "M 15 237 L 295 237");
                 separatorLine_05.style.stroke = strokeColor;
                 separatorLine_05.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_05);
 
                 let separatorLine_06 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_06.setAttribute("d", "M 15 200 L 295 200");
+                separatorLine_06.setAttribute("d", "M 15 260 L 295 260");
                 separatorLine_06.style.stroke = strokeColor;
                 separatorLine_06.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_06);
 
                 let separatorLine_07 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_07.setAttribute("d", "M 15 266 L 295 266");
+                separatorLine_07.setAttribute("d", "M 15 345 L 295 345");
                 separatorLine_07.style.stroke = strokeColor;
                 separatorLine_07.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_07);
 
                 let separatorLine_08 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_08.setAttribute("d", "M 15 333 L 295 333");
+                separatorLine_08.setAttribute("d", "M 15 433 L 295 433");
                 separatorLine_08.style.stroke = strokeColor;
                 separatorLine_08.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_08);
 
                 let separatorLine_09 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_09.setAttribute("d", "M 15 400 L 295 400");
+                separatorLine_09.setAttribute("d", "M 15 520 L 295 520");
                 separatorLine_09.style.stroke = strokeColor;
                 separatorLine_09.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_09);
 
                 let separatorLine_10 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_10.setAttribute("d", "M 15 499 L 295 499");
+                separatorLine_10.setAttribute("d", "M 15 649 L 295 649");
                 separatorLine_10.style.stroke = strokeColor;
                 separatorLine_10.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_10);
@@ -111,8 +111,8 @@ class SamplesPlot extends Component {
 
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"data_type","value":["Clinical Study Data"]}}]}'>Clinical dataset</a>`,
 
-                `<a href='/repository/?facetTab=files&filters=%7B%22op%22:%22and%22,%22content%22:%5B%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22experimental_strategy%22,%22value%22:%5B%22CODEX%22%5D%7D%7D,%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22workflow_type%22,%22value%22:%5B%22Expression%20Matrix%22%5D%7D%7D%5D%7D'>CODEX expression matrices</a>`,
-                `<a href='/repository/?facetTab=files&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22experimental_strategy%22%2C%22value%22%3A%5B%22CODEX%22%5D%7D%7D%2C%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22data_format%22%2C%22value%22%3A%5B%22zip%22%5D%7D%7D%5D%7D'>CODEX region files</a>`,
+                `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["CODEX"]}},{"op":"in","content":{"field":"workflow_type","value":["Expression Matrix"]}}]}'>CODEX expression matrices</a>`,
+                `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["CODEX"]}},{"op":"in","content":{"field":"data_format","value":["zip"]}}]}'>CODEX region files</a>`,
 
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"workflow_type","value":["Experimental Metadata"]}}]}'>Experiment metadata</a>`,
 
@@ -133,12 +133,12 @@ class SamplesPlot extends Component {
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["Single-nucleus RNA-Seq"]}},{"op":"in","content":{"field":"workflow_type","value":["Expression Matrix"]}}]}'>snRNA-seq expression matrices</a>`,
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["Single-nucleus RNA-Seq"]}},{"op":"in","content":{"field":"workflow_type","value":["Aggregated Clustered Data"]}}]}'>snRNA-Seq aggregated clustered data</a>`,
 
-                `<a href='/repository/?facetTab=files&filters=%7B%22op%22:%22and%22,%22content%22:%5B%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22data_format%22,%22value%22:%5B%22h5ad%22%5D%7D%7D,%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22experimental_strategy%22,%22value%22:%5B%22Spatial%20Transcriptomics%22%5D%7D%7D%5D%7D'>Spatial Transcriptomics anndata file</a>`,
-                `<a href='/repository/?facetTab=files&filters=%7B%22op%22:%22and%22,%22content%22:%5B%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22data_format%22,%22value%22:%5B%22bam%22%5D%7D%7D,%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22experimental_strategy%22,%22value%22:%5B%22Spatial%20Transcriptomics%22%5D%7D%7D%5D%7D'>Spatial Transcriptomics BAMs</a><span>*</span>`,
-                `<a href='/repository/?facetTab=files&filters=%7B%22op%22:%22and%22,%22content%22:%5B%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22data_format%22,%22value%22:%5B%22cloupe%22%5D%7D%7D,%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22experimental_strategy%22,%22value%22:%5B%22Spatial%20Transcriptomics%22%5D%7D%7D%5D%7D'>Spatial Transcriptomics cloupe file</a>`,
-                `<a href='/repository/?facetTab=files&filters=%7B%22op%22:%22and%22,%22content%22:%5B%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22experimental_strategy%22,%22value%22:%5B%22Spatial%20Transcriptomics%22%5D%7D%7D,%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22workflow_type%22,%22value%22:%5B%22Expression%20Matrix%22%5D%7D%7D%5D%7D'>Spatial Transcriptomics expression matrices</a>`,
-                `<a href='/repository/?facetTab=files&filters=%7B%22op%22:%22and%22,%22content%22:%5B%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22data_format%22,%22value%22:%5B%22fastq%22%5D%7D%7D,%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22experimental_strategy%22,%22value%22:%5B%22Spatial%20Transcriptomics%22%5D%7D%7D%5D%7D'>Spatial Transcriptomics FASTQs</a><span>*</span>`,
-                `<a href='/repository/?facetTab=files&filters=%7B%22op%22:%22and%22,%22content%22:%5B%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22data_format%22,%22value%22:%5B%22tif%22%5D%7D%7D,%7B%22op%22:%22in%22,%22content%22:%7B%22field%22:%22experimental_strategy%22,%22value%22:%5B%22Spatial%20Transcriptomics%22%5D%7D%7D%5D%7D'>Spatial Transcriptomics whole slide image</a>`,
+                `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"data_format","value":["h5ad"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Spatial Transcriptomics"]}}]}'>Spatial Transcriptomics anndata file</a>`,
+                `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"data_format","value":["bam"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Spatial Transcriptomics"]}}]}'>Spatial Transcriptomics BAMs</a><span>*</span>`,
+                `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"data_format","value":["cloupe"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Spatial Transcriptomics"]}}]}'>Spatial Transcriptomics cloupe file</a>`,
+                `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["Spatial Transcriptomics"]}},{"op":"in","content":{"field":"workflow_type","value":["Expression Matrix"]}}]}'>Spatial Transcriptomics expression matrices</a>`,
+                `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"data_format","value":["fastq"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Spatial Transcriptomics"]}}]}'>Spatial Transcriptomics FASTQs</a><span>*</span>`,
+                `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"data_format","value":["tif"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Spatial Transcriptomics"]}}]}'>Spatial Transcriptomics whole slide image</a>`,
             ].reverse(),
             orientation: 'h'
         }];
@@ -153,7 +153,7 @@ class SamplesPlot extends Component {
                             layout={{
                                 autosize: false,
                                 width: 815,
-                                height: 500,
+                                height: 650,
                                 textposition: 'auto',
                                 margin: {
                                     l: 0,
