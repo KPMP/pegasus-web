@@ -94,9 +94,9 @@ class SamplesPlot extends Component {
         // the reverse is needed to get the correct ordering due to the way Plotly renders data
         var data = [{
             type: 'bar',
-            x: [14, 14, 14, 14, 4, 4, 8, 1, 11, 21, 155, 1100, 1, 49, 5, 48, 2, 74, 69, 432, 2, 100, 85, 652, 32, 16, 16, 16, 16, 16].reverse(),
+            x: [14, 14, 14, 14, 23, 33, 66, 1, 21, 11, 281, 1267, 1, 130, 150, 20, 2, 94, 89, 432, 2, 136, 121, 730, 32, 16, 16, 16, 16, 16].reverse(),
             marker: { color: 'rgb(40, 60, 94)' },
-            text: [14, 14, 14, 14, 4, 4, 8, 1, 11, 21, 155, 1100, 1, 49, 5, 48, 2, 74, 69, 432, 2, 100, 85, 652, 32, 16, 16, 16, 16, 16].reverse(),
+            text: [14, 14, 14, 14, 23, 33, 66, 1, 21, 11, 281, 1267, 1, 130, 150, 20, 2, 94, 89, 432, 2, 136, 121, 730, 32, 16, 16, 16, 16, 16].reverse(),
             textposition: 'outside',
             yaxis: 'y2',
             y: [
@@ -164,7 +164,7 @@ class SamplesPlot extends Component {
                                 },
                                 hovermode: false,
                                 xaxis: {
-                                    range: [0, 1200],
+                                    range: [0, 1400],
                                     domain: [0.39, 1.3],
                                     showticklabels: false,
                                     zerolinecolor: '#cccccc',
