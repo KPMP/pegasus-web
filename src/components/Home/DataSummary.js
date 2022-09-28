@@ -24,6 +24,8 @@ class DataSummary extends Component {
         }
         return 0;
     }
+    // We wanted to hide the data types if there isn't any available data yet
+    // By hiding them here, we're able to write the database query ahead of their availability
     availableDataVisibilityFilter(data) {
         if (data.hrtCount > 0 || data.akiCount || data.ckdCount > 0) {
             return data;
@@ -37,7 +39,7 @@ class DataSummary extends Component {
                                 .slice()
                                 .sort(this.compare)
                                 .filter(this.availableDataVisibilityFilter)
-       
+
        spatialViewerSummary = spatialViewerSummary
                                 .slice()
                                 .sort(this.compare)
