@@ -24,12 +24,27 @@ class DataSummary extends Component {
         }
         return 0;
     }
+    availableDataVisibilityFilter(data) {
+        if (data.hrtCount > 0 || data.akiCount || data.ckdCount > 0) {
+            return data;
+        }
+    }
 
     async componentDidMount() {  
        let spatialViewerSummary = await fetchSummaryData("spatialViewerSummary")
        let explorerSummary = await fetchGeneDatasetSummary("")
-       explorerSummary = explorerSummary.slice().sort(this.compare)
-       spatialViewerSummary = spatialViewerSummary.slice().sort(this.compare)
+       explorerSummary = explorerSummary
+                                .slice()
+                                .sort(this.compare)
+                                .filter(this.availableDataVisibilityFilter)
+       
+       spatialViewerSummary = spatialViewerSummary
+                                .slice()
+                                .sort(this.compare)
+                                .filter(this.availableDataVisibilityFilter)
+
+
+
        this.setState({ spatialViewerSummary, explorerSummary})
     }
 
