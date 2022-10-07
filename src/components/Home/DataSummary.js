@@ -30,6 +30,9 @@ class DataSummary extends Component {
         if (data.hrtCount > 0 || data.akiCount || data.ckdCount > 0) {
             return data;
         }
+        if (data.hrtCount === 0 && data.akiCount === 0 && data.ckdCount === 0){
+            return 0;
+        }
     }
 
     async componentDidMount() {  
