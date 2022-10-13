@@ -26,7 +26,7 @@ class SamplesByDataTypeTable extends Component {
                 headerClassName: 'omics data-type-table-header',
                 className: 'data-type-table-content',
                 minWidth: 295,
-                Cell: <a href={setDataTypeAndRedirect(dataType)}>{dataType}</a>
+                Cell: <a href="www.google.com">{dataType}</a>
             },
             {
                 Header: () => (
