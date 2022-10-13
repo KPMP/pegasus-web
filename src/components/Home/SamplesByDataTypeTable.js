@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import { Row, Col } from 'reactstrap';
-import { setDataTypeAndRedirect } from '../../actions/DataType/dataTypeActions';
-import { dataType } from '../DataViz/dataTypeReducer';
 
 class SamplesByDataTypeTable extends Component {
 
@@ -15,7 +13,23 @@ class SamplesByDataTypeTable extends Component {
             columns: this.getColumns(),
         };
     }
+    formatDataTypeCell(value) {
+        if (value === 'Single-cell RNA-seq (scRNA-seq)' || value === 'Single-nucleus RNA-seq (snRNA-seq)') {
 
+            return (
+                <span className="buttonhref" onClick={() => { this.handleDataTypeClick(value) }}>
+                    {value}<span style={{color: 'red'}}>*</span>
+                 </span>
+            );
+        } else {
+            return (
+                <span className="buttonhref" onClick={() => { this.handleDataTypeClick(value) }}>
+                    {value}
+                 </span>
+            );
+        }
+
+    }
     getColumns() {
 
         return [
@@ -26,7 +40,9 @@ class SamplesByDataTypeTable extends Component {
                 headerClassName: 'omics data-type-table-header',
                 className: 'data-type-table-content',
                 minWidth: 295,
-                Cell: <a href="www.google.com">{dataType}</a>
+                Cell: row => (
+                    this.formatDataTypeCell(row.value)
+                )
             },
             {
                 Header: () => (
@@ -38,6 +54,7 @@ class SamplesByDataTypeTable extends Component {
                 className: 'data-type-table-content',
                 minHeaderWidth: 250,
                 minWidth: 250,
+                
             },
             {
                 Header: () => (
