@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import { Row, Col } from 'reactstrap';
+import { setDataTypeAndRedirect } from '../../actions/DataType/dataTypeActions';
+import { dataType } from '../DataViz/dataTypeReducer';
 
 class SamplesByDataTypeTable extends Component {
 
@@ -24,6 +26,7 @@ class SamplesByDataTypeTable extends Component {
                 headerClassName: 'omics data-type-table-header',
                 className: 'data-type-table-content',
                 minWidth: 295,
+                Cell: props => <a href={setDataTypeAndRedirect(dataType, props)}>{dataType}</a>
             },
             {
                 Header: () => (
