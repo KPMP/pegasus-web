@@ -28,7 +28,7 @@ class SamplesByDataTypeTable extends Component {
             'Spatial N-Glycomics': 'sng',
             'Spatial Transcriptomics': 'st'
         };
-
+        console.log(dataLinkageMapping);
         if (dataLinkageMapping[dataType]) {
             this.props.setDataType(dataLinkageMapping[dataType], this.props);
         } else {
