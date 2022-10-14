@@ -15,7 +15,7 @@ class RNASeqViz extends Component {
         
         const queryParam = queryString.parse(props.location.search);
         if (queryParam && queryParam.dataType) {
-            props.setDataType(parsed.dataType);
+            props.setDataType(queryParam.dataType);
             props.history.push(props.location.pathname);
         }
     };
