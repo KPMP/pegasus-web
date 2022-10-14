@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import SamplesPlot from './SamplesPlot';
-import SamplesByDataTypeTable from './SamplesByDataTypeTable';
 import SamplesByDataTypeTableContainer from './SamplesByDataTypeTableContainer';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { fetchSummaryData, fetchGeneDatasetSummary} from '../../helpers/ApolloClient';
