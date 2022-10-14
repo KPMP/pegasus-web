@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import SamplesByDataTypeTable from './SamplesByDataTypeTable';
 import { setDataTypeAndRedirect } from '../../actions/DataType/dataTypeActions'
 import { withRouter } from 'react-router';
-import { setDataType } from '../../actions/DataType/dataTypeActions';
 
 const mapStateToProps = (state, props) =>
 ({
