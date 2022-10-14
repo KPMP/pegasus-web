@@ -22,6 +22,7 @@ export const setDataType = (dataType) => {
 
 export const setDataTypeAndRedirect = (dataType, props) => {
     return (dispatch) => {
+        console.log(dataType);
         dispatch(setDataType(dataType));
         switch (dataType) {
             case "sn":
