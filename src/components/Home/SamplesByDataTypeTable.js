@@ -28,7 +28,7 @@ class SamplesByDataTypeTable extends Component {
             'Spatial N-Glycomics': 'sng',
             'Spatial Transcriptomics': 'st'
         };
-        console.log(dataLinkageMapping);
+        console.log(dataLinkageMapping["Regional transcriptomics (LMD RNA-seq)"]);
         if (dataLinkageMapping[dataType]) {
             this.props.setDataType(dataLinkageMapping[dataType], this.props);
         } else {
