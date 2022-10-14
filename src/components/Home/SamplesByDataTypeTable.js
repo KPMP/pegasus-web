@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
-// import { setSelectedConcept } from '../../actions/Concepts/conceptActions';
 
 class SamplesByDataTypeTable extends Component {
 
@@ -31,7 +30,7 @@ class SamplesByDataTypeTable extends Component {
         };
 
         if (dataLinkageMapping[dataType]) {
-            this.props.setSelectedConcept(dataLinkageMapping[dataType], this.props);
+            this.props.setSelectedDataType(dataLinkageMapping[dataType], this.props);
         } else {
             this.props.history.push('/oops');
             throw new Error('Datatype not found', dataType)
