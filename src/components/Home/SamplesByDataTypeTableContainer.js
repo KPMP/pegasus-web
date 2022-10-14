@@ -8,12 +8,9 @@ const mapStateToProps = (state, props) =>
     selectedDataType: state.selectedDataType,
 });
 
-const mapDispatchToProps = (dispatch, props) =>
-({
-    setDataType(concept) {
-        dispatch(setDataType('all'))
-        dispatch(setDataTypeAndRedirect(concept, props));
-    }
-});
+// const mapDispatchToProps = (dispatch, props) =>
+// ({
+    
+// });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(SamplesByDataTypeTable))
+export default withRouter(connect(mapStateToProps)(SamplesByDataTypeTable))
