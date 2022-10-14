@@ -19,7 +19,7 @@ class SamplesByDataTypeTable extends Component {
         let dataLinkageMapping = {
             'Single-nucleus RNA-seq (snRNA-seq)': 'sn',
             'Single-cell RNA-seq (scRNA-seq)': 'sc',
-            'Regional transcriptomics (LMD RNA-seq)': 'rt',
+            'Regional transcriptomics': 'rt',
             'Light Microscopic Whole Slide Images': 'wsi',
             '3D Tissue Imaging and Cytometry': '3d',
             'CODEX': 'codex',
