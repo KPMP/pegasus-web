@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
-import { setDataTypeAndRedirect, setDataType } from '../../actions/DataType/dataTypeActions'
 
 class SamplesByDataTypeTable extends Component {
 
