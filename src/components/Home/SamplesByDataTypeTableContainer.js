@@ -12,7 +12,6 @@ const mapStateToProps = (state, props) =>
 const mapDispatchToProps = (dispatch, props) =>
 ({
     setDataType(concept) {
-        dispatch(setDataType('all'))
         dispatch(setDataTypeAndRedirect(concept, props));
     }
 });
