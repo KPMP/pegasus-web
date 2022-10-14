@@ -32,6 +32,7 @@ class SamplesByDataTypeTable extends Component {
         if (dataLinkageMapping[dataType]) {
             this.props.setDataType(dataLinkageMapping[dataType], this.props);
         } else {
+            console.log(dataType);
             this.props.history.push('/oops');
             throw new Error('Datatype not found', dataType)
         }
