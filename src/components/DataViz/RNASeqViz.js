@@ -13,8 +13,8 @@ class RNASeqViz extends Component {
         super(props);
         this.state = { prevPath: '', plotData: [], geneExpressionData: [], isLoading: true, isLoadingUmap: true };
         
-        const parsed = queryString.parse(props.location.search);
-        if (parsed.dataType) {
+        const queryParam = queryString.parse(props.location.search);
+        if (queryParam && queryParam.dataType) {
             props.setDataType(parsed.dataType);
             props.history.push(props.location.pathname);
         }
