@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SamplesByDataTypeTable from './SamplesByDataTypeTable';
-import { setSelectedConceptAndRedirect } from '../../actions/Concepts/conceptActions'
+import { setSelectedConceptAndRedirect } from '../../actions/DataType/dataTypeActions'
 import { withRouter } from 'react-router';
 import { setDataType } from '../../actions/DataType/dataTypeActions';
 
