@@ -18,6 +18,7 @@ class RegionalViz extends Component {
         if (!this.props.tissueType) {
             this.props.setTissueType('all')
         }
+        props.setDataType('rt');
     };
 
     componentDidMount() {

@@ -6,11 +6,18 @@ import UMAPPlot from '../Plots/UMAPPlot';
 import FeaturePlot from '../Plots/FeaturePlot';
 import { fetchGeneExpression, fetchPlotlyData } from "../../helpers/ApolloClient";
 import { getDataTypeOptions } from "../../helpers/Utils";
+const queryString = require('query-string');
 
 class RNASeqViz extends Component {
     constructor(props) {
         super(props);
         this.state = { prevPath: '', plotData: [], geneExpressionData: [], isLoading: true, isLoadingUmap: true };
+        
+        const queryParam = queryString.parse(props.location.search);
+        if (queryParam && queryParam.dataType) {
+            props.setDataType(queryParam.dataType);
+            props.history.push(props.location.pathname);
+        }
     };
 
     cleanResults = (results) => {

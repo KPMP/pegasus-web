@@ -11,8 +11,11 @@ export const setDataType = (dataType) => {
         case "sc":
             shortDataType = "sc";
             break;
+        case "rt":
+            shortDataType = "rt";
+            break;
         default:
-            shortDataType = dataType
+            shortDataType = "sc"
     }
     return {
         type: actionNames.SET_DATA_TYPE,
