@@ -4,7 +4,7 @@ import SamplesPlot from './SamplesPlot';
 import SamplesByDataTypeTableContainer from './SamplesByDataTypeTableContainer';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { fetchSummaryData, fetchGeneDatasetSummary} from '../../helpers/ApolloClient';
-
+import { availableDataVisibilityFilter } from '../../helpers/Utils';
 class DataSummary extends Component {
 
     constructor(props) {
@@ -24,16 +24,6 @@ class DataSummary extends Component {
         }
         return 0;
     }
-    // We wanted to hide the data types if there isn't any available data yet
-    // By hiding them here, we're able to write the database query ahead of their availability
-    availableDataVisibilityFilter(data) {
-        if (data.hrtCount > 0 || data.akiCount || data.ckdCount > 0) {
-            return data;
-        }
-        if (data.hrtCount === 0 && data.akiCount === 0 && data.ckdCount === 0){
-            return 0;
-        }
-    }
 
     async componentDidMount() {  
        let spatialViewerSummary = await fetchSummaryData("spatialViewerSummary")
@@ -41,12 +31,12 @@ class DataSummary extends Component {
        explorerSummary = explorerSummary
                                 .slice()
                                 .sort(this.compare)
-                                .filter(this.availableDataVisibilityFilter)
+                                .filter(availableDataVisibilityFilter)
 
        spatialViewerSummary = spatialViewerSummary
                                 .slice()
                                 .sort(this.compare)
-                                .filter(this.availableDataVisibilityFilter)
+                                .filter(availableDataVisibilityFilter)
 
 
 
