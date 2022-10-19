@@ -3,7 +3,7 @@ import ReactTable from 'react-table';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { fetchSummaryData } from '../../helpers/ApolloClient';
-import { explorerSummary } from '../../initialState.json';
+import { availableDataVisibilityFilter } from '../../helpers/Utils';
 
 class SamplesByDataTypeTable extends Component {
 
@@ -31,8 +31,9 @@ class SamplesByDataTypeTable extends Component {
       
     async componentDidMount() {
         let summary = await fetchSummaryData("explorerHomepageSummary")
-        summary = summary.concat(explorerSummary)
-        summary = summary.sort( this.compare );
+        summary = summary.slice()
+                         .sort( this.compare )
+                         .filter(availableDataVisibilityFilter)
         this.setState({summary})
     }
 
