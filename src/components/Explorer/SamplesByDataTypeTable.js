@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
-import { fetchSummaryData } from '../../helpers/ApolloClient';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
+import { fetchSummaryData, fetchGeneDatasetSummary} from '../../helpers/ApolloClient';
 
 class SamplesByDataTypeTable extends Component {
 
@@ -31,9 +31,11 @@ class SamplesByDataTypeTable extends Component {
       
     async componentDidMount() {
         let summary = await fetchSummaryData("explorerHomepageSummary")
+        const geneDatasetSummary = await fetchGeneDatasetSummary("")
+        summary = summary.concat(geneDatasetSummary)
         summary = summary.slice()
-                         .sort( this.compare )
-                         .filter(availableDataVisibilityFilter)
+                        .sort( this.compare )
+                        .filter(availableDataVisibilityFilter)
         this.setState({summary})
     }
 
@@ -42,7 +44,7 @@ class SamplesByDataTypeTable extends Component {
         let dataLinkageMapping = {
             'Single-nucleus RNA-seq (snRNA-seq)': 'sn',
             'Single-cell RNA-seq (scRNA-seq)': 'sc',
-            'Regional transcriptomics (LMD RNA-seq)': 'rt',
+            'Regional transcriptomics': 'rt',
             'Light Microscopic Whole Slide Images': 'wsi',
             '3D Tissue Imaging and Cytometry': '3d',
             'CODEX': 'codex',
@@ -51,7 +53,6 @@ class SamplesByDataTypeTable extends Component {
             'Spatial N-Glycomics': 'sng',
             'Spatial Transcriptomics': 'st'
         };
-
         if (dataLinkageMapping[dataType]) {
             this.props.setSelectedConcept(dataLinkageMapping[dataType], this.props);
         } else {
