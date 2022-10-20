@@ -23,9 +23,9 @@ class SamplesByDataTypeTable extends Component {
             'Light Microscopic Whole Slide Images': 'wsi',
             '3D Tissue Imaging and Cytometry': '3d',
             'CODEX': 'codex',
-            'Spatial metabolomics': 'sm',
-            'Spatial lipidomics': 'sl',
-            'Spatial N-Glycomics': 'sng',
+            'Spatial Metabolomics': 'sm',
+            'Spatial Lipidomics': 'sl',
+            'Spatial N-glycomics': 'sng',
             'Spatial Transcriptomics': 'st'
         };
         if (dataLinkageMapping[dataType]) {
