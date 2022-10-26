@@ -6,7 +6,7 @@ import UMAPPlot from '../Plots/UMAPPlot';
 import FeaturePlot from '../Plots/FeaturePlot';
 import { fetchGeneExpression, fetchPlotlyData } from "../../helpers/ApolloClient";
 import { getDataTypeOptions } from "../../helpers/Utils";
-const queryString = require('query-string');
+import queryString from 'query-string';
 
 class RNASeqViz extends Component {
     constructor(props) {
