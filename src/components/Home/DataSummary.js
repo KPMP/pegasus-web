@@ -75,7 +75,7 @@ class DataSummary extends Component {
                 </Row>
                 <SamplesPlot />
                 <Row>
-                    <p className="samples-plot-files">Total Files: 3,778</p>
+                    <p className="samples-plot-files">Total Files: 3,853</p>
                 </Row>
 
                 <Row className='mt-4'>

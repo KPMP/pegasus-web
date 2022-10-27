@@ -26,6 +26,13 @@ class SamplesPlot extends Component {
                 clearInterval(svgCheck);
                 let strokeColor = "#ccc";
                 let strokeWidth = "2px";
+
+                let separatorLine_00 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+                separatorLine_00.setAttribute("d", "M 15 20 L 295 20");
+                separatorLine_00.style.stroke = strokeColor;
+                separatorLine_00.style.strokeWidth = strokeWidth;
+                svg.appendChild(separatorLine_00);
+
                 let separatorLine_01 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
                 separatorLine_01.setAttribute("d", "M 15 86 L 295 86");
                 separatorLine_01.style.stroke = strokeColor;
@@ -94,12 +101,14 @@ class SamplesPlot extends Component {
         // the reverse is needed to get the correct ordering due to the way Plotly renders data
         var data = [{
             type: 'bar',
-            x: [14, 14, 14, 14, 23, 33, 66, 1, 21, 11, 281, 1267, 1, 130, 150, 20, 2, 94, 89, 432, 2, 136, 121, 730, 16, 16, 16, 16, 32, 16].reverse(),
+            x: [3, 16, 16, 16, 16, 23, 33, 66, 1, 21, 11, 281, 1267, 1, 130, 150, 20, 2, 94, 89, 432, 2, 136, 121, 730, 22, 22, 22, 16, 72, 22].reverse(),
             marker: { color: 'rgb(40, 60, 94)' },
-            text: [14, 14, 14, 14, 23, 33, 66, 1, 21, 11, 281, 1267, 1, 130, 150, 20, 2, 94, 89, 432, 2, 136, 121, 730, 16, 16, 16, 16, 32, 16].reverse(),
+            text: [3, 16, 16, 16, 16, 23, 33, 66, 1, 21, 11, 281, 1267, 1, 130, 150, 20, 2, 94, 89, 432, 2, 136, 121, 730, 22, 22, 22, 16, 72, 22].reverse(),
             textposition: 'outside',
             yaxis: 'y2',
             y: [
+                `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"workflow_type","value":["Aggregated Blood Biomarker Data","Aggregated Urine Biomarker Data"]}}]}'>Biomarker data</a>`,
+
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}},{"op":"in","content":{"field":"workflow_type","value":["RGB max proj of 2-ch (autofluorescence and second harmonic generation) image volume"]}}]}''>3D imaging 2-ch RGB max projection</a>`,
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}},{"op":"in","content":{"field":"workflow_type","value":["Composite 3D 8-ch IF image volume"]}}]}''>3D imaging 8-ch composite 3D</a>`,
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}},{"op":"in","content":{"field":"workflow_type","value":["Composite max proj of 8-ch IF image volume"]}}]}''>3D imaging 8-ch composite max projection</a>`,
@@ -153,7 +162,7 @@ class SamplesPlot extends Component {
                             layout={{
                                 autosize: false,
                                 width: 815,
-                                height: 650,
+                                height: 670,
                                 textposition: 'auto',
                                 margin: {
                                     l: 0,
