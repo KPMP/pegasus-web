@@ -26,28 +26,35 @@ class SamplesPlot extends Component {
                 clearInterval(svgCheck);
                 let strokeColor = "#ccc";
                 let strokeWidth = "2px";
+
                 let separatorLine_01 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
                 separatorLine_01.setAttribute("d", "M 15 86 L 295 86");
                 separatorLine_01.style.stroke = strokeColor;
                 separatorLine_01.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_01);
 
+                let separatorLine_01a = document.createElementNS("http://www.w3.org/2000/svg", 'path');
+                separatorLine_01a.setAttribute("d", "M 15 106 L 295 106");
+                separatorLine_01a.style.stroke = strokeColor;
+                separatorLine_01a.style.strokeWidth = strokeWidth;
+                svg.appendChild(separatorLine_01a);
+
                 let separatorLine_02 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_02.setAttribute("d", "M 15 151 L 295 151");
+                separatorLine_02.setAttribute("d", "M 15 171 L 295 171");
                 separatorLine_02.style.stroke = strokeColor;
                 separatorLine_02.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_02);
 
 
                 let separatorLine_03 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_03.setAttribute("d", "M 15 171 L 295 171");
+                separatorLine_03.setAttribute("d", "M 15 193 L 295 193");
                 separatorLine_03.style.stroke = strokeColor;
                 separatorLine_03.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_03);
 
 
                 let separatorLine_04 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_04.setAttribute("d", "M 15 215 L 295 215");
+                separatorLine_04.setAttribute("d", "M 15 280 L 295 280");
                 separatorLine_04.style.stroke = strokeColor;
                 separatorLine_04.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_04);
@@ -65,25 +72,25 @@ class SamplesPlot extends Component {
                 svg.appendChild(separatorLine_06);
 
                 let separatorLine_07 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_07.setAttribute("d", "M 15 345 L 295 345");
+                separatorLine_07.setAttribute("d", "M 15 365 L 295 365");
                 separatorLine_07.style.stroke = strokeColor;
                 separatorLine_07.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_07);
 
                 let separatorLine_08 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_08.setAttribute("d", "M 15 433 L 295 433");
+                separatorLine_08.setAttribute("d", "M 15 453 L 295 453");
                 separatorLine_08.style.stroke = strokeColor;
                 separatorLine_08.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_08);
 
                 let separatorLine_09 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_09.setAttribute("d", "M 15 520 L 295 520");
+                separatorLine_09.setAttribute("d", "M 15 540 L 295 540");
                 separatorLine_09.style.stroke = strokeColor;
                 separatorLine_09.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_09);
 
                 let separatorLine_10 = document.createElementNS("http://www.w3.org/2000/svg", 'path');
-                separatorLine_10.setAttribute("d", "M 15 649 L 295 649");
+                separatorLine_10.setAttribute("d", "M 15 669 L 295 669");
                 separatorLine_10.style.stroke = strokeColor;
                 separatorLine_10.style.strokeWidth = strokeWidth;
                 svg.appendChild(separatorLine_10);
@@ -94,9 +101,9 @@ class SamplesPlot extends Component {
         // the reverse is needed to get the correct ordering due to the way Plotly renders data
         var data = [{
             type: 'bar',
-            x: [14, 14, 14, 14, 23, 33, 66, 1, 21, 11, 281, 1267, 1, 130, 150, 20, 2, 94, 89, 432, 2, 136, 121, 730, 16, 16, 16, 16, 32, 16].reverse(),
+            x: [16, 16, 16, 16, 3, 23, 33, 66, 1, 21, 11, 281, 1267, 1, 130, 150, 20, 2, 94, 89, 432, 2, 136, 121, 730, 22, 22, 22, 16, 72, 22].reverse(),
             marker: { color: 'rgb(40, 60, 94)' },
-            text: [14, 14, 14, 14, 23, 33, 66, 1, 21, 11, 281, 1267, 1, 130, 150, 20, 2, 94, 89, 432, 2, 136, 121, 730, 16, 16, 16, 16, 32, 16].reverse(),
+            text: [16, 16, 16, 16, 3, 23, 33, 66, 1, 21, 11, 281, 1267, 1, 130, 150, 20, 2, 94, 89, 432, 2, 136, 121, 730, 22, 22, 22, 16, 72, 22].reverse(),
             textposition: 'outside',
             yaxis: 'y2',
             y: [
@@ -104,6 +111,8 @@ class SamplesPlot extends Component {
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}},{"op":"in","content":{"field":"workflow_type","value":["Composite 3D 8-ch IF image volume"]}}]}''>3D imaging 8-ch composite 3D</a>`,
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}},{"op":"in","content":{"field":"workflow_type","value":["Composite max proj of 8-ch IF image volume"]}}]}''>3D imaging 8-ch composite max projection</a>`,
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}},{"op":"in","content":{"field":"workflow_type","value":["RGB max proj of 8-ch IF image volume"]}}]}'>3D imaging 8-ch RGB max projection</a>`,
+
+                `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"workflow_type","value":["Aggregated Blood Biomarker Data","Aggregated Urine Biomarker Data"]}}]}'>Biomarker data</a>`,
 
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"data_format","value":["bam"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Bulk Total/mRNA"]}}]}'>Bulk RNA-seq BAMs</a><span>*</span>`,
                 `<a href='/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"experimental_strategy","value":["Bulk Total/mRNA"]}},{"op":"in","content":{"field":"workflow_type","value":["Non-normalized Expression Matrix"]}}]}'>Bulk RNA-seq expression matrices</a>`,
@@ -153,7 +162,7 @@ class SamplesPlot extends Component {
                             layout={{
                                 autosize: false,
                                 width: 815,
-                                height: 650,
+                                height: 670,
                                 textposition: 'auto',
                                 margin: {
                                     l: 0,

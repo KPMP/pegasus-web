@@ -10,6 +10,7 @@ import { formatDataType } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { faDownload, faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import queryString from 'query-string';
 
 class RegionalViz extends Component {
     constructor(props) {
@@ -17,6 +18,11 @@ class RegionalViz extends Component {
         this.state = { rtAllPlotData: [], rtAllTableData: [], rtGTPlotData: [], rtGTTableData: [], selectedComparison: 'all_segments', selectedPlot: 'box' };
         if (!this.props.tissueType) {
             this.props.setTissueType('all')
+        }
+        props.setDataType('rt');
+        const queryParam = queryString.parse(props.location.search);
+        if (queryParam && queryParam.dataType) {
+            props.history.push(props.location.pathname);
         }
     };
 

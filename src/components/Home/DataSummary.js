@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import SamplesPlot from './SamplesPlot';
-import SamplesByDataTypeTable from './SamplesByDataTypeTable';
+import SamplesByDataTypeTableContainer from './SamplesByDataTypeTableContainer';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { fetchSummaryData, fetchGeneDatasetSummary} from '../../helpers/ApolloClient';
-
+import { availableDataVisibilityFilter } from '../../helpers/Utils';
 class DataSummary extends Component {
 
     constructor(props) {
@@ -28,8 +28,18 @@ class DataSummary extends Component {
     async componentDidMount() {  
        let spatialViewerSummary = await fetchSummaryData("spatialViewerSummary")
        let explorerSummary = await fetchGeneDatasetSummary("")
-       explorerSummary = explorerSummary.slice().sort(this.compare)
-       spatialViewerSummary = spatialViewerSummary.slice().sort(this.compare)
+       explorerSummary = explorerSummary
+                                .slice()
+                                .sort(this.compare)
+                                .filter(availableDataVisibilityFilter)
+
+       spatialViewerSummary = spatialViewerSummary
+                                .slice()
+                                .sort(this.compare)
+                                .filter(availableDataVisibilityFilter)
+
+
+
        this.setState({ spatialViewerSummary, explorerSummary})
     }
 
@@ -50,7 +60,7 @@ class DataSummary extends Component {
                 <Row><p>A subset of the raw data from the Repository has been analyzed and made available for interactive mining in the Explorer. The table below shows the total number of participants for which we have data in the tool.</p></Row>
 
                 <Row>
-                    <SamplesByDataTypeTable summary={this.state.explorerSummary}/>
+                    <SamplesByDataTypeTableContainer summary={this.state.explorerSummary}/>
                 </Row>
 
                 <Row><h5 className="sub-header lowered">What data can I find in the Repository?</h5></Row>
@@ -65,7 +75,7 @@ class DataSummary extends Component {
                 </Row>
                 <SamplesPlot />
                 <Row>
-                    <p className="samples-plot-files">Total Files: 3,778</p>
+                    <p className="samples-plot-files">Total Files: 3,853</p>
                 </Row>
 
                 <Row className='mt-4'>
@@ -74,7 +84,7 @@ class DataSummary extends Component {
                 <Row><p>The collection of spatial datasets that may be visualized in the Vitessce visual integration tool. The table below shows the total number of participants for which we have data in the tool.</p></Row>
 
                 <Row>
-                    <SamplesByDataTypeTable summary={this.state.spatialViewerSummary} />
+                    <SamplesByDataTypeTableContainer summary={this.state.spatialViewerSummary} />
                 </Row>
             </Container>
 
