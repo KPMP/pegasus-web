@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import AsyncSelect from "react-select/async";
 import { Alert } from 'reactstrap';
 import { fetchAutoComplete, fetchDataTypesForConcept } from "../../helpers/ApolloClient";
-import ReactGA from 'react-ga';
 import { default as ReactGA4 } from 'react-ga4';
 
 class ConceptSelect extends Component {
@@ -45,11 +44,6 @@ class ConceptSelect extends Component {
                 this.props.setSelectedConcept(selected.value);
                 this.setState({ value: { label: selected.value.value, value: selected.value }, hasResults: true, noResultsValue: '', alertVisible: false });
             }
-            ReactGA.event({
-                category: 'Search',
-                action: selected.value.type,
-                label: selected.value.value
-            });
             ReactGA4.event({
                 category: 'Search',
                 action: selected.value.type,

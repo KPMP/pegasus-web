@@ -78,7 +78,7 @@ class GeneSummary extends Component {
     }
 
     handleLinkClick = (dataType) => {
-        handleGoogleAnalyticsEvent('Navigation', 'visualiztion', dataType);
+        handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene.symbol}`);
         this.props.setDataType(dataType)
     };
 
