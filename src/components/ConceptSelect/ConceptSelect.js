@@ -45,9 +45,9 @@ class ConceptSelect extends Component {
                 this.setState({ value: { label: selected.value.value, value: selected.value }, hasResults: true, noResultsValue: '', alertVisible: false });
             }
             ReactGA4.event({
-                category: 'Search',
-                action: selected.value.type,
-                label: selected.value.value
+                category: 'Explorer',
+                action: 'Search',
+                label: `${selected.value.type} : ${selected.value.value}`
             });
         }
     };
