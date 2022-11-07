@@ -163,7 +163,7 @@ class ExpressionXCellType extends Component {
                         </Col>
                         <Col xs='1' className='text-right'>
                             <CSVLink
-                                onClick={() => handleGoogleAnalyticsEvent('Download', this.getExportFilename())}
+                                onClick={() => handleGoogleAnalyticsEvent('Explorer', 'Download', this.getExportFilename())}
                                 data={this.cleanResults(this.props.data)}
                                 filename={this.getExportFilename()}
                                 target="_blank"

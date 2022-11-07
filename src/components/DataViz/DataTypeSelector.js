@@ -148,14 +148,14 @@ class DataTypeSelector extends Component {
 
 
     handleTissueSelect = (selected, actionMeta) => {
-        handleGoogleAnalyticsEvent('Subset', 'Tissue', selected.value);
+        handleGoogleAnalyticsEvent('Explorer', 'Filter', `tissueType: ${selected.value}`);
         this.props.setTissueType(selected.value);
         this.setState({ tissueValue: selected });
     };
 
     handleInputChange(inputValue, action) {
         if (action.action !== "input-blur" && action.action !== "menu-close") {
-            handleGoogleAnalyticsEvent('Navigation', 'via data type', inputValue.value);
+            handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${inputValue.value} and gene: ${this.props.gene.symbol}`);
             this.props.setDataType(inputValue.value);
             this.setState({ dataTypeInputValue: inputValue });
         }
