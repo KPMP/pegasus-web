@@ -438,9 +438,17 @@ tr.MuiTableRow-root:nth-child(even) {
 }
 
 #homepage {
-  .container-expanded {
-    max-width: 98.75%;
-    margin-left: 15px;
+  @media (min-width: 990px) {
+    .container-expanded {
+      max-width: 98.75%;
+      margin-left: 15px;
+    }
+  }
+  @media (max-width: 635px) {
+    .row {
+        margin-right: 0px;
+        margin-left: 0px; 
+      }
   }
   .landing p {
     font-size: 17px;
