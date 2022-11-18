@@ -36,11 +36,10 @@ class SamplesByDataTypeTable extends Component {
         }
     }
     formatDataTypeCell(value) {
-        if (value === 'Single-cell RNA-seq (scRNA-seq)' || value === 'Single-nucleus RNA-seq (snRNA-seq)') {
-
+        if (value === 'Explorer' || value === 'Spatial Viewer') {
             return (
-                <span className="buttonhref" onClick={() => { this.handleDataTypeClick(value) }}>
-                    {value}<span style={{color: 'red'}}>*</span>
+                <span>
+                    <b>{value}</b>
                  </span>
             );
         } else {
