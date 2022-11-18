@@ -51,8 +51,7 @@ class AvailableDatasetsTable extends Component {
             "Spatial transcriptomics":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Spatial Transcriptomics"]}}]}`,
         };
         if (mapping[dataType]) {
-
-            this.props.history.push(mapping[dataType]);
+            return mapping[dataType]
         } else {
             this.props.history.push('/oops');
             throw new Error('Datatype not found', dataType)
@@ -77,9 +76,11 @@ class AvailableDatasetsTable extends Component {
     }
     formatDataTypeValueCell(value, dataType, controlAccess) {
         return (
-            <span className="buttonhref" onClick={() => { this.handleDataTypeValueClick(dataType, controlAccess) }}>
-                {value}
-             </span>
+            <a href={`${this.handleDataTypeValueClick(dataType, controlAccess)}`}>
+                <span className="buttonhref">
+                    {value}
+                </span>
+            </a>
         );
     }
 
