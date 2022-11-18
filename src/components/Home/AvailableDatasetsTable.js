@@ -100,7 +100,7 @@ class AvailableDatasetsTable extends Component {
             },
             {
                 Header: () => (
-                    <a className="buttonhref" href="/"><span>CONTROLLED</span></a>
+                    <a className="buttonhref" href={`/repository/?facetTab=files&filters={"op"%3A"and"%2C"content"%3A[{"op"%3A"in"%2C"content"%3A{"field"%3A"access"%2C"value"%3A["controlled"]}}]}`}><span>CONTROLLED</span></a>
                 ),
                 id: 'controlled',
                 accessor: 'controlled',
