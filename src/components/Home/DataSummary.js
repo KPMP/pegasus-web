@@ -107,6 +107,9 @@ class DataSummary extends Component {
                 <Row>
                     <AvailableDatasetsTable history={this.props.history} availableDatasets={this.state.availableDatasets} />
                 </Row>
+                <Row className="float-right">
+                    <p className="total-file-fix"><b>TOTAL FILES: 3,853</b></p>
+                </Row>
             </Container>
 
         );
