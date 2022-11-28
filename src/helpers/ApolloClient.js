@@ -395,16 +395,16 @@ export const fetchSummaryData = async (dataType) => {
 
 export const fetchAvailableData = async () => {
     return [
-        {dataType: "3D tissue imaging and cytometry", controlled: "", open: "99"},
-        {dataType: "Biomarkers", controlled: "", open: "99"},
-        {dataType: "Bulk RNA-seq", controlled: "99", open: "99"},
-        {dataType: "Clinical Dataset", controlled: "", open: "99"},
-        {dataType: "CODEX", controlled: "", open: "99"},
-        {dataType: "Experiment metadata", controlled: "", open: "99"},
-        {dataType: "Light microscopic whole slide image", controlled: "", open: "99"},
-        {dataType: "LMD RNA-seq", controlled: "99", open: "99"},
-        {dataType: "SCRNA-seq", controlled: "99", open: "99"},
-        {dataType: "SNRNA-seq", controlled: "99", open: "99"},
-        {dataType: "Spatial transcriptomics", controlled: "99", open: "99"},
+        {dataType: "3D tissue imaging and cytometry", controlled: "", open: "64"},
+        {dataType: "Biomarkers", controlled: "", open: "3"},
+        {dataType: "Bulk RNA-seq", controlled: "89", open: "64"},
+        {dataType: "Clinical Dataset", controlled: "", open: "1"},
+        {dataType: "CODEX", controlled: "", open: "43"},
+        {dataType: "Experiment metadata", controlled: "", open: "281"},
+        {dataType: "Light microscopic whole slide image", controlled: "", open: "1267"},
+        {dataType: "LMD RNA-seq", controlled: "280", open: "39"},
+        {dataType: "SCRNA-seq", controlled: "526", open: "180"},
+        {dataType: "SNRNA-seq", controlled: "866", open: "239"},
+        {dataType: "Spatial transcriptomics", controlled: "94", open: "98"},
     ]
 }
