@@ -147,6 +147,9 @@ class AvailableDatasetsTable extends Component {
                         />
                     </Col>
                 </Row>
+                <Row className="float-right">
+                    <h2 className="sub-header mt-4 total-file-fix">TOTAL FILES: 3,853</h2>
+                </Row>
             </article>
         );
     }

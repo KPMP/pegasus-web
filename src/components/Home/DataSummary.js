@@ -53,9 +53,9 @@ class DataSummary extends Component {
     render() {
 
         return (
-            <Container className="landing mt-3 rounded border p-3 shadow-sm">
+            <Container className="landing mt-3 mb-4 rounded border p-3 shadow-sm">
                 <Row><h2 className="data-summary">Atlas Data Summary</h2></Row>
-                <Row><p>IMPORTANT: Please follow this <a href="https://www.kpmp.org/help-docs/study-overview">citation guideline</a> when presenting or publishing data from the Kidney Tissue Atlas.</p></Row>
+                <Row><p>IMPORTANT: Please follow this <a href="https://www.kpmp.org/help-docs/study-overview?tabname=citingkpmpdata">citation guideline</a> when presenting or publishing data from the Kidney Tissue Atlas.</p></Row>
 
                 <h1 className="centered kpmp-color-dark"><span><FontAwesomeIcon className='kpmp-color-dark pr-2' icon={faPerson} /></span>PARTICIPANTS</h1>
                 <Row>
@@ -106,9 +106,6 @@ class DataSummary extends Component {
             
                 <Row>
                     <AvailableDatasetsTable history={this.props.history} availableDatasets={this.state.availableDatasets} />
-                </Row>
-                <Row className="float-right">
-                    <p className="total-file-fix"><b>TOTAL FILES: 3,853</b></p>
                 </Row>
             </Container>
 

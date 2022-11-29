@@ -13,7 +13,7 @@ class TopContent extends Component {
   }
   render() {
     return (
-        <Container className="landing container container-expanded mt-3 rounded border p-3 shadow-sm">
+        <Container className="landing container container-expanded mt-2 rounded border p-3 shadow-sm">
           <Row><h3 className="subtitle">Kidney Precision Medicine Project</h3></Row>
           <Row><h1 className="title">Kidney Tissue Atlas</h1></Row>
           <Row><p>The Kidney Tissue Atlas is a set of interactive tools built to promote retrieval, exploration, discovery, and analysis of the KPMP data by the greater research community.</p></Row>
