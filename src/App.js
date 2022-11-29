@@ -71,7 +71,7 @@ class App extends Component {
             <ErrorBoundaryContainer>
               <NavBar app='atlas' />
               <Switch>
-                <Route exact path='/' component={Home} store={store} />
+                <Route exact path='/' history={this.props.history}  component={Home} store={store} />
                 <Route exact path='/explorer' component={Explorer} store={store} />
                 <Route exact path='/explorer/genesummary' component={GeneSummaryContainer} store={store} />
                 <Route exact path='/explorer/celltypesummary' component={CellTypeSummaryContainer} store={store} />
