@@ -84,6 +84,45 @@ class AvailableDatasetsTable extends Component {
         );
     }
 
+    getWidthBasedOnScreenSize(columnId) {
+        
+            if (window.innerWidth > 500) {
+                if (columnId === 'dataType') {
+                    return 250;
+                } else if (columnId === 'controlled') {
+                    return 125
+                } else if (columnId === 'open') {
+                    return 125
+                }
+            } else if (window.innerWidth < 765) {
+                if (columnId === 'dataType') {
+                    return 255;
+                } else if (columnId === 'controlled') {
+                    return 100
+                } else if (columnId === 'open') {
+                    return 100
+                }
+            } else if (window.innerWidth < 900) {
+                if (columnId === 'dataType') {
+                    return 535;
+                } else if (columnId === 'controlled') {
+                    return 125
+                } else if (columnId === 'open') {
+                    return 125
+                }
+            } else if (window.innerWidth < 1200) {
+                if (columnId === 'dataType') {
+                    return 535;
+                } else if (columnId === 'controlled') {
+                    return 150
+                } else if (columnId === 'open') {
+                    return 150
+                }
+            } else {
+                return 125;
+            }
+    }
+
     getColumns() {
 
         return [
@@ -93,7 +132,7 @@ class AvailableDatasetsTable extends Component {
                 accessor: 'dataType',
                 headerClassName: 'omics data-type-table-header',
                 className: 'data-type-table-content',
-                minWidth:535,
+                minWidth: this.getWidthBasedOnScreenSize('dataType'),
                 Cell: row => (
                     row.value
                 )
@@ -106,8 +145,8 @@ class AvailableDatasetsTable extends Component {
                 accessor: 'controlled',
                 headerClassName: 'data-type-table-header',
                 className: 'data-type-table-content',
-                minHeaderWidth: 150,
-                minWidth: 150,
+                minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
+                minWidth: this.getWidthBasedOnScreenSize('controlled'),
                 Cell: row => (
                     this.formatDataTypeValueCell(row.value, row.original.dataType, 'controlled')
                 )
@@ -120,8 +159,8 @@ class AvailableDatasetsTable extends Component {
                 accessor: 'open',
                 headerClassName: 'data-type-table-header',
                 className: 'data-type-table-content',
-                minHeaderWidth: 150,
-                minWidth: 150,
+                minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
+                minWidth: this.getWidthBasedOnScreenSize('open'),
                 Cell: row => (
                     this.formatDataTypeValueCell(row.value, row.original.dataType, 'open')
                 )
