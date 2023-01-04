@@ -407,8 +407,8 @@ export const fetchTissueTypeSummaryCounts = async (tissueType) => {
         fetchPolicy: 'cache-first'
     });
 
-    if (response.data && response.data.getTissueData) {
-        return response.data.getTissueData;
+    if (response.data && response.data.getTissueTypeSummaryData) {
+        return response.data.getTissueTypeSummaryData;
     }else {
         store.dispatch(sendMessageToBackend("Could not retrieve tissue summary: " + response.error));
     }
