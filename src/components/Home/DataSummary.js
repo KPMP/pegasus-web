@@ -3,7 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 import SamplesByDataTypeTableContainer from './SamplesByDataTypeTableContainer';
 import AvailableDatasetsTable from './AvailableDatasetsTable';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
-import { fetchSummaryData, fetchGeneDatasetSummary, fetchAvailableData} from '../../helpers/ApolloClient';
+import { fetchSummaryData, fetchGeneDatasetSummary, fetchAvailableData, fetchTissueTypeSummaryCounts} from '../../helpers/ApolloClient';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
 
 import { faPerson } from "@fortawesome/free-solid-svg-icons";
@@ -32,6 +32,7 @@ class DataSummary extends Component {
     async componentDidMount() {  
        let spatialViewerSummary = await fetchSummaryData("spatialViewerSummary")
        let explorerSummary = await fetchGeneDatasetSummary("")
+       let tissueTypeSummary = await fetchTissueTypeSummaryCounts("AKI")
        explorerSummary = explorerSummary
                                 .slice()
                                 .sort(this.compare)
@@ -62,7 +63,7 @@ class DataSummary extends Component {
                     <Col md='4' lg='4'>
                         <div className="centered background-light-blue kpmp-color-dark">
                             <div>
-                                <span className="font-size-three-rem">117</span>
+                                <span className="font-size-three-rem">{this.fetchTissueTypeSummaryCounts("CKD")}</span>
                             </div>
                             <div>
                                 <span className="font-size-one-one-half-rem">CKD</span>
@@ -72,7 +73,7 @@ class DataSummary extends Component {
                     <Col md='4' lg='4'>
                         <div className="centered background-light-blue kpmp-color-dark">
                             <div>
-                                <span className="font-size-three-rem">43</span>
+                                <span className="font-size-three-rem">{this.fetchTissueTypeSummaryCounts("AKI")}</span>
                             </div>
                             <div>
                                 <span className="font-size-one-one-half-rem">AKI</span>
@@ -82,7 +83,7 @@ class DataSummary extends Component {
                     <Col md='4' lg='4'>
                         <div className="centered background-light-blue kpmp-color-dark">
                             <div>
-                                <span className="font-size-three-rem">33</span>
+                                <span className="font-size-three-rem">{this.fetchTissueTypeSummaryCounts("HEALTHY_REFERENCE")}</span>
                             </div>
                             <div>
                                 <span className="font-size-one-one-half-rem">REFERENCE</span>

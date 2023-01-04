@@ -393,6 +393,27 @@ export const fetchSummaryData = async (dataType) => {
     }
 }
 
+export const fetchTissueTypeSummaryCounts = async (tissueType) => {
+    let query = gql`
+        query {
+            getTissueTypeSummaryData {
+                akiCount
+                ckdCount
+                hrtCount
+            }
+        }`;
+    const response = await apolloClient.query({
+        query: query,
+        fetchPolicy: 'cache-first'
+    });
+
+    if (response.data && response.data.getTissueData) {
+        return response.data.getTissueData;
+    }else {
+        store.dispatch(sendMessageToBackend("Could not retrieve tissue summary: " + response.error));
+    }
+}
+
 export const fetchAvailableData = async () => {
     return [
         {dataType: "3D tissue imaging and cytometry", controlled: "", open: "64"},
