@@ -10,7 +10,7 @@ type Query {
   getRTGeneExpressionByTissue(comparisonType: String, geneSymbol: String): RTGeneExpressionByTissue
   getRTGeneExpressionByStructure(structure: String): [RTGeneExpression]
   getDataSummary(dataType: String): [SummaryData]
-  getTissueTypeSummaryData(tissueType: String): [getTissueTypeSummaryData]
+  getTissueTypeSummaryData: [getTissueTypeSummaryData]
 }
 
 type getTissueTypeSummaryData{
