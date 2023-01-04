@@ -10,6 +10,13 @@ type Query {
   getRTGeneExpressionByTissue(comparisonType: String, geneSymbol: String): RTGeneExpressionByTissue
   getRTGeneExpressionByStructure(structure: String): [RTGeneExpression]
   getDataSummary(dataType: String): [SummaryData]
+  getTissueTypeSummaryData(tissueType: String): [TissueSummary]
+}
+
+type TissueSummary{
+  akiCount: Long,
+  ckdCount: Long,
+  hrtCount: Long
 }
 
 type GeneDatasetInformation {
