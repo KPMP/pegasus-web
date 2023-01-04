@@ -408,7 +408,7 @@ export const fetchTissueTypeSummaryCounts = async (tissueType) => {
     });
 
     if (response.data && response.data.getTissueTypeSummaryData) {
-        return response.data.getTissueTypeSummaryData;
+        console.log(response.data.getTissueTypeSummaryData);
     }else {
         store.dispatch(sendMessageToBackend("Could not retrieve tissue summary: " + response.error));
     }
