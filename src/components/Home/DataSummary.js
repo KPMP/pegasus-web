@@ -32,7 +32,6 @@ class DataSummary extends Component {
     async componentDidMount() {  
        let spatialViewerSummary = await fetchSummaryData("spatialViewerSummary")
        let explorerSummary = await fetchGeneDatasetSummary("")
-       let tissueTypeSummary = await fetchTissueTypeSummaryCounts("AKI")
        explorerSummary = explorerSummary
                                 .slice()
                                 .sort(this.compare)
@@ -63,7 +62,7 @@ class DataSummary extends Component {
                     <Col md='4' lg='4'>
                         <div className="centered background-light-blue kpmp-color-dark">
                             <div>
-                                <span className="font-size-three-rem">{this.fetchTissueTypeSummaryCounts("CKD")}</span>
+                                <span className="font-size-three-rem">{fetchTissueTypeSummaryCounts("CKD")}</span>
                             </div>
                             <div>
                                 <span className="font-size-one-one-half-rem">CKD</span>
@@ -73,7 +72,7 @@ class DataSummary extends Component {
                     <Col md='4' lg='4'>
                         <div className="centered background-light-blue kpmp-color-dark">
                             <div>
-                                <span className="font-size-three-rem">{this.fetchTissueTypeSummaryCounts("AKI")}</span>
+                                <span className="font-size-three-rem">{fetchTissueTypeSummaryCounts("AKI")}</span>
                             </div>
                             <div>
                                 <span className="font-size-one-one-half-rem">AKI</span>
@@ -83,7 +82,7 @@ class DataSummary extends Component {
                     <Col md='4' lg='4'>
                         <div className="centered background-light-blue kpmp-color-dark">
                             <div>
-                                <span className="font-size-three-rem">{this.fetchTissueTypeSummaryCounts("HEALTHY_REFERENCE")}</span>
+                                <span className="font-size-three-rem">{fetchTissueTypeSummaryCounts("HEALTHY_REFERENCE")}</span>
                             </div>
                             <div>
                                 <span className="font-size-one-one-half-rem">REFERENCE</span>
