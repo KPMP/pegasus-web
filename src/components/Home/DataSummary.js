@@ -5,7 +5,6 @@ import AvailableDatasetsTable from './AvailableDatasetsTable';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { fetchSummaryData, fetchGeneDatasetSummary, fetchAvailableData, fetchTissueTypeSummaryCounts} from '../../helpers/ApolloClient';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
-
 import { faPerson } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
@@ -47,7 +46,8 @@ class DataSummary extends Component {
         const summaryData = explorerSummary.concat(spatialViewerSummary)
         
        const availableDatasets = await fetchAvailableData()
-       this.setState({ summaryData, availableDatasets})
+       const tissueCounts = await fetchTissueTypeSummaryCounts()
+       this.setState({ summaryData, availableDatasets, tissueCounts})
     }
 
     render() {
