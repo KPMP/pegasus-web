@@ -46,8 +46,7 @@ class DataSummary extends Component {
         const summaryData = explorerSummary.concat(spatialViewerSummary)
         
        const availableDatasets = await fetchAvailableData()
-       const tissueCounts = await fetchTissueTypeSummaryCounts()
-       this.setState({ summaryData, availableDatasets, tissueCounts})
+       this.setState({ summaryData, availableDatasets})
     }
 
     render() {
@@ -62,7 +61,7 @@ class DataSummary extends Component {
                     <Col md='4' lg='4'>
                         <div className="centered background-light-blue kpmp-color-dark">
                             <div>
-                                <span className="font-size-three-rem">117</span>
+                                <span className="font-size-three-rem">{fetchTissueTypeSummaryCounts(1)}</span>
                             </div>
                             <div>
                                 <span className="font-size-one-one-half-rem">CKD</span>
@@ -72,7 +71,7 @@ class DataSummary extends Component {
                     <Col md='4' lg='4'>
                         <div className="centered background-light-blue kpmp-color-dark">
                             <div>
-                                <span className="font-size-three-rem">43</span>
+                                <span className="font-size-three-rem">{fetchTissueTypeSummaryCounts(0)}</span>
                             </div>
                             <div>
                                 <span className="font-size-one-one-half-rem">AKI</span>
@@ -82,7 +81,7 @@ class DataSummary extends Component {
                     <Col md='4' lg='4'>
                         <div className="centered background-light-blue kpmp-color-dark">
                             <div>
-                                <span className="font-size-three-rem">33</span>
+                                <span className="font-size-three-rem">{fetchTissueTypeSummaryCounts(2)}</span>
                             </div>
                             <div>
                                 <span className="font-size-one-one-half-rem">REFERENCE</span>
