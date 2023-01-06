@@ -5,12 +5,23 @@ class ParticipantSummary extends Component {
   constructor(props) {
       super(props);
       this.state = { akiCount: [], ckdCount: [], hrtCount:[]};
+      if(!this.props.tissueType){
+        this.props.setTissueType('all')
+      }
     }
   componentDidMount() {
     if(this.props.tissueType){
       this.getTissueCounts();
     }
-  }
+  };
+
+  // componentDidUpdate(prevProps){
+  //   if(this.props.tissueType !== prevProps.tissueType){
+  //     this.setState({akiCount: this.state.akiCount[this.props.tissueType]})
+  //     this.setState({akiCount: this.state.ckdCount[this.props.tissueType]})
+  //     this.setState({akiCount: this.state.hrtCount[this.props.tissueType]})
+  //   }
+  // };
 
   getTissueCounts = () => {
     fetchTissueTypeSummaryCounts(this.props.tissueType).then((result) => {
@@ -25,7 +36,7 @@ class ParticipantSummary extends Component {
       <Col md='4' lg='4'>
           <div className="centered background-light-blue kpmp-color-dark">
               <div>
-                  <span className="font-size-three-rem">{this.getTissueCounts.ckdCount}</span>
+                  <span className="font-size-three-rem">{this.getTissueCounts(this.props.ckdCount)}</span>
               </div>
               <div>
                   <span className="font-size-one-one-half-rem">CKD</span>
