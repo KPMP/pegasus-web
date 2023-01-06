@@ -393,7 +393,7 @@ export const fetchSummaryData = async (dataType) => {
     }
 }
 
-export const fetchTissueTypeSummaryCounts = async (position) => {
+export const fetchTissueTypeSummaryCounts = async (tissueType) => {
     let query = gql`
         query {
             getTissueTypeSummaryData {
@@ -408,7 +408,7 @@ export const fetchTissueTypeSummaryCounts = async (position) => {
     });
     let tissueCounts = Object.values(response)
     if (response.data && response.data.getTissueTypeSummaryData) {
-        return tissueCounts[position]
+        console.log(tissueCounts)
     }else {
         store.dispatch(sendMessageToBackend("Could not retrieve tissue summary: " + response.error));
     }
