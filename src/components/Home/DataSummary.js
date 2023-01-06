@@ -7,6 +7,7 @@ import { fetchSummaryData, fetchGeneDatasetSummary, fetchAvailableData, fetchTis
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
 import { faPerson } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ParticipantSummary from './ParticipantSummary';
 
 class DataSummary extends Component {
 
@@ -58,36 +59,7 @@ class DataSummary extends Component {
 
                 <h1 className="centered kpmp-color-dark"><span><FontAwesomeIcon className='kpmp-color-dark pr-2' icon={faPerson} /></span>PARTICIPANTS</h1>
                 <Row>
-                    <Col md='4' lg='4'>
-                        <div className="centered background-light-blue kpmp-color-dark">
-                            <div>
-                                <span className="font-size-three-rem">117</span>
-                            </div>
-                            <div>
-                                <span className="font-size-one-one-half-rem">CKD</span>
-                            </div>
-                        </div>
-                    </Col>
-                    <Col md='4' lg='4'>
-                        <div className="centered background-light-blue kpmp-color-dark">
-                            <div>
-                                <span className="font-size-three-rem">43</span>
-                            </div>
-                            <div>
-                                <span className="font-size-one-one-half-rem">AKI</span>
-                            </div>
-                        </div>
-                    </Col>
-                    <Col md='4' lg='4'>
-                        <div className="centered background-light-blue kpmp-color-dark">
-                            <div>
-                                <span className="font-size-three-rem">33</span>
-                            </div>
-                            <div>
-                                <span className="font-size-one-one-half-rem">REFERENCE</span>
-                            </div>
-                        </div>
-                    </Col>
+                    <ParticipantSummary/>
                 </Row>
                 
                 <Row><h5 className="sub-header lowered">Participants by -omics type</h5></Row>
