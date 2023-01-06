@@ -5,9 +5,6 @@ class ParticipantSummary extends Component {
   constructor(props) {
       super(props);
       this.state = { akiCount: [], ckdCount: [], hrtCount:[]};
-      if(!this.props.tissueType){
-        this.props.setTissueType('all')
-      }
     }
   componentDidMount() {
     if(this.props.tissueType){
@@ -36,7 +33,7 @@ class ParticipantSummary extends Component {
       <Col md='4' lg='4'>
           <div className="centered background-light-blue kpmp-color-dark">
               <div>
-                  <span className="font-size-three-rem">{this.getTissueCounts(this.props.ckdCount)}</span>
+                  <span className="font-size-three-rem">{this.state.ckdCount}</span>
               </div>
               <div>
                   <span className="font-size-one-one-half-rem">CKD</span>
