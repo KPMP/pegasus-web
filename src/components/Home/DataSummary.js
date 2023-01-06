@@ -61,7 +61,7 @@ class DataSummary extends Component {
                     <Col md='4' lg='4'>
                         <div className="centered background-light-blue kpmp-color-dark">
                             <div>
-                                <span className="font-size-three-rem">{fetchTissueTypeSummaryCounts(1)}</span>
+                                <span className="font-size-three-rem">117</span>
                             </div>
                             <div>
                                 <span className="font-size-one-one-half-rem">CKD</span>
@@ -71,7 +71,7 @@ class DataSummary extends Component {
                     <Col md='4' lg='4'>
                         <div className="centered background-light-blue kpmp-color-dark">
                             <div>
-                                <span className="font-size-three-rem">{fetchTissueTypeSummaryCounts(0)}</span>
+                                <span className="font-size-three-rem">43</span>
                             </div>
                             <div>
                                 <span className="font-size-one-one-half-rem">AKI</span>
@@ -81,7 +81,7 @@ class DataSummary extends Component {
                     <Col md='4' lg='4'>
                         <div className="centered background-light-blue kpmp-color-dark">
                             <div>
-                                <span className="font-size-three-rem">{fetchTissueTypeSummaryCounts(2)}</span>
+                                <span className="font-size-three-rem">33</span>
                             </div>
                             <div>
                                 <span className="font-size-one-one-half-rem">REFERENCE</span>
