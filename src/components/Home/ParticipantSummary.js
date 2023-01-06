@@ -7,7 +7,7 @@ class ParticipantSummary extends Component {
       this.state = { akiCount: [], ckdCount: [], hrtCount:[]};
     }
   componentDidMount() {
-    if(this.props.tissue.type){
+    if(this.props.tissueType){
       this.getTissueCounts();
     }
   }
