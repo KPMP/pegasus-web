@@ -8,7 +8,9 @@ class ParticipantSummary extends Component {
     }
   componentDidMount() {
     this.getTissueCounts();
-    console.log(this.getTissueCounts());
+    console.log(this.state.ckdCount);
+    console.log(this.state.akiCount);
+    console.log(this.state.hrtCount);
   };
 
   // componentDidUpdate(prevProps){
