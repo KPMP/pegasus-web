@@ -393,7 +393,7 @@ export const fetchSummaryData = async (dataType) => {
     }
 }
 
-export const fetchTissueTypeSummaryCounts = async (tissueType) => {
+export const fetchTissueTypeSummaryCounts = async () => {
     let query = gql`
         query {
             getTissueTypeSummaryData {

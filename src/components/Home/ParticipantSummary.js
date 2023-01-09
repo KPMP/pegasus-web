@@ -21,7 +21,7 @@ class ParticipantSummary extends Component {
   // };
 
   getTissueCounts = () => {
-    fetchTissueTypeSummaryCounts(this.props.tissueType).then((result) => {
+    fetchTissueTypeSummaryCounts().then((result) => {
       this.setState({akiCount: result.akiCount})
       this.setState({ckdCount: result.ckdCount})
       this.setState({hrtCount: result.hrtCount})
@@ -43,7 +43,7 @@ class ParticipantSummary extends Component {
       <Col md='4' lg='4'>
           <div className="centered background-light-blue kpmp-color-dark">
               <div>
-                  <span className="font-size-three-rem">43</span>
+                  <span className="font-size-three-rem">{this.state.akiCount}</span>
               </div>
               <div>
                   <span className="font-size-one-one-half-rem">AKI</span>
@@ -53,7 +53,7 @@ class ParticipantSummary extends Component {
       <Col md='4' lg='4'>
           <div className="centered background-light-blue kpmp-color-dark">
               <div>
-                  <span className="font-size-three-rem">33</span>
+                  <span className="font-size-three-rem">{this.state.hrtCount}</span>
               </div>
               <div>
                   <span className="font-size-one-one-half-rem">REFERENCE</span>
