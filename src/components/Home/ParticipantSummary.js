@@ -8,6 +8,7 @@ class ParticipantSummary extends Component {
     }
   componentDidMount() {
     this.getTissueCounts();
+    console.log(this.getTissueCounts());
   };
 
   // componentDidUpdate(prevProps){
@@ -19,7 +20,7 @@ class ParticipantSummary extends Component {
   // };
 
   getTissueCounts = () => {
-    fetchTissueTypeSummaryCounts(this.props.tissueType).then((result) => {
+    fetchTissueTypeSummaryCounts().then((result) => {
       this.setState({akiCount: result.akiCount})
       this.setState({ckdCount: result.ckdCount})
       this.setState({hrtCount: result.hrtCount})
