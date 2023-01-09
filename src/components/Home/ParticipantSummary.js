@@ -6,21 +6,14 @@ class ParticipantSummary extends Component {
       super(props);
       this.state = { akiCount: [], ckdCount: [], hrtCount:[]};
     }
-  componentDidMount() {
-    this.getTissueCounts();
-    console.log(this.state.ckdCount);
-    console.log(this.state.akiCount);
-    console.log(this.state.hrtCount);
-    console.log(fetchTissueTypeSummaryCounts());
+    async componentDidMount() {
+      let tissue = await fetchTissueTypeSummaryCounts()
+      this.getTissueCounts();
+      console.log(this.state.ckdCount);
+      console.log(this.state.akiCount);
+      console.log(this.state.hrtCount);
+      console.log(tissue);
   };
-
-  // componentDidUpdate(prevProps){
-  //   if(this.props.tissueType !== prevProps.tissueType){
-  //     this.setState({akiCount: this.state.akiCount[this.props.tissueType]})
-  //     this.setState({akiCount: this.state.ckdCount[this.props.tissueType]})
-  //     this.setState({akiCount: this.state.hrtCount[this.props.tissueType]})
-  //   }
-  // };
 
   getTissueCounts = () => {
     fetchTissueTypeSummaryCounts().then((result) => {
