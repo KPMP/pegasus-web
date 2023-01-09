@@ -11,6 +11,7 @@ class ParticipantSummary extends Component {
     console.log(this.state.ckdCount);
     console.log(this.state.akiCount);
     console.log(this.state.hrtCount);
+    console.log(fetchTissueTypeSummaryCounts());
   };
 
   // componentDidUpdate(prevProps){
