@@ -7,6 +7,7 @@ class ParticipantSummary extends Component {
       this.state = { akiCount: [], ckdCount: [], hrtCount:[]};
     }
     async componentDidMount() {
+      await this.getTissueCounts();
       console.log(await this.getTissueCounts());
   };
 
