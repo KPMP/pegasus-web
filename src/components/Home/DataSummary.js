@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 import SamplesByDataTypeTableContainer from './SamplesByDataTypeTableContainer';
 import AvailableDatasetsTable from './AvailableDatasetsTable';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
-import { fetchSummaryData, fetchGeneDatasetSummary, fetchAvailableData, fetchTissueTypeSummaryCounts} from '../../helpers/ApolloClient';
+import { fetchSummaryData, fetchGeneDatasetSummary, fetchAvailableData} from '../../helpers/ApolloClient';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
 import { faPerson } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
