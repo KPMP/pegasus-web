@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
-import { Container, Row, Col } from 'reactstrap';
+import { Container, Row } from 'reactstrap';
 import SamplesByDataTypeTableContainer from './SamplesByDataTypeTableContainer';
 import AvailableDatasetsTable from './AvailableDatasetsTable';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { fetchSummaryData, fetchGeneDatasetSummary, fetchAvailableData} from '../../helpers/ApolloClient';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
-
 import { faPerson } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import ParticipantSummary from './ParticipantSummary';
 
 class DataSummary extends Component {
 
@@ -58,38 +58,7 @@ class DataSummary extends Component {
                 <Row><p>IMPORTANT: Please follow this <a href="https://www.kpmp.org/help-docs/study-overview?tabname=citingkpmpdata">citation guideline</a> when presenting or publishing data from the Kidney Tissue Atlas.</p></Row>
 
                 <h1 className="centered kpmp-color-dark"><span><FontAwesomeIcon className='kpmp-color-dark pr-2' icon={faPerson} /></span>PARTICIPANTS</h1>
-                <Row>
-                    <Col md='4' lg='4'>
-                        <div className="centered background-light-blue kpmp-color-dark">
-                            <div>
-                                <span className="font-size-three-rem">117</span>
-                            </div>
-                            <div>
-                                <span className="font-size-one-one-half-rem">CKD</span>
-                            </div>
-                        </div>
-                    </Col>
-                    <Col md='4' lg='4'>
-                        <div className="centered background-light-blue kpmp-color-dark">
-                            <div>
-                                <span className="font-size-three-rem">43</span>
-                            </div>
-                            <div>
-                                <span className="font-size-one-one-half-rem">AKI</span>
-                            </div>
-                        </div>
-                    </Col>
-                    <Col md='4' lg='4'>
-                        <div className="centered background-light-blue kpmp-color-dark">
-                            <div>
-                                <span className="font-size-three-rem">33</span>
-                            </div>
-                            <div>
-                                <span className="font-size-one-one-half-rem">REFERENCE</span>
-                            </div>
-                        </div>
-                    </Col>
-                </Row>
+                <ParticipantSummary/>
                 
                 <Row><h5 className="sub-header lowered">Participants by -omics type</h5></Row>
                 <Row><p>A subset of the raw data from the Data Repository has been analyzed and made available for interactive mining in Explorer and Spatial Viewer.</p></Row>
