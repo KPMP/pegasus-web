@@ -22,6 +22,7 @@ class DataSummary extends Component {
 
                 <Col xs='12'>
                     <a rel="noreferrer" target='_blank' href='https://www.kpmp.org/help-docs/data' onClick={() => {this.handleGoogleAnalyticsEvent('Navigation', 'Help', 'learn about data types')}}>Learn more about our data types and methodologies</a>
+                    <p>IMPORTANT: Please follow this <a href="https://www.kpmp.org/help-docs/study-overview?tabname=citingkpmpdata" target="_blank">citation guideline</a> when presenting or publishing KPMP data.</p>
                 </Col>
 
                 <Row><h2 className="data-summary">Atlas Data Summary</h2></Row>
