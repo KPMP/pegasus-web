@@ -19,10 +19,10 @@ class DataSummary extends Component {
                 <Row><h3 className="subtitle">Kidney Precision Medicine Project</h3></Row>
                 <Row><h1 className="title">Kidney Tissue Atlas</h1></Row>
                 <Row><p>The Kidney Tissue Atlas is a set of interactive tools built to promote retrieval, exploration, discovery, and analysis of the KPMP data by the greater research community.</p></Row>
+                <Row><p>IMPORTANT: Please follow this <a href="https://www.kpmp.org/help-docs/study-overview?tabname=citingkpmpdata" target="_blank">citation guideline</a> when presenting or publishing KPMP data.</p></Row>
 
                 <Col xs='12'>
                     <a rel="noreferrer" target='_blank' href='https://www.kpmp.org/help-docs/data' onClick={() => {this.handleGoogleAnalyticsEvent('Navigation', 'Help', 'learn about data types')}}>Learn more about our data types and methodologies</a>
-                    <p>IMPORTANT: Please follow this <a href="https://www.kpmp.org/help-docs/study-overview?tabname=citingkpmpdata" target="_blank">citation guideline</a> when presenting or publishing KPMP data.</p>
                 </Col>
 
                 <Row><h2 className="data-summary">Atlas Data Summary</h2></Row>
