@@ -22,7 +22,7 @@ class TopContent extends Component {
               this.handleGoogleAnalyticsEvent('Atlas Home', 'Navigation', 'Help: learn about data types')}}>
                 Learn more about our data types and methodologies
             </a></p>
-              <p><strong>IMPORTANT: Please follow this <a href="https://www.kpmp.org/help-docs/study-overview?tabname=citingkpmpdata" target="_blank">citation guideline</a> when presenting or publishing KPMP data.</strong></p>
+              <p><strong>IMPORTANT: Please follow this <a href="https://www.kpmp.org/help-docs/study-overview?tabname=citingkpmpdata" target="_blank" rel="noreferrer">citation guideline</a> when presenting or publishing KPMP data.</strong></p>
           </Col>
         </Container>
     );
