@@ -11,6 +11,16 @@ type Query {
   getRTGeneExpressionByStructure(structure: String): [RTGeneExpression]
   getDataSummary(dataType: String): [SummaryData]
   getTissueTypeSummaryData: [getTissueTypeSummaryData]
+  getAtlasFileCounts: [getAtlasFileCounts]
+}
+
+type getAtlasFileCounts{
+  totalFiles: Long,
+  openCount: Long,
+  controlledCount: Long,
+  omicsType: String,
+  linkType: String,
+  linkValue: String
 }
 
 type getTissueTypeSummaryData{

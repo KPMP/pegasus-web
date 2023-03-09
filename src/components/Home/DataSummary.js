@@ -16,7 +16,10 @@ class DataSummary extends Component {
         this.handleGoogleAnalyticsEvent = handleGoogleAnalyticsEvent.bind(this);
         this.state = {
             spatialViewerSummary: [],
-            explorerSummary: []
+            explorerSummary: [],
+            // totalFiles: [],
+            // openCount: [],
+            // controlledCount: []
         }
     }
     compare( a, b ) {
