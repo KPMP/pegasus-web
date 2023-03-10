@@ -16,9 +16,17 @@ type Query {
 
 type getAtlasSummaryRows{
   totalFiles: Long,
+  summaryRows: [SummaryRows]
+}
+
+type SummaryRows{
   openCount: Long,
   controlledCount: Long,
   omicsType: String,
+  linkInformation: [LinkInformation]
+}
+
+type LinkInformation{
   linkType: String,
   linkValue: String
 }
