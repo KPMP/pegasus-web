@@ -6,6 +6,11 @@ import { withRouter } from 'react-router';
 const mapStateToProps = (state, props) =>
 ({
     selectedDataType: state.selectedDataType,
+    openCount: state.openCount,
+    controlledCount: state.controlledCount,
+    omicsType: state.omicsType,
+    linkType: state.linkType,
+    linkValue: state.linkValue
 });
 
 const mapDispatchToProps = (dispatch, props) =>
