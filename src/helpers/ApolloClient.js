@@ -413,7 +413,7 @@ export const fetchTissueTypeSummaryCounts = async () => {
     }
 }
 
-export const fetchAvailableData = async () => {
+export const fetchAtlasSummaryRows = async () => {
     let query = gql`
         query {
             getAtlasSummaryRows{
@@ -425,9 +425,9 @@ export const fetchAvailableData = async () => {
                     linkInformation {
                         linkType
                         linkValue
-      }
-    }
-  }
+                    }
+                }
+            }
         }`;
     const response = await apolloClient.query({
         query: query,

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
+import { fetchAtlasSummaryRows } from '../../helpers/ApolloClient';
 
 class AvailableDatasetsTable extends Component {
 
@@ -12,8 +13,31 @@ class AvailableDatasetsTable extends Component {
 
         this.state = {
             columns: this.getColumns(),
+            totalFiles: [],
+            openCount: [],
+            controlledCount: [],
+            omicsType: [],
+            linkType: [],
+            linkValue: []
         };
+        
     }
+
+    async componentDidMount(){
+        await this.getAtlasSummaryRows();
+    }
+
+    getAtlasSummaryRows = () => {
+        fetchAtlasSummaryRows().then((result) => {
+            this.setState({totalFiles: result.totalFiles})
+            this.setState({openCount: result.openCount})
+            this.setState({controlledCount: result.controlledCount})
+            this.setState({omicsType: result.omicsType})
+            this.setState({linkType: result.linkType})
+            this.setState({linkValue: result.linkValue})
+        })
+    }
+
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
         let dataLinkageMapping = {
@@ -133,9 +157,7 @@ class AvailableDatasetsTable extends Component {
                 headerClassName: 'omics data-type-table-header',
                 className: 'data-type-table-content',
                 minWidth: this.getWidthBasedOnScreenSize('dataType'),
-                Cell: row => (
-                    row.value
-                )
+                Cell: this.state.omicsType
             },
             {
                 Header: () => (
@@ -147,9 +169,7 @@ class AvailableDatasetsTable extends Component {
                 className: 'data-type-table-content',
                 minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 minWidth: this.getWidthBasedOnScreenSize('controlled'),
-                Cell: row => (
-                    this.formatDataTypeValueCell(row.value, row.original.dataType, 'controlled')
-                )
+                Cell: this.state.controlledCount
             },
             {
                 Header: () => (
@@ -161,9 +181,7 @@ class AvailableDatasetsTable extends Component {
                 className: 'data-type-table-content',
                 minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
                 minWidth: this.getWidthBasedOnScreenSize('open'),
-                Cell: row => (
-                    this.formatDataTypeValueCell(row.value, row.original.dataType, 'open')
-                )
+                Cell: this.state.openCount
             }
         ]
     };
@@ -187,7 +205,7 @@ class AvailableDatasetsTable extends Component {
                     </Col>
                 </Row>
                 <Row className="float-right">
-                    <h2 className="sub-header mt-4 total-file-fix">TOTAL FILES: 3,853</h2>
+                    <h2 className="sub-header mt-4 total-file-fix">TOTAL FILES: {this.state.totalFiles}</h2>
                 </Row>
             </article>
         );
