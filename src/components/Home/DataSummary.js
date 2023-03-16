@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row } from 'reactstrap';
 import SamplesByDataTypeTableContainer from './SamplesByDataTypeTableContainer';
-import AvailableDatasetsTableContainer from './AvailableDatasetsTableContainer';
+import AvailableDatasetsTable from './AvailableDatasetsTable';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { fetchSummaryData, fetchGeneDatasetSummary, fetchAtlasSummaryRows} from '../../helpers/ApolloClient';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
@@ -47,8 +47,8 @@ class DataSummary extends Component {
         explorerSummary.push({dataType: "Spatial Viewer"})
         const summaryData = explorerSummary.concat(spatialViewerSummary)
         
-       const availableDatasets = await fetchAtlasSummaryRows();
-       this.setState({ summaryData, availableDatasets})
+    //    const availableDatasets = await fetchAtlasSummaryRows();
+       this.setState({ summaryData})
     }
 
     render() {
@@ -75,7 +75,7 @@ class DataSummary extends Component {
                 <Row><p>The datasets available in the Repository are a combination of raw and processed data from KPMP participant biopsies and reference tissue samples.</p></Row>
             
                 <Row>
-                    <AvailableDatasetsTableContainer history={this.props.history} availableDatasets={this.state.availableDatasets} />
+                    <AvailableDatasetsTable/>
                 </Row>
             </Container>
 
