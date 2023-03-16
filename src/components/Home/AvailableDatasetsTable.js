@@ -25,8 +25,6 @@ class AvailableDatasetsTable extends Component {
 
     async componentDidMount(){
         await this.getAtlasSummaryRows();
-        console.log(this.getAtlasSummaryRows());
-        console.log(this.fetchAtlasSummaryRows());
     }
 
     getAtlasSummaryRows = () => {
