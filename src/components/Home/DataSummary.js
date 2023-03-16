@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row } from 'reactstrap';
 import SamplesByDataTypeTableContainer from './SamplesByDataTypeTableContainer';
-import AvailableDatasetsTable from './AvailableDatasetsTable';
+import AvailableDatasetsTableContainer from './AvailableDatasetsTableContainer';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { fetchSummaryData, fetchGeneDatasetSummary, fetchAtlasSummaryRows} from '../../helpers/ApolloClient';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
@@ -75,7 +75,7 @@ class DataSummary extends Component {
                 <Row><p>The datasets available in the Repository are a combination of raw and processed data from KPMP participant biopsies and reference tissue samples.</p></Row>
             
                 <Row>
-                    <AvailableDatasetsTable history={this.props.history} availableDatasets={this.state.availableDatasets} />
+                    <AvailableDatasetsTableContainer history={this.props.history} availableDatasets={this.state.availableDatasets} />
                 </Row>
             </Container>
 
