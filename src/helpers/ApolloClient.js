@@ -434,7 +434,7 @@ export const fetchAtlasSummaryRows = async () => {
         fetchPolicy: 'cache-first'
     });
     if (response.data && response.data.getAtlasSummaryRows) {
-        return response.data.getAtlasSummaryRows[0];
+        return response.data.getAtlasSummaryRows;
     }else {
         store.dispatch(sendMessageToBackend("Could not retrieve file counts: " + response.error));
     }
