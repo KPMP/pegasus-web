@@ -157,7 +157,9 @@ class AvailableDatasetsTable extends Component {
                 headerClassName: 'omics data-type-table-header',
                 className: 'data-type-table-content',
                 minWidth: this.getWidthBasedOnScreenSize('dataType'),
-                Cell: this.props.omicsType
+                Cell: row => (
+                    row.omicsType
+                )
             },
             {
                 Header: () => (
@@ -169,7 +171,9 @@ class AvailableDatasetsTable extends Component {
                 className: 'data-type-table-content',
                 minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 minWidth: this.getWidthBasedOnScreenSize('controlled'),
-                Cell: this.props.controlledCount
+                Cell: row => (
+                    row.controlledCount
+                )
             },
             {
                 Header: () => (
@@ -181,7 +185,9 @@ class AvailableDatasetsTable extends Component {
                 className: 'data-type-table-content',
                 minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
                 minWidth: this.getWidthBasedOnScreenSize('open'),
-                Cell: this.props.openCount
+                Cell: row => (
+                    row.openCount
+                )
             }
         ]
     };
