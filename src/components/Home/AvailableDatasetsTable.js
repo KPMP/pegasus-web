@@ -25,6 +25,7 @@ class AvailableDatasetsTable extends Component {
 
     async componentDidMount(){
         await this.getAtlasSummaryRows();
+        console.log(this.getAtlasSummaryRows());
     }
 
     getAtlasSummaryRows = () => {
@@ -200,7 +201,7 @@ class AvailableDatasetsTable extends Component {
                     <Col xs='12'>
                         <ReactTable
                             style={{ border: 'none' }}
-                            data={this.props.availableDatasets}
+                            data={this.props.summaryRows}
                             ref={this.reactTable}
                             sortable={false}
                             columns={this.state.columns}
