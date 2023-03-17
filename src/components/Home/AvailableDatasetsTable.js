@@ -29,13 +29,13 @@ class AvailableDatasetsTable extends Component {
 
     getAtlasSummaryRows = () => {
         fetchAtlasSummaryRows().then((result) => {
-            this.setState({totalFiles: result.totalFiles})
-            this.setState({openCount: result[this.props.openCount]})
-            this.setState({controlledCount: result[this.props.controlledCount]})
-            this.setState({omicsType: result[this.props.omicsType]})
-            this.setState({linkType: result[this.props.linkType]})
-            this.setState({linkValue: result[this.props.linkValue]})
-        })
+            this.setState({totalFiles: result.totalFiles});
+            this.setState({openCount: result.sumaryRows[0]});
+            this.setState({controlledCount: result.summaryRows[1]});
+            this.setState({omicsType: result.summaryRows[2]})
+            this.setState({linkType: result.summaryRows.linkInformation[0]});
+            this.setState({linkValue: result.summaryRows.linkInformation[1]});
+        });
     }
 
     handleDataTypeClick(dataType) {
@@ -157,10 +157,7 @@ class AvailableDatasetsTable extends Component {
                 headerClassName: 'omics data-type-table-header',
                 className: 'data-type-table-content',
                 minWidth: this.getWidthBasedOnScreenSize('dataType'),
-                Cell: row => (
-                    console.log(row)
-                    // row.value.omicsType
-                )
+                Cell: this.state.omicsType
             },
             {
                 Header: () => (
@@ -172,9 +169,7 @@ class AvailableDatasetsTable extends Component {
                 className: 'data-type-table-content',
                 minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 minWidth: this.getWidthBasedOnScreenSize('controlled'),
-                Cell: row => (
-                    row.value.controlledCount
-                )
+                Cell: this.state.controlledCount
             },
             {
                 Header: () => (
@@ -186,9 +181,7 @@ class AvailableDatasetsTable extends Component {
                 className: 'data-type-table-content',
                 minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
                 minWidth: this.getWidthBasedOnScreenSize('open'),
-                Cell: row => (
-                    row.value.openCount
-                )
+                Cell: this.state.openCount
             }
         ]
     };
