@@ -47,7 +47,7 @@ class DataSummary extends Component {
         explorerSummary.push({dataType: "Spatial Viewer"})
         const summaryData = explorerSummary.concat(spatialViewerSummary)
         const availableDatasets = await fetchAtlasSummaryRows();
-       this.setState({ summaryData, availableDatasets})
+       this.setState({ summaryData: summaryData, availableDatasets: availableDatasets });
     }
 
     render() {

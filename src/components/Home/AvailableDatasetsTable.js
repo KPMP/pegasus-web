@@ -47,7 +47,6 @@ class AvailableDatasetsTable extends Component {
             this.setState({SMType: result.summaryRows[11]})
             this.setState({SN_GType: result.summaryRows[12]})
             this.setState({STType: result.summaryRows[13]})
-            this.setState({Type: result.summaryRows[14]})
             this.setState({linkType: result.summaryRows[0].linkInformation.linkType});
             this.setState({linkValue: result.summaryRows[0].linkInformation.linkValue});
         });
