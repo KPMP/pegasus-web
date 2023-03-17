@@ -30,8 +30,8 @@ class AvailableDatasetsTable extends Component {
     getAtlasSummaryRows = () => {
         fetchAtlasSummaryRows().then((result) => {
             this.setState({totalFiles: result.totalFiles});
-            this.setState({openCount: result.sumaryRows.openCount});
-            this.setState({controlledCount: result.controlledCount});
+            this.setState({openCount: result.summaryRows.openCount});
+            this.setState({controlledCount: result.summaryRows.controlledCount});
             this.setState({omicsType: result.summaryRows.omicsType})
             this.setState({linkType: result.summaryRows.linkInformation.linkType});
             this.setState({linkValue: result.summaryRows.linkInformation.linkValue});
