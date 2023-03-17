@@ -30,11 +30,26 @@ class AvailableDatasetsTable extends Component {
     getAtlasSummaryRows = () => {
         fetchAtlasSummaryRows().then((result) => {
             this.setState({totalFiles: result.totalFiles});
-            this.setState({openCount: result.summaryRows.openCount});
-            this.setState({controlledCount: result.summaryRows.controlledCount});
-            this.setState({omicsType: result.summaryRows.omicsType})
-            this.setState({linkType: result.summaryRows.linkInformation.linkType});
-            this.setState({linkValue: result.summaryRows.linkInformation.linkValue});
+            this.setState({openCount: result.summaryRows[0].openCount});
+            this.setState({controlledCount: result.summaryRows[0].controlledCount});
+            this.setState({omicsType: result.summaryRows[0].omicsType})
+            this.setState({threeDType: result.summaryRows[0]})
+            this.setState({bulkType: result.summaryRows[1]})            
+            this.setState({clinicalType: result.summaryRows[2]})
+            this.setState({codexType: result.summaryRows[3]})
+            this.setState({wsiType: result.summaryRows[4]})
+            this.setState({MSDPlasmaType: result.summaryRows[5]})
+            this.setState({MSDPUrinType: result.summaryRows[6]})
+            this.setState({RTType: result.summaryRows[7]})
+            this.setState({SCType: result.summaryRows[8]})    
+            this.setState({SPPType: result.summaryRows[9]})
+            this.setState({SLType: result.summaryRows[10]})
+            this.setState({SMType: result.summaryRows[11]})
+            this.setState({SN_GType: result.summaryRows[12]})
+            this.setState({STType: result.summaryRows[13]})
+            this.setState({Type: result.summaryRows[14]})
+            this.setState({linkType: result.summaryRows[0].linkInformation.linkType});
+            this.setState({linkValue: result.summaryRows[0].linkInformation.linkValue});
         });
     }
 
