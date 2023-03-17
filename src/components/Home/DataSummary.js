@@ -17,7 +17,7 @@ class DataSummary extends Component {
         this.state = {
             spatialViewerSummary: [],
             explorerSummary: [],
-            
+            availableDatasets: []
         }
     }
     compare( a, b ) {
