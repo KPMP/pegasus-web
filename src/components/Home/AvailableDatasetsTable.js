@@ -58,7 +58,7 @@ class AvailableDatasetsTable extends Component {
     }
 
     handleEmptyCounts(count){
-        return count == 0 ? "" : count;
+        return count == "0" ? "" : count;
     }
 
     handleDataTypeValueClick(dataType, controlAccess) {
