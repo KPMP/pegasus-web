@@ -18,7 +18,8 @@ class AvailableDatasetsTable extends Component {
             controlledCount: [],
             omicsType: [],
             linkType: [],
-            linkValue: []
+            linkValue: [],
+            linkInformation: {}
         };
         
     }
@@ -33,6 +34,7 @@ class AvailableDatasetsTable extends Component {
             this.setState({summaryRows: result.summaryRows});
             this.setState({linkInformation: result.summaryRows.map((row) => row.linkInformation)});
         });
+        console.log(this.state.linkInformation);
     }
 
     handleDataTypeClick(dataType) {
