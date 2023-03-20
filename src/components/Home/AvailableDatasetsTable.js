@@ -25,8 +25,8 @@ class AvailableDatasetsTable extends Component {
 
     async componentDidMount(){
         await this.getAtlasSummaryRows();
-        console.log(this.state.summaryRows.linkInformation.linkType);
-        console.log(this.state.summaryRows.linkInformation.linkValue);
+        console.log(this.state.linkType);
+        console.log(this.state.linkValue);
     }
 
     getAtlasSummaryRows = () => {
