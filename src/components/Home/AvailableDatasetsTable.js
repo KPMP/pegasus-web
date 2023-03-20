@@ -25,7 +25,7 @@ class AvailableDatasetsTable extends Component {
 
     async componentDidMount(){
         await this.getAtlasSummaryRows();
-        console.log(this.state.omicsType);
+        console.log(this.omicsType);
     }
 
     getAtlasSummaryRows = () => {
