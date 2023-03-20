@@ -214,7 +214,7 @@ class AvailableDatasetsTable extends Component {
                     <Col xs='12'>
                         <ReactTable
                             style={{ border: 'none' }}
-                            data={this.state.availableDatasets.summaryRows}
+                            data={this.props.availableDatasets.summaryRows}
                             ref={this.reactTable}
                             sortable={false}
                             columns={this.state.columns}
