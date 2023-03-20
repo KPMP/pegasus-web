@@ -174,7 +174,7 @@ class AvailableDatasetsTable extends Component {
                 // Cell: if count is 0 return nothing, otherwise return value + link
                 Cell: row => (
                     // this.handleEmptyCounts(row.controlledCount),
-                    console.log(typeof row.controlledCount)
+                    console.log(typeof row.value)
                 )
             },
             {
