@@ -8,7 +8,6 @@ class ParticipantSummary extends Component {
     }
     async componentDidMount() {
       await this.getTissueCounts();
-      console.log(this.getTissueCounts);
   };
 
   getTissueCounts = () => {
