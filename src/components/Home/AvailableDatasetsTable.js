@@ -32,9 +32,7 @@ class AvailableDatasetsTable extends Component {
         fetchAtlasSummaryRows().then((result) => {
             this.setState({totalFiles: result.totalFiles});
             this.setState({summaryRows: result.summaryRows});
-            this.setState({linkInformation: result.summaryRows.map((row) => row.linkInformation)});
         });
-        console.log(this.state.linkInformation);
     }
 
     handleDataTypeClick(dataType) {
@@ -59,10 +57,12 @@ class AvailableDatasetsTable extends Component {
         }
     }
 
-    // handleEmptyCountsClick(controllAccess){
-    //     let mapping = this.state.summaryRows.linkType.linkValue;
-        
-    // }
+    handleEmptyCounts(controlAccess){
+        let count = "";
+        if (controlAccess === "0"){
+            return count;
+        }
+    }
 
 
     handleDataTypeValueClick(dataType, controlAccess) {
@@ -176,6 +176,7 @@ class AvailableDatasetsTable extends Component {
                 minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 minWidth: this.getWidthBasedOnScreenSize('controlled'),
                 // Cell: if count is 0 return nothing, otherwise return value + link
+                Cell: this.handleEmptyCounts({accessor: "controlledCount"})
             },
             {
                 Header: () => (
