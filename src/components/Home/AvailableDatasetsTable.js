@@ -31,7 +31,7 @@ class AvailableDatasetsTable extends Component {
         fetchAtlasSummaryRows().then((result) => {
             this.setState({totalFiles: result.totalFiles});
             this.setState({summaryRows: result.summaryRows});
-            this.setState({linkInformation: result.summaryRowsmap((row) => row.linkInformation)});
+            this.setState({linkInformation: result.summaryRows.map((row) => row.linkInformation)});
         });
     }
 
