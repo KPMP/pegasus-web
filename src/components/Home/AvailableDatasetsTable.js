@@ -32,7 +32,7 @@ class AvailableDatasetsTable extends Component {
         fetchAtlasSummaryRows().then((result) => {
             this.setState({totalFiles: result.totalFiles});
             this.setState({summaryRows: result.summaryRows});
-            const linkInformation = this.state.summaryRows.map((row) => row.linkInformation);
+            const linkInformation = result.summaryRows.map((row) => row.linkInformation);
             this.setState({linkInformation});
         });
     }
