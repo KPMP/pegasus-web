@@ -30,10 +30,19 @@ class AvailableDatasetsTable extends Component {
 
     getAtlasSummaryRows = () => {
         fetchAtlasSummaryRows().then((result) => {
-            this.setState({totalFiles: result.totalFiles});
-            this.setState({summaryRows: result.summaryRows});
-            const linkInformation = result.summaryRows.map((row) => row.linkInformation);
-            this.setState({linkInformation});
+            // this.setState({totalFiles: result.totalFiles});
+            // this.setState({summaryRows: result.summaryRows});
+            // const linkInformation = result.summaryRows.map((row) => row.linkInformation);
+            // this.setState({linkInformation});
+            this.setState({
+                totalFiles: result.totalFiles,
+                summaryRows: result.summaryRows.map((row) => ({
+                    openCount: row.openCount,
+                    controlledCount: row.controlledCount,
+                    omicsType: row.omicsType,
+                    linkInformation: row.linkInformation // Accessing linkInformation
+                }))
+            });
         });
     }
 
