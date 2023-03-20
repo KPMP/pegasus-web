@@ -58,7 +58,7 @@ class AvailableDatasetsTable extends Component {
     }
 
     handleEmptyCounts(count){
-        return count == 0 ? "" : count;
+        return count === 0 ? "" : count;
     }
 
     handleDataTypeValueClick(dataType, controlAccess) {
@@ -171,7 +171,6 @@ class AvailableDatasetsTable extends Component {
                 className: 'data-type-table-content',
                 minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 minWidth: this.getWidthBasedOnScreenSize('controlled'),
-                // Cell: if count is 0 return nothing, otherwise return value + link
                 Cell: row => (
                     this.handleEmptyCounts(row.value)
                 )
@@ -186,7 +185,6 @@ class AvailableDatasetsTable extends Component {
                 className: 'data-type-table-content',
                 minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
                 minWidth: this.getWidthBasedOnScreenSize('open'),
-                // Cell: if count is 0 return nothing otherwise return value + link
                 Cell: row => (
                     this.handleEmptyCounts(row.value)
                 )
