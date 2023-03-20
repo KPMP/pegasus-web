@@ -173,7 +173,7 @@ class AvailableDatasetsTable extends Component {
                 minWidth: this.getWidthBasedOnScreenSize('controlled'),
                 // Cell: if count is 0 return nothing, otherwise return value + link
                 Cell: row => (
-                    this.handleEmptyCounts(row.value),
+                    this.handleEmptyCounts(row.value)
                 )
             },
             {
@@ -188,7 +188,7 @@ class AvailableDatasetsTable extends Component {
                 minWidth: this.getWidthBasedOnScreenSize('open'),
                 // Cell: if count is 0 return nothing otherwise return value + link
                 Cell: row => (
-                    this.handleEmptyCounts(row.openCount)
+                    this.handleEmptyCounts(row.value)
                 )
             }
         ]
