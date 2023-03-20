@@ -25,7 +25,7 @@ class AvailableDatasetsTable extends Component {
 
     async componentDidMount(){
         await this.getAtlasSummaryRows();
-        console.log(this.state.linkInformation);
+        
     }
 
     getAtlasSummaryRows = () => {
@@ -43,6 +43,7 @@ class AvailableDatasetsTable extends Component {
                     linkInformation: row.linkInformation // Accessing linkInformation
                 }))
             });
+            console.log(result.summaryRows.map((row) => row.linkInformation));
         });
     }
 
