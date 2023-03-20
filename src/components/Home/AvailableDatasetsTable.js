@@ -57,13 +57,9 @@ class AvailableDatasetsTable extends Component {
         }
     }
 
-    handleEmptyCounts(controlAccess){
-        let count = "";
-        if (controlAccess === "0"){
-            return count;
-        }
+    handleEmptyCounts(count){
+        return count === "0" ? "" : count;
     }
-
 
     handleDataTypeValueClick(dataType, controlAccess) {
         let mapping = {
