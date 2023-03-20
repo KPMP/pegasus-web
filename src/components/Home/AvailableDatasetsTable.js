@@ -25,16 +25,15 @@ class AvailableDatasetsTable extends Component {
 
     async componentDidMount(){
         await this.getAtlasSummaryRows();
-        console.log(this.state.linkType);
-        console.log(this.state.linkValue);
+        console.log(this.state.linkInformation);
     }
 
     getAtlasSummaryRows = () => {
         fetchAtlasSummaryRows().then((result) => {
             this.setState({totalFiles: result.totalFiles});
             this.setState({summaryRows: result.summaryRows});
-            this.setState({linkType: result.summaryRows[0].linkInformation});
-            this.setState({linkValue: result.summaryRows[0].linkInformation});
+            const linkInformation = this.state.summaryRows.map((row) => row.linkInformation);
+            this.setState({linkInformation});
         });
     }
 
