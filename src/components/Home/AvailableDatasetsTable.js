@@ -191,6 +191,9 @@ class AvailableDatasetsTable extends Component {
                 minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
                 minWidth: this.getWidthBasedOnScreenSize('open'),
                 // Cell: if count is 0 return nothing otherwise return value + link
+                Cell: row => (
+                    this.handleEmptyCounts(row.openCount)
+                )
             }
         ]
     };
