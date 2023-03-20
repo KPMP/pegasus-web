@@ -25,13 +25,16 @@ class AvailableDatasetsTable extends Component {
 
     async componentDidMount(){
         await this.getAtlasSummaryRows();
-        console.log(this.omicsType);
+        console.log(this.state.summaryRows.linkInformation.linkType);
+        console.log(this.state.summaryRows.linkInformation.linkValue);
     }
 
     getAtlasSummaryRows = () => {
         fetchAtlasSummaryRows().then((result) => {
             this.setState({totalFiles: result.totalFiles});
             this.setState({summaryRows: result.summaryRows});
+            this.setState({linkType: result.summaryRows.linkInformation.linkType});
+            this.setState({linkValue: result.summaryRows.linkInformation.linkValue});
         });
     }
 
@@ -57,6 +60,12 @@ class AvailableDatasetsTable extends Component {
         }
     }
 
+    // handleEmptyCountsClick(controllAccess){
+    //     let mapping = this.state.summaryRows.linkType.linkValue;
+        
+    // }
+
+
     handleDataTypeValueClick(dataType, controlAccess) {
         let mapping = {
             "3D tissue imaging and cytometry":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}}]}`,
@@ -71,6 +80,7 @@ class AvailableDatasetsTable extends Component {
             "SNRNA-seq":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Single-nucleus RNA-Seq"]}}]}`,
             "Spatial transcriptomics":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Spatial Transcriptomics"]}}]}`,
         };
+
         if (mapping[dataType]) {
             return mapping[dataType]
         } else {
@@ -166,7 +176,7 @@ class AvailableDatasetsTable extends Component {
                 className: 'data-type-table-content',
                 minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 minWidth: this.getWidthBasedOnScreenSize('controlled'),
-                
+                // Cell: if count is 0 return nothing, otherwise return value + link
             },
             {
                 Header: () => (
@@ -178,7 +188,7 @@ class AvailableDatasetsTable extends Component {
                 className: 'data-type-table-content',
                 minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
                 minWidth: this.getWidthBasedOnScreenSize('open'),
-               
+                // Cell: if count is 0 return nothing otherwise return value + link
             }
         ]
     };
