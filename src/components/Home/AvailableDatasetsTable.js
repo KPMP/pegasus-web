@@ -176,7 +176,9 @@ class AvailableDatasetsTable extends Component {
                 minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 minWidth: this.getWidthBasedOnScreenSize('controlled'),
                 // Cell: if count is 0 return nothing, otherwise return value + link
-                Cell: this.handleEmptyCounts({accessor: "controlledCount"})
+                Cell: row => (
+                    this.handleEmptyCounts(row.controlledCount)
+                )
             },
             {
                 Header: () => (
