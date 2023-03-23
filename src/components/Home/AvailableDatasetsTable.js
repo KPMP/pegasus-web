@@ -36,7 +36,6 @@ class AvailableDatasetsTable extends Component {
             this.setState({linkInformation: result.summaryRows.linkInformation});
             result.summaryRows.forEach((row) => {
                 this.setState({[row.omicsType]: row})
-                console.log([row.omicsType]);
                 }
             )
         });
@@ -65,10 +64,10 @@ class AvailableDatasetsTable extends Component {
     }
 
     handleEmptyCounts(count, controlAccess, omicsType){
+        console.log(omicsType);
         if (count === 0){
             return "";
         }else{
-            console.log(omicsType);
             this.formatDataTypeValueCell(count, controlAccess, omicsType)
         }
         // return count === 0 ? "" : count;
@@ -173,7 +172,7 @@ class AvailableDatasetsTable extends Component {
                 minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 minWidth: this.getWidthBasedOnScreenSize('controlled'),
                 Cell: row => (
-                    this.handleEmptyCounts(row.value, "controlled", this.state.summaryRows.omicsType)
+                    this.handleEmptyCounts(row.value, "controlled", row.omicsType)
                 )
             },
             {
@@ -187,7 +186,7 @@ class AvailableDatasetsTable extends Component {
                 minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
                 minWidth: this.getWidthBasedOnScreenSize('open'),
                 Cell: row => (
-                    this.handleEmptyCounts(row.value, "open", this.state.summaryRows.omicsType)
+                    this.handleEmptyCounts(row.value, "open", row.omicsType)
                 )
             }
         ]
