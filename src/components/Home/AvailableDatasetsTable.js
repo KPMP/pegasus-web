@@ -63,23 +63,28 @@ class AvailableDatasetsTable extends Component {
         }
     }
 
-    handleEmptyCounts(count, controlAccess, omicsType, linkType, linkValue){//replace with row to clean this up
-        console.log(omicsType);
-        if (count === 0){
+    handleEmptyCounts(row, controlAccess){//replace with row to clean this up
+        console.log(row);
+        if (row.openCount === 0){
             return "";
-        }else{
-            this.formatDataTypeValueCell(count, controlAccess, omicsType, linkType, linkValue) //replace with row to clean this upS
+        }else if (row.controlledCount === 0){
+            return "";
+        }
+        else{
+            this.formatDataTypeValueCell(row, controlAccess) 
         }
         // return count === 0 ? "" : count;
     }
 
-    handleDataTypeValueClick(dataType, controlAccess, linkType, linkValue) {//replace with row to clean this up
+    handleDataTypeValueClick(row, controlAccess) {
+        let linkType = row.original.linkInformation.linkType;
+        let linkValue = row.original.linkInformation.linkValue;
         let mapping = `/repository/?facetTab=files&filters={"op":"and","content":["op":"in","content":{"field":"access", "value":["${controlAccess}"]}],{"op":"in","content":{"field":[${linkType}],"value":["${linkValue}]}}}`;
-        if(linkType && linkValue){
+        if(row.original.omicsType.linkInformation.linkType && row.original.omicsType.linkInformation.linkValue){
             return mapping;
         } else {
             this.props.history.push('/oops');
-            throw new Error('Datatype not found', dataType)
+            throw new Error('Datatype not found', row.original.omicsType)
         }
     }
     formatDataTypeCell(value) {
@@ -99,9 +104,9 @@ class AvailableDatasetsTable extends Component {
             );
         }
     }
-    formatDataTypeValueCell(value, dataType, controlAccess, linkType, linkValue) { //replace with row to clean this up
+    formatDataTypeValueCell(value, row, controlAccess) {
         return (
-            <a href={`${this.handleDataTypeValueClick(dataType, controlAccess, linkType, linkValue)}`}>
+            <a href={`${this.handleDataTypeValueClick(row, controlAccess)}`}>
                 <span className="buttonhref">
                     {value}
                 </span>
@@ -171,7 +176,7 @@ class AvailableDatasetsTable extends Component {
                 minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 minWidth: this.getWidthBasedOnScreenSize('controlled'),
                 Cell: row => (
-                    this.handleEmptyCounts(row.value, "controlled", row.original.omicsType, row.original.linkInformation.linkType, row.original.linkInformation.linkValue)
+                    this.handleEmptyCounts(row, "controlled")
                     
                 )
             },
@@ -186,7 +191,7 @@ class AvailableDatasetsTable extends Component {
                 minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
                 minWidth: this.getWidthBasedOnScreenSize('open'),
                 Cell: row => (
-                    this.handleEmptyCounts(row.value, "open", row.original.omicsType, row.original.linkInformation.linkType, row.original.linkInformation.linkValue)
+                    this.handleEmptyCounts(row, "open")
                 )
             }
         ]
