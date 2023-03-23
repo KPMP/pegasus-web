@@ -68,6 +68,7 @@ class AvailableDatasetsTable extends Component {
         if (count === 0){
             return "";
         }else{
+            console.log(omicsType);
             this.formatDataTypeValueCell(count, controlAccess, omicsType)
         }
         // return count === 0 ? "" : count;
