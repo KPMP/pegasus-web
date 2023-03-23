@@ -32,6 +32,7 @@ class AvailableDatasetsTable extends Component {
         fetchAtlasSummaryRows().then((result) => {
             this.setState({totalFiles: result.totalFiles});
             this.setState({summaryRows: result.summaryRows});
+            this.setState({linkInformation: result.summaryRows.linkInformation})
         });
     }
 
@@ -57,23 +58,32 @@ class AvailableDatasetsTable extends Component {
         }
     }
 
-    handleEmptyCounts(count){
-        return count === 0 ? "" : count;
+    handleEmptyCounts(count, controlAccess, omicsType){
+        if (count === 0){
+            return "";
+        }else{
+            this.formatDataTypeValueCell(count, omicsType, controlAccess)
+            // return count;
+        }
+        // return count === 0 ? "" : count;
     }
 
     handleDataTypeValueClick(dataType, controlAccess) {
+        let linkValue = this.state.linkInformation.linkValue;
+        let linkType = this.state.linkInformation.linkType;
         let mapping = {
-            "3D tissue imaging and cytometry":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}}]}`,
-            "Biomarkers":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["MSD Plasma Biomarker","MSD Urine Biomarker","SomaScan Proteomics Plasma 7k"]}}]}`,
-            "Bulk RNA-seq": `/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Bulk Total/mRNA"]}}]}`,
-            "Clinical Dataset":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"data_category","value":["Clinical"]}}]}`,
-            "CODEX":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["CODEX"]}}]}`,
-            "Experiment metadata":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"workflow_type","value":["Experimental Metadata"]}}]}`,
-            "Light microscopic whole slide image":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Light Microscopic Whole Slide Images"]}}]}`,
-            "LMD RNA-seq":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Regional Transcriptomics"]}}]}`,
-            "SCRNA-seq": `/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Single-cell RNA-Seq"]}}]}`,
-            "SNRNA-seq":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Single-nucleus RNA-Seq"]}}]}`,
-            "Spatial transcriptomics":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Spatial Transcriptomics"]}}]}`,
+            linkValue:`/repository/?facetTab=files&filters={"op":"and","content":["op":"in","content":{"field":"access", "value":["${controlAccess}"]}],{"op":"in","content":{"field":[${linkType}],"value":["${linkValue}]}}}`
+            // "3D tissue imaging and cytometry":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}}]}`,
+            // "Biomarkers":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["MSD Plasma Biomarker","MSD Urine Biomarker","SomaScan Proteomics Plasma 7k"]}}]}`,
+            // "Bulk RNA-seq": `/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Bulk Total/mRNA"]}}]}`,
+            // "Clinical Dataset":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"data_category","value":["Clinical"]}}]}`,
+            // "CODEX":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["CODEX"]}}]}`,
+            // "Experiment metadata":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"workflow_type","value":["Experimental Metadata"]}}]}`,
+            // "Light microscopic whole slide image":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Light Microscopic Whole Slide Images"]}}]}`,
+            // "LMD RNA-seq":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Regional Transcriptomics"]}}]}`,
+            // "SCRNA-seq": `/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Single-cell RNA-Seq"]}}]}`,
+            // "SNRNA-seq":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Single-nucleus RNA-Seq"]}}]}`,
+            // "Spatial transcriptomics":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Spatial Transcriptomics"]}}]}`,
         };
 
         if (mapping[dataType]) {
@@ -172,7 +182,7 @@ class AvailableDatasetsTable extends Component {
                 minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 minWidth: this.getWidthBasedOnScreenSize('controlled'),
                 Cell: row => (
-                    this.handleEmptyCounts(row.value)
+                    this.handleEmptyCounts(row.value, "controlled", this.state.summaryRows.omicsType)
                 )
             },
             {
@@ -186,7 +196,7 @@ class AvailableDatasetsTable extends Component {
                 minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
                 minWidth: this.getWidthBasedOnScreenSize('open'),
                 Cell: row => (
-                    this.handleEmptyCounts(row.value)
+                    this.handleEmptyCounts(row.value, "open", this.state.summaryRows.omicsType)
                 )
             }
         ]
