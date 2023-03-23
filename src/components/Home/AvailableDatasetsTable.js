@@ -32,7 +32,8 @@ class AvailableDatasetsTable extends Component {
         fetchAtlasSummaryRows().then((result) => {
             this.setState({totalFiles: result.totalFiles});
             this.setState({summaryRows: result.summaryRows});
-            this.setState({linkInformation: result.summaryRows.linkInformation})
+            this.setState({linkInformation: result.summaryRows.linkInformation});
+            console.log(this.state.linkInformation);
         });
     }
 
@@ -58,12 +59,12 @@ class AvailableDatasetsTable extends Component {
         }
     }
 
-    handleEmptyCounts(count, controlAccess, omicsType){
+    handleEmptyCounts(count){
         if (count === 0){
             return "";
         }else{
-            this.formatDataTypeValueCell(count, omicsType, controlAccess)
-            // return count;
+            // this.formatDataTypeValueCell(count, omicsType, controlAccess)
+            return count;
         }
         // return count === 0 ? "" : count;
     }
