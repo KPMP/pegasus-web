@@ -34,7 +34,7 @@ class AvailableDatasetsTable extends Component {
             this.setState({totalFiles: result.totalFiles});
             this.setState({summaryRows: result.summaryRows});
             this.setState({linkInformation: result.summaryRows.linkInformation});
-            result.summaryRows.foreach((row) => {
+            result.summaryRows.forEach((row) => {
                 this.setState({[row.omicsType]: row})
                 }
             )
@@ -63,12 +63,11 @@ class AvailableDatasetsTable extends Component {
         }
     }
 
-    handleEmptyCounts(count){
+    handleEmptyCounts(count, controlAccess, omicsType){
         if (count === 0){
             return "";
         }else{
-            // this.formatDataTypeValueCell(count, omicsType, controlAccess)
-            return count;
+            this.formatDataTypeValueCell(count, controlAccess, omicsType)
         }
         // return count === 0 ? "" : count;
     }
