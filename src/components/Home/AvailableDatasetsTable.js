@@ -34,9 +34,9 @@ class AvailableDatasetsTable extends Component {
             this.setState({totalFiles: result.totalFiles});
             this.setState({summaryRows: result.summaryRows});
             this.setState({linkInformation: result.summaryRows.linkInformation});
-            console.log(this.state.result.summaryRows.omicsType);
             result.summaryRows.forEach((row) => {
                 this.setState({[row.omicsType]: row})
+                console.log([row.omicsType]);
                 }
             )
         });
