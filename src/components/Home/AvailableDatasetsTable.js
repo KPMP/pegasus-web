@@ -172,7 +172,7 @@ class AvailableDatasetsTable extends Component {
                 minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 minWidth: this.getWidthBasedOnScreenSize('controlled'),
                 Cell: row => (
-                    this.handleEmptyCounts(row.value, "controlled", row)
+                    this.handleEmptyCounts(row.value, "controlled", row.original.omicsType)
                     
                 )
             },
@@ -187,7 +187,7 @@ class AvailableDatasetsTable extends Component {
                 minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
                 minWidth: this.getWidthBasedOnScreenSize('open'),
                 Cell: row => (
-                    this.handleEmptyCounts(row.value, "open", row)
+                    this.handleEmptyCounts(row.value, "open", row.original.omicsType)
                 )
             }
         ]
