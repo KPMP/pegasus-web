@@ -63,20 +63,19 @@ class AvailableDatasetsTable extends Component {
         }
     }
 
-    handleEmptyCounts(count, controlAccess, omicsType){
+    handleEmptyCounts(count, controlAccess, omicsType, linkType, linkValue){//replace with row to clean this up
         console.log(omicsType);
         if (count === 0){
             return "";
         }else{
-            this.formatDataTypeValueCell(count, controlAccess, omicsType)
+            this.formatDataTypeValueCell(count, controlAccess, omicsType, linkType, linkValue) //replace with row to clean this upS
         }
         // return count === 0 ? "" : count;
     }
 
-    handleDataTypeValueClick(dataType, controlAccess) {
-        let mapping = `/repository/?facetTab=files&filters={"op":"and","content":["op":"in","content":{"field":"access", "value":["${controlAccess}"]}],{"op":"in","content":{"field":[${this.state[dataType].linkType}],"value":["${this.state[dataType].linkValue}]}}}`;
-
-        if (this.state[dataType].linkInformation) {
+    handleDataTypeValueClick(dataType, controlAccess, linkType, linkValue) {//replace with row to clean this up
+        let mapping = `/repository/?facetTab=files&filters={"op":"and","content":["op":"in","content":{"field":"access", "value":["${controlAccess}"]}],{"op":"in","content":{"field":[${linkType}],"value":["${linkValue}]}}}`;
+        if(linkType && linkValue){
             return mapping;
         } else {
             this.props.history.push('/oops');
@@ -100,9 +99,9 @@ class AvailableDatasetsTable extends Component {
             );
         }
     }
-    formatDataTypeValueCell(value, dataType, controlAccess) {
+    formatDataTypeValueCell(value, dataType, controlAccess, linkType, linkValue) { //replace with row to clean this up
         return (
-            <a href={`${this.handleDataTypeValueClick(dataType, controlAccess)}`}>
+            <a href={`${this.handleDataTypeValueClick(dataType, controlAccess, linkType, linkValue)}`}>
                 <span className="buttonhref">
                     {value}
                 </span>
@@ -172,7 +171,7 @@ class AvailableDatasetsTable extends Component {
                 minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 minWidth: this.getWidthBasedOnScreenSize('controlled'),
                 Cell: row => (
-                    this.handleEmptyCounts(row.value, "controlled", row.original.omicsType)
+                    this.handleEmptyCounts(row.value, "controlled", row.original.omicsType, row.original.linkInformation.linkType, row.original.linkInformation.linkValue)
                     
                 )
             },
@@ -187,7 +186,7 @@ class AvailableDatasetsTable extends Component {
                 minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
                 minWidth: this.getWidthBasedOnScreenSize('open'),
                 Cell: row => (
-                    this.handleEmptyCounts(row.value, "open", row.original.omicsType)
+                    this.handleEmptyCounts(row.value, "open", row.original.omicsType, row.original.linkInformation.linkType, row.original.linkInformation.linkValue)
                 )
             }
         ]
