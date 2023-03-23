@@ -19,7 +19,8 @@ class AvailableDatasetsTable extends Component {
             omicsType: [],
             linkType: [],
             linkValue: [],
-            linkInformation: {}
+            linkInformation: {},
+            omicsTypes: {}
         };
         
     }
@@ -33,7 +34,10 @@ class AvailableDatasetsTable extends Component {
             this.setState({totalFiles: result.totalFiles});
             this.setState({summaryRows: result.summaryRows});
             this.setState({linkInformation: result.summaryRows.linkInformation});
-            console.log(this.state.linkInformation);
+            result.summaryRows.foreach((row) => {
+                this.setState({[row.omicsType]: row})
+                }
+            )
         });
     }
 
@@ -70,25 +74,10 @@ class AvailableDatasetsTable extends Component {
     }
 
     handleDataTypeValueClick(dataType, controlAccess) {
-        let linkValue = this.state.linkInformation.linkValue;
-        let linkType = this.state.linkInformation.linkType;
-        let mapping = {
-            linkValue:`/repository/?facetTab=files&filters={"op":"and","content":["op":"in","content":{"field":"access", "value":["${controlAccess}"]}],{"op":"in","content":{"field":[${linkType}],"value":["${linkValue}]}}}`
-            // "3D tissue imaging and cytometry":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}}]}`,
-            // "Biomarkers":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["MSD Plasma Biomarker","MSD Urine Biomarker","SomaScan Proteomics Plasma 7k"]}}]}`,
-            // "Bulk RNA-seq": `/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Bulk Total/mRNA"]}}]}`,
-            // "Clinical Dataset":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"data_category","value":["Clinical"]}}]}`,
-            // "CODEX":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["CODEX"]}}]}`,
-            // "Experiment metadata":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"workflow_type","value":["Experimental Metadata"]}}]}`,
-            // "Light microscopic whole slide image":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Light Microscopic Whole Slide Images"]}}]}`,
-            // "LMD RNA-seq":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Regional Transcriptomics"]}}]}`,
-            // "SCRNA-seq": `/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Single-cell RNA-Seq"]}}]}`,
-            // "SNRNA-seq":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Single-nucleus RNA-Seq"]}}]}`,
-            // "Spatial transcriptomics":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Spatial Transcriptomics"]}}]}`,
-        };
+        let mapping = `/repository/?facetTab=files&filters={"op":"and","content":["op":"in","content":{"field":"access", "value":["${controlAccess}"]}],{"op":"in","content":{"field":[${this.state[dataType].linkType}],"value":["${this.state[dataType].linkValue}]}}}`;
 
-        if (mapping[dataType]) {
-            return mapping[dataType]
+        if (this.state[dataType].linkInformation) {
+            return mapping;
         } else {
             this.props.history.push('/oops');
             throw new Error('Datatype not found', dataType)
