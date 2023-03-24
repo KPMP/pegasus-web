@@ -66,8 +66,10 @@ class AvailableDatasetsTable extends Component {
     handleEmptyCounts(row, controlAccess){//replace with row to clean this up
         console.log("openCounts logging ", row.original.openCount);
         console.log("controlledCount logging ", row.original.controlledCount);
-        if (row.original.openCount === 0 || row.original.controlledCount === 0){
+        if (row.original.openCount === 0){
             return "";
+        }else if (row.original.controlledCount === 0){
+            return ""
         }
         else{
             this.formatDataTypeValueCell(row.original.openCount, row, controlAccess);
