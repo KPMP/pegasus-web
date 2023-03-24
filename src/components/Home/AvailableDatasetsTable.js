@@ -63,13 +63,9 @@ class AvailableDatasetsTable extends Component {
         }
     }
 
-    handleEmptyCounts(row, controlAccess){
-        console.log("openCounts logging ", typeof(row.original.openCount), row.original.openCount);
-        console.log("controlledCount logging ", typeof(row.original.controlledCount), row.original.controlledCount);
-        if (row.original.openCount !== 0){
-            this.formatDataTypeValueCell(row.original.openCount, row, controlAccess);
-        }else if (row.original.controlledCount !== 0){
-            this.formatDataTypeValueCell(row.original.controlledCount, row, controlAccess);
+    handleEmptyCounts(count, row, controlAccess){
+        if (count !== 0){
+            this.formatDataTypeValueCell(count, row, controlAccess);
         }
         else{
             return "";
@@ -162,7 +158,7 @@ class AvailableDatasetsTable extends Component {
                 minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 minWidth: this.getWidthBasedOnScreenSize('controlled'),
                 Cell: row => (
-                    this.handleEmptyCounts(row, "controlled")
+                    this.handleEmptyCounts(row.vlaue, row, "controlled")
                     
                 )
             },
@@ -177,7 +173,7 @@ class AvailableDatasetsTable extends Component {
                 minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
                 minWidth: this.getWidthBasedOnScreenSize('open'),
                 Cell: row => (
-                    this.handleEmptyCounts(row, "open")
+                    this.handleEmptyCounts(row.value, row, "open")
                 )
             }
         ]
