@@ -63,9 +63,9 @@ class AvailableDatasetsTable extends Component {
         }
     }
 
-    handleEmptyCounts(row, controlAccess){//replace with row to clean this up
-        console.log("openCounts logging ", row.original.openCount);
-        console.log("controlledCount logging ", row.original.controlledCount);
+    handleEmptyCounts(row, controlAccess){
+        console.log("openCounts logging ", typeof(row.original.openCount), row.original.openCount);
+        console.log("controlledCount logging ", typeof(row.original.controlledCount), row.original.controlledCount);
         if (row.original.openCount !== 0){
             this.formatDataTypeValueCell(row.original.openCount, row, controlAccess);
         }else if (row.original.controlledCount !== 0){
@@ -88,23 +88,7 @@ class AvailableDatasetsTable extends Component {
             throw new Error('Datatype not found', row.original.omicsType)
         }
     }
-    formatDataTypeCell(value) {
-
-        if (value === 'Explorer' || value === 'Spatial Viewer') {
-
-            return (
-                <span>
-                    <b>{value}</b>
-                 </span>
-            );
-        } else {
-            return (
-                <span className="buttonhref" onClick={() => { this.handleDataTypeClick(value) }}>
-                    {value}
-                 </span>
-            );
-        }
-    }
+  
     formatDataTypeValueCell(value, row, controlAccess) {
         return (
             <a href={`${this.handleDataTypeValueClick(row, controlAccess)}`}>
