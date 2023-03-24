@@ -413,18 +413,29 @@ export const fetchTissueTypeSummaryCounts = async () => {
     }
 }
 
-export const fetchAvailableData = async () => {
-    return [
-        {dataType: "3D tissue imaging and cytometry", controlled: "", open: "64"},
-        {dataType: "Biomarkers", controlled: "", open: "3"},
-        {dataType: "Bulk RNA-seq", controlled: "89", open: "64"},
-        {dataType: "Clinical Dataset", controlled: "", open: "1"},
-        {dataType: "CODEX", controlled: "", open: "43"},
-        {dataType: "Experiment metadata", controlled: "", open: "281"},
-        {dataType: "Light microscopic whole slide image", controlled: "", open: "1267"},
-        {dataType: "LMD RNA-seq", controlled: "280", open: "39"},
-        {dataType: "SCRNA-seq", controlled: "526", open: "180"},
-        {dataType: "SNRNA-seq", controlled: "866", open: "239"},
-        {dataType: "Spatial transcriptomics", controlled: "94", open: "98"},
-    ]
+export const fetchAtlasSummaryRows = async () => {
+    let query = gql`
+        query {
+            getAtlasSummaryRows{
+                totalFiles
+                summaryRows {
+                    openCount
+                    controlledCount
+                    omicsType
+                    linkInformation {
+                        linkType
+                        linkValue
+                    }
+                }
+            }
+        }`;
+    const response = await apolloClient.query({
+        query: query,
+        fetchPolicy: 'cache-first'
+    });
+    if (response.data && response.data.getAtlasSummaryRows) {
+        return response.data.getAtlasSummaryRows;
+    }else {
+        store.dispatch(sendMessageToBackend("Could not retrieve file counts: " + response.error));
+    }
 }

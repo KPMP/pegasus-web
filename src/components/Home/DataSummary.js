@@ -3,7 +3,7 @@ import { Container, Row } from 'reactstrap';
 import SamplesByDataTypeTableContainer from './SamplesByDataTypeTableContainer';
 import AvailableDatasetsTable from './AvailableDatasetsTable';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
-import { fetchSummaryData, fetchGeneDatasetSummary, fetchAvailableData} from '../../helpers/ApolloClient';
+import { fetchSummaryData, fetchGeneDatasetSummary, fetchAtlasSummaryRows} from '../../helpers/ApolloClient';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
 import { faPerson } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -16,7 +16,8 @@ class DataSummary extends Component {
         this.handleGoogleAnalyticsEvent = handleGoogleAnalyticsEvent.bind(this);
         this.state = {
             spatialViewerSummary: [],
-            explorerSummary: []
+            explorerSummary: [],
+            availableDatasets: []
         }
     }
     compare( a, b ) {
@@ -45,9 +46,8 @@ class DataSummary extends Component {
         explorerSummary.unshift({dataType: "Explorer"})
         explorerSummary.push({dataType: "Spatial Viewer"})
         const summaryData = explorerSummary.concat(spatialViewerSummary)
-        
-       const availableDatasets = await fetchAvailableData()
-       this.setState({ summaryData, availableDatasets})
+        const availableDatasets = await fetchAtlasSummaryRows();
+       this.setState({ summaryData: summaryData, availableDatasets: availableDatasets });
     }
 
     render() {
@@ -74,7 +74,7 @@ class DataSummary extends Component {
                 <Row><p>The datasets available in the Repository are a combination of raw and processed data from KPMP participant biopsies and reference tissue samples.</p></Row>
             
                 <Row>
-                    <AvailableDatasetsTable history={this.props.history} availableDatasets={this.state.availableDatasets} />
+                <AvailableDatasetsTable history={this.props.history} availableDatasets={this.state.availableDatasets} />
                 </Row>
             </Container>
 

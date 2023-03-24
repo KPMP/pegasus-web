@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import ReactTable from 'react-table';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
+import { fetchAtlasSummaryRows } from '../../helpers/ApolloClient';
 
 class AvailableDatasetsTable extends Component {
 
@@ -12,8 +13,34 @@ class AvailableDatasetsTable extends Component {
 
         this.state = {
             columns: this.getColumns(),
+            totalFiles: [],
+            openCount: [],
+            controlledCount: [],
+            omicsType: [],
+            linkType: [],
+            linkValue: [],
+            linkInformation: {},
+            omicsTypes: {}
         };
+        
     }
+
+    async componentDidMount(){
+        await this.getAtlasSummaryRows();
+    }
+
+    getAtlasSummaryRows = () => {
+        fetchAtlasSummaryRows().then((result) => {
+            this.setState({totalFiles: result.totalFiles});
+            this.setState({summaryRows: result.summaryRows});
+            this.setState({linkInformation: result.summaryRows.linkInformation});
+            result.summaryRows.forEach((row) => {
+                this.setState({[row.omicsType]: row})
+                }
+            )
+        });
+    }
+
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
         let dataLinkageMapping = {
@@ -36,47 +63,25 @@ class AvailableDatasetsTable extends Component {
         }
     }
 
-    handleDataTypeValueClick(dataType, controlAccess) {
-        let mapping = {
-            "3D tissue imaging and cytometry":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["3D Tissue Imaging and Cytometry"]}}]}`,
-            "Biomarkers":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["MSD Plasma Biomarker","MSD Urine Biomarker","SomaScan Proteomics Plasma 7k"]}}]}`,
-            "Bulk RNA-seq": `/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Bulk Total/mRNA"]}}]}`,
-            "Clinical Dataset":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"data_category","value":["Clinical"]}}]}`,
-            "CODEX":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["CODEX"]}}]}`,
-            "Experiment metadata":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"workflow_type","value":["Experimental Metadata"]}}]}`,
-            "Light microscopic whole slide image":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Light Microscopic Whole Slide Images"]}}]}`,
-            "LMD RNA-seq":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Regional Transcriptomics"]}}]}`,
-            "SCRNA-seq": `/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Single-cell RNA-Seq"]}}]}`,
-            "SNRNA-seq":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Single-nucleus RNA-Seq"]}}]}`,
-            "Spatial transcriptomics":`/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"experimental_strategy","value":["Spatial Transcriptomics"]}}]}`,
-        };
-        if (mapping[dataType]) {
-            return mapping[dataType]
+    handleEmptyCounts(count, row, controlAccess){
+        return count === 0 ? "" : this.formatDataTypeValueCell(count, row, controlAccess)
+    }
+
+    handleDataTypeValueClick(row, controlAccess) {
+        let linkType = row.original.linkInformation.linkType;
+        let linkValue = row.original.linkInformation.linkValue;
+        let mapping = `/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"${linkType}","value":["${linkValue}"]}}]}`;
+        if(linkType && linkValue){
+            return mapping;
         } else {
             this.props.history.push('/oops');
-            throw new Error('Datatype not found', dataType)
+            throw new Error('Datatype not found', row.original.omicsType)
         }
     }
-    formatDataTypeCell(value) {
-
-        if (value === 'Explorer' || value === 'Spatial Viewer') {
-
-            return (
-                <span>
-                    <b>{value}</b>
-                 </span>
-            );
-        } else {
-            return (
-                <span className="buttonhref" onClick={() => { this.handleDataTypeClick(value) }}>
-                    {value}
-                 </span>
-            );
-        }
-    }
-    formatDataTypeValueCell(value, dataType, controlAccess) {
+  
+    formatDataTypeValueCell(value, row, controlAccess) {
         return (
-            <a href={`${this.handleDataTypeValueClick(dataType, controlAccess)}`}>
+            <a href={`${this.handleDataTypeValueClick(row, controlAccess)}`}>
                 <span className="buttonhref">
                     {value}
                 </span>
@@ -129,26 +134,25 @@ class AvailableDatasetsTable extends Component {
             {
                 Header: 'OMICS TYPE',
                 id: 'dataType',
-                accessor: 'dataType',
+                accessor: 'omicsType',
                 headerClassName: 'omics data-type-table-header',
                 className: 'data-type-table-content',
                 minWidth: this.getWidthBasedOnScreenSize('dataType'),
-                Cell: row => (
-                    row.value
-                )
+                
             },
             {
                 Header: () => (
                     <a className="buttonhref" href={`https://www.kpmp.org/controlled-data`}><span>CONTROLLED</span></a>
                 ),
                 id: 'controlled',
-                accessor: 'controlled',
+                accessor: 'controlledCount',
                 headerClassName: 'data-type-table-header',
                 className: 'data-type-table-content',
                 minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 minWidth: this.getWidthBasedOnScreenSize('controlled'),
                 Cell: row => (
-                    this.formatDataTypeValueCell(row.value, row.original.dataType, 'controlled')
+                    this.handleEmptyCounts(row.value, row, "controlled")
+                    
                 )
             },
             {
@@ -156,13 +160,13 @@ class AvailableDatasetsTable extends Component {
                     <span>OPEN</span>
                 ),
                 id: 'open',
-                accessor: 'open',
+                accessor: 'openCount',
                 headerClassName: 'data-type-table-header',
                 className: 'data-type-table-content',
                 minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
                 minWidth: this.getWidthBasedOnScreenSize('open'),
                 Cell: row => (
-                    this.formatDataTypeValueCell(row.value, row.original.dataType, 'open')
+                    this.handleEmptyCounts(row.value, row, "open")
                 )
             }
         ]
@@ -175,7 +179,7 @@ class AvailableDatasetsTable extends Component {
                     <Col xs='12'>
                         <ReactTable
                             style={{ border: 'none' }}
-                            data={this.props.availableDatasets}
+                            data={this.state.summaryRows}
                             ref={this.reactTable}
                             sortable={false}
                             columns={this.state.columns}
@@ -187,7 +191,7 @@ class AvailableDatasetsTable extends Component {
                     </Col>
                 </Row>
                 <Row className="float-right">
-                    <h2 className="sub-header mt-4 total-file-fix">TOTAL FILES: 3,853</h2>
+                    <h2 className="sub-header mt-4 total-file-fix">TOTAL FILES: {this.state.totalFiles}</h2>
                 </Row>
             </article>
         );
