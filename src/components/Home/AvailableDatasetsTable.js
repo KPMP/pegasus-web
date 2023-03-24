@@ -71,7 +71,7 @@ class AvailableDatasetsTable extends Component {
         console.log("handleDataTypeValueClick logging", row);
         let linkType = row.original.linkInformation.linkType;
         let linkValue = row.original.linkInformation.linkValue;
-        let mapping = `/repository/?facetTab=files&filters={"op":"and","content":["op":"in","content":{"field":"access", "value":["${controlAccess}"]}],{"op":"in","content":{"field":[${linkType}],"value":["${linkValue}]}}}`;
+        let mapping = `/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"${linkType}","value":["${linkValue}"]}}]}`;
         if(linkType && linkValue){
             return mapping;
         } else {
@@ -153,7 +153,7 @@ class AvailableDatasetsTable extends Component {
                 minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 minWidth: this.getWidthBasedOnScreenSize('controlled'),
                 Cell: row => (
-                    this.handleEmptyCounts(row.vlaue, row, "controlled")
+                    this.handleEmptyCounts(row.value, row, "controlled")
                     
                 )
             },
