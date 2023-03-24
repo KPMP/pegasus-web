@@ -64,12 +64,7 @@ class AvailableDatasetsTable extends Component {
     }
 
     handleEmptyCounts(count, row, controlAccess){
-        if (count !== 0){
-            this.formatDataTypeValueCell(count, row, controlAccess);
-        }
-        else{
-            return "";
-        }
+        return count === 0 ? "" : this.formatDataTypeValueCell(count, row, controlAccess)
     }
 
     handleDataTypeValueClick(row, controlAccess) {
