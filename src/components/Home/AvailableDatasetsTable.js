@@ -65,7 +65,7 @@ class AvailableDatasetsTable extends Component {
 
     handleEmptyCounts(row, controlAccess){//replace with row to clean this up
         console.log(row);
-        if (row.original.openCount === 0 || row.original.controlled === 0){
+        if (row.original.openCount === 0 || row.original.controlledCount === 0){
             return "";
         }
         else{
@@ -74,8 +74,8 @@ class AvailableDatasetsTable extends Component {
     }
 
     handleDataTypeValueClick(row, controlAccess) {
-        let linkType = row.original.omicsType.linkInformation.linkType;
-        let linkValue = row.original.omicsType.linkInformation.linkValue;
+        let linkType = row.row.original.linkInformation.linkType;
+        let linkValue = row.row.original.linkInformation.linkValue;
         let mapping = `/repository/?facetTab=files&filters={"op":"and","content":["op":"in","content":{"field":"access", "value":["${controlAccess}"]}],{"op":"in","content":{"field":[${linkType}],"value":["${linkValue}]}}}`;
         if(linkType && linkValue){
             return mapping;
