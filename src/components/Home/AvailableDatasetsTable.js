@@ -64,9 +64,7 @@ class AvailableDatasetsTable extends Component {
     }
 
     handleEmptyCounts(row, controlAccess){//replace with row to clean this up
-        console.log(row);
-        console.log(row.original.openCount);
-        console.log(row.original.controlledCount);
+        console.log("handleEmptyCounts logging ", row);
         if (row.original.openCount === 0 || row.original.controlledCount === 0){
             return "";
         }
@@ -76,8 +74,9 @@ class AvailableDatasetsTable extends Component {
     }
 
     handleDataTypeValueClick(row, controlAccess) {
-        let linkType = row.row.original.linkInformation.linkType;
-        let linkValue = row.row.original.linkInformation.linkValue;
+        console.log("handleDataTypeValueClick logging", row);
+        let linkType = row.original.linkInformation.linkType;
+        let linkValue = row.original.linkInformation.linkValue;
         let mapping = `/repository/?facetTab=files&filters={"op":"and","content":["op":"in","content":{"field":"access", "value":["${controlAccess}"]}],{"op":"in","content":{"field":[${linkType}],"value":["${linkValue}]}}}`;
         if(linkType && linkValue){
             return mapping;
