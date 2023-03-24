@@ -66,14 +66,13 @@ class AvailableDatasetsTable extends Component {
     handleEmptyCounts(row, controlAccess){//replace with row to clean this up
         console.log("openCounts logging ", row.original.openCount);
         console.log("controlledCount logging ", row.original.controlledCount);
-        if (row.original.openCount === 0){
-            return "";
-        }else if (row.original.controlledCount === 0){
-            return ""
+        if (row.original.openCount !== 0){
+            this.formatDataTypeValueCell(row.original.openCount, row, controlAccess);
+        }else if (row.original.controlledCount !== 0){
+            this.formatDataTypeValueCell(row.original.controlledCount, row, controlAccess);
         }
         else{
-            this.formatDataTypeValueCell(row.original.openCount, row, controlAccess);
-            this.formatDataTypeValueCell(row.original.controlledCount, row, controlAccess)
+            return "";
         }
     }
 
