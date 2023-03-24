@@ -69,7 +69,8 @@ class AvailableDatasetsTable extends Component {
             return "";
         }
         else{
-            this.formatDataTypeValueCell(row, controlAccess) 
+            this.formatDataTypeValueCell(row.original.openCount, row, controlAccess);
+            this.formatDataTypeValueCell(row.original.controlledCount, row, controlAccess)
         }
     }
 
