@@ -65,22 +65,19 @@ class AvailableDatasetsTable extends Component {
 
     handleEmptyCounts(row, controlAccess){//replace with row to clean this up
         console.log(row);
-        if (row.openCount === 0){
-            return "";
-        }else if (row.controlledCount === 0){
+        if (row.original.openCount === 0 || row.original.controlled === 0){
             return "";
         }
         else{
             this.formatDataTypeValueCell(row, controlAccess) 
         }
-        // return count === 0 ? "" : count;
     }
 
     handleDataTypeValueClick(row, controlAccess) {
         let linkType = row.original.linkInformation.linkType;
         let linkValue = row.original.linkInformation.linkValue;
         let mapping = `/repository/?facetTab=files&filters={"op":"and","content":["op":"in","content":{"field":"access", "value":["${controlAccess}"]}],{"op":"in","content":{"field":[${linkType}],"value":["${linkValue}]}}}`;
-        if(row.original.omicsType.linkInformation.linkType && row.original.omicsType.linkInformation.linkValue){
+        if(linkType && linkValue){
             return mapping;
         } else {
             this.props.history.push('/oops');
