@@ -74,8 +74,8 @@ class AvailableDatasetsTable extends Component {
     }
 
     handleDataTypeValueClick(row, controlAccess) {
-        let linkType = row.original.linkInformation.linkType;
-        let linkValue = row.original.linkInformation.linkValue;
+        let linkType = row.original.omicsType.linkInformation.linkType;
+        let linkValue = row.original.omicsType.linkInformation.linkValue;
         let mapping = `/repository/?facetTab=files&filters={"op":"and","content":["op":"in","content":{"field":"access", "value":["${controlAccess}"]}],{"op":"in","content":{"field":[${linkType}],"value":["${linkValue}]}}}`;
         if(linkType && linkValue){
             return mapping;
