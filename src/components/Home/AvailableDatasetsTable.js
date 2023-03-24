@@ -68,7 +68,6 @@ class AvailableDatasetsTable extends Component {
     }
 
     handleDataTypeValueClick(row, controlAccess) {
-        console.log("handleDataTypeValueClick logging", row);
         let linkType = row.original.linkInformation.linkType;
         let linkValue = row.original.linkInformation.linkValue;
         let mapping = `/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"${linkType}","value":["${linkValue}"]}}]}`;
@@ -81,7 +80,6 @@ class AvailableDatasetsTable extends Component {
     }
   
     formatDataTypeValueCell(value, row, controlAccess) {
-        console.log("formatDataTypeValueCell logging", typeof(value), value)
         return (
             <a href={`${this.handleDataTypeValueClick(row, controlAccess)}`}>
                 <span className="buttonhref">
