@@ -90,6 +90,7 @@ class AvailableDatasetsTable extends Component {
     }
   
     formatDataTypeValueCell(value, row, controlAccess) {
+        console.log("formatDataTypeValueCell logging", typeof(value), value)
         return (
             <a href={`${this.handleDataTypeValueClick(row, controlAccess)}`}>
                 <span className="buttonhref">
