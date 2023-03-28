@@ -51,7 +51,7 @@ class CellTypeSummary extends Component {
                 cluster = row.structureSubregion;
             }
         }
-        handleGoogleAnalyticsEvent('Navigation', 'diffex', 'data type: ' + dataType + ' and cluster: ' + cluster);
+        handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and cluster: ${cluster}`);
         this.props.setDataTypeAndCluster(dataType, cluster);
     };
 

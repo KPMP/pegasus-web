@@ -40,7 +40,7 @@ class SamplesByDataTypeTable extends Component {
     }
 
     handleDataTypeClick(dataType) {
-        handleGoogleAnalyticsEvent('Navigation', 'blank slate visualization', dataType);
+        handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
         let dataLinkageMapping = {
             'Single-nucleus RNA-seq (snRNA-seq)': 'sn',
             'Single-cell RNA-seq (scRNA-seq)': 'sc',

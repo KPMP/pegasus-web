@@ -10,6 +10,31 @@ type Query {
   getRTGeneExpressionByTissue(comparisonType: String, geneSymbol: String): RTGeneExpressionByTissue
   getRTGeneExpressionByStructure(structure: String): [RTGeneExpression]
   getDataSummary(dataType: String): [SummaryData]
+  getTissueTypeSummaryData: [getTissueTypeSummaryData]
+  getAtlasSummaryRows: [getAtlasSummaryRows]
+}
+
+type getAtlasSummaryRows{
+  totalFiles: Long,
+  summaryRows: [SummaryRows]
+}
+
+type SummaryRows{
+  openCount: Long,
+  controlledCount: Long,
+  omicsType: String,
+  linkInformation: [LinkInformation]
+}
+
+type LinkInformation{
+  linkType: String,
+  linkValue: String
+}
+
+type getTissueTypeSummaryData{
+  akiCount: Long,
+  ckdCount: Long,
+  hrtCount: Long
 }
 
 type GeneDatasetInformation {

@@ -392,3 +392,50 @@ export const fetchSummaryData = async (dataType) => {
         store.dispatch(sendMessageToBackend("Could not retrieve summary: " + response.error));
     }
 }
+
+export const fetchTissueTypeSummaryCounts = async () => {
+    let query = gql`
+        query {
+            getTissueTypeSummaryData {
+                akiCount
+                ckdCount
+                hrtCount
+            }
+        }`;
+    const response = await apolloClient.query({
+        query: query,
+        fetchPolicy: 'cache-first'
+    });
+    if (response.data && response.data.getTissueTypeSummaryData) {
+        return response.data.getTissueTypeSummaryData[0];
+    }else {
+        store.dispatch(sendMessageToBackend("Could not retrieve tissue summary: " + response.error));
+    }
+}
+
+export const fetchAtlasSummaryRows = async () => {
+    let query = gql`
+        query {
+            getAtlasSummaryRows{
+                totalFiles
+                summaryRows {
+                    openCount
+                    controlledCount
+                    omicsType
+                    linkInformation {
+                        linkType
+                        linkValue
+                    }
+                }
+            }
+        }`;
+    const response = await apolloClient.query({
+        query: query,
+        fetchPolicy: 'cache-first'
+    });
+    if (response.data && response.data.getAtlasSummaryRows) {
+        return response.data.getAtlasSummaryRows;
+    }else {
+        store.dispatch(sendMessageToBackend("Could not retrieve file counts: " + response.error));
+    }
+}

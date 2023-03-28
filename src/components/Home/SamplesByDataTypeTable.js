@@ -15,7 +15,7 @@ class SamplesByDataTypeTable extends Component {
         };
     }
     handleDataTypeClick(dataType) {
-        handleGoogleAnalyticsEvent('Navigation', 'blank slate visualization', dataType);
+        handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
         let dataLinkageMapping = {
             'Single-nucleus RNA-seq (snRNA-seq)': 'sn',
             'Single-cell RNA-seq (scRNA-seq)': 'sc',
@@ -36,11 +36,10 @@ class SamplesByDataTypeTable extends Component {
         }
     }
     formatDataTypeCell(value) {
-        if (value === 'Single-cell RNA-seq (scRNA-seq)' || value === 'Single-nucleus RNA-seq (snRNA-seq)') {
-
+        if (value === 'Explorer' || value === 'Spatial Viewer') {
             return (
-                <span className="buttonhref" onClick={() => { this.handleDataTypeClick(value) }}>
-                    {value}<span style={{color: 'red'}}>*</span>
+                <span>
+                    <b>{value}</b>
                  </span>
             );
         } else {
@@ -52,6 +51,50 @@ class SamplesByDataTypeTable extends Component {
         }
 
     }
+    getWidthBasedOnScreenSize(columnId) {
+        if (window.innerWidth < 900) {
+            if (columnId === 'dataType') {
+                return 260;
+            } else if (columnId === 'hrtCount') {
+                return 150
+            } else if (columnId === 'ckdCount') {
+                return 100
+            } else if (columnId === 'akiCount') {
+                return 100
+            }
+        } else if (window.innerWidth < 1000) {
+                if (columnId === 'dataType') {
+                    return 260;
+                } else if (columnId === 'hrtCount') {
+                    return 150
+                } else if (columnId === 'ckdCount') {
+                    return 80
+                } else if (columnId === 'akiCount') {
+                    return 80
+                }
+        } else if (window.innerWidth < 1200) {
+            if (columnId === 'dataType') {
+                return 260;
+            } else if (columnId === 'hrtCount') {
+                return 150
+            } else if (columnId === 'ckdCount') {
+                return 85
+            } else if (columnId === 'akiCount') {
+                return 85
+            }
+        } else if (window.innerWidth >= 1200) {
+            if (columnId === 'dataType') {
+                return 260;
+            } else if (columnId === 'hrtCount') {
+                return 150
+            } else if (columnId === 'ckdCount') {
+                return 100
+            } else if (columnId === 'akiCount') {
+                return 100
+            }
+        }
+    }
+
     getColumns() {
 
         return [
@@ -61,7 +104,7 @@ class SamplesByDataTypeTable extends Component {
                 accessor: 'dataType',
                 headerClassName: 'omics data-type-table-header',
                 className: 'data-type-table-content',
-                minWidth: 295,
+                minWidth: this.getWidthBasedOnScreenSize('dataType'),
                 Cell: row => (
                     this.formatDataTypeCell(row.value)
                 )
@@ -74,8 +117,8 @@ class SamplesByDataTypeTable extends Component {
                 accessor: 'hrtCount',
                 headerClassName: 'data-type-table-header',
                 className: 'data-type-table-content',
-                minHeaderWidth: 250,
-                minWidth: 250,
+                minHeaderWidth: this.getWidthBasedOnScreenSize('hrtCount'),
+                minWidth: this.getWidthBasedOnScreenSize('hrtCount'),
                 
             },
             {
@@ -86,8 +129,8 @@ class SamplesByDataTypeTable extends Component {
                 accessor: 'ckdCount',
                 headerClassName: 'data-type-table-header',
                 className: 'data-type-table-content',
-                minHeaderWidth: 145,
-                minWidth: 145,
+                minHeaderWidth: this.getWidthBasedOnScreenSize('ckdCount'),
+                minWidth: this.getWidthBasedOnScreenSize('ckdCount')
             },
             {
                 Header: () => (
@@ -97,8 +140,8 @@ class SamplesByDataTypeTable extends Component {
                 accessor: 'akiCount',
                 headerClassName: 'data-type-table-header',
                 className: 'data-type-table-content',
-                minHeaderWidth: 145,
-                minWidth: 145
+                minHeaderWidth: this.getWidthBasedOnScreenSize('akiCount'),
+                minWidth: this.getWidthBasedOnScreenSize('akiCount')
             },
         ]
     };
