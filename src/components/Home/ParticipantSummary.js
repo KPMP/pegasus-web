@@ -21,7 +21,7 @@ class ParticipantSummary extends Component {
   render() {
     return (
     <Row>
-      <Col md='4' lg='4'>
+      <Col md='3' lg='3'>
           <div className="centered background-light-blue kpmp-color-dark">
               <div>
                   <span className="font-size-three-rem">{this.state.ckdCount}</span>
@@ -31,7 +31,7 @@ class ParticipantSummary extends Component {
               </div>
           </div>
       </Col>
-      <Col md='4' lg='4'>
+      <Col md='3' lg='3'>
           <div className="centered background-light-blue kpmp-color-dark">
               <div>
                   <span className="font-size-three-rem">{this.state.akiCount}</span>
@@ -41,7 +41,7 @@ class ParticipantSummary extends Component {
               </div>
           </div>
       </Col>
-        <Col md='4' lg='4'>
+        <Col md='3' lg='3'>
             <div className="centered background-light-blue kpmp-color-dark">
                 <div>
                     <span className="font-size-three-rem">{this.state.resistorCount}</span>
@@ -51,7 +51,7 @@ class ParticipantSummary extends Component {
                 </div>
             </div>
         </Col>
-      <Col md='4' lg='4'>
+      <Col md='3' lg='3'>
           <div className="centered background-light-blue kpmp-color-dark">
               <div>
                   <span className="font-size-three-rem">{this.state.hrtCount}</span>
