@@ -4,7 +4,7 @@ import { fetchTissueTypeSummaryCounts } from '../../helpers/ApolloClient';
 class ParticipantSummary extends Component {
   constructor(props) {
       super(props);
-      this.state = { akiCount: [], ckdCount: [], hrtCount:[]};
+      this.state = { akiCount: [], ckdCount: [], hrtCount:[], resistorCount:[]};
     }
     async componentDidMount() {
       await this.getTissueCounts();
@@ -15,6 +15,7 @@ class ParticipantSummary extends Component {
       this.setState({akiCount: result.akiCount})
       this.setState({ckdCount: result.ckdCount})
       this.setState({hrtCount: result.hrtCount})
+      this.setState({resistorCount: result.resistorCount})
     })
   }
   render() {
@@ -40,6 +41,16 @@ class ParticipantSummary extends Component {
               </div>
           </div>
       </Col>
+        <Col md='4' lg='4'>
+            <div className="centered background-light-blue kpmp-color-dark">
+                <div>
+                    <span className="font-size-three-rem">{this.state.resistorCount}</span>
+                </div>
+                <div>
+                    <span className="font-size-one-one-half-rem">Resistor</span>
+                </div>
+            </div>
+        </Col>
       <Col md='4' lg='4'>
           <div className="centered background-light-blue kpmp-color-dark">
               <div>
