@@ -47,7 +47,7 @@ class ParticipantSummary extends Component {
                     <span className="font-size-three-rem">{this.state.resistorCount}</span>
                 </div>
                 <div>
-                    <span className="font-size-one-one-half-rem">Resistor</span>
+                    <span className="font-size-one-one-half-rem">RESISTOR</span>
                 </div>
             </div>
         </Col>
