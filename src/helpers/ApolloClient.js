@@ -400,6 +400,7 @@ export const fetchTissueTypeSummaryCounts = async () => {
                 akiCount
                 ckdCount
                 hrtCount
+                resistorCount
             }
         }`;
     const response = await apolloClient.query({
