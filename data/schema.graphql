@@ -45,6 +45,7 @@ type GeneDatasetInformation {
   akiCount: Long
   ckdCount: Long
   hrtCount: Long
+  resistorCount: Long
   participantCount: Long
 }
 
