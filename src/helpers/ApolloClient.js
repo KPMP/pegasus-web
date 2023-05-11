@@ -377,6 +377,7 @@ export const fetchSummaryData = async (dataType) => {
                 hrtCount
                 akiCount
                 ckdCount
+                resistorCount
                 participantCount
             }
         }`;
