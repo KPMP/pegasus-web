@@ -169,6 +169,7 @@ export const fetchGeneDatasetSummary = async (geneSymbol, fetchPolicy = 'no-cach
                     hrtCount
                     akiCount
                     ckdCount
+                    resistorCount
                     participantCount
                 }
             }`,
