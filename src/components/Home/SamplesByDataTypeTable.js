@@ -61,6 +61,8 @@ class SamplesByDataTypeTable extends Component {
                 return 100
             } else if (columnId === 'akiCount') {
                 return 100
+            }else if (columnId === 'resistorCount'){
+                return 100
             }
         } else if (window.innerWidth < 1000) {
                 if (columnId === 'dataType') {
@@ -70,6 +72,8 @@ class SamplesByDataTypeTable extends Component {
                 } else if (columnId === 'ckdCount') {
                     return 80
                 } else if (columnId === 'akiCount') {
+                    return 80
+                }else if (columnId === 'resistorCount'){
                     return 80
                 }
         } else if (window.innerWidth < 1200) {
@@ -81,7 +85,10 @@ class SamplesByDataTypeTable extends Component {
                 return 85
             } else if (columnId === 'akiCount') {
                 return 85
+            }else if (columnId === 'resistorCount') {
+                return 85
             }
+
         } else if (window.innerWidth >= 1200) {
             if (columnId === 'dataType') {
                 return 260;
@@ -90,6 +97,8 @@ class SamplesByDataTypeTable extends Component {
             } else if (columnId === 'ckdCount') {
                 return 100
             } else if (columnId === 'akiCount') {
+                return 100
+            }else if (columnId === 'resistorCount') {
                 return 100
             }
         }
@@ -111,7 +120,7 @@ class SamplesByDataTypeTable extends Component {
             },
             {
                 Header: () => (
-                    <span>HEALTHY REFERENCE</span>
+                    <span title='Healthy Reference'>HEALTHY REFERENCE</span>
                 ),
                 id: 'hrtCount',
                 accessor: 'hrtCount',
@@ -123,7 +132,7 @@ class SamplesByDataTypeTable extends Component {
             },
             {
                 Header: () => (
-                    <span>CKD</span>
+                    <span title='Chronic Kidney Disease'>CKD</span>
                 ),
                 id: 'ckdCount',
                 accessor: 'ckdCount',
@@ -134,7 +143,7 @@ class SamplesByDataTypeTable extends Component {
             },
             {
                 Header: () => (
-                    <span>AKI</span>
+                    <span title='Acute Kidney Injury'>AKI</span>
                 ),
                 id: 'akiCount',
                 accessor: 'akiCount',
@@ -143,6 +152,17 @@ class SamplesByDataTypeTable extends Component {
                 minHeaderWidth: this.getWidthBasedOnScreenSize('akiCount'),
                 minWidth: this.getWidthBasedOnScreenSize('akiCount')
             },
+            {
+                Header: () => (
+                    <span title='Diabetic patients who have not developed Kidney Disease'>RESISTOR</span>
+                ),
+                id: 'resistorCount',
+                accessor: 'resistorCount',
+                headerClassName: 'data-type-table-header',
+                className: 'data-type-table-content',
+                minHeaderWidth: this.getWidthBasedOnScreenSize('resistorCount'),
+                minWidth: this.getWidthBasedOnScreenSize('resistorCount')
+            }   
         ]
     };
 
