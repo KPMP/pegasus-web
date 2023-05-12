@@ -34,7 +34,8 @@ type LinkInformation{
 type getTissueTypeSummaryData{
   akiCount: Long,
   ckdCount: Long,
-  hrtCount: Long
+  hrtCount: Long,
+  resistorCount: Long
 }
 
 type GeneDatasetInformation {
@@ -44,6 +45,7 @@ type GeneDatasetInformation {
   akiCount: Long
   ckdCount: Long
   hrtCount: Long
+  resistorCount: Long
   participantCount: Long
 }
 
