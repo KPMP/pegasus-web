@@ -87,7 +87,7 @@ class SamplesByDataTypeTable extends Component {
                 accessor: 'dataType',
                 headerClassName: 'omics data-type-table-header',
                 className: 'data-type-table-content',
-                minWidth: 330,
+                minWidth: 280,
                 Cell: row => (
                     this.formatDataTypeCell(row.value)
                 )
@@ -100,8 +100,8 @@ class SamplesByDataTypeTable extends Component {
                 accessor: 'hrtCount',
                 headerClassName: 'data-type-table-header',
                 className: 'data-type-table-content text-center',
-                minHeaderWidth: 150,
-                minWidth: 150,
+                minHeaderWidth: 175,
+                minWidth: 175,
             },
             {
                 Header: () => (
@@ -133,8 +133,8 @@ class SamplesByDataTypeTable extends Component {
                 accessor: 'resistorCount',
                 headerClassName: 'data-type-table-header text-center',
                 className: 'data-type-table-content text-center',
-                minHeaderWidth: 75,
-                minWidth: 75
+                minHeaderWidth: 100,
+                minWidth: 100
             },
         ]
     };
