@@ -100,8 +100,8 @@ class SamplesByDataTypeTable extends Component {
                 accessor: 'hrtCount',
                 headerClassName: 'data-type-table-header',
                 className: 'data-type-table-content text-center',
-                minHeaderWidth: 175,
-                minWidth: 175,
+                minHeaderWidth: 150,
+                minWidth: 150,
             },
             {
                 Header: () => (
@@ -111,8 +111,8 @@ class SamplesByDataTypeTable extends Component {
                 accessor: 'ckdCount',
                 headerClassName: 'data-type-table-header text-center',
                 className: 'data-type-table-content text-center',
-                minHeaderWidth: 100,
-                minWidth: 100,
+                minHeaderWidth: 75,
+                minWidth: 75,
             },
             {
                 Header: () => (
@@ -122,8 +122,8 @@ class SamplesByDataTypeTable extends Component {
                 accessor: 'akiCount',
                 headerClassName: 'data-type-table-header text-center',
                 className: 'data-type-table-content text-center',
-                minHeaderWidth: 100,
-                minWidth: 100
+                minHeaderWidth: 75,
+                minWidth: 75
             },
             {
                 Header: () => (
@@ -133,8 +133,8 @@ class SamplesByDataTypeTable extends Component {
                 accessor: 'resistorCount',
                 headerClassName: 'data-type-table-header text-center',
                 className: 'data-type-table-content text-center',
-                minHeaderWidth: 100,
-                minWidth: 100
+                minHeaderWidth: 75,
+                minWidth: 75
             },
         ]
     };
