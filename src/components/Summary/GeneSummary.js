@@ -56,7 +56,9 @@ class GeneSummary extends Component {
             if (geneSummary[dataType]["ckdCount"] === '0' || !dataTypeIsClickable) {
                 geneSummary[dataType]["ckdCount"] = '-';
             }
-
+            if (geneSummary[dataType]["resistorCount"] === '0' || !dataTypeIsClickable) {
+                geneSummary[dataType]["resistorCount"] = '-';
+            }
         }
         return geneSummary
     }
@@ -134,11 +136,21 @@ class GeneSummary extends Component {
                     <div className={"text-center"}>{row.ckd}</div>
                 )
             },
+            {
+                Header: "RESISTOR TISSUE",
+                id: "resistor",
+                accessor: 'resistorCount',
+                headerClassName: 'table-header text-center',
+                className: 'table-column',
+                Cell: ({ row }) => (
+                    <div className={"text-center"}>{row.resistor}</div>
+                )
+            },
         ]
     };
 
     dataTypeHasData(row) {
-        if (row.hrtCount !== '-' || row.akiCount !== '-' || row.ckdCount !== '-') {
+        if (row.hrtCount !== '-' || row.akiCount !== '-' || row.ckdCount !== '-' || row.resistorCount !== '-') {
             return true;
         }
         return false;
