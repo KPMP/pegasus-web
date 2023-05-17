@@ -23,7 +23,7 @@
     "history": "5.0.0",
     "html-react-parser": "1.4.0",
     "isomorphic-unfetch": "3.1.0",
-    "kpmp-common-components": "1.1.13",
+    "kpmp-common-components": "1.1.20",
     "kpmp-common-styles": "1.0.12",
     "material-table": "1.69.3",
     "node-sass-chokidar": "1.5.0",
