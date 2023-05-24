@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, UncontrolledTooltip } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
 class SamplesByDataTypeTable extends Component {
@@ -11,8 +11,8 @@ class SamplesByDataTypeTable extends Component {
         this.reactTable = React.createRef();
 
         this.state = {
-            columns: this.getColumns(),
-        };
+            columns: this.getColumns()
+        };   
     }
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
@@ -108,7 +108,9 @@ class SamplesByDataTypeTable extends Component {
 
         return [
             {
-                Header: 'OMICS TYPE',
+                Header: () => (
+                    <span className="table-header">OMICS TYPE</span>
+                ),
                 id: 'dataType',
                 accessor: 'dataType',
                 headerClassName: 'omics data-type-table-header',
@@ -120,7 +122,16 @@ class SamplesByDataTypeTable extends Component {
             },
             {
                 Header: () => (
-                    <span title='Healthy Reference'>HEALTHY REFERENCE</span>
+                    <span>
+                      <span className="table-header" id="HealthyReferenceHeader">
+                      HEALTHY REFERENCE
+                      </span>
+                      <UncontrolledTooltip 
+                        placement="bottom"
+                        target="HealthyReferenceHeader">
+                      Healthy Reference
+                      </UncontrolledTooltip>
+                    </span>
                 ),
                 id: 'hrtCount',
                 accessor: 'hrtCount',
@@ -132,7 +143,16 @@ class SamplesByDataTypeTable extends Component {
             },
             {
                 Header: () => (
-                    <span title='Chronic Kidney Disease'>CKD</span>
+                    <span>
+                      <span className="table-header" id="CKDHeader">
+                      CKD
+                      </span>
+                      <UncontrolledTooltip 
+                        placement="bottom"
+                        target="CKDHeader">
+                      Chronic Kidney Disease
+                      </UncontrolledTooltip>
+                    </span>
                 ),
                 id: 'ckdCount',
                 accessor: 'ckdCount',
@@ -143,7 +163,16 @@ class SamplesByDataTypeTable extends Component {
             },
             {
                 Header: () => (
-                    <span title='Acute Kidney Injury'>AKI</span>
+                    <span>
+                      <span className="table-header" id="AKIHeader">
+                      AKI
+                      </span>
+                      <UncontrolledTooltip 
+                        placement="bottom"
+                        target="AKIHeader">
+                      Acute Kidney Injury
+                      </UncontrolledTooltip>
+                    </span>
                 ),
                 id: 'akiCount',
                 accessor: 'akiCount',
@@ -154,7 +183,16 @@ class SamplesByDataTypeTable extends Component {
             },
             {
                 Header: () => (
-                    <span title='Diabetic patients who have not developed Kidney Disease'>RESISTOR</span>
+                    <span>
+                      <span className="table-header" id="ResistorHeader">
+                      RESISTOR
+                      </span>
+                      <UncontrolledTooltip 
+                        placement="bottom"
+                        target="ResistorHeader">
+                      Diabetic patients who have not developed Kidney Disease
+                      </UncontrolledTooltip>
+                    </span>
                 ),
                 id: 'resistorCount',
                 accessor: 'resistorCount',
