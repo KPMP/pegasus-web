@@ -132,7 +132,9 @@ class AvailableDatasetsTable extends Component {
 
         return [
             {
-                Header: 'OMICS TYPE',
+                Header: () => (
+                    <span className="table-header">OMICS TYPE</span>
+                ),
                 id: 'dataType',
                 accessor: 'omicsType',
                 headerClassName: 'omics data-type-table-header',
@@ -142,7 +144,7 @@ class AvailableDatasetsTable extends Component {
             },
             {
                 Header: () => (
-                    <a className="buttonhref" href={`https://www.kpmp.org/controlled-data`}><span>CONTROLLED</span></a>
+                    <a className="buttonhref table-header" href={`https://www.kpmp.org/controlled-data`}><span>CONTROLLED</span></a>
                 ),
                 id: 'controlled',
                 accessor: 'controlledCount',
@@ -157,7 +159,7 @@ class AvailableDatasetsTable extends Component {
             },
             {
                 Header: () => (
-                    <span>OPEN</span>
+                    <span className='table-header'>OPEN</span>
                 ),
                 id: 'open',
                 accessor: 'openCount',
