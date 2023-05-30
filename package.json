@@ -41,7 +41,7 @@
     "react-scripts": "4.0.3",
     "react-select": "4.0.0",
     "react-table": "6.10.3",
-    "reactstrap": "8.8.1",
+    "reactstrap": "^9.1.10",
     "redux": "4.0.5",
     "redux-thunk": "2.3.0",
     "string-strip-html": "8.3.0"
