@@ -186,9 +186,9 @@ class DataTypeSelector extends Component {
     }
     getDataTypeInfo = (dataType) => {
         let copy = {
-            'sn': 'This single-nucleus dataset is comprised of healthy reference tissue from 3 tumor nephrectomies procured in a KPMP pilot project, 18 living donor tissue healthy reference tissue samples from 10 donors procured as part of the Human Biomolecular Atlas Program (HuBMAP), and 10 CKD and 6 AKI biopsy participants from the KPMP main study protocol.',
-            'sc': 'This single-cell dataset is comprised of 20 samples from 18 living donor biopsy participants from the Human Cell Atlas, as well as 15 CKD and 12 AKI biopsy participants from the KPMP main study protocol.',
-            'rt': 'This regional transcriptomics dataset is comprised of healthy reference tissue from 6 tumor nephrectomies procured in a KPMP pilot project, 3 deceased donor nephrectomy healthy reference tissue samples, 5 AKI biopsy participants from the KPMP main study protocol, 8 CKD biopsy participants from the KPMP main study protocol, and 14 CKD samples from the Diabetic Complications Consortium (DiaComp).'
+            'sn': 'This single-nucleus dataset is comprised of Healthy Reference: tumor nephrectomy tissue originating from the KPMP Pilot 1 protocol, living and deceased donor tumor nephrectomy samples, and tissue biopsy samples from Human Biomolecular Atlas Program (HuBMAP) participants; CKD: biopsy samples from the KPMP Main Study protocol participants; and AKI: biopsy samples from the KPMP Main Study protocol participants.',
+            'sc': 'This single-cell dataset is comprised of Healthy Reference: biopsy samples from the Human Cell Atlas participants, CKD: biopsy samples from the KPMP Main Study protocol participants, and AKI: biopsy samples from the KPMP Main Study protocol participants.',
+            'rt': 'This regional transcriptomics dataset is comprised of Healthy Reference: tumor nephrectomy tissue originating from the KPMP Pilot 1 protocol and deceased donor nephrectomy samples, CKD: biopsy samples from the KPMP Main Study protocol participants and biopsy samples from the Diabetic Complications Consortium (DiaComp), and AKI: biopsy samples from the KPMP Main Study protocol participants.'
         }
         if(dataType && copy[dataType.value]){
             return copy[dataType.value]
