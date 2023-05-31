@@ -186,7 +186,7 @@ class DataTypeSelector extends Component {
     }
     getDataTypeInfo = (dataType) => {
         let copy = {
-            'sn': 'TThis single-nucleus dataset is comprised of Healthy Reference: tumor nephrectomy tissue originating from the KPMP Pilot 1 protocol, living and deceased donor tumor nephrectomy samples, and tissue biopsy samples from Human Biomolecular Atlas Program (HuBMAP) participants; CKD: biopsy samples from the KPMP Main Study protocol participants; and AKI: biopsy samples from the KPMP Main Study protocol participants.',
+            'sn': 'This single-nucleus dataset is comprised of Healthy Reference: tumor nephrectomy tissue originating from the KPMP Pilot 1 protocol, living and deceased donor tumor nephrectomy samples, and tissue biopsy samples from Human Biomolecular Atlas Program (HuBMAP) participants; CKD: biopsy samples from the KPMP Main Study protocol participants; and AKI: biopsy samples from the KPMP Main Study protocol participants.',
             'sc': 'This single-cell dataset is comprised of Healthy Reference: biopsy samples from the Human Cell Atlas participants, CKD: biopsy samples from the KPMP Main Study protocol participants, and AKI: biopsy samples from the KPMP Main Study protocol participants.',
             'rt': 'This regional transcriptomics dataset is comprised of Healthy Reference: tumor nephrectomy tissue originating from the KPMP Pilot 1 protocol and deceased donor nephrectomy samples, CKD: biopsy samples from the KPMP Main Study protocol participants and biopsy samples from the Diabetic Complications Consortium (DiaComp), and AKI: biopsy samples from the KPMP Main Study protocol participants.'
         }
