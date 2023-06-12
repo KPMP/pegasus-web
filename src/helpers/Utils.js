@@ -19,8 +19,8 @@ export const formatTissueType = (tissueType) => {
             return "AKI";
         case "ckd":
             return "CKD";
-        case "resistor":
-            return "Resistor";
+        case "dmr":
+            return "DM-R";
         default:
             return tissueType
 
@@ -81,8 +81,8 @@ export const getTissueTypeOptions = (datasetSummary, geneSymbol) => {
             isDisabled: !geneSymbol || !datasetSummary.ckdCount > 0 || typeof datasetSummary.ckdCount !== 'number'
         },
         {
-            label: "Resistor",
-            value: "resistor",
+            label: "DM-R",
+            value: "dmr",
             isDisabled: !geneSymbol || !datasetSummary.resistorCount > 0 || typeof datasetSummary.resistorCount !== 'number'
         }
     ];
@@ -144,7 +144,7 @@ export const getDataTypeOptionsWithTissueType = async (geneSymbol, cluster, data
                 "aki": datasetSummary[indexDS].akiCount,
                 "ckd": datasetSummary[indexDS].ckdCount,
                 "hrt": datasetSummary[indexDS].hrtCount,
-                "resistor": datasetSummary[indexDS].resistorCount
+                "dmr": datasetSummary[indexDS].resistorCount
             }
             if (options[index].value === datasetSummary[indexDS].dataTypeShort && tissues[currentTissueType] === 0) {
                 options[index].isDisabled = true
@@ -156,7 +156,7 @@ export const getDataTypeOptionsWithTissueType = async (geneSymbol, cluster, data
 
 export const availableDataVisibilityFilter = (data) => {
     if ('hrtCount' in data && 'akiCount' in data && 'ckdCount' in data) {
-        if (data.hrtCount > 0 || data.akiCount > 0 || data.ckdCount > 0 || data.resistorCount > 0) {
+        if (data.hrtCount > 0 || data.akiCount > 0 || data.ckdCount > 0 || data.dmrCount > 0) {
             return data;
         }
     }
