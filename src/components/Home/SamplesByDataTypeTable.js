@@ -124,7 +124,7 @@ class SamplesByDataTypeTable extends Component {
                 Header: () => (
                     <span>
                       <span className="table-header" id="HealthyReferenceHeader">
-                      HEALTHY REFERENCE
+                       REFERENCE
                       </span>
                       <UncontrolledTooltip 
                         placement="bottom"
@@ -185,12 +185,12 @@ class SamplesByDataTypeTable extends Component {
                 Header: () => (
                     <span>
                       <span className="table-header" id="ResistorHeader">
-                      RESISTOR
+                      DM-R
                       </span>
                       <UncontrolledTooltip 
                         placement="bottom"
                         target="ResistorHeader">
-                      Diabetic patients who have not developed Kidney Disease
+                      Diabetes Mellitus - Resilient
                       </UncontrolledTooltip>
                     </span>
                 ),
