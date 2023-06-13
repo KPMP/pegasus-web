@@ -61,7 +61,7 @@ class SamplesByDataTypeTable extends Component {
                 return 100
             } else if (columnId === 'akiCount') {
                 return 100
-            }else if (columnId === 'resistorCount'){
+            }else if (columnId === 'dmrCount'){
                 return 100
             }
         } else if (window.innerWidth < 1000) {
@@ -73,7 +73,7 @@ class SamplesByDataTypeTable extends Component {
                     return 80
                 } else if (columnId === 'akiCount') {
                     return 80
-                }else if (columnId === 'resistorCount'){
+                }else if (columnId === 'dmrCount'){
                     return 80
                 }
         } else if (window.innerWidth < 1200) {
@@ -85,7 +85,7 @@ class SamplesByDataTypeTable extends Component {
                 return 85
             } else if (columnId === 'akiCount') {
                 return 85
-            }else if (columnId === 'resistorCount') {
+            }else if (columnId === 'dmrCount') {
                 return 85
             }
 
@@ -98,7 +98,7 @@ class SamplesByDataTypeTable extends Component {
                 return 100
             } else if (columnId === 'akiCount') {
                 return 100
-            }else if (columnId === 'resistorCount') {
+            }else if (columnId === 'dmrCount') {
                 return 100
             }
         }
@@ -194,12 +194,12 @@ class SamplesByDataTypeTable extends Component {
                       </UncontrolledTooltip>
                     </span>
                 ),
-                id: 'resistorCount',
-                accessor: 'resistorCount',
+                id: 'dmrCount',
+                accessor: 'dmrCount',
                 headerClassName: 'data-type-table-header',
                 className: 'data-type-table-content',
-                minHeaderWidth: this.getWidthBasedOnScreenSize('resistorCount'),
-                minWidth: this.getWidthBasedOnScreenSize('resistorCount')
+                minHeaderWidth: this.getWidthBasedOnScreenSize('dmrCount'),
+                minWidth: this.getWidthBasedOnScreenSize('dmrCount')
             }   
         ]
     };

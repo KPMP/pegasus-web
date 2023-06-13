@@ -169,7 +169,7 @@ export const fetchGeneDatasetSummary = async (geneSymbol, fetchPolicy = 'no-cach
                     hrtCount
                     akiCount
                     ckdCount
-                    resistorCount
+                    dmrCount
                     participantCount
                 }
             }`,
@@ -378,7 +378,7 @@ export const fetchSummaryData = async (dataType) => {
                 hrtCount
                 akiCount
                 ckdCount
-                resistorCount
+                dmrCount
                 participantCount
             }
         }`;
@@ -402,7 +402,7 @@ export const fetchTissueTypeSummaryCounts = async () => {
                 akiCount
                 ckdCount
                 hrtCount
-                resistorCount
+                dmrCount
             }
         }`;
     const response = await apolloClient.query({
