@@ -127,10 +127,10 @@ class SamplesByDataTypeTable extends Component {
             },
             {
                 Header: () => (
-                    <span>RESISTOR</span>
+                    <span>DM-R</span>
                 ),
-                id: 'resistorTissue',
-                accessor: 'resistorCount',
+                id: 'dmrTissue',
+                accessor: 'dmrCount',
                 headerClassName: 'data-type-table-header text-center',
                 className: 'data-type-table-content text-center',
                 minHeaderWidth: 100,

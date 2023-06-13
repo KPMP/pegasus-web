@@ -63,7 +63,7 @@ export const getTissueTypeOptions = (datasetSummary, geneSymbol) => {
             label: "All samples",
             value: "all",
             isDisabled: !geneSymbol || (datasetSummary.hrtCount === 0 && datasetSummary.akiCount === 0
-                && datasetSummary.ckdCount === 0 && datasetSummary.resistorCount === 0) || typeof datasetSummary.hrtCount !== 'number'
+                && datasetSummary.ckdCount === 0 && datasetSummary.dmrCount === 0) || typeof datasetSummary.hrtCount !== 'number'
         },
         {
             label: "Healthy Reference",
@@ -83,7 +83,7 @@ export const getTissueTypeOptions = (datasetSummary, geneSymbol) => {
         {
             label: "DM-R",
             value: "dmr",
-            isDisabled: !geneSymbol || !datasetSummary.resistorCount > 0 || typeof datasetSummary.resistorCount !== 'number'
+            isDisabled: !geneSymbol || !datasetSummary.dmrCount > 0 || typeof datasetSummary.dmrCount !== 'number'
         }
     ];
 
@@ -144,7 +144,7 @@ export const getDataTypeOptionsWithTissueType = async (geneSymbol, cluster, data
                 "aki": datasetSummary[indexDS].akiCount,
                 "ckd": datasetSummary[indexDS].ckdCount,
                 "hrt": datasetSummary[indexDS].hrtCount,
-                "dmr": datasetSummary[indexDS].resistorCount
+                "dmr": datasetSummary[indexDS].dmrCount
             }
             if (options[index].value === datasetSummary[indexDS].dataTypeShort && tissues[currentTissueType] === 0) {
                 options[index].isDisabled = true
