@@ -73,7 +73,7 @@ class AvailableDatasetsTable extends Component {
         //let mapping = `/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"${linkType}","value":["${linkValue}"]}}]}`;
         let mapping = `/repository/?size=n_1000_n&filters[0][field]=access&filters[0][values][0]=${controlAccess}&filters[0][type]=any&filters[1][field]=${linkType}&filters[1][values][0]=${linkValue}&filters[1][type]=any`;
         if(linkType && linkValue){
-            return mapping;
+            return encodeURI(mapping);
         } else {
             this.props.history.push('/oops');
             throw new Error('Datatype not found', row.original.omicsType)
