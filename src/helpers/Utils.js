@@ -19,6 +19,8 @@ export const formatTissueType = (tissueType) => {
             return "AKI";
         case "ckd":
             return "CKD";
+        case "dmr":
+            return "DM-R";
         default:
             return tissueType
 
@@ -61,7 +63,7 @@ export const getTissueTypeOptions = (datasetSummary, geneSymbol) => {
             label: "All samples",
             value: "all",
             isDisabled: !geneSymbol || (datasetSummary.hrtCount === 0 && datasetSummary.akiCount === 0
-                && datasetSummary.ckdCount > 0) || typeof datasetSummary.hrtCount !== 'number'
+                && datasetSummary.ckdCount === 0 && datasetSummary.dmrCount === 0) || typeof datasetSummary.hrtCount !== 'number'
         },
         {
             label: "Healthy Reference",
@@ -77,6 +79,11 @@ export const getTissueTypeOptions = (datasetSummary, geneSymbol) => {
             label: "CKD",
             value: "ckd",
             isDisabled: !geneSymbol || !datasetSummary.ckdCount > 0 || typeof datasetSummary.ckdCount !== 'number'
+        },
+        {
+            label: "DM-R",
+            value: "dmr",
+            isDisabled: !geneSymbol || !datasetSummary.dmrCount > 0 || typeof datasetSummary.dmrCount !== 'number'
         }
     ];
 
@@ -136,7 +143,8 @@ export const getDataTypeOptionsWithTissueType = async (geneSymbol, cluster, data
             const tissues = {
                 "aki": datasetSummary[indexDS].akiCount,
                 "ckd": datasetSummary[indexDS].ckdCount,
-                "hrt": datasetSummary[indexDS].hrtCount
+                "hrt": datasetSummary[indexDS].hrtCount,
+                "dmr": datasetSummary[indexDS].dmrCount
             }
             if (options[index].value === datasetSummary[indexDS].dataTypeShort && tissues[currentTissueType] === 0) {
                 options[index].isDisabled = true
@@ -148,7 +156,7 @@ export const getDataTypeOptionsWithTissueType = async (geneSymbol, cluster, data
 
 export const availableDataVisibilityFilter = (data) => {
     if ('hrtCount' in data && 'akiCount' in data && 'ckdCount' in data) {
-        if (data.hrtCount > 0 || data.akiCount > 0 || data.ckdCount > 0) {
+        if (data.hrtCount > 0 || data.akiCount > 0 || data.ckdCount > 0 || data.dmrCount > 0) {
             return data;
         }
     }

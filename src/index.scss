@@ -3,6 +3,13 @@
 @import "../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
 @import "../node_modules/kpmp-common-styles/index.scss";
 
+//importing pieces of bootstrap instead of importing all of bootstrap
+@import "../node_modules/bootstrap/scss/functions";
+
+//pass variable overrides
+@import "../node_modules/bootstrap/scss/variables";
+@import "../node_modules/bootstrap/scss/mixins";
+
 .hidden {
   display: none;
 }
@@ -869,4 +876,11 @@ tr.MuiTableRow-root:nth-child(even) {
 }
 .dataset-details {
   font-size: 14px;
+}
+
+.table-header {
+  font-size: 15px;
+}
+.tooltip {
+  font-size: 16px;
 }

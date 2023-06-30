@@ -56,7 +56,9 @@ class GeneSummary extends Component {
             if (geneSummary[dataType]["ckdCount"] === '0' || !dataTypeIsClickable) {
                 geneSummary[dataType]["ckdCount"] = '-';
             }
-
+            if (geneSummary[dataType]["dmrCount"] === '0' || !dataTypeIsClickable) {
+                geneSummary[dataType]["dmrCount"] = '-';
+            }
         }
         return geneSummary
     }
@@ -134,11 +136,21 @@ class GeneSummary extends Component {
                     <div className={"text-center"}>{row.ckd}</div>
                 )
             },
+            {
+                Header: "DM-R",
+                id: "dmr",
+                accessor: 'dmrCount',
+                headerClassName: 'table-header text-center',
+                className: 'table-column',
+                Cell: ({ row }) => (
+                    <div className={"text-center"}>{row.dmr}</div>
+                )
+            },
         ]
     };
 
     dataTypeHasData(row) {
-        if (row.hrtCount !== '-' || row.akiCount !== '-' || row.ckdCount !== '-') {
+        if (row.hrtCount !== '-' || row.akiCount !== '-' || row.ckdCount !== '-' || row.dmrCount !== '-') {
             return true;
         }
         return false;

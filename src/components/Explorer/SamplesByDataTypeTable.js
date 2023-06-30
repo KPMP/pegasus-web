@@ -87,7 +87,7 @@ class SamplesByDataTypeTable extends Component {
                 accessor: 'dataType',
                 headerClassName: 'omics data-type-table-header',
                 className: 'data-type-table-content',
-                minWidth: 330,
+                minWidth: 280,
                 Cell: row => (
                     this.formatDataTypeCell(row.value)
                 )
@@ -111,8 +111,8 @@ class SamplesByDataTypeTable extends Component {
                 accessor: 'ckdCount',
                 headerClassName: 'data-type-table-header text-center',
                 className: 'data-type-table-content text-center',
-                minHeaderWidth: 100,
-                minWidth: 100,
+                minHeaderWidth: 75,
+                minWidth: 75,
             },
             {
                 Header: () => (
@@ -120,6 +120,17 @@ class SamplesByDataTypeTable extends Component {
                 ),
                 id: 'akiTissue',
                 accessor: 'akiCount',
+                headerClassName: 'data-type-table-header text-center',
+                className: 'data-type-table-content text-center',
+                minHeaderWidth: 75,
+                minWidth: 75
+            },
+            {
+                Header: () => (
+                    <span>DM-R</span>
+                ),
+                id: 'dmrTissue',
+                accessor: 'dmrCount',
                 headerClassName: 'data-type-table-header text-center',
                 className: 'data-type-table-content text-center',
                 minHeaderWidth: 100,

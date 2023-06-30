@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactTable from 'react-table';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, UncontrolledTooltip } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
 class SamplesByDataTypeTable extends Component {
@@ -11,8 +11,8 @@ class SamplesByDataTypeTable extends Component {
         this.reactTable = React.createRef();
 
         this.state = {
-            columns: this.getColumns(),
-        };
+            columns: this.getColumns()
+        };   
     }
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
@@ -61,6 +61,8 @@ class SamplesByDataTypeTable extends Component {
                 return 100
             } else if (columnId === 'akiCount') {
                 return 100
+            }else if (columnId === 'dmrCount'){
+                return 100
             }
         } else if (window.innerWidth < 1000) {
                 if (columnId === 'dataType') {
@@ -70,6 +72,8 @@ class SamplesByDataTypeTable extends Component {
                 } else if (columnId === 'ckdCount') {
                     return 80
                 } else if (columnId === 'akiCount') {
+                    return 80
+                }else if (columnId === 'dmrCount'){
                     return 80
                 }
         } else if (window.innerWidth < 1200) {
@@ -81,7 +85,10 @@ class SamplesByDataTypeTable extends Component {
                 return 85
             } else if (columnId === 'akiCount') {
                 return 85
+            }else if (columnId === 'dmrCount') {
+                return 85
             }
+
         } else if (window.innerWidth >= 1200) {
             if (columnId === 'dataType') {
                 return 260;
@@ -91,6 +98,8 @@ class SamplesByDataTypeTable extends Component {
                 return 100
             } else if (columnId === 'akiCount') {
                 return 100
+            }else if (columnId === 'dmrCount') {
+                return 100
             }
         }
     }
@@ -99,7 +108,9 @@ class SamplesByDataTypeTable extends Component {
 
         return [
             {
-                Header: 'OMICS TYPE',
+                Header: () => (
+                    <span className="table-header">OMICS TYPE</span>
+                ),
                 id: 'dataType',
                 accessor: 'dataType',
                 headerClassName: 'omics data-type-table-header',
@@ -111,7 +122,16 @@ class SamplesByDataTypeTable extends Component {
             },
             {
                 Header: () => (
-                    <span>HEALTHY REFERENCE</span>
+                    <span>
+                      <span className="table-header" id="HealthyReferenceHeader">
+                       REFERENCE
+                      </span>
+                      <UncontrolledTooltip 
+                        placement="bottom"
+                        target="HealthyReferenceHeader">
+                      Healthy Reference
+                      </UncontrolledTooltip>
+                    </span>
                 ),
                 id: 'hrtCount',
                 accessor: 'hrtCount',
@@ -123,7 +143,16 @@ class SamplesByDataTypeTable extends Component {
             },
             {
                 Header: () => (
-                    <span>CKD</span>
+                    <span>
+                      <span className="table-header" id="CKDHeader">
+                      CKD
+                      </span>
+                      <UncontrolledTooltip 
+                        placement="bottom"
+                        target="CKDHeader">
+                      Chronic Kidney Disease
+                      </UncontrolledTooltip>
+                    </span>
                 ),
                 id: 'ckdCount',
                 accessor: 'ckdCount',
@@ -134,7 +163,16 @@ class SamplesByDataTypeTable extends Component {
             },
             {
                 Header: () => (
-                    <span>AKI</span>
+                    <span>
+                      <span className="table-header" id="AKIHeader">
+                      AKI
+                      </span>
+                      <UncontrolledTooltip 
+                        placement="bottom"
+                        target="AKIHeader">
+                      Acute Kidney Injury
+                      </UncontrolledTooltip>
+                    </span>
                 ),
                 id: 'akiCount',
                 accessor: 'akiCount',
@@ -143,6 +181,26 @@ class SamplesByDataTypeTable extends Component {
                 minHeaderWidth: this.getWidthBasedOnScreenSize('akiCount'),
                 minWidth: this.getWidthBasedOnScreenSize('akiCount')
             },
+            {
+                Header: () => (
+                    <span>
+                      <span className="table-header" id="ResistorHeader">
+                      DM-R
+                      </span>
+                      <UncontrolledTooltip 
+                        placement="bottom"
+                        target="ResistorHeader">
+                      Diabetes Mellitus - Resilient
+                      </UncontrolledTooltip>
+                    </span>
+                ),
+                id: 'dmrCount',
+                accessor: 'dmrCount',
+                headerClassName: 'data-type-table-header',
+                className: 'data-type-table-content',
+                minHeaderWidth: this.getWidthBasedOnScreenSize('dmrCount'),
+                minWidth: this.getWidthBasedOnScreenSize('dmrCount')
+            }   
         ]
     };
 

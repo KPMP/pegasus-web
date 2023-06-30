@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import {Row, Col } from 'reactstrap';
+import {Row, Col, UncontrolledTooltip } from 'reactstrap';
 import { fetchTissueTypeSummaryCounts } from '../../helpers/ApolloClient';
 class ParticipantSummary extends Component {
   constructor(props) {
       super(props);
-      this.state = { akiCount: [], ckdCount: [], hrtCount:[]};
+      this.state = { akiCount: [], ckdCount: [], hrtCount:[], dmrCount:[]};
     }
     async componentDidMount() {
       await this.getTissueCounts();
@@ -15,38 +15,93 @@ class ParticipantSummary extends Component {
       this.setState({akiCount: result.akiCount})
       this.setState({ckdCount: result.ckdCount})
       this.setState({hrtCount: result.hrtCount})
+      this.setState({dmrCount: result.dmrCount})
     })
   }
   render() {
     return (
     <Row>
-      <Col md='4' lg='4'>
+      <Col md='3' lg='3'>
           <div className="centered background-light-blue kpmp-color-dark">
               <div>
                   <span className="font-size-three-rem">{this.state.ckdCount}</span>
               </div>
               <div>
-                  <span className="font-size-one-one-half-rem">CKD</span>
+                <span className="participant-summary-tooltips">
+                    <span 
+                        className="font-size-one-one-half-rem" 
+                        id="CKDSummary">
+                            CKD
+                    </span>
+                    <UncontrolledTooltip
+                        placement="bottom"
+                        target="CKDSummary">
+                            Chronic Kidney Disease
+                    </UncontrolledTooltip>
+                </span>
               </div>
           </div>
       </Col>
-      <Col md='4' lg='4'>
+      <Col md='3' lg='3'>
           <div className="centered background-light-blue kpmp-color-dark">
               <div>
                   <span className="font-size-three-rem">{this.state.akiCount}</span>
               </div>
               <div>
-                  <span className="font-size-one-one-half-rem">AKI</span>
+                <span className="participant-summary-tooltips">
+                    <span 
+                        className="font-size-one-one-half-rem"
+                        id="AKISummary">
+                            AKI
+                    </span>
+                    <UncontrolledTooltip
+                        placement="bottom"
+                        target="AKISummary">
+                            Acute Kidney Injury
+                    </UncontrolledTooltip>
+                </span>
               </div>
           </div>
       </Col>
-      <Col md='4' lg='4'>
+        <Col md='3' lg='3'>
+            <div className="centered background-light-blue kpmp-color-dark">
+                <div>
+                    <span className="font-size-three-rem">{this.state.dmrCount}</span>
+                </div>
+                <div>
+                    <span className="participant-summary-tooltips">
+                        <span 
+                            className="font-size-one-one-half-rem"
+                            id="DMRSummary">
+                                DM-R
+                        </span>
+                        <UncontrolledTooltip
+                            placement="bottom"
+                            target="DMRSummary">
+                                Diabetes Mellitus - Resilient
+                        </UncontrolledTooltip>
+                    </span>
+                </div>
+            </div>
+        </Col>
+      <Col md='3' lg='3'>
           <div className="centered background-light-blue kpmp-color-dark">
               <div>
                   <span className="font-size-three-rem">{this.state.hrtCount}</span>
               </div>
               <div>
-                  <span className="font-size-one-one-half-rem">REFERENCE</span>
+                    <span className="participant-summary-tooltips">
+                        <span 
+                            className="font-size-one-one-half-rem"
+                            id="ReferenceSummary">
+                                REFERENCE
+                        </span>
+                        <UncontrolledTooltip
+                            placement="bottom"
+                            target="ReferenceSummary">
+                                Healthy Reference
+                        </UncontrolledTooltip>
+                    </span>
               </div>
           </div>
       </Col>

@@ -70,9 +70,9 @@ class AvailableDatasetsTable extends Component {
     handleDataTypeValueClick(row, controlAccess) {
         let linkType = row.original.linkInformation.linkType;
         let linkValue = row.original.linkInformation.linkValue;
-        let mapping = `/repository/?facetTab=files&filters={"op":"and","content":[{"op":"in","content":{"field":"access","value":["${controlAccess}"]}},{"op":"in","content":{"field":"${linkType}","value":["${linkValue}"]}}]}`;
+        let mapping = `/repository/?size=n_1000_n&filters[0][field]=access&filters[0][values][0]=${controlAccess}&filters[0][type]=any&filters[1][field]=${linkType}&filters[1][values][0]=${linkValue}&filters[1][type]=any`;
         if(linkType && linkValue){
-            return mapping;
+            return encodeURI(mapping);
         } else {
             this.props.history.push('/oops');
             throw new Error('Datatype not found', row.original.omicsType)
@@ -132,7 +132,9 @@ class AvailableDatasetsTable extends Component {
 
         return [
             {
-                Header: 'OMICS TYPE',
+                Header: () => (
+                    <span className="table-header">OMICS TYPE</span>
+                ),
                 id: 'dataType',
                 accessor: 'omicsType',
                 headerClassName: 'omics data-type-table-header',
@@ -142,7 +144,7 @@ class AvailableDatasetsTable extends Component {
             },
             {
                 Header: () => (
-                    <a className="buttonhref" href={`https://www.kpmp.org/controlled-data`}><span>CONTROLLED</span></a>
+                    <a className="buttonhref table-header" href={`https://www.kpmp.org/controlled-data`}><span>CONTROLLED</span></a>
                 ),
                 id: 'controlled',
                 accessor: 'controlledCount',
@@ -157,7 +159,7 @@ class AvailableDatasetsTable extends Component {
             },
             {
                 Header: () => (
-                    <span>OPEN</span>
+                    <span className='table-header'>OPEN</span>
                 ),
                 id: 'open',
                 accessor: 'openCount',
