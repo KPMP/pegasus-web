@@ -140,7 +140,7 @@ class GeneSummary extends Component {
                 Header: "DM-R TISSUE",
                 id: "dmr",
                 accessor: 'dmrCount',
-                headerClassName: 'table-header text-center gene-summary-header',
+                headerClassName: 'text-center gene-summary-header',
                 className: 'table-column',
                 Cell: ({ row }) => (
                     <div className={"text-center"}>{row.dmr}</div>
