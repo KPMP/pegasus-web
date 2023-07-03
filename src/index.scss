@@ -435,7 +435,7 @@ tr.MuiTableRow-root:nth-child(even) {
 .buttonhref {
   cursor: pointer;
   color: #007bff ;
-  text-decoration: none;
+  text-decoration: none !important;
   background-color: transparent;
 }
 

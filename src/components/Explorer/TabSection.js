@@ -21,7 +21,7 @@ class TabSection extends Component {
                         onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
                         onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType); this.setState({ activeCell: cellType.cellType }) }}
                         type="button"
-                        className={`btn btn-link text-start p-0 ${(this.props.activeCell === cellType.cellType) ? 'pseudohover' : ''}`} >
+                        className={`btn btn-link text-start p-0 pseudohover}`} >
                         {cellType.cellType}
                     </button>
                 </li>
