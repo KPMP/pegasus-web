@@ -50,21 +50,21 @@ class DiffexInfoBar extends Component {
             <Container className='pb-3 pt-1 px-0 sticky-top' id='dt-select-container'>
                 <Container className='rounded border shadow-sm pb-4 p-4'>
                 <Row xs='12'>
-                    <Col lg='3' className='d-table pr-1'>
+                    <Col lg='3' className='d-table pe-1'>
                         <Select
                             value={selectedValue}
                             options={this.state.dataTypeOptions}
                             onChange={this.handleInputChange.bind(this)}
-                            className='select d-table-cell w-100 pl-2'
+                            className='select d-table-cell w-100 ps-2'
                             classNamePrefix="datatypes"
                             styles={{menu: provided => ({...provided, zIndex:999})}}
                         />
                     </Col>
-                    <Col xs='9' className='mt-2 pl-0'>
+                    <Col xs='9' className='mt-2 ps-0'>
                         <h5> {(this.props.dataType === 'sn' || this.props.dataType === 'sc' || this.props.dataType === 'rt')?' Differential expression*':'abundance*'} in {this.parseClusterName(this.props.cluster)} </h5>
                     </Col>
                 </Row>
-                    <Row xs='12' className='pl-2 pt-2'>
+                    <Row xs='12' className='ps-2 pt-2'>
                         <Col lg='12' className='text-left small'>
                             * Gene in selected cell type/region vs. all other cell types/regions
                         </Col>
