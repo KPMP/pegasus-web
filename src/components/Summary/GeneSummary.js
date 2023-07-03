@@ -198,7 +198,7 @@ class GeneSummary extends Component {
                         </div>
                         : <div>
                             <Row xs='12' className="gene-summary-header-container">
-                                <Col xs={{ size: 5, offset: 7 }} className='d-flex justify-content-center gene-summary-header'><span>PARTICIPANTS PER DATA TYPE</span></Col>
+                                <Col xs={{ size: 5, offset: 7 }} className='d-flex justify-content-center gene-summary-header color-light-blue'><span>PARTICIPANTS PER DATA TYPE</span></Col>
                             </Row>
                             <Row xs='12'>
                                 <Col>
