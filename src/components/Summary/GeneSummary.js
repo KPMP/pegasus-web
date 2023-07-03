@@ -90,7 +90,7 @@ class GeneSummary extends Component {
                 Header: "OMICS TYPE",
                 id: "omicsType",
                 accessor: 'omicsType',
-                headerClassName: 'table-header',
+                headerClassName: 'table-header gene-summary-header',
                 className: 'table-column',
                 minWidth: 200,
             },
@@ -99,7 +99,7 @@ class GeneSummary extends Component {
                 id: "dataType",
                 accessor: 'dataType',
                 minWidth: 300,
-                headerClassName: 'table-header',
+                headerClassName: 'table-header gene-summary-header',
                 className: 'table-column data-type',
                 Cell: ({ row }) => (
                     this.linkDataTypeCells(row)
@@ -110,7 +110,7 @@ class GeneSummary extends Component {
                 id: "hrt",
                 minWidth: 160,
                 accessor: 'hrtCount',
-                headerClassName: 'table-header text-center',
+                headerClassName: 'table-header text-center gene-summary-header',
                 className: 'table-column',
                 Cell: ({ row }) => (
                     <div className={"text-center"}>{row.hrt}</div>
@@ -120,7 +120,7 @@ class GeneSummary extends Component {
                 Header: "AKI TISSUE",
                 id: "aki",
                 accessor: 'akiCount',
-                headerClassName: 'table-header text-center',
+                headerClassName: 'table-header text-center gene-summary-header',
                 className: 'table-column',
                 Cell: ({ row }) => (
                     <div className={"text-center"}>{row.aki}</div>
@@ -130,17 +130,17 @@ class GeneSummary extends Component {
                 Header: "CKD TISSUE",
                 id: "ckd",
                 accessor: 'ckdCount',
-                headerClassName: 'table-header text-center',
+                headerClassName: 'table-header text-center gene-summary-header',
                 className: 'table-column',
                 Cell: ({ row }) => (
                     <div className={"text-center"}>{row.ckd}</div>
                 )
             },
             {
-                Header: "DM-R",
+                Header: "DM-R TISSUE",
                 id: "dmr",
                 accessor: 'dmrCount',
-                headerClassName: 'table-header text-center',
+                headerClassName: 'table-header text-center gene-summary-header',
                 className: 'table-column',
                 Cell: ({ row }) => (
                     <div className={"text-center"}>{row.dmr}</div>
