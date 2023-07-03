@@ -86,7 +86,7 @@ class SamplesByDataTypeTable extends Component {
                 id: 'dataType',
                 accessor: 'dataType',
                 headerClassName: 'omics data-type-table-header',
-                className: 'data-type-table-content',
+                className: 'data-type-table-conten pseudohover',
                 minWidth: 280,
                 Cell: row => (
                     this.formatDataTypeCell(row.value)
@@ -99,7 +99,7 @@ class SamplesByDataTypeTable extends Component {
                 id: 'healthyTissue',
                 accessor: 'hrtCount',
                 headerClassName: 'data-type-table-header',
-                className: 'data-type-table-content text-center',
+                className: 'data-type-table-content text-center pseudohover',
                 minHeaderWidth: 175,
                 minWidth: 175,
             },
@@ -110,7 +110,7 @@ class SamplesByDataTypeTable extends Component {
                 id: 'ckdTissue',
                 accessor: 'ckdCount',
                 headerClassName: 'data-type-table-header text-center',
-                className: 'data-type-table-content text-center',
+                className: 'data-type-table-content text-center pseudohover',
                 minHeaderWidth: 75,
                 minWidth: 75,
             },
@@ -121,7 +121,7 @@ class SamplesByDataTypeTable extends Component {
                 id: 'akiTissue',
                 accessor: 'akiCount',
                 headerClassName: 'data-type-table-header text-center',
-                className: 'data-type-table-content text-center',
+                className: 'data-type-table-content text-center pseudohover',
                 minHeaderWidth: 75,
                 minWidth: 75
             },
@@ -132,7 +132,7 @@ class SamplesByDataTypeTable extends Component {
                 id: 'dmrTissue',
                 accessor: 'dmrCount',
                 headerClassName: 'data-type-table-header text-center',
-                className: 'data-type-table-content text-center',
+                className: 'data-type-table-content text-center pseudohover',
                 minHeaderWidth: 100,
                 minWidth: 100
             },
