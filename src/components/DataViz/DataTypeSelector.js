@@ -174,7 +174,7 @@ class DataTypeSelector extends Component {
     getRepositoryLink = () => {
         const linkMapping = {
             'sn': '/repository/?size=n_1000_n&filters%5B0%5D%5Bfield%5D=dois&filters%5B0%5D%5Bvalues%5D%5B0%5D=10.48698%2Fyyvc-ak78&filters%5B0%5D%5Btype%5D=any',
-            'sc': '/repository//?size=n_1000_n&filters%5B0%5D%5Bfield%5D=dois&filters%5B0%5D%5Bvalues%5D%5B0%5D=10.48698%2F92nk-e805&filters%5B0%5D%5Btype%5D=any',
+            'sc': '/repository/?size=n_1000_n&filters%5B0%5D%5Bfield%5D=dois&filters%5B0%5D%5Bvalues%5D%5B0%5D=10.48698%2F92nk-e805&filters%5B0%5D%5Btype%5D=any',
             'rt': '/repository/?size=n_1000_n&filters%5B0%5D%5Bfield%5D=dois&filters%5B0%5D%5Bvalues%5D%5B0%5D=10.48698%2Ft9fh-qn48&filters%5B0%5D%5Btype%5D=any',
             'default': '/repository',
         }
