@@ -65,7 +65,7 @@ class DiffexInfoBar extends Component {
                     </Col>
                 </Row>
                     <Row xs='12' className='ps-2 pt-2'>
-                        <Col lg='12' className='text-left small'>
+                        <Col lg='12' className='text-start small'>
                             * Gene in selected cell type/region vs. all other cell types/regions
                         </Col>
                     </Row>

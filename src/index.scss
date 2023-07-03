@@ -153,6 +153,7 @@ tr.MuiTableRow-root:nth-child(even) {
   }
   .btn.btn-link:hover {
     background-color: #cee5ff;
+    text-decoration: underline;
   }
 
 }
@@ -252,7 +253,11 @@ tr.MuiTableRow-root:nth-child(even) {
   margin-right: 0px;
 }
 
-.cluster_v_others_container, .gene-summary-header {
+.color-light-blue {
+  background-color: #cee5ff;
+}
+
+.cluster_v_others_container {
   padding: 5px;
   background-color: #cee5ff;
 }
@@ -435,7 +440,7 @@ tr.MuiTableRow-root:nth-child(even) {
 .buttonhref {
   cursor: pointer;
   color: #007bff ;
-  text-decoration: none;
+  text-decoration: none !important;
   background-color: transparent;
 }
 

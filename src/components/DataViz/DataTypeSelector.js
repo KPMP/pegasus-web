@@ -173,9 +173,9 @@ class DataTypeSelector extends Component {
 
     getRepositoryLink = () => {
         const linkMapping = {
-            'sn': '/repository/?facetTab=files&files_size=60&files_sort=%5B%7B%22field%22%3A%22file_name%22%2C%22order%22%3A%22asc%22%7D%5D&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22dois%22%2C%22value%22%3A%5B%2210.48698%2Fyyvc-ak78%22%5D%7D%7D%5D%7D',
-            'sc': '/repository/?facetTab=files&files_size=60&files_sort=%5B%7B%22field%22%3A%22file_name%22%2C%22order%22%3A%22asc%22%7D%5D&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22dois%22%2C%22value%22%3A%5B%2210.48698%2F92nk-e805%22%5D%7D%7D%5D%7D',
-            'rt': '/repository/?facetTab=files&files_size=60&files_sort=%5B%7B%22field%22%3A%22file_name%22%2C%22order%22%3A%22asc%22%7D%5D&filters=%7B%22op%22%3A%22and%22%2C%22content%22%3A%5B%7B%22op%22%3A%22in%22%2C%22content%22%3A%7B%22field%22%3A%22dois%22%2C%22value%22%3A%5B%2210.48698%2Ft9fh-qn48%22%5D%7D%7D%5D%7D',
+            'sn': '/repository/?size=n_1000_n&filters%5B0%5D%5Bfield%5D=dois&filters%5B0%5D%5Bvalues%5D%5B0%5D=10.48698%2Fyyvc-ak78&filters%5B0%5D%5Btype%5D=any',
+            'sc': '/repository/?size=n_1000_n&filters%5B0%5D%5Bfield%5D=dois&filters%5B0%5D%5Bvalues%5D%5B0%5D=10.48698%2F92nk-e805&filters%5B0%5D%5Btype%5D=any',
+            'rt': '/repository/?size=n_1000_n&filters%5B0%5D%5Bfield%5D=dois&filters%5B0%5D%5Bvalues%5D%5B0%5D=10.48698%2Ft9fh-qn48&filters%5B0%5D%5Btype%5D=any',
             'default': '/repository',
         }
         if (linkMapping[this.props.dataType]) {

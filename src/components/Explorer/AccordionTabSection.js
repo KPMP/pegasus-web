@@ -66,7 +66,7 @@ class AccordionTabSection extends Component {
                         onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
                         onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType) }}
                         type="button"
-                        className={`btn btn-link text-left p-0 ${(this.props.activeCell === cellType.cellType) ? 'pseudohover' : ''}`}>
+                        className={`btn btn-link text-start p-0`}>
                         {cellType.cellType}</button>
                 </li>
             });
@@ -81,7 +81,7 @@ class AccordionTabSection extends Component {
                         <span onClick={() => this.props.handleCellTypeClick(subregion.subregionName)}
                              onMouseEnter={() => { this.handleSchematicHoverEnter(subregion.subregionName) }}
                              type='button'
-                             className={`btn-link text-left p-0 ${(this.props.activeCell === subregion.subregionName) ? 'pseudohover' : ''}`}>
+                             className={`btn-link text-start p-0 ${(this.props.activeCell === subregion.subregionName) ? 'pseudohover' : ''}`}>
                                  {subregion.subregionName}</span>
                     </span>
                     <Collapse isOpen={collapse === index}>
@@ -105,7 +105,7 @@ class AccordionTabSection extends Component {
                                 onClick={() => this.props.handleCellTypeClick(this.props.topLevelLink)}
                                 onMouseEnter={() => { this.handleSchematicHoverEnter(this.props.topLevelLink);  }}
                                 type="button"
-                                className={`btn btn-link text-left p-0 ${(this.props.activeCell === this.props.topLevelLink) ? 'pseudohover' : ''}`}>
+                                className={`btn btn-link text-start p-0 ${(this.props.activeCell === this.props.topLevelLink) ? 'pseudohover' : ''}`}>
                                     {this.props.topLevelLink}
                                 </button>
                             {cellTypes}

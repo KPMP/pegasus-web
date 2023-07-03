@@ -55,7 +55,7 @@ class DiffexByCluster extends Component {
     }
 
     getGeneLink = (gene) => {
-        return <button onClick={() => this.handleClick(gene)} type='button' className='table-column btn btn-link text-left p-0'>{gene}</button>
+        return <button onClick={() => this.handleClick(gene)} type='button' className='table-column btn btn-link text-start p-0'>{gene}</button>
     };
 
     getColumns = () => [
@@ -157,7 +157,7 @@ class DiffexByCluster extends Component {
                             :
                             <React.Fragment>
                                 <Row xs='12'>
-                                    <Col xs='12' className='text-right'>
+                                    <Col xs='12' className='text-end'>
                                         <CSVLink
                                             onClick={() => handleGoogleAnalyticsEvent('Explorer', 'Download', this.getExportFilename())}
                                             data={this.cleanResults(this.state.diffexData)}

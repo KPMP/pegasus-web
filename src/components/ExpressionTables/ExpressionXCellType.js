@@ -161,7 +161,7 @@ class ExpressionXCellType extends Component {
                             <h5><span>{this.props.gene}</span> Expression Comparison across Clusters in {formatTissueType(this.props.tissueType)}</h5>
                             <h6>NS = Not Significant</h6>
                         </Col>
-                        <Col xs='1' className='text-right'>
+                        <Col xs='1' className='text-end'>
                             <CSVLink
                                 onClick={() => handleGoogleAnalyticsEvent('Explorer', 'Download', this.getExportFilename())}
                                 data={this.cleanResults(this.props.data)}

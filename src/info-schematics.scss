@@ -12,6 +12,14 @@
   cursor: pointer;
 }
 
+.btn-link {
+    text-decoration: none;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
 .pseudohover {
   color: #0056b3;
   text-decoration: underline;

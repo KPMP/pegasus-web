@@ -90,7 +90,7 @@ class GeneSummary extends Component {
                 Header: "OMICS TYPE",
                 id: "omicsType",
                 accessor: 'omicsType',
-                headerClassName: 'table-header',
+                headerClassName: 'gene-summary-header',
                 className: 'table-column',
                 minWidth: 200,
             },
@@ -99,7 +99,7 @@ class GeneSummary extends Component {
                 id: "dataType",
                 accessor: 'dataType',
                 minWidth: 300,
-                headerClassName: 'table-header',
+                headerClassName: 'gene-summary-header',
                 className: 'table-column data-type',
                 Cell: ({ row }) => (
                     this.linkDataTypeCells(row)
@@ -110,7 +110,7 @@ class GeneSummary extends Component {
                 id: "hrt",
                 minWidth: 160,
                 accessor: 'hrtCount',
-                headerClassName: 'table-header text-center',
+                headerClassName: 'text-center gene-summary-header',
                 className: 'table-column',
                 Cell: ({ row }) => (
                     <div className={"text-center"}>{row.hrt}</div>
@@ -120,7 +120,7 @@ class GeneSummary extends Component {
                 Header: "AKI TISSUE",
                 id: "aki",
                 accessor: 'akiCount',
-                headerClassName: 'table-header text-center',
+                headerClassName: 'text-center gene-summary-header',
                 className: 'table-column',
                 Cell: ({ row }) => (
                     <div className={"text-center"}>{row.aki}</div>
@@ -130,17 +130,17 @@ class GeneSummary extends Component {
                 Header: "CKD TISSUE",
                 id: "ckd",
                 accessor: 'ckdCount',
-                headerClassName: 'table-header text-center',
+                headerClassName: 'text-center gene-summary-header',
                 className: 'table-column',
                 Cell: ({ row }) => (
                     <div className={"text-center"}>{row.ckd}</div>
                 )
             },
             {
-                Header: "DM-R",
+                Header: "DM-R TISSUE",
                 id: "dmr",
                 accessor: 'dmrCount',
-                headerClassName: 'table-header text-center',
+                headerClassName: 'text-center gene-summary-header',
                 className: 'table-column',
                 Cell: ({ row }) => (
                     <div className={"text-center"}>{row.dmr}</div>
@@ -171,7 +171,7 @@ class GeneSummary extends Component {
         if (this.dataTypeHasData(row) && this.dataTypeIsClickable(row._original.dataTypeShort)) {
             return <button onClick={() => this.handleLinkClick(row._original.dataTypeShort)}
                 type="button"
-                className="btn btn-link text-left p-0 table-column">
+                className="btn btn-link text-start p-0 table-column">
                 {row.dataType}
             </button>
         }
@@ -198,7 +198,7 @@ class GeneSummary extends Component {
                         </div>
                         : <div>
                             <Row xs='12' className="gene-summary-header-container">
-                                <Col xs={{ size: 5, offset: 7 }} className='d-flex justify-content-center gene-summary-header'><span>PARTICIPANTS PER DATA TYPE</span></Col>
+                                <Col xs={{ size: 5, offset: 7 }} className='d-flex justify-content-center gene-summary-header color-light-blue'><span>PARTICIPANTS PER DATA TYPE</span></Col>
                             </Row>
                             <Row xs='12'>
                                 <Col>

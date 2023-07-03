@@ -21,7 +21,7 @@ class TabSection extends Component {
                         onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
                         onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType); this.setState({ activeCell: cellType.cellType }) }}
                         type="button"
-                        className={`btn btn-link text-left p-0 ${(this.props.activeCell === cellType.cellType) ? 'pseudohover' : ''}`} >
+                        className={`btn btn-link text-start p-0`} >
                         {cellType.cellType}
                     </button>
                 </li>
@@ -33,7 +33,7 @@ class TabSection extends Component {
                         onClick={() => this.props.handleCellTypeClick(subregion.subregionName)}
                         onMouseEnter={() => { this.handleSchematicHoverEnter(subregion.subregionName); this.setState({ activeCell: subregion.subregionName }) }}
                         type="button"
-                        className={`btn btn-link text-left p-0 ${(this.props.activeCell === subregion.subregionName) ? 'pseudohover' : ''}`} >
+                        className={`btn btn-link text-start p-0 ${(this.props.activeCell === subregion.subregionName) ? 'pseudohover' : ''}`} >
                             {subregion.subregionName}   
                     </button></li>
                     <ul className='cell-type-list'>
@@ -69,7 +69,7 @@ class TabSection extends Component {
                                 onClick={() => this.props.handleCellTypeClick(this.props.topLevelLink)}
                                 onMouseEnter={() => { this.handleSchematicHoverEnter(this.props.topLevelLink); this.setState({ activeCell: this.props.topLevelLink }) }}
                                 type="button"
-                                className={`btn btn-link text-left p-0 ${(this.props.activeCell === this.props.topLevelLink) ? 'pseudohover' : ''}`}>
+                                className={`btn btn-link text-start p-0 ${(this.props.activeCell === this.props.topLevelLink) ? 'pseudohover' : ''}`}>
                                     {this.props.topLevelLink}
                                 </button>
                             {cellTypes}
