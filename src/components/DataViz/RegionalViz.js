@@ -121,7 +121,7 @@ class RegionalViz extends Component {
                             </Col>
                         </Row>
                         <Row xs='12'>
-                            <Col lg='12' className='text-left lmd-plot-toggle'>
+                            <Col lg='12' className='text-start lmd-plot-toggle'>
                                 <span className='d-table-cell pe-4 pb-2 text-nowrap'>Display by:</span>
                                 <span className='d-table-cell'>
                                     <ButtonGroup>
@@ -147,7 +147,7 @@ class RegionalViz extends Component {
                                 <h5>{this.props.gene.symbol} expression comparison across regions in {formatTissueType(this.props.tissueType)}</h5>
                                 <h6>NS = Not Significant</h6>
                             </Col>
-                            <Col xs='1' className='text-right'>
+                            <Col xs='1' className='text-end'>
                                 <CSVLink
                                     onClick={() => handleGoogleAnalyticsEvent('Explorer', 'Download', this.getExportFilename())}
                                     data={cleanDownloadData}

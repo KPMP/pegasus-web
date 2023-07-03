@@ -171,7 +171,7 @@ class GeneSummary extends Component {
         if (this.dataTypeHasData(row) && this.dataTypeIsClickable(row._original.dataTypeShort)) {
             return <button onClick={() => this.handleLinkClick(row._original.dataTypeShort)}
                 type="button"
-                className="btn btn-link text-left p-0 table-column">
+                className="btn btn-link text-start p-0 table-column">
                 {row.dataType}
             </button>
         }

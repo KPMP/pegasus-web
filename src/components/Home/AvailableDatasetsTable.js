@@ -192,7 +192,7 @@ class AvailableDatasetsTable extends Component {
                         />
                     </Col>
                 </Row>
-                <Row className="float-right">
+                <Row className="float-end">
                     <h2 className="sub-header mt-4 total-file-fix">TOTAL FILES: {this.state.totalFiles}</h2>
                 </Row>
             </article>
