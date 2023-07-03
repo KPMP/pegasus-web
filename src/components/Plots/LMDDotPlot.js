@@ -151,7 +151,7 @@ class LMDDotPlot extends Component {
                             useResizeHandler={true}
                         />
                     </Col>
-                    <Col xs={2} id='lmdLegendPlot' className='mt-4 ps-0 text-left'>
+                    <Col xs={2} id='lmdLegendPlot' className='mt-4 ps-0 text-start'>
                         <Plot divId="lmdLegendPlotCanvas" data={this.state.legendPlotData}
                             layout={{
                                 autosize: true,
