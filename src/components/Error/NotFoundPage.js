@@ -28,7 +28,7 @@ class NotFoundPage extends Component {
         document.title = getPageTitle(window.location.pathname)
         return (
             <article className="container" id='not-found-page'>
-                <Row id="not-found-container" className='mr-5 p-5'>
+                <Row id="not-found-container" className='me-5 p-5'>
                     <Col xs={12} md={4}>
                         <img className='not-found-image' src="/img/404-img.svg" alt="Page not found" id="oops-image"/>
                     </Col>
