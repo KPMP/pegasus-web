@@ -128,7 +128,7 @@ class LMDDotPlot extends Component {
         } else {
             return (
                 <React.Fragment>
-                    <Col xs={10} id='lmdPlot' className='pr-0 mr-0'>
+                    <Col xs={10} id='lmdPlot' className='pe-0 me-0'>
                         <Plot divId="lmdPlotCanvas" data={this.state.plotData}
                             layout={{
                                 xaxis: {
@@ -151,7 +151,7 @@ class LMDDotPlot extends Component {
                             useResizeHandler={true}
                         />
                     </Col>
-                    <Col xs={2} id='lmdLegendPlot' className='mt-4 pl-0 text-left'>
+                    <Col xs={2} id='lmdLegendPlot' className='mt-4 ps-0 text-left'>
                         <Plot divId="lmdLegendPlotCanvas" data={this.state.legendPlotData}
                             layout={{
                                 autosize: true,
