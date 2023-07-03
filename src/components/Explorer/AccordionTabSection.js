@@ -66,7 +66,7 @@ class AccordionTabSection extends Component {
                         onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
                         onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType) }}
                         type="button"
-                        className={`btn btn-link text-start p-0 pseudohover`}>
+                        className={`btn btn-link text-start p-0`}>
                         {cellType.cellType}</button>
                 </li>
             });
