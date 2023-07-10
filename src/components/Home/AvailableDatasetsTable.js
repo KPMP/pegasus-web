@@ -70,7 +70,7 @@ class AvailableDatasetsTable extends Component {
     handleDataTypeValueClick(row, controlAccess) {
         let linkType = row.original.linkInformation.linkType;
         let linkValue = row.original.linkInformation.linkValue;
-        let mapping = `/repository/?size=n_1000_n&filters[0][field]=access&filters[0][values][0]=${controlAccess}&filters[0][type]=any&filters[1][field]=${linkType}&filters[1][values][0]=${linkValue}&filters[1][type]=any`;
+        let mapping = `/repository/?size=n_20_n&filters[0][field]=access&filters[0][values][0]=${controlAccess}&filters[0][type]=any&filters[1][field]=${linkType}&filters[1][values][0]=${linkValue}&filters[1][type]=any`;
         if(linkType && linkValue){
             return encodeURI(mapping);
         } else {
