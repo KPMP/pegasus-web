@@ -5,7 +5,6 @@
   "homepage": "/",
   "dependencies": {
     "@apollo/client": "3.3.7",
-    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/polyfill": "7.12.1",
     "@fontsource/libre-franklin": "4.5.0",
     "@fortawesome/fontawesome-free": "6.0.0",
@@ -32,7 +31,6 @@
     "npm-run-all": "4.1.5",
     "papaparse": "5.3.0",
     "plotly.js": "2.24.3",
-    "query-string": "^8.1.0",
     "react": "17.0.1",
     "react-csv": "2.0.3",
     "react-dom": "17.0.1",
@@ -50,6 +48,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.7.7"
+    
   },
   "scripts": {
     "start": "npm-run-all --max-old-space-size=8192 -p watch-css start-js",
