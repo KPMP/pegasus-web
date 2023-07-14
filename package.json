@@ -48,7 +48,6 @@
   },
   "devDependencies": {
     "@babel/core": "7.7.7"
-    
   },
   "scripts": {
     "start": "npm-run-all --max-old-space-size=8192 -p watch-css start-js",
