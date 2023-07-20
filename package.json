@@ -47,7 +47,8 @@
     "string-strip-html": "8.3.0"
   },
   "devDependencies": {
-    "@babel/core": "7.7.7"
+    "@babel/core": "7.7.7",
+    "sass": "1.64.0"
   },
   "scripts": {
     "start": "npm-run-all --max-old-space-size=8192 -p watch-css start-js",
@@ -56,8 +57,8 @@
     "eject": "react-scripts eject",
     "start-js": "react-scripts start",
     "build-js": "react-scripts --max-old-space-size=10240 build",
-    "build-css": "node-sass-chokidar src/ -o src/",
-    "watch-css": "npm run build-css && node-sass-chokidar src/ -o src/ --watch --recursive"
+    "build-css": "sass src/index.scss src/index.css",
+    "watch-css": "npm run build-css && sass src/index.scss src/index.css --watch --recursive"
   },
   "eslintConfig": {
     "extends": "react-app"
