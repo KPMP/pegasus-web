@@ -86,7 +86,7 @@ class SamplesByDataTypeTable extends Component {
     getDefaultColumnWidths = () => {
         return [
             { columnName: 'dataType', width: 350, align: 'left' },
-            { columnName: 'hrtCount', width: 100, align: 'center'},
+            { columnName: 'hrtCount', width: 150, align: 'center'},
             { columnName: 'ckdCount', width: 100, align: 'center' },
             { columnName: 'akiCount', width: 100, align: 'center' },
             { columnName: 'dmrCount', width: 100, align: 'center' },
@@ -133,7 +133,7 @@ class SamplesByDataTypeTable extends Component {
         return (
             <article id='summary-plot'>
                 <h5>Select a data type</h5>
-                <Row className='mt-4' id='data-type-table'>
+                <Row className='mt-4' id='data-type-table-explorer'>
                     <Col xs='12'>
                         <React.Fragment>
                             <Grid rows={this.state.summary} columns={this.state.columns}>

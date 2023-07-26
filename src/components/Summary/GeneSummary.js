@@ -86,62 +86,66 @@ class GeneSummary extends Component {
     getColumns() {
         return [
             {
-                Header: "OMICS TYPE",
-                id: "omicsType",
-                accessor: 'omicsType',
-                headerClassName: 'gene-summary-header',
-                className: 'table-column',
-                minWidth: 200,
+                title: "OMICS TYPE",
+                // id: "omicsType",
+                name: 'omicsType',
+                sortable: false,
+                hideable: false,
+                // headerClassName: 'gene-summary-header',
+                // className: 'table-column',
+                // minWidth: 200,
             },
             {
-                Header: "DATA TYPE",
-                id: "dataType",
-                accessor: 'dataType',
-                minWidth: 300,
-                headerClassName: 'gene-summary-header',
-                className: 'table-column data-type',
-                Cell: ({ row }) => (
+                title: "DATA TYPE",
+                // id: "dataType",
+                name: 'dataType',
+                // minWidth: 300,
+                // headerClassName: 'gene-summary-header',
+                // className: 'table-column data-type',
+                sortable: false,
+                hideable: false,
+                getCellValue: ({ row }) => (
                     this.linkDataTypeCells(row)
                 )
             },
             {
-                Header: "HEALTHY REFERENCE TISSUE",
-                id: "hrt",
-                minWidth: 160,
-                accessor: 'hrtCount',
-                headerClassName: 'text-center gene-summary-header',
-                className: 'table-column',
-                Cell: ({ row }) => (
+                title: "HEALTHY REFERENCE TISSUE",
+                // id: "hrt",
+                // minWidth: 160,
+                name: 'hrtCount',
+                // headerClassName: 'text-center gene-summary-header',
+                // className: 'table-column',
+                getCellValue: ({ row }) => (
                     <div className={"text-center"}>{row.hrt}</div>
                 )
             },
             {
-                Header: "AKI TISSUE",
-                id: "aki",
-                accessor: 'akiCount',
-                headerClassName: 'text-center gene-summary-header',
-                className: 'table-column',
-                Cell: ({ row }) => (
+                title: "AKI TISSUE",
+                // id: "aki",
+                name: 'akiCount',
+                // headerClassName: 'text-center gene-summary-header',
+                // className: 'table-column',
+                getCellValue: ({ row }) => (
                     <div className={"text-center"}>{row.aki}</div>
                 )
             },
             {
-                Header: "CKD TISSUE",
-                id: "ckd",
-                accessor: 'ckdCount',
-                headerClassName: 'text-center gene-summary-header',
-                className: 'table-column',
-                Cell: ({ row }) => (
+                title: "CKD TISSUE",
+                // id: "ckd",
+                name: 'ckdCount',
+                // headerClassName: 'text-center gene-summary-header',
+                // className: 'table-column',
+                getCellValue: ({ row }) => (
                     <div className={"text-center"}>{row.ckd}</div>
                 )
             },
             {
-                Header: "DM-R TISSUE",
-                id: "dmr",
-                accessor: 'dmrCount',
-                headerClassName: 'text-center gene-summary-header',
-                className: 'table-column',
-                Cell: ({ row }) => (
+                title: "DM-R TISSUE",
+                // id: "dmr",
+                name: 'dmrCount',
+                // headerClassName: 'text-center gene-summary-header',
+                // className: 'table-column',
+                getCellValue: ({ row }) => (
                     <div className={"text-center"}>{row.dmr}</div>
                 )
             },
