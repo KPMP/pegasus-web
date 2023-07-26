@@ -44,6 +44,7 @@ class ExpressionXCellType extends Component {
     };
 
     parseClusterName = (value) => {
+        console.log(value)
         if (value !== null) {
             const regex = /<sup>*.<\/sup>/i;
             let titleVal = stripHtml(value.replace(regex, '')).result
@@ -72,7 +73,7 @@ class ExpressionXCellType extends Component {
                 // headerClassName: 'table-header',
                 // className: 'table-column',
                 // minWidth: 465,
-                getCellValue: row => this.parseClusterName(row.value)
+                getCellValue: row => this.parseClusterName(row)
                 
             },
             {
@@ -82,7 +83,7 @@ class ExpressionXCellType extends Component {
                 // className: 'table-column',
                 // minWidth: 90,
                 // Footer: (sum(this.props.data, "cellCount")),
-                getCellValue: row => row.value ? row.value : 0
+                getCellValue: row => row ? row : 0
             },
             {
                 title: <span>MEAN<br />EXPRESSION <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='mean-expression-info' icon={faInfoCircle} /></span>
@@ -93,7 +94,7 @@ class ExpressionXCellType extends Component {
                 // headerClassName: 'table-header',
                 // className: 'table-column',
                 // minWidth: 90,
-                getCellValue: row => formatNumberToPrecision(row.value, 3)
+                getCellValue: row => formatNumberToPrecision(row, 3)
             },
             {
                 title: <span>% CELLS<br />EXPRESSING</span>,
@@ -102,7 +103,7 @@ class ExpressionXCellType extends Component {
                 // className: 'table-column',
                 // minWidth: 90,
                 getCellValue: row => {
-                    let newValue = (row.value > 0) ? (row.value * 100) : row.value;
+                    let newValue = (row > 0) ? (row * 100) : row;
                     return formatNumberToPrecision(newValue, 3);
                 }
             },
@@ -116,7 +117,7 @@ class ExpressionXCellType extends Component {
                 // className: 'table-column',
                 name: 'foldChange',
                 // minWidth: 75,
-                getCellValue: row => formatNumberToPrecision(row.value, 3)
+                getCellValue: row => formatNumberToPrecision(row, 3)
             },
             {
                 title: <span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
@@ -127,7 +128,7 @@ class ExpressionXCellType extends Component {
                 // className: 'table-column',
                 name: 'pVal',
                 // minWidth: 90,
-                getCellValue: row => formatNumberToPrecision(row.value, 3)
+                getCellValue: row => formatNumberToPrecision(row, 3)
             },
             {
                 title: <span>ADJ<br />P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
@@ -138,7 +139,7 @@ class ExpressionXCellType extends Component {
                 // className: 'table-column',
                 name: 'pValAdj',
                 // minWidth: 85,
-                getCellValue: row => formatNumberToPrecision(row.value, 3)
+                getCellValue: row => formatNumberToPrecision(row, 3)
             }
         ]
     };
