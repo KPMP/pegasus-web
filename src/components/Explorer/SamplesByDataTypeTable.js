@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import ReactTable from 'react-table';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
 import { fetchSummaryData, fetchGeneDatasetSummary} from '../../helpers/ApolloClient';
+import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
+import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
 class SamplesByDataTypeTable extends Component {
 
@@ -11,13 +12,13 @@ class SamplesByDataTypeTable extends Component {
         super(props);
         this.getColumns = this.getColumns.bind(this);
         this.handleDataTypeClick = this.handleDataTypeClick.bind(this);
-        this.reactTable = React.createRef();
 
         this.state = {
             columns: this.getColumns(),
             summary: []
         };
     }
+
     compare( a, b ) {
         if ( a.dataType < b.dataType ){
           return -1;
@@ -145,17 +146,13 @@ class SamplesByDataTypeTable extends Component {
                 <h5>Select a data type</h5>
                 <Row className='mt-4'>
                     <Col xs='12'>
-                        <ReactTable
-                            style={{ border: 'none' }}
-                            data={this.state.summary}
-                            ref={this.reactTable}
-                            sortable={false}
-                            columns={this.state.columns}
-                            className='samples-by-datatype -striped'
-                            showPagination={false}
-                            noDataText={'No data found'}
-                            minRows={0}
-                        />
+                        <React.Fragment>
+                            <Grid rows={this.state.summary} columns={this.state.columns}>
+                                <Table/>
+                                <TableHeaderRow/>
+                                <TableFixedColumns/>
+                            </Grid>
+                        </React.Fragment>
                     </Col>
                 </Row>
                 <Row>

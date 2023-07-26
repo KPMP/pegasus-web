@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Spinner } from 'reactstrap';
-import ReactTable from 'react-table';
+import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchGeneDatasetSummary } from '../../helpers/ApolloClient';
 import { getDataTypeOptions } from "../../helpers/Utils";
@@ -11,7 +11,6 @@ class GeneSummary extends Component {
     constructor(props) {
         super(props);
         this.getColumns = this.getColumns.bind(this);
-        this.reactTable = React.createRef();
 
         this.state = {
             columns: this.getColumns(),
@@ -202,17 +201,11 @@ class GeneSummary extends Component {
                             </Row>
                             <Row xs='12'>
                                 <Col>
-                                    <ReactTable
-                                        style={{ border: 'none' }}
-                                        data={this.state.geneSummary}
-                                        ref={this.reactTable}
-                                        sortable={false}
-                                        columns={this.state.columns}
-                                        className='-striped gene-summary-table'
-                                        showPagination={false}
-                                        noDataText={'No data found'}
-                                        minRows={0}
-                                    />
+                                    <Grid rows={this.state.geneSummary} columns={this.state.columns}>
+                                        <Table/>
+                                        <TableHeaderRow/>
+                                        <TableFixedColumns/>
+                                    </Grid>
                                 </Col>
                             </Row>
                         </div>

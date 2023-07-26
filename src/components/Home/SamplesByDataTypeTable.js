@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactTable from 'react-table';
+import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import { Row, Col, UncontrolledTooltip } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
@@ -8,7 +8,6 @@ class SamplesByDataTypeTable extends Component {
     constructor(props) {
         super(props);
         this.getColumns = this.getColumns.bind(this);
-        this.reactTable = React.createRef();
 
         this.state = {
             columns: this.getColumns()
@@ -209,17 +208,11 @@ class SamplesByDataTypeTable extends Component {
             <article id='summary-plot'>
                 <Row className='mt-4'>
                     <Col xs='12'>
-                        <ReactTable
-                            style={{ border: 'none' }}
-                            data={this.props.summary}
-                            ref={this.reactTable}
-                            sortable={false}
-                            columns={this.state.columns}
-                            className='samples-by-datatype -striped'
-                            showPagination={false}
-                            noDataText={'No data found'}
-                            minRows={0}
-                        />
+                        <Grid rows={this.props.summary} columns={this.state.columns}>
+                            <Table/>
+                            <TableHeaderRow/>
+                            <TableFixedColumns/>
+                        </Grid>
                     </Col>
                 </Row>
             </article>

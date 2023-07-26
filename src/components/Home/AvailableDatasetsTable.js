@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactTable from 'react-table';
+import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { fetchAtlasSummaryRows } from '../../helpers/ApolloClient';
@@ -9,7 +9,6 @@ class AvailableDatasetsTable extends Component {
     constructor(props) {
         super(props);
         this.getColumns = this.getColumns.bind(this);
-        this.reactTable = React.createRef();
 
         this.state = {
             columns: this.getColumns(),
@@ -179,17 +178,11 @@ class AvailableDatasetsTable extends Component {
             <article id='summary-plot'>
                 <Row className='mt-4'>
                     <Col xs='12'>
-                        <ReactTable
-                            style={{ border: 'none' }}
-                            data={this.state.summaryRows}
-                            ref={this.reactTable}
-                            sortable={false}
-                            columns={this.state.columns}
-                            className='samples-by-datatype -striped'
-                            showPagination={false}
-                            noDataText={'No data found'}
-                            minRows={0}
-                        />
+                        <Grid rows={this.state.summaryRows} columns={this.state.columns}>
+                            <Table/>
+                            <TableHeaderRow/>
+                            <TableFixedColumns/>
+                        </Grid>
                     </Col>
                 </Row>
                 <Row className="float-end">

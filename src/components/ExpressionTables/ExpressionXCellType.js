@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactTable from "react-table";
+import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import { Col, Row, UncontrolledTooltip, Spinner } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
@@ -180,19 +180,11 @@ class ExpressionXCellType extends Component {
                     </Row>
                     <Row xs='12'>
                         <Col xs='12'>
-                            <ReactTable
-                                style={{ border: 'none' }}
-                                data={this.props.data}
-                                ref={this.reactTable}
-                                sortable={true}
-                                columns={this.getColumns()}
-                                className='-striped expression-table'
-                                showPagination={false}
-                                noDataText={'No data found'}
-                                minRows={this.props.data.length}
-                                getTrProps={this.getTrProps}
-                                defaultPageSize={100}
-                            />
+                            <Grid rows={this.state.data} columns={this.getColumns()}>
+                                <Table/>
+                                <TableHeaderRow/>
+                                <TableFixedColumns/>
+                            </Grid>
                         </Col>
                     </Row>
                     <Row xs='12'>
