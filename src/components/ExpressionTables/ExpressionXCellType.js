@@ -179,7 +179,7 @@ class ExpressionXCellType extends Component {
                     </Row>
                     <Row xs='12'>
                         <Col xs='12'>
-                            <Grid rows={this.state.data} columns={this.getColumns()}>
+                            <Grid rows={this.props.data} columns={this.getColumns()}>
                                 <Table/>
                                 <TableHeaderRow/>
                                 <TableFixedColumns/>
