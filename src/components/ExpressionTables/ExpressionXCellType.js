@@ -58,88 +58,87 @@ class ExpressionXCellType extends Component {
     getColumns = () => {
         return [
             {
-                Header: "ABBR",
-                accessor: 'cluster',
-                id: 'cluster',
-                headerClassName: 'table-header',
-                className: 'table-column',
-                minWidth: 90,
+                title: "ABBR",
+                name: 'cluster',
+                // id: 'cluster',
+                // headerClassName: 'table-header',
+                // className: 'table-column',
+                // minWidth: 90,
             },
             {
-                Header: <span>CLUSTER (<i>predicted state</i>)</span>,
-                Footer: "TOTAL CELLS: ",
-                accessor: 'clusterName',
-                headerClassName: 'table-header',
-                className: 'table-column',
-                minWidth: 465,
-                Cell: ({ value }) => (
-                    this.parseClusterName(value)
-                )
+                title: <span>CLUSTER (<i>predicted state</i>)</span>,
+                // Footer: "TOTAL CELLS: ",
+                name: 'clusterName',
+                // headerClassName: 'table-header',
+                // className: 'table-column',
+                // minWidth: 465,
+                getCellValue: row => this.parseClusterName(row.value)
+                
             },
             {
-                Header: <span># CELLS IN<br />CLUSTER</span>,
-                accessor: 'cellCount',
-                headerClassName: 'table-header',
-                className: 'table-column',
-                minWidth: 90,
-                Footer: (sum(this.props.data, "cellCount")),
-                Cell: ({ value }) => value ? value : 0
+                title: <span># CELLS IN<br />CLUSTER</span>,
+                name: 'cellCount',
+                // headerClassName: 'table-header',
+                // className: 'table-column',
+                // minWidth: 90,
+                // Footer: (sum(this.props.data, "cellCount")),
+                getCellValue: row => row.value ? row.value : 0
             },
             {
-                Header: <span>MEAN<br />EXPRESSION <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='mean-expression-info' icon={faInfoCircle} /></span>
+                title: <span>MEAN<br />EXPRESSION <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='mean-expression-info' icon={faInfoCircle} /></span>
                     <UncontrolledTooltip placement='bottom' target='mean-expression-info' >
                         Averaged expression values (logarithmic) for each cluster
                     </UncontrolledTooltip></span>,
-                accessor: 'avgExp',
-                headerClassName: 'table-header',
-                className: 'table-column',
-                minWidth: 90,
-                Cell: ({ value }) => formatNumberToPrecision(value, 3)
+                name: 'avgExp',
+                // headerClassName: 'table-header',
+                // className: 'table-column',
+                // minWidth: 90,
+                getCellValue: row => formatNumberToPrecision(row.value, 3)
             },
             {
-                Header: <span>% CELLS<br />EXPRESSING</span>,
-                accessor: 'pct1',
-                headerClassName: 'table-header',
-                className: 'table-column',
-                minWidth: 90,
-                Cell: ({ value }) => {
-                    let newValue = (value > 0) ? (value * 100) : value;
+                title: <span>% CELLS<br />EXPRESSING</span>,
+                name: 'pct1',
+                // headerClassName: 'table-header',
+                // className: 'table-column',
+                // minWidth: 90,
+                getCellValue: row => {
+                    let newValue = (row.value > 0) ? (row.value * 100) : row.value;
                     return formatNumberToPrecision(newValue, 3);
                 }
             },
             {
-                Header: <span>FOLD<br />CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
+                title: <span>FOLD<br />CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
 
                     <UncontrolledTooltip placement='bottom' target='fold-change-info' >
                         Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.
                     </UncontrolledTooltip></span>,
-                headerClassName: 'table-header',
-                className: 'table-column',
-                accessor: 'foldChange',
-                minWidth: 75,
-                Cell: ({ value }) => formatNumberToPrecision(value, 3)
+                // headerClassName: 'table-header',
+                // className: 'table-column',
+                name: 'foldChange',
+                // minWidth: 75,
+                getCellValue: row => formatNumberToPrecision(row.value, 3)
             },
             {
-                Header: <span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
+                title: <span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
                     <UncontrolledTooltip placement='bottom' target='pvalue-info' >
                         p-value (unadjusted)
                     </UncontrolledTooltip></span>,
-                headerClassName: 'table-header',
-                className: 'table-column',
-                accessor: 'pVal',
-                minWidth: 90,
-                Cell: ({ value }) => formatNumberToPrecision(value, 3)
+                // headerClassName: 'table-header',
+                // className: 'table-column',
+                name: 'pVal',
+                // minWidth: 90,
+                getCellValue: row => formatNumberToPrecision(row.value, 3)
             },
             {
-                Header: <span>ADJ<br />P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
+                title: <span>ADJ<br />P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
                     <UncontrolledTooltip placement='bottom' target='pvalue-adj-info' >
                         Adjusted p-value, based on bonferroni correction using all features in the dataset.
                     </UncontrolledTooltip></span>,
-                headerClassName: 'table-header',
-                className: 'table-column',
-                accessor: 'pValAdj',
-                minWidth: 85,
-                Cell: ({ value }) => formatNumberToPrecision(value, 3)
+                // headerClassName: 'table-header',
+                // className: 'table-column',
+                name: 'pValAdj',
+                // minWidth: 85,
+                getCellValue: row => formatNumberToPrecision(row.value, 3)
             }
         ]
     };
