@@ -151,7 +151,6 @@ class GeneSummary extends Component {
     };
 
     dataTypeHasData(row) {
-        console.log(row)
         if (row.hrtCount !== '-' || row.akiCount !== '-' || row.ckdCount !== '-' || row.dmrCount !== '-') {
             return true;
         }
@@ -170,9 +169,8 @@ class GeneSummary extends Component {
     }
 
     linkDataTypeCells(row) {
-        console.log(row)
-        if (this.dataTypeHasData(row) && this.dataTypeIsClickable(row._original.dataTypeShort)) {
-            return <button onClick={() => this.handleLinkClick(row._original.dataTypeShort)}
+        if (this.dataTypeHasData(row) && this.dataTypeIsClickable(row.dataTypeShort)) {
+            return <button onClick={() => this.handleLinkClick(row.dataTypeShort)}
                 type="button"
                 className="btn btn-link text-start p-0 table-column">
                 {row.dataType}
