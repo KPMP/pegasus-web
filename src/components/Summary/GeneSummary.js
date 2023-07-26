@@ -153,6 +153,7 @@ class GeneSummary extends Component {
     };
 
     dataTypeHasData(row) {
+        console.log(row)
         if (row.hrtCount !== '-' || row.akiCount !== '-' || row.ckdCount !== '-' || row.dmrCount !== '-') {
             return true;
         }
