@@ -83,59 +83,56 @@ class SamplesByDataTypeTable extends Component {
     getColumns() {
         return [
             {
-                Header: 'DATA TYPE',
-                id: 'dataType',
-                accessor: 'dataType',
-                headerClassName: 'omics data-type-table-header',
-                className: 'data-type-table-content',
-                minWidth: 280,
+                title: 'DATA TYPE',
+                name: 'dataType',
+                sortable: false,
+                hideable: false,
+                // headerClassName: 'omics data-type-table-header',
+                // className: 'data-type-table-content',
+                // minWidth: 280,
                 Cell: row => (
                     this.formatDataTypeCell(row.value)
                 )
             },
             {
-                Header: () => (
-                    <span>HEALTHY REFERENCE</span>
-                ),
-                id: 'healthyTissue',
-                accessor: 'hrtCount',
-                headerClassName: 'data-type-table-header',
-                className: 'data-type-table-content text-center',
-                minHeaderWidth: 175,
-                minWidth: 175,
+                title: 'HEALTHY REFERENCE',
+                name: 'hrtCount',
+                sortable: false,
+                hideable: false
+                // headerClassName: 'data-type-table-header',
+                // className: 'data-type-table-content text-center',
+                // minHeaderWidth: 175,
+                // minWidth: 175,
             },
             {
-                Header: () => (
-                    <span>CKD</span>
-                ),
-                id: 'ckdTissue',
-                accessor: 'ckdCount',
-                headerClassName: 'data-type-table-header text-center',
-                className: 'data-type-table-content text-center',
-                minHeaderWidth: 75,
-                minWidth: 75,
+                title: 'CKD',
+                name: 'ckdCount',
+                sortable: false,
+                hideable: false
+                // headerClassName: 'data-type-table-header text-center',
+                // className: 'data-type-table-content text-center',
+                // minHeaderWidth: 75,
+                // minWidth: 75,
             },
             {
-                Header: () => (
-                    <span>AKI</span>
-                ),
-                id: 'akiTissue',
-                accessor: 'akiCount',
-                headerClassName: 'data-type-table-header text-center',
-                className: 'data-type-table-content text-center',
-                minHeaderWidth: 75,
-                minWidth: 75
+                title: 'AKI',
+                name: 'akiCount',
+                // headerClassName: 'data-type-table-header text-center',
+                // className: 'data-type-table-content text-center',
+                // minHeaderWidth: 75,
+                // minWidth: 75
+                sortable: false,
+                hideable: false
             },
             {
-                Header: () => (
-                    <span>DM-R</span>
-                ),
-                id: 'dmrTissue',
-                accessor: 'dmrCount',
-                headerClassName: 'data-type-table-header text-center',
-                className: 'data-type-table-content text-center',
-                minHeaderWidth: 100,
-                minWidth: 100
+                title: 'DM-R',
+                name: 'dmrCount',
+                // headerClassName: 'data-type-table-header text-center',
+                // className: 'data-type-table-content text-center',
+                // minHeaderWidth: 100,
+                // minWidth: 100
+                sortable: false,
+                hideable: false
             },
         ]
     };
