@@ -80,6 +80,16 @@ class SamplesByDataTypeTable extends Component {
 
     }
 
+    getDefaultColumnWidths = () => {
+        return [
+            { columnName: 'dataType', width: 250 },
+            { columnName: 'hrtCount', width: 100 },
+            { columnName: 'ckdCount', width: 100 },
+            { columnName: 'akiCount', width: 100 },
+            { columnName: 'dmrCount', width: 100 },
+        ]
+    };
+
     getColumns() {
         return [
             {
@@ -90,7 +100,7 @@ class SamplesByDataTypeTable extends Component {
                 // headerClassName: 'omics data-type-table-header',
                 // className: 'data-type-table-content',
                 // minWidth: 280,
-                Cell: row => (
+                getCellValue: row => (
                     this.formatDataTypeCell(row.value)
                 )
             },
@@ -145,7 +155,7 @@ class SamplesByDataTypeTable extends Component {
                     <Col xs='12'>
                         <React.Fragment>
                             <Grid rows={this.state.summary} columns={this.state.columns}>
-                                <Table/>
+                                <Table columnExtensions={this.getDefaultColumnWidths()}/>
                                 <TableHeaderRow/>
                                 <TableFixedColumns/>
                             </Grid>

@@ -50,6 +50,7 @@
     "string-strip-html": "^8.5.0"
   },
   "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "sass": "1.64.0"
   },
   "scripts": {
