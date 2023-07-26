@@ -43,8 +43,8 @@ class ExpressionXCellType extends Component {
         return {};
     };
 
-    parseClusterName = (value) => {
-        console.log(value)
+    parseClusterName = (row) => {
+        let value = row.clusterName;
         if (value !== null) {
             const regex = /<sup>*.<\/sup>/i;
             let titleVal = stripHtml(value.replace(regex, '')).result
@@ -83,7 +83,7 @@ class ExpressionXCellType extends Component {
                 // className: 'table-column',
                 // minWidth: 90,
                 // Footer: (sum(this.props.data, "cellCount")),
-                getCellValue: row => row ? row : 0
+                getCellValue: row => row.cellCount ? row.cellCount : 0
             },
             {
                 title: <span>MEAN<br />EXPRESSION <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='mean-expression-info' icon={faInfoCircle} /></span>
@@ -94,7 +94,7 @@ class ExpressionXCellType extends Component {
                 // headerClassName: 'table-header',
                 // className: 'table-column',
                 // minWidth: 90,
-                getCellValue: row => formatNumberToPrecision(row, 3)
+                getCellValue: row => formatNumberToPrecision(row.avgExp, 3)
             },
             {
                 title: <span>% CELLS<br />EXPRESSING</span>,
@@ -103,7 +103,7 @@ class ExpressionXCellType extends Component {
                 // className: 'table-column',
                 // minWidth: 90,
                 getCellValue: row => {
-                    let newValue = (row > 0) ? (row * 100) : row;
+                    let newValue = (row.pct1 > 0) ? (row.pct1 * 100) : row.pct1;
                     return formatNumberToPrecision(newValue, 3);
                 }
             },
@@ -117,7 +117,7 @@ class ExpressionXCellType extends Component {
                 // className: 'table-column',
                 name: 'foldChange',
                 // minWidth: 75,
-                getCellValue: row => formatNumberToPrecision(row, 3)
+                getCellValue: row => formatNumberToPrecision(row.foldChange, 3)
             },
             {
                 title: <span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
@@ -128,7 +128,7 @@ class ExpressionXCellType extends Component {
                 // className: 'table-column',
                 name: 'pVal',
                 // minWidth: 90,
-                getCellValue: row => formatNumberToPrecision(row, 3)
+                getCellValue: row => formatNumberToPrecision(row.pVal, 3)
             },
             {
                 title: <span>ADJ<br />P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
@@ -139,7 +139,7 @@ class ExpressionXCellType extends Component {
                 // className: 'table-column',
                 name: 'pValAdj',
                 // minWidth: 85,
-                getCellValue: row => formatNumberToPrecision(row, 3)
+                getCellValue: row => formatNumberToPrecision(row.pValAdj, 3)
             }
         ]
     };
