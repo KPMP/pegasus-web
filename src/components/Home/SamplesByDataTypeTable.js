@@ -116,7 +116,7 @@ class SamplesByDataTypeTable extends Component {
                 // className: 'data-type-table-content',
                 // minWidth: this.getWidthBasedOnScreenSize('dataType'),
                 getCellValue: row => (
-                    this.formatDataTypeCell(row.value)
+                    this.formatDataTypeCell(row)
                 )
             },
             {
