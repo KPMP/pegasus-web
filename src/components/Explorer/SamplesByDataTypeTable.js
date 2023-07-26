@@ -6,9 +6,6 @@ import { fetchSummaryData, fetchGeneDatasetSummary} from '../../helpers/ApolloCl
 import { Grid, TableHeaderRow, Table, TableColumnResizing} from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
-const HeaderCell = () => (
-    <TableHeaderRow.Cell className='data-type-table-content'/>
-)
 
 class SamplesByDataTypeTable extends Component {
 
@@ -88,11 +85,11 @@ class SamplesByDataTypeTable extends Component {
 
     getDefaultColumnWidths = () => {
         return [
-            { columnName: 'dataType', width: 350 },
-            { columnName: 'hrtCount', width: 100 },
-            { columnName: 'ckdCount', width: 100 },
-            { columnName: 'akiCount', width: 100 },
-            { columnName: 'dmrCount', width: 100 },
+            { columnName: 'dataType', width: 350, align: 'left' },
+            { columnName: 'hrtCount', width: 100, align: 'center'},
+            { columnName: 'ckdCount', width: 100, align: 'center' },
+            { columnName: 'akiCount', width: 100, align: 'center' },
+            { columnName: 'dmrCount', width: 100, align: 'center' },
         ]
     };
 
@@ -103,9 +100,6 @@ class SamplesByDataTypeTable extends Component {
                 name: 'dataType',
                 sortable: false,
                 hideable: false,
-                // headerClassName: 'omics data-type-table-header',
-                // className: 'data-type-table-content',
-                // minWidth: 280,
                 getCellValue: row => this.formatDataTypeCell(row)
             },
             {
@@ -113,38 +107,22 @@ class SamplesByDataTypeTable extends Component {
                 name: 'hrtCount',
                 sortable: false,
                 hideable: false
-                // headerClassName: 'data-type-table-header',
-                // className: 'data-type-table-content text-center',
-                // minHeaderWidth: 175,
-                // minWidth: 175,
             },
             {
                 title: 'CKD',
                 name: 'ckdCount',
                 sortable: false,
                 hideable: false
-                // headerClassName: 'data-type-table-header text-center',
-                // className: 'data-type-table-content text-center',
-                // minHeaderWidth: 75,
-                // minWidth: 75,
             },
             {
                 title: 'AKI',
                 name: 'akiCount',
-                // headerClassName: 'data-type-table-header text-center',
-                // className: 'data-type-table-content text-center',
-                // minHeaderWidth: 75,
-                // minWidth: 75
                 sortable: false,
                 hideable: false
             },
             {
                 title: 'DM-R',
                 name: 'dmrCount',
-                // headerClassName: 'data-type-table-header text-center',
-                // className: 'data-type-table-content text-center',
-                // minHeaderWidth: 100,
-                // minWidth: 100
                 sortable: false,
                 hideable: false
             },
@@ -155,13 +133,13 @@ class SamplesByDataTypeTable extends Component {
         return (
             <article id='summary-plot'>
                 <h5>Select a data type</h5>
-                <Row className='mt-4'>
+                <Row className='mt-4 data-type-table'>
                     <Col xs='12'>
                         <React.Fragment>
                             <Grid rows={this.state.summary} columns={this.state.columns}>
                                 <Table/>
                                 <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()}/>
-                                <TableHeaderRow cellComponent={HeaderCell}/>
+                                <TableHeaderRow/>
                             </Grid>
                         </React.Fragment>
                     </Col>
