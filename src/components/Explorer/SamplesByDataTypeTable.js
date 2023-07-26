@@ -3,7 +3,7 @@ import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
 import { fetchSummaryData, fetchGeneDatasetSummary} from '../../helpers/ApolloClient';
-import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
+import { Grid, TableFixedColumns, TableHeaderRow, Table, TableColumnResizing} from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
 class SamplesByDataTypeTable extends Component {
@@ -155,8 +155,9 @@ class SamplesByDataTypeTable extends Component {
                     <Col xs='12'>
                         <React.Fragment>
                             <Grid rows={this.state.summary} columns={this.state.columns}>
-                                <Table columnExtensions={this.getDefaultColumnWidths()}/>
+                                <Table/>
                                 <TableHeaderRow/>
+                                <TableColumnResizing getDefaultColumnWidths={this.getDefaultColumnWidths()}/>
                                 <TableFixedColumns/>
                             </Grid>
                         </React.Fragment>
