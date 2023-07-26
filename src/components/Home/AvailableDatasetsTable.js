@@ -131,42 +131,40 @@ class AvailableDatasetsTable extends Component {
 
         return [
             {
-                Header: () => (
-                    <span className="table-header">OMICS TYPE</span>
-                ),
-                id: 'dataType',
-                accessor: 'omicsType',
-                headerClassName: 'omics data-type-table-header',
-                className: 'data-type-table-content',
-                minWidth: this.getWidthBasedOnScreenSize('dataType'),
+                title: <span className="table-header">OMICS TYPE</span>,
+                // id: 'dataType',
+                name: 'omicsType',
+                // headerClassName: 'omics data-type-table-header',
+                // className: 'data-type-table-content',
+                // minWidth: this.getWidthBasedOnScreenSize('dataType'),
                 
             },
             {
-                Header: () => (
+                title: () => (
                     <a className="buttonhref table-header" href={`https://www.kpmp.org/controlled-data`}><span>CONTROLLED</span></a>
                 ),
-                id: 'controlled',
-                accessor: 'controlledCount',
-                headerClassName: 'data-type-table-header',
-                className: 'data-type-table-content',
-                minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
-                minWidth: this.getWidthBasedOnScreenSize('controlled'),
-                Cell: row => (
+                // id: 'controlled',
+                name: 'controlledCount',
+                // headerClassName: 'data-type-table-header',
+                // className: 'data-type-table-content',
+                // minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
+                // minWidth: this.getWidthBasedOnScreenSize('controlled'),
+                getCellValue: row => (
                     this.handleEmptyCounts(row.value, row, "controlled")
                     
                 )
             },
             {
-                Header: () => (
+                title: () => (
                     <span className='table-header'>OPEN</span>
                 ),
-                id: 'open',
-                accessor: 'openCount',
-                headerClassName: 'data-type-table-header',
-                className: 'data-type-table-content',
-                minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
-                minWidth: this.getWidthBasedOnScreenSize('open'),
-                Cell: row => (
+                // id: 'open',
+                name: 'openCount',
+                // headerClassName: 'data-type-table-header',
+                // className: 'data-type-table-content',
+                // minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
+                // minWidth: this.getWidthBasedOnScreenSize('open'),
+                getCellValue: row => (
                     this.handleEmptyCounts(row.value, row, "open")
                 )
             }

@@ -107,20 +107,20 @@ class SamplesByDataTypeTable extends Component {
 
         return [
             {
-                Header: () => (
+                title: () => (
                     <span className="table-header">OMICS TYPE</span>
                 ),
-                id: 'dataType',
-                accessor: 'dataType',
-                headerClassName: 'omics data-type-table-header',
-                className: 'data-type-table-content',
-                minWidth: this.getWidthBasedOnScreenSize('dataType'),
-                Cell: row => (
+                // id: 'dataType',
+                name: 'dataType',
+                // headerClassName: 'omics data-type-table-header',
+                // className: 'data-type-table-content',
+                // minWidth: this.getWidthBasedOnScreenSize('dataType'),
+                getCellValue: row => (
                     this.formatDataTypeCell(row.value)
                 )
             },
             {
-                Header: () => (
+                title: () => (
                     <span>
                       <span className="table-header" id="HealthyReferenceHeader">
                        REFERENCE
@@ -132,16 +132,16 @@ class SamplesByDataTypeTable extends Component {
                       </UncontrolledTooltip>
                     </span>
                 ),
-                id: 'hrtCount',
-                accessor: 'hrtCount',
-                headerClassName: 'data-type-table-header',
-                className: 'data-type-table-content',
-                minHeaderWidth: this.getWidthBasedOnScreenSize('hrtCount'),
-                minWidth: this.getWidthBasedOnScreenSize('hrtCount'),
+                // id: 'hrtCount',
+                name: 'hrtCount',
+                // headerClassName: 'data-type-table-header',
+                // className: 'data-type-table-content',
+                // minHeaderWidth: this.getWidthBasedOnScreenSize('hrtCount'),
+                // minWidth: this.getWidthBasedOnScreenSize('hrtCount'),
                 
             },
             {
-                Header: () => (
+                title: () => (
                     <span>
                       <span className="table-header" id="CKDHeader">
                       CKD
@@ -153,15 +153,15 @@ class SamplesByDataTypeTable extends Component {
                       </UncontrolledTooltip>
                     </span>
                 ),
-                id: 'ckdCount',
-                accessor: 'ckdCount',
-                headerClassName: 'data-type-table-header',
-                className: 'data-type-table-content',
-                minHeaderWidth: this.getWidthBasedOnScreenSize('ckdCount'),
-                minWidth: this.getWidthBasedOnScreenSize('ckdCount')
+                // id: 'ckdCount',
+                name: 'ckdCount',
+                // headerClassName: 'data-type-table-header',
+                // className: 'data-type-table-content',
+                // minHeaderWidth: this.getWidthBasedOnScreenSize('ckdCount'),
+                // minWidth: this.getWidthBasedOnScreenSize('ckdCount')
             },
             {
-                Header: () => (
+                title: () => (
                     <span>
                       <span className="table-header" id="AKIHeader">
                       AKI
@@ -173,15 +173,15 @@ class SamplesByDataTypeTable extends Component {
                       </UncontrolledTooltip>
                     </span>
                 ),
-                id: 'akiCount',
-                accessor: 'akiCount',
-                headerClassName: 'data-type-table-header',
-                className: 'data-type-table-content',
-                minHeaderWidth: this.getWidthBasedOnScreenSize('akiCount'),
-                minWidth: this.getWidthBasedOnScreenSize('akiCount')
+                // id: 'akiCount',
+                name: 'akiCount',
+                // headerClassName: 'data-type-table-header',
+                // className: 'data-type-table-content',
+                // minHeaderWidth: this.getWidthBasedOnScreenSize('akiCount'),
+                // minWidth: this.getWidthBasedOnScreenSize('akiCount')
             },
             {
-                Header: () => (
+                title: () => (
                     <span>
                       <span className="table-header" id="ResistorHeader">
                       DM-R
@@ -193,12 +193,12 @@ class SamplesByDataTypeTable extends Component {
                       </UncontrolledTooltip>
                     </span>
                 ),
-                id: 'dmrCount',
-                accessor: 'dmrCount',
-                headerClassName: 'data-type-table-header',
-                className: 'data-type-table-content',
-                minHeaderWidth: this.getWidthBasedOnScreenSize('dmrCount'),
-                minWidth: this.getWidthBasedOnScreenSize('dmrCount')
+                // id: 'dmrCount',
+                name: 'dmrCount',
+            //     headerClassName: 'data-type-table-header',
+            //     className: 'data-type-table-content',
+            //     minHeaderWidth: this.getWidthBasedOnScreenSize('dmrCount'),
+            //     minWidth: this.getWidthBasedOnScreenSize('dmrCount')
             }   
         ]
     };
