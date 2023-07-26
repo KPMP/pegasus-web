@@ -6,6 +6,10 @@ import { fetchSummaryData, fetchGeneDatasetSummary} from '../../helpers/ApolloCl
 import { Grid, TableHeaderRow, Table, TableColumnResizing} from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
+const HeaderCell = () => (
+    <TableHeaderRow.Cell className='data-type-table-content'/>
+)
+
 class SamplesByDataTypeTable extends Component {
 
     constructor(props) {
@@ -84,7 +88,7 @@ class SamplesByDataTypeTable extends Component {
 
     getDefaultColumnWidths = () => {
         return [
-            { columnName: 'dataType', width: 250 },
+            { columnName: 'dataType', width: 350 },
             { columnName: 'hrtCount', width: 100 },
             { columnName: 'ckdCount', width: 100 },
             { columnName: 'akiCount', width: 100 },
@@ -157,7 +161,7 @@ class SamplesByDataTypeTable extends Component {
                             <Grid rows={this.state.summary} columns={this.state.columns}>
                                 <Table/>
                                 <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()}/>
-                                <TableHeaderRow/>
+                                <TableHeaderRow cellComponent={HeaderCell}/>
                             </Grid>
                         </React.Fragment>
                     </Col>
