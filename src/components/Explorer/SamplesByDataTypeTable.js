@@ -133,7 +133,7 @@ class SamplesByDataTypeTable extends Component {
         return (
             <article id='summary-plot'>
                 <h5>Select a data type</h5>
-                <Row className='mt-4 data-type-table'>
+                <Row className='mt-4' id='data-type-table'>
                     <Col xs='12'>
                         <React.Fragment>
                             <Grid rows={this.state.summary} columns={this.state.columns}>
