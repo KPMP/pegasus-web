@@ -62,8 +62,9 @@ class SamplesByDataTypeTable extends Component {
         }
     }
 
-    formatDataTypeCell(value) {
-        console.log(value)
+    formatDataTypeCell(row) {
+        console.log(row)
+        let value = row['value']
         if (value === 'Single-cell RNA-seq (scRNA-seq)' || value === 'Single-nucleus RNA-seq (snRNA-seq)') {
 
             return (
@@ -101,9 +102,7 @@ class SamplesByDataTypeTable extends Component {
                 // headerClassName: 'omics data-type-table-header',
                 // className: 'data-type-table-content',
                 // minWidth: 280,
-                getCellValue: row => (
-                    this.formatDataTypeCell(row['value'])
-                )
+                getCellValue: row => this.formatDataTypeCell(row)
             },
             {
                 title: 'HEALTHY REFERENCE',
