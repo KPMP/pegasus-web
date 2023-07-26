@@ -104,9 +104,7 @@ class GeneSummary extends Component {
                 // className: 'table-column data-type',
                 sortable: false,
                 hideable: false,
-                getCellValue: ({ row }) => (
-                    this.linkDataTypeCells(row)
-                )
+                getCellValue: row => this.linkDataTypeCells(row)
             },
             {
                 title: "HEALTHY REFERENCE TISSUE",
@@ -115,9 +113,9 @@ class GeneSummary extends Component {
                 name: 'hrtCount',
                 // headerClassName: 'text-center gene-summary-header',
                 // className: 'table-column',
-                getCellValue: ({ row }) => (
-                    <div className={"text-center"}>{row.hrt}</div>
-                )
+                // getCellValue: ({ row }) => (
+                //     <div className={"text-center"}>{row.hrt}</div>
+                // )
             },
             {
                 title: "AKI TISSUE",
@@ -125,9 +123,9 @@ class GeneSummary extends Component {
                 name: 'akiCount',
                 // headerClassName: 'text-center gene-summary-header',
                 // className: 'table-column',
-                getCellValue: ({ row }) => (
-                    <div className={"text-center"}>{row.aki}</div>
-                )
+                // getCellValue: ({ row }) => (
+                //     <div className={"text-center"}>{row.aki}</div>
+                // )
             },
             {
                 title: "CKD TISSUE",
@@ -135,9 +133,9 @@ class GeneSummary extends Component {
                 name: 'ckdCount',
                 // headerClassName: 'text-center gene-summary-header',
                 // className: 'table-column',
-                getCellValue: ({ row }) => (
-                    <div className={"text-center"}>{row.ckd}</div>
-                )
+                // getCellValue: ({ row }) => (
+                //     <div className={"text-center"}>{row.ckd}</div>
+                // )
             },
             {
                 title: "DM-R TISSUE",
@@ -145,9 +143,9 @@ class GeneSummary extends Component {
                 name: 'dmrCount',
                 // headerClassName: 'text-center gene-summary-header',
                 // className: 'table-column',
-                getCellValue: ({ row }) => (
-                    <div className={"text-center"}>{row.dmr}</div>
-                )
+                // getCellValue: ({ row }) => (
+                //     // <div className={"text-center"}>{row.dmr}</div>
+                // )
             },
         ]
     };
@@ -172,6 +170,7 @@ class GeneSummary extends Component {
     }
 
     linkDataTypeCells(row) {
+        console.log(row)
         if (this.dataTypeHasData(row) && this.dataTypeIsClickable(row._original.dataTypeShort)) {
             return <button onClick={() => this.handleLinkClick(row._original.dataTypeShort)}
                 type="button"

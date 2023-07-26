@@ -64,7 +64,6 @@ class SamplesByDataTypeTable extends Component {
     }
 
     formatDataTypeCell(row) {
-        console.log(row)
         let value = row['dataType']
         if (value === 'Single-cell RNA-seq (scRNA-seq)' || value === 'Single-nucleus RNA-seq (snRNA-seq)') {
 
