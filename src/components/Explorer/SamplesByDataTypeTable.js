@@ -63,6 +63,7 @@ class SamplesByDataTypeTable extends Component {
     }
 
     formatDataTypeCell(value) {
+        console.log(value)
         if (value === 'Single-cell RNA-seq (scRNA-seq)' || value === 'Single-nucleus RNA-seq (snRNA-seq)') {
 
             return (
@@ -101,7 +102,7 @@ class SamplesByDataTypeTable extends Component {
                 // className: 'data-type-table-content',
                 // minWidth: 280,
                 getCellValue: row => (
-                    this.formatDataTypeCell(row.value)
+                    this.formatDataTypeCell(row['value'])
                 )
             },
             {
