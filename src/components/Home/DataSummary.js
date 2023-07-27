@@ -31,23 +31,9 @@ class DataSummary extends Component {
     }
 
     async componentDidMount() {  
-       let spatialViewerSummary = await fetchSummaryData("spatialViewerSummary")
-       let explorerSummary = await fetchGeneDatasetSummary("")
-       explorerSummary = explorerSummary
-                                .slice()
-                                .sort(this.compare)
-                                .filter(availableDataVisibilityFilter)
-        
-        spatialViewerSummary = spatialViewerSummary
-                                .slice()
-                                .sort(this.compare)
-                                .filter(availableDataVisibilityFilter)
-
-        explorerSummary.unshift({dataType: "Explorer"})
-        explorerSummary.push({dataType: "Spatial Viewer"})
-        const summaryData = explorerSummary.concat(spatialViewerSummary)
+       
         const availableDatasets = await fetchAtlasSummaryRows();
-       this.setState({ summaryData: summaryData, availableDatasets: availableDatasets });
+        this.setState({ summaryData: summaryData, availableDatasets: availableDatasets });
     }
 
     render() {

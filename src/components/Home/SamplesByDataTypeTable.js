@@ -8,6 +8,38 @@ class SamplesByDataTypeTable extends Component {
     constructor(props) {
         super(props);
         this.getColumns = this.getColumns.bind(this); 
+        this.state = {
+            spatialViewerSummary: [],
+            explorerSummary: [],
+            dataTable: []
+        }
+    }
+
+    async componentDidMount(){
+        await this.fetchResults();
+    }
+
+    fetchResults = () => {
+        fetchSummaryData("spatialViewerSummary").then((result) => {
+            this.setState({spatialViewerSummary: result})
+        })
+        fetchGeneDatasetSummary("").then((result) => {
+            this.setState({explorerSummary: result})
+        })
+        let explorerSummaryFiltered = this.state.explorerSummary
+                                .slice()
+                                .sort(this.compare)
+                                .filter(availableDataVisibilityFilter)
+        
+        let spatialViewerSummaryFiltered = this.state.spatialViewerSummary
+                                .slice()
+                                .sort(this.compare)
+                                .filter(availableDataVisibilityFilter)
+
+        explorerSummaryFiltered.unshift({dataType: "Explorer"})
+        explorerSummarFiltered.push({dataType: "Spatial Viewer"})
+        const summaryData = explorerSummaryFiltered.concat(spatialViewerSummaryFiltered)
+        this.setState({dataTable: summaryData})
     }
 
     handleDataTypeClick(dataType) {
@@ -31,6 +63,7 @@ class SamplesByDataTypeTable extends Component {
             throw new Error('Datatype not found', dataType)
         }
     }
+
     formatDataTypeCell(value) {
         console.log(value)
         if (value === 'Explorer' || value === 'Spatial Viewer') {
@@ -48,6 +81,7 @@ class SamplesByDataTypeTable extends Component {
         }
 
     }
+
     getWidthBasedOnScreenSize(columnId) {
         if (window.innerWidth < 900) {
             if (columnId === 'dataType') {
@@ -205,7 +239,7 @@ class SamplesByDataTypeTable extends Component {
             <article id='summary-plot'>
                 <Row className='mt-4'>
                     <Col xs='12'>
-                    <Grid rows={this.props.summary} columns={this.getColumns()}>
+                    <Grid rows={this.state.summaryData} columns={this.getColumns()}>
                         </Grid>
 
                     </Col>
