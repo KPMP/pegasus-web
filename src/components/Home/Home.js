@@ -16,20 +16,13 @@ class Home extends Component {
           <Col md='12' lg='4'>
             <LeftContent />
           </Col>
+          <Col md='12' lg='8'>
+            <DataSummary history={this.props.history} />
+          </Col>
         </Row>
       </article>
       
     )
-    // return (
-    //   <article id="homepage">
-    
-    
-    //       <Col md='12' lg='8'>
-    //         <DataSummary history={this.props.history} />
-    //       </Col>
-    //     </Row>
-    //   </article>
-    // );
   }
 }
 
