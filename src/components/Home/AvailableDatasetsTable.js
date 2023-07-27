@@ -30,6 +30,7 @@ class AvailableDatasetsTable extends Component {
         this.setState({totalFiles: summary.totalFiles});
         this.setState({summaryRows: summary.summaryRows});
         this.setState({linkInformation: summary.summaryRows.linkInformation});
+        console.log(this.state.summaryRows)
         summary.summaryRows.forEach((row) => {
             this.setState({[row.omicsType]: row})
             }
@@ -156,6 +157,7 @@ class AvailableDatasetsTable extends Component {
     };
 
     render() {
+        console.log(this.state.summaryRows)
         return (
             <article id='summary-plot'>
                 <Row className='mt-4'>
