@@ -25,21 +25,15 @@ class AvailableDatasetsTable extends Component {
     }
 
     async componentDidMount(){
-        await this.getAtlasSummaryRows();
-        const availableDatasets = await fetchAtlasSummaryRows();
-        this.setState({ availableDatasets: availableDatasets });
-    }
-
-    getAtlasSummaryRows = () => {
-        fetchAtlasSummaryRows().then((result) => {
-            this.setState({totalFiles: result.totalFiles});
-            this.setState({summaryRows: result.summaryRows});
-            this.setState({linkInformation: result.summaryRows.linkInformation});
-            result.summaryRows.forEach((row) => {
-                this.setState({[row.omicsType]: row})
-                }
-            )
-        });
+        const summaryRows = await fetchAtlasSummaryRows();
+        
+        this.setState({totalFiles: summaryRows.totalFiles});
+        this.setState({summaryRows: summaryRows.summaryRows});
+        this.setState({linkInformation: summaryRows.summaryRows.linkInformation});
+        summaryRows.summaryRows.forEach((row) => {
+            this.setState({[row.omicsType]: row})
+            }
+        )
     }
 
     handleDataTypeClick(dataType) {
@@ -167,7 +161,7 @@ class AvailableDatasetsTable extends Component {
             <article id='summary-plot'>
                 <Row className='mt-4'>
                     <Col xs='12'>
-                        <Grid rows={this.state.availableDatasets} columns={this.getColumns()}>
+                        <Grid rows={this.state.summaryRows} columns={this.getColumns()}>
                             <Table/>
                             <TableHeaderRow/>
                             <TableFixedColumns/>
