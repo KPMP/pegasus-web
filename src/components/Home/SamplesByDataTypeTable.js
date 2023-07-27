@@ -43,8 +43,10 @@ class SamplesByDataTypeTable extends Component {
             this.setState({explorerSummary: result})
         });
        
+        console.log(this.state.explorerSummary)
+        console.log(this.state.spatialViewerSummary)
+
         const summaryData = this.state.explorerSummary.concat(this.state.spatialViewerSummary)
-        console.log(summaryData);
         this.setState({dataTable: summaryData});
     }
 
