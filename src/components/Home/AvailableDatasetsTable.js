@@ -12,14 +12,14 @@ class AvailableDatasetsTable extends Component {
 
         this.state = {
             totalFiles: [],
-            openCount: [],
-            controlledCount: [],
+            summaryRows: [],
+            linkInformation: {},
+
             omicsType: [],
             linkType: [],
             linkValue: [],
-            linkInformation: {},
             omicsTypes: {},
-            availableDatasets: []
+            
         };
         
     }
