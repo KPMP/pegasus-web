@@ -20,12 +20,15 @@ class SamplesByDataTypeTable extends Component {
         let spatialSummary = await fetchSummaryData("spatialViewerSummary");
         spatialSummary = spatialSummary.sort(this.compare)
         spatialSummary = spatialSummary.filter(availableDataVisibilityFilter)
+
         let explorerSummary = await fetchGeneDatasetSummary("");
         explorerSummary = explorerSummary.sort(this.compare)
         explorerSummary = explorerSummary.filter(availableDataVisibilityFilter)
 
+        // adding lines to separate the sections in the table
         explorerSummary.unshift({dataType: "Explorer"})
         spatialSummary.unshift({dataType: "Spatial Viewer"})
+
         const summaryData = explorerSummary.concat(spatialSummary)
         this.setState({dataTable: summaryData});
     }
@@ -144,7 +147,7 @@ class SamplesByDataTypeTable extends Component {
                 getCellValue: row => this.formatDataTypeCell(row)
             },
             {
-                title: () => (
+                title: 
                     <span>
                       <span className="table-header data-type-table-header" id="HealthyReferenceHeader">
                        REFERENCE
@@ -155,7 +158,7 @@ class SamplesByDataTypeTable extends Component {
                       Healthy Reference
                       </UncontrolledTooltip>
                     </span>
-                ),
+                ,
                 name: 'hrtCount',
                 // className: 'data-type-table-content',
                 // minHeaderWidth: this.getWidthBasedOnScreenSize('hrtCount'),
@@ -163,7 +166,7 @@ class SamplesByDataTypeTable extends Component {
                 
             },
             {
-                title: () => (
+                title:
                     <span>
                       <span className="table-header data-type-table-header" id="CKDHeader">
                       CKD
@@ -174,14 +177,14 @@ class SamplesByDataTypeTable extends Component {
                       Chronic Kidney Disease
                       </UncontrolledTooltip>
                     </span>
-                ),
+                ,
                 name: 'ckdCount',
                 // className: 'data-type-table-content',
                 // minHeaderWidth: this.getWidthBasedOnScreenSize('ckdCount'),
                 // minWidth: this.getWidthBasedOnScreenSize('ckdCount')
             },
             {
-                title: () => (
+                title: 
                     <span>
                       <span className="table-header data-type-table-header" id="AKIHeader">
                       AKI
@@ -192,13 +195,13 @@ class SamplesByDataTypeTable extends Component {
                       Acute Kidney Injury
                       </UncontrolledTooltip>
                     </span>
-                ),
+                ,
                 name: 'akiCount',
                 // minHeaderWidth: this.getWidthBasedOnScreenSize('akiCount'),
                 // minWidth: this.getWidthBasedOnScreenSize('akiCount')
             },
             {
-                title: () => (
+                title: 
                     <span>
                       <span className="table-header data-type-table-header" id="ResistorHeader">
                       DM-R
@@ -209,7 +212,7 @@ class SamplesByDataTypeTable extends Component {
                       Diabetes Mellitus - Resilient
                       </UncontrolledTooltip>
                     </span>
-                ),
+                ,
                 name: 'dmrCount',
             //     className: 'data-type-table-content',
             //     minHeaderWidth: this.getWidthBasedOnScreenSize('dmrCount'),
