@@ -114,10 +114,14 @@ class AvailableDatasetsTable extends Component {
     }
 
     getDefaultColumnWidths() {
+        let dataTypeWidth = this.getWidthBasedOnScreenSize('dataType')
+        console.log(dataTypeWidth)
+        let controlledWidth = this.getWidthBasedOnScreenSize('controlled')
+        let openWidth = this.getWidthBasedOnScreenSize('open')
         return [
-            { columnName: 'dataType', width: this.getWidthBasedOnScreenSize('dataType')},
-            { columnName: 'controlled', width: this.getWidthBasedOnScreenSize('controlled')},
-            { columnName: 'open', width: this.getWidthBasedOnScreenSize('open') },
+            { columnName: 'dataType', width: {dataTypeWidth}},
+            { columnName: 'controlled', width: {controlledWidth}},
+            { columnName: 'open', width: {openWidth} },
         ]
     }
 
