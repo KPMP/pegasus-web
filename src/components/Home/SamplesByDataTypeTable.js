@@ -18,9 +18,11 @@ class SamplesByDataTypeTable extends Component {
     async componentDidMount(){
 
         let explorerSummary = await fetchSummaryData("spatialViewerSummary");
+        console.log(explorerSummary)
         explorerSummary = explorerSummary.sort(this.compare())
         explorerSummary = explorerSummary.filter(availableDataVisibilityFilter)
         let spatialSummary = await fetchGeneDatasetSummary("");
+        console.log(spatialSummary)
         spatialSummary = spatialSummary.sort(this.compare())
         spatialSummary = spatialSummary.filter(availableDataVisibilityFilter)
        
