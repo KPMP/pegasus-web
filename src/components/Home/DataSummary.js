@@ -3,8 +3,8 @@ import { Container, Row } from 'reactstrap';
 import SamplesByDataTypeTableContainer from './SamplesByDataTypeTableContainer';
 import AvailableDatasetsTable from './AvailableDatasetsTable';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
-import { fetchSummaryData, fetchGeneDatasetSummary, fetchAtlasSummaryRows} from '../../helpers/ApolloClient';
-import { availableDataVisibilityFilter } from '../../helpers/Utils';
+import { fetchAtlasSummaryRows} from '../../helpers/ApolloClient';
+
 import { faPerson } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ParticipantSummary from './ParticipantSummary';

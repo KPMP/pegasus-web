@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
+import { availableDataVisibilityFilter } from '../../helpers/Utils';
+import { fetchSummaryData, fetchGeneDatasetSummary} from '../../helpers/ApolloClient';
 import { Row, Col, UncontrolledTooltip } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
