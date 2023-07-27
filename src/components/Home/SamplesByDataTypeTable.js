@@ -21,6 +21,16 @@ class SamplesByDataTypeTable extends Component {
         await this.fetchResults();
     }
 
+    compare( a, b ) {
+        if ( a && b && a.dataType < b.dataType ){
+          return -1;
+        }
+        if ( a.dataType > b.dataType ){
+          return 1;
+        }
+        return 0;
+    }
+
     fetchResults = () => {
         fetchSummaryData("spatialViewerSummary").then((result) => {
             console.log(result)
@@ -31,12 +41,10 @@ class SamplesByDataTypeTable extends Component {
             this.setState({explorerSummary: result})
         });
         let explorerSummaryFiltered = this.state.explorerSummary
-                                .slice()
                                 .sort(this.compare)
                                 .filter(availableDataVisibilityFilter)
         
         let spatialViewerSummaryFiltered = this.state.spatialViewerSummary
-                                .slice()
                                 .sort(this.compare)
                                 .filter(availableDataVisibilityFilter)
 
