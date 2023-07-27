@@ -155,6 +155,8 @@ export const getDataTypeOptionsWithTissueType = async (geneSymbol, cluster, data
 };
 
 export const availableDataVisibilityFilter = (data) => {
+    console.log("filtering")
+    console.log(data)
     if ('hrtCount' in data && 'akiCount' in data && 'ckdCount' in data) {
         if (data.hrtCount > 0 || data.akiCount > 0 || data.ckdCount > 0 || data.dmrCount > 0) {
             return data;
