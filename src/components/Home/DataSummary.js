@@ -20,15 +20,7 @@ class DataSummary extends Component {
             availableDatasets: []
         }
     }
-    compare( a, b ) {
-        if ( a && b && a.dataType < b.dataType ){
-          return -1;
-        }
-        if ( a.dataType > b.dataType ){
-          return 1;
-        }
-        return 0;
-    }
+
 
     async componentDidMount() {  
        
@@ -53,12 +45,12 @@ class DataSummary extends Component {
                     <SamplesByDataTypeTableContainer/>
                 </Row>
 
-                {/* <Row><h5 className="sub-header lowered">Files in the Data Repository by -omics type</h5></Row>
+                <Row><h5 className="sub-header lowered">Files in the Data Repository by -omics type</h5></Row>
                 <Row><p>The datasets available in the Repository are a combination of raw and processed data from KPMP participant biopsies and reference tissue samples.</p></Row>
             
                 <Row>
                     <AvailableDatasetsTable history={this.props.history} availableDatasets={this.state.availableDatasets} />
-                </Row> */}
+                </Row>
             </Container>
 
         );
