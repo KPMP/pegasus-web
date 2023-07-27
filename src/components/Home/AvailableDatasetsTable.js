@@ -163,11 +163,11 @@ class AvailableDatasetsTable extends Component {
             <article id='summary-plot'>
                 <Row className='mt-4'>
                     <Col xs='12'>
-                        <Grid rows={this.state.summaryRows} columns={this.getColumns()}>
+                        {/* <Grid rows={this.state.summaryRows} columns={this.getColumns()}>
                             <Table/>
                             <TableHeaderRow/>
                             <TableFixedColumns/>
-                        </Grid>
+                        </Grid> */}
                     </Col>
                 </Row>
                 <Row className="float-end">
