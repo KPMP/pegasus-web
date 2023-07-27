@@ -44,7 +44,7 @@ class SamplesByDataTypeTable extends Component {
                                 .filter(availableDataVisibilityFilter)
 
         explorerSummaryFiltered.unshift({dataType: "Explorer"})
-        explorerSummarFiltered.push({dataType: "Spatial Viewer"})
+        explorerSummaryFiltered.push({dataType: "Spatial Viewer"})
         const summaryData = explorerSummaryFiltered.concat(spatialViewerSummaryFiltered)
         this.setState({dataTable: summaryData})
     }
