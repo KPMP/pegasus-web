@@ -241,12 +241,11 @@ class SamplesByDataTypeTable extends Component {
     };
 
     render() {
-        console.log(this.props)
         return (
             <article id='summary-plot'>
                 <Row className='mt-4'>
                     <Col xs='12'>
-                    <Grid rows={this.state.summaryData} columns={this.getColumns()}>
+                    <Grid rows={this.state.dataTable} columns={this.getColumns()}>
                         </Grid>
 
                     </Col>
