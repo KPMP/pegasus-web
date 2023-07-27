@@ -63,14 +63,14 @@ class AvailableDatasetsTable extends Component {
     }
 
     handleDataTypeValueClick(row, controlAccess) {
-        let linkType = row.original.linkInformation.linkType;
-        let linkValue = row.original.linkInformation.linkValue;
+        let linkType = row.linkInformation.linkType;
+        let linkValue = row.linkInformation.linkValue;
         let mapping = `/repository/?size=n_20_n&filters[0][field]=access&filters[0][values][0]=${controlAccess}&filters[0][type]=any&filters[1][field]=${linkType}&filters[1][values][0]=${linkValue}&filters[1][type]=any`;
         if(linkType && linkValue){
             return encodeURI(mapping);
         } else {
             this.props.history.push('/oops');
-            throw new Error('Datatype not found', row.original.omicsType)
+            throw new Error('Datatype not found', row.omicsType)
         }
     }
   
@@ -156,7 +156,6 @@ class AvailableDatasetsTable extends Component {
     };
 
     render() {
-        console.log(this.state.summaryRows)
         return (
             <article id='summary-plot'>
                 <Row className='mt-4'>
