@@ -9,7 +9,6 @@ class SamplesByDataTypeTable extends Component {
 
     constructor(props) {
         super(props);
-        console.log("in here")
         this.getColumns = this.getColumns.bind(this); 
         this.state = {
             spatialViewerSummary: [],
@@ -19,20 +18,16 @@ class SamplesByDataTypeTable extends Component {
     }
 
     async componentDidMount(){
-        console.log("component did mount")
         await this.fetchResults();
     }
 
     fetchResults = () => {
-        console.log("fetching results")
         fetchSummaryData("spatialViewerSummary").then((result) => {
             this.setState({spatialViewerSummary: result})
         });
-        console.log("fetched spatial data")
         fetchGeneDatasetSummary("").then((result) => {
             this.setState({explorerSummary: result})
         });
-        console.log ("fetched explorer data")
         let explorerSummaryFiltered = this.state.explorerSummary
                                 .slice()
                                 .sort(this.compare)
@@ -71,8 +66,8 @@ class SamplesByDataTypeTable extends Component {
         }
     }
 
-    formatDataTypeCell(value) {
-        console.log(value)
+    formatDataTypeCell(row) {
+        let value = row.dataType;
         if (value === 'Explorer' || value === 'Spatial Viewer') {
             return (
                 <span>
