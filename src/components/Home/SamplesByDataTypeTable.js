@@ -7,11 +7,7 @@ class SamplesByDataTypeTable extends Component {
 
     constructor(props) {
         super(props);
-        this.getColumns = this.getColumns.bind(this);
-
-        this.state = {
-            columns: this.getColumns()
-        };   
+        this.getColumns = this.getColumns.bind(this); 
     }
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
@@ -206,7 +202,7 @@ class SamplesByDataTypeTable extends Component {
             <article id='summary-plot'>
                 <Row className='mt-4'>
                     <Col xs='12'>
-                        <Grid rows={this.props.summary} columns={this.state.columns}>
+                        <Grid rows={this.props.summary} columns={this.getColumns()}>
                             <Table/>
                             <TableHeaderRow/>
                             <TableFixedColumns/>
