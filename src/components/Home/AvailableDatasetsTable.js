@@ -27,6 +27,8 @@ class AvailableDatasetsTable extends Component {
     async componentDidMount(){
         const summaryRows = await fetchAtlasSummaryRows();
         
+        console.log(summaryRows)
+
         this.setState({totalFiles: summaryRows.totalFiles});
         this.setState({summaryRows: summaryRows.summaryRows});
         this.setState({linkInformation: summaryRows.summaryRows.linkInformation});
