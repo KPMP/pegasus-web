@@ -12,13 +12,7 @@ class AvailableDatasetsTable extends Component {
 
         this.state = {
             totalFiles: [],
-            summaryRows: [],
-            linkInformation: {},
-
-            omicsType: [],
-            linkType: [],
-            linkValue: [],
-            omicsTypes: {},
+            summaryRows: []
             
         };
         
@@ -29,11 +23,7 @@ class AvailableDatasetsTable extends Component {
 
         this.setState({totalFiles: summary.totalFiles});
         this.setState({summaryRows: summary.summaryRows});
-        this.setState({linkInformation: summary.summaryRows.linkInformation});
-        summary.summaryRows.forEach((row) => {
-            this.setState({[row.omicsType]: row})
-            }
-        )
+
     }
 
     handleDataTypeClick(dataType) {
