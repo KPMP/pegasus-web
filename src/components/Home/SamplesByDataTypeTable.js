@@ -33,24 +33,17 @@ class SamplesByDataTypeTable extends Component {
 
     fetchResults = () => {
         fetchSummaryData("spatialViewerSummary").then((result) => {
-            console.log(result)
+            result = result.sort(this.compare())
+            result = result.filter(availableDataVisibilityFilter)
             this.setState({spatialViewerSummary: result})
         });
         fetchGeneDatasetSummary("").then((result) => {
-            console.log(result)
+            result = result.sort(this.compare())
+            result = result.filter(availableDataVisibilityFilter)
             this.setState({explorerSummary: result})
         });
-        let explorerSummaryFiltered = this.state.explorerSummary
-                                .sort(this.compare)
-                                .filter(availableDataVisibilityFilter)
-        
-        let spatialViewerSummaryFiltered = this.state.spatialViewerSummary
-                                .sort(this.compare)
-                                .filter(availableDataVisibilityFilter)
-
-        explorerSummaryFiltered.unshift({dataType: "Explorer"})
-        explorerSummaryFiltered.push({dataType: "Spatial Viewer"})
-        const summaryData = explorerSummaryFiltered.concat(spatialViewerSummaryFiltered)
+       
+        const summaryData = this.state.explorerSummary.concat(this.state.spatialViewerSummary)
         console.log(summaryData);
         this.setState({dataTable: summaryData});
     }
