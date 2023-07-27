@@ -11,14 +11,28 @@ class SamplesByDataTypeTable extends Component {
         super(props);
         this.getColumns = this.getColumns.bind(this); 
         this.state = {
-            spatialViewerSummary: [],
-            explorerSummary: [],
             dataTable: []
         }
     }
 
     async componentDidMount(){
-        await this.fetchResults();
+
+        let explorerSummary = await fetchSummaryData("spatialViewerSummary").then((result) => {
+            result = result.sort(this.compare())
+            result = result.filter(availableDataVisibilityFilter)
+            return result;
+        });
+        let spatialSummary = await fetchGeneDatasetSummary("").then((result) => {
+            result = result.sort(this.compare())
+            result = result.filter(availableDataVisibilityFilter)
+            return result;
+        });
+       
+        console.log(explorerSummary)
+        console.log(spatialSummary)
+
+        const summaryData = explorerSummary.concat(this.state.spatialSummary)
+        this.setState({dataTable: summaryData});
     }
 
     compare( a, b ) {
@@ -29,25 +43,6 @@ class SamplesByDataTypeTable extends Component {
           return 1;
         }
         return 0;
-    }
-
-    fetchResults = () => {
-        fetchSummaryData("spatialViewerSummary").then((result) => {
-            result = result.sort(this.compare())
-            result = result.filter(availableDataVisibilityFilter)
-            this.setState({spatialViewerSummary: result})
-        });
-        fetchGeneDatasetSummary("").then((result) => {
-            result = result.sort(this.compare())
-            result = result.filter(availableDataVisibilityFilter)
-            this.setState({explorerSummary: result})
-        });
-       
-        console.log(this.state.explorerSummary)
-        console.log(this.state.spatialViewerSummary)
-
-        const summaryData = this.state.explorerSummary.concat(this.state.spatialViewerSummary)
-        this.setState({dataTable: summaryData});
     }
 
     handleDataTypeClick(dataType) {
