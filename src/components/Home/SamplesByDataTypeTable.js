@@ -21,7 +21,7 @@ class SamplesByDataTypeTable extends Component {
         // spatialSummary = spatialSummary.sort(this.compare())
         spatialSummary = spatialSummary.filter(availableDataVisibilityFilter)
         let explorerSummary = await fetchGeneDatasetSummary("");
-        explorerSummary = explorerSummary.sort(this.compare())
+        explorerSummary = explorerSummary.sort(this.compare)
         explorerSummary = explorerSummary.filter(availableDataVisibilityFilter)
 
         explorerSummary.unshift({dataType: "Explorer"})
