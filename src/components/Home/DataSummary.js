@@ -14,19 +14,8 @@ class DataSummary extends Component {
     constructor(props) {
         super(props);
         this.handleGoogleAnalyticsEvent = handleGoogleAnalyticsEvent.bind(this);
-        this.state = {
-            spatialViewerSummary: [],
-            explorerSummary: [],
-            availableDatasets: []
-        }
     }
 
-
-    async componentDidMount() {  
-       
-        const availableDatasets = await fetchAtlasSummaryRows();
-        this.setState({ availableDatasets: availableDatasets });
-    }
 
     render() {
 
@@ -49,7 +38,7 @@ class DataSummary extends Component {
                 <Row><p>The datasets available in the Repository are a combination of raw and processed data from KPMP participant biopsies and reference tissue samples.</p></Row>
             
                 <Row>
-                    <AvailableDatasetsTable history={this.props.history} availableDatasets={this.state.availableDatasets} />
+                    <AvailableDatasetsTable history={this.props.history} />
                 </Row>
             </Container>
 

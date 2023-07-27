@@ -18,13 +18,16 @@ class AvailableDatasetsTable extends Component {
             linkType: [],
             linkValue: [],
             linkInformation: {},
-            omicsTypes: {}
+            omicsTypes: {},
+            availableDatasets: []
         };
         
     }
 
     async componentDidMount(){
         await this.getAtlasSummaryRows();
+        const availableDatasets = await fetchAtlasSummaryRows();
+        this.setState({ availableDatasets: availableDatasets });
     }
 
     getAtlasSummaryRows = () => {
@@ -130,33 +133,27 @@ class AvailableDatasetsTable extends Component {
     getColumns() {
         return [
             {
-                title: <span className="table-header">OMICS TYPE</span>,
-                // id: 'dataType',
+                title: <span className="table-header omics data-type-table-header">OMICS TYPE</span>,
                 name: 'omicsType',
-                // headerClassName: 'omics data-type-table-header',
                 // className: 'data-type-table-content',
                 // minWidth: this.getWidthBasedOnScreenSize('dataType'),
                 
             },
             {
-                title: () => (
-                    <a className="buttonhref table-header" href={`https://www.kpmp.org/controlled-data`}><span>CONTROLLED</span></a>
-                ),
-                // id: 'controlled',
+                title: 
+                    <a className="buttonhref table-header data-type-table-header" href={`https://www.kpmp.org/controlled-data`}><span>CONTROLLED</span></a>
+                ,
                 name: 'controlledCount',
-                // headerClassName: 'data-type-table-header',
                 // className: 'data-type-table-content',
                 // minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 // minWidth: this.getWidthBasedOnScreenSize('controlled'),
                 getCellValue: row => this.handleEmptyCounts(row, row, "controlled")
             },
             {
-                title: () => (
-                    <span className='table-header'>OPEN</span>
-                ),
-                // id: 'open',
+                title:
+                    <span className='table-heade data-type-table-headerr'>OPEN</span>
+                ,
                 name: 'openCount',
-                // headerClassName: 'data-type-table-header',
                 // className: 'data-type-table-content',
                 // minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
                 // minWidth: this.getWidthBasedOnScreenSize('open'),
@@ -170,7 +167,7 @@ class AvailableDatasetsTable extends Component {
             <article id='summary-plot'>
                 <Row className='mt-4'>
                     <Col xs='12'>
-                        <Grid rows={this.state.summaryRows} columns={this.getColumns()}>
+                        <Grid rows={this.state.availableDatasets} columns={this.getColumns()}>
                             <Table/>
                             <TableHeaderRow/>
                             <TableFixedColumns/>
