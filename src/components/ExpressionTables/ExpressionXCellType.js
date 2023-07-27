@@ -4,7 +4,6 @@ import { Col, Row, UncontrolledTooltip, Spinner } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
 import { faDownload, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import { sum } from "../../helpers/Utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDataType } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';

@@ -9,19 +9,25 @@ class Home extends Component {
     document.title = 'Kidney Tissue Atlas'
     return (
       <article id="homepage">
-        <Row>
-          <Col md='12' lg='12'>
-            <TopContent />
-          </Col>
-          <Col md='12' lg='4'>
-            <LeftContent />
-          </Col>
-          <Col md='12' lg='8'>
-            <DataSummary history={this.props.history} />
-          </Col>
-        </Row>
+        "HI"
       </article>
-    );
+      
+    )
+    // return (
+    //   <article id="homepage">
+    //     <Row>
+    //       <Col md='12' lg='12'>
+    //         <TopContent />
+    //       </Col>
+    //       <Col md='12' lg='4'>
+    //         <LeftContent />
+    //       </Col>
+    //       <Col md='12' lg='8'>
+    //         <DataSummary history={this.props.history} />
+    //       </Col>
+    //     </Row>
+    //   </article>
+    // );
   }
 }
 
