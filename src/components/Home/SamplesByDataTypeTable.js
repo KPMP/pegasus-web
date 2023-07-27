@@ -115,9 +115,7 @@ class SamplesByDataTypeTable extends Component {
                 // headerClassName: 'omics data-type-table-header',
                 // className: 'data-type-table-content',
                 // minWidth: this.getWidthBasedOnScreenSize('dataType'),
-                getCellValue: row => (
-                    this.formatDataTypeCell(row)
-                )
+                getCellValue: row => this.formatDataTypeCell(row)
             },
             {
                 title: () => (

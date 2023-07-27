@@ -128,7 +128,6 @@ class AvailableDatasetsTable extends Component {
     }
 
     getColumns() {
-
         return [
             {
                 title: <span className="table-header">OMICS TYPE</span>,
@@ -149,10 +148,7 @@ class AvailableDatasetsTable extends Component {
                 // className: 'data-type-table-content',
                 // minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 // minWidth: this.getWidthBasedOnScreenSize('controlled'),
-                getCellValue: row => (
-                    this.handleEmptyCounts(row.value, row, "controlled")
-                    
-                )
+                getCellValue: row => this.handleEmptyCounts(row, row, "controlled")
             },
             {
                 title: () => (
@@ -164,9 +160,7 @@ class AvailableDatasetsTable extends Component {
                 // className: 'data-type-table-content',
                 // minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
                 // minWidth: this.getWidthBasedOnScreenSize('open'),
-                getCellValue: row => (
-                    this.handleEmptyCounts(row.value, row, "open")
-                )
+                getCellValue: row =>  this.handleEmptyCounts(row, row, "open")
             }
         ]
     };
