@@ -26,7 +26,7 @@ class SamplesByDataTypeTable extends Component {
 
         explorerSummary.unshift({dataType: "Explorer"})
         spatialSummary.unshift({dataType: "Spatial Viewer"})
-        const summaryData = explorerSummary.concat(this.state.spatialSummary)
+        const summaryData = explorerSummary.concat(spatialSummary)
         console.log(summaryData);
         this.setState({dataTable: summaryData});
     }
