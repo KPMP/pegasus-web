@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
+import { Grid, TableColumnResizing, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { fetchAtlasSummaryRows } from '../../helpers/ApolloClient';
@@ -113,6 +113,14 @@ class AvailableDatasetsTable extends Component {
             }
     }
 
+    getDefaultColumnWidths() {
+        return [
+            { columnName: 'dataType', width: this.getWidthBasedOnScreenSize('dataType')},
+            { columnName: 'controlled', width: this.getWidthBasedOnScreenSize('controlled')},
+            { columnName: 'open', width: this.getWidthBasedOnScreenSize('open') },
+        ]
+    }
+
     getColumns() {
         return [
             {
@@ -153,7 +161,7 @@ class AvailableDatasetsTable extends Component {
                         <Grid rows={this.state.summaryRows} columns={this.getColumns()}>
                             <Table/>
                             <TableHeaderRow/>
-                            <TableFixedColumns/>
+                            <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()}/>
                         </Grid>
                     </Col>
                 </Row>
