@@ -30,7 +30,6 @@ class AvailableDatasetsTable extends Component {
         this.setState({totalFiles: summary.totalFiles});
         this.setState({summaryRows: summary.summaryRows});
         this.setState({linkInformation: summary.summaryRows.linkInformation});
-        console.log(this.state.summaryRows)
         summary.summaryRows.forEach((row) => {
             this.setState({[row.omicsType]: row})
             }
@@ -141,7 +140,7 @@ class AvailableDatasetsTable extends Component {
                 // className: 'data-type-table-content',
                 // minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 // minWidth: this.getWidthBasedOnScreenSize('controlled'),
-                // getCellValue: row => this.handleEmptyCounts(row.controlledCount, row, "controlled")
+                getCellValue: row => this.handleEmptyCounts(row.controlledCount, row, "controlled")
             },
             {
                 title:
@@ -151,7 +150,7 @@ class AvailableDatasetsTable extends Component {
                 // className: 'data-type-table-content',
                 // minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
                 // minWidth: this.getWidthBasedOnScreenSize('open'),
-                // getCellValue: row =>  this.handleEmptyCounts(row.openCount, row, "open")
+                getCellValue: row =>  this.handleEmptyCounts(row.openCount, row, "open")
             }
         ]
     };
