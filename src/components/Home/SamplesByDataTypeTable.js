@@ -9,6 +9,7 @@ class SamplesByDataTypeTable extends Component {
         super(props);
         this.getColumns = this.getColumns.bind(this); 
     }
+
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
         let dataLinkageMapping = {
@@ -31,6 +32,7 @@ class SamplesByDataTypeTable extends Component {
         }
     }
     formatDataTypeCell(value) {
+        console.log(value)
         if (value === 'Explorer' || value === 'Spatial Viewer') {
             return (
                 <span>
