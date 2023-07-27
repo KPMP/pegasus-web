@@ -11,7 +11,6 @@ class AvailableDatasetsTable extends Component {
         this.getColumns = this.getColumns.bind(this);
 
         this.state = {
-            columns: this.getColumns(),
             totalFiles: [],
             openCount: [],
             controlledCount: [],
@@ -170,7 +169,7 @@ class AvailableDatasetsTable extends Component {
             <article id='summary-plot'>
                 <Row className='mt-4'>
                     <Col xs='12'>
-                        <Grid rows={this.state.summaryRows} columns={this.state.columns}>
+                        <Grid rows={this.state.summaryRows} columns={this.getColumns()}>
                             <Table/>
                             <TableHeaderRow/>
                             <TableFixedColumns/>
