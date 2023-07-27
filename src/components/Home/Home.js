@@ -9,16 +9,17 @@ class Home extends Component {
     document.title = 'Kidney Tissue Atlas'
     return (
       <article id="homepage">
-        "HI"
+        <Row>
+          <Col md='12' lg='12'>
+            <TopContent/>
+          </Col>
+        </Row>
       </article>
       
     )
     // return (
     //   <article id="homepage">
-    //     <Row>
-    //       <Col md='12' lg='12'>
-    //         <TopContent />
-    //       </Col>
+    
     //       <Col md='12' lg='4'>
     //         <LeftContent />
     //       </Col>
