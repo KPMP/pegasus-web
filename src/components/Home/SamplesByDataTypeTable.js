@@ -32,6 +32,7 @@ class SamplesByDataTypeTable extends Component {
     }
 
     compare( a, b ) {
+        console.log(a)
         if ( a && b && a.dataType < b.dataType ){
           return -1;
         }
