@@ -25,14 +25,12 @@ class AvailableDatasetsTable extends Component {
     }
 
     async componentDidMount(){
-        const summaryRows = await fetchAtlasSummaryRows();
-        
-        console.log(summaryRows)
+        const summary = await fetchAtlasSummaryRows();
 
-        this.setState({totalFiles: summaryRows.totalFiles});
-        this.setState({summaryRows: summaryRows.summaryRows});
-        this.setState({linkInformation: summaryRows.summaryRows.linkInformation});
-        summaryRows.summaryRows.forEach((row) => {
+        this.setState({totalFiles: summary.totalFiles});
+        this.setState({summaryRows: summary.summaryRows});
+        this.setState({linkInformation: summary.summaryRows.linkInformation});
+        summary.summaryRows.forEach((row) => {
             this.setState({[row.omicsType]: row})
             }
         )
@@ -61,7 +59,6 @@ class AvailableDatasetsTable extends Component {
     }
 
     handleEmptyCounts(count, row, controlAccess){
-        console.log(row)
         return count === 0 ? "" : this.formatDataTypeValueCell(count, row, controlAccess)
     }
 
@@ -143,7 +140,7 @@ class AvailableDatasetsTable extends Component {
                 // className: 'data-type-table-content',
                 // minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
                 // minWidth: this.getWidthBasedOnScreenSize('controlled'),
-                getCellValue: row => this.handleEmptyCounts(row, row, "controlled")
+                // getCellValue: row => this.handleEmptyCounts(row.controlledCount, row, "controlled")
             },
             {
                 title:
@@ -153,7 +150,7 @@ class AvailableDatasetsTable extends Component {
                 // className: 'data-type-table-content',
                 // minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
                 // minWidth: this.getWidthBasedOnScreenSize('open'),
-                getCellValue: row =>  this.handleEmptyCounts(row, row, "open")
+                // getCellValue: row =>  this.handleEmptyCounts(row.openCount, row, "open")
             }
         ]
     };
@@ -163,11 +160,11 @@ class AvailableDatasetsTable extends Component {
             <article id='summary-plot'>
                 <Row className='mt-4'>
                     <Col xs='12'>
-                        {/* <Grid rows={this.state.summaryRows} columns={this.getColumns()}>
+                        <Grid rows={this.state.summaryRows} columns={this.getColumns()}>
                             <Table/>
                             <TableHeaderRow/>
                             <TableFixedColumns/>
-                        </Grid> */}
+                        </Grid>
                     </Col>
                 </Row>
                 <Row className="float-end">
