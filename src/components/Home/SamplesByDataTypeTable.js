@@ -24,6 +24,8 @@ class SamplesByDataTypeTable extends Component {
         // spatialSummary = spatialSummary.sort(this.compare())
         spatialSummary = spatialSummary.filter(availableDataVisibilityFilter)
 
+        explorerSummary.unshift({dataType: "Explorer"})
+        spatialSummary.unshift({dataType: "Spatial Viewer"})
         const summaryData = explorerSummary.concat(this.state.spatialSummary)
         console.log(summaryData);
         this.setState({dataTable: summaryData});
