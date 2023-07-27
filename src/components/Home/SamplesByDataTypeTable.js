@@ -205,18 +205,17 @@ class SamplesByDataTypeTable extends Component {
             <article id='summary-plot'>
                 <Row className='mt-4'>
                     <Col xs='12'>
-                        HI
+                    <Grid rows={this.props.summary} columns={this.getColumns()}>
+                        </Grid>
+
                     </Col>
                 </Row>
-                {/*
                     
-                        <Grid rows={this.props.summary} columns={this.getColumns()}>
-                            <Table/>
+                        
+                            {/* <Table/>
                             <TableHeaderRow/>
-                            <TableFixedColumns/>
-                        </Grid>
-                    </Col>
-                </Row> */}
+                            <TableFixedColumns/> */}
+                        
             </article>
         );
     }
