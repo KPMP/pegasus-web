@@ -203,9 +203,13 @@ class SamplesByDataTypeTable extends Component {
         console.log(this.props)
         return (
             <article id='summary-plot'>
-                hi
-                {/* <Row className='mt-4'>
+                <Row className='mt-4'>
                     <Col xs='12'>
+                        HI
+                    </Col>
+                </Row>
+                {/*
+                    
                         <Grid rows={this.props.summary} columns={this.getColumns()}>
                             <Table/>
                             <TableHeaderRow/>
