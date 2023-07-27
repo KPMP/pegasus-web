@@ -105,9 +105,9 @@ class SamplesByDataTypeTable extends Component {
 
         return [
             {
-                // title: () => (
-                //     <span className="table-header">OMICS TYPE</span>
-                // ),
+                title: () => (
+                    <span className="table-header">OMICS TYPE</span>
+                ),
                 // id: 'dataType',
                 name: 'dataType',
                 // headerClassName: 'omics data-type-table-header',
@@ -116,18 +116,18 @@ class SamplesByDataTypeTable extends Component {
                 getCellValue: row => this.formatDataTypeCell(row)
             },
             {
-                // title: () => (
-                //     <span>
-                //       <span className="table-header" id="HealthyReferenceHeader">
-                //        REFERENCE
-                //       </span>
-                //       <UncontrolledTooltip 
-                //         placement="bottom"
-                //         target="HealthyReferenceHeader">
-                //       Healthy Reference
-                //       </UncontrolledTooltip>
-                //     </span>
-                // ),
+                title: () => (
+                    <span>
+                      <span className="table-header" id="HealthyReferenceHeader">
+                       REFERENCE
+                      </span>
+                      <UncontrolledTooltip 
+                        placement="bottom"
+                        target="HealthyReferenceHeader">
+                      Healthy Reference
+                      </UncontrolledTooltip>
+                    </span>
+                ),
                 // id: 'hrtCount',
                 name: 'hrtCount',
                 // headerClassName: 'data-type-table-header',
@@ -137,18 +137,18 @@ class SamplesByDataTypeTable extends Component {
                 
             },
             {
-                // title: () => (
-                //     <span>
-                //       <span className="table-header" id="CKDHeader">
-                //       CKD
-                //       </span>
-                //       <UncontrolledTooltip 
-                //         placement="bottom"
-                //         target="CKDHeader">
-                //       Chronic Kidney Disease
-                //       </UncontrolledTooltip>
-                //     </span>
-                // ),
+                title: () => (
+                    <span>
+                      <span className="table-header" id="CKDHeader">
+                      CKD
+                      </span>
+                      <UncontrolledTooltip 
+                        placement="bottom"
+                        target="CKDHeader">
+                      Chronic Kidney Disease
+                      </UncontrolledTooltip>
+                    </span>
+                ),
                 // id: 'ckdCount',
                 name: 'ckdCount',
                 // headerClassName: 'data-type-table-header',
@@ -157,18 +157,18 @@ class SamplesByDataTypeTable extends Component {
                 // minWidth: this.getWidthBasedOnScreenSize('ckdCount')
             },
             {
-                // title: () => (
-                //     <span>
-                //       <span className="table-header" id="AKIHeader">
-                //       AKI
-                //       </span>
-                //       <UncontrolledTooltip 
-                //         placement="bottom"
-                //         target="AKIHeader">
-                //       Acute Kidney Injury
-                //       </UncontrolledTooltip>
-                //     </span>
-                // ),
+                title: () => (
+                    <span>
+                      <span className="table-header" id="AKIHeader">
+                      AKI
+                      </span>
+                      <UncontrolledTooltip 
+                        placement="bottom"
+                        target="AKIHeader">
+                      Acute Kidney Injury
+                      </UncontrolledTooltip>
+                    </span>
+                ),
                 // id: 'akiCount',
                 name: 'akiCount',
                 // headerClassName: 'data-type-table-header',
@@ -177,18 +177,18 @@ class SamplesByDataTypeTable extends Component {
                 // minWidth: this.getWidthBasedOnScreenSize('akiCount')
             },
             {
-                // title: () => (
-                //     <span>
-                //       <span className="table-header" id="ResistorHeader">
-                //       DM-R
-                //       </span>
-                //       <UncontrolledTooltip 
-                //         placement="bottom"
-                //         target="ResistorHeader">
-                //       Diabetes Mellitus - Resilient
-                //       </UncontrolledTooltip>
-                //     </span>
-                // ),
+                title: () => (
+                    <span>
+                      <span className="table-header" id="ResistorHeader">
+                      DM-R
+                      </span>
+                      <UncontrolledTooltip 
+                        placement="bottom"
+                        target="ResistorHeader">
+                      Diabetes Mellitus - Resilient
+                      </UncontrolledTooltip>
+                    </span>
+                ),
                 // id: 'dmrCount',
                 name: 'dmrCount',
             //     headerClassName: 'data-type-table-header',
@@ -200,10 +200,11 @@ class SamplesByDataTypeTable extends Component {
     };
 
     render() {
-        console.log(this.props.summary)
+        console.log(this.props)
         return (
             <article id='summary-plot'>
-                <Row className='mt-4'>
+                hi
+                {/* <Row className='mt-4'>
                     <Col xs='12'>
                         <Grid rows={this.props.summary} columns={this.getColumns()}>
                             <Table/>
@@ -211,7 +212,7 @@ class SamplesByDataTypeTable extends Component {
                             <TableFixedColumns/>
                         </Grid>
                     </Col>
-                </Row>
+                </Row> */}
             </article>
         );
     }
