@@ -23,9 +23,11 @@ class SamplesByDataTypeTable extends Component {
 
     fetchResults = () => {
         fetchSummaryData("spatialViewerSummary").then((result) => {
+            console.log(result)
             this.setState({spatialViewerSummary: result})
         });
         fetchGeneDatasetSummary("").then((result) => {
+            console.log(result)
             this.setState({explorerSummary: result})
         });
         let explorerSummaryFiltered = this.state.explorerSummary
@@ -38,8 +40,6 @@ class SamplesByDataTypeTable extends Component {
                                 .sort(this.compare)
                                 .filter(availableDataVisibilityFilter)
 
-        console.log(explorerSummaryFiltered);
-        console.log(spatialViewerSummaryFiltered);
         explorerSummaryFiltered.unshift({dataType: "Explorer"})
         explorerSummaryFiltered.push({dataType: "Spatial Viewer"})
         const summaryData = explorerSummaryFiltered.concat(spatialViewerSummaryFiltered)
