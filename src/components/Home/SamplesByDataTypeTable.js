@@ -38,11 +38,13 @@ class SamplesByDataTypeTable extends Component {
                                 .sort(this.compare)
                                 .filter(availableDataVisibilityFilter)
 
+        console.log(explorerSummaryFiltered);
+        console.log(spatialViewerSummaryFiltered);
         explorerSummaryFiltered.unshift({dataType: "Explorer"})
         explorerSummaryFiltered.push({dataType: "Spatial Viewer"})
         const summaryData = explorerSummaryFiltered.concat(spatialViewerSummaryFiltered)
+        console.log(summaryData);
         this.setState({dataTable: summaryData});
-        console.log(this.state.dataTable)
     }
 
     handleDataTypeClick(dataType) {
