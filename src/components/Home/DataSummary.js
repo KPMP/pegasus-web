@@ -33,7 +33,7 @@ class DataSummary extends Component {
     async componentDidMount() {  
        
         const availableDatasets = await fetchAtlasSummaryRows();
-        this.setState({ summaryData: summaryData, availableDatasets: availableDatasets });
+        this.setState({ availableDatasets: availableDatasets });
     }
 
     render() {
@@ -50,7 +50,7 @@ class DataSummary extends Component {
                 <Row><p>A subset of the raw data from the Data Repository has been analyzed and made available for interactive mining in Explorer and Spatial Viewer.</p></Row>
 
                 <Row>
-                    <SamplesByDataTypeTableContainer summary={this.state.summaryData}/>
+                    <SamplesByDataTypeTableContainer/>
                 </Row>
 
                 {/* <Row><h5 className="sub-header lowered">Files in the Data Repository by -omics type</h5></Row>
