@@ -41,7 +41,8 @@ class SamplesByDataTypeTable extends Component {
         explorerSummaryFiltered.unshift({dataType: "Explorer"})
         explorerSummaryFiltered.push({dataType: "Spatial Viewer"})
         const summaryData = explorerSummaryFiltered.concat(spatialViewerSummaryFiltered)
-        this.setState({dataTable: summaryData})
+        this.setState({dataTable: summaryData});
+        console.log(this.state.dataTable)
     }
 
     handleDataTypeClick(dataType) {
@@ -141,9 +142,7 @@ class SamplesByDataTypeTable extends Component {
 
         return [
             {
-                title: () => (
-                    <span className="table-header">OMICS TYPE</span>
-                ),
+                title: <span className="table-header">OMICS TYPE</span>,
                 // id: 'dataType',
                 name: 'dataType',
                 // headerClassName: 'omics data-type-table-header',
