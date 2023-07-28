@@ -163,8 +163,8 @@ class AvailableDatasetsTable extends Component {
                     <Col xs='12'>
                         <Grid rows={this.state.summaryRows} columns={this.getColumns()}>
                             <Table/>
-                            <TableHeaderRow/>
                             <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()}/>
+                            <TableHeaderRow/>
                         </Grid>
                     </Col>
                 </Row>
