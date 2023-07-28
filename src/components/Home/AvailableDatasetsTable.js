@@ -128,7 +128,7 @@ class AvailableDatasetsTable extends Component {
             {
                 title: <span className="table-header omics data-type-table-header">OMICS TYPE</span>,
                 name: 'omicsType',
-                getCellValue: row => <span className='data-type-table-content'>row.omicsType</span>
+                getCellValue: row => <div className='data-type-table-content'>{row.omicsType}</div>
                 
             },
             {
@@ -136,14 +136,14 @@ class AvailableDatasetsTable extends Component {
                     <a className="buttonhref table-header data-type-table-header" href={`https://www.kpmp.org/controlled-data`}><span>CONTROLLED</span></a>
                 ,
                 name: 'controlledCount',
-                getCellValue: row => <span className='data-type-table-content'>{this.handleEmptyCounts(row.controlledCount, row, "controlled")}</span>
+                getCellValue: row => <div className='rt-td data-type-table-content'>{this.handleEmptyCounts(row.controlledCount, row, "controlled")}</div>
             },
             {
                 title:
                     <span className='table-heade data-type-table-headerr'>OPEN</span>
                 ,
                 name: 'openCount',
-                getCellValue: row =>  <span className='data-type-table-content'>{this.handleEmptyCounts(row.openCount, row, "open")}</span>
+                getCellValue: row =>  <div className='rt-td data-type-table-content'>{this.handleEmptyCounts(row.openCount, row, "open")}</div>
             }
         ]
     };
