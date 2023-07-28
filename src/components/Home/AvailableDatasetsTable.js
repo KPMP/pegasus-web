@@ -117,9 +117,9 @@ class AvailableDatasetsTable extends Component {
         let controlledWidth = this.getWidthBasedOnScreenSize('controlled')
         let openWidth = this.getWidthBasedOnScreenSize('open')
         return [
-            { columnName: 'omicstype', width: {dataTypeWidth}},
-            { columnName: 'controlledCount', width: {controlledWidth}},
-            { columnName: 'openCount', width: {openWidth} },
+            { columnName: 'omicstype', width: dataTypeWidth},
+            { columnName: 'controlledCount', width: controlledWidth},
+            { columnName: 'openCount', width: openWidth },
         ]
     }
 
