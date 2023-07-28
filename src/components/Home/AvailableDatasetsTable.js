@@ -75,7 +75,6 @@ class AvailableDatasetsTable extends Component {
     }
 
     getWidthBasedOnScreenSize(columnId) {
-        console.log(columnId)
         if (window.innerWidth > 500) {
             if (columnId === 'dataType') {
                 return 250;
@@ -115,13 +114,12 @@ class AvailableDatasetsTable extends Component {
 
     getDefaultColumnWidths() {
         let dataTypeWidth = this.getWidthBasedOnScreenSize('dataType')
-        console.log(dataTypeWidth)
         let controlledWidth = this.getWidthBasedOnScreenSize('controlled')
         let openWidth = this.getWidthBasedOnScreenSize('open')
         return [
-            { columnName: 'dataType', width: {dataTypeWidth}},
-            { columnName: 'controlled', width: {controlledWidth}},
-            { columnName: 'open', width: {openWidth} },
+            { columnName: 'omicstype', width: {dataTypeWidth}},
+            { columnName: 'controlledCount', width: {controlledWidth}},
+            { columnName: 'openCount', width: {openWidth} },
         ]
     }
 
