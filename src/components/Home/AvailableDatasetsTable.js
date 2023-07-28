@@ -75,42 +75,42 @@ class AvailableDatasetsTable extends Component {
     }
 
     getWidthBasedOnScreenSize(columnId) {
-        
-            if (window.innerWidth > 500) {
-                if (columnId === 'dataType') {
-                    return 250;
-                } else if (columnId === 'controlled') {
-                    return 125
-                } else if (columnId === 'open') {
-                    return 125
-                }
-            } else if (window.innerWidth < 765) {
-                if (columnId === 'dataType') {
-                    return 255;
-                } else if (columnId === 'controlled') {
-                    return 100
-                } else if (columnId === 'open') {
-                    return 100
-                }
-            } else if (window.innerWidth < 900) {
-                if (columnId === 'dataType') {
-                    return 535;
-                } else if (columnId === 'controlled') {
-                    return 125
-                } else if (columnId === 'open') {
-                    return 125
-                }
-            } else if (window.innerWidth < 1200) {
-                if (columnId === 'dataType') {
-                    return 535;
-                } else if (columnId === 'controlled') {
-                    return 150
-                } else if (columnId === 'open') {
-                    return 150
-                }
-            } else {
-                return 125;
+        console.log(columnId)
+        if (window.innerWidth > 500) {
+            if (columnId === 'dataType') {
+                return 250;
+            } else if (columnId === 'controlled') {
+                return 125
+            } else if (columnId === 'open') {
+                return 125
             }
+        } else if (window.innerWidth < 765) {
+            if (columnId === 'dataType') {
+                return 255;
+            } else if (columnId === 'controlled') {
+                return 100
+            } else if (columnId === 'open') {
+                return 100
+            }
+        } else if (window.innerWidth < 900) {
+            if (columnId === 'dataType') {
+                return 535;
+            } else if (columnId === 'controlled') {
+                return 125
+            } else if (columnId === 'open') {
+                return 125
+            }
+        } else if (window.innerWidth < 1200) {
+            if (columnId === 'dataType') {
+                return 535;
+            } else if (columnId === 'controlled') {
+                return 150
+            } else if (columnId === 'open') {
+                return 150
+            }
+        } else {
+            return 125;
+        }
     }
 
     getDefaultColumnWidths() {
