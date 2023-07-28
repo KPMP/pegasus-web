@@ -128,8 +128,7 @@ class AvailableDatasetsTable extends Component {
             {
                 title: <span className="table-header omics data-type-table-header">OMICS TYPE</span>,
                 name: 'omicsType',
-                // className: 'data-type-table-content',
-                // minWidth: this.getWidthBasedOnScreenSize('dataType'),
+                getCellValue: row => <span className='data-type-table-content'>row.omicsType</span>
                 
             },
             {
@@ -137,10 +136,7 @@ class AvailableDatasetsTable extends Component {
                     <a className="buttonhref table-header data-type-table-header" href={`https://www.kpmp.org/controlled-data`}><span>CONTROLLED</span></a>
                 ,
                 name: 'controlledCount',
-                // className: 'data-type-table-content',
-                // minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
-                // minWidth: this.getWidthBasedOnScreenSize('controlled'),
-                getCellValue: row => this.handleEmptyCounts(row.controlledCount, row, "controlled")
+                getCellValue: row => <span className='data-type-table-content'>this.handleEmptyCounts(row.controlledCount, row, "controlled")</span>
             },
             {
                 title:
@@ -148,9 +144,7 @@ class AvailableDatasetsTable extends Component {
                 ,
                 name: 'openCount',
                 // className: 'data-type-table-content',
-                // minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
-                // minWidth: this.getWidthBasedOnScreenSize('open'),
-                getCellValue: row =>  this.handleEmptyCounts(row.openCount, row, "open")
+                getCellValue: row =>  <span className='data-type-table-content'>this.handleEmptyCounts(row.openCount, row, "open")</span>
             }
         ]
     };
