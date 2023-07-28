@@ -156,6 +156,7 @@ class AvailableDatasetsTable extends Component {
     };
 
     render() {
+        console.log(this.getDefaultColumnWidths())
         return (
             <article id='summary-plot'>
                 <Row className='mt-4'>
