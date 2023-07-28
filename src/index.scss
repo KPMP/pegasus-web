@@ -69,6 +69,12 @@ tr.MuiTableRow-root:nth-child(even) {
   border-bottom: 0px !important;
 }
 
+#summary-plot {
+  .table th {
+    text-align: center;
+  }
+}
+
 #cell-type-tabs {
   .col-sm-4 {
     @media (max-width: 992px) {
