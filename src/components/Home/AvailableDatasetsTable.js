@@ -4,13 +4,6 @@ import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { fetchAtlasSummaryRows } from '../../helpers/ApolloClient';
 
-const HeaderCell = ({ className, ...restProps }) => (
-    <TableHeaderRow.Cell
-      {...restProps}
-      className={`text-info ${className}`}
-    />
-  );
-
 class AvailableDatasetsTable extends Component {
 
     constructor(props) {
@@ -170,8 +163,8 @@ class AvailableDatasetsTable extends Component {
                     <Col xs='12'>
                         <Grid rows={this.state.summaryRows} columns={this.getColumns()}>
                             <Table columnExtensions={this.getColumnExtensions()}/>
-                            <TableFixedColumns/>
                             <TableHeaderRow/>
+                            <TableFixedColumns/>
                         </Grid>
                     </Col>
                 </Row>
