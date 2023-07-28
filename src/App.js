@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavBar, NavFooter } from 'kpmp-common-components';
 import loadedState from './initialState';
 import { createStore, applyMiddleware } from 'redux';
-import appReducer from './reducers';
+import rootReducer from './reducers';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { default as ReactGA4 } from 'react-ga4';
@@ -27,7 +27,7 @@ import UMAPContainer from './components/DataViz/UMAPContainer';
 const cacheStore = window.sessionStorage.getItem('redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
 export const store = applyMiddleware(thunk)(createStore)(
-  appReducer,
+  rootReducer,
   initialState,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
