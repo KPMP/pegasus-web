@@ -26,16 +26,20 @@ export const setDataType = (dataType) => {
 
 export const setDataTypeAndRedirect = (dataType, props) => {
     return (dispatch) => {
-        dispatch(setDataType(dataType));
         switch (dataType) {
             case "sn":
-                
+                dispatch(resetState());
+                dispatch(setDataType(dataType));
                 props.history.push('/explorer/dataviz');
                 break;
             case "sc":
+                dispatch(resetState());
+                dispatch(setDataType(dataType));
                 props.history.push('/explorer/dataviz');
                 break;
             case "rt":
+                dispatch(resetState());
+                dispatch(setDataType(dataType));
                 props.history.push('/explorer/regionalviz');
                 break;
             case "wsi":
