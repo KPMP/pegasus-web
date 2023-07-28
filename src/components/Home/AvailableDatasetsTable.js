@@ -117,9 +117,9 @@ class AvailableDatasetsTable extends Component {
         let controlledWidth = this.getWidthBasedOnScreenSize('controlled')
         let openWidth = this.getWidthBasedOnScreenSize('open')
         return [
-            { columnName: 'omicsType', width: 535},
-            { columnName: 'controlledCount', width: 150},
-            { columnName: 'openCount', width: 150 },
+            { columnName: 'omicsType', width: 574},
+            { columnName: 'controlledCount', width: 287},
+            { columnName: 'openCount', width: 287 },
         ]
     }
 
@@ -136,14 +136,14 @@ class AvailableDatasetsTable extends Component {
                     <a className="buttonhref table-header data-type-table-header" href={`https://www.kpmp.org/controlled-data`}><span>CONTROLLED</span></a>
                 ,
                 name: 'controlledCount',
-                getCellValue: row => <div className='rt-td data-type-table-content' style={{'flex': '250 0 auto'}} role='gridcell'>{this.handleEmptyCounts(row.controlledCount, row, "controlled")}</div>
+                getCellValue: row => <div className='rt-td data-type-table-content' style={{'flex': '250 0 auto','textAlign': 'center'}} role='gridcell'>{this.handleEmptyCounts(row.controlledCount, row, "controlled")}</div>
             },
             {
                 title:
                     <span className='table-heade data-type-table-headerr'>OPEN</span>
                 ,
                 name: 'openCount',
-                getCellValue: row =>  <div className='rt-td data-type-table-content' style={{'flex': '250 0 auto'}} role='gridcell'>{this.handleEmptyCounts(row.openCount, row, "open")}</div>
+                getCellValue: row =>  <div className='rt-td data-type-table-content' style={{'flex': '250 0 auto','textAlign': 'center'}} role='gridcell'>{this.handleEmptyCounts(row.openCount, row, "open")}</div>
             }
         ]
     };
