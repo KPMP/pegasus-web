@@ -1,4 +1,5 @@
-import actionNames from '../actionNames'
+import actionNames from '../actionNames';
+import { resetState } from '../resetAction';
 
 export const setDataType = (dataType) => {
     let shortDataType = "";
@@ -25,9 +26,11 @@ export const setDataType = (dataType) => {
 
 export const setDataTypeAndRedirect = (dataType, props) => {
     return (dispatch) => {
+        dispatch(resetState());
         dispatch(setDataType(dataType));
         switch (dataType) {
             case "sn":
+                
                 props.history.push('/explorer/dataviz');
                 break;
             case "sc":

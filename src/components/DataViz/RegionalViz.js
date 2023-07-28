@@ -19,9 +19,10 @@ class RegionalViz extends Component {
         if (!this.props.tissueType) {
             this.props.setTissueType('all')
         }
-        props.setDataType('rt');
         const queryParam = queryString.parse(props.location.search);
         if (queryParam && queryParam.dataType) {
+            this.props.resetState();
+            props.setDataType('rt');
             props.history.push(props.location.pathname);
         }
     };
