@@ -4,7 +4,7 @@ import loadedState from './initialState';
 export const resetStateReducer = (state = {}, action) => {
   switch (action.type) {
     case actionNames.RESET_STATE:
-      return loadedState;
+      return {};
     default:
       return state;
   }
