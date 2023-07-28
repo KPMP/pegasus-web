@@ -136,15 +136,14 @@ class AvailableDatasetsTable extends Component {
                     <a className="buttonhref table-header data-type-table-header" href={`https://www.kpmp.org/controlled-data`}><span>CONTROLLED</span></a>
                 ,
                 name: 'controlledCount',
-                getCellValue: row => <span className='data-type-table-content'>this.handleEmptyCounts(row.controlledCount, row, "controlled")</span>
+                getCellValue: row => <span className='data-type-table-content'>{this.handleEmptyCounts(row.controlledCount, row, "controlled")}</span>
             },
             {
                 title:
                     <span className='table-heade data-type-table-headerr'>OPEN</span>
                 ,
                 name: 'openCount',
-                // className: 'data-type-table-content',
-                getCellValue: row =>  <span className='data-type-table-content'>this.handleEmptyCounts(row.openCount, row, "open")</span>
+                getCellValue: row =>  <span className='data-type-table-content'>{this.handleEmptyCounts(row.openCount, row, "open")}</span>
             }
         ]
     };
