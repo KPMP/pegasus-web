@@ -70,9 +70,9 @@ tr.MuiTableRow-root:nth-child(even) {
 }
 
 #summary-plot {
-  .table th {
-    text-align: center;
-  }
+  .center {  
+    text-align: center!important  
+  }  
 }
 
 #cell-type-tabs {

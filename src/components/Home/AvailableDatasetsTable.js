@@ -1,8 +1,15 @@
 import React, { Component } from 'react';
-import { Grid, TableColumnResizing, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
+import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { fetchAtlasSummaryRows } from '../../helpers/ApolloClient';
+
+const HeaderCell = ({ className, ...restProps }) => (
+    <TableHeaderRow.Cell
+      {...restProps}
+      className={`text-info ${className}`}
+    />
+  );
 
 class AvailableDatasetsTable extends Component {
 
@@ -112,14 +119,22 @@ class AvailableDatasetsTable extends Component {
         }
     }
 
-    getDefaultColumnWidths() {
-        let dataTypeWidth = this.getWidthBasedOnScreenSize('dataType')
-        let controlledWidth = this.getWidthBasedOnScreenSize('controlled')
-        let openWidth = this.getWidthBasedOnScreenSize('open')
+    // getDefaultColumnWidths() {
+    //     let dataTypeWidth = this.getWidthBasedOnScreenSize('dataType')
+    //     let controlledWidth = this.getWidthBasedOnScreenSize('controlled')
+    //     let openWidth = this.getWidthBasedOnScreenSize('open')
+    //     return [
+    //         { columnName: 'omicsType', width: 574},
+    //         { columnName: 'controlledCount', width: 287},
+    //         { columnName: 'openCount', width: 287 },
+    //     ]
+    // }
+
+    getColumnExtensions() {
         return [
             { columnName: 'omicsType', width: 574},
-            { columnName: 'controlledCount', width: 287},
-            { columnName: 'openCount', width: 287 },
+            { columnName: 'controlledCount', width: 287, align: 'center'},
+            { columnName: 'openCount', width: 287, align: 'center' },
         ]
     }
 
@@ -133,14 +148,14 @@ class AvailableDatasetsTable extends Component {
             },
             {
                 title: 
-                    <a className="buttonhref table-header data-type-table-header rt-resizable-header-content" href={`https://www.kpmp.org/controlled-data`} style={{'textAlign':'center'}}><span>CONTROLLED</span></a>
+                    <a href={`https://www.kpmp.org/controlled-data`} ><span>CONTROLLED</span></a>
                 ,
                 name: 'controlledCount',
                 getCellValue: row => <div className='rt-td data-type-table-content' style={{'flex': '250 0 auto','textAlign': 'center'}} role='gridcell'>{this.handleEmptyCounts(row.controlledCount, row, "controlled")}</div>
             },
             {
                 title:
-                    <span className='table-heade data-type-table-header rt-resizable-header-content' style={{'textAlign':'center'}}>OPEN</span>
+                    <span className='table-header data-type-table-header rt-resizable-header-content'>OPEN</span>
                 ,
                 name: 'openCount',
                 getCellValue: row =>  <div className='rt-td data-type-table-content' style={{'flex': '250 0 auto','textAlign': 'center'}} role='gridcell'>{this.handleEmptyCounts(row.openCount, row, "open")}</div>
@@ -149,14 +164,13 @@ class AvailableDatasetsTable extends Component {
     };
 
     render() {
-        console.log(this.getDefaultColumnWidths())
         return (
             <article id='summary-plot'>
                 <Row className='mt-4'>
                     <Col xs='12'>
                         <Grid rows={this.state.summaryRows} columns={this.getColumns()}>
-                            <Table/>
-                            <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()}/>
+                            <Table columnExtensions={this.getColumnExtensions()}/>
+                            <TableFixedColumns/>
                             <TableHeaderRow/>
                         </Grid>
                     </Col>
