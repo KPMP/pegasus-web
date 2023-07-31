@@ -162,7 +162,7 @@ class SamplesByDataTypeTable extends Component {
     getColumnExtensions() {
 
         return [
-            { columnName: 'dataType', width: 'auto'},
+            { columnName: 'dataType', width: 265},
             { columnName: 'hrtCount', width: 'auto', align: 'center'},
             { columnName: 'ckdCount', width: 'auto', align: 'center' },
             { columnName: 'akiCount', width: 'auto', align: 'center' },
