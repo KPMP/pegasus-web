@@ -75,7 +75,9 @@ class AvailableDatasetsTable extends Component {
     }
 
     getWidthBasedOnScreenSize(columnId) {
-        if (window.innerWidth > 500) {
+        if (window.innerWidth < 500) {
+            return 125;
+        } else if (window.innerWidth >= 500 && window.innerWidth < 765) {
             if (columnId === 'dataType') {
                 return 250;
             } else if (columnId === 'controlled') {
@@ -83,7 +85,7 @@ class AvailableDatasetsTable extends Component {
             } else if (columnId === 'open') {
                 return 125
             }
-        } else if (window.innerWidth < 765) {
+        } else if (window.innerWidth >= 765 && window.innerWidth < 900) {
             if (columnId === 'dataType') {
                 return 255;
             } else if (columnId === 'controlled') {
@@ -91,7 +93,7 @@ class AvailableDatasetsTable extends Component {
             } else if (columnId === 'open') {
                 return 100
             }
-        } else if (window.innerWidth < 900) {
+        } else if (window.innerWidth >= 900 && window.innerWidth < 1200) {
             if (columnId === 'dataType') {
                 return 535;
             } else if (columnId === 'controlled') {
@@ -99,17 +101,15 @@ class AvailableDatasetsTable extends Component {
             } else if (columnId === 'open') {
                 return 125
             }
-        } else if (window.innerWidth < 1200) {
+        } else if (window.innerWidth >= 1200) {
             if (columnId === 'dataType') {
-                return 535;
+                return 574;
             } else if (columnId === 'controlled') {
-                return 150
+                return 287
             } else if (columnId === 'open') {
-                return 150
+                return 287
             }
-        } else {
-            return 125;
-        }
+        } 
     }
 
     // getDefaultColumnWidths() {
@@ -124,10 +124,13 @@ class AvailableDatasetsTable extends Component {
     // }
 
     getColumnExtensions() {
+        let dataTypeWidth = this.getWidthBasedOnScreenSize('dataType')
+        let controlledWidth = this.getWidthBasedOnScreenSize('controlled')
+        let openWidth = this.getWidthBasedOnScreenSize('open')
         return [
-            { columnName: 'omicsType', width: 574},
-            { columnName: 'controlledCount', width: 287, align: 'center'},
-            { columnName: 'openCount', width: 287, align: 'center' },
+            { columnName: 'omicsType', width: dataTypeWidth},
+            { columnName: 'controlledCount', width: controlledWidth, align: 'center'},
+            { columnName: 'openCount', width: openWidth, align: 'center' },
         ]
     }
 
