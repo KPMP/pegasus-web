@@ -141,7 +141,7 @@ class AvailableDatasetsTable extends Component {
             },
             {
                 title: 
-                    <a href={`https://www.kpmp.org/controlled-data`} ><span>CONTROLLED</span></a>
+                    <a href={`https://www.kpmp.org/controlled-data`} ><span className="data-type-table-header">CONTROLLED</span></a>
                 ,
                 name: 'controlledCount',
                 getCellValue: row => <div className='rt-td data-type-table-content' style={{'flex': '250 0 auto','textAlign': 'center'}} role='gridcell'>{this.handleEmptyCounts(row.controlledCount, row, "controlled")}</div>
