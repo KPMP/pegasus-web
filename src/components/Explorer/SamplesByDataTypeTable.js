@@ -139,7 +139,7 @@ class SamplesByDataTypeTable extends Component {
                         <React.Fragment>
                             <Grid rows={this.state.summary} columns={this.state.columns}>
                                 <Table columnExtensions={this.getColumnExtensions()}/>
-                                <TableColumnResizing/>
+                                <TableColumnResizing defaultColumnWidths={this.getColumnExtensions()} />
                                 <TableHeaderRow/>
                             </Grid>
                         </React.Fragment>
