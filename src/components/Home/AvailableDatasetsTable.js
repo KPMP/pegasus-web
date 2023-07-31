@@ -13,7 +13,6 @@ class AvailableDatasetsTable extends Component {
         this.state = {
             totalFiles: [],
             summaryRows: []
-            
         };
         
     }
@@ -72,44 +71,6 @@ class AvailableDatasetsTable extends Component {
                 </span>
             </a>
         );
-    }
-
-    getWidthBasedOnScreenSize(columnId) {
-        if (window.innerWidth < 500) {
-            return 125;
-        } else if (window.innerWidth >= 500 && window.innerWidth < 765) {
-            if (columnId === 'dataType') {
-                return 250;
-            } else if (columnId === 'controlled') {
-                return 125
-            } else if (columnId === 'open') {
-                return 125
-            }
-        } else if (window.innerWidth >= 765 && window.innerWidth < 900) {
-            if (columnId === 'dataType') {
-                return 255;
-            } else if (columnId === 'controlled') {
-                return 100
-            } else if (columnId === 'open') {
-                return 100
-            }
-        } else if (window.innerWidth >= 900 && window.innerWidth < 1200) {
-            if (columnId === 'dataType') {
-                return 535;
-            } else if (columnId === 'controlled') {
-                return 125
-            } else if (columnId === 'open') {
-                return 125
-            }
-        } else if (window.innerWidth >= 1200) {
-            if (columnId === 'dataType') {
-                return 574;
-            } else if (columnId === 'controlled') {
-                return 287
-            } else if (columnId === 'open') {
-                return 287
-            }
-        } 
     }
 
     getColumnExtensions() {

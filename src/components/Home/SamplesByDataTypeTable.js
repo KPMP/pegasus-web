@@ -83,59 +83,6 @@ class SamplesByDataTypeTable extends Component {
 
     }
 
-    getWidthBasedOnScreenSize(columnId) {
-        if (window.innerWidth < 900) {
-            if (columnId === 'dataType') {
-                return 260;
-            } else if (columnId === 'hrtCount') {
-                return 150
-            } else if (columnId === 'ckdCount') {
-                return 100
-            } else if (columnId === 'akiCount') {
-                return 100
-            }else if (columnId === 'dmrCount'){
-                return 100
-            }
-        } else if (window.innerWidth < 1000) {
-                if (columnId === 'dataType') {
-                    return 260;
-                } else if (columnId === 'hrtCount') {
-                    return 150
-                } else if (columnId === 'ckdCount') {
-                    return 80
-                } else if (columnId === 'akiCount') {
-                    return 80
-                }else if (columnId === 'dmrCount'){
-                    return 80
-                }
-        } else if (window.innerWidth < 1200) {
-            if (columnId === 'dataType') {
-                return 260;
-            } else if (columnId === 'hrtCount') {
-                return 150
-            } else if (columnId === 'ckdCount') {
-                return 85
-            } else if (columnId === 'akiCount') {
-                return 85
-            }else if (columnId === 'dmrCount') {
-                return 85
-            }
-
-        } else if (window.innerWidth >= 1200) {
-            if (columnId === 'dataType') {
-                return 260;
-            } else if (columnId === 'hrtCount') {
-                return 150
-            } else if (columnId === 'ckdCount') {
-                return 100
-            } else if (columnId === 'akiCount') {
-                return 100
-            }else if (columnId === 'dmrCount') {
-                return 100
-            }
-        }
-    }
-
     getColumns() {
 
         return [
@@ -143,7 +90,6 @@ class SamplesByDataTypeTable extends Component {
                 title: <span className="omics data-type-table-header table-header">OMICS TYPE</span>,
                 name: 'dataType',
                 // className: 'data-type-table-content',
-                // minWidth: this.getWidthBasedOnScreenSize('dataType'),
                 getCellValue: row => this.formatDataTypeCell(row)
             },
             {
@@ -161,8 +107,6 @@ class SamplesByDataTypeTable extends Component {
                 ,
                 name: 'hrtCount',
                 // className: 'data-type-table-content',
-                // minHeaderWidth: this.getWidthBasedOnScreenSize('hrtCount'),
-                // minWidth: this.getWidthBasedOnScreenSize('hrtCount'),
                 
             },
             {
@@ -180,8 +124,6 @@ class SamplesByDataTypeTable extends Component {
                 ,
                 name: 'ckdCount',
                 // className: 'data-type-table-content',
-                // minHeaderWidth: this.getWidthBasedOnScreenSize('ckdCount'),
-                // minWidth: this.getWidthBasedOnScreenSize('ckdCount')
             },
             {
                 title: 
@@ -197,8 +139,6 @@ class SamplesByDataTypeTable extends Component {
                     </span>
                 ,
                 name: 'akiCount',
-                // minHeaderWidth: this.getWidthBasedOnScreenSize('akiCount'),
-                // minWidth: this.getWidthBasedOnScreenSize('akiCount')
             },
             {
                 title: 
@@ -215,11 +155,20 @@ class SamplesByDataTypeTable extends Component {
                 ,
                 name: 'dmrCount',
             //     className: 'data-type-table-content',
-            //     minHeaderWidth: this.getWidthBasedOnScreenSize('dmrCount'),
-            //     minWidth: this.getWidthBasedOnScreenSize('dmrCount')
             }   
         ]
     };
+
+    getColumnExtensions() {
+
+        return [
+            { columnName: 'dataType', width: 'auto'},
+            { columnName: 'hrtCount', width: 'auto', align: 'center'},
+            { columnName: 'ckdCount', width: 'auto', align: 'center' },
+            { columnName: 'akiCount', width: 'auto', align: 'center' },
+            { columnName: 'dmrCount', width: 'auto', align: 'center' },
+        ]
+    }
 
     render() {
         return (
@@ -227,7 +176,7 @@ class SamplesByDataTypeTable extends Component {
                 <Row className='mt-4'>
                     <Col xs='12'>
                         <Grid rows={this.state.dataTable} columns={this.getColumns()}>
-                            <Table/>
+                            <Table columnExtensions={this.getColumnExtensions()}/>
                             <TableHeaderRow/>
                             <TableFixedColumns/>
                         </Grid>
