@@ -82,15 +82,6 @@ class SamplesByDataTypeTable extends Component {
 
     }
 
-    getDefaultColumnWidths = () => {
-        return [
-            { columnName: 'dataType', width: 350, align: 'left' },
-            { columnName: 'hrtCount', width: 150, align: 'center'},
-            { columnName: 'ckdCount', width: 100, align: 'center' },
-            { columnName: 'akiCount', width: 100, align: 'center' },
-            { columnName: 'dmrCount', width: 100, align: 'center' },
-        ]
-    };
 
     getColumns() {
         return [
@@ -128,6 +119,17 @@ class SamplesByDataTypeTable extends Component {
         ]
     };
 
+    getColumnExtensions() {
+
+        return [
+            { columnName: 'dataType', width: 350, align: 'left'},
+            { columnName: 'hrtCount', width: 'auto', align: 'center'},
+            { columnName: 'ckdCount', width: 'auto', align: 'center' },
+            { columnName: 'akiCount', width: 'auto', align: 'center' },
+            { columnName: 'dmrCount', width: 'auto', align: 'center' },
+        ]
+    }
+
     render() {
         return (
             <article id='summary-plot'>
@@ -136,8 +138,8 @@ class SamplesByDataTypeTable extends Component {
                     <Col xs='12'>
                         <React.Fragment>
                             <Grid rows={this.state.summary} columns={this.state.columns}>
-                                <Table/>
-                                <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()}/>
+                                <Table columnExtensions={this.getColumnExtensions()}/>
+                                <TableColumnResizing/>
                                 <TableHeaderRow/>
                             </Grid>
                         </React.Fragment>

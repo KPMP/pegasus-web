@@ -89,7 +89,6 @@ class SamplesByDataTypeTable extends Component {
             {
                 title: <span className="omics data-type-table-header table-header">OMICS TYPE</span>,
                 name: 'dataType',
-                // className: 'data-type-table-content',
                 getCellValue: row => this.formatDataTypeCell(row)
             },
             {
@@ -106,8 +105,6 @@ class SamplesByDataTypeTable extends Component {
                     </span>
                 ,
                 name: 'hrtCount',
-                // className: 'data-type-table-content',
-                
             },
             {
                 title:
@@ -123,7 +120,6 @@ class SamplesByDataTypeTable extends Component {
                     </span>
                 ,
                 name: 'ckdCount',
-                // className: 'data-type-table-content',
             },
             {
                 title: 
@@ -154,7 +150,6 @@ class SamplesByDataTypeTable extends Component {
                     </span>
                 ,
                 name: 'dmrCount',
-            //     className: 'data-type-table-content',
             }   
         ]
     };
