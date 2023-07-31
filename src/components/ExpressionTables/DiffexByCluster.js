@@ -7,7 +7,7 @@ import { CSVLink } from 'react-csv';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import DiffexInfoBar from './DiffexInfoBar';
-import { displayMaterialTable } from '../../../package.json';
+import packageJson from '../../../package.json';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
 class DiffexByCluster extends Component {
@@ -146,59 +146,61 @@ class DiffexByCluster extends Component {
 
     render() {
         return (
-            <Container id='outer-wrapper'>
-                <DiffexInfoBar cluster={this.props.cluster} dataType={this.props.dataType} setDataType={this.props.setDataType} />
-                <Container className='rounded border p-3 shadow-sm mb-5'>
-                    {
-                        this.state.isLoading ?
-                            <div className='diffex-spinner text-center'>
-                                <Spinner color='primary' />
-                            </div>
-                            :
-                            <React.Fragment>
-                                <Row xs='12'>
-                                    <Col xs='12' className='text-end'>
-                                        <CSVLink
-                                            onClick={() => handleGoogleAnalyticsEvent('Explorer', 'Download', this.getExportFilename())}
-                                            data={this.cleanResults(this.state.diffexData)}
-                                            filename={this.getExportFilename()}
-                                            target='_blank'
-                                            className='text-body icon-container'
-                                        >
-                                            <FontAwesomeIcon icon={faDownload} />
-                                        </CSVLink>
-                                    </Col>
-                                </Row>
-                                <Row xs='12' id="diffexTable">
-                                    <Col xs='12'>
-                                        {(
-                                            process.env.NODE_ENV !== 'development' ||
-                                            displayMaterialTable
-                                        ) &&
-                                            <MaterialTable
-                                                data={this.state.diffexData}
-                                                title=''
-                                                columns={this.getColumns()}
-                                                options={{
-                                                    tableLayout: 'fixed',
-                                                    thirdSortClick: false,
-                                                    pageSize: 20,
-                                                    pageSizeOptions: [],
-                                                    rowStyle: row => {
-                                                        let style = {
-                                                            padding: '1px'
-                                                        };
-                                                        return style;
-                                                    }
-                                                }}
-                                            />
-                                        }
-                                    </Col>
-                                </Row>
-                            </React.Fragment>
-                    }
+            <div className='height-wrapper mb-3 mt-3'>
+                <Container id='outer-wrapper'>
+                    <DiffexInfoBar cluster={this.props.cluster} dataType={this.props.dataType} setDataType={this.props.setDataType} />
+                    <Container className='rounded border p-3 shadow-sm mb-5'>
+                        {
+                            this.state.isLoading ?
+                                <div className='diffex-spinner text-center'>
+                                    <Spinner color='primary' />
+                                </div>
+                                :
+                                <React.Fragment>
+                                    <Row xs='12'>
+                                        <Col xs='12' className='text-end'>
+                                            <CSVLink
+                                                onClick={() => handleGoogleAnalyticsEvent('Explorer', 'Download', this.getExportFilename())}
+                                                data={this.cleanResults(this.state.diffexData)}
+                                                filename={this.getExportFilename()}
+                                                target='_blank'
+                                                className='text-body icon-container'
+                                            >
+                                                <FontAwesomeIcon icon={faDownload} />
+                                            </CSVLink>
+                                        </Col>
+                                    </Row>
+                                    <Row xs='12' id="diffexTable">
+                                        <Col xs='12'>
+                                            {(
+                                                process.env.NODE_ENV !== 'development' ||
+                                                packageJson.displayMaterialTable
+                                            ) &&
+                                                <MaterialTable
+                                                    data={this.state.diffexData}
+                                                    title=''
+                                                    columns={this.getColumns()}
+                                                    options={{
+                                                        tableLayout: 'fixed',
+                                                        thirdSortClick: false,
+                                                        pageSize: 20,
+                                                        pageSizeOptions: [],
+                                                        rowStyle: row => {
+                                                            let style = {
+                                                                padding: '1px'
+                                                            };
+                                                            return style;
+                                                        }
+                                                    }}
+                                                />
+                                            }
+                                        </Col>
+                                    </Row>
+                                </React.Fragment>
+                        }
+                    </Container>
                 </Container>
-            </Container>
+            </div>
         )
     }
 }
