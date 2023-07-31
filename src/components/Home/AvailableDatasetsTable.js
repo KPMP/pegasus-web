@@ -75,6 +75,7 @@ class AvailableDatasetsTable extends Component {
     }
 
     getWidthBasedOnScreenSize(columnId) {
+        console.log(window.innerWidth)
         if (window.innerWidth < 500) {
             return 125;
         } else if (window.innerWidth >= 500 && window.innerWidth < 765) {
