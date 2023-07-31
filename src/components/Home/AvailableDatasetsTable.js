@@ -112,25 +112,14 @@ class AvailableDatasetsTable extends Component {
         } 
     }
 
-    // getDefaultColumnWidths() {
-    //     let dataTypeWidth = this.getWidthBasedOnScreenSize('dataType')
-    //     let controlledWidth = this.getWidthBasedOnScreenSize('controlled')
-    //     let openWidth = this.getWidthBasedOnScreenSize('open')
-    //     return [
-    //         { columnName: 'omicsType', width: 574},
-    //         { columnName: 'controlledCount', width: 287},
-    //         { columnName: 'openCount', width: 287 },
-    //     ]
-    // }
-
     getColumnExtensions() {
         let dataTypeWidth = this.getWidthBasedOnScreenSize('dataType')
         let controlledWidth = this.getWidthBasedOnScreenSize('controlled')
         let openWidth = this.getWidthBasedOnScreenSize('open')
         return [
             { columnName: 'omicsType', width: dataTypeWidth},
-            { columnName: 'controlledCount', width: controlledWidth, align: 'center'},
-            { columnName: 'openCount', width: openWidth, align: 'center' },
+            { columnName: 'controlledCount', width: 'auto', align: 'center'},
+            { columnName: 'openCount', width: 'auto', align: 'center' },
         ]
     }
 
