@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button, ButtonGroup } from 'reactstrap';
 import DataTypeSelectorContainer from './DataTypeSelectorContainer';
-import { formatTissueType } from "../../helpers/Utils";
+import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils";
 import LMDDotPlot from "../Plots/LMDDotPlot";
 import { fetchRegionalTranscriptomics } from "../../helpers/ApolloClient";
 import RegionalTranscriptomicsTable from "../ExpressionTables/RegionalTranscriptomicsTable";
@@ -72,9 +72,9 @@ class RegionalViz extends Component {
                 abbr: segment,
                 region: segmentName,
                 numSamples: sampleCount,
-                stdDeviation: stdDev,
-                foldChange: foldChange ? foldChange : "NS",
-                pVal: (pVal || pVal === 0) ? pVal : "NS",
+                stdDeviation: formatNumberToPrecision(stdDev, 3),
+                foldChange: formatNumberToPrecision(foldChange, 3),
+                pVal: formatNumberToPrecision(pVal, 3),
             }
         });
     };
