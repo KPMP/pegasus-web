@@ -69,7 +69,7 @@ class App extends Component {
         <ApolloProvider client={apolloClient}>
           <BrowserRouter basename={packageJson.baseURL} history={history}>
             <ErrorBoundaryContainer>
-              <NavBar app='atlas' />
+              <NavBar app='atlas' history={this.props.history}/>
               <Switch>
                 <Route exact path='/' history={this.props.history}  component={Home} store={store} />
                 <Route exact path='/explorer' component={Explorer} store={store} />
