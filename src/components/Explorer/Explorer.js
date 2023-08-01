@@ -7,7 +7,7 @@ import { setGene } from '../../actions/Gene/geneActions';
 import { setTissueType } from '../../actions/TissueType/tissueTypeActions';
 import { setDataType } from '../../actions/DataType/dataTypeActions';
 
-import { selectedConcept } from '../../initialState';
+import initialState from '../../initialState';
 import { connect } from "react-redux";
 
 class Explorer extends Component {
@@ -15,7 +15,7 @@ class Explorer extends Component {
         this.props.setGene("");
         this.props.setTissueType("");
         this.props.setDataType("");
-        this.props.setSelectedConcept(selectedConcept);
+        this.props.setSelectedConcept(initialState.selectedConcept);
         return (
             <article>
                 <WelcomeText />
