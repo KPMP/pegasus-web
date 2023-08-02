@@ -21,7 +21,7 @@ class ExpressionXCellType extends Component {
     cleanResults = (results) => {
         return results.filter((result) => result.clusterName !== "TOTAL CELLS: ")
             .map(({ cluster, foldChange, pVal, pValAdj, clusterName, cellCount, pct1, avgExp }) => {
-                pct1Value = (pct1 > 0) ? (pct1 * 100) : pct1;
+                let pct1Value = (pct1 > 0) ? (pct1 * 100) : pct1;
                 return {
                     clusterAbbrev: cluster,
                     clusterName: clusterName,
