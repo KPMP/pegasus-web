@@ -2,6 +2,7 @@ import {connect} from "react-redux";
 import RegionalViz from "./RegionalViz";
 import { setTissueType } from '../../actions/TissueType/tissueTypeActions'
 import { setDataType } from "../../actions/DataType/dataTypeActions";
+import { resetState } from "../../actions/resetAction";
 
 const mapStateToProps = (state, props) =>
     ({
@@ -18,6 +19,9 @@ const mapDispatchToProps = (dispatch, props) =>
         },
         setDataType(dataType) {
             dispatch(setDataType(dataType));
+        },
+        resetState() {
+            dispatch(resetState());
         }
     });
 

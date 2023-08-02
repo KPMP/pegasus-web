@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { recreateUmaps } from './initialState';
+import initialState from './initialState';
 
 export const PrivateUmapRoute = ({component: Component, ...rest}) => (
 
     <Route
        {...rest}
         render={props => 
-            recreateUmaps ? (<Component {...props} />) :
+            initialState.recreateUmaps ? (<Component {...props} />) :
             (<Redirect to ={{pathname:"/"}}/>)}/>
 );
     

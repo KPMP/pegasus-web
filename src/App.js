@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { NavBar, NavFooter } from 'kpmp-common-components';
 import loadedState from './initialState';
 import { createStore, applyMiddleware } from 'redux';
-import appReducer from './reducers';
+import rootReducer from './reducers';
 import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { default as ReactGA4 } from 'react-ga4';
@@ -20,14 +20,14 @@ import NotFoundPage from './components/Error/NotFoundPage';
 import RNASeqVizContainer from "./components/DataViz/RNASeqVizContainer";
 import DiffexByClusterContainer from "./components/ExpressionTables/DiffexByClusterContainer";
 import RegionalVizContainer from "./components/DataViz/RegionalVizContainer";
-import { baseURL } from '../package.json';
+import packageJson from '../package.json';
 import { PrivateUmapRoute } from './PrivateRoutes';
 import UMAPContainer from './components/DataViz/UMAPContainer';
 
 const cacheStore = window.sessionStorage.getItem('redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
 export const store = applyMiddleware(thunk)(createStore)(
-  appReducer,
+  rootReducer,
   initialState,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
@@ -67,7 +67,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <ApolloProvider client={apolloClient}>
-          <BrowserRouter basename={baseURL} history={history}>
+          <BrowserRouter basename={packageJson.baseURL} history={history}>
             <ErrorBoundaryContainer>
               <NavBar app='atlas' />
               <Switch>

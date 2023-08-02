@@ -15,6 +15,7 @@ class RNASeqViz extends Component {
         
         const queryParam = queryString.parse(props.location.search);
         if (queryParam && queryParam.dataType) {
+            props.resetState();
             props.setDataType(queryParam.dataType);
             props.history.push(props.location.pathname);
         }
@@ -88,6 +89,7 @@ class RNASeqViz extends Component {
 
     render() {
         return (
+            <div className='height-wrapper mb-3'>
             <Container id='outer-wrapper'>
                 <DataTypeSelectorContainer isLoadingUmap={this.state.isLoadingUmap} />
                 <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
@@ -128,6 +130,7 @@ class RNASeqViz extends Component {
                     <ExpressionXCellType dataType={this.props.dataType} data={this.state.geneExpressionData} isLoading={this.state.isLoading} gene={this.props.gene.symbol} tissueType={this.props.tissueType} />
                 </Container>
             </Container>
+            </div>
         )
     }
 }
