@@ -891,7 +891,7 @@ tr.MuiTableRow-root:nth-child(even) {
 }
 
 .height-wrapper {
-  min-height: calc(100vh - 16px
+  min-height: calc(100vh + 16px
     - #{$header-height-padded}
     - #{$footer-height-padded});
 }
