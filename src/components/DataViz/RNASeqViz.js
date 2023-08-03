@@ -14,9 +14,7 @@ class RNASeqViz extends Component {
         this.state = { prevPath: '', plotData: [], geneExpressionData: [], isLoading: true, isLoadingUmap: true };
 
         const queryParam = queryString.parse(props.location.search);
-        console.log(queryParam)
         if (queryParam && queryParam.dataType) {
-            console.log("resetting state")
             props.resetState();
             props.setDataType(queryParam.dataType);
             props.history.push(props.location.pathname);
@@ -60,7 +58,6 @@ class RNASeqViz extends Component {
     }
 
     fetchDataType = async (geneSymbol) => {
-        console.log("fetching data type for gene symbol: " + geneSymbol)
         this.setState({ isLoading: true });
         let options = await getDataTypeOptions(this.props.gene.symbol, "");
         let availableOption = options.find((e) => {
