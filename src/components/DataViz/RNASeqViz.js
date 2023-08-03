@@ -29,8 +29,7 @@ class RNASeqViz extends Component {
     };
 
     async componentDidMount() {
-        if (this.props.gene.symbol) {
-            console.log(this.props.geneSymbol)
+        if (this.props.gene.symbol !== undefined && this.props.gene.symbol !== '') {
             await this.fetchDataType(this.props.gene.symbol)
             if (!this.props.tissueType) {
                 this.props.setTissueType('all')
@@ -60,6 +59,7 @@ class RNASeqViz extends Component {
     }
 
     fetchDataType = async (geneSymbol) => {
+        console.log("fetching data type for gene symbol: " + geneSymbol)
         this.setState({ isLoading: true });
         let options = await getDataTypeOptions(this.props.gene.symbol, "");
         let availableOption = options.find((e) => {
