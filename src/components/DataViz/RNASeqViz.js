@@ -12,20 +12,15 @@ class RNASeqViz extends Component {
     constructor(props) {
         super(props);
         this.state = { prevPath: '', plotData: [], geneExpressionData: [], isLoading: true, isLoadingUmap: true };
-        
-        // let sessionStorage = window.sessionStorage.getItem('redux-store');
-        // if (sessionStorage) {
-        //     let dataType = JSON.parse(sessionStorage)['dataType'];
-        //     if (dataType === 'rt') {
-        //         props.history.push('/explorer/regionalviz');
-        //     }
-        // }
 
         const queryParam = queryString.parse(props.location.search);
+        console.log(queryParam)
         if (queryParam && queryParam.dataType) {
+            console.log("resetting state")
             props.resetState();
             props.setDataType(queryParam.dataType);
             props.history.push(props.location.pathname);
+            this.setState({isLoading: false, isLoadingUmap: false})
         }
     };
 

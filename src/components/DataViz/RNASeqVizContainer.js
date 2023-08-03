@@ -15,9 +15,11 @@ const mapStateToProps = (state, props) =>
 const mapDispatchToProps = (dispatch, props) =>
 ({
     setDataType(dataType) {
+        console.log("resetting data type from regional viz page")
         dispatch(setDataType(dataType));
     },
     setTissueType(tissueType) {
+        console.log("resetting tissue type from regional viz page")
         dispatch(setTissueType(tissueType));
     },
     resetState() {
