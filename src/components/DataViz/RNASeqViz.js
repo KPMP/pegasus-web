@@ -29,6 +29,7 @@ class RNASeqViz extends Component {
     };
 
     async componentDidMount() {
+        console.log(this.props)
         if (this.props.gene.symbol !== undefined && this.props.gene.symbol !== '') {
             await this.fetchDataType(this.props.gene.symbol)
             if (!this.props.tissueType) {
@@ -44,6 +45,7 @@ class RNASeqViz extends Component {
     }
 
     async componentDidUpdate(prevProps) {
+        console.log(this.props)
         if (this.props.tissueType !== prevProps.tissueType
             || this.props.dataType !== prevProps.dataType
             || this.props.gene.symbol !== prevProps.gene.symbol) {
