@@ -1,5 +1,4 @@
 import actionNames from '../actionNames';
-import { resetState } from '../resetAction';
 
 export const setDataType = (dataType) => {
     let shortDataType = "";
