@@ -58,27 +58,6 @@ export const apolloClient = new ApolloClient({
     },
 });
 
-export const fetchGenes = async (searchString) => {
-
-    const response = await apolloClient.query({
-        query: gql`
-            query {
-                genes(symbol: "${searchString}") {
-                    id
-                    symbol
-                    name
-                    alias
-                }
-            }`
-    });
-
-    if (response.data && response.data.genes) {
-        return response.data.genes;
-    } else {
-        store.dispatch(sendMessageToBackend("Could not retrieve gene data: " + response.error, true));
-    }
-};
-
 export const fetchAutoComplete = async (searchString) => {
 
     if (searchString && searchString.trim().length < 2) {
