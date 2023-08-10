@@ -2,7 +2,7 @@ import { connect } from "react-redux";
 import RNASeqViz from "./RNASeqViz";
 import { setTissueType } from '../../actions/TissueType/tissueTypeActions'
 import { setDataType } from "../../actions/DataType/dataTypeActions";
-import { resetState } from "../../actions/resetAction";
+// import { resetState } from "../../actions/resetAction";
 
 const mapStateToProps = (state, props) =>
 ({
@@ -20,9 +20,9 @@ const mapDispatchToProps = (dispatch, props) =>
     setTissueType(tissueType) {
         dispatch(setTissueType(tissueType));
     },
-    resetState() {
-        dispatch(resetState());
-    }
+    // resetState() {
+    //     dispatch(resetState());
+    // }
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(RNASeqViz)
