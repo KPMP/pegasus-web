@@ -17,10 +17,10 @@ class RNASeqViz extends Component {
         console.log("dataType in constructor " + queryParam.dataType)
         if (queryParam && queryParam.dataType) {
             console.log("inside of if statement in constructor ");
-            // props.resetState();
+            props.resetState();
             props.setDataType(queryParam.dataType);
             props.history.push(props.location.pathname);
-            this.setState({isLoading: false, isLoadingUmap: false})
+            // this.setState({isLoading: false, isLoadingUmap: false})
         }
         
     };
@@ -33,8 +33,8 @@ class RNASeqViz extends Component {
         const queryParam = queryString.parse(this.props.location.search);
         console.log(this.props.gene.symbol);
         console.log("dataType in componentDidMount " + this.props.dataType);
-        // if (this.props.gene.symbol !== undefined && this.props.gene.symbol !== '' && (!queryParam && !queryParam.dataType)) {
-        if(this.props.gene.symbol){
+        if (this.props.gene.symbol !== undefined && this.props.gene.symbol !== '' && (!queryParam && !queryParam.dataType)) {
+        // if(this.props.gene.symbol){
             await this.fetchDataType(this.props.gene.symbol)
             if (!this.props.tissueType) {
                 this.props.setTissueType('all')
