@@ -94,9 +94,6 @@ class RNASeqViz extends Component {
     };
 
     render() {
-        console.log(this.props.gene.symbol);
-        console.log("Query param = " + this.props.queryParam);
-        console.log("Query param.dataType = " + this.props.queryParam.dataType);
         return (
             <div className='height-wrapper mb-3'>
             <Container id='outer-wrapper'>
