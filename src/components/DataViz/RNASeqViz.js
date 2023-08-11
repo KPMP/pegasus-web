@@ -14,13 +14,15 @@ class RNASeqViz extends Component {
         this.state = { prevPath: '', plotData: [], geneExpressionData: [], isLoading: true, isLoadingUmap: true };
 
         const queryParam = queryString.parse(props.location.search);
-        if (!queryParam && !queryParam.dataType) {
+        console.log("dataType in constructor " + queryParam.dataType)
+        if (queryParam && queryParam.dataType) {
+            console.log("inside of if statement in constructor ");
             props.resetState();
             props.setDataType(queryParam.dataType);
             props.history.push(props.location.pathname);
             this.setState({isLoading: false, isLoadingUmap: false})
         }
-        console.log("dataType in constructor " + queryParam.dataType)
+        
     };
 
     cleanResults = (results) => {
