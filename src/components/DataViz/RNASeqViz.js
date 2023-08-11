@@ -31,7 +31,8 @@ class RNASeqViz extends Component {
         console.log(this.props.gene.symbol);
         console.log("Query param = " + queryParam);
         console.log("Query param.dataType = " + queryParam.dataType);
-        if(this.props.gene.symbol){
+        if (this.props.gene.symbol !== undefined && this.props.gene.symbol !== '' && (!queryParam && !queryParam.dataType)) {
+        // if(this.props.gene.symbol){
             await this.fetchDataType(this.props.gene.symbol)
             if (!this.props.tissueType) {
                 this.props.setTissueType('all')
@@ -93,6 +94,9 @@ class RNASeqViz extends Component {
     };
 
     render() {
+        console.log(this.props.gene.symbol);
+        console.log("Query param = " + this.props.queryParam);
+        console.log("Query param.dataType = " + this.props.queryParam.dataType);
         return (
             <div className='height-wrapper mb-3'>
             <Container id='outer-wrapper'>
