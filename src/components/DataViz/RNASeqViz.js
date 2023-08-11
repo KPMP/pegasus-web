@@ -27,6 +27,7 @@ class RNASeqViz extends Component {
     };
 
     async componentDidMount() {
+        const queryParam = queryString.parse(this.props.location.search);
         console.log(this.props.gene.symbol);
         console.log("Query param = " + queryParam);
         console.log("Query param.dataType = " + queryParam.dataType);
