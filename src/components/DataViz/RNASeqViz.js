@@ -20,6 +20,7 @@ class RNASeqViz extends Component {
             props.history.push(props.location.pathname);
             this.setState({isLoading: false, isLoadingUmap: false})
         }
+        
     };
 
     cleanResults = (results) => {
@@ -27,7 +28,8 @@ class RNASeqViz extends Component {
     };
 
     async componentDidMount() {
-        if(this.props.gene.symbol){
+        const queryParam = queryString.parse(this.props.location.search);
+        if (this.props.gene.symbol !== undefined && this.props.gene.symbol !== '' && (!queryParam || !queryParam.dataType)) {
             await this.fetchDataType(this.props.gene.symbol)
             if (!this.props.tissueType) {
                 this.props.setTissueType('all')
