@@ -33,8 +33,8 @@ class RNASeqViz extends Component {
         const queryParam = queryString.parse(this.props.location.search);
         console.log(this.props.gene.symbol);
         console.log("dataType in componentDidMount " + this.props.dataType);
-        // if (this.props.gene.symbol !== undefined && this.props.gene.symbol !== '' && (!queryParam && !queryParam.dataType)) {
-        if(this.props.gene.symbol && (!queryParam && !queryParam.dataType)){
+        if (this.props.gene.symbol !== undefined && this.props.gene.symbol !== '' && (!queryParam || !queryParam.dataType)) {
+        // if(this.props.gene.symbol && (!queryParam || !queryParam.dataType)){
             await this.fetchDataType(this.props.gene.symbol)
             if (!this.props.tissueType) {
                 this.props.setTissueType('all')
