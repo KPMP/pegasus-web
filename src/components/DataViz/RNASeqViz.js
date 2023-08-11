@@ -15,11 +15,12 @@ class RNASeqViz extends Component {
 
         const queryParam = queryString.parse(props.location.search);
         if (queryParam && queryParam.dataType) {
-            // props.resetState();
+            props.resetState();
             props.setDataType(queryParam.dataType);
             props.history.push(props.location.pathname);
             this.setState({isLoading: false, isLoadingUmap: false})
         }
+        console.log("dataType in constructor " + queryParam.dataType)
     };
 
     cleanResults = (results) => {
@@ -29,7 +30,7 @@ class RNASeqViz extends Component {
     async componentDidMount() {
         const queryParam = queryString.parse(this.props.location.search);
         console.log(this.props.gene.symbol);
-        console.log(this.props.dataType);
+        console.log("dataType in componentDidMount " + this.props.dataType);
         if (this.props.gene.symbol !== undefined && this.props.gene.symbol !== '' && (!queryParam && !queryParam.dataType)) {
         // if(this.props.gene.symbol){
             await this.fetchDataType(this.props.gene.symbol)
