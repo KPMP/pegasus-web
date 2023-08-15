@@ -26,7 +26,7 @@ class ExpressionXCellType extends Component {
                     clusterAbbrev: cluster,
                     clusterName: clusterName,
                     cellCount: cellCount ? cellCount : 0,
-                    medianExp: formatNumberToPrecision(avgExp, 3),
+                    meanExp: formatNumberToPrecision(avgExp, 3),
                     pctCellsExpressing: formatNumberToPrecision(pct1Value, 3),
                     foldChange: formatNumberToPrecision(foldChange, 3),
                     pVal: formatNumberToPrecision(pVal, 3),
