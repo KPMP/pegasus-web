@@ -4,7 +4,7 @@ import { Col, Row, Button } from 'reactstrap';
 class Oops extends Component {
   render() {
     return (
-      <article className="container-fluid">
+      <article className="container-fluid height-wrapper">
         <Row id="oops-content">
           <Col xs={0} md={2}>
             &nbsp;

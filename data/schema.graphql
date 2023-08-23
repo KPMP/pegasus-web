@@ -1,5 +1,4 @@
 type Query {
-  genes(symbol: String): [MyGeneInfoHit]
   autocomplete(searchTerm: String): [AutoCompleteResult]
   cellTypeHierarchy: CellTypeHierarchy
   geneExpressionSummary(dataType: String, geneSymbol: String, cellType: String, tissueType: String) : [GeneExpressionSummary]
@@ -47,14 +46,6 @@ type GeneDatasetInformation {
   hrtCount: Long
   dmrCount: Long
   participantCount: Long
-}
-
-type MyGeneInfoHit {
-  id: ID
-  symbol: String
-  name: String
-  entrezgene: String
-  alias: [String]
 }
 
 type AutoCompleteResult {

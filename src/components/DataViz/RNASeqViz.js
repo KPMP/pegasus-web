@@ -12,12 +12,15 @@ class RNASeqViz extends Component {
     constructor(props) {
         super(props);
         this.state = { prevPath: '', plotData: [], geneExpressionData: [], isLoading: true, isLoadingUmap: true };
-        
+
         const queryParam = queryString.parse(props.location.search);
         if (queryParam && queryParam.dataType) {
+            props.resetState();
             props.setDataType(queryParam.dataType);
             props.history.push(props.location.pathname);
+            this.setState({isLoading: false, isLoadingUmap: false})
         }
+        
     };
 
     cleanResults = (results) => {
@@ -25,7 +28,8 @@ class RNASeqViz extends Component {
     };
 
     async componentDidMount() {
-        if (this.props.gene.symbol) {
+        const queryParam = queryString.parse(this.props.location.search);
+        if (this.props.gene.symbol !== undefined && this.props.gene.symbol !== '' && (!queryParam || !queryParam.dataType)) {
             await this.fetchDataType(this.props.gene.symbol)
             if (!this.props.tissueType) {
                 this.props.setTissueType('all')
@@ -88,6 +92,7 @@ class RNASeqViz extends Component {
 
     render() {
         return (
+            <div className='height-wrapper mb-3'>
             <Container id='outer-wrapper'>
                 <DataTypeSelectorContainer isLoadingUmap={this.state.isLoadingUmap} />
                 <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
@@ -128,6 +133,7 @@ class RNASeqViz extends Component {
                     <ExpressionXCellType dataType={this.props.dataType} data={this.state.geneExpressionData} isLoading={this.state.isLoading} gene={this.props.gene.symbol} tissueType={this.props.tissueType} />
                 </Container>
             </Container>
+            </div>
         )
     }
 }

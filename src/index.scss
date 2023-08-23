@@ -910,3 +910,9 @@ tr.MuiTableRow-root:nth-child(even) {
 .tooltip {
   font-size: 16px;
 }
+
+.height-wrapper {
+  min-height: calc(100vh + 16px
+    - #{$header-height-padded}
+    - #{$footer-height-padded});
+}

@@ -20,15 +20,16 @@ class ExpressionXCellType extends Component {
     cleanResults = (results) => {
         return results.filter((result) => result.clusterName !== "TOTAL CELLS: ")
             .map(({ cluster, foldChange, pVal, pValAdj, clusterName, cellCount, pct1, avgExp }) => {
+                let pct1Value = (pct1 > 0) ? (pct1 * 100) : pct1;
                 return {
                     clusterAbbrev: cluster,
                     clusterName: clusterName,
-                    cellCount: cellCount ? cellCount : "NS",
-                    medianExp: avgExp ? pct1 : "NS",
-                    pctCellsExpressing: pct1 ? pct1 : "NS",
-                    foldChange: foldChange ? foldChange : "NS",
-                    pVal: (pVal || pVal === 0) ? pVal : "NS",
-                    pValAdj: (pValAdj || pValAdj) === 0 ? pValAdj : "NS"
+                    cellCount: cellCount ? cellCount : 0,
+                    meanExp: formatNumberToPrecision(avgExp, 3),
+                    pctCellsExpressing: formatNumberToPrecision(pct1Value, 3),
+                    foldChange: formatNumberToPrecision(foldChange, 3),
+                    pVal: formatNumberToPrecision(pVal, 3),
+                    pValAdj: formatNumberToPrecision(pValAdj, 3)
                 }
             });
     };
