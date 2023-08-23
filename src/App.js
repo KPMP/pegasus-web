@@ -20,11 +20,7 @@ import NotFoundPage from './components/Error/NotFoundPage';
 import RNASeqVizContainer from "./components/DataViz/RNASeqVizContainer";
 import DiffexByClusterContainer from "./components/ExpressionTables/DiffexByClusterContainer";
 import RegionalVizContainer from "./components/DataViz/RegionalVizContainer";
-<<<<<<< HEAD
 import packageInfo from '../package.json';
-=======
-import packageJson from '../package.json';
->>>>>>> develop
 import { PrivateUmapRoute } from './PrivateRoutes';
 import UMAPContainer from './components/DataViz/UMAPContainer';
 
@@ -71,11 +67,7 @@ class App extends Component {
     return (
       <Provider store={store}>
         <ApolloProvider client={apolloClient}>
-<<<<<<< HEAD
           <BrowserRouter basename={packageInfo.baseURL} history={history}>
-=======
-          <BrowserRouter basename={packageJson.baseURL} history={history}>
->>>>>>> develop
             <ErrorBoundaryContainer>
               <NavBar app='atlas' />
               <Switch>
