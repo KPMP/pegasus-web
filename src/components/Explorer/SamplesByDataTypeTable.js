@@ -123,9 +123,9 @@ class SamplesByDataTypeTable extends Component {
 
         return [
             { columnName: 'dataType', width: 320, align: 'left'},
-            { columnName: 'hrtCount', width: 'auto', align: 'center'},
-            { columnName: 'ckdCount', width: 'auto', align: 'center' },
-            { columnName: 'akiCount', width: 'auto', align: 'center' },
+            { columnName: 'hrtCount', width: 208, align: 'center'},
+            { columnName: 'ckdCount', width: 89, align: 'center' },
+            { columnName: 'akiCount', width: 89, align: 'center' },
             { columnName: 'dmrCount', width: 'auto', align: 'center' },
         ]
     }
