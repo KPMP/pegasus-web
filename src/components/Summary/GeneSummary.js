@@ -87,7 +87,7 @@ class GeneSummary extends Component {
 
         return [
             { columnName: 'omicsType', width: 268, align: 'left'},
-            { columnName: 'dataType', width: 401, align: 'center'},
+            { columnName: 'dataType', width: 401, align: 'left'},
             { columnName: 'hrtCount', width: 214, align: 'center' },
             { columnName: 'ckdCount', width: 134, alighn: 'center' },
             { columnName: 'akiCount', width: 134, align: 'center' },
