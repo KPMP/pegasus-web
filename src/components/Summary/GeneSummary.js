@@ -83,23 +83,31 @@ class GeneSummary extends Component {
         this.props.setDataType(dataType)
     };
 
+    getColumnExtensions() {
+
+        return [
+            { columnName: 'omicsType', width: 268, align: 'left'},
+            { columnName: 'dataType', width: 401, align: 'center'},
+            { columnName: 'hrtCount', width: 214, align: 'center' },
+            { columnName: 'ckdCount', width: 134, alighn: 'center' },
+            { columnName: 'akiCount', width: 134, align: 'center' },
+            { columnName: 'dmrCount', width: 134, align: 'center' },
+        ]
+    }
+
     getColumns() {
         return [
             {
                 title: "OMICS TYPE",
-                // id: "omicsType",
                 name: 'omicsType',
                 sortable: false,
                 hideable: false,
                 // headerClassName: 'gene-summary-header',
                 // className: 'table-column',
-                // minWidth: 200,
             },
             {
                 title: "DATA TYPE",
-                // id: "dataType",
                 name: 'dataType',
-                // minWidth: 300,
                 // headerClassName: 'gene-summary-header',
                 // className: 'table-column data-type',
                 sortable: false,
@@ -108,44 +116,28 @@ class GeneSummary extends Component {
             },
             {
                 title: "HEALTHY REFERENCE TISSUE",
-                // id: "hrt",
-                // minWidth: 160,
                 name: 'hrtCount',
                 // headerClassName: 'text-center gene-summary-header',
                 // className: 'table-column',
-                // getCellValue: ({ row }) => (
-                //     <div className={"text-center"}>{row.hrt}</div>
-                // )
             },
             {
                 title: "AKI TISSUE",
-                // id: "aki",
                 name: 'akiCount',
                 // headerClassName: 'text-center gene-summary-header',
                 // className: 'table-column',
-                // getCellValue: ({ row }) => (
-                //     <div className={"text-center"}>{row.aki}</div>
-                // )
+
             },
             {
                 title: "CKD TISSUE",
-                // id: "ckd",
                 name: 'ckdCount',
                 // headerClassName: 'text-center gene-summary-header',
                 // className: 'table-column',
-                // getCellValue: ({ row }) => (
-                //     <div className={"text-center"}>{row.ckd}</div>
-                // )
             },
             {
                 title: "DM-R TISSUE",
-                // id: "dmr",
                 name: 'dmrCount',
                 // headerClassName: 'text-center gene-summary-header',
                 // className: 'table-column',
-                // getCellValue: ({ row }) => (
-                //     // <div className={"text-center"}>{row.dmr}</div>
-                // )
             },
         ]
     };
@@ -204,7 +196,7 @@ class GeneSummary extends Component {
                             <Row xs='12'>
                                 <Col>
                                     <Grid rows={this.state.geneSummary} columns={this.state.columns}>
-                                        <Table/>
+                                        <Table columnExtensions={this.getColumnExtensions()}/>
                                         <TableHeaderRow/>
                                         <TableFixedColumns/>
                                     </Grid>
