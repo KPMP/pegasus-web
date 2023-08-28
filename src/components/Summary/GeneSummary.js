@@ -102,14 +102,10 @@ class GeneSummary extends Component {
                 name: 'omicsType',
                 sortable: false,
                 hideable: false,
-                // headerClassName: 'gene-summary-header',
-                // className: 'table-column',
             },
             {
                 title: "DATA TYPE",
                 name: 'dataType',
-                // headerClassName: 'gene-summary-header',
-                // className: 'table-column data-type',
                 sortable: false,
                 hideable: false,
                 getCellValue: row => this.linkDataTypeCells(row)
@@ -117,27 +113,19 @@ class GeneSummary extends Component {
             {
                 title: "HEALTHY REFERENCE TISSUE",
                 name: 'hrtCount',
-                // headerClassName: 'text-center gene-summary-header',
-                // className: 'table-column',
             },
             {
                 title: "AKI TISSUE",
                 name: 'akiCount',
-                // headerClassName: 'text-center gene-summary-header',
-                // className: 'table-column',
 
             },
             {
                 title: "CKD TISSUE",
                 name: 'ckdCount',
-                // headerClassName: 'text-center gene-summary-header',
-                // className: 'table-column',
             },
             {
                 title: "DM-R TISSUE",
                 name: 'dmrCount',
-                // headerClassName: 'text-center gene-summary-header',
-                // className: 'table-column',
             },
         ]
     };
@@ -193,7 +181,7 @@ class GeneSummary extends Component {
                             <Row xs='12' className="gene-summary-header-container">
                                 <Col xs={{ size: 5, offset: 7 }} className='d-flex justify-content-center gene-summary-header color-light-blue'><span>PARTICIPANTS PER DATA TYPE</span></Col>
                             </Row>
-                            <Row xs='12'>
+                            <Row xs='12' id="gene-summary-table">
                                 <Col>
                                     <Grid rows={this.state.geneSummary} columns={this.state.columns}>
                                         <Table columnExtensions={this.getColumnExtensions()}/>

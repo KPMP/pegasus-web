@@ -789,6 +789,12 @@ tr.MuiTableRow-root:nth-child(even) {
 
 }
 
+#gene-summary-table {
+  .rt-tr.-odd {
+    $odd-cell-background-color:  #cee5ff !important;
+  }
+}
+
 .ag-theme-material {
 
   $cell-height: 30px;
