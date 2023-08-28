@@ -77,7 +77,7 @@ class DiffexByCluster extends Component {
             align: 'right',
             width: "15%",
             sorting: true, defaultSort: 'desc',
-            headerStyle: { fontSize: '11px', textAlign: 'center' },
+            headerStyle: { fontSize: '15px', textAlign: 'center' },
             cellStyle: {
                 fontSize: '14px',
                 padding: '2px',
@@ -96,7 +96,7 @@ class DiffexByCluster extends Component {
             width: "15%",
             sorting: true,
             type: 'numeric',
-            headerStyle: { fontSize: '11px', textAlign: 'right' },
+            headerStyle: { fontSize: '15px', textAlign: 'right' },
             cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'right' },
             render: rowData => formatNumberToPrecision(rowData.pVal, 3)
         },
@@ -110,7 +110,7 @@ class DiffexByCluster extends Component {
             width: "15%",
             sorting: true,
             type: 'numeric',
-            headerStyle: { fontSize: '11px', textAlign: 'right' },
+            headerStyle: { fontSize: '15px', textAlign: 'right' },
             cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'right' },
             render: rowData => formatNumberToPrecision(rowData.pValAdj, 3, true)
         },
@@ -120,7 +120,7 @@ class DiffexByCluster extends Component {
             sorting: false,
             width: "40%",
             className: "diffex-hidden-column",
-            headerStyle: { fontSize: '11px', textAlign: 'center', color: "rgba(0,0,0,0)" },
+            headerStyle: { fontSize: '15px', textAlign: 'center', color: "rgba(0,0,0,0)" },
             cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'center', color: "rgba(0,0,0,0)" },
         }
     ];
