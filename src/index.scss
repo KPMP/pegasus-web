@@ -790,7 +790,7 @@ tr.MuiTableRow-root:nth-child(even) {
 }
 
 #gene-summary-table {
-  .rt-tr.-odd {
+  .table tbody tr:nth-child(odd) {
     $odd-cell-background-color:  #cee5ff !important;
   }
 }
