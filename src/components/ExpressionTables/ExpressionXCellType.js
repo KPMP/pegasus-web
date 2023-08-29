@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-// import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
-import DataGrid, {
-    Column, Selection
-  } from 'devextreme-react/data-grid';
+import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import { Col, Row, UncontrolledTooltip, Spinner } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
@@ -12,7 +9,7 @@ import { formatDataType } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import Parser from 'html-react-parser';
 import { stripHtml } from "string-strip-html";
-
+import { Template, TemplatePlaceholder } from '@devexpress/dx-react-core';
 
 class ExpressionXCellType extends Component {
 
@@ -38,6 +35,14 @@ class ExpressionXCellType extends Component {
             });
     };
 
+    getTrProps = (state, rowInfo, instance) => {
+        if (rowInfo && rowInfo.row.clusterName === "TOTAL CELLS: ") {
+            return {
+                id: "total-row"
+            }
+        }
+        return {};
+    };
 
     parseClusterName = (row) => {
         let value = row.clusterName;
@@ -139,6 +144,9 @@ class ExpressionXCellType extends Component {
         } else if (this.props.data.length === 0) {
             return (<div></div>)
         } else {
+            const totalSummaryItems = [ 
+                { columnName: 'cellCount', type: 'sum' }
+            ]
             return (
                 <React.Fragment>
                     <Row xs='12' className='mt-5'>
@@ -165,28 +173,14 @@ class ExpressionXCellType extends Component {
                     </Row>
                     <Row xs='12' id='expression-by-cell-type'>
                         <Col xs='12' className='d-flex justify-content-start'>
-                            <DataGrid id="expression-by-cell-type-grid" dataSource={this.props.data} showBorders={true}>
-                                <Selection mode='single'/>
-                                <Column dataField='cluster' width={106} caption='ABBR'/>
-                                <Column dataField='clusterName' width={106} caption='CLUSTER (<i>predicted state</i>)'/>
-                                <Column dataField='cellCount' width={106} caption='# CELLS IN CLUSTER'/>
-                                <Column dataField='avgExp' width={106} caption='MEAN EXPRESSION'/>
-                                <Column dataField='pct1' width={106} caption='% CELLS EXPRESSING'/>
-                                <Column dataField='foldChange' width={106} caption='FOLD CHANGE'/>
-                                <Column dataField='pVal' width={106} caption='P VALUE'/>
-                                <Column dataField='pValAdj' width={106} caption='ADJ P VALUE'/>
-                            </DataGrid>
-                            {/* <Grid rows={this.props.data} columns={this.getColumns()}>
+                            <Grid rows={this.props.data} columns={this.getColumns()}>
+                                <SummaryState totalItems={totalSummaryItems}/>
+                                <IntegratedSummary />
                                 <Table columnExtensions={this.getColumnExtensions()}/>
                                 <TableHeaderRow/>
-                                <Template name="footer">
-                                    <div>
-                                        <div>TOTAL CELLS:</div>
-                                        <TemplatePlaceholder/>
-                                    </div>
-                                </Template>
+                                <TableSummaryRow />
                                 <TableFixedColumns/>
-                            </Grid> */}
+                            </Grid>
                         </Col>
                     </Row>
                     <Row xs='12'>
