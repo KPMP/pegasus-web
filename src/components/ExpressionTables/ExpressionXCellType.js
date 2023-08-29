@@ -69,7 +69,6 @@ class ExpressionXCellType extends Component {
             },
             {
                 title: <span>CLUSTER (<i>predicted state</i>)</span>,
-                // Footer: "TOTAL CELLS: ",
                 name: 'clusterName',
                 getCellValue: row => this.parseClusterName(row)
                 
@@ -77,7 +76,6 @@ class ExpressionXCellType extends Component {
             {
                 title: <span># CELLS IN<br />CLUSTER</span>,
                 name: 'cellCount',
-                // Footer: (sum(this.props.data, "cellCount")),
                 getCellValue: row => row.cellCount ? row.cellCount : 0
             },
             {
@@ -128,7 +126,7 @@ class ExpressionXCellType extends Component {
         return [
             { columnName: 'cluster', width: 106, align: 'left'},
             { columnName: 'clusterName', width: 546, align: 'left'},
-            { columnName: 'cellCount', width: 'auto', align: 'left' },
+            { columnName: 'cellCount', width: 110, align: 'left' },
             { columnName: 'avgExp', width: 'auto', align: 'left' },
             { columnName: 'pct1', width: 'auto', align: 'left' },
             { columnName: 'foldChange', width: 'auto', align: 'left' },
