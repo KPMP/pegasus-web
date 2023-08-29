@@ -9,7 +9,7 @@ import { formatDataType } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import Parser from 'html-react-parser';
 import { stripHtml } from "string-strip-html";
-import { SummaryState } from '@devexpress/dx-react-grid';
+import { IntegratedSummary, SummaryState } from '@devexpress/dx-react-grid';
 
 class ExpressionXCellType extends Component {
 
@@ -181,6 +181,7 @@ class ExpressionXCellType extends Component {
                         <Col xs='12' className='d-flex justify-content-start'>
                             <Grid rows={this.props.data} columns={this.getColumns()}>
                                 <SummaryState totalItems={this.getRowTotals()}/>
+                                <IntegratedSummary/>
                                 <Table columnExtensions={this.getColumnExtensions()}/>
                                 <TableHeaderRow/>
                                 <TableFixedColumns/>
