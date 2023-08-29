@@ -191,7 +191,7 @@ class ExpressionXCellType extends Component {
                             </span></Col>
                     </Row>
                     <Row xs='12' id='expression-by-cell-type'>
-                        <Col xs='12' className='d-flex justify-conntent-left'>
+                        <Col xs='12' className='d-flex justify-content-left'>
                             <Grid rows={this.props.data} columns={this.getColumns()}>
                                 <Table columnExtensions={this.getColumnExtensions()}/>
                                 <TableHeaderRow/>
