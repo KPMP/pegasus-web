@@ -192,7 +192,7 @@ class ExpressionXCellType extends Component {
                             <span id="cluster_v_others">CLUSTER VS ALL OTHERS
                             </span></Col>
                     </Row>
-                    <Row xs='12'>
+                    <Row xs='12' id='expression-by-cell-type'>
                         <Col xs='12'>
                             <Grid rows={this.props.data} columns={this.getColumns()}>
                                 <Table columnExtensions={this.getColumnExtensions()}/>

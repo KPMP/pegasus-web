@@ -196,7 +196,7 @@ tr.MuiTableRow-root:nth-child(even) {
 .gene-summary-header,
 .cell-summary-table-header-center {
   text-align: left;
-  font-size: 11px;
+  font-size: 16px;
   font-weight: 400;
   font-style: normal;
 }
@@ -787,6 +787,20 @@ tr.MuiTableRow-root:nth-child(even) {
     }
   }
 
+}
+
+#expression-by-cell-type {
+  .table {
+    thead th {
+      font-weight: 500;
+      font-size: 16px;
+      white-space: "pre-wrap";
+      text-align: center;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+        Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+        sans-serif;
+    }
+  }
 }
 
 .ag-theme-material {
