@@ -186,7 +186,7 @@ class ExpressionXCellType extends Component {
                         </Col>
                     </Row>
                     <Row xs='12' className="cluster_v_others_container-offset-fix">
-                        <Col xs={{ size: 4, offset: 8 }} className='d-flex justify-content-center cluster_v_others_container'>
+                        <Col xs={{ size: 4, offset: 8 }} className='d-flex justify-content-start cluster_v_others_container'>
                             <span id="cluster_v_others">CLUSTER VS ALL OTHERS
                             </span></Col>
                     </Row>
