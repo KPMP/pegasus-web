@@ -144,6 +144,20 @@ class ExpressionXCellType extends Component {
         ]
     };
 
+    getColumnExtensions() {
+
+        return [
+            { columnName: 'cluster', width: 106, align: 'left'},
+            { columnName: 'clusterName', width: 546, align: 'left'},
+            { columnName: 'cellCount', width: 'auto', align: 'left' },
+            { columnName: 'avgExp', width: 'auto', align: 'left' },
+            { columnName: 'pct1', width: 'auto', align: 'left' },
+            { columnName: 'foldChange', width: 'auto', align: 'left' },
+            { columnName: 'pVal', width: 'auto', align: 'left' },
+            { columnName: 'pValAdj', width: 'auto', align: 'left' },
+        ]
+    }
+
     render() {
         if (this.props.isLoading) {
             return (
@@ -181,7 +195,7 @@ class ExpressionXCellType extends Component {
                     <Row xs='12'>
                         <Col xs='12'>
                             <Grid rows={this.props.data} columns={this.getColumns()}>
-                                <Table/>
+                                <Table columnExtensions={this.getColumnExtensions()}/>
                                 <TableHeaderRow/>
                                 <TableFixedColumns/>
                             </Grid>
