@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
+import { Grid, TableFixedColumns, TableHeaderRow, Table, TableSummaryRow} from '@devexpress/dx-react-grid-bootstrap4';
 import { Col, Row, UncontrolledTooltip, Spinner } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
@@ -9,7 +9,11 @@ import { formatDataType } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import Parser from 'html-react-parser';
 import { stripHtml } from "string-strip-html";
-import { Template, TemplatePlaceholder } from '@devexpress/dx-react-core';
+import {
+    SummaryState,
+    IntegratedSummary
+  } from '@devexpress/dx-react-grid';
+
 
 class ExpressionXCellType extends Component {
 
