@@ -76,7 +76,7 @@ class ExpressionXCellType extends Component {
                 getCellValue: row => row.cellCount ? row.cellCount : 0
             },
             {
-                title: <span className='text-start'>MEAN<br />EXPRESSION <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='mean-expression-info' icon={faInfoCircle} /></span>
+                title: <span>MEAN<br />EXPRESSION <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='mean-expression-info' icon={faInfoCircle} /></span>
                     <UncontrolledTooltip placement='bottom' target='mean-expression-info' >
                         Averaged expression values (logarithmic) for each cluster
                     </UncontrolledTooltip></span>,
@@ -84,7 +84,7 @@ class ExpressionXCellType extends Component {
                 getCellValue: row => formatNumberToPrecision(row.avgExp, 3)
             },
             {
-                title: <span className='text-start'>% CELLS<br />EXPRESSING</span>,
+                title: <span>% CELLS<br />EXPRESSING</span>,
                 name: 'pct1',
                 getCellValue: row => {
                     let newValue = (row.pct1 > 0) ? (row.pct1 * 100) : row.pct1;
@@ -92,7 +92,7 @@ class ExpressionXCellType extends Component {
                 }
             },
             {
-                title: <span className='text-start'>FOLD<br />CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
+                title: <span>FOLD<br />CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
                     <UncontrolledTooltip placement='bottom' target='fold-change-info' >
                         Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.
                     </UncontrolledTooltip></span>,
@@ -100,7 +100,7 @@ class ExpressionXCellType extends Component {
                 getCellValue: row => formatNumberToPrecision(row.foldChange, 3)
             },
             {
-                title: <span className='text-start'>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
+                title: <span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
                     <UncontrolledTooltip placement='bottom' target='pvalue-info' >
                         p-value (unadjusted)
                     </UncontrolledTooltip></span>,
@@ -108,7 +108,7 @@ class ExpressionXCellType extends Component {
                 getCellValue: row => formatNumberToPrecision(row.pVal, 3)
             },
             {
-                title: <span className='text-start'>ADJ<br />P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
+                title: <span>ADJ<br />P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
                     <UncontrolledTooltip placement='bottom' target='pvalue-adj-info' >
                         Adjusted p-value, based on bonferroni correction using all features in the dataset.
                     </UncontrolledTooltip></span>,
