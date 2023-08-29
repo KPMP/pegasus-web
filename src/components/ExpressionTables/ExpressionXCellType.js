@@ -61,10 +61,8 @@ class ExpressionXCellType extends Component {
             {
                 title: "ABBR",
                 name: 'cluster',
-                // id: 'cluster',
                 // headerClassName: 'table-header',
                 // className: 'table-column',
-                // minWidth: 90,
             },
             {
                 title: <span>CLUSTER (<i>predicted state</i>)</span>,
@@ -193,7 +191,7 @@ class ExpressionXCellType extends Component {
                             </span></Col>
                     </Row>
                     <Row xs='12' id='expression-by-cell-type'>
-                        <Col xs='12'>
+                        <Col xs='12' className='d-flex justify-conntent-left'>
                             <Grid rows={this.props.data} columns={this.getColumns()}>
                                 <Table columnExtensions={this.getColumnExtensions()}/>
                                 <TableHeaderRow/>
