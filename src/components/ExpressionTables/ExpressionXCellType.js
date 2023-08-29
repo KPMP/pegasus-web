@@ -135,7 +135,7 @@ class ExpressionXCellType extends Component {
 
     getRowTotals() {
         return [
-            { columnName: 'clusterName', type: 'sum' }
+            { columnName: 'cellCount', type: 'sum' }
         ]
     }
 
