@@ -184,8 +184,9 @@ class ExpressionXCellType extends Component {
                                 <IntegratedSummary/>
                                 <Table columnExtensions={this.getColumnExtensions()}/>
                                 <TableHeaderRow/>
-                                <TableFixedColumns/>
                                 <TableSummaryRow/>
+                                <TableFixedColumns/>
+                                
                                 {/* <TableSummaryRow messages={messages}/> */}
                             </Grid>
                         </Col>
