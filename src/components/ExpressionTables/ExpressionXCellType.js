@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
+import { Grid, TableFixedColumns, TableHeaderRow, Table, TableSummaryRow} from '@devexpress/dx-react-grid-bootstrap4';
 import { Col, Row, UncontrolledTooltip, Spinner } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
@@ -9,6 +9,7 @@ import { formatDataType } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import Parser from 'html-react-parser';
 import { stripHtml } from "string-strip-html";
+import { SummaryState } from '@devexpress/dx-react-grid';
 
 class ExpressionXCellType extends Component {
 
@@ -132,7 +133,17 @@ class ExpressionXCellType extends Component {
         ]
     }
 
+    getRowTotals() {
+        return [
+            { columnName: 'clusterName', type: 'sum' }
+        ]
+    }
+
     render() {
+        const messages = {
+            sum: 'TOTAL CELLS',
+        };
+
         if (this.props.isLoading) {
             return (
                 <div className='viz-spinner text-center'>
@@ -169,9 +180,11 @@ class ExpressionXCellType extends Component {
                     <Row xs='12' id='expression-by-cell-type'>
                         <Col xs='12' className='d-flex justify-content-start'>
                             <Grid rows={this.props.data} columns={this.getColumns()}>
+                                <SummaryState totalItems={this.getRowTotals()}/>
                                 <Table columnExtensions={this.getColumnExtensions()}/>
                                 <TableHeaderRow/>
                                 <TableFixedColumns/>
+                                <TableSummaryRow messages={messages}/>
                             </Grid>
                         </Col>
                     </Row>
