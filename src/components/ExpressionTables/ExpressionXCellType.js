@@ -135,15 +135,16 @@ class ExpressionXCellType extends Component {
 
     getRowTotals() {
         return [
+            { columnName: 'clusterName', type: 'label'},
             { columnName: 'cellCount', type: 'sum' }
         ]
     }
 
     render() {
         const messages = {
-            sum: 'TOTAL CELLS',
+            label: 'TOTAL CELLS',
         };
-        const formatlessSummaryTypes = ['sum'];
+        const formatlessSummaryTypes = ['label'];
 
         if (this.props.isLoading) {
             return (
@@ -185,8 +186,8 @@ class ExpressionXCellType extends Component {
                                 <IntegratedSummary/>
                                 <Table columnExtensions={this.getColumnExtensions()}/>
                                 <TableHeaderRow/>
-                                <TableSummaryRow formatlessSummaryTypes={formatlessSummaryTypes} messages={messages}/>
-                                {/* <TableFixedColumns/> */}
+                                <TableSummaryRow messages={messages}/>
+                                <TableFixedColumns/>
                             </Grid>
                         </Col>
                     </Row>
