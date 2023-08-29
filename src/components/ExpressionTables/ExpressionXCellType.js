@@ -140,12 +140,14 @@ class ExpressionXCellType extends Component {
         ]
     }
 
-    render() {
-        const messages = {
-            label: 'TOTAL CELLS',
-        };
-        const formatlessSummaryTypes = ['label'];
+    getLabelCalculator(type, rows, getValue) {
+        if (type === 'label') {
+            return 'TOTAL CELLS:'
+        }
+        return IntegratedSummary.defaultCalculator(type, rows, getValue);
+    }
 
+    render() {
         if (this.props.isLoading) {
             return (
                 <div className='viz-spinner text-center'>
@@ -183,10 +185,10 @@ class ExpressionXCellType extends Component {
                         <Col xs='12' className='d-flex justify-content-start'>
                             <Grid rows={this.props.data} columns={this.getColumns()}>
                                 <SummaryState totalItems={this.getRowTotals()}/>
-                                <IntegratedSummary/>
+                                <IntegratedSummary calculator={this.getLabelCalculator()}/>
                                 <Table columnExtensions={this.getColumnExtensions()}/>
                                 <TableHeaderRow/>
-                                <TableSummaryRow messages={messages}/>
+                                <TableSummaryRow/>
                                 <TableFixedColumns/>
                             </Grid>
                         </Col>
