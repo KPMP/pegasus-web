@@ -143,8 +143,10 @@ class ExpressionXCellType extends Component {
     getLabelCalculator(type, rows, getValue) {
         if (type === 'label') {
             return 'TOTAL CELLS:'
+        } else if (type !== undefined) {
+            return IntegratedSummary.defaultCalculator(type, rows, getValue);
         }
-        return IntegratedSummary.defaultCalculator(type, rows, getValue);
+        return '';
     }
 
     render() {
