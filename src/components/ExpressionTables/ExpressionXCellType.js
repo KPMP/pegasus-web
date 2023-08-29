@@ -143,6 +143,7 @@ class ExpressionXCellType extends Component {
         const messages = {
             sum: 'TOTAL CELLS',
         };
+        const formatlessSummaryTypes = ['sum'];
 
         if (this.props.isLoading) {
             return (
@@ -184,7 +185,7 @@ class ExpressionXCellType extends Component {
                                 <IntegratedSummary/>
                                 <Table columnExtensions={this.getColumnExtensions()}/>
                                 <TableHeaderRow/>
-                                <TableSummaryRow messages={messages}/>
+                                <TableSummaryRow formatlessSummaryTypes={formatlessSummaryTypes} messages={messages}/>
                                 <TableFixedColumns/>
                             </Grid>
                         </Col>
