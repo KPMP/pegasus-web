@@ -58,12 +58,13 @@
   },
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "jest-canvas-mock": "^2.5.2",
     "sass": "1.64.0"
   },
   "scripts": {
     "start": "npm-run-all --max-old-space-size=8192 -p watch-css start-js",
     "build": "GENERATE_SOURCEMAP=false && npm-run-all --max-old-space-size=10240 build-css build-js",
-    "test": "GENERATE_SOURCEMAP=false &&  react-scripts test --passWithNoTests",
+    "test": "react-scripts test  --transformIgnorePatterns '!node_modules/(?!@devexpress|@fontsource|decode-uri-component|query-string)'",
     "eject": "react-scripts eject",
     "start-js": "react-scripts start",
     "build-js": "react-scripts --max-old-space-size=10240 build",
