@@ -3,8 +3,6 @@ import { Container, Row } from 'reactstrap';
 import SamplesByDataTypeTableContainer from './SamplesByDataTypeTableContainer';
 import AvailableDatasetsTable from './AvailableDatasetsTable';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
-import { fetchSummaryData, fetchGeneDatasetSummary, fetchAtlasSummaryRows} from '../../helpers/ApolloClient';
-import { availableDataVisibilityFilter } from '../../helpers/Utils';
 import { faPerson } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import ParticipantSummary from './ParticipantSummary';
@@ -14,41 +12,8 @@ class DataSummary extends Component {
     constructor(props) {
         super(props);
         this.handleGoogleAnalyticsEvent = handleGoogleAnalyticsEvent.bind(this);
-        this.state = {
-            spatialViewerSummary: [],
-            explorerSummary: [],
-            availableDatasets: []
-        }
-    }
-    compare( a, b ) {
-        if ( a && b && a.dataType < b.dataType ){
-          return -1;
-        }
-        if ( a.dataType > b.dataType ){
-          return 1;
-        }
-        return 0;
     }
 
-    async componentDidMount() {  
-       let spatialViewerSummary = await fetchSummaryData("spatialViewerSummary")
-       let explorerSummary = await fetchGeneDatasetSummary("")
-       explorerSummary = explorerSummary
-                                .slice()
-                                .sort(this.compare)
-                                .filter(availableDataVisibilityFilter)
-        
-        spatialViewerSummary = spatialViewerSummary
-                                .slice()
-                                .sort(this.compare)
-                                .filter(availableDataVisibilityFilter)
-
-        explorerSummary.unshift({dataType: "Explorer"})
-        explorerSummary.push({dataType: "Spatial Viewer"})
-        const summaryData = explorerSummary.concat(spatialViewerSummary)
-        const availableDatasets = await fetchAtlasSummaryRows();
-       this.setState({ summaryData: summaryData, availableDatasets: availableDatasets });
-    }
 
     render() {
 
@@ -63,18 +28,15 @@ class DataSummary extends Component {
                 <Row><h5 className="sub-header lowered">Participants by -omics type</h5></Row>
                 <Row><p>A subset of the raw data from the Data Repository has been analyzed and made available for interactive mining in Explorer and Spatial Viewer.</p></Row>
 
-
                 <Row>
-                    <SamplesByDataTypeTableContainer summary={this.state.summaryData}/>
+                    <SamplesByDataTypeTableContainer/>
                 </Row>
-
-
 
                 <Row><h5 className="sub-header lowered">Files in the Data Repository by -omics type</h5></Row>
                 <Row><p>The datasets available in the Repository are a combination of raw and processed data from KPMP participant biopsies and reference tissue samples.</p></Row>
             
                 <Row>
-                <AvailableDatasetsTable history={this.props.history} availableDatasets={this.state.availableDatasets} />
+                    <AvailableDatasetsTable history={this.props.history} />
                 </Row>
             </Container>
 

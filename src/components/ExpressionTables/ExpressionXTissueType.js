@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import ReactTable from "react-table";
+import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import initialState from "../../initialState";
 import {Col, Row} from "reactstrap";
 
@@ -68,17 +68,11 @@ class ExpressionXTissueType extends Component {
                 </Row>
                 <Row xs='12'>
                     <Col xs='12'>
-                        <ReactTable
-                            style={{border: 'none'}}
-                            data={this.state.expressionData}
-                            ref={this.reactTable}
-                            sortable={false}
-                            columns={this.getColumns()}
-                            className='-striped'
-                            showPagination={false}
-                            noDataText={'No data found'}
-                            minRows={0}
-                        />
+                        <Grid rows={this.state.expressionData} columns={this.getColumns()}>
+                            <Table/>
+                            <TableHeaderRow/>
+                            <TableFixedColumns/>
+                        </Grid>
                     </Col>
                 </Row>
             </React.Fragment>

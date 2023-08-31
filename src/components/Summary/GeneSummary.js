@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Spinner } from 'reactstrap';
-import ReactTable from 'react-table';
+import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchGeneDatasetSummary } from '../../helpers/ApolloClient';
 import { getDataTypeOptions } from "../../helpers/Utils";
@@ -11,7 +11,6 @@ class GeneSummary extends Component {
     constructor(props) {
         super(props);
         this.getColumns = this.getColumns.bind(this);
-        this.reactTable = React.createRef();
 
         this.state = {
             columns: this.getColumns(),
@@ -84,67 +83,49 @@ class GeneSummary extends Component {
         this.props.setDataType(dataType)
     };
 
+    getColumnExtensions() {
+
+        return [
+            { columnName: 'omicsType', width: 268, align: 'left'},
+            { columnName: 'dataType', width: 401, align: 'left'},
+            { columnName: 'hrtCount', width: 214, align: 'center' },
+            { columnName: 'ckdCount', width: 134, align: 'center' },
+            { columnName: 'akiCount', width: 134, align: 'center' },
+            { columnName: 'dmrCount', width: 134, align: 'center' },
+        ]
+    }
+
     getColumns() {
         return [
             {
-                Header: "OMICS TYPE",
-                id: "omicsType",
-                accessor: 'omicsType',
-                headerClassName: 'gene-summary-header',
-                className: 'table-column',
-                minWidth: 200,
+                title: "OMICS TYPE",
+                name: 'omicsType',
+                sortable: false,
+                hideable: false,
             },
             {
-                Header: "DATA TYPE",
-                id: "dataType",
-                accessor: 'dataType',
-                minWidth: 300,
-                headerClassName: 'gene-summary-header',
-                className: 'table-column data-type',
-                Cell: ({ row }) => (
-                    this.linkDataTypeCells(row)
-                )
+                title: "DATA TYPE",
+                name: 'dataType',
+                sortable: false,
+                hideable: false,
+                getCellValue: row => this.linkDataTypeCells(row)
             },
             {
-                Header: "HEALTHY REFERENCE TISSUE",
-                id: "hrt",
-                minWidth: 160,
-                accessor: 'hrtCount',
-                headerClassName: 'text-center gene-summary-header',
-                className: 'table-column',
-                Cell: ({ row }) => (
-                    <div className={"text-center"}>{row.hrt}</div>
-                )
+                title: "HEALTHY REFERENCE TISSUE",
+                name: 'hrtCount',
             },
             {
-                Header: "AKI TISSUE",
-                id: "aki",
-                accessor: 'akiCount',
-                headerClassName: 'text-center gene-summary-header',
-                className: 'table-column',
-                Cell: ({ row }) => (
-                    <div className={"text-center"}>{row.aki}</div>
-                )
+                title: "AKI TISSUE",
+                name: 'akiCount',
+
             },
             {
-                Header: "CKD TISSUE",
-                id: "ckd",
-                accessor: 'ckdCount',
-                headerClassName: 'text-center gene-summary-header',
-                className: 'table-column',
-                Cell: ({ row }) => (
-                    <div className={"text-center"}>{row.ckd}</div>
-                )
+                title: "CKD TISSUE",
+                name: 'ckdCount',
             },
             {
-                Header: "DM-R TISSUE",
-                id: "dmr",
-                accessor: 'dmrCount',
-                headerClassName: 'text-center gene-summary-header',
-                className: 'table-column',
-                Cell: ({ row }) => (
-                    <div className={"text-center"}>{row.dmr}</div>
-                )
+                title: "DM-R TISSUE",
+                name: 'dmrCount',
             },
         ]
     };
@@ -168,8 +149,8 @@ class GeneSummary extends Component {
     }
 
     linkDataTypeCells(row) {
-        if (this.dataTypeHasData(row) && this.dataTypeIsClickable(row._original.dataTypeShort)) {
-            return <button onClick={() => this.handleLinkClick(row._original.dataTypeShort)}
+        if (this.dataTypeHasData(row) && this.dataTypeIsClickable(row.dataTypeShort)) {
+            return <button onClick={() => this.handleLinkClick(row.dataTypeShort)}
                 type="button"
                 className="btn btn-link text-start p-0 table-column">
                 {row.dataType}
@@ -200,19 +181,13 @@ class GeneSummary extends Component {
                             <Row xs='12' className="gene-summary-header-container">
                                 <Col xs={{ size: 5, offset: 7 }} className='d-flex justify-content-center gene-summary-header color-light-blue'><span>PARTICIPANTS PER DATA TYPE</span></Col>
                             </Row>
-                            <Row xs='12'>
+                            <Row xs='12' id="gene-summary-table">
                                 <Col>
-                                    <ReactTable
-                                        style={{ border: 'none' }}
-                                        data={this.state.geneSummary}
-                                        ref={this.reactTable}
-                                        sortable={false}
-                                        columns={this.state.columns}
-                                        className='-striped gene-summary-table'
-                                        showPagination={false}
-                                        noDataText={'No data found'}
-                                        minRows={0}
-                                    />
+                                    <Grid rows={this.state.geneSummary} columns={this.state.columns}>
+                                        <Table columnExtensions={this.getColumnExtensions()}/>
+                                        <TableHeaderRow/>
+                                        <TableFixedColumns/>
+                                    </Grid>
                                 </Col>
                             </Row>
                         </div>

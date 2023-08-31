@@ -22,7 +22,7 @@ class LeftContent extends Component {
             </p>
           </div>
           <div className='mt-3'>
-            <Button color='primary' href='/explorer' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Atlas Home', 'Navigation', 'explorer home') }}>Go to Explorer</Button>
+            <Button className="w-100" color='primary' href='/explorer' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Atlas Home', 'Navigation', 'explorer home') }}>Go to Explorer</Button>
           </div>
         </Container>
         <Container className="mt-3 rounded border p-3 shadow-sm">
@@ -33,7 +33,7 @@ class LeftContent extends Component {
             </p>
           </div>
           <div className='mt-3'>
-            <Button color='primary' href='/repository' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Atlas Home', 'Navigation', 'repository home') }}>Go to Repository</Button>
+            <Button className="w-100" color='primary' href='/repository' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Atlas Home', 'Navigation', 'repository home') }}>Go to Repository</Button>
           </div>
         </Container>
         {this.state.show_vitessce_button &&
@@ -45,7 +45,7 @@ class LeftContent extends Component {
             </p>
           </div>
           <div className='mt-3'>
-            <Button color='primary' href='/spatial-viewer' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Atlas Home', 'Navigation', 'spatial viewer home') }}>Go to Spatial Viewer</Button>
+            <Button className="w-100" color='primary' href='/spatial-viewer' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Atlas Home', 'Navigation', 'spatial viewer home') }}>Go to Spatial Viewer</Button>
           </div>
         </Container>
         }
@@ -57,7 +57,7 @@ class LeftContent extends Component {
             </p>
           </div>
           <div className='mt-3'>
-            <Button color='primary' href='https://www.kpmp.org/collaboration' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Atlas Home', 'Navigation', 'collaborate') }}>Collaborate with us</Button>
+            <Button className="w-100" color='primary' href='https://www.kpmp.org/collaboration' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Atlas Home', 'Navigation', 'collaborate') }}>Collaborate with us</Button>
           </div>
         </Container>
       </Row>

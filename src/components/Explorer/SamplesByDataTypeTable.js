@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
-import ReactTable from 'react-table';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
 import { fetchSummaryData, fetchGeneDatasetSummary} from '../../helpers/ApolloClient';
+import { Grid, TableHeaderRow, Table, TableFixedColumns} from '@devexpress/dx-react-grid-bootstrap4';
+import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
+
 
 class SamplesByDataTypeTable extends Component {
 
@@ -11,13 +13,13 @@ class SamplesByDataTypeTable extends Component {
         super(props);
         this.getColumns = this.getColumns.bind(this);
         this.handleDataTypeClick = this.handleDataTypeClick.bind(this);
-        this.reactTable = React.createRef();
 
         this.state = {
             columns: this.getColumns(),
             summary: []
         };
     }
+
     compare( a, b ) {
         if ( a.dataType < b.dataType ){
           return -1;
@@ -61,7 +63,8 @@ class SamplesByDataTypeTable extends Component {
         }
     }
 
-    formatDataTypeCell(value) {
+    formatDataTypeCell(row) {
+        let value = row['dataType']
         if (value === 'Single-cell RNA-seq (scRNA-seq)' || value === 'Single-nucleus RNA-seq (snRNA-seq)') {
 
             return (
@@ -79,83 +82,67 @@ class SamplesByDataTypeTable extends Component {
 
     }
 
+
     getColumns() {
         return [
             {
-                Header: 'DATA TYPE',
-                id: 'dataType',
-                accessor: 'dataType',
-                headerClassName: 'omics data-type-table-header',
-                className: 'data-type-table-content',
-                minWidth: 280,
-                Cell: row => (
-                    this.formatDataTypeCell(row.value)
-                )
+                title: 'DATA TYPE',
+                name: 'dataType',
+                sortable: false,
+                hideable: false,
+                getCellValue: row => this.formatDataTypeCell(row)
             },
             {
-                Header: () => (
-                    <span>HEALTHY REFERENCE</span>
-                ),
-                id: 'healthyTissue',
-                accessor: 'hrtCount',
-                headerClassName: 'data-type-table-header',
-                className: 'data-type-table-content text-center',
-                minHeaderWidth: 175,
-                minWidth: 175,
+                title: 'HEALTHY REFERENCE',
+                name: 'hrtCount',
+                sortable: false,
+                hideable: false
             },
             {
-                Header: () => (
-                    <span>CKD</span>
-                ),
-                id: 'ckdTissue',
-                accessor: 'ckdCount',
-                headerClassName: 'data-type-table-header text-center',
-                className: 'data-type-table-content text-center',
-                minHeaderWidth: 75,
-                minWidth: 75,
+                title: 'CKD',
+                name: 'ckdCount',
+                sortable: false,
+                hideable: false
             },
             {
-                Header: () => (
-                    <span>AKI</span>
-                ),
-                id: 'akiTissue',
-                accessor: 'akiCount',
-                headerClassName: 'data-type-table-header text-center',
-                className: 'data-type-table-content text-center',
-                minHeaderWidth: 75,
-                minWidth: 75
+                title: 'AKI',
+                name: 'akiCount',
+                sortable: false,
+                hideable: false
             },
             {
-                Header: () => (
-                    <span>DM-R</span>
-                ),
-                id: 'dmrTissue',
-                accessor: 'dmrCount',
-                headerClassName: 'data-type-table-header text-center',
-                className: 'data-type-table-content text-center',
-                minHeaderWidth: 100,
-                minWidth: 100
+                title: 'DM-R',
+                name: 'dmrCount',
+                sortable: false,
+                hideable: false
             },
         ]
     };
+
+    getColumnExtensions() {
+
+        return [
+            { columnName: 'dataType', width: 320, align: 'left'},
+            { columnName: 'hrtCount', width: 208, align: 'center'},
+            { columnName: 'ckdCount', width: 89, align: 'center' },
+            { columnName: 'akiCount', width: 89, align: 'center' },
+            { columnName: 'dmrCount', width: 'auto', align: 'center' },
+        ]
+    }
 
     render() {
         return (
             <article id='summary-plot'>
                 <h5>Select a data type</h5>
-                <Row className='mt-4'>
+                <Row className='mt-4' id='data-type-table-explorer'>
                     <Col xs='12'>
-                        <ReactTable
-                            style={{ border: 'none' }}
-                            data={this.state.summary}
-                            ref={this.reactTable}
-                            sortable={false}
-                            columns={this.state.columns}
-                            className='samples-by-datatype -striped'
-                            showPagination={false}
-                            noDataText={'No data found'}
-                            minRows={0}
-                        />
+                        <React.Fragment>
+                            <Grid rows={this.state.summary} columns={this.state.columns}>
+                                <Table columnExtensions={this.getColumnExtensions()}/>
+                                <TableHeaderRow/>
+                                <TableFixedColumns />
+                            </Grid>
+                        </React.Fragment>
                     </Col>
                 </Row>
                 <Row>

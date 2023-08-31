@@ -11,7 +11,7 @@ class Home extends Component {
       <article id="homepage">
         <Row>
           <Col md='12' lg='12'>
-            <TopContent />
+            <TopContent/>
           </Col>
           <Col md='12' lg='4'>
             <LeftContent />
@@ -21,7 +21,8 @@ class Home extends Component {
           </Col>
         </Row>
       </article>
-    );
+      
+    )
   }
 }
 

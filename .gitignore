@@ -153,3 +153,4 @@ yarn-error.log*
 *.css
 *.css.map
 *.code-workspace
+*.css.map
