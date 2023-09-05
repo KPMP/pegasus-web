@@ -74,12 +74,12 @@ class CellTypeSummary extends Component {
 
     getDefaultColumnWidths() {
         return [
-            { columnName: 'structureRegion', width: 75,},
-            { columnName: 'structureSubregion', width: 125},
-            { columnName: 'clusterName', width: 450},
-            { columnName: 'sn', width: 75 },
-            { columnName: 'sc', width: 75},
-            { columnName: 'rt', width: 75 },
+            { columnName: 'structureRegion', width: 102,},
+            { columnName: 'structureSubregion', width: 169},
+            { columnName: 'clusterName', width: 600},
+            { columnName: 'sn', width: 135 },
+            { columnName: 'sc', width: 135},
+            { columnName: 'rt', width: 135 },
         ]
     }
 
