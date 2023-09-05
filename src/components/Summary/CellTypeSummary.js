@@ -32,18 +32,8 @@ class CellTypeSummary extends Component {
 
     fetchClusterHierarchy = async () => {
         this.setState({ isLoading: true });
-        await fetchClusterHierarchy(this.props.cellType).then(
-            (cellTypeSummary) => {
-                console.log("got cell type summary")
-                this.setState({ cellTypeSummary: cellTypeSummary, isLoading: false });
-                console.log(this.state)
-            },
-            (error) => {
-                console.log("in error")
-                this.setState({ cellTypeSummary: [], isLoading: false });
-                console.log('There was a problem getting the data: ' + error)
-            }
-        );
+        let results = await fetchClusterHierarchy(this.props.cellType);
+        this.setState({ cellTypeSummary: results, isLoading: false });
     };
 
     handleLinkClick = (dataType, row) => {
