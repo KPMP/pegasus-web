@@ -111,7 +111,7 @@ class CellTypeSummary extends Component {
             },
             {
                 title: 'REGIONAL TRASCRIPTOMICS',
-                id: 'rt',
+                name: 'rt',
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
                 getCellValue: row => (
