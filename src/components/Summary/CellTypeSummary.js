@@ -100,7 +100,7 @@ class CellTypeSummary extends Component {
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
                 getCellValue: row => (
-                    this.linkDataTypeCells(row, 'sn')
+                    this.linkDataTypeCells(row.sn, 'sn')
                 )
             },
             {
@@ -109,7 +109,7 @@ class CellTypeSummary extends Component {
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
                 getCellValue: row => (
-                    this.linkDataTypeCells(row, 'sc')
+                    this.linkDataTypeCells(row.sc, 'sc')
                 )
             },
             {
@@ -118,7 +118,7 @@ class CellTypeSummary extends Component {
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
                 getCellValue: row => (
-                    this.linkDataTypeCells(row, 'rt')
+                    this.linkDataTypeCells(row.rt, 'rt')
                 )
             },
         ]
