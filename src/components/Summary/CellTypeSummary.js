@@ -75,17 +75,17 @@ class CellTypeSummary extends Component {
     getColumns() {
         return [
             {
-                title: <span className='table-header'>STRUCTURE/<br />REGION</span>,
+                title: <span className='cell-summary-table-header'>STRUCTURE/<br />REGION</span>,
                 name: 'structureRegion',
                 getCellValue: row => <span title={row.structureRegion}>{row.structureRegion}</span>
             },
             {
-                title: <span className='table-header'>SUBSTRUCTURE/<br />SUBREGION</span>,
+                title: <span className='cell-summary-table-header'>SUBSTRUCTURE/<br />SUBREGION</span>,
                 name: 'structureSubregion',
                 getCellValue: row => <span title={row.structureSubregion}>{row.structureSubregion}</span>
             },
             {
-                title: <span className='table-header'>CELL TYPE/<br />CLUSTER (<i>predicted state</i>)</span>,
+                title: <span className='cell-summary-table-header'>CELL TYPE/<br />CLUSTER (<i>predicted state</i>)</span>,
                 name: 'clusterName',
                 getCellValue: row => (
                     this.parseClusterName(row.clusterName)
