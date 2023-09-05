@@ -16,47 +16,53 @@ class ExpressionXTissueType extends Component {
     getColumns() {
         return [
             {
-                Header: "ABBR",
-                id: "abbr",
-                accessor: 'abbr'
+                title: "ABBR",
+                name: "abbr",
             },
             {
-                Header: "CELL TYPE",
-                id: "cellType",
-                accessor: 'cellType',
+                title: "CELL TYPE",
+                name: "cellType",
             },
             {
-                Header: "TOTAL CELLS",
-                id: "totalCells",
-                accessor: 'totalCells'
+                title: "TOTAL CELLS",
+                name: "totalCells",
             },
             {
-                Header: "MEDIAN EXPRESSION",
-                id: "medianExpression",
-                accessor: 'medianExpression'
+                title: "MEDIAN EXPRESSION",
+                name: "medianExpression",
             },
             {
-                Header: "# CELLS EXPRESSING",
-                id: "numCellsExp",
-                accessor: 'numCellsExp'
+                title: "# CELLS EXPRESSING",
+                name: "numCellsExp",
             },
             {
-                Header: "FOLD CHANGE",
-                id: "foldChange",
-                accessor: 'foldChange'
+                title: "FOLD CHANGE",
+                name: "foldChange",
             },
             {
-                Header: "P VALUE",
-                id: "pValue",
-                accessor: 'pValue'
+                title: "P VALUE",
+                name: "pValue",
             },
             {
-                Header: "ADJ P VALUE",
-                id: "adjPValue",
-                accessor: 'adjPValue'
+                title: "ADJ P VALUE",
+                name: "adjPValue",
             }
         ]
     };
+
+    getColumnExtensions() {
+
+        return [
+            { columnName: 'abbr', width: 106, align: 'left'},
+            { columnName: 'cellType', width: 546, align: 'left'},
+            { columnName: 'totalCells', width: 110, align: 'left' },
+            { columnName: 'medianExpression', width: 'auto', align: 'left' },
+            { columnName: 'numCellsExp', width: 'auto', align: 'left' },
+            { columnName: 'foldChange', width: 'auto', align: 'left' },
+            { columnName: 'pvalue', width: 'auto', align: 'left' },
+            { columnName: 'adjPValue', width: 'auto', align: 'left' },
+        ]
+    }
 
     render() {
         return (

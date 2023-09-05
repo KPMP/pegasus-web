@@ -69,64 +69,67 @@ class CellTypeSummary extends Component {
         }
     };
 
+    getColumnExtensions() {
+
+        return [
+            { columnName: 'structureRegion', width: 75, align: 'left'},
+            { columnName: 'structureSubregion', width: 125, align: 'left'},
+            { columnName: 'clusterName', width: 450, align: 'left' },
+            { columnName: 'sn', width: 'auto', align: 'left' },
+            { columnName: 'sc', width: 'auto', align: 'left' },
+            { columnName: 'rt', width: 'auto', align: 'left' },
+        ]
+    }
+
     getColumns() {
         return [
             {
-                Header: <span>STRUCTURE/<br />REGION</span>,
+                title: <span>STRUCTURE/<br />REGION</span>,
                 id: 'structureRegion',
-                accessor: 'structureRegion',
-                headerClassName: 'table-header',
-                className: 'table-column',
-                minWidth: 75,
-                Cell: ({ value }) => <span title={value}>{value}</span>
+                // headerClassName: 'table-header',
+                // className: 'table-column',
+                getCellValue: row => <span title={row.structureRegion}>{row.structureRegion}</span>
             },
             {
-                Header: <span>SUBSTRUCTURE/<br />SUBREGION</span>,
+                title: <span>SUBSTRUCTURE/<br />SUBREGION</span>,
                 id: 'structureSubregion',
-                accessor: 'structureSubregion',
-                headerClassName: 'table-header',
-                className: 'table-column',
-                minWidth: 125,
-                Cell: ({ value }) => <span title={value}>{value}</span>
+                // headerClassName: 'table-header',
+                // className: 'table-column',
+                getCellValue: row => <span title={row.structureSubregion}>{row.structureSubregion}</span>
             },
             {
-                Header: <span>CELL TYPE/<br />CLUSTER (<i>predicted state</i>)</span>,
+                title: <span>CELL TYPE/<br />CLUSTER (<i>predicted state</i>)</span>,
                 id: 'clusterName',
-                accessor: 'clusterName',
-                headerClassName: 'table-header',
-                className: 'table-column',
-                minWidth: 450,
-                Cell: ({ value }) => (
-                    this.parseClusterName(value)
+                // headerClassName: 'table-header',
+                // className: 'table-column',
+                getCellValue: row => (
+                    this.parseClusterName(row.clusterName)
                 )
             },
             {
-                Header: <span className='cell-summary-table-header-center'>SINGLE-NUCLEUS<br />RNA-seq</span>,
+                title: <span className='cell-summary-table-header-center'>SINGLE-NUCLEUS<br />RNA-seq</span>,
                 id: 'sn',
-                accessor: 'isSingleNucCluster',
-                headerClassName: 'table-header text-center',
-                className: 'table-column text-center',
-                Cell: ({ row }) => (
+                // headerClassName: 'table-header text-center',
+                // className: 'table-column text-center',
+                getCellValue: row => (
                     this.linkDataTypeCells(row, 'sn')
                 )
             },
             {
-                Header: <span className='cell-summary-table-header-center'>SINGLE-CELL<br />RNA-seq</span>,
+                title: <span className='cell-summary-table-header-center'>SINGLE-CELL<br />RNA-seq</span>,
                 id: 'sc',
-                accessor: 'isSingleCellCluster',
-                headerClassName: 'table-header text-center',
-                className: 'table-column text-center',
-                Cell: ({ row }) => (
+                // headerClassName: 'table-header text-center',
+                // className: 'table-column text-center',
+                getCellValue: row => (
                     this.linkDataTypeCells(row, 'sc')
                 )
             },
             {
-                Header: <span className='cell-summary-table-header-center'>REGIONAL<br />TRASCRIPTOMICS</span>,
+                title: <span className='cell-summary-table-header-center'>REGIONAL<br />TRASCRIPTOMICS</span>,
                 id: 'rt',
-                accessor: 'isRegionalTranscriptomics',
-                headerClassName: 'table-header text-center',
-                className: 'table-column text-center',
-                Cell: ({ row }) => (
+                // headerClassName: 'table-header text-center',
+                // className: 'table-column text-center',
+                getCellValue: row => (
                     this.linkDataTypeCells(row, 'rt')
                 )
             },
@@ -163,7 +166,7 @@ class CellTypeSummary extends Component {
                         <Row xs='12'>
                             <Col>
                                 <Grid rows={this.state.cellTypeSummary} columns={this.state.columns}>
-                                    <Table/>
+                                    <Table columnExtensions={this.getColumnExtensions()}/>
                                     <TableHeaderRow/>
                                     <TableFixedColumns/>
                                 </Grid>
