@@ -92,7 +92,7 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                title: <span className='cell-summary-table-header-center'>SINGLE-NUCLEUS<br />RNA-seq</span>,
+                title: <span className='text-center cell-summary-table-header'>SINGLE-NUCLEUS<br />RNA-seq</span>,
                 name: 'sn',
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
@@ -101,7 +101,7 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                title: <span className='cell-summary-table-header-center'>SINGLE-CELL<br />RNA-seq</span>,
+                title: <span className='text-center cell-summary-table-header'>SINGLE-CELL<br />RNA-seq</span>,
                 name: 'sc',
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
@@ -110,7 +110,7 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                title: <span className='cell-summary-table-header-center'>REGIONAL<br />TRASCRIPTOMICS</span>,
+                title: <span className='text-center cell-summary-table-header'>REGIONAL<br />TRASCRIPTOMICS</span>,
                 id: 'rt',
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
