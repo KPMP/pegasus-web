@@ -77,9 +77,9 @@ class CellTypeSummary extends Component {
             { columnName: 'structureRegion', width: 75,},
             { columnName: 'structureSubregion', width: 125},
             { columnName: 'clusterName', width: 450},
-            { columnName: 'sn', width: 'auto' },
-            { columnName: 'sc', width: 'auto'},
-            { columnName: 'rt', width: 'auto' },
+            { columnName: 'sn', width: 75 },
+            { columnName: 'sc', width: 75},
+            { columnName: 'rt', width: 75 },
         ]
     }
 
