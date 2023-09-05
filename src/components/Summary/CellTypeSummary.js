@@ -100,7 +100,7 @@ class CellTypeSummary extends Component {
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
                 getCellValue: row => (
-                    this.linkDataTypeCells(row.isSingleNucCluster, 'sn')
+                    this.linkDataTypeCells(row.isSingleNucCluster, 'sn', row)
                 )
             },
             {
@@ -109,7 +109,7 @@ class CellTypeSummary extends Component {
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
                 getCellValue: row => (
-                    this.linkDataTypeCells(row.isSingleCellCluster, 'sc')
+                    this.linkDataTypeCells(row.isSingleCellCluster, 'sc', row)
                 )
             },
             {
@@ -118,14 +118,14 @@ class CellTypeSummary extends Component {
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
                 getCellValue: row => (
-                    this.linkDataTypeCells(row.isRegionalTranscriptomics, 'rt')
+                    this.linkDataTypeCells(row.isRegionalTranscriptomics, 'rt', row)
                 )
             },
         ]
     };
 
-    linkDataTypeCells(row, dataType) {
-        if (row === 'Y') {
+    linkDataTypeCells(isOfType, dataType, row) {
+        if (isOfType === 'Y') {
             return <button onClick={() => this.handleLinkClick(dataType, row)} type='button' className='btn btn-link text-start p-0 cell-summary-table-button'>View</button>
         }
         return '';
