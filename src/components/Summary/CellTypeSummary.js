@@ -39,6 +39,7 @@ class CellTypeSummary extends Component {
                 console.log('There was a problem getting the data: ' + error)
             }
         );
+        console.log(this.state.cellTypeSummary)
     };
 
     handleLinkClick = (dataType, row) => {
@@ -152,6 +153,7 @@ class CellTypeSummary extends Component {
                 </div>
             )
         } else {
+
             return (
                 <div className='height-wrapper mb-3'>
                     <Container className='mt-3 rounded border p-3 shadow-sm'>
