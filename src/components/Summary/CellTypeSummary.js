@@ -32,10 +32,10 @@ class CellTypeSummary extends Component {
     }
 
     fetchClusterHierarchy = () => {
-        console.log("fetching cluster hierarchy")
         this.setState({ isLoading: true });
         fetchClusterHierarchy(this.props.cellType).then(
             (cellTypeSummary) => {
+                console.log(cellTypeSummary)
                 this.setState({ cellTypeSummary: cellTypeSummary, isLoading: false });
             },
             (error) => {
@@ -153,7 +153,6 @@ class CellTypeSummary extends Component {
                 </div>
             )
         } else {
-
             return (
                 <div className='height-wrapper mb-3'>
                     <Container className='mt-3 rounded border p-3 shadow-sm'>

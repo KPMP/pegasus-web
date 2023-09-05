@@ -130,6 +130,7 @@ export const fetchClusterHierarchy = async (cellType) => {
     });
 
     if (response.data && response.data.getClusterHieararchies) {
+        console.log(response.data)
         return response.data.getClusterHieararchies;
     } else {
         store.dispatch(sendMessageToBackend("Could not retrieve cluster data: " + response.error));
