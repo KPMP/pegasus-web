@@ -37,8 +37,7 @@ class CellTypeSummary extends Component {
             (cellTypeSummary) => {
                 this.setState({ cellTypeSummary: cellTypeSummary, isLoading: false });
                 console.log(cellTypeSummary) 
-            }),
-
+            },
             (error) => {
                 this.setState({ cellTypeSummary: [], isLoading: false });
                 console.log('There was a problem getting the data: ' + error)
