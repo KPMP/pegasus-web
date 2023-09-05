@@ -152,8 +152,8 @@ class CellTypeSummary extends Component {
                             <Col>
                                 <Grid rows={this.state.cellTypeSummary} columns={this.getColumns()}>
                                     <Table columnExtensions={this.getColumnExtensions()}/>
-                                    <TableHeaderRow/>
                                     <TableColumnResizing/>
+                                    <TableHeaderRow/>
                                 </Grid>
                             </Col>
                         </Row>
