@@ -34,13 +34,16 @@ class CellTypeSummary extends Component {
         console.log("fetching cluster hierarchy")
         this.setState({ isLoading: true });
         fetchClusterHierarchy(this.props.cellType).then(
-            (cellTypeSummary) => this.setState({ cellTypeSummary: cellTypeSummary, isLoading: false }),
+            (cellTypeSummary) => {
+                this.setState({ cellTypeSummary: cellTypeSummary, isLoading: false });
+                console.log(cellTypeSummary) 
+            }),
+
             (error) => {
                 this.setState({ cellTypeSummary: [], isLoading: false });
                 console.log('There was a problem getting the data: ' + error)
             }
         );
-        console.log(this.state.cellTypeSummary)
     };
 
     handleLinkClick = (dataType, row) => {
