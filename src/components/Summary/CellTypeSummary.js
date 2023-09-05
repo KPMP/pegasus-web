@@ -125,6 +125,7 @@ class CellTypeSummary extends Component {
     };
 
     linkDataTypeCells(row, dataType) {
+        console.log(row)
         if (row[dataType] === 'Y') {
             return <button onClick={() => this.handleLinkClick(dataType, row)} type='button' className='btn btn-link text-start p-0 cell-summary-table-button'>View</button>
         }
