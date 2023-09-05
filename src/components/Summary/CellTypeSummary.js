@@ -63,36 +63,36 @@ class CellTypeSummary extends Component {
     getColumnExtensions() {
 
         return [
-            { columnName: 'structureRegion', width: 75, align: 'left'},
-            { columnName: 'structureSubregion', width: 125, align: 'left'},
-            { columnName: 'clusterName', width: 450, align: 'left' },
-            { columnName: 'sn', width: 'auto', align: 'center' },
-            { columnName: 'sc', width: 'auto', align: 'center' },
-            { columnName: 'rt', width: 'auto', align: 'center' },
+            { columnName: 'structureRegion', width: 75, align: 'left', wordWrapEnabled: true },
+            { columnName: 'structureSubregion', width: 125, align: 'left', wordWrapEnabled: true },
+            { columnName: 'clusterName', width: 450, align: 'left', wordWrapEnabled: true  },
+            { columnName: 'sn', width: 'auto', align: 'center',  wordWrapEnabled: true  },
+            { columnName: 'sc', width: 'auto', align: 'center', wordWrapEnabled: true  },
+            { columnName: 'rt', width: 'auto', align: 'center',  wordWrapEnabled: true  },
         ]
     }
 
     getColumns() {
         return [
             {
-                title: <span className='cell-summary-table-header'>STRUCTURE/<br />REGION</span>,
+                title: 'STRUCTURE/ REGION',
                 name: 'structureRegion',
                 getCellValue: row => <span title={row.structureRegion}>{row.structureRegion}</span>
             },
             {
-                title: <span className='cell-summary-table-header'>SUBSTRUCTURE/<br />SUBREGION</span>,
+                title: 'SUBSTRUCTURE/ UBREGION',
                 name: 'structureSubregion',
                 getCellValue: row => <span title={row.structureSubregion}>{row.structureSubregion}</span>
             },
             {
-                title: <span className='cell-summary-table-header'>CELL TYPE/<br />CLUSTER (<i>predicted state</i>)</span>,
+                title: 'CELL TYPE/ CLUSTER (<i>predicted state</i>)',
                 name: 'clusterName',
                 getCellValue: row => (
                     this.parseClusterName(row.clusterName)
                 )
             },
             {
-                title: SINGLE-NUCLEUS<br>RNA-seq,
+                title: 'SINGLE-NUCLEUS RNA-seq',
                 name: 'sn',
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
@@ -101,7 +101,7 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                title: SINGLE-CELL<br>RNA-seq,
+                title: 'SINGLE-CELL RNA-seq',
                 name: 'sc',
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
@@ -110,7 +110,7 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                title: REGIONAL<br>TRASCRIPTOMICS,
+                title: 'REGIONAL TRASCRIPTOMICS',
                 id: 'rt',
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
