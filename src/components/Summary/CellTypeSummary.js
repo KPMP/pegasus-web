@@ -63,12 +63,23 @@ class CellTypeSummary extends Component {
     getColumnExtensions() {
 
         return [
-            { columnName: 'structureRegion', width: 75, align: 'left'},
-            { columnName: 'structureSubregion', width: 125, align: 'left'},
-            { columnName: 'clusterName', width: 450, align: 'left' },
+            { columnName: 'structureRegion', align: 'left'},
+            { columnName: 'structureSubregion', align: 'left'},
+            { columnName: 'clusterName', align: 'left' },
             { columnName: 'sn', width: 'auto', align: 'center',  wordWrapEnabled: true  },
             { columnName: 'sc', width: 'auto', align: 'center', wordWrapEnabled: true  },
             { columnName: 'rt', width: 'auto', align: 'center',  wordWrapEnabled: true  },
+        ]
+    }
+
+    getDefaultColumnWidths() {
+        return [
+            { columnName: 'structureRegion', width: 75,},
+            { columnName: 'structureSubregion', width: 125},
+            { columnName: 'clusterName', width: 450},
+            { columnName: 'sn', width: 'auto' },
+            { columnName: 'sc', width: 'auto'},
+            { columnName: 'rt', width: 'auto' },
         ]
     }
 
@@ -152,7 +163,7 @@ class CellTypeSummary extends Component {
                             <Col>
                                 <Grid rows={this.state.cellTypeSummary} columns={this.getColumns()}>
                                     <Table columnExtensions={this.getColumnExtensions()}/>
-                                    <TableColumnResizing/>
+                                    <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={145}/>
                                     <TableHeaderRow/>
                                 </Grid>
                             </Col>
