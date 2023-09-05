@@ -76,19 +76,19 @@ class CellTypeSummary extends Component {
         return [
             {
                 title: <span className='table-header'>STRUCTURE/<br />REGION</span>,
-                id: 'structureRegion',
+                name: 'structureRegion',
                 // className: 'table-column',
                 getCellValue: row => <span title={row.structureRegion}>{row.structureRegion}</span>
             },
             {
                 title: <span className='table-header'>SUBSTRUCTURE/<br />SUBREGION</span>,
-                id: 'structureSubregion',
+                name: 'structureSubregion',
                 // className: 'table-column',
                 getCellValue: row => <span title={row.structureSubregion}>{row.structureSubregion}</span>
             },
             {
                 title: <span className='table-header'>CELL TYPE/<br />CLUSTER (<i>predicted state</i>)</span>,
-                id: 'clusterName',
+                name: 'clusterName',
                 // className: 'table-column',
                 getCellValue: row => (
                     this.parseClusterName(row.clusterName)
@@ -96,7 +96,7 @@ class CellTypeSummary extends Component {
             },
             {
                 title: <span className='cell-summary-table-header-center'>SINGLE-NUCLEUS<br />RNA-seq</span>,
-                id: 'sn',
+                name: 'sn',
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
                 getCellValue: row => (
@@ -105,7 +105,7 @@ class CellTypeSummary extends Component {
             },
             {
                 title: <span className='cell-summary-table-header-center'>SINGLE-CELL<br />RNA-seq</span>,
-                id: 'sc',
+                name: 'sc',
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
                 getCellValue: row => (
@@ -114,7 +114,7 @@ class CellTypeSummary extends Component {
             },
             {
                 title: <span className='cell-summary-table-header-center'>REGIONAL<br />TRASCRIPTOMICS</span>,
-                id: 'rt',
+                name: 'rt',
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
                 getCellValue: row => (
