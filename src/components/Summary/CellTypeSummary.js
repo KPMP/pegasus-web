@@ -20,19 +20,19 @@ class CellTypeSummary extends Component {
         };
     };
 
-    componentDidMount() {
-        this.fetchClusterHierarchy();
+   async componentDidMount() {
+        await this.fetchClusterHierarchy();
     }
 
-    componentDidUpdate(prevProps, prevState, snapShot) {
+    async componentDidUpdate(prevProps, prevState, snapShot) {
         if (this.props.cellType !== prevProps.cellType) {
-            this.fetchClusterHierarchy();
+            await this.fetchClusterHierarchy();
         }
     }
 
-    fetchClusterHierarchy = () => {
+    fetchClusterHierarchy = async () => {
         this.setState({ isLoading: true });
-        fetchClusterHierarchy(this.props.cellType).then(
+        await fetchClusterHierarchy(this.props.cellType).then(
             (cellTypeSummary) => {
                 console.log("got cell type summary")
                 this.setState({ cellTypeSummary: cellTypeSummary, isLoading: false });
@@ -85,23 +85,20 @@ class CellTypeSummary extends Component {
     getColumns() {
         return [
             {
-                title: <span>STRUCTURE/<br />REGION</span>,
+                title: <span className='table-header'>STRUCTURE/<br />REGION</span>,
                 id: 'structureRegion',
-                // headerClassName: 'table-header',
                 // className: 'table-column',
                 getCellValue: row => <span title={row.structureRegion}>{row.structureRegion}</span>
             },
             {
-                title: <span>SUBSTRUCTURE/<br />SUBREGION</span>,
+                title: <span className='table-header'>SUBSTRUCTURE/<br />SUBREGION</span>,
                 id: 'structureSubregion',
-                // headerClassName: 'table-header',
                 // className: 'table-column',
                 getCellValue: row => <span title={row.structureSubregion}>{row.structureSubregion}</span>
             },
             {
-                title: <span>CELL TYPE/<br />CLUSTER (<i>predicted state</i>)</span>,
+                title: <span className='table-header'>CELL TYPE/<br />CLUSTER (<i>predicted state</i>)</span>,
                 id: 'clusterName',
-                // headerClassName: 'table-header',
                 // className: 'table-column',
                 getCellValue: row => (
                     this.parseClusterName(row.clusterName)
