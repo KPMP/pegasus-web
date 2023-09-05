@@ -63,9 +63,9 @@ class CellTypeSummary extends Component {
     getColumnExtensions() {
 
         return [
-            { columnName: 'structureRegion', width: 75, align: 'left', wordWrapEnabled: true },
-            { columnName: 'structureSubregion', width: 125, align: 'left', wordWrapEnabled: true },
-            { columnName: 'clusterName', width: 450, align: 'left', wordWrapEnabled: true  },
+            { columnName: 'structureRegion', width: 75, align: 'left'},
+            { columnName: 'structureSubregion', width: 125, align: 'left'},
+            { columnName: 'clusterName', width: 450, align: 'left' },
             { columnName: 'sn', width: 'auto', align: 'center',  wordWrapEnabled: true  },
             { columnName: 'sc', width: 'auto', align: 'center', wordWrapEnabled: true  },
             { columnName: 'rt', width: 'auto', align: 'center',  wordWrapEnabled: true  },
@@ -75,17 +75,17 @@ class CellTypeSummary extends Component {
     getColumns() {
         return [
             {
-                title: 'STRUCTURE/ REGION',
+                title: <span className='cell-summary-table-header'>STRUCTURE/<br />REGION</span>,
                 name: 'structureRegion',
                 getCellValue: row => <span title={row.structureRegion}>{row.structureRegion}</span>
             },
             {
-                title: 'SUBSTRUCTURE/ UBREGION',
+                title: <span className='cell-summary-table-header'>SUBSTRUCTURE/<br />SUBREGION</span>,
                 name: 'structureSubregion',
                 getCellValue: row => <span title={row.structureSubregion}>{row.structureSubregion}</span>
             },
             {
-                title: 'CELL TYPE/ CLUSTER (<i>predicted state</i>)',
+                title: <span className='cell-summary-table-header'>CELL TYPE/<br />CLUSTER (<i>predicted state</i>)</span>,
                 name: 'clusterName',
                 getCellValue: row => (
                     this.parseClusterName(row.clusterName)
