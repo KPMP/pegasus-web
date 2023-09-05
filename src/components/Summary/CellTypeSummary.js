@@ -31,6 +31,7 @@ class CellTypeSummary extends Component {
     }
 
     fetchClusterHierarchy = () => {
+        console.log("fetching cluster hierarchy")
         this.setState({ isLoading: true });
         fetchClusterHierarchy(this.props.cellType).then(
             (cellTypeSummary) => this.setState({ cellTypeSummary: cellTypeSummary, isLoading: false }),
@@ -53,10 +54,6 @@ class CellTypeSummary extends Component {
         }
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and cluster: ${cluster}`);
         this.props.setDataTypeAndCluster(dataType, cluster);
-    };
-
-    getTheadThProps = (state, rowInfo, column, instance) => {
-        return { id: column.id };
     };
 
     parseClusterName = (value) => {
