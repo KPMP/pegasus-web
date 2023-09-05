@@ -196,7 +196,7 @@ tr.MuiTableRow-root:nth-child(even) {
 .gene-summary-header,
 .cell-summary-table-header-center {
   text-align: left;
-  font-size: 16px;
+  font-size: 11px;
   font-weight: 400;
   font-style: normal;
 }
@@ -338,10 +338,6 @@ tr.MuiTableRow-root:nth-child(even) {
 .icon-container {
   font-size: 25px;
 }
-.table-header {
-  font-size: 11px;
-}
-
 
 .alert-warning {
   z-index: 99;
@@ -926,6 +922,7 @@ tr.MuiTableRow-root:nth-child(even) {
 .table-header {
   font-size: 15px;
 }
+
 .tooltip {
   font-size: 16px;
 }

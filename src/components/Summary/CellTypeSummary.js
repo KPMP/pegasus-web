@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
+import { Grid, TableColumnResizing, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchClusterHierarchy } from '../../helpers/ApolloClient';
 import { Spinner } from "reactstrap";
@@ -66,9 +66,9 @@ class CellTypeSummary extends Component {
             { columnName: 'structureRegion', width: 75, align: 'left'},
             { columnName: 'structureSubregion', width: 125, align: 'left'},
             { columnName: 'clusterName', width: 450, align: 'left' },
-            { columnName: 'sn', width: 'auto', align: 'left' },
-            { columnName: 'sc', width: 'auto', align: 'left' },
-            { columnName: 'rt', width: 'auto', align: 'left' },
+            { columnName: 'sn', width: 'auto', align: 'center' },
+            { columnName: 'sc', width: 'auto', align: 'center' },
+            { columnName: 'rt', width: 'auto', align: 'center' },
         ]
     }
 
@@ -77,19 +77,16 @@ class CellTypeSummary extends Component {
             {
                 title: <span className='table-header'>STRUCTURE/<br />REGION</span>,
                 name: 'structureRegion',
-                // className: 'table-column',
                 getCellValue: row => <span title={row.structureRegion}>{row.structureRegion}</span>
             },
             {
                 title: <span className='table-header'>SUBSTRUCTURE/<br />SUBREGION</span>,
                 name: 'structureSubregion',
-                // className: 'table-column',
                 getCellValue: row => <span title={row.structureSubregion}>{row.structureSubregion}</span>
             },
             {
                 title: <span className='table-header'>CELL TYPE/<br />CLUSTER (<i>predicted state</i>)</span>,
                 name: 'clusterName',
-                // className: 'table-column',
                 getCellValue: row => (
                     this.parseClusterName(row.clusterName)
                 )
@@ -156,7 +153,7 @@ class CellTypeSummary extends Component {
                                 <Grid rows={this.state.cellTypeSummary} columns={this.getColumns()}>
                                     <Table columnExtensions={this.getColumnExtensions()}/>
                                     <TableHeaderRow/>
-                                    <TableFixedColumns/>
+                                    <TableColumnResizing defaultColumnWidths={this.getColumnExtensions()}/>
                                 </Grid>
                             </Col>
                         </Row>
