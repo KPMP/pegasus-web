@@ -192,19 +192,18 @@ tr.MuiTableRow-root:nth-child(even) {
   text-align: left;
 }
 
-.gene-summary-table,
-.gene-summary-header,
-.cell-summary-table-header {
+.gene-summary-table {
   text-align: left;
   font-size: 11px;
   font-weight: 400;
   font-style: normal;
 }
 
-.cell-summary-table-header-center {
-  text-align: center;
+.gene-summary-header,
+.cell-summary-table-header {
+  text-align: left;
   font-size: 11px;
-  font-weight: 400;
+  font-weight: 500;
   font-style: normal;
 }
 
