@@ -100,7 +100,7 @@ class CellTypeSummary extends Component {
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
                 getCellValue: row => (
-                    this.linkDataTypeCells(row.sn, 'sn')
+                    this.linkDataTypeCells(row, 'sn')
                 )
             },
             {
@@ -109,16 +109,16 @@ class CellTypeSummary extends Component {
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
                 getCellValue: row => (
-                    this.linkDataTypeCells(row.sc, 'sc')
+                    this.linkDataTypeCells(row, 'sc')
                 )
             },
             {
                 title: <span className='cell-summary-table-header-center'>REGIONAL<br />TRASCRIPTOMICS</span>,
-                name: 'rt',
+                id: 'rt',
                 // headerClassName: 'table-header text-center',
                 // className: 'table-column text-center',
                 getCellValue: row => (
-                    this.linkDataTypeCells(row.rt, 'rt')
+                    this.linkDataTypeCells(row, 'rt')
                 )
             },
         ]
