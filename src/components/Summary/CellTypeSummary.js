@@ -15,7 +15,6 @@ class CellTypeSummary extends Component {
         this.getColumns = this.getColumns.bind(this);
 
         this.state = {
-            columns: this.getColumns(),
             cellTypeSummary: [],
             isLoading: true
         };
@@ -35,15 +34,16 @@ class CellTypeSummary extends Component {
         this.setState({ isLoading: true });
         fetchClusterHierarchy(this.props.cellType).then(
             (cellTypeSummary) => {
-                console.log(cellTypeSummary)
+                console.log("got cell type summary")
                 this.setState({ cellTypeSummary: cellTypeSummary, isLoading: false });
+                console.log(this.state)
             },
             (error) => {
+                console.log("in error")
                 this.setState({ cellTypeSummary: [], isLoading: false });
                 console.log('There was a problem getting the data: ' + error)
             }
         );
-        console.log(this.state.cellTypeSummary)
     };
 
     handleLinkClick = (dataType, row) => {
@@ -166,7 +166,7 @@ class CellTypeSummary extends Component {
                         </Row>
                         <Row xs='12'>
                             <Col>
-                                <Grid rows={this.state.cellTypeSummary} columns={this.state.columns}>
+                                <Grid rows={this.state.cellTypeSummary} columns={this.getColumns()}>
                                     <Table columnExtensions={this.getColumnExtensions()}/>
                                     <TableHeaderRow/>
                                     <TableFixedColumns/>
