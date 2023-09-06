@@ -210,7 +210,7 @@ class ExpressionXCellType extends Component {
                                     <SummaryState totalItems={totalSummaryItems}/>
                                     <IntegratedSummary />
                                     <Table columnExtensions={this.getColumnExtensions()}/>
-                                    <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={100}/>
+                                    <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={125}/>
                                     <TableHeaderRow/>
                                     <TableBandHeader columnBands={this.getColumnBands()} cellComponent={BandCell}/>
                                     <TableSummaryRow />
