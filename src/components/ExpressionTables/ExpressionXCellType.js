@@ -205,15 +205,17 @@ class ExpressionXCellType extends Component {
                     </Row>
                     <Row xs='12' id='expression-by-cell-type'>
                         <Col xs='12' className='d-flex justify-content-start'>
-                            <Grid rows={this.props.data} columns={this.getColumns()}>
-                                <SummaryState totalItems={totalSummaryItems}/>
-                                <IntegratedSummary />
-                                <Table columnExtensions={this.getColumnExtensions()}/>
-                                <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={88}/>
-                                <TableHeaderRow/>
-                                <TableBandHeader columnBands={this.getColumnBands()} cellComponent={BandCell}/>
-                                <TableSummaryRow />
-                            </Grid>
+                            <React.Fragment>
+                                <Grid rows={this.props.data} columns={this.getColumns()}>
+                                    <SummaryState totalItems={totalSummaryItems}/>
+                                    <IntegratedSummary />
+                                    <Table columnExtensions={this.getColumnExtensions()}/>
+                                    <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={88}/>
+                                    <TableHeaderRow/>
+                                    <TableBandHeader columnBands={this.getColumnBands()} cellComponent={BandCell}/>
+                                    <TableSummaryRow />
+                                </Grid>
+                            </React.Fragment>
                         </Col>
                     </Row>
                     <Row xs='12'>
