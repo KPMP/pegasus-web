@@ -3,7 +3,7 @@ import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
 import { fetchSummaryData, fetchGeneDatasetSummary} from '../../helpers/ApolloClient';
-import { Grid, TableHeaderRow, Table, TableFixedColumns} from '@devexpress/dx-react-grid-bootstrap4';
+import { Grid, TableHeaderRow, Table, TableColumnResizing} from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
 
