@@ -153,7 +153,8 @@ class ExpressionXCellType extends Component {
     render() {
         const BandCell = ({ children, tableRow, tableColumn, column, ...restProps }) => {
             return (
-                <TableBandHeader.Cell {...restProps} column={column} className="cluster_v_others_container-offset-fix">
+                <TableBandHeader.Cell {...restProps} column={column} 
+                    className="cluster_v_others_container-offset-fix d-flex justify-content-center cluster_v_others cluster_v_others_container">
                     {children}
                 </TableBandHeader.Cell>
             )
