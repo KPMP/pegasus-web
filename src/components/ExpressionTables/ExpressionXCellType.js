@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, TableFixedColumns, TableHeaderRow, 
-    Table, TableSummaryRow, TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
+    Table, TableSummaryRow} from '@devexpress/dx-react-grid-bootstrap4';
 import { Col, Row, UncontrolledTooltip, Spinner } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
