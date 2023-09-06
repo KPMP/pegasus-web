@@ -125,14 +125,27 @@ class ExpressionXCellType extends Component {
     getColumnExtensions() {
 
         return [
-            { columnName: 'cluster', width: 106, align: 'left'},
-            { columnName: 'clusterName', width: 546, align: 'left'},
-            { columnName: 'cellCount', width: 110, align: 'left' },
-            { columnName: 'avgExp', width: 'auto', align: 'left' },
-            { columnName: 'pct1', width: 'auto', align: 'left' },
-            { columnName: 'foldChange', width: 'auto', align: 'left' },
-            { columnName: 'pVal', width: 'auto', align: 'left' },
-            { columnName: 'pValAdj', width: 'auto', align: 'left' },
+            { columnName: 'cluster', align: 'left'},
+            { columnName: 'clusterName', align: 'left'},
+            { columnName: 'cellCount', align: 'left' },
+            { columnName: 'avgExp', align: 'left' },
+            { columnName: 'pct1', align: 'left' },
+            { columnName: 'foldChange', align: 'left' },
+            { columnName: 'pVal', align: 'left' },
+            { columnName: 'pValAdj', align: 'left' },
+        ]
+    }
+
+    getDefaultColumnWidths () {
+        return [
+            { columnName: 'cluster', width: 106},
+            { columnName: 'clusterName', width: 546},
+            { columnName: 'cellCount', width: 110 },
+            { columnName: 'avgExp', width: 'auto' },
+            { columnName: 'pct1', width: 'auto' },
+            { columnName: 'foldChange', width: 'auto' },
+            { columnName: 'pVal', width: 'auto' },
+            { columnName: 'pValAdj', width: 'auto' },
         ]
     }
 
@@ -154,7 +167,7 @@ class ExpressionXCellType extends Component {
         const BandCell = ({ children, tableRow, tableColumn, column, ...restProps }) => {
             return (
                 <TableBandHeader.Cell {...restProps} column={column} 
-                    className="cluster_v_others_container-offset-fix d-flex justify-content-center cluster_v_others cluster_v_others_container">
+                    className="text-center cluster_v_others cluster_v_others_container">
                     {children}
                 </TableBandHeader.Cell>
             )
@@ -190,21 +203,16 @@ class ExpressionXCellType extends Component {
                             </CSVLink>
                         </Col>
                     </Row>
-                    {/* <Row xs='12' className="cluster_v_others_container-offset-fix">
-                        <Col xs={{ size: 4, offset: 8 }} className='d-flex justify-content-center cluster_v_others_container'>
-                            <span id="cluster_v_others">CLUSTER VS ALL OTHERS
-                            </span></Col>
-                    </Row> */}
                     <Row xs='12' id='expression-by-cell-type'>
                         <Col xs='12' className='d-flex justify-content-start'>
                             <Grid rows={this.props.data} columns={this.getColumns()}>
                                 <SummaryState totalItems={totalSummaryItems}/>
                                 <IntegratedSummary />
                                 <Table columnExtensions={this.getColumnExtensions()}/>
+                                <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={145}/>
                                 <TableHeaderRow/>
                                 <TableBandHeader columnBands={this.getColumnBands()} cellComponent={BandCell}/>
                                 <TableSummaryRow />
-                                <TableFixedColumns/>
                             </Grid>
                         </Col>
                     </Row>

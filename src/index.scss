@@ -260,8 +260,7 @@ tr.MuiTableRow-root:nth-child(even) {
   line-height: 450px;
 }
 
-.gene-summary-header-container,
-.cluster_v_others_container-offset-fix {
+.gene-summary-header-container {
   margin-right: 0px;
 }
 
@@ -271,7 +270,7 @@ tr.MuiTableRow-root:nth-child(even) {
 
 .cluster_v_others_container {
   padding: 5px;
-  background-color: #cee5ff;
+  background-color: #cee5ff !important;
 }
 
 #cluster_v_others {
