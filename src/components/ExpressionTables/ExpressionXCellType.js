@@ -141,11 +141,11 @@ class ExpressionXCellType extends Component {
             { columnName: 'cluster', width: 106},
             { columnName: 'clusterName', width: 546},
             { columnName: 'cellCount', width: 110 },
-            { columnName: 'avgExp', width: 'auto' },
-            { columnName: 'pct1', width: 'auto' },
-            { columnName: 'foldChange', width: 'auto' },
-            { columnName: 'pVal', width: 'auto' },
-            { columnName: 'pValAdj', width: 'auto' },
+            { columnName: 'avgExp', width: 106 },
+            { columnName: 'pct1', width: 106 },
+            { columnName: 'foldChange', width: 88 },
+            { columnName: 'pVal', width: 106 },
+            { columnName: 'pValAdj', width: 100 },
         ]
     }
 
