@@ -122,11 +122,21 @@ class SamplesByDataTypeTable extends Component {
     getColumnExtensions() {
 
         return [
-            { columnName: 'dataType', width: 320, align: 'left'},
-            { columnName: 'hrtCount', width: 208, align: 'center'},
-            { columnName: 'ckdCount', width: 89, align: 'center' },
-            { columnName: 'akiCount', width: 89, align: 'center' },
-            { columnName: 'dmrCount', width: 'auto', align: 'center' },
+            { columnName: 'dataType', align: 'left'},
+            { columnName: 'hrtCount', align: 'center'},
+            { columnName: 'ckdCount', align: 'center' },
+            { columnName: 'akiCount', align: 'center' },
+            { columnName: 'dmrCount', align: 'center' },
+        ]
+    }
+
+    getDefaultColumnWidths() {
+        return [
+            { columnName: 'dataType', width: 320 },
+            { columnName: 'hrtCount', width: 208 },
+            { columnName: 'ckdCount', width: 89 },
+            { columnName: 'akiCount', width: 89 },
+            { columnName: 'dmrCount', width: 89 },
         ]
     }
 
@@ -139,8 +149,8 @@ class SamplesByDataTypeTable extends Component {
                         <React.Fragment>
                             <Grid rows={this.state.summary} columns={this.state.columns}>
                                 <Table columnExtensions={this.getColumnExtensions()}/>
+                                <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={88}/>
                                 <TableHeaderRow/>
-                                <TableFixedColumns />
                             </Grid>
                         </React.Fragment>
                     </Col>

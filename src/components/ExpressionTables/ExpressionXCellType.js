@@ -139,7 +139,7 @@ class ExpressionXCellType extends Component {
     getDefaultColumnWidths () {
         return [
             { columnName: 'cluster', width: 106},
-            { columnName: 'clusterName', width: 546},
+            { columnName: 'clusterName', width: 486},
             { columnName: 'cellCount', width: 110 },
             { columnName: 'avgExp', width: 106 },
             { columnName: 'pct1', width: 106 },
@@ -209,7 +209,7 @@ class ExpressionXCellType extends Component {
                                 <SummaryState totalItems={totalSummaryItems}/>
                                 <IntegratedSummary />
                                 <Table columnExtensions={this.getColumnExtensions()}/>
-                                <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={145}/>
+                                <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={88}/>
                                 <TableHeaderRow/>
                                 <TableBandHeader columnBands={this.getColumnBands()} cellComponent={BandCell}/>
                                 <TableSummaryRow />
