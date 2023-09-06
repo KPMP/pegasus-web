@@ -139,9 +139,9 @@ class ExpressionXCellType extends Component {
     getDefaultColumnWidths () {
         return [
             { columnName: 'cluster', width: 106},
-            { columnName: 'clusterName', width: 486},
+            { columnName: 'clusterName', width: 500},
             { columnName: 'cellCount', width: 110 },
-            { columnName: 'avgExp', width: 106 },
+            { columnName: 'avgExp', width: 118 },
             { columnName: 'pct1', width: 106 },
             { columnName: 'foldChange', width: 88 },
             { columnName: 'pVal', width: 106 },
