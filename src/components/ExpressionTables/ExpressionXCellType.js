@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, TableFixedColumns, TableHeaderRow, 
-    Table, TableSummaryRow} from '@devexpress/dx-react-grid-bootstrap4';
+    Table, TableSummaryRow, TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
 import { Col, Row, UncontrolledTooltip, Spinner } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
@@ -13,7 +13,6 @@ import { stripHtml } from "string-strip-html";
 import {
     SummaryState,
     IntegratedSummary,
-    TableBandHeader
   } from '@devexpress/dx-react-grid';
 
 
@@ -192,13 +191,13 @@ class ExpressionXCellType extends Component {
                     <Row xs='12' id='expression-by-cell-type'>
                         <Col xs='12' className='d-flex justify-content-start'>
                             <Grid rows={this.props.data} columns={this.getColumns()}>
-                                {/* <SummaryState totalItems={totalSummaryItems}/> */}
-                                {/* <IntegratedSummary /> */}
+                                <SummaryState totalItems={totalSummaryItems}/>
+                                <IntegratedSummary />
                                 <Table columnExtensions={this.getColumnExtensions()}/>
                                 <TableHeaderRow/>
                                 <TableBandHeader columnBands={this.getColumnBands()}/>
-                                {/* <TableSummaryRow /> */}
-                                {/* <TableFixedColumns/> */}
+                                <TableSummaryRow />
+                                <TableFixedColumns/>
                             </Grid>
                         </Col>
                     </Row>
