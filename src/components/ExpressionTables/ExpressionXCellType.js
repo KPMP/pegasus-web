@@ -138,7 +138,7 @@ class ExpressionXCellType extends Component {
     }
 
     getColumnBands() {
-        return [
+        return 
             { 
                 title: "CLUSTER VS ALL OTHERS",
                 children: [
@@ -147,7 +147,7 @@ class ExpressionXCellType extends Component {
                     { columnName: 'pValAdj',}
                 ]
             }
-        ];
+        ;
     }
 
 
