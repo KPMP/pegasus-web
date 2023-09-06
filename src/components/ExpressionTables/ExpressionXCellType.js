@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Grid, TableFixedColumns, TableHeaderRow, Table, TableSummaryRow} from '@devexpress/dx-react-grid-bootstrap4';
+import { Grid, TableFixedColumns, TableHeaderRow, 
+    Table, TableSummaryRow, TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
 import { Col, Row, UncontrolledTooltip, Spinner } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
@@ -11,7 +12,8 @@ import Parser from 'html-react-parser';
 import { stripHtml } from "string-strip-html";
 import {
     SummaryState,
-    IntegratedSummary
+    IntegratedSummary,
+    TableBandHeader
   } from '@devexpress/dx-react-grid';
 
 
@@ -135,6 +137,20 @@ class ExpressionXCellType extends Component {
         ]
     }
 
+    getColumnBands() {
+        return [
+            { 
+                title: "CLUSTER VS ALL OTHERS",
+                children: [
+                    { columnName: 'foldChange'},
+                    { columnName: 'pVal' },
+                    { columnName: 'pValAdj',}
+                ]
+            }
+        ];
+    }
+
+
     render() {
 
         if (this.props.isLoading) {
@@ -168,11 +184,11 @@ class ExpressionXCellType extends Component {
                             </CSVLink>
                         </Col>
                     </Row>
-                    <Row xs='12' className="cluster_v_others_container-offset-fix">
+                    {/* <Row xs='12' className="cluster_v_others_container-offset-fix">
                         <Col xs={{ size: 4, offset: 8 }} className='d-flex justify-content-center cluster_v_others_container'>
                             <span id="cluster_v_others">CLUSTER VS ALL OTHERS
                             </span></Col>
-                    </Row>
+                    </Row> */}
                     <Row xs='12' id='expression-by-cell-type'>
                         <Col xs='12' className='d-flex justify-content-start'>
                             <Grid rows={this.props.data} columns={this.getColumns()}>
@@ -180,6 +196,7 @@ class ExpressionXCellType extends Component {
                                 <IntegratedSummary />
                                 <Table columnExtensions={this.getColumnExtensions()}/>
                                 <TableHeaderRow/>
+                                <TableBandHeader columnBands={this.getColumnBands()}/>
                                 <TableSummaryRow />
                                 <TableFixedColumns/>
                             </Grid>
