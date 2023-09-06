@@ -212,14 +212,11 @@ class GeneSummary extends Component {
                             <Spinner color='primary' />
                         </div>
                         : <div>
-                            <Row xs='12' className="gene-summary-header-container">
-                                <Col xs={{ size: 5, offset: 7 }} className='d-flex justify-content-center gene-summary-header color-light-blue'><span>PARTICIPANTS PER DATA TYPE</span></Col>
-                            </Row>
                             <Row xs='12' id="gene-summary-table">
                                 <Col>
                                     <Grid rows={this.state.geneSummary} columns={this.state.columns}>
                                         <Table columnExtensions={this.getColumnExtensions()}/>
-                                        <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={134}/>
+                                        <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={88}/>
                                         <TableHeaderRow/>
                                         <TableBandHeader columnBands={this.getColumnBands()} cellComponent={BandCell}/>
                                     </Grid>
