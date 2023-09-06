@@ -204,7 +204,7 @@ class ExpressionXCellType extends Component {
                         </Col>
                     </Row>
                     <Row xs='12' id='expression-by-cell-type'>
-                        <Col xs='12' className='d-flex justify-content-start'>
+                        <Col xs='12'>
                             <React.Fragment>
                                 <Grid rows={this.props.data} columns={this.getColumns()}>
                                     <SummaryState totalItems={totalSummaryItems}/>
