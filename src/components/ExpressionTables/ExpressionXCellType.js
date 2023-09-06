@@ -151,7 +151,13 @@ class ExpressionXCellType extends Component {
 
 
     render() {
-
+        const BandCell = ({ children, tableRow, tableColumn, column, ...restProps }) => {
+            return (
+                <TableBandHeader.Cell {...restProps} column={column} className="cluster_v_others_container-offset-fix">
+                    {children}
+                </TableBandHeader.Cell>
+            )
+        }
         if (this.props.isLoading) {
             return (
                 <div className='viz-spinner text-center'>
@@ -195,7 +201,7 @@ class ExpressionXCellType extends Component {
                                 <IntegratedSummary />
                                 <Table columnExtensions={this.getColumnExtensions()}/>
                                 <TableHeaderRow/>
-                                <TableBandHeader columnBands={this.getColumnBands()}/>
+                                <TableBandHeader columnBands={this.getColumnBands()} cellComponent={BandCell}/>
                                 <TableSummaryRow />
                                 <TableFixedColumns/>
                             </Grid>
