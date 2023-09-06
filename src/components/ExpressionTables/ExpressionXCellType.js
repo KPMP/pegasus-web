@@ -138,7 +138,7 @@ class ExpressionXCellType extends Component {
     }
 
     getColumnBands() {
-        return 
+        return [
             { 
                 title: "CLUSTER VS ALL OTHERS",
                 children: [
@@ -147,7 +147,7 @@ class ExpressionXCellType extends Component {
                     { columnName: 'pValAdj',}
                 ]
             }
-        ;
+        ];
     }
 
 
@@ -192,13 +192,13 @@ class ExpressionXCellType extends Component {
                     <Row xs='12' id='expression-by-cell-type'>
                         <Col xs='12' className='d-flex justify-content-start'>
                             <Grid rows={this.props.data} columns={this.getColumns()}>
-                                <SummaryState totalItems={totalSummaryItems}/>
-                                <IntegratedSummary />
+                                {/* <SummaryState totalItems={totalSummaryItems}/> */}
+                                {/* <IntegratedSummary /> */}
                                 <Table columnExtensions={this.getColumnExtensions()}/>
                                 <TableHeaderRow/>
                                 <TableBandHeader columnBands={this.getColumnBands()}/>
-                                <TableSummaryRow />
-                                <TableFixedColumns/>
+                                {/* <TableSummaryRow /> */}
+                                {/* <TableFixedColumns/> */}
                             </Grid>
                         </Col>
                     </Row>
