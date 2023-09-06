@@ -143,7 +143,7 @@ class ExpressionXCellType extends Component {
             { columnName: 'cellCount', width: 110 },
             { columnName: 'avgExp', width: 125 },
             { columnName: 'pct1', width: 106 },
-            { columnName: 'foldChange', width: 88 },
+            { columnName: 'foldChange', width: 100 },
             { columnName: 'pVal', width: 106 },
             { columnName: 'pValAdj', width: 100 },
         ]
@@ -210,7 +210,7 @@ class ExpressionXCellType extends Component {
                                     <SummaryState totalItems={totalSummaryItems}/>
                                     <IntegratedSummary />
                                     <Table columnExtensions={this.getColumnExtensions()}/>
-                                    <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={88}/>
+                                    <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={100}/>
                                     <TableHeaderRow/>
                                     <TableBandHeader columnBands={this.getColumnBands()} cellComponent={BandCell}/>
                                     <TableSummaryRow />
