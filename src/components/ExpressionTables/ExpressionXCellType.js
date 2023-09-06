@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, TableFixedColumns, TableHeaderRow, 
+import { Grid, TableColumnResizing, TableHeaderRow, 
     Table, TableSummaryRow, TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
 import { Col, Row, UncontrolledTooltip, Spinner } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
