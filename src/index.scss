@@ -795,14 +795,6 @@ tr.MuiTableRow-root:nth-child(even) {
 
 #expression-by-cell-type {
   .table {
-    thead th {
-      font-weight: 500;
-      font-size: 15px;
-      white-space: "pre-wrap";
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
-        sans-serif;
-    }
     tbody td {
       font-size: 14px;
       padding: 3px 5px !important;
