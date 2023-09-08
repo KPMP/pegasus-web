@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Spinner } from 'reactstrap';
-import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
+import { Grid, TableColumnResizing, TableHeaderRow, Table, TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchGeneDatasetSummary } from '../../helpers/ApolloClient';
 import { getDataTypeOptions } from "../../helpers/Utils";
@@ -86,12 +86,23 @@ class GeneSummary extends Component {
     getColumnExtensions() {
 
         return [
-            { columnName: 'omicsType', width: 268, align: 'left'},
-            { columnName: 'dataType', width: 401, align: 'left'},
-            { columnName: 'hrtCount', width: 214, align: 'center' },
-            { columnName: 'ckdCount', width: 134, align: 'center' },
-            { columnName: 'akiCount', width: 134, align: 'center' },
-            { columnName: 'dmrCount', width: 134, align: 'center' },
+            { columnName: 'omicsType', align: 'left'},
+            { columnName: 'dataType', align: 'left'},
+            { columnName: 'hrtCount', align: 'center' },
+            { columnName: 'ckdCount', align: 'center' },
+            { columnName: 'akiCount', align: 'center' },
+            { columnName: 'dmrCount', align: 'center' },
+        ]
+    }
+
+    getDefaultColumnWidths() {
+        return [
+            { columnName: 'omicsType', width: 268},
+            { columnName: 'dataType', width: 401},
+            { columnName: 'hrtCount', width: 214 },
+            { columnName: 'ckdCount', width: 134 },
+            { columnName: 'akiCount', width: 134 },
+            { columnName: 'dmrCount', width: 134 },
         ]
     }
 
@@ -160,7 +171,30 @@ class GeneSummary extends Component {
         return row.dataType;
     }
 
+    getColumnBands() {
+        return [
+            { 
+                title: "PARTICIPANTS PER DATA TYPE",
+                children: [
+                    { columnName: 'hrtCount'},
+                    { columnName: 'akiCount' },
+                    { columnName: 'ckdCount'},
+                    { columnName: 'dmrCount'},
+                ]
+            }
+        ];
+    }
+
     render() {
+        const BandCell = ({ children, tableRow, tableColumn, column, ...restProps }) => {
+            return (
+                <TableBandHeader.Cell {...restProps} column={column} 
+                    className="text-center gene-summary-header color-light-blue">
+                    {children}
+                </TableBandHeader.Cell>
+            )
+        }
+
         let { name, symbol } = this.props.gene;
         return (
             <div className='height-wrapper mb-3'>
@@ -178,15 +212,13 @@ class GeneSummary extends Component {
                             <Spinner color='primary' />
                         </div>
                         : <div>
-                            <Row xs='12' className="gene-summary-header-container">
-                                <Col xs={{ size: 5, offset: 7 }} className='d-flex justify-content-center gene-summary-header color-light-blue'><span>PARTICIPANTS PER DATA TYPE</span></Col>
-                            </Row>
                             <Row xs='12' id="gene-summary-table">
                                 <Col>
                                     <Grid rows={this.state.geneSummary} columns={this.state.columns}>
                                         <Table columnExtensions={this.getColumnExtensions()}/>
+                                        <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={88}/>
                                         <TableHeaderRow/>
-                                        <TableFixedColumns/>
+                                        <TableBandHeader columnBands={this.getColumnBands()} cellComponent={BandCell}/>
                                     </Grid>
                                 </Col>
                             </Row>

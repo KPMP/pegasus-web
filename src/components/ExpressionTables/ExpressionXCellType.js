@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Grid, TableFixedColumns, TableHeaderRow, Table, TableSummaryRow} from '@devexpress/dx-react-grid-bootstrap4';
+import { Grid, TableColumnResizing, TableHeaderRow, 
+    Table, TableSummaryRow, TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
 import { Col, Row, UncontrolledTooltip, Spinner } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
@@ -11,7 +12,7 @@ import Parser from 'html-react-parser';
 import { stripHtml } from "string-strip-html";
 import {
     SummaryState,
-    IntegratedSummary
+    IntegratedSummary,
   } from '@devexpress/dx-react-grid';
 
 
@@ -124,19 +125,53 @@ class ExpressionXCellType extends Component {
     getColumnExtensions() {
 
         return [
-            { columnName: 'cluster', width: 106, align: 'left'},
-            { columnName: 'clusterName', width: 546, align: 'left'},
-            { columnName: 'cellCount', width: 110, align: 'left' },
-            { columnName: 'avgExp', width: 'auto', align: 'left' },
-            { columnName: 'pct1', width: 'auto', align: 'left' },
-            { columnName: 'foldChange', width: 'auto', align: 'left' },
-            { columnName: 'pVal', width: 'auto', align: 'left' },
-            { columnName: 'pValAdj', width: 'auto', align: 'left' },
+            { columnName: 'cluster', align: 'left'},
+            { columnName: 'clusterName', align: 'left'},
+            { columnName: 'cellCount', align: 'left' },
+            { columnName: 'avgExp', align: 'left' },
+            { columnName: 'pct1', align: 'left' },
+            { columnName: 'foldChange', align: 'left' },
+            { columnName: 'pVal', align: 'left' },
+            { columnName: 'pValAdj', align: 'left' },
         ]
     }
 
-    render() {
+    getDefaultColumnWidths () {
+        return [
+            { columnName: 'cluster', width: 106},
+            { columnName: 'clusterName', width: 500},
+            { columnName: 'cellCount', width: 110 },
+            { columnName: 'avgExp', width: 125 },
+            { columnName: 'pct1', width: 106 },
+            { columnName: 'foldChange', width: 100 },
+            { columnName: 'pVal', width: 106 },
+            { columnName: 'pValAdj', width: 100 },
+        ]
+    }
 
+    getColumnBands() {
+        return [
+            { 
+                title: "CLUSTER VS ALL OTHERS",
+                children: [
+                    { columnName: 'foldChange'},
+                    { columnName: 'pVal' },
+                    { columnName: 'pValAdj',}
+                ]
+            }
+        ];
+    }
+
+
+    render() {
+        const BandCell = ({ children, tableRow, tableColumn, column, ...restProps }) => {
+            return (
+                <TableBandHeader.Cell {...restProps} column={column} 
+                    className="text-center cluster_v_others cluster_v_others_container">
+                    {children}
+                </TableBandHeader.Cell>
+            )
+        }
         if (this.props.isLoading) {
             return (
                 <div className='viz-spinner text-center'>
@@ -168,21 +203,19 @@ class ExpressionXCellType extends Component {
                             </CSVLink>
                         </Col>
                     </Row>
-                    <Row xs='12' className="cluster_v_others_container-offset-fix">
-                        <Col xs={{ size: 4, offset: 8 }} className='d-flex justify-content-center cluster_v_others_container'>
-                            <span id="cluster_v_others">CLUSTER VS ALL OTHERS
-                            </span></Col>
-                    </Row>
                     <Row xs='12' id='expression-by-cell-type'>
-                        <Col xs='12' className='d-flex justify-content-start'>
-                            <Grid rows={this.props.data} columns={this.getColumns()}>
-                                <SummaryState totalItems={totalSummaryItems}/>
-                                <IntegratedSummary />
-                                <Table columnExtensions={this.getColumnExtensions()}/>
-                                <TableHeaderRow/>
-                                <TableSummaryRow />
-                                <TableFixedColumns/>
-                            </Grid>
+                        <Col xs='12'>
+                            <React.Fragment>
+                                <Grid rows={this.props.data} columns={this.getColumns()}>
+                                    <SummaryState totalItems={totalSummaryItems}/>
+                                    <IntegratedSummary />
+                                    <Table columnExtensions={this.getColumnExtensions()}/>
+                                    <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={100}/>
+                                    <TableHeaderRow/>
+                                    <TableBandHeader columnBands={this.getColumnBands()} cellComponent={BandCell}/>
+                                    <TableSummaryRow />
+                                </Grid>
+                            </React.Fragment>
                         </Col>
                     </Row>
                     <Row xs='12'>

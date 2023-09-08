@@ -192,14 +192,20 @@ tr.MuiTableRow-root:nth-child(even) {
   text-align: left;
 }
 
-.gene-summary-table,
-.gene-summary-header,
-.cell-summary-table-header-center {
+.gene-summary-table {
   text-align: left;
-  font-size: 16px;
+  font-size: 11px;
   font-weight: 400;
   font-style: normal;
 }
+
+.gene-summary-header,
+.cell-summary-table-header {
+  font-size: 11px;
+  font-weight: 500;
+  font-style: normal;
+}
+
 .cell-summary-table-button {
   text-align: left;
   text-transform: uppercase;
@@ -254,8 +260,7 @@ tr.MuiTableRow-root:nth-child(even) {
   line-height: 450px;
 }
 
-.gene-summary-header-container,
-.cluster_v_others_container-offset-fix {
+.gene-summary-header-container {
   margin-right: 0px;
 }
 
@@ -263,9 +268,10 @@ tr.MuiTableRow-root:nth-child(even) {
   background-color: #cee5ff;
 }
 
-.cluster_v_others_container {
+.cluster_v_others_container,
+.gene-summary-header {
   padding: 5px;
-  background-color: #cee5ff;
+  background-color: #cee5ff !important;
 }
 
 #cluster_v_others {
@@ -338,10 +344,6 @@ tr.MuiTableRow-root:nth-child(even) {
 .icon-container {
   font-size: 25px;
 }
-.table-header {
-  font-size: 11px;
-}
-
 
 .alert-warning {
   z-index: 99;
@@ -768,13 +770,24 @@ tr.MuiTableRow-root:nth-child(even) {
   }
 }
 
+.table {
+  thead th {
+    font-weight: 500;
+    font-size: 11px;
+    white-space: "pre-wrap";
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+      sans-serif;
+  }
+}
+
+
 #data-type-table-explorer {
   .table {
     thead th {
       font-weight: 500;
       font-size: 16px;
       white-space: "pre-wrap";
-      text-align: center;
       font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
         Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
         sans-serif;
@@ -789,14 +802,6 @@ tr.MuiTableRow-root:nth-child(even) {
 
 #expression-by-cell-type {
   .table {
-    thead th {
-      font-weight: 500;
-      font-size: 16px;
-      white-space: "pre-wrap";
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-        Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
-        sans-serif;
-    }
     tbody td {
       font-size: 14px;
       padding: 3px 5px !important;
@@ -926,6 +931,7 @@ tr.MuiTableRow-root:nth-child(even) {
 .table-header {
   font-size: 15px;
 }
+
 .tooltip {
   font-size: 16px;
 }
