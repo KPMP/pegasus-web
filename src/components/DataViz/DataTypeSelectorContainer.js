@@ -20,9 +20,9 @@ const mapDispatchToProps = (dispatch, props) =>
     setDataType(dataType) {
         dispatch(setDataType(dataType));
         if (dataType === 'rt') {
-            dispatch((dispatch) => props.history.push("/explorer/regionalviz"));
+            dispatch((dispatch) => window.open("/explorer/regionalviz", "_self"));
         } else if (dataType === 'sc' || dataType === 'sn') {
-            dispatch((dispatch) => props.history.push("/explorer/dataViz"));
+            dispatch((dispatch) => window.open("/explorer/dataViz", "_self"));
         }
     }
 

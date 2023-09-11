@@ -23,7 +23,7 @@ class RegionalViz extends Component {
         if (queryParam && queryParam.dataType) {
             this.props.resetState();
             props.setDataType('rt');
-            props.history.push(props.location.pathname);
+            window.open(props.location.pathname, '_self');
         }
     };
 

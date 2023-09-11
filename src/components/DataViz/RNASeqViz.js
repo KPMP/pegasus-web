@@ -17,7 +17,7 @@ class RNASeqViz extends Component {
         if (queryParam && queryParam.dataType) {
             props.resetState();
             props.setDataType(queryParam.dataType);
-            props.history.push(props.location.pathname);
+            window.open(props.location.pathname, '_self');
             this.setState({isLoading: false, isLoadingUmap: false})
         }
         
