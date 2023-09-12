@@ -28,15 +28,15 @@ export const setDataTypeAndRedirect = (dataType, props) => {
         switch (dataType) {
             case "sn":
                 dispatch(setDataType(dataType));
-                props.history.push('/explorer/dataviz');
+                window.open('/explorer/dataviz', '_self');
                 break;
             case "sc":
                 dispatch(setDataType(dataType));
-                props.history.push('/explorer/dataviz');
+                window.open('/explorer/dataviz', '_self');
                 break;
             case "rt":
                 dispatch(setDataType(dataType));
-                props.history.push('/explorer/regionalviz');
+                window.open('/explorer/regionalviz', '_self');
                 break;
             case "wsi":
                 window.open('/spatial-viewer/?size=n_1000_n&filters%5B0%5D%5Bfield%5D=datatype&filters%5B0%5D%5Bvalues%5D%5B0%5D=Light%20Microscopic%20Whole%20Slide%20Images&filters%5B0%5D%5Btype%5D=any', '_self')
@@ -60,7 +60,7 @@ export const setDataTypeAndRedirect = (dataType, props) => {
                 window.open('https://metaspace2020.eu/datasets?prj=8f102fc4-62a8-11ec-89bf-bba413a122a2&q=_glyc', '_blank');
                 break
             default:
-                props.history.push('/explorer/');
+                window.open('/explorer/', '_self');
         }
     }
 }
