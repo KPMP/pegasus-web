@@ -20,18 +20,18 @@ class GeneSummary extends Component {
         };
     };
 
-    componentDidMount() {
-        this.fetchPageData();
+    async componentDidMount() {
+        await this.fetchPageData();
     }
 
-    componentDidUpdate(prevProps) {
+    async componentDidUpdate(prevProps) {
         if (this.props.gene.symbol !== prevProps.gene.symbol) {
-            this.fetchPageData();
+            await this.fetchPageData();
         }
     }
 
-    fetchPageData() {
-        this.fetchGeneDatasetSummary(this.props.gene.symbol);
+    async fetchPageData() {
+        await this.fetchGeneDatasetSummary(this.props.gene.symbol);
         getDataTypeOptions(this.props.gene.symbol, "").then(
             (options) => {
                 this.setState({ dataTypeOptions: options })
@@ -62,9 +62,9 @@ class GeneSummary extends Component {
         return geneSummary
     }
 
-    fetchGeneDatasetSummary = (geneSymbol) => {
+    fetchGeneDatasetSummary = async (geneSymbol) => {
         this.setState({ isLoading: true });
-        fetchGeneDatasetSummary(geneSymbol).then(
+        await fetchGeneDatasetSummary(geneSymbol).then(
             (geneSummary) => {
                 if (geneSummary) {
                     geneSummary = this.formatGeneDataset(geneSummary)
