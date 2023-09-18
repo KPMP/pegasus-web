@@ -30,7 +30,7 @@ class GeneSummary extends Component {
     }
 
     fetchPageData = async() => {
-        await this.fetchGeneDatasetSummary(this.props.gene.symbol);
+        await this.fetchGeneDatasetSummaryLocal(this.props.gene.symbol);
         await getDataTypeOptions(this.props.gene.symbol, "").then(
             (options) => {
                 this.setState({ dataTypeOptions: options, isLoading: false })
@@ -43,7 +43,6 @@ class GeneSummary extends Component {
     }
 
     formatGeneDataset(geneSummary) {
-        console.log(geneSummary)
         for (const [dataType] of geneSummary.entries()) {
             let dataTypeIsClickable = this.dataTypeIsClickable(geneSummary[dataType]["dataTypeShort"])
             if (geneSummary[dataType]["hrtCount"] === '0' || !dataTypeIsClickable) {
@@ -62,11 +61,10 @@ class GeneSummary extends Component {
         return geneSummary
     }
 
-    fetchGeneDatasetSummary = async (geneSymbol) => {
+    fetchGeneDatasetSummaryLocal = async (geneSymbol) => {
         await fetchGeneDatasetSummary(geneSymbol).then(
             (geneSummary) => {
                 if (geneSummary) {
-                    console.log(geneSummary)
                     let formattedGeneSummary = this.formatGeneDataset(geneSummary)
                     this.setState({ geneSummary: formattedGeneSummary, isLoading: false });
                 }

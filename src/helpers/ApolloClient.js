@@ -155,6 +155,8 @@ export const fetchGeneDatasetSummary = async (geneSymbol, fetchPolicy = 'no-cach
         fetchPolicy: fetchPolicy
     });
     if (response.data && response.data.getGeneDatasetInformation) {
+        console.log("getting dataset summary information")
+        console.log(response.data.getGeneDatasetInformation)
         return response.data.getGeneDatasetInformation;
     } else {
         console.log('response.error',response.error)
