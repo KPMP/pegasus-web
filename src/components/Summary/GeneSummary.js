@@ -46,19 +46,27 @@ class GeneSummary extends Component {
         for (const [dataType] of geneSummary.entries()) {
             let dataTypeIsClickable = this.dataTypeIsClickable(geneSummary[dataType]["dataTypeShort"])
             if (geneSummary[dataType]["hrtCount"] === '0' || !dataTypeIsClickable) {
-                geneSummary[dataType]["hrtCount"] = 'X';
+                geneSummary[dataType]["hrtCount"] = '-';
             }
             if (geneSummary[dataType]["akiCount"] === '0' || !dataTypeIsClickable) {
-                geneSummary[dataType]["akiCount"] = 'X';
+                geneSummary[dataType]["akiCount"] = '-';
             }
             if (geneSummary[dataType]["ckdCount"] === '0' || !dataTypeIsClickable) {
-                geneSummary[dataType]["ckdCount"] = 'X';
+                geneSummary[dataType]["ckdCount"] = '-';
             }
             if (geneSummary[dataType]["dmrCount"] === '0' || !dataTypeIsClickable) {
-                geneSummary[dataType]["dmrCount"] = 'X';
+                geneSummary[dataType]["dmrCount"] = '-';
             }
         }
         return geneSummary
+    }
+
+    formatCountRow = (row, type) => {
+        let dataTypeIsClickable = this.dataTypeIsClickable(row[type]["dataTypeShort"])
+        if (row[type] === '0' || !dataTypeIsClickable) {
+            return '-'
+        }
+        console.log(row)
     }
 
     fetchGeneDatasetSummaryLocal = async (geneSymbol) => {
@@ -122,6 +130,7 @@ class GeneSummary extends Component {
             {
                 title: "HEALTHY REFERENCE TISSUE",
                 name: 'hrtCount',
+                getCellValue: row => this.formatCountRow(row, 'hrtCount')
             },
             {
                 title: "AKI TISSUE",
@@ -140,7 +149,7 @@ class GeneSummary extends Component {
     };
 
     dataTypeHasData(row) {
-        if (row.hrtCount !== '-' || row.akiCount !== '-' || row.ckdCount !== '-' || row.dmrCount !== '-') {
+        if (row.hrtCount !== '0' || row.akiCount !== '0' || row.ckdCount !== '0' || row.dmrCount !== '0') {
             return true;
         }
         return false;

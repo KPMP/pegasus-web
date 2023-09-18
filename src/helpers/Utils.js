@@ -112,7 +112,7 @@ export const getAllDataTypeOptions = () => {
 };
 
 export const getDataTypeOptions = async (geneSymbol, cluster) => {
-    let options = fetchDataTypesForConcept(geneSymbol, cluster).then((result) => {
+    let options = await fetchDataTypesForConcept(geneSymbol, cluster).then((result) => {
         let dataTypes = result.dataTypesForConcept;
         const options = [
             {
