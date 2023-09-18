@@ -136,7 +136,7 @@ export const fetchClusterHierarchy = async (cellType) => {
     }
 }
 
-export const fetchGeneDatasetSummary = async (geneSymbol, fetchPolicy = 'no-cache') => {
+export const fetchGeneDatasetSummary = async (geneSymbol) => {
     const response = await apolloClient.query({
         query: gql`
             query {
@@ -152,7 +152,7 @@ export const fetchGeneDatasetSummary = async (geneSymbol, fetchPolicy = 'no-cach
                     participantCount
                 }
             }`,
-        fetchPolicy: fetchPolicy
+        fetchPolicy: 'no-cache'
     });
     console.log(response)
     if (response.data && response.data.getGeneDatasetInformation) {

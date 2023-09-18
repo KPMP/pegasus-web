@@ -46,16 +46,16 @@ class GeneSummary extends Component {
         for (const [dataType] of geneSummary.entries()) {
             let dataTypeIsClickable = this.dataTypeIsClickable(geneSummary[dataType]["dataTypeShort"])
             if (geneSummary[dataType]["hrtCount"] === '0' || !dataTypeIsClickable) {
-                geneSummary[dataType]["hrtCount"] = '-';
+                geneSummary[dataType]["hrtCount"] = 'X';
             }
             if (geneSummary[dataType]["akiCount"] === '0' || !dataTypeIsClickable) {
-                geneSummary[dataType]["akiCount"] = '-';
+                geneSummary[dataType]["akiCount"] = 'X';
             }
             if (geneSummary[dataType]["ckdCount"] === '0' || !dataTypeIsClickable) {
-                geneSummary[dataType]["ckdCount"] = '-';
+                geneSummary[dataType]["ckdCount"] = 'X';
             }
             if (geneSummary[dataType]["dmrCount"] === '0' || !dataTypeIsClickable) {
-                geneSummary[dataType]["dmrCount"] = '-';
+                geneSummary[dataType]["dmrCount"] = 'X';
             }
         }
         return geneSummary
