@@ -65,7 +65,7 @@ class GeneSummary extends Component {
         await fetchGeneDatasetSummary(geneSymbol).then(
             (geneSummary) => {
                 if (geneSummary) {
-                    let formattedGeneSummary = this.formatGeneDataset(geneSummary)
+                    // let formattedGeneSummary = this.formatGeneDataset(geneSummary)
                     this.setState({ geneSummary: formattedGeneSummary, isLoading: false });
                 }
             },
