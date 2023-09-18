@@ -43,8 +43,9 @@ class GeneSummary extends Component {
     }
 
     formatCountRow = (row, type) => {
+        let hasData = this.dataTypeHasData(row)
         let dataTypeIsClickable = this.dataTypeIsClickable(row["dataTypeShort"])
-        if (row[type] === 0 || !dataTypeIsClickable) {
+        if (!hasData || !dataTypeIsClickable) {
             return '-'
         } 
         return row[type]
