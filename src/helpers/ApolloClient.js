@@ -151,8 +151,7 @@ export const fetchGeneDatasetSummary = async (geneSymbol) => {
                     dmrCount
                     participantCount
                 }
-            }`,
-        fetchPolicy: 'no-cache'
+            }`
     });
     console.log(response)
     if (response.data && response.data.getGeneDatasetInformation) {
