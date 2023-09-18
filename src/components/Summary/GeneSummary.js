@@ -66,7 +66,7 @@ class GeneSummary extends Component {
             (geneSummary) => {
                 if (geneSummary) {
                     // let formattedGeneSummary = this.formatGeneDataset(geneSummary)
-                    this.setState({ geneSummary: formattedGeneSummary, isLoading: false });
+                    this.setState({ geneSummary: geneSummary, isLoading: false });
                 }
             },
             (error) => {
