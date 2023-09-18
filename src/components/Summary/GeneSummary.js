@@ -29,9 +29,9 @@ class GeneSummary extends Component {
         }
     }
 
-    async fetchPageData() {
+    fetchPageData = async() => {
         await this.fetchGeneDatasetSummary(this.props.gene.symbol);
-        getDataTypeOptions(this.props.gene.symbol, "").then(
+        await getDataTypeOptions(this.props.gene.symbol, "").then(
             (options) => {
                 this.setState({ dataTypeOptions: options, isLoading: false })
             },
@@ -43,6 +43,7 @@ class GeneSummary extends Component {
     }
 
     formatGeneDataset(geneSummary) {
+        console.log(geneSummary)
         for (const [dataType] of geneSummary.entries()) {
             let dataTypeIsClickable = this.dataTypeIsClickable(geneSummary[dataType]["dataTypeShort"])
             if (geneSummary[dataType]["hrtCount"] === '0' || !dataTypeIsClickable) {
@@ -62,7 +63,6 @@ class GeneSummary extends Component {
     }
 
     fetchGeneDatasetSummary = async (geneSymbol) => {
-        this.setState({ isLoading: true });
         await fetchGeneDatasetSummary(geneSymbol).then(
             (geneSummary) => {
                 if (geneSummary) {
@@ -207,9 +207,7 @@ class GeneSummary extends Component {
                         </Col>
                     </Row>
                     {this.state.isLoading ?
-                        <div className='summary-spinner'>
-                            <Spinner color='primary'> Loading...</Spinner>
-                        </div>
+                        <Spinner color='primary' />
                         : <div>
                             <Row xs='12' id="gene-summary-table">
                                 <Col>
