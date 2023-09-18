@@ -13,7 +13,6 @@ class GeneSummary extends Component {
         this.getColumns = this.getColumns.bind(this);
 
         this.state = {
-            columns: this.getColumns(),
             geneSummary: [],
             dataTypeOptions: [],
             isLoading: true,
@@ -34,7 +33,7 @@ class GeneSummary extends Component {
         await this.fetchGeneDatasetSummary(this.props.gene.symbol);
         getDataTypeOptions(this.props.gene.symbol, "").then(
             (options) => {
-                this.setState({ dataTypeOptions: options })
+                this.setState({ dataTypeOptions: options, isLoading: false })
             },
             (error) => {
                 this.setState({ dataTypeOptions: [] });
@@ -209,12 +208,12 @@ class GeneSummary extends Component {
                     </Row>
                     {this.state.isLoading ?
                         <div className='summary-spinner'>
-                            <Spinner color='primary' />
+                            <Spinner color='primary'> Loading...</Spinner>
                         </div>
                         : <div>
                             <Row xs='12' id="gene-summary-table">
                                 <Col>
-                                    <Grid rows={this.state.geneSummary} columns={this.state.columns}>
+                                    <Grid rows={this.state.geneSummary} columns={this.getColumns()}>
                                         <Table columnExtensions={this.getColumnExtensions()}/>
                                         <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={88}/>
                                         <TableHeaderRow/>

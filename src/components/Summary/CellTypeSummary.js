@@ -20,7 +20,7 @@ class CellTypeSummary extends Component {
         };
     };
 
-   async componentDidMount() {
+    async componentDidMount() {
         await this.fetchClusterHierarchy();
     }
 
