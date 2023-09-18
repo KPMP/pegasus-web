@@ -42,27 +42,7 @@ class GeneSummary extends Component {
         );
     }
 
-    formatGeneDataset(geneSummary) {
-        for (const [dataType] of geneSummary.entries()) {
-            let dataTypeIsClickable = this.dataTypeIsClickable(geneSummary[dataType]["dataTypeShort"])
-            if (geneSummary[dataType]["hrtCount"] === '0' || !dataTypeIsClickable) {
-                geneSummary[dataType]["hrtCount"] = '-';
-            }
-            if (geneSummary[dataType]["akiCount"] === '0' || !dataTypeIsClickable) {
-                geneSummary[dataType]["akiCount"] = '-';
-            }
-            if (geneSummary[dataType]["ckdCount"] === '0' || !dataTypeIsClickable) {
-                geneSummary[dataType]["ckdCount"] = '-';
-            }
-            if (geneSummary[dataType]["dmrCount"] === '0' || !dataTypeIsClickable) {
-                geneSummary[dataType]["dmrCount"] = '-';
-            }
-        }
-        return geneSummary
-    }
-
     formatCountRow = (row, type) => {
-        console.log(row)
         let dataTypeIsClickable = this.dataTypeIsClickable(row["dataTypeShort"])
         if (row[type] === 0 || !dataTypeIsClickable) {
             return '-'
@@ -75,7 +55,6 @@ class GeneSummary extends Component {
         await fetchGeneDatasetSummary(geneSymbol).then(
             (geneSummary) => {
                 if (geneSummary) {
-                    // let formattedGeneSummary = this.formatGeneDataset(geneSummary)
                     this.setState({ geneSummary: geneSummary, isLoading: false });
                 }
             },
@@ -137,21 +116,24 @@ class GeneSummary extends Component {
             {
                 title: "AKI TISSUE",
                 name: 'akiCount',
+                getCellValue: row => this.formatCountRow(row, 'akiCount')
 
             },
             {
                 title: "CKD TISSUE",
                 name: 'ckdCount',
+                getCellValue: row => this.formatCountRow(row, 'ckdCount')
             },
             {
                 title: "DM-R TISSUE",
                 name: 'dmrCount',
+                getCellValue: row => this.formatCountRow(row, 'dmrCount')
             },
         ]
     };
 
     dataTypeHasData(row) {
-        if (row.hrtCount !== '0' || row.akiCount !== '0' || row.ckdCount !== '0' || row.dmrCount !== '0') {
+        if (row.hrtCount !== 0 || row.akiCount !== 0 || row.ckdCount !== 0 || row.dmrCount !== 0) {
             return true;
         }
         return false;
