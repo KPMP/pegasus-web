@@ -66,7 +66,8 @@ class GeneSummary extends Component {
         let dataTypeIsClickable = this.dataTypeIsClickable(row["dataTypeShort"])
         if (row[type] === 0 || !dataTypeIsClickable) {
             return '-'
-        }
+        } 
+        return row[type]
         
     }
 
