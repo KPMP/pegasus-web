@@ -48,7 +48,7 @@
     "react-router-dom": "5.2.0",
     "react-scripts": "5.0.1",
     "react-select": "4.0.0",
-    "reactstrap": "8.9.0",
+    "reactstrap": "9.2.0",
     "redux": "4.0.5",
     "redux-thunk": "2.3.0",
     "string-strip-html": "^8.5.0"
