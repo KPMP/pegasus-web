@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Spinner } from 'reactstrap';
-import ReactTable from 'react-table';
+import { Grid, TableColumnResizing, TableHeaderRow, Table, TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchGeneDatasetSummary } from '../../helpers/ApolloClient';
 import { getDataTypeOptions } from "../../helpers/Utils";
@@ -11,31 +11,29 @@ class GeneSummary extends Component {
     constructor(props) {
         super(props);
         this.getColumns = this.getColumns.bind(this);
-        this.reactTable = React.createRef();
 
         this.state = {
-            columns: this.getColumns(),
             geneSummary: [],
             dataTypeOptions: [],
             isLoading: true,
         };
     };
 
-    componentDidMount() {
-        this.fetchPageData();
+    async componentDidMount() {
+        await this.fetchPageData();
     }
 
-    componentDidUpdate(prevProps) {
+    async componentDidUpdate(prevProps) {
         if (this.props.gene.symbol !== prevProps.gene.symbol) {
-            this.fetchPageData();
+            await this.fetchPageData();
         }
     }
 
-    fetchPageData() {
-        this.fetchGeneDatasetSummary(this.props.gene.symbol);
-        getDataTypeOptions(this.props.gene.symbol, "").then(
+    fetchPageData = async() => {
+        await this.fetchGeneDatasetSummaryLocal(this.props.gene.symbol);
+        await getDataTypeOptions(this.props.gene.symbol, "").then(
             (options) => {
-                this.setState({ dataTypeOptions: options })
+                this.setState({ dataTypeOptions: options, isLoading: false })
             },
             (error) => {
                 this.setState({ dataTypeOptions: [] });
@@ -44,32 +42,21 @@ class GeneSummary extends Component {
         );
     }
 
-    formatGeneDataset(geneSummary) {
-        for (const [dataType] of geneSummary.entries()) {
-            let dataTypeIsClickable = this.dataTypeIsClickable(geneSummary[dataType]["dataTypeShort"])
-            if (geneSummary[dataType]["hrtCount"] === '0' || !dataTypeIsClickable) {
-                geneSummary[dataType]["hrtCount"] = '-';
-            }
-            if (geneSummary[dataType]["akiCount"] === '0' || !dataTypeIsClickable) {
-                geneSummary[dataType]["akiCount"] = '-';
-            }
-            if (geneSummary[dataType]["ckdCount"] === '0' || !dataTypeIsClickable) {
-                geneSummary[dataType]["ckdCount"] = '-';
-            }
-            if (geneSummary[dataType]["dmrCount"] === '0' || !dataTypeIsClickable) {
-                geneSummary[dataType]["dmrCount"] = '-';
-            }
-        }
-        return geneSummary
+    formatCountRow = (row, type) => {
+        let hasData = this.dataTypeHasData(row)
+        let dataTypeIsClickable = this.dataTypeIsClickable(row["dataTypeShort"])
+        if (!hasData || !dataTypeIsClickable) {
+            return '-'
+        } 
+        return row[type]
+        
     }
 
-    fetchGeneDatasetSummary = (geneSymbol) => {
-        this.setState({ isLoading: true });
-        fetchGeneDatasetSummary(geneSymbol).then(
+    fetchGeneDatasetSummaryLocal = async (geneSymbol) => {
+        await fetchGeneDatasetSummary(geneSymbol).then(
             (geneSummary) => {
                 if (geneSummary) {
-                    geneSummary = this.formatGeneDataset(geneSummary)
-                    this.setState({ geneSummary, isLoading: false });
+                    this.setState({ geneSummary: geneSummary, isLoading: false });
                 }
             },
             (error) => {
@@ -84,73 +71,70 @@ class GeneSummary extends Component {
         this.props.setDataType(dataType)
     };
 
+    getColumnExtensions() {
+
+        return [
+            { columnName: 'omicsType', align: 'left'},
+            { columnName: 'dataType', align: 'left'},
+            { columnName: 'hrtCount', align: 'center' },
+            { columnName: 'ckdCount', align: 'center' },
+            { columnName: 'akiCount', align: 'center' },
+            { columnName: 'dmrCount', align: 'center' },
+        ]
+    }
+
+    getDefaultColumnWidths() {
+        return [
+            { columnName: 'omicsType', width: 268},
+            { columnName: 'dataType', width: 401},
+            { columnName: 'hrtCount', width: 214 },
+            { columnName: 'ckdCount', width: 134 },
+            { columnName: 'akiCount', width: 134 },
+            { columnName: 'dmrCount', width: 134 },
+        ]
+    }
+
     getColumns() {
         return [
             {
-                Header: "OMICS TYPE",
-                id: "omicsType",
-                accessor: 'omicsType',
-                headerClassName: 'gene-summary-header',
-                className: 'table-column',
-                minWidth: 200,
+                title: "OMICS TYPE",
+                name: 'omicsType',
+                sortable: false,
+                hideable: false,
             },
             {
-                Header: "DATA TYPE",
-                id: "dataType",
-                accessor: 'dataType',
-                minWidth: 300,
-                headerClassName: 'gene-summary-header',
-                className: 'table-column data-type',
-                Cell: ({ row }) => (
-                    this.linkDataTypeCells(row)
-                )
+                title: "DATA TYPE",
+                name: 'dataType',
+                sortable: false,
+                hideable: false,
+                getCellValue: row => this.linkDataTypeCells(row)
             },
             {
-                Header: "HEALTHY REFERENCE TISSUE",
-                id: "hrt",
-                minWidth: 160,
-                accessor: 'hrtCount',
-                headerClassName: 'text-center gene-summary-header',
-                className: 'table-column',
-                Cell: ({ row }) => (
-                    <div className={"text-center"}>{row.hrt}</div>
-                )
+                title: "HEALTHY REFERENCE TISSUE",
+                name: 'hrtCount',
+                getCellValue: row => this.formatCountRow(row, 'hrtCount')
             },
             {
-                Header: "AKI TISSUE",
-                id: "aki",
-                accessor: 'akiCount',
-                headerClassName: 'text-center gene-summary-header',
-                className: 'table-column',
-                Cell: ({ row }) => (
-                    <div className={"text-center"}>{row.aki}</div>
-                )
+                title: "AKI TISSUE",
+                name: 'akiCount',
+                getCellValue: row => this.formatCountRow(row, 'akiCount')
+
             },
             {
-                Header: "CKD TISSUE",
-                id: "ckd",
-                accessor: 'ckdCount',
-                headerClassName: 'text-center gene-summary-header',
-                className: 'table-column',
-                Cell: ({ row }) => (
-                    <div className={"text-center"}>{row.ckd}</div>
-                )
+                title: "CKD TISSUE",
+                name: 'ckdCount',
+                getCellValue: row => this.formatCountRow(row, 'ckdCount')
             },
             {
-                Header: "DM-R TISSUE",
-                id: "dmr",
-                accessor: 'dmrCount',
-                headerClassName: 'text-center gene-summary-header',
-                className: 'table-column',
-                Cell: ({ row }) => (
-                    <div className={"text-center"}>{row.dmr}</div>
-                )
+                title: "DM-R TISSUE",
+                name: 'dmrCount',
+                getCellValue: row => this.formatCountRow(row, 'dmrCount')
             },
         ]
     };
 
     dataTypeHasData(row) {
-        if (row.hrtCount !== '-' || row.akiCount !== '-' || row.ckdCount !== '-' || row.dmrCount !== '-') {
+        if (row.hrtCount !== 0 || row.akiCount !== 0 || row.ckdCount !== 0 || row.dmrCount !== 0) {
             return true;
         }
         return false;
@@ -168,8 +152,8 @@ class GeneSummary extends Component {
     }
 
     linkDataTypeCells(row) {
-        if (this.dataTypeHasData(row) && this.dataTypeIsClickable(row._original.dataTypeShort)) {
-            return <button onClick={() => this.handleLinkClick(row._original.dataTypeShort)}
+        if (this.dataTypeHasData(row) && this.dataTypeIsClickable(row.dataTypeShort)) {
+            return <button onClick={() => this.handleLinkClick(row.dataTypeShort)}
                 type="button"
                 className="btn btn-link text-start p-0 table-column">
                 {row.dataType}
@@ -179,7 +163,30 @@ class GeneSummary extends Component {
         return row.dataType;
     }
 
+    getColumnBands() {
+        return [
+            { 
+                title: "PARTICIPANTS PER DATA TYPE",
+                children: [
+                    { columnName: 'hrtCount'},
+                    { columnName: 'akiCount' },
+                    { columnName: 'ckdCount'},
+                    { columnName: 'dmrCount'},
+                ]
+            }
+        ];
+    }
+
     render() {
+        const BandCell = ({ children, tableRow, tableColumn, column, ...restProps }) => {
+            return (
+                <TableBandHeader.Cell {...restProps} column={column} 
+                    className="text-center gene-summary-header color-light-blue">
+                    {children}
+                </TableBandHeader.Cell>
+            )
+        }
+
         let { name, symbol } = this.props.gene;
         return (
             <div className='height-wrapper mb-3'>
@@ -193,26 +200,16 @@ class GeneSummary extends Component {
                         </Col>
                     </Row>
                     {this.state.isLoading ?
-                        <div className='summary-spinner'>
-                            <Spinner color='primary' />
-                        </div>
+                        <Spinner color='primary' />
                         : <div>
-                            <Row xs='12' className="gene-summary-header-container">
-                                <Col xs={{ size: 5, offset: 7 }} className='d-flex justify-content-center gene-summary-header color-light-blue'><span>PARTICIPANTS PER DATA TYPE</span></Col>
-                            </Row>
-                            <Row xs='12'>
+                            <Row xs='12' id="gene-summary-table">
                                 <Col>
-                                    <ReactTable
-                                        style={{ border: 'none' }}
-                                        data={this.state.geneSummary}
-                                        ref={this.reactTable}
-                                        sortable={false}
-                                        columns={this.state.columns}
-                                        className='-striped gene-summary-table'
-                                        showPagination={false}
-                                        noDataText={'No data found'}
-                                        minRows={0}
-                                    />
+                                    <Grid rows={this.state.geneSummary} columns={this.getColumns()}>
+                                        <Table columnExtensions={this.getColumnExtensions()}/>
+                                        <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={88}/>
+                                        <TableHeaderRow/>
+                                        <TableBandHeader columnBands={this.getColumnBands()} cellComponent={BandCell}/>
+                                    </Grid>
                                 </Col>
                             </Row>
                         </div>

@@ -1,15 +1,20 @@
 import React, { Component } from 'react';
-import ReactTable from "react-table";
+import { Grid, TableColumnResizing, TableHeaderRow, 
+    Table, TableSummaryRow, TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
 import { Col, Row, UncontrolledTooltip, Spinner } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
 import { faDownload, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
-import { sum } from "../../helpers/Utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDataType } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import Parser from 'html-react-parser';
 import { stripHtml } from "string-strip-html";
+import {
+    SummaryState,
+    IntegratedSummary,
+  } from '@devexpress/dx-react-grid';
+
 
 class ExpressionXCellType extends Component {
 
@@ -44,7 +49,8 @@ class ExpressionXCellType extends Component {
         return {};
     };
 
-    parseClusterName = (value) => {
+    parseClusterName = (row) => {
+        let value = row.clusterName;
         if (value !== null) {
             const regex = /<sup>*.<\/sup>/i;
             let titleVal = stripHtml(value.replace(regex, '')).result
@@ -59,93 +65,113 @@ class ExpressionXCellType extends Component {
     getColumns = () => {
         return [
             {
-                Header: "ABBR",
-                accessor: 'cluster',
-                id: 'cluster',
-                headerClassName: 'table-header',
-                className: 'table-column',
-                minWidth: 90,
+                title: "ABBR",
+                name: 'cluster',
             },
             {
-                Header: <span>CLUSTER (<i>predicted state</i>)</span>,
-                Footer: "TOTAL CELLS: ",
-                accessor: 'clusterName',
-                headerClassName: 'table-header',
-                className: 'table-column',
-                minWidth: 465,
-                Cell: ({ value }) => (
-                    this.parseClusterName(value)
-                )
+                title: <span>CLUSTER (<i>predicted state</i>)</span>,
+                name: 'clusterName',
+                getCellValue: row => this.parseClusterName(row)
+                
             },
             {
-                Header: <span># CELLS IN<br />CLUSTER</span>,
-                accessor: 'cellCount',
-                headerClassName: 'table-header',
-                className: 'table-column',
-                minWidth: 90,
-                Footer: (sum(this.props.data, "cellCount")),
-                Cell: ({ value }) => value ? value : 0
+                title: <span># CELLS IN<br />CLUSTER</span>,
+                name: 'cellCount',
+                getCellValue: row => row.cellCount ? row.cellCount : 0
             },
             {
-                Header: <span>MEAN<br />EXPRESSION <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='mean-expression-info' icon={faInfoCircle} /></span>
+                title: <span>MEAN<br />EXPRESSION <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='mean-expression-info' icon={faInfoCircle} /></span>
                     <UncontrolledTooltip placement='bottom' target='mean-expression-info' >
                         Averaged expression values (logarithmic) for each cluster
                     </UncontrolledTooltip></span>,
-                accessor: 'avgExp',
-                headerClassName: 'table-header',
-                className: 'table-column',
-                minWidth: 90,
-                Cell: ({ value }) => formatNumberToPrecision(value, 3)
+                name: 'avgExp',
+                getCellValue: row => formatNumberToPrecision(row.avgExp, 3)
             },
             {
-                Header: <span>% CELLS<br />EXPRESSING</span>,
-                accessor: 'pct1',
-                headerClassName: 'table-header',
-                className: 'table-column',
-                minWidth: 90,
-                Cell: ({ value }) => {
-                    let newValue = (value > 0) ? (value * 100) : value;
+                title: <span>% CELLS<br />EXPRESSING</span>,
+                name: 'pct1',
+                getCellValue: row => {
+                    let newValue = (row.pct1 > 0) ? (row.pct1 * 100) : row.pct1;
                     return formatNumberToPrecision(newValue, 3);
                 }
             },
             {
-                Header: <span>FOLD<br />CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
-
+                title: <span>FOLD<br />CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
                     <UncontrolledTooltip placement='bottom' target='fold-change-info' >
                         Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.
                     </UncontrolledTooltip></span>,
-                headerClassName: 'table-header',
-                className: 'table-column',
-                accessor: 'foldChange',
-                minWidth: 75,
-                Cell: ({ value }) => formatNumberToPrecision(value, 3)
+                name: 'foldChange',
+                getCellValue: row => formatNumberToPrecision(row.foldChange, 3)
             },
             {
-                Header: <span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
+                title: <span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
                     <UncontrolledTooltip placement='bottom' target='pvalue-info' >
                         p-value (unadjusted)
                     </UncontrolledTooltip></span>,
-                headerClassName: 'table-header',
-                className: 'table-column',
-                accessor: 'pVal',
-                minWidth: 90,
-                Cell: ({ value }) => formatNumberToPrecision(value, 3)
+                name: 'pVal',
+                getCellValue: row => formatNumberToPrecision(row.pVal, 3)
             },
             {
-                Header: <span>ADJ<br />P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
+                title: <span>ADJ<br />P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
                     <UncontrolledTooltip placement='bottom' target='pvalue-adj-info' >
                         Adjusted p-value, based on bonferroni correction using all features in the dataset.
                     </UncontrolledTooltip></span>,
-                headerClassName: 'table-header',
-                className: 'table-column',
-                accessor: 'pValAdj',
-                minWidth: 85,
-                Cell: ({ value }) => formatNumberToPrecision(value, 3)
+                name: 'pValAdj',
+                getCellValue: row => formatNumberToPrecision(row.pValAdj, 3)
             }
         ]
     };
 
+    getColumnExtensions() {
+
+        return [
+            { columnName: 'cluster', align: 'left'},
+            { columnName: 'clusterName', align: 'left'},
+            { columnName: 'cellCount', align: 'left' },
+            { columnName: 'avgExp', align: 'left' },
+            { columnName: 'pct1', align: 'left' },
+            { columnName: 'foldChange', align: 'left' },
+            { columnName: 'pVal', align: 'left' },
+            { columnName: 'pValAdj', align: 'left' },
+        ]
+    }
+
+    getDefaultColumnWidths () {
+        return [
+            { columnName: 'cluster', width: 106},
+            { columnName: 'clusterName', width: 500},
+            { columnName: 'cellCount', width: 110 },
+            { columnName: 'avgExp', width: 125 },
+            { columnName: 'pct1', width: 106 },
+            { columnName: 'foldChange', width: 100 },
+            { columnName: 'pVal', width: 106 },
+            { columnName: 'pValAdj', width: 100 },
+        ]
+    }
+
+    getColumnBands() {
+        return [
+            { 
+                title: "CLUSTER VS ALL OTHERS",
+                children: [
+                    { columnName: 'foldChange'},
+                    { columnName: 'pVal' },
+                    { columnName: 'pValAdj',}
+                ]
+            }
+        ];
+    }
+
+
     render() {
+        const BandCell = ({ children, tableRow, tableColumn, column, ...restProps }) => {
+            return (
+                <TableBandHeader.Cell {...restProps} column={column} 
+                    className="text-center cluster_v_others cluster_v_others_container">
+                    {children}
+                </TableBandHeader.Cell>
+            )
+        }
         if (this.props.isLoading) {
             return (
                 <div className='viz-spinner text-center'>
@@ -155,6 +181,9 @@ class ExpressionXCellType extends Component {
         } else if (this.props.data.length === 0) {
             return (<div></div>)
         } else {
+            const totalSummaryItems = [ 
+                { columnName: 'cellCount', type: 'sum' }
+            ]
             return (
                 <React.Fragment>
                     <Row xs='12' className='mt-5'>
@@ -174,26 +203,19 @@ class ExpressionXCellType extends Component {
                             </CSVLink>
                         </Col>
                     </Row>
-                    <Row xs='12' className="cluster_v_others_container-offset-fix">
-                        <Col xs={{ size: 4, offset: 8 }} className='d-flex justify-content-center cluster_v_others_container'>
-                            <span id="cluster_v_others">CLUSTER VS ALL OTHERS
-                            </span></Col>
-                    </Row>
-                    <Row xs='12'>
+                    <Row xs='12' id='expression-by-cell-type'>
                         <Col xs='12'>
-                            <ReactTable
-                                style={{ border: 'none' }}
-                                data={this.props.data}
-                                ref={this.reactTable}
-                                sortable={true}
-                                columns={this.getColumns()}
-                                className='-striped expression-table'
-                                showPagination={false}
-                                noDataText={'No data found'}
-                                minRows={this.props.data.length}
-                                getTrProps={this.getTrProps}
-                                defaultPageSize={100}
-                            />
+                            <React.Fragment>
+                                <Grid rows={this.props.data} columns={this.getColumns()}>
+                                    <SummaryState totalItems={totalSummaryItems}/>
+                                    <IntegratedSummary />
+                                    <Table columnExtensions={this.getColumnExtensions()}/>
+                                    <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={100}/>
+                                    <TableHeaderRow/>
+                                    <TableBandHeader columnBands={this.getColumnBands()} cellComponent={BandCell}/>
+                                    <TableSummaryRow />
+                                </Grid>
+                            </React.Fragment>
                         </Col>
                     </Row>
                     <Row xs='12'>

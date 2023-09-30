@@ -1,7 +1,18 @@
 import { availableDataVisibilityFilter } from "./Utils";
+import * as apolloDependency from './ApolloClient';
+import * as appDependency from '../App';
+
 
 // test for availableDataVisibilityFilter
 describe("availableDataVisibilityFilter", () => {
+	
+	
+	beforeEach(() => {
+		apolloDependency.fetchDataTypesForConcept= jest.fn();
+    appDependency.store = {}
+	});
+
+
   test("should return data data if data hrtCount has a count of at least 1", () => {
     const data = {
       hrtCount: 1,

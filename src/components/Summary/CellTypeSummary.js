@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import ReactTable from 'react-table';
+import { Grid, TableColumnResizing, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchClusterHierarchy } from '../../helpers/ApolloClient';
 import { Spinner } from "reactstrap";
@@ -13,33 +13,27 @@ class CellTypeSummary extends Component {
     constructor(props) {
         super(props);
         this.getColumns = this.getColumns.bind(this);
-        this.reactTable = React.createRef();
 
         this.state = {
-            columns: this.getColumns(),
-            cellTypeSummary: []
+            cellTypeSummary: [],
+            isLoading: true
         };
     };
 
-    componentDidMount() {
-        this.fetchClusterHierarchy();
+    async componentDidMount() {
+        await this.fetchClusterHierarchy();
     }
 
-    componentDidUpdate(prevProps, prevState, snapShot) {
+    async componentDidUpdate(prevProps, prevState, snapShot) {
         if (this.props.cellType !== prevProps.cellType) {
-            this.fetchClusterHierarchy();
+            await this.fetchClusterHierarchy();
         }
     }
 
-    fetchClusterHierarchy = () => {
+    fetchClusterHierarchy = async () => {
         this.setState({ isLoading: true });
-        fetchClusterHierarchy(this.props.cellType).then(
-            (cellTypeSummary) => this.setState({ cellTypeSummary: cellTypeSummary, isLoading: false }),
-            (error) => {
-                this.setState({ cellTypeSummary: [], isLoading: false });
-                console.log('There was a problem getting the data: ' + error)
-            }
-        );
+        let results = await fetchClusterHierarchy(this.props.cellType);
+        this.setState({ cellTypeSummary: results, isLoading: false });
     };
 
     handleLinkClick = (dataType, row) => {
@@ -55,10 +49,6 @@ class CellTypeSummary extends Component {
         this.props.setDataTypeAndCluster(dataType, cluster);
     };
 
-    getTheadThProps = (state, rowInfo, column, instance) => {
-        return { id: column.id };
-    };
-
     parseClusterName = (value) => {
         if (value !== null) {
             let titleVal = stripHtml(value.replace('<sup>', ' ^')).result
@@ -70,72 +60,74 @@ class CellTypeSummary extends Component {
         }
     };
 
+    getColumnExtensions() {
+
+        return [
+            { columnName: 'structureRegion', align: 'left'},
+            { columnName: 'structureSubregion', align: 'left'},
+            { columnName: 'clusterName', align: 'left' },
+            { columnName: 'sn', width: 'auto', align: 'center',  wordWrapEnabled: true  },
+            { columnName: 'sc', width: 'auto', align: 'center', wordWrapEnabled: true  },
+            { columnName: 'rt', width: 'auto', align: 'center',  wordWrapEnabled: true  },
+        ]
+    }
+
+    getDefaultColumnWidths() {
+        return [
+            { columnName: 'structureRegion', width: 102,},
+            { columnName: 'structureSubregion', width: 169},
+            { columnName: 'clusterName', width: 600},
+            { columnName: 'sn', width: 135 },
+            { columnName: 'sc', width: 135},
+            { columnName: 'rt', width: 135 },
+        ]
+    }
+
     getColumns() {
         return [
             {
-                Header: <span>STRUCTURE/<br />REGION</span>,
-                id: 'structureRegion',
-                accessor: 'structureRegion',
-                headerClassName: 'table-header',
-                className: 'table-column',
-                minWidth: 75,
-                Cell: ({ value }) => <span title={value}>{value}</span>
+                title: <span className='cell-summary-table-header'>STRUCTURE/<br />REGION</span>,
+                name: 'structureRegion',
+                getCellValue: row => <span title={row.structureRegion}>{row.structureRegion}</span>
             },
             {
-                Header: <span>SUBSTRUCTURE/<br />SUBREGION</span>,
-                id: 'structureSubregion',
-                accessor: 'structureSubregion',
-                headerClassName: 'table-header',
-                className: 'table-column',
-                minWidth: 125,
-                Cell: ({ value }) => <span title={value}>{value}</span>
+                title: <span className='cell-summary-table-header'>SUBSTRUCTURE/<br />SUBREGION</span>,
+                name: 'structureSubregion',
+                getCellValue: row => <span title={row.structureSubregion}>{row.structureSubregion}</span>
             },
             {
-                Header: <span>CELL TYPE/<br />CLUSTER (<i>predicted state</i>)</span>,
-                id: 'clusterName',
-                accessor: 'clusterName',
-                headerClassName: 'table-header',
-                className: 'table-column',
-                minWidth: 450,
-                Cell: ({ value }) => (
-                    this.parseClusterName(value)
+                title: <span className='cell-summary-table-header'>CELL TYPE/<br />CLUSTER (<i>predicted state</i>)</span>,
+                name: 'clusterName',
+                getCellValue: row => (
+                    this.parseClusterName(row.clusterName)
                 )
             },
             {
-                Header: <span className='cell-summary-table-header-center'>SINGLE-NUCLEUS<br />RNA-seq</span>,
-                id: 'sn',
-                accessor: 'isSingleNucCluster',
-                headerClassName: 'table-header text-center',
-                className: 'table-column text-center',
-                Cell: ({ row }) => (
-                    this.linkDataTypeCells(row, 'sn')
+                title: <span>SINGLE-NUCLEUS<br/>RNA-seq</span>,
+                name: 'sn',
+                getCellValue: row => (
+                    this.linkDataTypeCells(row.isSingleNucCluster, 'sn', row)
                 )
             },
             {
-                Header: <span className='cell-summary-table-header-center'>SINGLE-CELL<br />RNA-seq</span>,
-                id: 'sc',
-                accessor: 'isSingleCellCluster',
-                headerClassName: 'table-header text-center',
-                className: 'table-column text-center',
-                Cell: ({ row }) => (
-                    this.linkDataTypeCells(row, 'sc')
+                title: <span>SINGLE-CELL<br/>RNA-seq</span>,
+                name: 'sc',
+                getCellValue: row => (
+                    this.linkDataTypeCells(row.isSingleCellCluster, 'sc', row)
                 )
             },
             {
-                Header: <span className='cell-summary-table-header-center'>REGIONAL<br />TRASCRIPTOMICS</span>,
-                id: 'rt',
-                accessor: 'isRegionalTranscriptomics',
-                headerClassName: 'table-header text-center',
-                className: 'table-column text-center',
-                Cell: ({ row }) => (
-                    this.linkDataTypeCells(row, 'rt')
+                title: <span>REGIONAL<br/>TRASCRIPTOMICS</span>,
+                name: 'rt',
+                getCellValue: row => (
+                    this.linkDataTypeCells(row.isRegionalTranscriptomics, 'rt', row)
                 )
             },
         ]
     };
 
-    linkDataTypeCells(row, dataType) {
-        if (row[dataType] === 'Y') {
+    linkDataTypeCells(isOfType, dataType, row) {
+        if (isOfType === 'Y') {
             return <button onClick={() => this.handleLinkClick(dataType, row)} type='button' className='btn btn-link text-start p-0 cell-summary-table-button'>View</button>
         }
         return '';
@@ -163,18 +155,11 @@ class CellTypeSummary extends Component {
                         </Row>
                         <Row xs='12'>
                             <Col>
-                                <ReactTable
-                                    style={{ border: 'none' }}
-                                    data={this.state.cellTypeSummary}
-                                    ref={this.reactTable}
-                                    sortable={false}
-                                    columns={this.state.columns}
-                                    className='-striped cell-summary-table'
-                                    showPagination={true}
-                                    noDataText={'No data found'}
-                                    getTheadThProps={this.getTheadThProps}
-                                    minRows={0}
-                                />
+                                <Grid rows={this.state.cellTypeSummary} columns={this.getColumns()}>
+                                    <Table columnExtensions={this.getColumnExtensions()}/>
+                                    <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={145}/>
+                                    <TableHeaderRow/>
+                                </Grid>
                             </Col>
                         </Row>
                         <Row xs='12'>

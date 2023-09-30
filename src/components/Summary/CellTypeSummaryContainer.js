@@ -18,7 +18,7 @@ const mapDispatchToProps = (dispatch, props) =>
             dispatch(setDataType(dataType));
             dispatch(setTissueType("all"));
             dispatch(setCluster(cluster));
-            dispatch((dispatch) => props.history.push("/explorer/diffex"));
+            dispatch((dispatch) => window.open("/explorer/diffex", '_self'));
         }
     });
 

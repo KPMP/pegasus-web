@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactTable from 'react-table';
+import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { fetchAtlasSummaryRows } from '../../helpers/ApolloClient';
@@ -9,36 +9,20 @@ class AvailableDatasetsTable extends Component {
     constructor(props) {
         super(props);
         this.getColumns = this.getColumns.bind(this);
-        this.reactTable = React.createRef();
 
         this.state = {
-            columns: this.getColumns(),
             totalFiles: [],
-            openCount: [],
-            controlledCount: [],
-            omicsType: [],
-            linkType: [],
-            linkValue: [],
-            linkInformation: {},
-            omicsTypes: {}
+            summaryRows: []
         };
         
     }
 
     async componentDidMount(){
-        await this.getAtlasSummaryRows();
-    }
+        const summary = await fetchAtlasSummaryRows();
 
-    getAtlasSummaryRows = () => {
-        fetchAtlasSummaryRows().then((result) => {
-            this.setState({totalFiles: result.totalFiles});
-            this.setState({summaryRows: result.summaryRows});
-            this.setState({linkInformation: result.summaryRows.linkInformation});
-            result.summaryRows.forEach((row) => {
-                this.setState({[row.omicsType]: row})
-                }
-            )
-        });
+        this.setState({totalFiles: summary.totalFiles});
+        this.setState({summaryRows: summary.summaryRows});
+
     }
 
     handleDataTypeClick(dataType) {
@@ -68,14 +52,14 @@ class AvailableDatasetsTable extends Component {
     }
 
     handleDataTypeValueClick(row, controlAccess) {
-        let linkType = row.original.linkInformation.linkType;
-        let linkValue = row.original.linkInformation.linkValue;
-        let mapping = `/repository/?size=n_1000_n&filters[0][field]=access&filters[0][values][0]=${controlAccess}&filters[0][type]=any&filters[1][field]=${linkType}&filters[1][values][0]=${linkValue}&filters[1][type]=any`;
+        let linkType = row.linkInformation.linkType;
+        let linkValue = row.linkInformation.linkValue;
+        let mapping = `/repository/?size=n_20_n&filters[0][field]=access&filters[0][values][0]=${controlAccess}&filters[0][type]=any&filters[1][field]=${linkType}&filters[1][values][0]=${linkValue}&filters[1][type]=any`;
         if(linkType && linkValue){
             return encodeURI(mapping);
         } else {
             this.props.history.push('/oops');
-            throw new Error('Datatype not found', row.original.omicsType)
+            throw new Error('Datatype not found', row.omicsType)
         }
     }
   
@@ -89,87 +73,36 @@ class AvailableDatasetsTable extends Component {
         );
     }
 
-    getWidthBasedOnScreenSize(columnId) {
-        
-            if (window.innerWidth > 500) {
-                if (columnId === 'dataType') {
-                    return 250;
-                } else if (columnId === 'controlled') {
-                    return 125
-                } else if (columnId === 'open') {
-                    return 125
-                }
-            } else if (window.innerWidth < 765) {
-                if (columnId === 'dataType') {
-                    return 255;
-                } else if (columnId === 'controlled') {
-                    return 100
-                } else if (columnId === 'open') {
-                    return 100
-                }
-            } else if (window.innerWidth < 900) {
-                if (columnId === 'dataType') {
-                    return 535;
-                } else if (columnId === 'controlled') {
-                    return 125
-                } else if (columnId === 'open') {
-                    return 125
-                }
-            } else if (window.innerWidth < 1200) {
-                if (columnId === 'dataType') {
-                    return 535;
-                } else if (columnId === 'controlled') {
-                    return 150
-                } else if (columnId === 'open') {
-                    return 150
-                }
-            } else {
-                return 125;
-            }
+    getColumnExtensions() {
+
+        return [
+            { columnName: 'omicsType', width: 'auto'},
+            { columnName: 'controlledCount', width: 'auto', align: 'center'},
+            { columnName: 'openCount', width: 'auto', align: 'center' },
+        ]
     }
 
     getColumns() {
-
         return [
             {
-                Header: () => (
-                    <span className="table-header">OMICS TYPE</span>
-                ),
-                id: 'dataType',
-                accessor: 'omicsType',
-                headerClassName: 'omics data-type-table-header',
-                className: 'data-type-table-content',
-                minWidth: this.getWidthBasedOnScreenSize('dataType'),
+                title: <span className="table-header omics data-type-table-header">OMICS TYPE</span>,
+                name: 'omicsType',
+                getCellValue: row => <div className='data-type-table-content' style={{'flex': '250 0 auto'}} role='gridcell'>{row.omicsType}</div>
                 
             },
             {
-                Header: () => (
-                    <a className="buttonhref table-header" href={`https://www.kpmp.org/controlled-data`}><span>CONTROLLED</span></a>
-                ),
-                id: 'controlled',
-                accessor: 'controlledCount',
-                headerClassName: 'data-type-table-header',
-                className: 'data-type-table-content',
-                minHeaderWidth: this.getWidthBasedOnScreenSize('controlled'),
-                minWidth: this.getWidthBasedOnScreenSize('controlled'),
-                Cell: row => (
-                    this.handleEmptyCounts(row.value, row, "controlled")
-                    
-                )
+                title: 
+                    <a href={`https://www.kpmp.org/controlled-data`} ><span className="data-type-table-header">CONTROLLED</span></a>
+                ,
+                name: 'controlledCount',
+                getCellValue: row => <div className='rt-td data-type-table-content' style={{'flex': '250 0 auto','textAlign': 'center'}} role='gridcell'>{this.handleEmptyCounts(row.controlledCount, row, "controlled")}</div>
             },
             {
-                Header: () => (
-                    <span className='table-header'>OPEN</span>
-                ),
-                id: 'open',
-                accessor: 'openCount',
-                headerClassName: 'data-type-table-header',
-                className: 'data-type-table-content',
-                minHeaderWidth: this.getWidthBasedOnScreenSize('open'),
-                minWidth: this.getWidthBasedOnScreenSize('open'),
-                Cell: row => (
-                    this.handleEmptyCounts(row.value, row, "open")
-                )
+                title:
+                    <span className='table-header data-type-table-header rt-resizable-header-content'>OPEN</span>
+                ,
+                name: 'openCount',
+                getCellValue: row =>  <div className='rt-td data-type-table-content' style={{'flex': '250 0 auto','textAlign': 'center'}} role='gridcell'>{this.handleEmptyCounts(row.openCount, row, "open")}</div>
             }
         ]
     };
@@ -179,17 +112,11 @@ class AvailableDatasetsTable extends Component {
             <article id='summary-plot'>
                 <Row className='mt-4'>
                     <Col xs='12'>
-                        <ReactTable
-                            style={{ border: 'none' }}
-                            data={this.state.summaryRows}
-                            ref={this.reactTable}
-                            sortable={false}
-                            columns={this.state.columns}
-                            className='samples-by-datatype -striped'
-                            showPagination={false}
-                            noDataText={'No data found'}
-                            minRows={0}
-                        />
+                        <Grid rows={this.state.summaryRows} columns={this.getColumns()}>
+                            <Table columnExtensions={this.getColumnExtensions()}/>
+                            <TableHeaderRow/>
+                            <TableFixedColumns/>
+                        </Grid>
                     </Col>
                 </Row>
                 <Row className="float-end">

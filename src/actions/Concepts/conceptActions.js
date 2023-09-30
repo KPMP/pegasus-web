@@ -25,13 +25,13 @@ export const setSelectedConceptAndRedirect = (concept, props) => {
         dispatch(setSelectedConcept(concept));
         switch (concept.type) {
             case "cell_type":
-                props.history.push('/explorer/celltypesummary');
+                window.open('/explorer/celltypesummary', '_self');
                 break;
             case "gene":
-                props.history.push('/explorer/genesummary');
+                window.open('/explorer/genesummary', '_self');
                 break;
             default:
-                props.history.push('/explorer');
+                window.open('/explorer', '_self');
         }
     }
 };
