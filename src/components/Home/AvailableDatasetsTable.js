@@ -53,10 +53,10 @@ class AvailableDatasetsTable extends Component {
 
     handleDataTypeValueClick(row, controlAccess) {
         let linkType = row.linkInformation.linkType;
-        let linkValue = row.linkInformation.linkValue;
+        let linkValue = encodeURIComponent(row.linkInformation.linkValue);
         let mapping = `/repository/?size=n_20_n&filters[0][field]=access&filters[0][values][0]=${controlAccess}&filters[0][type]=any&filters[1][field]=${linkType}&filters[1][values][0]=${linkValue}&filters[1][type]=any`;
         if(linkType && linkValue){
-            return encodeURI(mapping);
+            return encodeURI(mapping).replace('%2526', '%26');
         } else {
             this.props.history.push('/oops');
             throw new Error('Datatype not found', row.omicsType)
