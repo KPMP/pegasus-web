@@ -53,7 +53,7 @@ class AvailableDatasetsTable extends Component {
 
     handleDataTypeValueClick(row, controlAccess) {
         let linkType = row.linkInformation.linkType;
-        let linkValue = encodeURIComponent(row.linkInformation.linkValue);
+        let linkValue = row.linkInformation.linkValue.replace('&', '%26');
         let mapping = `/repository/?size=n_20_n&filters[0][field]=access&filters[0][values][0]=${controlAccess}&filters[0][type]=any&filters[1][field]=${linkType}&filters[1][values][0]=${linkValue}&filters[1][type]=any`;
         if(linkType && linkValue){
             return encodeURI(mapping).replace('%2526', '%26');
