@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
+import { Route, Navigate } from 'react-router-dom';
 import initialState from './initialState';
 
 export const PrivateUmapRoute = ({component: Component, ...rest}) => (
@@ -8,6 +8,6 @@ export const PrivateUmapRoute = ({component: Component, ...rest}) => (
        {...rest}
         render={props => 
             initialState.recreateUmaps ? (<Component {...props} />) :
-            (<Redirect to ={{pathname:"/"}}/>)}/>
+            (<Navigate to ={{pathname:"/"}}/>)}/>
 );
     
