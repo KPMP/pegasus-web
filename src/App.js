@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import thunk from 'redux-thunk';
 import { default as ReactGA4 } from 'react-ga4';
 import { createBrowserHistory } from 'history';
-import { Route, Routes, BrowserRouter } from 'react-router-dom';
+import { Route, Switch, BrowserRouter } from 'react-router-dom';
 import ErrorBoundaryContainer from './components/Error/ErrorBoundaryContainer';
 import Oops from './components/Error/Oops';
 import Home from './components/Home/Home';
@@ -70,7 +70,7 @@ class App extends Component {
           <BrowserRouter basename={packageInfo.baseURL} history={history}>
             <ErrorBoundaryContainer>
               <NavBar app='atlas' />
-              <Routes>
+              <Switch>
                 <Route exact path='/' history={this.props.history}  component={Home} store={store} />
                 <Route exact path='/explorer' component={Explorer} store={store} />
                 <Route exact path='/explorer/genesummary' component={GeneSummaryContainer} store={store} />
@@ -81,7 +81,7 @@ class App extends Component {
                 <Route exact path='/oops' component={Oops} />
                 <PrivateUmapRoute exact path='/explorer/dataViz/umap' component={UMAPContainer} store={store} />
                 <Route path='*' component={NotFoundPage} />
-              </Routes>
+              </Switch>
               <NavFooter app='atlas' />
             </ErrorBoundaryContainer>
           </BrowserRouter>
