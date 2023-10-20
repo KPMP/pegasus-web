@@ -3,7 +3,7 @@ import { Container, Row, Col, Button, ButtonGroup } from 'reactstrap';
 import DataTypeSelectorContainer from './DataTypeSelectorContainer';
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils";
 import LMDDotPlot from "../Plots/LMDDotPlot";
-import { fetchRegionalTranscriptomics } from "../../helpers/ApolloClient";
+import { fetchRegionalTranscriptomics } from "../../helpers/ApolloClient"; //update to fetch regional proteiomics data
 import RegionalTranscriptomicsTable from "../ExpressionTables/RegionalTranscriptomicsTable";
 import { CSVLink } from "react-csv";
 import { formatDataType } from "../../helpers/Utils";
