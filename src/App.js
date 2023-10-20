@@ -79,7 +79,7 @@ class App extends Component {
                 <Route exact path='/explorer/dataViz' component={RNASeqVizContainer} store={store} />
                 <Route exact path='/explorer/regionalviz' component={RegionalVizContainer} store={store} />
                 <Route exact path='/explorer/diffex' component={DiffexByClusterContainer} store={store} />
-                <Route exact path='/explorer/regionalprot' component={RegionalProteomicsContainer} store={store}/>
+                <Route exact path='/explorer/regionalpro' component={RegionalProteomicsContainer} store={store}/>
                 <Route exact path='/oops' component={Oops} />
                 <PrivateUmapRoute exact path='/explorer/dataViz/umap' component={UMAPContainer} store={store} />
                 <Route path='*' component={NotFoundPage} />
