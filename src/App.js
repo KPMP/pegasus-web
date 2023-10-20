@@ -20,6 +20,7 @@ import NotFoundPage from './components/Error/NotFoundPage';
 import RNASeqVizContainer from "./components/DataViz/RNASeqVizContainer";
 import DiffexByClusterContainer from "./components/ExpressionTables/DiffexByClusterContainer";
 import RegionalVizContainer from "./components/DataViz/RegionalVizContainer";
+import RegionalProteomicsContainer from "./components/DataViz/RegionalProteomicsContainer";
 import packageInfo from '../package.json';
 import { PrivateUmapRoute } from './PrivateRoutes';
 import UMAPContainer from './components/DataViz/UMAPContainer';
@@ -78,6 +79,7 @@ class App extends Component {
                 <Route exact path='/explorer/dataViz' component={RNASeqVizContainer} store={store} />
                 <Route exact path='/explorer/regionalviz' component={RegionalVizContainer} store={store} />
                 <Route exact path='/explorer/diffex' component={DiffexByClusterContainer} store={store} />
+                <Route exact path='/explorer/regionalprot' component={RegionalProteomicsContainer} store={store}/>
                 <Route exact path='/oops' component={Oops} />
                 <PrivateUmapRoute exact path='/explorer/dataViz/umap' component={UMAPContainer} store={store} />
                 <Route path='*' component={NotFoundPage} />
