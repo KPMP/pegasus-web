@@ -3,10 +3,8 @@ import { Container, Row, Col, Button, ButtonGroup } from 'reactstrap';
 import DataTypeSelectorContainer from './DataTypeSelectorContainer';
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils";
 import LMDDotPlot from "../Plots/LMDDotPlot";
-import { fetchRegionalTranscriptomics } from "../../helpers/ApolloClient"; //update to fetch regional proteiomics data
 import RegionalTranscriptomicsTable from "../ExpressionTables/RegionalTranscriptomicsTable";
 import { CSVLink } from "react-csv";
-import { formatDataType } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { faDownload, faShare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -19,68 +17,13 @@ class RegionalProteomics extends Component {
         if (!this.props.tissueType) {
             this.props.setTissueType('all')
         }
-
-        //set the dataType to 'rp' in a later step
-        // const queryParam = queryString.parse(props.location.search);
-        // if (queryParam && queryParam.dataType) {
-        //     this.props.resetState();
-        //     props.setDataType('rt');
-        //     window.open(props.location.pathname, '_self');
-        // }
+        const queryParam = queryString.parse(props.location.search);
+        if (queryParam && queryParam.dataType) {
+            this.props.resetState();
+            props.setDataType('rt');
+            window.open(props.location.pathname, '_self');
+        }
     };
-    //get Regional Proteomics data and mount into the DOM
-    // componentDidMount() {
-    //     if (this.props.gene.symbol) {
-    //         this.getRTData();
-    //     }
-    // };
-
-    // //update the DOM and set the state the the Regiona
-    // componentDidUpdate(prevProps, prevState, snapShot) {
-    //     if (this.props.tissueType !== prevProps.tissueType) {
-    //         this.setState({ rtAllTableData: this.state.rtAllPlotData[this.props.tissueType] });
-    //         this.setState({ rtGTTableData: this.state.rtGTPlotData[this.props.tissueType] });
-    //     }
-    //     if (this.props.gene !== prevProps.gene) {
-    //         this.getRTData();
-    //     }
-    // };
-
-    // getRTData = () => {
-    //     fetchRegionalTranscriptomics('all_segments', this.props.gene.symbol).then((result) => {
-    //         this.setState({ rtAllPlotData: result });
-    //         this.setState({ rtAllTableData: result[this.props.tissueType] });
-    //     }
-    //     );
-    //     fetchRegionalTranscriptomics('glom_tub', this.props.gene.symbol).then((result) => {
-    //         this.setState({ rtGTPlotData: result })
-    //         this.setState({ rtGTTableData: result[this.props.tissueType] });
-    //     }
-    //     );
-    // };
-
-    // getExportFilename = () => {
-    //     const grouping = this.state.selectedComparison === 'glom_tub' ? 'GlomVsTI' : 'Regions';
-    //     const tissueType = formatTissueType(this.props.tissueType).toLowerCase().replace(" ", "-");
-    //     return "KPMP_" + formatDataType(this.props.dataType) + '_gene-comparison_' + this.props.gene.symbol + '_' + tissueType + '_' + grouping + '.csv';
-    // };
-
-    // cleanResults = (results) => {
-    //     // This next line was needed to avoid a strange error complaining that I couldn't modify the array
-    //     let tempResults = JSON.parse(JSON.stringify(results));
-    //     // The order b - a is important here because we want a reverse sort
-    //     let sortedResults = tempResults.sort(function (a, b) { return b.foldChange - a.foldChange; });
-    //     return sortedResults.map(({ segment, segmentName, pVal, stdDev, foldChange, sampleCount }) => {
-    //         return {
-    //             abbr: segment,
-    //             region: segmentName,
-    //             numSamples: sampleCount,
-    //             stdDeviation: formatNumberToPrecision(stdDev, 3),
-    //             foldChange: formatNumberToPrecision(foldChange, 3),
-    //             pVal: formatNumberToPrecision(pVal, 3),
-    //         }
-    //     });
-    // };
 
     render() {
         let plot = {};
