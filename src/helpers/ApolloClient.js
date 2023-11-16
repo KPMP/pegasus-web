@@ -136,11 +136,11 @@ export const fetchClusterHierarchy = async (cellType) => {
     }
 }
 
-export const fetchGeneDatasetSummary = async (geneSymbol, fetchPolicy = 'no-cache') => {
+export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') => {
     const response = await apolloClient.query({
         query: gql`
             query {
-                getGeneDatasetInformation(geneSymbol: "${geneSymbol}")
+                getDataTypeSummaryInformation()
                  {
                     omicsType
                     dataType
@@ -154,8 +154,8 @@ export const fetchGeneDatasetSummary = async (geneSymbol, fetchPolicy = 'no-cach
             }`,
         fetchPolicy: fetchPolicy
     });
-    if (response.data && response.data.getGeneDatasetInformation) {
-        return response.data.getGeneDatasetInformation;
+    if (response.data && response.data.getDataTypeSummaryInformation) {
+        return response.data.getDataTypeSummaryInformation;
     } else {
         console.log('response.error',response.error)
         store.dispatch(sendMessageToBackend("Could not retrieve Gene Dataset: " + response.error));
