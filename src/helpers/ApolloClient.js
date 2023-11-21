@@ -137,9 +137,8 @@ export const fetchClusterHierarchy = async (cellType) => {
 }
 
 export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') => {
-    const response = await apolloClient.query({
-        query: gql`
-            query {
+    const query = gql`
+      query {
                 getDataTypeSummaryInformation()
                  {
                     omicsType
@@ -151,7 +150,9 @@ export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') 
                     dmrCount
                     participantCount
                 }
-            }`,
+            }`;
+    const response = await apolloClient.query({
+        query: query,
         fetchPolicy: fetchPolicy
     });
     if (response.data && response.data.getDataTypeSummaryInformation) {
