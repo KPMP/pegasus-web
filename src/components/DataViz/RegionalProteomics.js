@@ -9,9 +9,9 @@ class RegionalProteomics extends Component {
   constructor(props) {
     super(props);
     this.state = { rtAllPlotData: [], rtAllTableData: [], rtGTPlotData: [], rtGTTableData: [], selectedComparison: 'all_segments', selectedPlot: 'box' };
-    if (!this.props.tissueType) {
-        this.props.setTissueType('all')
-    }
+    // if (!this.props.tissueType) {
+    //     this.props.setTissueType('all')
+    // }
     const queryParam = queryString.parse(props.location.search);
     if (queryParam && queryParam.dataType) {
         this.props.resetState();
