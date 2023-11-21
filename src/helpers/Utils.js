@@ -130,6 +130,11 @@ export const getDataTypeOptions = async (geneSymbol, cluster) => {
                 value: "rt",
                 isDisabled: !dataTypes.includes("rt")
             },
+            {
+                label: "Regional proteomics",
+                value: "rp",
+                isDisabled: !dataTypes.includes("rp")
+            }
         ];
         return options;
     });
