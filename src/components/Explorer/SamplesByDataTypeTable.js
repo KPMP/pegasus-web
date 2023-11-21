@@ -47,6 +47,7 @@ class SamplesByDataTypeTable extends Component {
             'Single-nucleus RNA-seq (snRNA-seq)': 'sn',
             'Single-cell RNA-seq (scRNA-seq)': 'sc',
             'Regional transcriptomics': 'rt',
+            'Regional Proteomics': 'rp',
             'Light Microscopic Whole Slide Images': 'wsi',
             '3D Tissue Imaging and Cytometry': '3d',
             'CODEX': 'codex',
