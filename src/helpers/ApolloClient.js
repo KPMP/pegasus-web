@@ -139,7 +139,7 @@ export const fetchClusterHierarchy = async (cellType) => {
 export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') => {
     const query = gql`
       query {
-                getDataTypeSummaryInformation()
+                getDataTypeSummaryInformation
                  {
                     omicsType
                     dataType
