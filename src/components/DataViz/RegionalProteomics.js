@@ -3,8 +3,22 @@ import { Container, Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DataTypeSelectorContainer from './DataTypeSelectorContainer';
 import { faShare } from "@fortawesome/free-solid-svg-icons";
+import queryString from 'query-string';
 
 class RegionalProteomics extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { rtAllPlotData: [], rtAllTableData: [], rtGTPlotData: [], rtGTTableData: [], selectedComparison: 'all_segments', selectedPlot: 'box' };
+    if (!this.props.tissueType) {
+        this.props.setTissueType('all')
+    }
+    const queryParam = queryString.parse(props.location.search);
+    if (queryParam && queryParam.dataType) {
+        this.props.resetState();
+        props.setDataType('rp');
+        window.open(props.location.pathname, '_self');
+    }
+};
     render() {
         return (
             <div className='height-wrapper mb-3 mt-3'>
