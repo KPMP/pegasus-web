@@ -38,6 +38,10 @@ export const setDataTypeAndRedirect = (dataType, props) => {
                 dispatch(setDataType(dataType));
                 window.open('/explorer/regionalviz', '_self');
                 break;
+            case "rc":
+                dispatch(setDataType(dataType));
+                window.open("/explorer/regionalpro", "_self");
+                break;
             case "wsi":
                 window.open('/spatial-viewer/?size=n_20_n&filters%5B0%5D%5Bfield%5D=datatype&filters%5B0%5D%5Bvalues%5D%5B0%5D=Light%20Microscopic%20Whole%20Slide%20Images&filters%5B0%5D%5Btype%5D=any', '_self')
                 break;
