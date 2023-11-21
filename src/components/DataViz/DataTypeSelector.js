@@ -3,7 +3,7 @@ import Select from "react-select";
 import { Row, Col, Container } from 'reactstrap';
 import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer';
 import { getTissueTypeOptions, getAllDataTypeOptions, getDataTypeOptionsWithTissueType } from "../../helpers/Utils";
-import { fetchGeneDatasetSummary } from '../../helpers/ApolloClient';
+import { fetchDataTypeSummaryInformation } from '../../helpers/ApolloClient';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -37,7 +37,7 @@ class DataTypeSelector extends Component {
             if (this.props.gene.symbol) {
                 this.reloadPageData(this.props.gene.symbol);
             } else {
-                this.fetchGeneDatasetSummary();
+                this.fetchDataTypeSummaryInformation();
             }
         }
     }
@@ -53,7 +53,7 @@ class DataTypeSelector extends Component {
         if (this.props.gene.symbol) {
             this.reloadPageData(this.props.gene.symbol);
         } else {
-            this.fetchGeneDatasetSummary();
+            this.fetchDataTypeSummaryInformation();
         }
     }
 
@@ -85,9 +85,9 @@ class DataTypeSelector extends Component {
         }
         return datasetSummary
     }
-    fetchGeneDatasetSummary = async (geneSymbol) => {
+    fetchDataTypeSummaryInformation = async (geneSymbol) => {
         this.setState({ isDatasetSummaryLoading: true, datasetToggle: 'collapsed' });
-        return fetchGeneDatasetSummary(geneSymbol).then(
+        return fetchDataTypeSummaryInformation(geneSymbol).then(
             (datasetSummary) => {
                 if (datasetSummary) {
                     datasetSummary = this.formatGeneDataset(datasetSummary)
@@ -112,7 +112,7 @@ class DataTypeSelector extends Component {
 
 
     reloadPageData = async (geneSymbol) => {
-        this.fetchGeneDatasetSummary(geneSymbol).then(
+        this.fetchDataTypeSummaryInformation(geneSymbol).then(
             (datasetSummary) => {
                 if (datasetSummary) {
                     datasetSummary = this.formatGeneDataset(datasetSummary)
