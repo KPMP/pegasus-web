@@ -38,7 +38,7 @@ export const setDataTypeAndRedirect = (dataType, props) => {
                 dispatch(setDataType(dataType));
                 window.open('/explorer/regionalviz', '_self');
                 break;
-            case "rc":
+            case "rp":
                 dispatch(setDataType(dataType));
                 window.open("/explorer/regionalpro", "_self");
                 break;
