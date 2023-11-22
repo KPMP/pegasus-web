@@ -24,6 +24,9 @@ const mapDispatchToProps = (dispatch, props) =>
         } else if (dataType === 'sc' || dataType === 'sn') {
             dispatch((dispatch) => window.open("/explorer/dataViz", "_self"));
         }
+        else if(dataType === "rp"){
+          dispatch((dispatch) => window.open("/regionalpro", "_self"));
+        } 
     }
 
 });

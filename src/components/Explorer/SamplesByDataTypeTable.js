@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
-import { fetchSummaryData, fetchGeneDatasetSummary} from '../../helpers/ApolloClient';
+import { fetchSummaryData, fetchDataTypeSummaryInformation} from '../../helpers/ApolloClient';
 import { Grid, TableHeaderRow, Table, TableColumnResizing} from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
@@ -33,7 +33,7 @@ class SamplesByDataTypeTable extends Component {
       
     async componentDidMount() {
         let summary = await fetchSummaryData("explorerHomepageSummary")
-        const geneDatasetSummary = await fetchGeneDatasetSummary("")
+        const geneDatasetSummary = await fetchDataTypeSummaryInformation()
         summary = summary.concat(geneDatasetSummary)
         summary = summary.slice()
                         .sort( this.compare )
@@ -47,6 +47,7 @@ class SamplesByDataTypeTable extends Component {
             'Single-nucleus RNA-seq (snRNA-seq)': 'sn',
             'Single-cell RNA-seq (scRNA-seq)': 'sc',
             'Regional transcriptomics': 'rt',
+            'Regional proteomics': 'rp',
             'Light Microscopic Whole Slide Images': 'wsi',
             '3D Tissue Imaging and Cytometry': '3d',
             'CODEX': 'codex',
