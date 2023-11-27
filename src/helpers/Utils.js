@@ -107,6 +107,11 @@ export const getAllDataTypeOptions = () => {
             value: "rt",
             isDisabled: false
         },
+        {
+          label: "Regional Proteomics",
+          value: "rp",
+          isDisabled: false
+        }
     ];
     return options;
 };
