@@ -8,8 +8,11 @@ import queryString from 'query-string';
 class RegionalProteomics extends Component {
   constructor(props) {
     super(props);
-    this.state = { rtAllPlotData: [], rtAllTableData: [], rtGTPlotData: [], rtGTTableData: [], selectedComparison: 'all_segments', selectedPlot: 'box' };
+    this.state = { rpAllPlotData: [], rpAllTableData: [], rpGTPlotData: [], rpGTTableData: [], selectedComparison: 'all_segments', selectedPlot: 'box' };
     const queryParam = queryString.parse(props.location.search);
+    if (!this.props.tissueType) {
+      this.props.setTissueType('all')
+    }
     if (queryParam && queryParam.dataType) {
         this.props.resetState();
         props.setDataType('rp');
