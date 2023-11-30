@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DataTypeSelectorContainer from './DataTypeSelectorContainer';
 import {faDownload, faShare} from "@fortawesome/free-solid-svg-icons";
 import queryString from 'query-string';
-import {fetchRegionalTranscriptomics} from "../../helpers/ApolloClient";
+import {fetchRegionalProteomics} from "../../helpers/ApolloClient";
 import LMDDotPlot from "../Plots/LMDDotPlot";
 import RegionalProteomicsTable from "../ExpressionTables/RegionalProteomicsTable";
 import {formatTissueType} from "../../helpers/Utils";
@@ -42,7 +42,7 @@ class RegionalProteomics extends Component {
     };
 
     getRPData = () => {
-        fetchRegionalTranscriptomics(this.props.gene.symbol).then((result) => {
+        fetchRegionalProteomics(this.props.gene.symbol).then((result) => {
                 this.setState({ rpAllPlotData: result });
                 this.setState({ rpAllTableData: result[this.props.tissueType] });
             }
