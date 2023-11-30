@@ -319,6 +319,74 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
 
 };
 
+export const fetchRegionalProteomics = async (geneSymbol) => {
+    let query = gql`
+        query {
+            getRPGeneExpressionByTissue(geneSymbol: "${geneSymbol}") {
+                aki {
+                    id
+                    segment
+                    segmentName
+                    geneSymbol
+                    pVal
+                    foldChange
+                    pValLog10
+                    stdDev
+                    sampleCount
+                    tissueType
+                }
+                ckd {
+                    id
+                    segment
+                    segmentName
+                    geneSymbol
+                    pVal
+                    foldChange
+                    pValLog10
+                    stdDev
+                    sampleCount
+                    tissueType
+                }
+                all {
+                    id
+                    segment
+                    segmentName
+                    geneSymbol
+                    pVal
+                    foldChange
+                    pValLog10
+                    stdDev
+                    sampleCount
+                    tissueType
+                }
+                hrt {
+                    id
+                    segment
+                    segmentName
+                    geneSymbol
+                    pVal
+                    foldChange
+                    pValLog10
+                    stdDev
+                    sampleCount
+                    tissueType
+                }
+            }
+        }`;
+
+    const response = await apolloClient.query({
+        query: query,
+        fetchPolicy: 'cache-first'
+    });
+
+    if (response.data && response.data.getRPGeneExpressionByTissue) {
+        return response.data.getRPGeneExpressionByTissue;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve regional proteomics  data: " + response.error));
+    }
+
+};
+
 export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
     let query = gql`
         query {
