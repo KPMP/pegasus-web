@@ -86,4 +86,4 @@ class RegionalProteomicsTable extends Component {
 
 }
 
-export default RegionalTranscriptomicsTable;
+export default RegionalProteomicsTable;
