@@ -52,7 +52,7 @@ class RegionalProteomics extends Component {
     render() {
         let plot = {};
         let table = {};
-        table = <RegionalProteomicsTable data={this.state.rpAllTableData} />;
+        // table = <RegionalProteomicsTable data={this.state.rpAllTableData} />;
         plot = <LMDDotPlot data={this.state.rpAllPlotData} />
         return (
             <div className='height-wrapper mb-3 mt-3'>
@@ -110,19 +110,11 @@ class RegionalProteomics extends Component {
                                   <h6>NS = Not Significant</h6>
                               </Col>
                               <Col xs='1' className='text-end'>
-                                  <CSVLink
-                                      onClick={() => handleGoogleAnalyticsEvent('Explorer', 'Download', this.getExportFilename())}
-                                      data={cleanDownloadData}
-                                      filename={this.getExportFilename()}
-                                      target="_blank"
-                                      className="text-body icon-container"
-                                  >
-                                      <FontAwesomeIcon icon={faDownload}/>
-                                  </CSVLink>
+                                  {"download link goes here"}
                               </Col>
                           </Row>
                           <Row xs='12'>
-                              {table}
+                              {"table goes here"}
                           </Row>
                       </Container>
                   }
