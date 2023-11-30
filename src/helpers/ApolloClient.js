@@ -324,52 +324,68 @@ export const fetchRegionalProteomics = async (geneSymbol) => {
         query {
             getRPGeneExpressionByTissue(geneSymbol: "${geneSymbol}") {
                 aki {
-                    id
-                    segment
-                    segmentName
-                    geneSymbol
-                    pVal
-                    foldChange
-                    pValLog10
-                    stdDev
-                    sampleCount
-                    tissueType
+                      id
+                      geneSymbol
+                      fdrConfidence
+                      accession
+                      description
+                      coveragePct
+                      numPeptides
+                      numUniquePeptides
+                      comparison
+                      segment: region
+                      foldChange
+                      pValLog10: adjPVal
+                      tissueType
+                      sampleCount
                 }
                 ckd {
-                    id
-                    segment
-                    segmentName
-                    geneSymbol
-                    pVal
-                    foldChange
-                    pValLog10
-                    stdDev
-                    sampleCount
-                    tissueType
+                      id
+                      geneSymbol
+                      fdrConfidence
+                      accession
+                      description
+                      coveragePct
+                      numPeptides
+                      numUniquePeptides
+                      comparison
+                      segment: region
+                      foldChange
+                      pValLog10: adjPVal
+                      tissueType
+                      sampleCount
                 }
                 all {
-                    id
-                    segment
-                    segmentName
-                    geneSymbol
-                    pVal
-                    foldChange
-                    pValLog10
-                    stdDev
-                    sampleCount
-                    tissueType
+                      id
+                      geneSymbol
+                      fdrConfidence
+                      accession
+                      description
+                      coveragePct
+                      numPeptides
+                      numUniquePeptides
+                      comparison
+                      segment: region
+                      foldChange
+                      pValLog10: adjPVal
+                      tissueType
+                      sampleCount
                 }
                 hrt {
-                    id
-                    segment
-                    segmentName
-                    geneSymbol
-                    pVal
-                    foldChange
-                    pValLog10
-                    stdDev
-                    sampleCount
-                    tissueType
+                      id
+                      geneSymbol
+                      fdrConfidence
+                      accession
+                      description
+                      coveragePct
+                      numPeptides
+                      numUniquePeptides
+                      comparison
+                      segment: region
+                      foldChange
+                      pValLog10: adjPVal
+                      tissueType
+                      sampleCount
                 }
             }
         }`;
