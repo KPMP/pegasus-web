@@ -54,7 +54,7 @@ class RegionalProteomics extends Component {
     mapPlotData = (result) => {
         let plots = {};
         let accessionNums = [];
-        for (let {accession, rpExpressionByTissueType} in result) {
+        for (let {accession, rpExpressionByTissueType} of result) {
             plots[accession] = rpExpressionByTissueType;
             accessionNums.push(accession);
         }
@@ -64,8 +64,8 @@ class RegionalProteomics extends Component {
 
     getTabGroup = (accessionNums) => {
         let tabs = []
-        for (let accession in accessionNums) {
-            tabs.push(<Button color="primary" onClick={() => this.setState({ selectedAccession: accession })} active={this.state.selectedAccession === accession}>Regions</Button>)
+        for (let accession of accessionNums) {
+            tabs.push(<Button color="primary" onClick={() => this.setState({ selectedAccession: accession })} active={this.state.selectedAccession === accession}>{accession}</Button>)
         }
         return(<ButtonGroup>
             {tabs}
