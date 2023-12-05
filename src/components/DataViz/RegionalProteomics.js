@@ -14,7 +14,7 @@ import {handleGoogleAnalyticsEvent} from "../../helpers/googleAnalyticsHelper";
 class RegionalProteomics extends Component {
       constructor(props) {
         super(props);
-        this.state = { rpAllData: [] , plotData: {}, accessionNums: [], selectedAccession: ""};
+        this.state = { rpAllData: [] , plotData: [], accessionNums: [], selectedAccession: ""};
         const queryParam = queryString.parse(props.location.search);
         if (!this.props.tissueType) {
           this.props.setTissueType('all')
@@ -44,7 +44,7 @@ class RegionalProteomics extends Component {
     getRPData = () => {
         fetchRegionalProteomics(this.props.gene.symbol).then((result) => {
                 this.setState({ rpAllData: result });
-                this.setState({ selectedAccession: result[0].accession});
+                this.setState({ selectedAccession: result[0]["accession"]});
                 this.mapPlotData(result);
                 // this.setState({ rpTableData: result[this.props.tissueType] });
             }
@@ -59,7 +59,7 @@ class RegionalProteomics extends Component {
             accessionNums.push(accession);
         }
         this.setState({ plotData: plots });
-        this.setState({ accessionNums: accessionNums})
+        this.setState({ accessionNums: accessionNums })
     }
 
     getTabGroup = (accessionNums) => {
@@ -73,10 +73,9 @@ class RegionalProteomics extends Component {
     }
 
     render() {
-        //let plot = this.state.plotData[this.state.selectedAccession];
-        //let table = {};
         // table = <RegionalProteomicsTable data={this.state.rpAllTableData} />;
-        let plot = <LMDDotPlot data={this.state.plotData[this.state.selectedAccession]} />
+        let accessionPLot = this.state.plotData?this.state.plotData[this.state.selectedAccession]:[]
+        let plot = <LMDDotPlot data={accessionPLot} />
         let tabs = this.getTabGroup(this.state.accessionNums);
         return (
             <div className='height-wrapper mb-3 mt-3'>
