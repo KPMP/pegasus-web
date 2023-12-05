@@ -14,7 +14,7 @@ import {handleGoogleAnalyticsEvent} from "../../helpers/googleAnalyticsHelper";
 class RegionalProteomics extends Component {
       constructor(props) {
         super(props);
-        this.state = { rpAllData: [] , plotData: [], accessionNums: [], selectedAccession: ""};
+        this.state = { rpAllData: [] , plotData: {}, accessionNums: [], selectedAccession: ""};
         const queryParam = queryString.parse(props.location.search);
         if (!this.props.tissueType) {
           this.props.setTissueType('all')
@@ -74,8 +74,8 @@ class RegionalProteomics extends Component {
 
     render() {
         // table = <RegionalProteomicsTable data={this.state.rpAllTableData} />;
-        let accessionPLot = this.state.plotData?this.state.plotData[this.state.selectedAccession]:[]
-        let plot = <LMDDotPlot data={accessionPLot} />
+        let accessionPlot = this.state.plotData?this.state.plotData[this.state.selectedAccession]:{}
+        let plot = <LMDDotPlot data={accessionPlot} />
         let tabs = this.getTabGroup(this.state.accessionNums);
         return (
             <div className='height-wrapper mb-3 mt-3'>
