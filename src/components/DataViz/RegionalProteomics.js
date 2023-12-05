@@ -7,14 +7,14 @@ import queryString from 'query-string';
 import {fetchRegionalProteomics} from "../../helpers/ApolloClient";
 import LMDDotPlot from "../Plots/LMDDotPlot";
 import RegionalProteomicsTable from "../ExpressionTables/RegionalProteomicsTable";
-import {formatTissueType} from "../../helpers/Utils";
+import {convertRPResultsToMap, formatTissueType} from "../../helpers/Utils";
 import {CSVLink} from "react-csv";
 import {handleGoogleAnalyticsEvent} from "../../helpers/googleAnalyticsHelper";
 
 class RegionalProteomics extends Component {
       constructor(props) {
         super(props);
-        this.state = { rpAllPlotData: [], rpAllTableData: [] };
+        this.state = { rpAllData: [] , plotData: {}, accessionNums: [], selectedAccession: ""};
         const queryParam = queryString.parse(props.location.search);
         if (!this.props.tissueType) {
           this.props.setTissueType('all')
@@ -43,17 +43,41 @@ class RegionalProteomics extends Component {
 
     getRPData = () => {
         fetchRegionalProteomics(this.props.gene.symbol).then((result) => {
-                this.setState({ rpAllPlotData: result });
-                this.setState({ rpAllTableData: result[this.props.tissueType] });
+                this.setState({ rpAllData: result });
+                this.setState({ selectedAccession: result[0].accession});
+                this.mapPlotData(result);
+                // this.setState({ rpTableData: result[this.props.tissueType] });
             }
         );
     };
 
+    mapPlotData = (result) => {
+        let plots = {};
+        let accessionNums = [];
+        for (let {accession, rpExpressionByTissueType} in result) {
+            plots[accession] = rpExpressionByTissueType;
+            accessionNums.push(accession);
+        }
+        this.setState({ plotData: plots });
+        this.setState({ accessionNums: accessionNums})
+    }
+
+    getTabGroup = (accessionNums) => {
+        let tabs = []
+        for (let accession in accessionNums) {
+            tabs.push(<Button color="primary" onClick={() => this.setState({ selectedAccession: accession })} active={this.state.selectedAccession === accession}>Regions</Button>)
+        }
+        return(<ButtonGroup>
+            {tabs}
+            </ButtonGroup>)
+    }
+
     render() {
-        let plot = {};
-        let table = {};
+        //let plot = this.state.plotData[this.state.selectedAccession];
+        //let table = {};
         // table = <RegionalProteomicsTable data={this.state.rpAllTableData} />;
-        plot = <LMDDotPlot data={this.state.rpAllPlotData} />
+        let plot = <LMDDotPlot data={this.state.plotData[this.state.selectedAccession]} />
+        let tabs = this.getTabGroup(this.state.accessionNums);
         return (
             <div className='height-wrapper mb-3 mt-3'>
               <Container id='outer-wrapper'>
@@ -84,7 +108,8 @@ class RegionalProteomics extends Component {
                               <Col lg='12' className='text-start lmd-plot-toggle'>
                                   <span className='d-table-cell pe-4 pb-2 text-nowrap'>Display by:</span>
                                   <span className='d-table-cell'>
-                      </span>
+                                        {tabs}
+                                    </span>
                               </Col>
                           </Row>
                           <Row xs='12' className='mb-4 lmd-plot-container'>

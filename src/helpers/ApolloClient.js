@@ -323,72 +323,91 @@ export const fetchRegionalProteomics = async (geneSymbol) => {
     let query = gql`
         query {
             getRPGeneExpressionByTissue(geneSymbol: "${geneSymbol}") {
-                aki {
-                      id
-                      geneSymbol
-                      fdrConfidence
-                      accession
-                      description
-                      coveragePct
-                      numPeptides
-                      numUniquePeptides
-                      comparison
-                      segment: region
-                      foldChange
-                      pValLog10: adjPVal
-                      tissueType
-                      sampleCount
+                accession
+                rpExpressionByTissueType {
+                  all {
+                        id
+                        geneSymbol
+                        fdrConfidence
+                        accession
+                        description
+                        coveragePct
+                        numPeptides
+                        numUniquePeptides
+                        comparison
+                        region
+                        foldChange
+                        adjPVal
+                        tissueType
+                        sampleCount       
+                  }
+                  hrt{
+                        id
+                        geneSymbol
+                        fdrConfidence
+                        accession
+                        description
+                        coveragePct
+                        numPeptides
+                        numUniquePeptides
+                        comparison
+                        region
+                        foldChange
+                        adjPVal
+                        tissueType
+                        sampleCount       
+                  }
+                  ckd{
+                        id
+                        geneSymbol
+                        fdrConfidence
+                        accession
+                        description
+                        coveragePct
+                        numPeptides
+                        numUniquePeptides
+                        comparison
+                        region
+                        foldChange
+                        adjPVal
+                        tissueType
+                        sampleCount       
+                  }
+                  dmr{
+                        id
+                        geneSymbol
+                        fdrConfidence
+                        accession
+                        description
+                        coveragePct
+                        numPeptides
+                        numUniquePeptides
+                        comparison
+                        region
+                        foldChange
+                        adjPVal
+                        tissueType
+                        sampleCount       
+                  }
+                  aki{
+                        id
+                        geneSymbol
+                        fdrConfidence
+                        accession
+                        description
+                        coveragePct
+                        numPeptides
+                        numUniquePeptides
+                        comparison
+                        region
+                        foldChange
+                        adjPVal
+                        tissueType
+                        sampleCount       
+                  }
                 }
-                ckd {
-                      id
-                      geneSymbol
-                      fdrConfidence
-                      accession
-                      description
-                      coveragePct
-                      numPeptides
-                      numUniquePeptides
-                      comparison
-                      segment: region
-                      foldChange
-                      pValLog10: adjPVal
-                      tissueType
-                      sampleCount
-                }
-                all {
-                      id
-                      geneSymbol
-                      fdrConfidence
-                      accession
-                      description
-                      coveragePct
-                      numPeptides
-                      numUniquePeptides
-                      comparison
-                      segment: region
-                      foldChange
-                      pValLog10: adjPVal
-                      tissueType
-                      sampleCount
-                }
-                hrt {
-                      id
-                      geneSymbol
-                      fdrConfidence
-                      accession
-                      description
-                      coveragePct
-                      numPeptides
-                      numUniquePeptides
-                      comparison
-                      segment: region
-                      foldChange
-                      pValLog10: adjPVal
-                      tissueType
-                      sampleCount
-                }
-            }
-        }`;
+  }
+}`;
 
     const response = await apolloClient.query({
         query: query,
