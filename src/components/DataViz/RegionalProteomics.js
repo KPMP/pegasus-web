@@ -63,10 +63,16 @@ class RegionalProteomics extends Component {
         this.setState({ tableData: plotData[this.props.tissueType]})
     }
 
+    handleAccessionChange = (accession) => {
+        this.setState({ selectedAccession: accession })
+        this.setState({ plotData: this.state.allData[accession]})
+        this.setState({ tableData: this.state.allData[accession][this.props.tissueType]})
+    }
+
     getTabGroup = (accessionNums) => {
         let tabs = []
         for (let accession of accessionNums) {
-            tabs.push(<Button color="primary" onClick={() => this.setState({ selectedAccession: accession })} active={this.state.selectedAccession === accession}>{accession}</Button>)
+            tabs.push(<Button color="primary" onClick={() => this.handleAccessionChange({ accession })} active={this.state.selectedAccession === accession}>{accession}</Button>)
         }
         return(<ButtonGroup>
             {tabs}
@@ -77,6 +83,7 @@ class RegionalProteomics extends Component {
         let accessionPlotData = {};
         if (Object.keys(this.state.allData).length > 0) {
             accessionPlotData = this.state.allData[this.state.selectedAccession];
+
         }
         let plot = <LMDDotPlot data={accessionPlotData} />
         let table = <RegionalProteomicsTable data={this.state.tableData}/>
