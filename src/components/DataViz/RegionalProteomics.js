@@ -7,14 +7,14 @@ import queryString from 'query-string';
 import {fetchRegionalProteomics} from "../../helpers/ApolloClient";
 import LMDDotPlot from "../Plots/LMDDotPlot";
 import RegionalProteomicsTable from "../ExpressionTables/RegionalProteomicsTable";
-import {convertRPResultsToMap, formatTissueType} from "../../helpers/Utils";
+import {formatTissueType} from "../../helpers/Utils";
 import {CSVLink} from "react-csv";
 import {handleGoogleAnalyticsEvent} from "../../helpers/googleAnalyticsHelper";
 
 class RegionalProteomics extends Component {
       constructor(props) {
         super(props);
-        this.state = { rpAllData: [] , plotData: {}, accessionNums: [], selectedAccession: ""};
+        this.state = { plotData: {}, accessionNums: [], selectedAccession: ""};
         const queryParam = queryString.parse(props.location.search);
         if (!this.props.tissueType) {
           this.props.setTissueType('all')
@@ -40,10 +40,8 @@ class RegionalProteomics extends Component {
 
     getRPData = () => {
         fetchRegionalProteomics(this.props.gene.symbol).then((result) => {
-                this.setState({ rpAllData: result });
                 this.setState({ selectedAccession: result[0]["accession"]});
                 this.mapPlotData(result);
-                // this.setState({ rpTableData: result[this.props.tissueType] });
             }
         );
     };
@@ -76,6 +74,9 @@ class RegionalProteomics extends Component {
             accessionPlotData = this.state.plotData[this.state.selectedAccession];
             accessionTableData = this.state.plotData[this.state.selectedAccession][this.props.tissueType];
         }
+        if (Object.keys(accessionPlotData).length > 0) {
+            accessionTableData = accessionPlotData[this.props.tissueType];
+        }
         let plot = <LMDDotPlot data={accessionPlotData} />
         let table = <RegionalProteomicsTable data={accessionTableData}/>
         let tabs = this.getTabGroup(this.state.accessionNums);
@@ -107,7 +108,7 @@ class RegionalProteomics extends Component {
                           </Row>
                           <Row xs='12'>
                               <Col lg='12' className='text-start lmd-plot-toggle'>
-                                  <span className='d-table-cell pe-4 pb-2 text-nowrap'>Display by:</span>
+                                  <span className='d-table-cell pe-4 pb-2 text-nowrap'>Protein accession:</span>
                                   <span className='d-table-cell'>
                                         {tabs}
                                     </span>
