@@ -33,9 +33,6 @@ class RegionalProteomics extends Component {
     };
 
     componentDidUpdate(prevProps, prevState, snapShot) {
-        if (this.props.tissueType !== prevProps.tissueType) {
-            this.setState({ rpAllTableData: this.state.rpAllPlotData[this.props.tissueType] });
-        }
         if (this.props.gene !== prevProps.gene) {
             this.getRPData();
         }
