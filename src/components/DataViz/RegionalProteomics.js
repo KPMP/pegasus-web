@@ -14,7 +14,7 @@ import {handleGoogleAnalyticsEvent} from "../../helpers/googleAnalyticsHelper";
 class RegionalProteomics extends Component {
       constructor(props) {
         super(props);
-        this.state = { plotData: {}, accessionNums: [], selectedAccession: ""};
+        this.state = { allData: {}, accessionNums: [], selectedAccession: "", tableData: [], plotData: {}};
         const queryParam = queryString.parse(props.location.search);
         if (!this.props.tissueType) {
           this.props.setTissueType('all')
@@ -36,6 +36,9 @@ class RegionalProteomics extends Component {
         if (this.props.gene !== prevProps.gene) {
             this.getRPData();
         }
+        if (this.props.tissueType !== prevProps.tissueType) {
+            this.setState({ tableData: this.state.plotData[this.props.tissueType] });
+        }
     };
 
     getRPData = () => {
@@ -47,14 +50,17 @@ class RegionalProteomics extends Component {
     };
 
     mapPlotData = (result) => {
-        let plots = {};
+        let allData = {};
         let accessionNums = [];
         for (let {accession, rpExpressionByTissueType} of result) {
-            plots[accession] = rpExpressionByTissueType;
+            allData[accession] = rpExpressionByTissueType;
             accessionNums.push(accession);
         }
-        this.setState({ plotData: plots });
+        this.setState({ allData: allData });
         this.setState({ accessionNums: accessionNums })
+        let plotData = allData[this.state.selectedAccession];
+        this.setState({ plotData: plotData})
+        this.setState({ tableData: plotData[this.props.tissueType]})
     }
 
     getTabGroup = (accessionNums) => {
@@ -69,16 +75,11 @@ class RegionalProteomics extends Component {
 
     render() {
         let accessionPlotData = {};
-        let accessionTableData = [];
-        if (Object.keys(this.state.plotData).length > 0) {
-            accessionPlotData = this.state.plotData[this.state.selectedAccession];
-            accessionTableData = this.state.plotData[this.state.selectedAccession][this.props.tissueType];
-        }
-        if (Object.keys(accessionPlotData).length > 0) {
-            accessionTableData = accessionPlotData[this.props.tissueType];
+        if (Object.keys(this.state.allData).length > 0) {
+            accessionPlotData = this.state.allData[this.state.selectedAccession];
         }
         let plot = <LMDDotPlot data={accessionPlotData} />
-        let table = <RegionalProteomicsTable data={accessionTableData}/>
+        let table = <RegionalProteomicsTable data={this.state.tableData}/>
         let tabs = this.getTabGroup(this.state.accessionNums);
         return (
             <div className='height-wrapper mb-3 mt-3'>
