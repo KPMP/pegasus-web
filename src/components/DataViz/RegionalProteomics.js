@@ -81,7 +81,7 @@ class RegionalProteomics extends Component {
 
     render() {
         let accessionPlotData = {};
-        if (Object.keys(this.state.plotData).length > 0) {
+        if (this.state.plotData && Object.keys(this.state.plotData).length > 0) {
              accessionPlotData = this.state.plotData;
         }
         let plot = <LMDDotPlot data={accessionPlotData} />
