@@ -69,12 +69,12 @@ class RegionalProteomicsTable extends Component {
                             frameworkComponents={{customTooltip: CustomTooltip}}
                             tooltipShowDelay={0}
                         >
-                            <AgGridColumn headerName='REGION' field='region' width={255}></AgGridColumn>
-                            <AgGridColumn headerName='FDR CONFIDENCE' field='fdrConfidence' width={175}></AgGridColumn>
-                            <AgGridColumn headerName='COVERAGE %' field='coveragePct' width={175}></AgGridColumn>
-                            <AgGridColumn headerName='# PEPTIDES' field='numPeptides' width={175}></AgGridColumn>
-                            <AgGridColumn headerName='# UNIQUE PEPTIDES' field='numUniquePeptides' width={175}></AgGridColumn>
-                            <AgGridColumn headerName='# SAMPLES' field='sampleCount' width={175}></AgGridColumn>
+                            <AgGridColumn headerName='REGION' field='region' width={155}></AgGridColumn>
+                            <AgGridColumn headerName='FDR CONFIDENCE' field='fdrConfidence' width={100}></AgGridColumn>
+                            <AgGridColumn headerName='COVERAGE %' field='coveragePct' width={100}></AgGridColumn>
+                            <AgGridColumn headerName='# PEPTIDES' field='numPeptides' width={100}></AgGridColumn>
+                            <AgGridColumn headerName='# UNIQUE PEPTIDES' field='numUniquePeptides' width={125}></AgGridColumn>
+                            <AgGridColumn headerName='# SAMPLES' field='sampleCount' width={100}></AgGridColumn>
 
                             <AgGridColumn headerName="FOLD CHANGE"
                                           tooltipComponent="customTooltip"
