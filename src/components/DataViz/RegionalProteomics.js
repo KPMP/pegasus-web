@@ -2,14 +2,12 @@ import React, { Component } from 'react';
 import {Container, Row, Col, ButtonGroup, Button} from 'reactstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DataTypeSelectorContainer from './DataTypeSelectorContainer';
-import {faDownload, faShare} from "@fortawesome/free-solid-svg-icons";
+import {faShare} from "@fortawesome/free-solid-svg-icons";
 import queryString from 'query-string';
 import {fetchRegionalProteomics} from "../../helpers/ApolloClient";
 import LMDDotPlot from "../Plots/LMDDotPlot";
 import RegionalProteomicsTable from "../ExpressionTables/RegionalProteomicsTable";
 import {formatTissueType} from "../../helpers/Utils";
-import {CSVLink} from "react-csv";
-import {handleGoogleAnalyticsEvent} from "../../helpers/googleAnalyticsHelper";
 
 class RegionalProteomics extends Component {
       constructor(props) {
