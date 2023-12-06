@@ -73,9 +73,14 @@ class RegionalProteomics extends Component {
     }
 
     render() {
-        // table = <RegionalProteomicsTable data={this.state.rpAllTableData} />;
-        let accessionPlot = this.state.plotData?this.state.plotData[this.state.selectedAccession]:{}
-        let plot = <LMDDotPlot data={accessionPlot} />
+        let accessionPlotData = {};
+        let accessionTableData = [];
+        if (Object.keys(this.state.plotData).length > 0) {
+            accessionPlotData = this.state.plotData[this.state.selectedAccession];
+            accessionTableData = this.state.plotData[this.state.selectedAccession][this.props.tissueType];
+        }
+        let plot = <LMDDotPlot data={accessionPlotData} />
+        let table = <RegionalProteomicsTable data={accessionTableData}/>
         let tabs = this.getTabGroup(this.state.accessionNums);
         return (
             <div className='height-wrapper mb-3 mt-3'>
@@ -138,7 +143,7 @@ class RegionalProteomics extends Component {
                               </Col>
                           </Row>
                           <Row xs='12'>
-                              {"table goes here"}
+                              {table}
                           </Row>
                       </Container>
                   }

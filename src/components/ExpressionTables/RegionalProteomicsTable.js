@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 
+
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 import {Col} from "reactstrap";
 import 'ag-grid-community/dist/styles/ag-grid.css';
@@ -11,7 +12,9 @@ import { formatNumberToPrecision } from "../../helpers/Utils";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faInfoCircle} from "@fortawesome/free-solid-svg-icons";
 
+
 class CustomHeader extends Component {
+
 
     render() {
         return (
@@ -25,28 +28,35 @@ class CustomHeader extends Component {
     }
 }
 
+
 class CustomTooltip extends Component {
+
 
     getReactContainerClasses() {
         return ['custom-tooltip'];
     }
 
+
     render() {
         let isHeader = this.props.rowIndex === undefined;
         return (
             <React.Fragment>
-            {isHeader && <div className="custom-tooltip">{this.props.tooltipText}</div>}
+                {isHeader && <div className="custom-tooltip">{this.props.tooltipText}</div>}
             </React.Fragment>
         )
     }
 
+
 }
 
+
 class RegionalProteomicsTable extends Component {
+
 
     numberFormatter = (params) => {
         return formatNumberToPrecision(params.value, 3)
     };
+
 
     render() {
         return (
@@ -59,10 +69,13 @@ class RegionalProteomicsTable extends Component {
                             frameworkComponents={{customTooltip: CustomTooltip}}
                             tooltipShowDelay={0}
                         >
-                            <AgGridColumn headerName='ABBR' field='segment' width={100}></AgGridColumn>
-                            <AgGridColumn headerName='REGION' field='segmentName' width={255}></AgGridColumn>
+                            <AgGridColumn headerName='REGION' field='region' width={255}></AgGridColumn>
+                            <AgGridColumn headerName='FDR CONFIDENCE' field='fdrConfidence' width={175}></AgGridColumn>
+                            <AgGridColumn headerName='COVERAGE %' field='coveragePct' width={175}></AgGridColumn>
+                            <AgGridColumn headerName='# PEPTIDES' field='numPeptides' width={175}></AgGridColumn>
+                            <AgGridColumn headerName='# UNIQUE PEPTIDES' field='numUniquePeptides' width={175}></AgGridColumn>
                             <AgGridColumn headerName='# SAMPLES' field='sampleCount' width={175}></AgGridColumn>
-                            <AgGridColumn headerName='STD DEVIATION' field='stdDev' valueFormatter={this.numberFormatter} width={175}></AgGridColumn>
+
                             <AgGridColumn headerName="FOLD CHANGE"
                                           tooltipComponent="customTooltip"
                                           headerTooltip='foldChange'
@@ -75,7 +88,7 @@ class RegionalProteomicsTable extends Component {
                                           tooltipComponentParams={{tooltipText:'P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment of interest and its expression in all other segments.'}}
                                           headerTooltip='pVal'
                                           headerComponentFramework={CustomHeader}
-                                          field='pVal' valueFormatter={this.numberFormatter}
+                                          field='adjPVal' valueFormatter={this.numberFormatter}
                                           width={175}></AgGridColumn>
                         </AgGridReact>
                     </div>
@@ -84,6 +97,8 @@ class RegionalProteomicsTable extends Component {
         )
     }
 
+
 }
+
 
 export default RegionalProteomicsTable;
