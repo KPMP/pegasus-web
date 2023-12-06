@@ -103,7 +103,7 @@ class RegionalProteomics extends Component {
                           <Row xs='12'>
                               <Col lg='12'>
                                   <h5>{this.props.gene.symbol} expression comparison across regions
-                                      in {formatTissueType(this.props.tissueType)}</h5>
+                                      in all tissue types</h5>
                                   <hr/>
                               </Col>
                           </Row>
