@@ -80,12 +80,11 @@ class RegionalProteomics extends Component {
     }
 
     render() {
-        // let accessionPlotData = {};
-        // if (Object.keys(this.state.allData).length > 0) {
-        //     accessionPlotData = this.state.allData[this.state.selectedAccession];
-        //
-        // }
-        let plot = <LMDDotPlot data={this.state.plotData} />
+        let accessionPlotData = {};
+        if (Object.keys(this.state.plotData).length > 0) {
+             accessionPlotData = this.state.plotData;
+        }
+        let plot = <LMDDotPlot data={accessionPlotData} />
         let table = <RegionalProteomicsTable data={this.state.tableData}/>
         let tabs = this.getTabGroup(this.state.accessionNums);
         return (
