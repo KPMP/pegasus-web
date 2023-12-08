@@ -7,7 +7,7 @@ import queryString from 'query-string';
 import {fetchRegionalProteomics} from "../../helpers/ApolloClient";
 import LMDDotPlot from "../Plots/LMDDotPlot";
 import RegionalProteomicsTable from "../ExpressionTables/RegionalProteomicsTable";
-import {formatTissueType, formatNumberToPrecision, formatDataType} from "../../helpers/Utils";
+import {formatTissueType, formatNumberToPrecision} from "../../helpers/Utils";
 import { CSVLink } from "react-csv";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
@@ -85,20 +85,20 @@ class RegionalProteomics extends Component {
   };
 
     cleanResults = (results) => {
-      console.log(results);
       // This next line was needed to avoid a strange error complaining that I couldn't modify the array
       let tempResults = JSON.parse(JSON.stringify(results));
-      console.log(tempResults);
       // The order b - a is important here because we want a reverse sort
       let sortedResults = tempResults.sort(function (a, b) { return b.foldChange - a.foldChange; });
-      return sortedResults.map(({ segment, segmentName, pVal, stdDev, foldChange, sampleCount }) => {
+      return sortedResults.map(({ region, fdrConfidence, coveragePct, numPeptides, numUniquePeptides, sampleCount, foldChange, pVal }) => {
           return {
-              abbr: segment,
-              region: segmentName,
+              region: region,
+              fdrConfidence: fdrConfidence,
+              coveragePct: coveragePct,
+              numPeptides: numPeptides,
+              numUniquePeptides: numUniquePeptides,
               numSamples: sampleCount,
-              stdDeviation: formatNumberToPrecision(stdDev, 3),
-              foldChange: formatNumberToPrecision(foldChange, 3),
-              pVal: formatNumberToPrecision(pVal, 3),
+              foldChange: foldChange,
+              pVal: pVal,
           }
       });
   };
@@ -112,7 +112,6 @@ class RegionalProteomics extends Component {
         if (downloadData && downloadData.length > 0) {
           cleanDownloadData = this.cleanResults(downloadData);
         }
-        console.log(downloadData);
         return (
             <div className='height-wrapper mb-3 mt-3'>
               <Container id='outer-wrapper'>
