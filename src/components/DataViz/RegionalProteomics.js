@@ -85,8 +85,10 @@ class RegionalProteomics extends Component {
   };
 
     cleanResults = (results) => {
+      console.log(results);
       // This next line was needed to avoid a strange error complaining that I couldn't modify the array
       let tempResults = JSON.parse(JSON.stringify(results));
+      console.log(tempResults);
       // The order b - a is important here because we want a reverse sort
       let sortedResults = tempResults.sort(function (a, b) { return b.foldChange - a.foldChange; });
       return sortedResults.map(({ segment, segmentName, pVal, stdDev, foldChange, sampleCount }) => {
