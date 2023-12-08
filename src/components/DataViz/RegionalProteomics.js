@@ -2,12 +2,14 @@ import React, { Component } from 'react';
 import {Container, Row, Col, ButtonGroup, Button} from 'reactstrap';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DataTypeSelectorContainer from './DataTypeSelectorContainer';
-import {faShare} from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faShare } from "@fortawesome/free-solid-svg-icons";
 import queryString from 'query-string';
 import {fetchRegionalProteomics} from "../../helpers/ApolloClient";
 import LMDDotPlot from "../Plots/LMDDotPlot";
 import RegionalProteomicsTable from "../ExpressionTables/RegionalProteomicsTable";
-import {formatTissueType} from "../../helpers/Utils";
+import {formatTissueType, formatNumberToPrecision} from "../../helpers/Utils";
+import { CSVLink } from "react-csv";
+import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
 class RegionalProteomics extends Component {
       constructor(props) {
@@ -77,10 +79,39 @@ class RegionalProteomics extends Component {
             </ButtonGroup>)
     }
 
+    getExportFilename = () => {
+      const tissueType = formatTissueType(this.props.tissueType).toLowerCase().replace(" ", "-");
+      return "KPMP_Regional_proteomics_gene-comparison_" + this.props.gene.symbol + '_' + this.state.selectedAccession + '_' + tissueType + '.csv';
+  };
+
+    cleanResults = (results) => {
+      // This next line was needed to avoid a strange error complaining that I couldn't modify the array
+      let tempResults = JSON.parse(JSON.stringify(results));
+      // The order b - a is important here because we want a reverse sort
+      let sortedResults = tempResults.sort(function (a, b) { return b.foldChange - a.foldChange; });
+      return sortedResults.map(({ region, fdrConfidence, coveragePct, numPeptides, numUniquePeptides, sampleCount, foldChange, adjPVal }) => {
+          return {
+              region: region,
+              fdrConfidence: fdrConfidence,
+              coveragePct: coveragePct,
+              numPeptides: numPeptides,
+              numUniquePeptides: numUniquePeptides,
+              numSamples: sampleCount,
+              foldChange: formatNumberToPrecision(foldChange, 3),
+              pVal: formatNumberToPrecision(adjPVal, 3)
+          }
+      });
+  };
+
     render() {
         let plot = <LMDDotPlot data={this.state.plotData} />
         let table = <RegionalProteomicsTable data={this.state.tableData}/>
         let tabs = this.getTabGroup(this.state.accessionNums);
+        let cleanDownloadData = [];
+        let downloadData = this.state.tableData;
+        if (downloadData && downloadData.length > 0) {
+          cleanDownloadData = this.cleanResults(downloadData);
+        }
         return (
             <div className='height-wrapper mb-3 mt-3'>
               <Container id='outer-wrapper'>
@@ -138,7 +169,14 @@ class RegionalProteomics extends Component {
                                   <h6>NS = Not Significant</h6>
                               </Col>
                               <Col xs='1' className='text-end'>
-                                  {"download link goes here"}
+                                <CSVLink
+                                    onClick={() => handleGoogleAnalyticsEvent('Explorer', 'Download', this.getExportFilename())}
+                                    data={cleanDownloadData}
+                                    filename={this.getExportFilename()}
+                                    target="_blank"
+                                    className="text-body icon-container">
+                                        <FontAwesomeIcon icon={faDownload} />
+                                    </CSVLink>
                               </Col>
                           </Row>
                           <Row xs='12'>
