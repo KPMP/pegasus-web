@@ -111,7 +111,8 @@ class RegionalProteomics extends Component {
         let downloadData = this.state.tableData;
         if (downloadData && downloadData.length > 0) {
           cleanDownloadData = this.cleanResults(downloadData);
-      }
+        }
+        console.log(downloadData);
         return (
             <div className='height-wrapper mb-3 mt-3'>
               <Container id='outer-wrapper'>
