@@ -81,7 +81,7 @@ class RegionalProteomics extends Component {
 
     getExportFilename = () => {
       const tissueType = formatTissueType(this.props.tissueType).toLowerCase().replace(" ", "-");
-      return "KPMP_Regional_proteomics_" + formatDataType(this.props.dataType) + '_gene-comparison_' + this.props.gene.symbol + '_' + this.state.selectedAccession + '_' + tissueType + '.csv';
+      return "KPMP_Regional_proteomics_gene-comparison_" + this.props.gene.symbol + '_' + this.state.selectedAccession + '_' + tissueType + '.csv';
   };
 
     cleanResults = (results) => {
@@ -106,7 +106,7 @@ class RegionalProteomics extends Component {
         let table = <RegionalProteomicsTable data={this.state.tableData}/>
         let tabs = this.getTabGroup(this.state.accessionNums);
         let cleanDownloadData = [];
-        let downloadData = this.state.allData;
+        let downloadData = this.state.tableData;
         if (downloadData && downloadData.length > 0) {
           cleanDownloadData = this.cleanResults(downloadData);
       }
