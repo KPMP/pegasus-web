@@ -113,6 +113,9 @@ export const getAllDataTypeOptions = () => {
           isDisabled: false
         }
     ];
+    if (process.env.REACT_APP_PROTEOMICS === "off") {
+        return options.filter((el) => { return el.value !== "rp" });
+    }
     return options;
 };
 
@@ -141,6 +144,9 @@ export const getDataTypeOptions = async (geneSymbol, cluster) => {
                 isDisabled: !dataTypes.includes("rp")
             }
         ];
+        if (process.env.REACT_APP_PROTEOMICS === "off") {
+            return options.filter((el) => { return el.value !== "rp" });
+        }
         return options;
     });
     return options;
