@@ -89,7 +89,7 @@ class RegionalProteomics extends Component {
       let tempResults = JSON.parse(JSON.stringify(results));
       // The order b - a is important here because we want a reverse sort
       let sortedResults = tempResults.sort(function (a, b) { return b.foldChange - a.foldChange; });
-      return sortedResults.map(({ region, fdrConfidence, coveragePct, numPeptides, numUniquePeptides, sampleCount, foldChange, adjPVal }) => {
+      return sortedResults.map(({ segment, fdrConfidence, coveragePct, numPeptides, numUniquePeptides, sampleCount, foldChange, pValLog10 }) => {
           return {
               region: segment,
               fdrConfidence: fdrConfidence,
