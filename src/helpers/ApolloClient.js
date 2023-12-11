@@ -340,9 +340,9 @@ export const fetchRegionalProteomics = async (geneSymbol) => {
                         numPeptides
                         numUniquePeptides
                         comparison
-                        region
+                        segment: region
                         foldChange
-                        adjPVal
+                        pValLog10: adjPVal
                         tissueType
                         sampleCount       
                   }
@@ -356,9 +356,9 @@ export const fetchRegionalProteomics = async (geneSymbol) => {
                         numPeptides
                         numUniquePeptides
                         comparison
-                        region
+                        segment: region
                         foldChange
-                        adjPVal
+                        pValLog10: adjPVal
                         tissueType
                         sampleCount       
                   }
@@ -372,9 +372,9 @@ export const fetchRegionalProteomics = async (geneSymbol) => {
                         numPeptides
                         numUniquePeptides
                         comparison
-                        region
+                        segment: region
                         foldChange
-                        adjPVal
+                        pValLog10: adjPVal
                         tissueType
                         sampleCount       
                   }
@@ -388,9 +388,9 @@ export const fetchRegionalProteomics = async (geneSymbol) => {
                         numPeptides
                         numUniquePeptides
                         comparison
-                        region
+                        segment: region
                         foldChange
-                        adjPVal
+                        pValLog10: adjPVal
                         tissueType
                         sampleCount       
                   }
@@ -404,9 +404,9 @@ export const fetchRegionalProteomics = async (geneSymbol) => {
                         numPeptides
                         numUniquePeptides
                         comparison
-                        region
+                        segment: region
                         foldChange
-                        adjPVal
+                        pValLog10: adjPVal
                         tissueType
                         sampleCount       
                   }
