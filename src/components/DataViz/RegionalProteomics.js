@@ -91,14 +91,14 @@ class RegionalProteomics extends Component {
       let sortedResults = tempResults.sort(function (a, b) { return b.foldChange - a.foldChange; });
       return sortedResults.map(({ region, fdrConfidence, coveragePct, numPeptides, numUniquePeptides, sampleCount, foldChange, adjPVal }) => {
           return {
-              region: region,
+              region: segment,
               fdrConfidence: fdrConfidence,
               coveragePct: coveragePct,
               numPeptides: numPeptides,
               numUniquePeptides: numUniquePeptides,
               numSamples: sampleCount,
               foldChange: formatNumberToPrecision(foldChange, 3),
-              pVal: formatNumberToPrecision(adjPVal, 3)
+              pVal: formatNumberToPrecision(pValLog10, 3)
           }
       });
   };
