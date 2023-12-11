@@ -69,7 +69,7 @@ class RegionalProteomicsTable extends Component {
                             frameworkComponents={{customTooltip: CustomTooltip}}
                             tooltipShowDelay={0}
                         >
-                            <AgGridColumn headerName='REGION' field='region' width={125}></AgGridColumn>
+                            <AgGridColumn headerName='REGION' field='segment' width={125}></AgGridColumn>
                             <AgGridColumn headerName='FDR CONFIDENCE' field='fdrConfidence' width={150}></AgGridColumn>
                             <AgGridColumn headerName='COVERAGE %' field='coveragePct' width={150}></AgGridColumn>
                             <AgGridColumn headerName='# PEPTIDES' field='numPeptides' width={150}></AgGridColumn>
