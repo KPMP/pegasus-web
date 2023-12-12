@@ -16,6 +16,7 @@ class LMDDotPlot extends Component {
             isLoading: false,
         };
         this.setData(props.data);
+        this.minBubbleSize = 3;
     }
 
     componentDidUpdate(prevProps) {
@@ -61,7 +62,8 @@ class LMDDotPlot extends Component {
                 sizemode: 'area',
                 sizeref: this.getSizeRef(bubbles),
                 symbol: 'circle',
-                color: 'black'
+                color: 'black',
+                sizemin: this.minBubbleSize
             }
         };
         return plotObj;
@@ -102,6 +104,7 @@ class LMDDotPlot extends Component {
                     symbol: 'circle',
                     colorscale: 'RdBu',
                     showscale: true,
+                    sizemin: this.minBubbleSize,
                     reversescale: false,
                     color: colors,
                     colorbar: { title: 'log2 (Fold Change)' },
