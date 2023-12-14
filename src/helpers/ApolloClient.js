@@ -530,15 +530,6 @@ export const fetchAtlasSummaryRows = async () => {
         fetchPolicy: 'cache-first'
     });
     if (response.data && response.data.getAtlasSummaryRows) {
-        if (process.env.REACT_APP_PROTEOMICS === "off") {
-            let summaryRows = response.data.getAtlasSummaryRows.summaryRows.filter((data) => {
-                return data?.omicsType !== "Regional Proteomics"
-            })
-            return {
-                "totalFiles": response.data.getAtlasSummaryRows.totalFiles,
-                "summaryRows": summaryRows
-            }
-        }
         return response.data.getAtlasSummaryRows;
     }else {
         store.dispatch(sendMessageToBackend("Could not retrieve file counts: " + response.error));
