@@ -126,7 +126,7 @@ class SamplesByDataTypeTable extends Component {
                 title: 
                     <span>
                       <span className="table-header data-type-table-header" id="AKIHeader">
-                      AKIƒ
+                      AKI
                       </span>
                       <UncontrolledTooltip 
                         placement="bottom"
