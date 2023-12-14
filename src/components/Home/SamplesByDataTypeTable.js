@@ -126,7 +126,7 @@ class SamplesByDataTypeTable extends Component {
                 title: 
                     <span>
                       <span className="table-header data-type-table-header" id="AKIHeader">
-                      AKIƒ
+                      AKI
                       </span>
                       <UncontrolledTooltip 
                         placement="bottom"
@@ -160,7 +160,7 @@ class SamplesByDataTypeTable extends Component {
         return [
             { columnName: 'dataType', width: 265},
             { columnName: 'hrtCount', width: 'auto', align: 'center'},
-            { columnName: 'ckdCount', width: 'auto', alignf: 'center' },
+            { columnName: 'ckdCount', width: 'auto', align: 'center' },
             { columnName: 'akiCount', width: 'auto', align: 'center' },
             { columnName: 'dmrCount', width: 'auto', align: 'center' },
         ]
