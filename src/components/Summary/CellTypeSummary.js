@@ -69,6 +69,7 @@ class CellTypeSummary extends Component {
             { columnName: 'sn', width: 'auto', align: 'center',  wordWrapEnabled: true  },
             { columnName: 'sc', width: 'auto', align: 'center', wordWrapEnabled: true  },
             { columnName: 'rt', width: 'auto', align: 'center',  wordWrapEnabled: true  },
+            { columnName: 'rp', width: 'auto', align: 'center',  wordWrapEnabled: true  },
         ]
     }
 
@@ -76,10 +77,11 @@ class CellTypeSummary extends Component {
         return [
             { columnName: 'structureRegion', width: 102,},
             { columnName: 'structureSubregion', width: 169},
-            { columnName: 'clusterName', width: 600},
+            { columnName: 'clusterName', width: 465},
             { columnName: 'sn', width: 135 },
             { columnName: 'sc', width: 135},
             { columnName: 'rt', width: 135 },
+            { columnName: 'rp', width: 135 },
         ]
     }
 
