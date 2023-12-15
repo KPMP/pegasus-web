@@ -122,6 +122,7 @@ export const fetchClusterHierarchy = async (cellType) => {
                    isSingleNucCluster
                    isSingleCellCluster
                    isRegionalTranscriptomics
+                   isRegionalProteomics
                    cellTypeId
                    clusterId
                    cellTypeOrder
