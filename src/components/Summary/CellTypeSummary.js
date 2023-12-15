@@ -119,7 +119,7 @@ class CellTypeSummary extends Component {
                 )
             },
             {
-                title: <span>REGIONAL<br/>TRASCRIPTOMICS</span>,
+                title: <span>REGIONAL<br/>TRANSCRIPTOMICS</span>,
                 name: 'rt',
                 getCellValue: row => (
                     this.linkDataTypeCells(row.isRegionalTranscriptomics, 'rt', row)
