@@ -483,10 +483,10 @@ export const fetchRegionalProteomicsByStructure = async (structure) => {
         fetchPolicy: 'cache-first'
     });
 
-    if (response.data && response.data.getRTGeneExpressionByStructure) {
-        return response.data.getRTGeneExpressionByStructure;
+    if (response.data && response.data.getRPGeneExpressionByStructure) {
+        return response.data.getRPGeneExpressionByStructure;
     } else {
-        store.dispatch(sendMessageToBackend("Could not retrieve regional transcriptomics data: " + response.error));
+        store.dispatch(sendMessageToBackend("Could not retrieve regional proteomics data: " + response.error));
     }
 }
 
