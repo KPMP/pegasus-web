@@ -462,7 +462,7 @@ export const fetchRegionalProteomicsByStructure = async (structure) => {
         query {
             getRPGeneExpressionByStructure(structure: "${structure}") {
                 id
-                geneSymbol
+                gene: geneSymbol
                 fdrConfidence
                 accession
                 description
