@@ -15,7 +15,7 @@ const mapDispatchToProps = (dispatch, props) =>
     ({
         setGene(gene, dataType) {
             dispatch(setGene(gene));
-            if (dataType === 'rt') {
+            if (dataType === 'rt' || dataType === 'rp') {
                 dispatch((dispatch) => window.open("/explorer/regionalviz", '_self'));
             } else {
                 dispatch((dispatch) => window.open("/explorer/dataviz", '_self'));
