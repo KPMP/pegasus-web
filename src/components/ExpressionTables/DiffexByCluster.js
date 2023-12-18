@@ -34,8 +34,7 @@ class DiffexByCluster extends Component {
                     console.log('There was a problem getting the data: ' + error)
                 }
             );
-        }
-        if (this.props.dataType === 'rp') {
+        } else if (this.props.dataType === 'rp') {
             fetchRegionalProteomicsByStructure(this.props.cluster).then(
                 (geneExpressionData) => {
                     this.setState({ diffexData: geneExpressionData, isLoading: false })
