@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import MaterialTable from 'material-table';
 import { Col, Row, Container, Spinner, UncontrolledTooltip } from 'reactstrap';
 import { formatNumberToPrecision, formatDataType } from '../../helpers/Utils'
-import { fetchGeneExpression, fetchRegionalTranscriptomicsByStructure } from '../../helpers/ApolloClient';
+import { fetchGeneExpression, fetchRegionalTranscriptomicsByStructure, fetchRegionalProteomicsByStructure } from '../../helpers/ApolloClient';
 import { CSVLink } from 'react-csv';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
@@ -26,6 +26,17 @@ class DiffexByCluster extends Component {
     fetchGeneExpression = () => {
         if (this.props.dataType === 'rt') {
             fetchRegionalTranscriptomicsByStructure(this.props.cluster).then(
+                (geneExpressionData) => {
+                    this.setState({diffexData: geneExpressionData, isLoading: false})
+                },
+                (error) => {
+                    this.setState({diffexData: []});
+                    console.log('There was a problem getting the data: ' + error)
+                }
+            );
+        }
+        if (this.props.dataType === 'rp') {
+            fetchRegionalProteomicsByStructure(this.props.cluster).then(
                 (geneExpressionData) => {
                     this.setState({ diffexData: geneExpressionData, isLoading: false })
                 },
@@ -58,72 +69,82 @@ class DiffexByCluster extends Component {
         return <button onClick={() => this.handleClick(gene)} type='button' className='table-column btn btn-link text-start p-0'>{gene}</button>
     };
 
-    getColumns = () => [
-        {
-            title: 'GENE',
-            field: 'gene',
-            align: 'left',
-            width: "15%",
-            headerStyle: { fontSize: "11px" },
-            cellStyle: { fontSize: '14px', padding: "2px" },
-            render: rowData => this.getGeneLink(rowData.gene)
-        },
-        {
-            title: <span>FOLD CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
+    getColumns = () => {
+        let columns = [];
+        columns.push(
+            {
+                title: 'GENE',
+                field: 'gene',
+                align: 'left',
+                width: "15%",
+                headerStyle: { fontSize: "11px" },
+                cellStyle: { fontSize: '14px', padding: "2px" },
+                render: rowData => this.getGeneLink(rowData.gene)
+            },
+            {
+                title: <span>FOLD CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
                 <UncontrolledTooltip placement='bottom' target='fold-change-info' >
                     Fold change of a gene is calculated by dividing the average expression of the gene in the segment/cluster of interest by its average expression in all other segments/clusters being compared.
                 </UncontrolledTooltip></span>,
-            field: 'foldChange',
-            align: 'right',
-            width: "15%",
-            sorting: true, defaultSort: 'desc',
-            headerStyle: { fontSize: '15px', textAlign: 'center' },
-            cellStyle: {
-                fontSize: '14px',
-                padding: '2px',
-                textAlign: 'center'
-            },
-            type: 'numeric',
-            render: rowData => formatNumberToPrecision(rowData.foldChange, 3)
-        },
-        {
-            title: <span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
+                field: 'foldChange',
+                align: 'right',
+                width: "15%",
+                sorting: true, defaultSort: 'desc',
+                headerStyle: { fontSize: '15px', textAlign: 'center' },
+                cellStyle: {
+                    fontSize: '14px',
+                    padding: '2px',
+                    textAlign: 'center'
+                },
+                type: 'numeric',
+                render: rowData => formatNumberToPrecision(rowData.foldChange, 3)
+            }
+        );
+        if (this.props.dataType !== 'rp') {
+            columns.push(
+                {
+                    title: <span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
                 <UncontrolledTooltip placement='bottom' target='pvalue-info' >
                     P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment/cluster of interest and its expression in all other segments/clusters.
                 </UncontrolledTooltip></span>,
-            field: 'pVal',
-            align: 'right',
-            width: "15%",
-            sorting: true,
-            type: 'numeric',
-            headerStyle: { fontSize: '15px', textAlign: 'right' },
-            cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'right' },
-            render: rowData => formatNumberToPrecision(rowData.pVal, 3)
-        },
-        {
-            title: <span>ADJ P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
+                    field: 'pVal',
+                    align: 'right',
+                    width: "15%",
+                    sorting: true,
+                    type: 'numeric',
+                    headerStyle: { fontSize: '15px', textAlign: 'right' },
+                    cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'right' },
+                    render: rowData => formatNumberToPrecision(rowData.pVal, 3)
+                }
+            );
+        }
+        columns.push(
+            {
+                title: <span>ADJ P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
                 <UncontrolledTooltip placement='bottom' target='pvalue-adj-info' >
                     Adjusted p-value, based on bonferroni correction using all features in the dataset.
                 </UncontrolledTooltip></span>,
-            field: 'pValAdj',
-            align: 'right',
-            width: "15%",
-            sorting: true,
-            type: 'numeric',
-            headerStyle: { fontSize: '15px', textAlign: 'right' },
-            cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'right' },
-            render: rowData => formatNumberToPrecision(rowData.pValAdj, 3, true)
-        },
-        {
-            title: 'hidden',
-            field: 'hidden',
-            sorting: false,
-            width: "40%",
-            className: "diffex-hidden-column",
-            headerStyle: { fontSize: '15px', textAlign: 'center', color: "rgba(0,0,0,0)" },
-            cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'center', color: "rgba(0,0,0,0)" },
-        }
-    ];
+                field: 'pValAdj',
+                align: 'right',
+                width: "15%",
+                sorting: true,
+                type: 'numeric',
+                headerStyle: { fontSize: '15px', textAlign: 'right' },
+                cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'right' },
+                render: rowData => formatNumberToPrecision(rowData.pValAdj, 3, true)
+            },
+            {
+                title: 'hidden',
+                field: 'hidden',
+                sorting: false,
+                width: "40%",
+                className: "diffex-hidden-column",
+                headerStyle: { fontSize: '15px', textAlign: 'center', color: "rgba(0,0,0,0)" },
+                cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'center', color: "rgba(0,0,0,0)" },
+            }
+        );
+        return columns
+    }
 
     handleClick = (gene) => {
         this.props.setGene({ symbol: gene, name: '' }, this.props.dataType);
