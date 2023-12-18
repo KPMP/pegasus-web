@@ -470,9 +470,9 @@ export const fetchRegionalProteomicsByStructure = async (structure) => {
                 numPeptides
                 numUniquePeptides
                 comparison
-                region: segment
+                segment: region 
                 foldChange
-                adjPVal: pValLog10
+                pValLog10: adjPVal 
                 tissueType
                 sampleCount
             }
