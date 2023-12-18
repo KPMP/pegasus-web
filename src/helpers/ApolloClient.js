@@ -457,6 +457,39 @@ export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
     }
 }
 
+export const fetchRegionalProteomicsByStructure = async (structure) => {
+    let query = gql`
+        query {
+            getRPGeneExpressionByStructure(structure: "${structure}") {
+                id
+                gene: geneSymbol
+                fdrConfidence
+                accession
+                description
+                coveragePct
+                numPeptides
+                numUniquePeptides
+                comparison
+                segment: region 
+                foldChange
+                pValAdj: adjPVal
+                tissueType
+                sampleCount
+            }
+        }`;
+
+    const response = await apolloClient.query({
+        query: query,
+        fetchPolicy: 'cache-first'
+    });
+
+    if (response.data && response.data.getRPGeneExpressionByStructure) {
+        return response.data.getRPGeneExpressionByStructure;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve regional proteomics data: " + response.error));
+    }
+}
+
 export const fetchSummaryData = async (dataType) => {
     let query = gql`
         query {
