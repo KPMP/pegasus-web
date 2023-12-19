@@ -9,7 +9,7 @@ class AccordionTabSection extends Component {
 
     constructor(props) {
         super(props);
-        this.state = { collapse: 0 }
+        this.state = { collapse: 0, activeCell: '' }
     }
 
     componentDidUpdate(prevProps, prevState) {
@@ -66,7 +66,7 @@ class AccordionTabSection extends Component {
                         onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
                         onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType) }}
                         type="button"
-                        className={`btn btn-link text-start p-0`}>
+                        className={`btn btn-link text-start p-0 ${(this.props.activeCell === cellType.cellType) ? 'pseudohover' : ''}`}>
                         {cellType.cellType}</button>
                 </li>
             });
