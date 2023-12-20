@@ -104,7 +104,7 @@ class RegionalProteomics extends Component {
   };
 
     render() {
-        let plot = <LMDDotPlot data={this.state.plotData} />
+        let plot = <LMDDotPlot data={this.state.plotData} calcLog10={true}/>
         let table = <RegionalProteomicsTable data={this.state.tableData}/>
         let tabs = this.getTabGroup(this.state.accessionNums);
         let cleanDownloadData = [];
