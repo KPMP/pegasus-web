@@ -133,8 +133,7 @@ class RegionalProteomics extends Component {
                       : <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
                           <Row xs='12'>
                               <Col lg='12'>
-                                  <h5>{this.props.gene.symbol} expression comparison across regions
-                                      in all tissue types</h5>
+                                  <h5>{this.props.gene.symbol} expression comparison between Glomerulus and Tubulo-interstitium by condition</h5>
                                   <hr/>
                               </Col>
                           </Row>
@@ -164,8 +163,7 @@ class RegionalProteomics extends Component {
                           </Row>
                           <Row xs='12'>
                               <Col lg='11'>
-                                  <h5>{this.props.gene.symbol} expression comparison across regions
-                                      in {formatTissueType(this.props.tissueType)}</h5>
+                                  <h5>{this.props.gene.symbol} expression comparison between Glomerulus and Tubulo-interstitium in {formatTissueType(this.props.tissueType)}</h5>
                                   <h6>NS = Not Significant</h6>
                               </Col>
                               <Col xs='1' className='text-end'>
