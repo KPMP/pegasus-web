@@ -86,11 +86,11 @@ class RegionalViz extends Component {
         let cleanDownloadData = [];
         if (this.state.selectedComparison === 'glom_tub') {
             table = <RegionalTranscriptomicsTable data={this.state.rtGTTableData} />;
-            plot = <LMDDotPlot data={this.state.rtGTPlotData} />
+            plot = <LMDDotPlot data={this.state.rtGTPlotData} calcLog10={false} />
             downloadData = this.state.rtGTTableData;
         } else {
             table = <RegionalTranscriptomicsTable data={this.state.rtAllTableData} />;
-            plot = <LMDDotPlot data={this.state.rtAllPlotData} />
+            plot = <LMDDotPlot data={this.state.rtAllPlotData} calcLog10={false} />
             downloadData = this.state.rtAllTableData;
         }
 
@@ -118,7 +118,7 @@ class RegionalViz extends Component {
                         : <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
                             <Row xs='12'>
                                 <Col lg='12'>
-                                    <h5>{this.props.gene.symbol} expression comparison across regions in {formatTissueType(this.props.tissueType)}</h5>
+                                    <h5>{this.props.gene.symbol} expression comparison across regions in all tissue types</h5>
                                 <hr />
                                 </Col>
                             </Row>

@@ -122,6 +122,7 @@ export const fetchClusterHierarchy = async (cellType) => {
                    isSingleNucCluster
                    isSingleCellCluster
                    isRegionalTranscriptomics
+                   isRegionalProteomics
                    cellTypeId
                    clusterId
                    cellTypeOrder
@@ -136,11 +137,10 @@ export const fetchClusterHierarchy = async (cellType) => {
     }
 }
 
-export const fetchGeneDatasetSummary = async (geneSymbol, fetchPolicy = 'no-cache') => {
-    const response = await apolloClient.query({
-        query: gql`
-            query {
-                getGeneDatasetInformation(geneSymbol: "${geneSymbol}")
+export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') => {
+    const query = gql`
+      query {
+                getDataTypeSummaryInformation
                  {
                     omicsType
                     dataType
@@ -151,11 +151,18 @@ export const fetchGeneDatasetSummary = async (geneSymbol, fetchPolicy = 'no-cach
                     dmrCount
                     participantCount
                 }
-            }`,
+            }`;
+    const response = await apolloClient.query({
+        query: query,
         fetchPolicy: fetchPolicy
     });
-    if (response.data && response.data.getGeneDatasetInformation) {
-        return response.data.getGeneDatasetInformation;
+    if (response.data && response.data.getDataTypeSummaryInformation) {
+        if (process.env.REACT_APP_PROTEOMICS === "off") {
+            return response.data.getDataTypeSummaryInformation.filter((data) => {
+                return data?.dataTypeShort !== "rp"
+            })
+        }
+        return response.data.getDataTypeSummaryInformation;
     } else {
         console.log('response.error',response.error)
         store.dispatch(sendMessageToBackend("Could not retrieve Gene Dataset: " + response.error));
@@ -318,6 +325,109 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
 
 };
 
+export const fetchRegionalProteomics = async (geneSymbol) => {
+    let query = gql`
+        query {
+            getRPGeneExpressionByTissue(geneSymbol: "${geneSymbol}") {
+                accession
+                rpExpressionByTissueType {
+                  all {
+                        id
+                        geneSymbol
+                        fdrConfidence
+                        accession
+                        description
+                        coveragePct
+                        numPeptides
+                        numUniquePeptides
+                        comparison
+                        segment: region
+                        foldChange
+                        pValLog10: adjPVal
+                        tissueType
+                        sampleCount       
+                  }
+                  hrt{
+                        id
+                        geneSymbol
+                        fdrConfidence
+                        accession
+                        description
+                        coveragePct
+                        numPeptides
+                        numUniquePeptides
+                        comparison
+                        segment: region
+                        foldChange
+                        pValLog10: adjPVal
+                        tissueType
+                        sampleCount       
+                  }
+                  ckd{
+                        id
+                        geneSymbol
+                        fdrConfidence
+                        accession
+                        description
+                        coveragePct
+                        numPeptides
+                        numUniquePeptides
+                        comparison
+                        segment: region
+                        foldChange
+                        pValLog10: adjPVal
+                        tissueType
+                        sampleCount       
+                  }
+                  dmr{
+                        id
+                        geneSymbol
+                        fdrConfidence
+                        accession
+                        description
+                        coveragePct
+                        numPeptides
+                        numUniquePeptides
+                        comparison
+                        segment: region
+                        foldChange
+                        pValLog10: adjPVal
+                        tissueType
+                        sampleCount       
+                  }
+                  aki{
+                        id
+                        geneSymbol
+                        fdrConfidence
+                        accession
+                        description
+                        coveragePct
+                        numPeptides
+                        numUniquePeptides
+                        comparison
+                        segment: region
+                        foldChange
+                        pValLog10: adjPVal
+                        tissueType
+                        sampleCount       
+                  }
+                }
+  }
+}`;
+
+    const response = await apolloClient.query({
+        query: query,
+        fetchPolicy: 'cache-first'
+    });
+
+    if (response.data && response.data.getRPGeneExpressionByTissue) {
+        return response.data.getRPGeneExpressionByTissue;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve regional proteomics  data: " + response.error));
+    }
+
+};
+
 export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
     let query = gql`
         query {
@@ -347,6 +457,39 @@ export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
     }
 }
 
+export const fetchRegionalProteomicsByStructure = async (structure) => {
+    let query = gql`
+        query {
+            getRPGeneExpressionByStructure(structure: "${structure}") {
+                id
+                gene: geneSymbol
+                fdrConfidence
+                accession
+                description
+                coveragePct
+                numPeptides
+                numUniquePeptides
+                comparison
+                segment: region 
+                foldChange
+                pValAdj: adjPVal
+                tissueType
+                sampleCount
+            }
+        }`;
+
+    const response = await apolloClient.query({
+        query: query,
+        fetchPolicy: 'cache-first'
+    });
+
+    if (response.data && response.data.getRPGeneExpressionByStructure) {
+        return response.data.getRPGeneExpressionByStructure;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve regional proteomics data: " + response.error));
+    }
+}
+
 export const fetchSummaryData = async (dataType) => {
     let query = gql`
         query {
@@ -368,6 +511,11 @@ export const fetchSummaryData = async (dataType) => {
     });
 
     if (response.data && response.data.getSummaryData) {
+        if (process.env.REACT_APP_PROTEOMICS === "off") {
+            return response.data.getSummaryData.filter((data) => {
+                return data?.dataTypeShort !== "rp"
+            })
+        }
         return response.data.getSummaryData;
     } else {
         store.dispatch(sendMessageToBackend("Could not retrieve summary: " + response.error));

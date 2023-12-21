@@ -107,7 +107,15 @@ export const getAllDataTypeOptions = () => {
             value: "rt",
             isDisabled: false
         },
+        {
+          label: "Regional Proteomics",
+          value: "rp",
+          isDisabled: false
+        }
     ];
+    if (process.env.REACT_APP_PROTEOMICS === "off") {
+        return options.filter((el) => { return el.value !== "rp" });
+    }
     return options;
 };
 
@@ -130,7 +138,15 @@ export const getDataTypeOptions = async (geneSymbol, cluster) => {
                 value: "rt",
                 isDisabled: !dataTypes.includes("rt")
             },
+            {
+                label: "Regional proteomics",
+                value: "rp",
+                isDisabled: !dataTypes.includes("rp")
+            }
         ];
+        if (process.env.REACT_APP_PROTEOMICS === "off") {
+            return options.filter((el) => { return el.value !== "rp" });
+        }
         return options;
     });
     return options;

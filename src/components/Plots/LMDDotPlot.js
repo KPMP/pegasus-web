@@ -16,6 +16,7 @@ class LMDDotPlot extends Component {
             isLoading: false,
         };
         this.setData(props.data);
+        this.minBubbleSize = 3;
     }
 
     componentDidUpdate(prevProps) {
@@ -61,7 +62,8 @@ class LMDDotPlot extends Component {
                 sizemode: 'area',
                 sizeref: this.getSizeRef(bubbles),
                 symbol: 'circle',
-                color: 'black'
+                color: 'black',
+                sizemin: this.minBubbleSize
             }
         };
         return plotObj;
@@ -86,7 +88,11 @@ class LMDDotPlot extends Component {
             resultArr.forEach((row) => {
                 xValues.push(row.segment);
                 yValues.push(this.abbreviate(row.tissueType).toUpperCase());
-                bubbles.push(row.pValLog10);
+                let pValLog10 = row.pValLog10
+                if(this.props.calcLog10) {
+                    pValLog10 = -1 * Math.log10(row.pValLog10);
+                }
+                bubbles.push(pValLog10);
                 colors.push(row.foldChange);
             });
             plotObj = {
@@ -102,6 +108,7 @@ class LMDDotPlot extends Component {
                     symbol: 'circle',
                     colorscale: 'RdBu',
                     showscale: true,
+                    sizemin: this.minBubbleSize,
                     reversescale: false,
                     color: colors,
                     colorbar: { title: 'log2 (Fold Change)' },

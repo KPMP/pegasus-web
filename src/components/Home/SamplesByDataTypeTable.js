@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
-import { fetchSummaryData, fetchGeneDatasetSummary} from '../../helpers/ApolloClient';
+import { fetchSummaryData, fetchDataTypeSummaryInformation} from '../../helpers/ApolloClient';
 import { Row, Col, UncontrolledTooltip } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
@@ -18,10 +18,10 @@ class SamplesByDataTypeTable extends Component {
     async componentDidMount(){
 
         let spatialSummary = await fetchSummaryData("spatialViewerSummary");
-        spatialSummary = spatialSummary.sort(this.compare)
+        spatialSummary = spatialSummary.slice().sort(this.compare)
         spatialSummary = spatialSummary.filter(availableDataVisibilityFilter)
 
-        let explorerSummary = await fetchGeneDatasetSummary("");
+        let explorerSummary = await fetchDataTypeSummaryInformation();
         explorerSummary = explorerSummary.sort(this.compare)
         explorerSummary = explorerSummary.filter(availableDataVisibilityFilter)
 
@@ -49,6 +49,7 @@ class SamplesByDataTypeTable extends Component {
             'Single-nucleus RNA-seq (snRNA-seq)': 'sn',
             'Single-cell RNA-seq (scRNA-seq)': 'sc',
             'Regional transcriptomics': 'rt',
+            'Regional proteomics':'rp',
             'Light Microscopic Whole Slide Images': 'wsi',
             '3D Tissue Imaging and Cytometry': '3d',
             'CODEX': 'codex',

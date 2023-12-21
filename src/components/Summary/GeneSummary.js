@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Spinner } from 'reactstrap';
 import { Grid, TableColumnResizing, TableHeaderRow, Table, TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
-import { fetchGeneDatasetSummary } from '../../helpers/ApolloClient';
+import { fetchDataTypeSummaryInformation } from '../../helpers/ApolloClient';
 import { getDataTypeOptions } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from  '../../helpers/googleAnalyticsHelper';
 
@@ -30,7 +30,7 @@ class GeneSummary extends Component {
     }
 
     fetchPageData = async() => {
-        await this.fetchGeneDatasetSummaryLocal(this.props.gene.symbol);
+        await this.fetchDataTypeSummaryLocal(this.props.gene.symbol);
         await getDataTypeOptions(this.props.gene.symbol, "").then(
             (options) => {
                 this.setState({ dataTypeOptions: options, isLoading: false })
@@ -52,11 +52,11 @@ class GeneSummary extends Component {
         
     }
 
-    fetchGeneDatasetSummaryLocal = async (geneSymbol) => {
-        await fetchGeneDatasetSummary(geneSymbol).then(
-            (geneSummary) => {
-                if (geneSummary) {
-                    this.setState({ geneSummary: geneSummary, isLoading: false });
+    fetchDataTypeSummaryLocal = async () => {
+        await fetchDataTypeSummaryInformation().then(
+            (dataSummary) => {
+                if (dataSummary) {
+                    this.setState({ geneSummary: dataSummary, isLoading: false });
                 }
             },
             (error) => {

@@ -941,3 +941,17 @@ tr.MuiTableRow-root:nth-child(even) {
     - #{$header-height-padded}
     - #{$footer-height-padded});
 }
+
+.btn-secondary {
+  background-color: white !important;
+  color: rgba(0,0,0,.55) !important;
+  border-color: white !important;
+}
+
+.dropdown-item:active, .dropdown-item:focus{
+  background-color: #dee2e6 !important;
+}
+
+.nav-link{
+  color: rgba(0,0,0,.55)
+}
