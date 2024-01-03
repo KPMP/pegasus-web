@@ -157,11 +157,6 @@ export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') 
         fetchPolicy: fetchPolicy
     });
     if (response.data && response.data.getDataTypeSummaryInformation) {
-        if (process.env.REACT_APP_PROTEOMICS === "off") {
-            return response.data.getDataTypeSummaryInformation.filter((data) => {
-                return data?.dataTypeShort !== "rp"
-            })
-        }
         return response.data.getDataTypeSummaryInformation;
     } else {
         console.log('response.error',response.error)
@@ -511,11 +506,6 @@ export const fetchSummaryData = async (dataType) => {
     });
 
     if (response.data && response.data.getSummaryData) {
-        if (process.env.REACT_APP_PROTEOMICS === "off") {
-            return response.data.getSummaryData.filter((data) => {
-                return data?.dataTypeShort !== "rp"
-            })
-        }
         return response.data.getSummaryData;
     } else {
         store.dispatch(sendMessageToBackend("Could not retrieve summary: " + response.error));
