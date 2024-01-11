@@ -179,7 +179,7 @@ class LMDDotPlot extends Component {
                                     t: 108,
                                     pad: 0
                                 },
-                                yaxis: { zeroline: false, showgrid: true, showline: true, side: 'right' },
+                                yaxis: { zeroline: false, showgrid: true, showline: true, side: 'right', automargin: true },
                                 xaxis: { zeroline: false, showgrid: false, showline: false, visible: false },
                             }}
                             config={{
