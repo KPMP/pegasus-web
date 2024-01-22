@@ -83,7 +83,7 @@ class RegionalProteomicsTable extends Component {
                                           headerComponentFramework={CustomHeader}
                                           field='foldChange' sort='desc' valueFormatter={this.numberFormatter}
                                           width={175}></AgGridColumn>
-                            <AgGridColumn headerName='P VALUE'
+                            <AgGridColumn headerName='ADJ P VALUE'
                                           tooltipComponent="customTooltip"
                                           tooltipComponentParams={{tooltipText:'P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment of interest and its expression in all other segments.'}}
                                           headerTooltip='pVal'
