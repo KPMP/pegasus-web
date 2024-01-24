@@ -342,73 +342,9 @@ export const fetchRegionalProteomics = async (geneSymbol) => {
                         tissueType
                         sampleCount       
                   }
-                  hrt{
-                        id
-                        geneSymbol
-                        fdrConfidence
-                        accession
-                        description
-                        coveragePct
-                        numPeptides
-                        numUniquePeptides
-                        comparison
-                        segment: region
-                        foldChange
-                        pValLog10: adjPVal
-                        tissueType
-                        sampleCount       
-                  }
-                  ckd{
-                        id
-                        geneSymbol
-                        fdrConfidence
-                        accession
-                        description
-                        coveragePct
-                        numPeptides
-                        numUniquePeptides
-                        comparison
-                        segment: region
-                        foldChange
-                        pValLog10: adjPVal
-                        tissueType
-                        sampleCount       
-                  }
-                  dmr{
-                        id
-                        geneSymbol
-                        fdrConfidence
-                        accession
-                        description
-                        coveragePct
-                        numPeptides
-                        numUniquePeptides
-                        comparison
-                        segment: region
-                        foldChange
-                        pValLog10: adjPVal
-                        tissueType
-                        sampleCount       
-                  }
-                  aki{
-                        id
-                        geneSymbol
-                        fdrConfidence
-                        accession
-                        description
-                        coveragePct
-                        numPeptides
-                        numUniquePeptides
-                        comparison
-                        segment: region
-                        foldChange
-                        pValLog10: adjPVal
-                        tissueType
-                        sampleCount       
-                  }
                 }
-  }
-}`;
+            }
+        }`;
 
     const response = await apolloClient.query({
         query: query,
