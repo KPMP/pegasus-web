@@ -14,15 +14,21 @@ class TopContent extends Component {
   render() {
     return (
         <Container className="landing container container-expanded mt-2 rounded border p-3 shadow-sm">
-          <Row><h3 className="subtitle">Kidney Precision Medicine Project</h3></Row>
-          <Row><h1 className="title">Kidney Tissue Atlas</h1></Row>
-          <Row><p>The Kidney Tissue Atlas is a set of interactive tools built to promote retrieval, exploration, discovery, and analysis of the KPMP data by the greater research community.</p></Row>
-          <Col xs='12'>
-              <a rel="noreferrer" target='_blank' href='https://www.kpmp.org/help-docs/data' onClick={() => {
-              this.handleGoogleAnalyticsEvent('Atlas Home', 'Navigation', 'Help: learn about data types')}}>
-                Learn more about our data types and methodologies
-            </a>
-          </Col>
+          <div><h3 className="subtitle">Kidney Precision Medicine Project</h3></div>
+          <div><h1 className="title">Kidney Tissue Atlas</h1></div>
+          <div>
+            <Col xs='12'>
+              The Kidney Tissue Atlas is a set of interactive tools built to promote retrieval, exploration, discovery, and analysis of the KPMP data by the greater research community.
+            </Col>
+          </div>
+          <div>
+            <Col xs='12'>
+                <a rel="noreferrer" target='_blank' href='https://www.kpmp.org/help-docs/data' onClick={() => {
+                this.handleGoogleAnalyticsEvent('Atlas Home', 'Navigation', 'Help: learn about data types')}}>
+                  Learn more about our data types and methodologies
+              </a>
+            </Col>
+          </div>
         </Container>
     );
   }
