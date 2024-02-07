@@ -22,17 +22,17 @@ class DataSummary extends Component {
                 <Row><h2 className="data-summary">Atlas Data Summary</h2></Row>
                 <Row><p>IMPORTANT: Please follow this <a href="https://www.kpmp.org/help-docs/study-overview?tabname=citingkpmpdata">citation guideline</a> when presenting or publishing data from the Kidney Tissue Atlas.</p></Row>
 
-                <h1 className="centered kpmp-color-dark"><span><FontAwesomeIcon className='kpmp-color-dark pe-2' icon={faPerson} /></span>PARTICIPANTS</h1>
+                <h3 className="centered kpmp-color-dark"><span><FontAwesomeIcon className='kpmp-color-dark pe-2' icon={faPerson} /></span>PARTICIPANTS</h3>
                 <ParticipantSummary/>
                 
-                <Row><h5 className="sub-header lowered">Participants by -omics type</h5></Row>
+                <Row><h4 className="sub-header lowered">Participants by -omics type</h4></Row>
                 <Row><p>A subset of the raw data from the Data Repository has been analyzed and made available for interactive mining in Explorer and Spatial Viewer.</p></Row>
 
                 <Row>
                     <SamplesByDataTypeTableContainer/>
                 </Row>
 
-                <Row><h5 className="sub-header lowered">Files in the Data Repository by -omics type</h5></Row>
+                <Row><h4 className="sub-header lowered">Files in the Data Repository by -omics type</h4></Row>
                 <Row><p>The datasets available in the Repository are a combination of raw and processed data from KPMP participant biopsies and reference tissue samples.</p></Row>
             
                 <Row>
