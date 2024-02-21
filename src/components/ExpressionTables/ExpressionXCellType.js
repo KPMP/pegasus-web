@@ -69,20 +69,20 @@ class ExpressionXCellType extends Component {
                 name: 'cluster',
             },
             {
-                title: <span>CLUSTER (<i>predicted state</i>)</span>,
+                title: <span>CELL CLUSTER (<i>predicted state</i>)</span>,
                 name: 'clusterName',
                 getCellValue: row => this.parseClusterName(row)
                 
             },
             {
-                title: <span># CELLS IN<br />CLUSTER</span>,
+                title: <span># CELLS IN<br />CELL CLUSTER</span>,
                 name: 'cellCount',
                 getCellValue: row => row.cellCount ? row.cellCount : 0
             },
             {
                 title: <span>MEAN<br />EXPRESSION <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='mean-expression-info' icon={faInfoCircle} /></span>
                     <UncontrolledTooltip placement='bottom' target='mean-expression-info' >
-                        Averaged expression values (logarithmic) for each cluster
+                        Averaged expression values (logarithmic) for each cell cluster
                     </UncontrolledTooltip></span>,
                 name: 'avgExp',
                 getCellValue: row => formatNumberToPrecision(row.avgExp, 3)
@@ -98,7 +98,7 @@ class ExpressionXCellType extends Component {
             {
                 title: <span>FOLD<br />CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
                     <UncontrolledTooltip placement='bottom' target='fold-change-info' >
-                        Log fold-change of the average expression between this cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.
+                        Log fold-change of the average expression between this cell cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.
                     </UncontrolledTooltip></span>,
                 name: 'foldChange',
                 getCellValue: row => formatNumberToPrecision(row.foldChange, 3)
@@ -152,7 +152,7 @@ class ExpressionXCellType extends Component {
     getColumnBands() {
         return [
             { 
-                title: "CLUSTER VS ALL OTHERS",
+                title: "CELL CLUSTER VS ALL OTHERS",
                 children: [
                     { columnName: 'foldChange'},
                     { columnName: 'pVal' },
@@ -188,7 +188,7 @@ class ExpressionXCellType extends Component {
                 <React.Fragment>
                     <Row xs='12' className='mt-5'>
                         <Col xs='11'>
-                            <h5><span>{this.props.gene}</span> Expression Comparison across Clusters in {formatTissueType(this.props.tissueType)}</h5>
+                            <h5><span>{this.props.gene}</span> Expression Comparison across Cell Clusters in {formatTissueType(this.props.tissueType)}</h5>
                             <h6>NS = Not Significant</h6>
                         </Col>
                         <Col xs='1' className='text-end'>
@@ -227,7 +227,7 @@ class ExpressionXCellType extends Component {
                         </small>
                             <p></p>
                             <small>
-                                For more information about the cell type, cluster, and state definitions, see the following pre-print: <a target="_blank" rel="noreferrer" href="https://www.biorxiv.org/content/10.1101/2021.07.28.454201v1">https://www.biorxiv.org/content/10.1101/2021.07.28.454201v1</a>
+                                For more information about the cell type, cluster, and state definitions, see the following publication: <a target="_blank" rel="noreferrer" href="https://rdcu.be/dx5m9">Nature 619, 585–594 (2023)</a>
                             </small>
                         </Col>
                     </Row>
