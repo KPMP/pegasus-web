@@ -154,10 +154,11 @@ class DiffexByCluster extends Component {
     };
 
     cleanResults = (results) => {
-        return results.map(({ gene, foldChange, pValAdj }) => {
+        return results.map(({ gene, foldChange, pVal, pValAdj }) => {
             return {
                 gene: gene,
                 foldChange: formatNumberToPrecision(foldChange, 3),
+                pVal: formatNumberToPrecision(pVal, 3),
                 pValAdj: formatNumberToPrecision(pValAdj, 3, true)
             }
         });
