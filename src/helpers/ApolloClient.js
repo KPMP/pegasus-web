@@ -369,10 +369,11 @@ export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
                 gene: geneSymbol 
                 pVal
                 foldChange
-                pValAdj: pValLog10 
+                pValLog10 
                 stdDev
                 sampleCount
                 tissueType
+                pValAdj
             }
         }`;
 
