@@ -22,6 +22,7 @@ type SummaryRows{
   akiCount: Long,
   ckdCount: Long,
   hrtCount: Long,
+  dmrCount: Long,
   omicsType: String,
   linkInformation: [LinkInformation]
 }
