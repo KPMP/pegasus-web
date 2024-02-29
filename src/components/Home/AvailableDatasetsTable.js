@@ -20,7 +20,6 @@ class AvailableDatasetsTable extends Component {
 
     async componentDidMount(){
         const summary = await fetchAtlasSummaryRows();
-        console.log(summary)
 
         this.setState({totalFiles: summary.totalFiles});
         this.setState({summaryRows: summary.summaryRows});
@@ -55,6 +54,7 @@ class AvailableDatasetsTable extends Component {
     }
 
     handleDataTypeValueClick(row) {
+        console.log(row)
         let linkType = row.linkInformation.linkType;
         let linkValue = row.linkInformation.linkValue.replace('&', '%26');
         let mapping = `/repository/?size=n_20_n&filters[0][field]=${linkType}&filters[0][values][0]=${linkValue}&filters[0][type]=any`;
