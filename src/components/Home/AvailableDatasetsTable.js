@@ -91,6 +91,7 @@ class AvailableDatasetsTable extends Component {
       return [
           {
               title: <span className="omics data-type-table-header table-header">OMICS TYPE</span>,
+              getCellValue: row => <div className='data-type-table-content' style={{'flex': '250 0 auto'}} role='gridcell'>{row.omicsType}</div>,
               name: 'omicsType',
           },
           {
@@ -106,7 +107,7 @@ class AvailableDatasetsTable extends Component {
                     </UncontrolledTooltip>
                   </span>
               ,
-              getCellValue: row => this.handleEmptyCounts(row.hrtCount, row, "Healthy Reference"),
+              getCellValue: row => <div className='data-type-table-content' style={{'flex': '250 0 auto'}} role='gridcell'>{this.handleEmptyCounts(row.hrtCount, row, "Healthy Reference")}</div>,
               name: 'hrtCount',
           },
           {
@@ -122,7 +123,7 @@ class AvailableDatasetsTable extends Component {
                     </UncontrolledTooltip>
                   </span>
               ,
-              getCellValue: row => this.handleEmptyCounts(row.ckdCount, row, "CKD"),
+              getCellValue: row => <div className='data-type-table-content' style={{'flex': '250 0 auto'}} role='gridcell'>{this.handleEmptyCounts(row.ckdCount, row, "CKD")}</div>,
               name: 'ckdCount',
           },
           {
@@ -138,7 +139,7 @@ class AvailableDatasetsTable extends Component {
                     </UncontrolledTooltip>
                   </span>
               ,
-              getCellValue: row => this.handleEmptyCounts(row.akiCount, row, "AKI"),
+              getCellValue: row => <div className='data-type-table-content' style={{'flex': '250 0 auto'}} role='gridcell'>{this.handleEmptyCounts(row.akiCount, row, "AKI")}</div>,
               name: 'akiCount',
           },
           {
@@ -154,7 +155,7 @@ class AvailableDatasetsTable extends Component {
                     </UncontrolledTooltip>
                   </span>
               ,
-              getCellValue: row => this.handleEmptyCounts(row.dmrCount, row, "DM-R"),
+              getCellValue: row => <div className='data-type-table-content' style={{'flex': '250 0 auto'}} role='gridcell'>{this.handleEmptyCounts(row.dmrCount, row, "DM-R")}</div>,
               name: 'dmrCount',
           }   
       ]
