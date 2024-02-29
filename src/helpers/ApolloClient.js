@@ -267,6 +267,8 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
                     stdDev
                     sampleCount
                     tissueType
+                    pValAdj: adjPVal
+                    
                 }
                 ckd {
                     id
@@ -279,6 +281,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
                     stdDev
                     sampleCount
                     tissueType
+                    pValAdj: adjPVal
                 }
                 all {
                     id
@@ -291,6 +294,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
                     stdDev
                     sampleCount
                     tissueType
+                    pValAdj: adjPVal
                 }
                 hrt {
                     id
@@ -303,6 +307,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
                     stdDev
                     sampleCount
                     tissueType
+                    pValAdj: adjPVal                   
                 }
             }
         }`;
@@ -369,10 +374,11 @@ export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
                 gene: geneSymbol 
                 pVal
                 foldChange
-                pValAdj: pValLog10 
+                pValLog10 
                 stdDev
                 sampleCount
                 tissueType
+                pValAdj: adjPVal
             }
         }`;
 
