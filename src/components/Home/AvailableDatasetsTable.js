@@ -26,29 +26,6 @@ class AvailableDatasetsTable extends Component {
 
     }
 
-    handleDataTypeClick(dataType) {
-        handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
-        let dataLinkageMapping = {
-            'Single-nucleus RNA-seq (snRNA-seq)': 'sn',
-            'Single-cell RNA-seq (scRNA-seq)': 'sc',
-            'Regional transcriptomics': 'rt',
-            'Regional proteomics':'rp',
-            'Light Microscopic Whole Slide Images': 'wsi',
-            '3D Tissue Imaging and Cytometry': '3d',
-            'CODEX': 'codex',
-            'Spatial Metabolomics': 'sm',
-            'Spatial Lipidomics': 'sl',
-            'Spatial N-glycomics': 'sng',
-            'Spatial Transcriptomics': 'st'
-        };
-        if (dataLinkageMapping[dataType]) {
-            this.props.setDataType(dataLinkageMapping[dataType], this.props);
-        } else {
-            this.props.history.push('/oops');
-            throw new Error('Datatype not found', dataType)
-        }
-    }
-
     handleEmptyCounts(count, row, tissueType){
         return count === 0 ? "" : this.formatDataTypeValueCell(count, row, tissueType)
     }
@@ -78,7 +55,7 @@ class AvailableDatasetsTable extends Component {
     getColumnExtensions() {
 
         return [
-            { columnName: 'omicsType', width: 'auto'},
+            { columnName: 'omicsType', width: 265},
             { columnName: 'akiCount', width: 'auto'},
             { columnName: 'hrtCount', width: 'auto'},
             { columnName: 'ckdCount', width: 'auto'},
@@ -91,7 +68,6 @@ class AvailableDatasetsTable extends Component {
       return [
           {
               title: <span className="omics data-type-table-header table-header">OMICS TYPE</span>,
-              getCellValue: row => <div className='data-type-table-content' style={{'flex': '250 0 auto'}} role='gridcell'>{row.omicsType}</div>,
               name: 'omicsType',
           },
           {
