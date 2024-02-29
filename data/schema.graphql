@@ -19,8 +19,9 @@ type getAtlasSummaryRows{
 }
 
 type SummaryRows{
-  openCount: Long,
-  controlledCount: Long,
+  akiCount: Long,
+  ckdCount: Long,
+  hrtCount: Long,
   omicsType: String,
   linkInformation: [LinkInformation]
 }
