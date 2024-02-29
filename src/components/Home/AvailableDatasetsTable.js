@@ -49,15 +49,14 @@ class AvailableDatasetsTable extends Component {
         }
     }
 
-    handleEmptyCounts(count, row){
-        return count === 0 ? "" : this.formatDataTypeValueCell(count, row)
+    handleEmptyCounts(count, row, tissueType){
+        return count === 0 ? "" : this.formatDataTypeValueCell(count, row, tissueType)
     }
 
-    handleDataTypeValueClick(row) {
-        console.log(row)
+    handleDataTypeValueClick(row, tissueType) {
         let linkType = row.linkInformation.linkType;
         let linkValue = row.linkInformation.linkValue.replace('&', '%26');
-        let mapping = `/repository/?size=n_20_n&filters[0][field]=${linkType}&filters[0][values][0]=${linkValue}&filters[0][type]=any`;
+        let mapping = `/repository/?size=n_20_n&filters[0][field]=${linkType}&filters[0][values][0]=${linkValue}&filters[0][type]=any&filters[1][field]=tissue_type&filters[1][values][0]=${tissueType}&filters[1][type]=any`
         if(linkType && linkValue){
             return encodeURI(mapping).replace('%2526', '%26');
         } else {
@@ -66,9 +65,9 @@ class AvailableDatasetsTable extends Component {
         }
     }
   
-    formatDataTypeValueCell(value, row, controlAccess) {
+    formatDataTypeValueCell(value, row, tissueType) {
         return (
-            <a href={`${this.handleDataTypeValueClick(row, controlAccess)}`}>
+            <a href={`${this.handleDataTypeValueClick(row, tissueType)}`}>
                 <span className="buttonhref">
                     {value}
                 </span>
@@ -107,7 +106,7 @@ class AvailableDatasetsTable extends Component {
                     </UncontrolledTooltip>
                   </span>
               ,
-              getCellValue: row => this.handleEmptyCounts(row.hrtCount, row),
+              getCellValue: row => this.handleEmptyCounts(row.hrtCount, row, "Healthy Reference"),
               name: 'hrtCount',
           },
           {
@@ -123,7 +122,7 @@ class AvailableDatasetsTable extends Component {
                     </UncontrolledTooltip>
                   </span>
               ,
-              getCellValue: row => this.handleEmptyCounts(row.ckdCount, row),
+              getCellValue: row => this.handleEmptyCounts(row.ckdCount, row, "CKD"),
               name: 'ckdCount',
           },
           {
@@ -139,7 +138,7 @@ class AvailableDatasetsTable extends Component {
                     </UncontrolledTooltip>
                   </span>
               ,
-              getCellValue: row => this.handleEmptyCounts(row.akiCount, row),
+              getCellValue: row => this.handleEmptyCounts(row.akiCount, row, "AKI"),
               name: 'akiCount',
           },
           {
@@ -155,7 +154,7 @@ class AvailableDatasetsTable extends Component {
                     </UncontrolledTooltip>
                   </span>
               ,
-              getCellValue: row => this.handleEmptyCounts(row.dmrCount, row),
+              getCellValue: row => this.handleEmptyCounts(row.dmrCount, row, "DM-R"),
               name: 'dmrCount',
           }   
       ]
