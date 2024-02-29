@@ -57,7 +57,7 @@ class AvailableDatasetsTable extends Component {
         let linkType = row.linkInformation.linkType;
         let linkValue = row.linkInformation.linkValue.replace('&', '%26');
         let mapping = `/repository/?size=n_20_n&filters[0][field]=${linkType}&filters[0][values][0]=${linkValue}&filters[0][type]=any&filters[1][field]=tissue_type&filters[1][values][0]=${tissueType}&filters[1][type]=any`
-        if(linkType && linkValue){
+        if(linkType && linkValue && tissueType){
             return encodeURI(mapping).replace('%2526', '%26');
         } else {
             this.props.history.push('/oops');
