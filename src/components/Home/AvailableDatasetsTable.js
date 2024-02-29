@@ -107,7 +107,7 @@ class AvailableDatasetsTable extends Component {
                     </UncontrolledTooltip>
                   </span>
               ,
-              getCellValue: row => <div className='data-type-table-content' style={{'flex': '250 0 auto'}} role='gridcell'>{this.handleEmptyCounts(row.hrtCount, row, "Healthy Reference")}</div>,
+              getCellValue: row => this.handleEmptyCounts(row.hrtCount, row, "Healthy Reference"),
               name: 'hrtCount',
           },
           {
@@ -123,7 +123,7 @@ class AvailableDatasetsTable extends Component {
                     </UncontrolledTooltip>
                   </span>
               ,
-              getCellValue: row => <div className='data-type-table-content' style={{'flex': '250 0 auto'}} role='gridcell'>{this.handleEmptyCounts(row.ckdCount, row, "CKD")}</div>,
+              getCellValue: row => this.handleEmptyCounts(row.ckdCount, row, "CKD"),
               name: 'ckdCount',
           },
           {
@@ -139,7 +139,7 @@ class AvailableDatasetsTable extends Component {
                     </UncontrolledTooltip>
                   </span>
               ,
-              getCellValue: row => <div className='data-type-table-content' style={{'flex': '250 0 auto'}} role='gridcell'>{this.handleEmptyCounts(row.akiCount, row, "AKI")}</div>,
+              getCellValue: row => this.handleEmptyCounts(row.akiCount, row, "AKI"),
               name: 'akiCount',
           },
           {
@@ -155,7 +155,7 @@ class AvailableDatasetsTable extends Component {
                     </UncontrolledTooltip>
                   </span>
               ,
-              getCellValue: row => <div className='data-type-table-content' style={{'flex': '250 0 auto'}} role='gridcell'>{this.handleEmptyCounts(row.dmrCount, row, "DM-R")}</div>,
+              getCellValue: row => this.handleEmptyCounts(row.dmrCount, row, "DM-R"),
               name: 'dmrCount',
           }   
       ]
