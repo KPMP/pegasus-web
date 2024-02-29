@@ -56,10 +56,10 @@ class AvailableDatasetsTable extends Component {
 
         return [
             { columnName: 'omicsType', width: 265},
-            { columnName: 'akiCount', width: 'auto'},
-            { columnName: 'hrtCount', width: 'auto'},
-            { columnName: 'ckdCount', width: 'auto'},
-            { columnName: 'dmrCount', width: 'auto'},
+            { columnName: 'akiCount', width: 'auto', align: 'center'},
+            { columnName: 'hrtCount', width: 'auto', align: 'center'},
+            { columnName: 'ckdCount', width: 'auto', align: 'center'},
+            { columnName: 'dmrCount', width: 'auto', align: 'center'},
         ]
     }
 
