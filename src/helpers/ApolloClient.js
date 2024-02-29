@@ -475,8 +475,10 @@ export const fetchAtlasSummaryRows = async () => {
             getAtlasSummaryRows{
                 totalFiles
                 summaryRows {
-                    openCount
-                    controlledCount
+                    akiCount
+                    ckdCount
+                    hrtCount
+                    dmrCount
                     omicsType
                     linkInformation {
                         linkType
