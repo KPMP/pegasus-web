@@ -478,18 +478,20 @@ export const fetchTissueTypeSummaryCounts = async () => {
 export const fetchAtlasSummaryRows = async () => {
     let query = gql`
         query {
-            getAtlasSummaryRows{
-                totalFiles
-                summaryRows {
-                    openCount
-                    controlledCount
-                    omicsType
-                    linkInformation {
-                        linkType
-                        linkValue
-                    }
-                }
+          getAtlasSummaryRows {
+            totalFiles
+            summaryRows {
+              akiCount
+              ckdCount
+              hrtCount
+              dmrCount
+              omicsType
+              linkInformation {
+                linkType
+                linkValue
+              }
             }
+          }
         }`;
     const response = await apolloClient.query({
         query: query,
