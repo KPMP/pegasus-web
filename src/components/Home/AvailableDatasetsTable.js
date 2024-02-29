@@ -92,7 +92,6 @@ class AvailableDatasetsTable extends Component {
           {
               title: <span className="omics data-type-table-header table-header">OMICS TYPE</span>,
               name: 'omicsType',
-              getCellValue: row => this.formatDataTypeCell(row)
           },
           {
               title: 
