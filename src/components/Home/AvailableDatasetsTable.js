@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
-import { Row, Col } from 'reactstrap';
+import { Row, Col, UncontrolledTooltip } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { fetchAtlasSummaryRows } from '../../helpers/ApolloClient';
 
@@ -12,7 +12,8 @@ class AvailableDatasetsTable extends Component {
 
         this.state = {
             totalFiles: [],
-            summaryRows: []
+            summaryRows: [],
+            
         };
         
     }
@@ -48,14 +49,14 @@ class AvailableDatasetsTable extends Component {
         }
     }
 
-    handleEmptyCounts(count, row, controlAccess){
-        return count === 0 ? "" : this.formatDataTypeValueCell(count, row, controlAccess)
+    handleEmptyCounts(count, row){
+        return count === 0 ? "" : this.formatDataTypeValueCell(count, row)
     }
 
-    handleDataTypeValueClick(row, controlAccess) {
+    handleDataTypeValueClick(row) {
         let linkType = row.linkInformation.linkType;
         let linkValue = row.linkInformation.linkValue.replace('&', '%26');
-        let mapping = `/repository/?size=n_20_n&filters[0][field]=access&filters[0][values][0]=${controlAccess}&filters[0][type]=any&filters[1][field]=${linkType}&filters[1][values][0]=${linkValue}&filters[1][type]=any`;
+        let mapping = `/repository/?size=n_20_n&filters[0][field]=${linkType}&filters[0][values][0]=${linkValue}&filters[0][type]=any`;
         if(linkType && linkValue){
             return encodeURI(mapping).replace('%2526', '%26');
         } else {
@@ -78,37 +79,90 @@ class AvailableDatasetsTable extends Component {
 
         return [
             { columnName: 'omicsType', width: 'auto'},
-            { columnName: 'controlledCount', width: 'auto', align: 'center'},
-            { columnName: 'openCount', width: 'auto', align: 'center' },
+            { columnName: 'akiCount', width: 'auto'},
+            { columnName: 'hrtCount', width: 'auto'},
+            { columnName: 'ckdCount', width: 'auto'},
+            { columnName: 'dmrCount', width: 'auto'},
         ]
     }
 
     getColumns() {
-        return [
-            {
-                title: <span className="table-header omics data-type-table-header">OMICS TYPE</span>,
-                name: 'omicsType',
-                getCellValue: row => <div className='data-type-table-content' style={{'flex': '250 0 auto'}} role='gridcell'>{row.omicsType}</div>
-                
-            },
-            {
-                title: 
-                    <a href={`https://www.kpmp.org/controlled-data`} ><span className="data-type-table-header">CONTROLLED</span></a>
-                ,
-                name: 'controlledCount',
-                getCellValue: row => <div className='rt-td data-type-table-content' style={{'flex': '250 0 auto','textAlign': 'center'}} role='gridcell'>{this.handleEmptyCounts(row.controlledCount, row, "controlled")}</div>
-            },
-            {
-                title:
-                    <span className='table-header data-type-table-header rt-resizable-header-content'>OPEN</span>
-                ,
-                name: 'openCount',
-                getCellValue: row =>  <div className='rt-td data-type-table-content' style={{'flex': '250 0 auto','textAlign': 'center'}} role='gridcell'>{this.handleEmptyCounts(row.openCount, row, "open")}</div>
-            }
-        ]
-    };
+
+      return [
+          {
+              title: <span className="omics data-type-table-header table-header">OMICS TYPE</span>,
+              name: 'omicsType',
+              getCellValue: row => this.formatDataTypeCell(row)
+          },
+          {
+              title: 
+                  <span>
+                    <span className="table-header data-type-table-header" id="HealthyReferenceHeader">
+                     REFERENCE
+                    </span>
+                    <UncontrolledTooltip 
+                      placement="bottom"
+                      target="HealthyReferenceHeader">
+                    Healthy Reference
+                    </UncontrolledTooltip>
+                  </span>
+              ,
+              getCellValue: row => this.handleEmptyCounts(row.hrtCount, row),
+              name: 'hrtCount',
+          },
+          {
+              title:
+                  <span>
+                    <span className="table-header data-type-table-header" id="CKDHeader">
+                    CKD
+                    </span>
+                    <UncontrolledTooltip 
+                      placement="bottom"
+                      target="CKDHeader">
+                    Chronic Kidney Disease
+                    </UncontrolledTooltip>
+                  </span>
+              ,
+              getCellValue: row => this.handleEmptyCounts(row.ckdCount, row),
+              name: 'ckdCount',
+          },
+          {
+              title: 
+                  <span>
+                    <span className="table-header data-type-table-header" id="AKIHeader">
+                    AKI
+                    </span>
+                    <UncontrolledTooltip 
+                      placement="bottom"
+                      target="AKIHeader">
+                    Acute Kidney Injury
+                    </UncontrolledTooltip>
+                  </span>
+              ,
+              getCellValue: row => this.handleEmptyCounts(row.akiCount, row),
+              name: 'akiCount',
+          },
+          {
+              title: 
+                  <span>
+                    <span className="table-header data-type-table-header" id="ResistorHeader">
+                    DM-R
+                    </span>
+                    <UncontrolledTooltip 
+                      placement="bottom"
+                      target="ResistorHeader">
+                    Diabetes Mellitus - Resilient
+                    </UncontrolledTooltip>
+                  </span>
+              ,
+              getCellValue: row => this.handleEmptyCounts(row.dmrCount, row),
+              name: 'dmrCount',
+          }   
+      ]
+  };
 
     render() {
+      console.log(this.state)
         return (
             <article id='summary-plot'>
                 <Row className='mt-4'>
