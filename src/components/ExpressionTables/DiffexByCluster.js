@@ -154,18 +154,16 @@ class DiffexByCluster extends Component {
     };
 
     cleanResults = (results) => {
-        return results.map(({ gene, foldChange, pVal, pValAdj }) => {
+        return results.map(({ gene, foldChange, pValAdj }) => {
             return {
                 gene: gene,
                 foldChange: formatNumberToPrecision(foldChange, 3),
-                pVal: formatNumberToPrecision(pVal, 3),
                 pValAdj: formatNumberToPrecision(pValAdj, 3, true)
             }
         });
     };
 
     render() {
-      console.log(this.state.diffexData)
         return (
             <div className='height-wrapper mb-3 mt-3'>
                 <Container id='outer-wrapper'>
