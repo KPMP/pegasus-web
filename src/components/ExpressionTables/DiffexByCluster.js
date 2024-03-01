@@ -165,6 +165,7 @@ class DiffexByCluster extends Component {
     };
 
     render() {
+      console.log(this.state.diffexData)
         return (
             <div className='height-wrapper mb-3 mt-3'>
                 <Container id='outer-wrapper'>
