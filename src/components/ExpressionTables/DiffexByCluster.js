@@ -229,6 +229,14 @@ class DiffexByCluster extends Component {
                                     </Row>
                                 </React.Fragment>
                         }
+                        { this.props.dataType === 'rt' ? 
+                            <Row>
+                                <Col lg='12' className='text-start small'>
+                                    NOTE: Results limited to the first 1000 based on highest fold change.
+                                </Col>
+                            </Row> :
+                            ""
+                        }
                     </Container>
                 </Container>
             </div>
