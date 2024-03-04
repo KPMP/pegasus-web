@@ -176,6 +176,7 @@ class DiffexByCluster extends Component {
     };
 
     render() {
+      console.log(this.props.dataType)
         return (
             <div className='height-wrapper mb-3 mt-3'>
                 <Container id='outer-wrapper'>
@@ -192,7 +193,7 @@ class DiffexByCluster extends Component {
                                         <Col xs='12' className='text-end'>
                                             <CSVLink
                                                 onClick={() => handleGoogleAnalyticsEvent('Explorer', 'Download', this.getExportFilename())}
-                                                data={this.cleanResults(this.state.diffexData, this.state.dataType)}
+                                                data={this.cleanResults(this.state.diffexData, this.props.dataType)}
                                                 filename={this.getExportFilename()}
                                                 target='_blank'
                                                 className='text-body icon-container'
