@@ -154,16 +154,6 @@ class DiffexByCluster extends Component {
     };
 
     cleanResults = (results) => {
-      if (this.props.dataType === "rp"){
-        return results.map(({ gene, foldChange, pValAdj }) => {
-          return {
-              gene: gene,
-              foldChange: formatNumberToPrecision(foldChange, 3),
-              pValAdj: formatNumberToPrecision(pValAdj, 3, true)
-          }
-        });
-      }
-      else if (this.props.dataType === "rt"){
         return results.map(({ gene, foldChange, pVal, pValAdj }) => {
           return {
               gene: gene,
@@ -171,8 +161,7 @@ class DiffexByCluster extends Component {
               pVal: formatNumberToPrecision(pVal, 3),
               pValAdj: formatNumberToPrecision(pValAdj, 3, true)
           }
-        });
-      }
+      });
     };
 
     render() {
