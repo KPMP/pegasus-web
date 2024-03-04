@@ -177,7 +177,6 @@ class DiffexByCluster extends Component {
                                 </div>
                                 :
                                 <React.Fragment>
-                                    { this.props.dataType === 'rt' ? <div>NOTE: Results limited to the first 1000 based on highest fold change.</div> : "" }
                                     <Row xs='12'>
                                         <Col xs='12' className='text-end'>
                                             <CSVLink
