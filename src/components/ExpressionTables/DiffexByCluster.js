@@ -153,14 +153,26 @@ class DiffexByCluster extends Component {
         return 'KPMP_' + formatDataType(this.props.dataType) + '-diffex_' + this.props.cluster + '_all-samples.csv';
     };
 
-    cleanResults = (results) => {
+    cleanResults = (results, dataType) => {
+      if (dataType === "rp"){
         return results.map(({ gene, foldChange, pValAdj }) => {
-            return {
-                gene: gene,
-                foldChange: formatNumberToPrecision(foldChange, 3),
-                pValAdj: formatNumberToPrecision(pValAdj, 3, true)
-            }
+          return {
+              gene: gene,
+              foldChange: formatNumberToPrecision(foldChange, 3),
+              pValAdj: formatNumberToPrecision(pValAdj, 3, true)
+          }
         });
+      }
+      else if (dataType === "rt"){
+        return results.map(({ gene, foldChange, pVal, pValAdj }) => {
+          return {
+              gene: gene,
+              foldChange: formatNumberToPrecision(foldChange, 3),
+              pVal: formatNumberToPrecision(pVal, 3),
+              pValAdj: formatNumberToPrecision(pValAdj, 3, true)
+          }
+      });
+      }
     };
 
     render() {
@@ -180,7 +192,7 @@ class DiffexByCluster extends Component {
                                         <Col xs='12' className='text-end'>
                                             <CSVLink
                                                 onClick={() => handleGoogleAnalyticsEvent('Explorer', 'Download', this.getExportFilename())}
-                                                data={this.cleanResults(this.state.diffexData)}
+                                                data={this.cleanResults(this.state.diffexData, this.props.dataType)}
                                                 filename={this.getExportFilename()}
                                                 target='_blank'
                                                 className='text-body icon-container'
