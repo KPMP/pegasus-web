@@ -72,8 +72,8 @@ class DiffexByCluster extends Component {
         let columns = [];
         columns.push(
             {
-                title: 'GENE',
-                field: 'gene',
+                title: 'PROTEIN',
+                field: 'accession',
                 align: 'left',
                 width: "15%",
                 headerStyle: { fontSize: "11px" },
