@@ -74,7 +74,7 @@ class DiffexByCluster extends Component {
 
     getColumns = () => {
         let columns = [];
-        if (this.props.dataType == 'rp') {
+        if (this.props.dataType === 'rp') {
             columns.push(
                 {
                     title: 'PROTEIN',
