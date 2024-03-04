@@ -81,7 +81,7 @@ class DiffexByCluster extends Component {
                     field: 'accession',
                     align: 'left',
                     width: "15%",
-                    headerStyle: { fontSize: "11px" },
+                    headerStyle: { fontSize: "15px" },
                     cellStyle: { fontSize: '14px', padding: "2px" },
                     render: rowData => this.getAccessionLink(rowData.gene, rowData.accession)
                 }
@@ -93,7 +93,7 @@ class DiffexByCluster extends Component {
                     field: 'gene',
                     align: 'left',
                     width: "15%",
-                    headerStyle: { fontSize: "11px" },
+                    headerStyle: { fontSize: "15px" },
                     cellStyle: { fontSize: '14px', padding: "2px" },
                     render: rowData => this.getGeneLink(rowData.gene)
                 }
