@@ -69,11 +69,6 @@ class DiffexInfoBar extends Component {
                             * Gene in selected cell type/region vs. all other cell types/regions
                         </Col>
                     </Row>
-                    <Row>
-                        <Col lg='12'>
-                        { this.props.dataType === 'rt' ? <div>NOTE: Results limited to the first 1000 based on highest fold change.</div> : "" }
-                        </Col>
-                    </Row>
                 </Container>
             </Container>
         );
