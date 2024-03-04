@@ -192,7 +192,7 @@ class DiffexByCluster extends Component {
                                         <Col xs='12' className='text-end'>
                                             <CSVLink
                                                 onClick={() => handleGoogleAnalyticsEvent('Explorer', 'Download', this.getExportFilename())}
-                                                data={this.cleanResults(this.state.diffexData, this.props.dataType)}
+                                                data={this.cleanResults(this.state.diffexData, this.state.dataType)}
                                                 filename={this.getExportFilename()}
                                                 target='_blank'
                                                 className='text-body icon-container'
