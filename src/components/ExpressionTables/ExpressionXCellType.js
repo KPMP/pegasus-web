@@ -98,7 +98,7 @@ class ExpressionXCellType extends Component {
             {
                 title: <span>FOLD<br />CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
                     <UncontrolledTooltip placement='bottom' target='fold-change-info' >
-                        Log fold-change of the average expression between this cell cluster and all others. Positive values indicate that the feature is more highly expressed in this cluster.
+                        Log fold-change of the average expression between this cell cluster and all others. Positive values indicate that the feature is more highly expressed in this cell cluster.
                     </UncontrolledTooltip></span>,
                 name: 'foldChange',
                 getCellValue: row => formatNumberToPrecision(row.foldChange, 3)
