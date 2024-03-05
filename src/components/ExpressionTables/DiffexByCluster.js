@@ -64,22 +64,42 @@ class DiffexByCluster extends Component {
         }
     }
 
+    getAccessionLink = (gene, accession) => {
+        return <button onClick={() => this.handleClick(gene)} type='button' className='table-column btn btn-link text-start p-0'>{accession}</button>   
+    }
+
     getGeneLink = (gene) => {
         return <button onClick={() => this.handleClick(gene)} type='button' className='table-column btn btn-link text-start p-0'>{gene}</button>
     };
 
     getColumns = () => {
         let columns = [];
+        if (this.props.dataType === 'rp') {
+            columns.push(
+                {
+                    title: 'PROTEIN',
+                    field: 'accession',
+                    align: 'left',
+                    width: "15%",
+                    headerStyle: { fontSize: "15px" },
+                    cellStyle: { fontSize: '14px', padding: "2px" },
+                    render: rowData => this.getAccessionLink(rowData.gene, rowData.accession)
+                }
+            );
+        } else {
+            columns.push(
+                {
+                    title: 'GENE',
+                    field: 'gene',
+                    align: 'left',
+                    width: "15%",
+                    headerStyle: { fontSize: "15px" },
+                    cellStyle: { fontSize: '14px', padding: "2px" },
+                    render: rowData => this.getGeneLink(rowData.gene)
+                }
+            );
+        }
         columns.push(
-            {
-                title: 'GENE',
-                field: 'gene',
-                align: 'left',
-                width: "15%",
-                headerStyle: { fontSize: "11px" },
-                cellStyle: { fontSize: '14px', padding: "2px" },
-                render: rowData => this.getGeneLink(rowData.gene)
-            },
             {
                 title: <span>FOLD CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
                 <UncontrolledTooltip placement='bottom' target='fold-change-info' >
