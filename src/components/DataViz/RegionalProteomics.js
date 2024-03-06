@@ -14,7 +14,7 @@ import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper'
 class RegionalProteomics extends Component {
       constructor(props) {
         super(props);
-        this.state = { allData: {}, accessionNums: [], selectedAccession: "", tableData: [], plotData: {}};
+        this.state = { allData: {}, accessionNums: [], selectedAccession: "", tableData: [], plotData: {}, accession: ""};
         const queryParam = queryString.parse(props.location.search);
         if (!this.props.tissueType) {
           this.props.setTissueType('all')
@@ -43,7 +43,6 @@ class RegionalProteomics extends Component {
 
     getRPData = () => {
         fetchRegionalProteomics(this.props.gene.symbol).then((result) => {
-                console.log(this.state)
                 this.setState({ selectedAccession: result[0]["accession"]});
                 this.mapPlotData(result);
             }
@@ -68,6 +67,8 @@ class RegionalProteomics extends Component {
         this.setState({ selectedAccession: accession })
         this.setState({ plotData: this.state.allData[accession]})
         this.setState({ tableData: this.state.allData[accession][this.props.tissueType]})
+        console.log(this.state.selectedAccession)
+        console.log(this.state.accession)
     }
 
     getTabGroup = (accessionNums) => {
