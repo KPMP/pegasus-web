@@ -42,8 +42,9 @@ class RegionalProteomics extends Component {
     };
 
     getRPData = () => {
+      console.log(this.state)
         fetchRegionalProteomics(this.props.gene.symbol).then((result) => {
-          this.setState({ selectedAccession: this.state.accession.accession});
+          this.setState({ selectedAccession: this.state.accession});
                 this.mapPlotData(result);
             }
         );
@@ -67,8 +68,6 @@ class RegionalProteomics extends Component {
         this.setState({ selectedAccession: accession })
         this.setState({ plotData: this.state.allData[accession]})
         this.setState({ tableData: this.state.allData[accession][this.props.tissueType]})
-        console.log(this.state.selectedAccession)
-        console.log(this.state.accession)
     }
 
     getTabGroup = (accessionNums) => {
