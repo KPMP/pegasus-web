@@ -43,7 +43,7 @@ class RegionalProteomics extends Component {
 
     getRPData = () => {
         fetchRegionalProteomics(this.props.gene.symbol).then((result) => {
-                this.setState({ selectedAccession: result[0]["accession"]});
+                this.setState({ selectedAccession: this.state.accession});
                 this.mapPlotData(result);
             }
         );
