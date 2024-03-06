@@ -58,7 +58,7 @@ class RegionalProteomics extends Component {
         }
         this.setState({ allData: allData });
         this.setState({ accessionNums: accessionNums })
-        let plotData = allData[this.state.accession.accession];
+        let plotData = allData[this.state.selectedAccession];
         this.setState({ plotData: plotData})
         this.setState({ tableData: plotData[this.props.tissueType]})
     }
