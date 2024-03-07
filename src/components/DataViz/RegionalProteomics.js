@@ -47,7 +47,7 @@ class RegionalProteomics extends Component {
 
     getRPData = () => {
         fetchRegionalProteomics(this.props.gene.symbol).then((result) => {
-                this.setState({ selectedAccession: result[0]["accession"]});
+                this.setState({ selectedAccession: this.props.accession.accession});
                 this.mapPlotData(result);
             }
         );
@@ -76,7 +76,7 @@ class RegionalProteomics extends Component {
     getTabGroup = (accessionNums) => {
         let tabs = []
         for (let accession of accessionNums) {
-            tabs.push(<Button color="primary" onClick={() => this.handleAccessionChange(accession)} active={this.state.selectedAccession === accession}>{accession}</Button>)
+            tabs.push(<Button color="primary" onClick={() => this.handleAccessionChange(accession)} active={this.state.selectedAccession === this.props.accession.accession}>{accession}</Button>)
         }
         return(<ButtonGroup>
             {tabs}
