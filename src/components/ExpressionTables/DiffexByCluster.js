@@ -15,7 +15,7 @@ class DiffexByCluster extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            diffexData: [], isLoading: true, accession: ""
+            diffexData: [], isLoading: true
         };
     };
 
@@ -24,7 +24,6 @@ class DiffexByCluster extends Component {
     }
 
     fetchGeneExpression = () => {
-        console.log(this.props)
         if (this.props.dataType === 'rt') {
             fetchRegionalTranscriptomicsByStructure(this.props.cluster).then(
                 (geneExpressionData) => {
