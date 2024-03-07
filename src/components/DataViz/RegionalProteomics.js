@@ -76,7 +76,7 @@ class RegionalProteomics extends Component {
         this.setState({ plotData: this.state.allData[accession]})
         this.setState({ tableData: this.state.allData[accession][this.props.tissueType]})
     }
-    // Make this into a class that you can pass props to. DiffEx Info bar is a good example of this
+
     getTabGroup = (accessionNums) => {
         let tabs = []
         for (let accession of accessionNums) {
