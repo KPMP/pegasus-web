@@ -33,7 +33,7 @@ class RegionalProteomics extends Component {
         console.log("State")
         console.log(this.state)
         console.log("Props")
-        console.logs(this.props)
+        console.log(this.props)
     };
 
     componentDidUpdate(prevProps, prevState, snapShot) {
