@@ -9,7 +9,8 @@ const mapStateToProps = (state, props) =>
 ({
     dataType: state.dataType,
     cluster: state.cluster,
-    tissueType: state.tissueType
+    tissueType: state.tissueType,
+    accession: state.accession
 });
 
 const mapDispatchToProps = (dispatch, props) =>
