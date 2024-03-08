@@ -24,8 +24,6 @@ class RegionalProteomics extends Component {
             props.setDataType('rp');
             window.open(props.location.pathname, '_self');
         }
-        props.setDataType('rp')
-
     };
 
     componentDidMount() {
@@ -37,6 +35,8 @@ class RegionalProteomics extends Component {
         console.log(this.state)
         console.log("Props")
         console.log(this.props)
+        console.log("Gene")
+        console.log(this.props.gene)
     };
 
     componentDidUpdate(prevProps, prevState, snapShot) {
