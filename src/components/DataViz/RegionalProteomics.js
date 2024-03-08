@@ -16,7 +16,6 @@ class RegionalProteomics extends Component {
         super(props);
         this.state = { allData: {}, accessionNums: [], selectedAccession: "", tableData: [], plotData: {}, accession: ""};
         const queryParam = queryString.parse(props.location.search);
-        console.log("Query Param: " + queryParam)
         if (!this.props.tissueType) {
           this.props.setTissueType('all')
         }
@@ -25,6 +24,7 @@ class RegionalProteomics extends Component {
             props.setDataType('rp');
             window.open(props.location.pathname, '_self');
         }
+        props.setDataType('rp')
 
     };
 
