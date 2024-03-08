@@ -82,7 +82,7 @@ class RegionalProteomics extends Component {
     getTabGroup = (accessionNums) => {
         let tabs = []
         for (let accession of accessionNums) {
-            tabs.push(<Button color="primary" onClick={() => this.handleAccessionChange(accession)} active={this.state.selectedAccession === this.props.accession.accession}>{accession}</Button>)
+            tabs.push(<Button color="primary" onClick={() => this.handleAccessionChange(accession)} active={this.state.selectedAccession}>{accession}</Button>)
         }
         return(<ButtonGroup>
             {tabs}
