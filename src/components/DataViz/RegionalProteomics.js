@@ -50,7 +50,7 @@ class RegionalProteomics extends Component {
 
     getRPData = () => {
         fetchRegionalProteomics(this.props.gene.symbol).then((result) => {
-                console.log(result)
+                console.log("Fetching regional proteomics")
                 if (this.props.accession.accession){
                   this.setState({ selectedAccession: this.props.accession.accession});
                   console.log("Set state with props")
