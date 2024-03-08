@@ -15,12 +15,16 @@ class DiffexByCluster extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            diffexData: [], isLoading: true, accession: ""
+            diffexData: [], isLoading: true
         };
     };
 
     componentDidMount() {
         this.fetchGeneExpression();
+        console.log("DiffEx State")
+        console.log(this.state)
+        console.log("DiffEx Props")
+        console.log(this.props)
     }
 
     fetchGeneExpression = () => {
