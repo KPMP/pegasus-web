@@ -53,8 +53,10 @@ class RegionalProteomics extends Component {
                 console.log(result)
                 if (this.props.accession.accession){
                   this.setState({ selectedAccession: this.props.accession.accession});
+                  console.log("Set state with props")
                 }else{
                   this.setState({ selectedAccession: result[0]["accession"]})
+                  console.log("Set state with result")
                 }
                 this.mapPlotData(result);
             }
