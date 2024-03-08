@@ -10,6 +10,7 @@ import RegionalProteomicsTable from "../ExpressionTables/RegionalProteomicsTable
 import {formatTissueType, formatNumberToPrecision} from "../../helpers/Utils";
 import { CSVLink } from "react-csv";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
+import { useState } from 'react';
 
 class RegionalProteomics extends Component {
       constructor(props) {
@@ -27,14 +28,14 @@ class RegionalProteomics extends Component {
     };
 
     componentDidMount() {
-      console.log("State")
-      console.log(this.state)
-      console.log("Props")
-      console.log(this.props)
+
         if (this.props.gene.symbol) {
             this.getRPData();
         }
-
+        console.log("State")
+        console.log(this.state)
+        console.log("Props")
+        console.log(this.props)
     };
 
     componentDidUpdate(prevProps, prevState, snapShot) {
@@ -82,7 +83,7 @@ class RegionalProteomics extends Component {
     getTabGroup = (accessionNums) => {
         let tabs = []
         for (let accession of accessionNums) {
-            tabs.push(<Button color="primary" onClick={() => this.handleAccessionChange(accession)} active={this.state.selectedAccession}>{accession}</Button>)
+          tabs.push(<Button color="primary" onClick={() => this.handleAccessionChange(accession)} active={this.state.selectedAccession === accession}>{accession}</Button>)
         }
         return(<ButtonGroup>
             {tabs}
