@@ -10,13 +10,13 @@ import RegionalProteomicsTable from "../ExpressionTables/RegionalProteomicsTable
 import {formatTissueType, formatNumberToPrecision} from "../../helpers/Utils";
 import { CSVLink } from "react-csv";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
-import { useState } from 'react';
 
 class RegionalProteomics extends Component {
       constructor(props) {
         super(props);
         this.state = { allData: {}, accessionNums: [], selectedAccession: "", tableData: [], plotData: {}, accession: ""};
         const queryParam = queryString.parse(props.location.search);
+        console.log("Query Param: " + queryParam)
         if (!this.props.tissueType) {
           this.props.setTissueType('all')
         }
@@ -25,6 +25,7 @@ class RegionalProteomics extends Component {
             props.setDataType('rp');
             window.open(props.location.pathname, '_self');
         }
+
     };
 
     componentDidMount() {
