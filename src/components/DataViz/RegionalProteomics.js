@@ -27,13 +27,14 @@ class RegionalProteomics extends Component {
     };
 
     componentDidMount() {
+      console.log("State")
+      console.log(this.state)
+      console.log("Props")
+      console.log(this.props)
         if (this.props.gene.symbol) {
             this.getRPData();
         }
-        console.log("State")
-        console.log(this.state)
-        console.log("Props")
-        console.log(this.props)
+
     };
 
     componentDidUpdate(prevProps, prevState, snapShot) {
@@ -47,6 +48,7 @@ class RegionalProteomics extends Component {
 
     getRPData = () => {
         fetchRegionalProteomics(this.props.gene.symbol).then((result) => {
+                console.log(result)
                 if (this.props.accession.accession){
                   this.setState({ selectedAccession: this.props.accession.accession});
                 }else{
