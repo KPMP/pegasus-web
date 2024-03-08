@@ -2,7 +2,6 @@ import {connect} from "react-redux";
 import RegionalProteomics from "./RegionalProteomics";
 import { setTissueType } from '../../actions/TissueType/tissueTypeActions'
 import { setDataType } from "../../actions/DataType/dataTypeActions";
-import { setAccession } from "../../actions/Accession/accessionActions";
 import { resetState } from "../../actions/resetAction";
 
 const mapStateToProps = (state, props) =>
@@ -11,7 +10,6 @@ const mapStateToProps = (state, props) =>
         gene: state.gene,
         dataType: state.dataType,
         tissueType: state.tissueType,
-        accession: state.accession
     });
 
 const mapDispatchToProps = (dispatch, props) =>
@@ -21,9 +19,6 @@ const mapDispatchToProps = (dispatch, props) =>
         },
         setDataType(dataType) {
             dispatch(setDataType(dataType));
-        },
-        setAccession(accession){
-            dispatch(setAccession(accession));
         },
         resetState() {
             dispatch(resetState());

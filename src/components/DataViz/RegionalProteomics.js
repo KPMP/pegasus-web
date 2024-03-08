@@ -14,7 +14,7 @@ import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper'
 class RegionalProteomics extends Component {
       constructor(props) {
         super(props);
-        this.state = { allData: {}, accessionNums: [], selectedAccession: "", tableData: [], plotData: {}, accession: ""};
+        this.state = { allData: {}, accessionNums: [], selectedAccession: "", tableData: [], plotData: {}};
         const queryParam = queryString.parse(props.location.search);
         if (!this.props.tissueType) {
           this.props.setTissueType('all')
