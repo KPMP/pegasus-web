@@ -222,7 +222,7 @@ class DataTypeSelector extends Component {
                             <span className='d-table-cell text-bigger pe-2'>in:</span>
                             <Select
                                 allowClear
-                                options={getTissueTypeOptions(this.state.selectedDataset, this.props.gene.symbol)}
+                                options={getTissueTypeOptions(this.state.selectedDataset, this.props.gene.symbol, this.props.dataType)}
                                 onChange={this.handleTissueSelect}
                                 value={this.state.tissueValue}
                                 inputValue={this.getInputValue()}
