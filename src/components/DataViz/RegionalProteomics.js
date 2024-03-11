@@ -31,16 +31,6 @@ class RegionalProteomics extends Component {
         if (this.props.gene.symbol) {
             this.getRPData();
         }
-        console.log("State")
-        console.log(this.state)
-        console.log("Props")
-        console.log(this.props)
-        console.log("Gene")
-        console.log(this.props.gene)
-        if(this.props.accession){
-          console.log("accession")
-          console.log(this.props.accession)
-        }
     };
 
     componentDidUpdate(prevProps, prevState, snapShot) {
@@ -54,14 +44,10 @@ class RegionalProteomics extends Component {
 
     getRPData = () => {
         fetchRegionalProteomics(this.props.gene.symbol).then((result) => {
-                console.log("Fetching regional proteomics")
                 if (this.props.accession){
                   this.setState({ selectedAccession: this.props.accession});
-                  console.log("Set state with props")
                 }else{
-                  console.log(result[0]["accession"]);
                   this.setState({ selectedAccession: result[0]["accession"]})
-                  console.log("Set state with result")
                 }
                 this.mapPlotData(result);
             }
@@ -125,8 +111,6 @@ class RegionalProteomics extends Component {
 
     render() {
         let plot = <LMDDotPlot data={this.state.plotData} calcLog10={true}/>
-        console.log("Table Data")
-        console.log(this.state.tableData)
 
         let table = <RegionalProteomicsTable data={this.state.tableData}/>
         let tabs = this.getTabGroup(this.state.accessionNums);

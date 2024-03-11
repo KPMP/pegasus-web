@@ -25,7 +25,7 @@ class DiffexInfoBar extends Component {
                 console.log('There was a problem getting the data: ' + error)
             }
         );
-        
+
     }
 
     handleInputChange(inputValue, action) {

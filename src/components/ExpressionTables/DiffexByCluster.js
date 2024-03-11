@@ -21,10 +21,6 @@ class DiffexByCluster extends Component {
 
     componentDidMount() {
         this.fetchGeneExpression();
-        console.log("DiffEx State")
-        console.log(this.state)
-        console.log("DiffEx Props")
-        console.log(this.props)
     }
 
     fetchGeneExpression = () => {
