@@ -65,7 +65,7 @@ class DiffexByCluster extends Component {
     }
 
     getAccessionLink = (gene, accession) => {
-        return <button onClick={() => this.handleClick(gene)} type='button' className='table-column btn btn-link text-start p-0'>{accession}</button>   
+        return <button onClick={() => this.handleClick(gene, accession)} type='button' className='table-column btn btn-link text-start p-0'>{accession}</button>
     }
 
     getGeneLink = (gene) => {
@@ -165,8 +165,9 @@ class DiffexByCluster extends Component {
         return columns
     }
 
-    handleClick = (gene) => {
+    handleClick = (gene, accession) => {
         this.props.setGene({ symbol: gene, name: '' }, this.props.dataType);
+        this.props.setAccession(accession);
     };
 
     getExportFilename = () => {
@@ -175,9 +176,9 @@ class DiffexByCluster extends Component {
 
     cleanResults = (results, dataType) => {
       if (dataType === "rp"){
-        return results.map(({ gene, foldChange, pValAdj }) => {
+        return results.map(({ protein, foldChange, pValAdj }) => {
           return {
-              gene: gene,
+              protein: protein,
               foldChange: formatNumberToPrecision(foldChange, 3),
               pValAdj: formatNumberToPrecision(pValAdj, 3, true)
           }
@@ -249,7 +250,7 @@ class DiffexByCluster extends Component {
                                     </Row>
                                 </React.Fragment>
                         }
-                        { this.props.dataType === 'rt' ? 
+                        { this.props.dataType === 'rt' ?
                             <Row>
                                 <Col lg='12' className='text-start small'>
                                     NOTE: Results limited to the first 1000 based on highest fold change.

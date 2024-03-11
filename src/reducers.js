@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 import { selectedConcept, gene, cluster, cellType } from "./components/ConceptSelect/conceptReducer";
 import { dataType } from "./components/DataViz/dataTypeReducer"
 import { tissueType } from "./components/DataViz/tissueTypeReducer"
+import { accession } from "./components/DataViz/accessionReducer";
 
 
 const appReducer = combineReducers({
@@ -10,7 +11,8 @@ const appReducer = combineReducers({
   tissueType,
   gene,
   cluster,
-  cellType
+  cellType,
+  accession
 })
 
 const rootReducer = (state, action) => {

@@ -6,12 +6,14 @@ import { setSelectedConcept } from '../../actions/Concepts/conceptActions';
 import { setGene } from '../../actions/Gene/geneActions';
 import { setTissueType } from '../../actions/TissueType/tissueTypeActions';
 import { setDataType } from '../../actions/DataType/dataTypeActions';
+import { setAccession } from '../../actions/Accession/accessionActions';
 
 import initialState from '../../initialState';
 import { connect } from "react-redux";
 
 class Explorer extends Component {
     render() {
+        this.props.setAccession(initialState.accession)
         this.props.setGene("");
         this.props.setTissueType("");
         this.props.setDataType("");
@@ -39,6 +41,9 @@ const mapDispatchToProps = (dispatch, props) =>
     },
     setSelectedConcept(concept) {
         dispatch(setSelectedConcept(concept))
+    },
+    setAccession(accession){
+      dispatch(setAccession(accession))
     }
 });
 

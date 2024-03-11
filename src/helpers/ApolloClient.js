@@ -98,7 +98,7 @@ export const fetchCellTypeHierarchy = async () => {
                             }
                         }
                     }
-                } 
+                }
             }`
     });
 
@@ -203,7 +203,7 @@ export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
     const response = await apolloClient.query({
         query: gql`
             query{
-                dataTypesForConcept(geneSymbol:"${geneSymbol}", clusterName: "${clusterName}") 
+                dataTypesForConcept(geneSymbol:"${geneSymbol}", clusterName: "${clusterName}")
             }`
     });
     if (response.data && response.data) {
@@ -268,7 +268,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
                     sampleCount
                     tissueType
                     pValAdj: adjPVal
-                    
+
                 }
                 ckd {
                     id
@@ -307,7 +307,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
                     stdDev
                     sampleCount
                     tissueType
-                    pValAdj: adjPVal                   
+                    pValAdj: adjPVal
                 }
             }
         }`;
@@ -345,7 +345,7 @@ export const fetchRegionalProteomics = async (geneSymbol) => {
                         foldChange
                         pValLog10: adjPVal
                         tissueType
-                        sampleCount       
+                        sampleCount
                   }
                 }
             }
@@ -371,10 +371,10 @@ export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
                 id
                 segment
                 segmentName
-                gene: geneSymbol 
+                gene: geneSymbol
                 pVal
                 foldChange
-                pValLog10 
+                pValLog10
                 stdDev
                 sampleCount
                 tissueType
@@ -407,7 +407,7 @@ export const fetchRegionalProteomicsByStructure = async (structure) => {
                 numPeptides
                 numUniquePeptides
                 comparison
-                segment: region 
+                segment: region
                 foldChange
                 pValAdj: adjPVal
                 tissueType

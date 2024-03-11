@@ -1,5 +1,5 @@
 import Api from '../../helpers/Api';
-  
+
 const api = Api.getInstance();
 
 

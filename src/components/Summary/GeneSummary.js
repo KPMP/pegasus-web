@@ -47,9 +47,9 @@ class GeneSummary extends Component {
         let dataTypeIsClickable = this.dataTypeIsClickable(row["dataTypeShort"])
         if (!hasData || !dataTypeIsClickable) {
             return '-'
-        } 
+        }
         return row[type]
-        
+
     }
 
     fetchDataTypeSummaryLocal = async () => {
@@ -165,7 +165,7 @@ class GeneSummary extends Component {
 
     getColumnBands() {
         return [
-            { 
+            {
                 title: "PARTICIPANTS PER DATA TYPE",
                 children: [
                     { columnName: 'hrtCount'},
@@ -180,7 +180,7 @@ class GeneSummary extends Component {
     render() {
         const BandCell = ({ children, tableRow, tableColumn, column, ...restProps }) => {
             return (
-                <TableBandHeader.Cell {...restProps} column={column} 
+                <TableBandHeader.Cell {...restProps} column={column}
                     className="text-center gene-summary-header color-light-blue">
                     {children}
                 </TableBandHeader.Cell>

@@ -210,7 +210,7 @@ class DataTypeSelector extends Component {
                 <Container className='rounded border shadow-sm pb-4 px-4'>
                     <Row xs="12">
                         <Col lg="2" id='concept-selector' className='px-2 pt-3'>
-                            <ConceptSelectContainer 
+                            <ConceptSelectContainer
                                 overflowWarningContainer={true}
                                 searchType="gene"
                                 dataType={this.props.dataType}
@@ -222,7 +222,7 @@ class DataTypeSelector extends Component {
                             <span className='d-table-cell text-bigger pe-2'>in:</span>
                             <Select
                                 allowClear
-                                options={getTissueTypeOptions(this.state.selectedDataset, this.props.gene.symbol)}
+                                options={getTissueTypeOptions(this.state.selectedDataset, this.props.gene.symbol, this.props.dataType)}
                                 onChange={this.handleTissueSelect}
                                 value={this.state.tissueValue}
                                 inputValue={this.getInputValue()}
@@ -254,14 +254,14 @@ class DataTypeSelector extends Component {
                     </Row>
                     <div className="dataset-details">
                     <Row xs="12" className='mt-1 ps-0' >
-                    
+
                         <Col lg="12" className='d-table ps-2'>
-                            {dataInfo && 
+                            {dataInfo &&
                             <div>
                                 {this.state.datasetToggle === 'collapsed'
                                     ? <span className="a-button" onClick={this.toggleDataset}>Show dataset details <FontAwesomeIcon icon={faChevronDown} /></span>
                                     : <span className="a-button" onClick={this.toggleDataset}>Hide dataset details <FontAwesomeIcon icon={faChevronUp} /></span>
-                                }    
+                                }
                                 {(this.props.dataType === 'sc' ) &&
                                     <span><a class='btn btn-primary float-end btn-sm' rel='noreferrer'target='_blank' href='https://cellxgene.cziscience.com/e/32b9bdce-2481-4c85-ba1b-6ad5fcea844c.cxg/'>Disease-specific DiffEx in cellxgene</a> </span>
                                 }
