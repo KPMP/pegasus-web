@@ -84,6 +84,7 @@ class RegionalProteomics extends Component {
     }
 
     handleAccessionChange = (accession) => {
+        this.props.setAccession(accession)
         this.setState({ selectedAccession: accession })
         this.setState({ plotData: this.state.allData[accession]})
         this.setState({ tableData: this.state.allData[accession][this.props.tissueType]})
