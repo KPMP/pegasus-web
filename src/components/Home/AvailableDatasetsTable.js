@@ -12,9 +12,9 @@ class AvailableDatasetsTable extends Component {
         this.state = {
             totalFiles: [],
             summaryRows: [],
-            
+
         };
-        
+
     }
 
     async componentDidMount(){
@@ -40,7 +40,7 @@ class AvailableDatasetsTable extends Component {
             throw new Error('Datatype not found', row.omicsType)
         }
     }
-  
+
     formatDataTypeValueCell(value, row, tissueType) {
         return (
             <a href={`${this.handleDataTypeValueClick(row, tissueType)}`}>
@@ -70,12 +70,12 @@ class AvailableDatasetsTable extends Component {
               name: 'omicsType',
           },
           {
-              title: 
+              title:
                   <span>
                     <span className="table-header data-type-table-header" id="HealthyReferenceHeader">
                      REFERENCE
                     </span>
-                    <UncontrolledTooltip 
+                    <UncontrolledTooltip
                       placement="bottom"
                       target="HealthyReferenceHeader">
                     Healthy Reference
@@ -91,7 +91,7 @@ class AvailableDatasetsTable extends Component {
                     <span className="table-header data-type-table-header" id="CKDHeader">
                     CKD
                     </span>
-                    <UncontrolledTooltip 
+                    <UncontrolledTooltip
                       placement="bottom"
                       target="CKDHeader">
                     Chronic Kidney Disease
@@ -102,12 +102,12 @@ class AvailableDatasetsTable extends Component {
               name: 'ckdCount',
           },
           {
-              title: 
+              title:
                   <span>
                     <span className="table-header data-type-table-header" id="AKIHeader">
                     AKI
                     </span>
-                    <UncontrolledTooltip 
+                    <UncontrolledTooltip
                       placement="bottom"
                       target="AKIHeader">
                     Acute Kidney Injury
@@ -118,12 +118,12 @@ class AvailableDatasetsTable extends Component {
               name: 'akiCount',
           },
           {
-              title: 
+              title:
                   <span>
                     <span className="table-header data-type-table-header" id="ResistorHeader">
                     DM-R
                     </span>
-                    <UncontrolledTooltip 
+                    <UncontrolledTooltip
                       placement="bottom"
                       target="ResistorHeader">
                     Diabetes Mellitus - Resilient
@@ -132,12 +132,11 @@ class AvailableDatasetsTable extends Component {
               ,
               getCellValue: row => this.handleEmptyCounts(row.dmrCount, row, "DM-R"),
               name: 'dmrCount',
-          }   
+          }
       ]
   };
 
     render() {
-      console.log(this.state)
         return (
             <article id='summary-plot'>
                 <Row className='mt-4'>
