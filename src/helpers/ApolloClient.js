@@ -428,19 +428,6 @@ export const fetchRegionalProteomics = async (geneSymbol) => {
 
 };
 
-    const response = await apolloClient.query({
-        query: query,
-        fetchPolicy: 'cache-first'
-    });
-
-    if (response.data && response.data.getRPGeneExpressionByTissue) {
-        return response.data.getRPGeneExpressionByTissue;
-    } else {
-        store.dispatch(sendMessageToBackend("Could not retrieve regional proteomics  data: " + response.error));
-    }
-
-};
-
 export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
     let query = gql`
         query {
