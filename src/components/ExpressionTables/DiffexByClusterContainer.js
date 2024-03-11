@@ -34,4 +34,4 @@ const mapDispatchToProps = (dispatch, props) =>
         }
     });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DiffexByCluster, RegionalProteomics))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DiffexByCluster))

@@ -10,6 +10,7 @@ const mapStateToProps = (state, props) =>
         gene: state.gene,
         dataType: state.dataType,
         tissueType: state.tissueType,
+        accession: state.accession
     });
 
 const mapDispatchToProps = (dispatch, props) =>
@@ -19,6 +20,9 @@ const mapDispatchToProps = (dispatch, props) =>
         },
         setDataType(dataType) {
             dispatch(setDataType(dataType));
+        },
+        setAccession(accession) {
+          dispatch(setAccession(accession));
         },
         resetState() {
             dispatch(resetState());
