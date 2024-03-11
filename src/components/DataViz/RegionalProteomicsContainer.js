@@ -3,7 +3,6 @@ import RegionalProteomics from "./RegionalProteomics";
 import { setTissueType } from '../../actions/TissueType/tissueTypeActions'
 import { setDataType } from "../../actions/DataType/dataTypeActions";
 import { resetState } from "../../actions/resetAction";
-import { setAccession } from "../../actions/Accession/accessionActions";
 
 const mapStateToProps = (state, props) =>
     ({
