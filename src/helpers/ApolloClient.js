@@ -412,8 +412,8 @@ export const fetchRegionalProteomics = async (geneSymbol) => {
                         sampleCount
                   }
                 }
-  }
-}`;
+            }
+        }`;
 
     const response = await apolloClient.query({
         query: query,
