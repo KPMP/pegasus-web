@@ -171,7 +171,9 @@ class DiffexByCluster extends Component {
 
     handleClick = (gene, accession) => {
         this.props.setGene({ symbol: gene, name: '' }, this.props.dataType);
-        this.props.setAccession({ accession: accession}, this.props.accession)
+        if (this.props.accession){
+          this.props.setAccession({ accession: accession}, this.props.accession)
+        }
     };
 
     getExportFilename = () => {

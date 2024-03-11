@@ -37,9 +37,9 @@ class RegionalProteomics extends Component {
         console.log(this.props)
         console.log("Gene")
         console.log(this.props.gene)
-        if(this.props.accession.accession){
+        if(this.props.accession){
           console.log("accession")
-          console.log(this.props.accession.accession)
+          console.log(this.props.accession)
         }
     };
 
@@ -55,15 +55,15 @@ class RegionalProteomics extends Component {
     getRPData = () => {
         fetchRegionalProteomics(this.props.gene.symbol).then((result) => {
                 console.log("Fetching regional proteomics")
-                // if (this.props.accession.accession){
-                //   this.setState({ selectedAccession: this.props.accession.accession});
-                //   console.log("Set state with props")
-                // }else{
-                //   console.log(result[0]["accession"]);
-                //   this.setState({ selectedAccession: result[0]["accession"]})
-                //   console.log("Set state with result")
-                // }
-                this.setState({ selectedAccession: result[0]["accession"]})
+                if (this.props.accession){
+                  this.setState({ selectedAccession: this.props.accession});
+                  console.log("Set state with props")
+                }else{
+                  console.log(result[0]["accession"]);
+                  this.setState({ selectedAccession: result[0]["accession"]})
+                  console.log("Set state with result")
+                }
+                // this.setState({ selectedAccession: result[0]["accession"]})
                 this.mapPlotData(result);
             }
         );
