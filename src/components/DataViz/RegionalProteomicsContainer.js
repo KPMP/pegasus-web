@@ -22,9 +22,6 @@ const mapDispatchToProps = (dispatch, props) =>
         setDataType(dataType) {
             dispatch(setDataType(dataType));
         },
-        setAccession(accession) {
-          dispatch(setAccession(accession));
-        },
         resetState() {
             dispatch(resetState());
         }

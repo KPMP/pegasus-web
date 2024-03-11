@@ -3,7 +3,6 @@ import DiffexByCluster from "./DiffexByCluster";
 import { withRouter } from 'react-router';
 import { setGene } from "../../actions/Gene/geneActions";
 import { setAccession } from "../../actions/Accession/accessionActions";
-import RegionalProteomics from "../DataViz/RegionalProteomics";
 import { setDataType } from "../../actions/DataType/dataTypeActions";
 
 const mapStateToProps = (state, props) =>
@@ -11,7 +10,6 @@ const mapStateToProps = (state, props) =>
     dataType: state.dataType,
     cluster: state.cluster,
     tissueType: state.tissueType,
-    accession: state.accession
 });
 
 const mapDispatchToProps = (dispatch, props) =>
