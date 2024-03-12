@@ -139,10 +139,7 @@ class DiffexByCluster extends Component {
         }
         columns.push(
             {
-                title: <span>ADJ P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
-                <UncontrolledTooltip placement='bottom' target='pvalue-adj-info' >
-                    Adjusted p-value, based on bonferroni correction using all features in the dataset.
-                </UncontrolledTooltip></span>,
+                title: <span>ADJ P VALUE</span>,
                 field: 'pValAdj',
                 align: 'right',
                 width: "15%",
