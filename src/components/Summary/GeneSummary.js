@@ -110,23 +110,23 @@ class GeneSummary extends Component {
                 getCellValue: row => this.linkDataTypeCells(row)
             },
             {
-                title: "HEALTHY REFERENCE TISSUE",
+                title: "HEALTHY REFERENCE",
                 name: 'hrtCount',
                 getCellValue: row => this.formatCountRow(row, 'hrtCount')
             },
             {
-                title: "AKI TISSUE",
+                title: "AKI",
                 name: 'akiCount',
                 getCellValue: row => this.formatCountRow(row, 'akiCount')
 
             },
             {
-                title: "CKD TISSUE",
+                title: "CKD",
                 name: 'ckdCount',
                 getCellValue: row => this.formatCountRow(row, 'ckdCount')
             },
             {
-                title: "DM-R TISSUE",
+                title: "DM-R",
                 name: 'dmrCount',
                 getCellValue: row => this.formatCountRow(row, 'dmrCount')
             },
@@ -166,7 +166,7 @@ class GeneSummary extends Component {
     getColumnBands() {
         return [
             {
-                title: "PARTICIPANTS PER DATA TYPE",
+                title: "PARTICIPANTS PER ENROLLMENT CATEGORY",
                 children: [
                     { columnName: 'hrtCount'},
                     { columnName: 'akiCount' },
