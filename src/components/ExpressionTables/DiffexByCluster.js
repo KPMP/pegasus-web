@@ -173,15 +173,15 @@ class DiffexByCluster extends Component {
 
     cleanResults = (results, dataType) => {
       if (dataType === "rp"){
-        return results.map(({ protein, foldChange, pValAdj }) => {
+        return results.map(({ accession, foldChange, pValAdj }) => {
           return {
-              protein: protein,
+              protein: accession,
               foldChange: formatNumberToPrecision(foldChange, 3),
               pValAdj: formatNumberToPrecision(pValAdj, 3, true)
           }
         });
       }
-      else if (dataType === "rt"){
+      else {
         return results.map(({ gene, foldChange, pVal, pValAdj }) => {
           return {
               gene: gene,
