@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import Select from "react-select";
-import { Row, Col, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Row, Col, Container} from 'reactstrap';
 import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer';
 import { getTissueTypeOptions, getAllDataTypeOptions, getDataTypeOptionsWithTissueType } from "../../helpers/Utils";
 import { fetchDataTypeSummaryInformation } from '../../helpers/ApolloClient';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {CellXGeneDropdown} from './CellXGeneDropdown';
+import CellXGeneDropdown from './CellXGeneDropdown';
 
 class DataTypeSelector extends Component {
     constructor(props) {
@@ -27,12 +27,7 @@ class DataTypeSelector extends Component {
                 participantsCount: '-'
             },
             datasetToggle: 'collapsed', 
-            snDropdownOpen: false,
         }
-    }
-
-    toggleSnDropdown = () => {
-        this.setState({snDropdownOpen: !this.state.snDropdownOpen});
     }
 
     componentDidUpdate(prevProps) {
