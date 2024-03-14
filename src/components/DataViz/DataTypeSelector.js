@@ -27,7 +27,6 @@ class DataTypeSelector extends Component {
             },
             datasetToggle: 'collapsed', 
             snDropdownOpen: false,
-            snSetDropdownOpen: false
         }
     }
 
@@ -272,7 +271,7 @@ class DataTypeSelector extends Component {
                                 }
                                 {
                                     (this.props.dataType === 'sn') &&
-                                    <Dropdown isOpen={this.state.snDropdownOpen} toggle={this.toggleSnDropdown} direction="down">
+                                    <Dropdown isOpen={this.state.snDropdownOpen} toggle={this.toggleSnDropdown()} direction="down">
                                         <DropdownToggle caret>View in CellXGene</DropdownToggle>
                                         <DropdownMenu>
                                             <DropdownItem>
