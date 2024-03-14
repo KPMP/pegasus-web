@@ -272,7 +272,7 @@ class DataTypeSelector extends Component {
                                 {
                                     (this.props.dataType === 'sn') &&
                                     <Dropdown isOpen={this.state.snDropdownOpen} toggle={this.toggleSnDropdown} direction="down">
-                                        <DropdownToggle caret class='float-end'>View in CellXGene</DropdownToggle>
+                                        <DropdownToggle caret className='float-end' color='primary'>View in CellXGene</DropdownToggle>
                                         <DropdownMenu>
                                             <DropdownItem tag="a" target="_blank" rel="noopener noreferrer" href="https://cellxgene.cziscience.com/e/07854d9c-5375-4a9b-ac34-fa919d3c3686.cxg/">
                                                 Version 1.0
