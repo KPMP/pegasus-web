@@ -261,16 +261,18 @@ class DataTypeSelector extends Component {
 
                         <Col lg="12" className='d-table ps-2'>
                             {dataInfo &&
-                            <div>
+                                <Col lg="6" className='d-table ps-2'>
                                 {this.state.datasetToggle === 'collapsed'
                                     ? <span className="a-button" onClick={this.toggleDataset}>Show dataset details <FontAwesomeIcon icon={faChevronDown} /></span>
                                     : <span className="a-button" onClick={this.toggleDataset}>Hide dataset details <FontAwesomeIcon icon={faChevronUp} /></span>
                                 }
+                                </Col>
+                            }
                                 {(this.props.dataType === 'sc' ) &&
                                     <span><a class='btn btn-primary float-end btn-sm' rel='noreferrer'target='_blank' href='https://cellxgene.cziscience.com/e/32b9bdce-2481-4c85-ba1b-6ad5fcea844c.cxg/'>Disease-specific DiffEx in cellxgene</a> </span>
                                 }
-                                {
-                                    (this.props.dataType === 'sn') &&
+                                { (this.props.dataType === 'sn') &&
+                                    <Col lg="6" className="d-table ps-2">
                                     <Dropdown isOpen={this.state.snDropdownOpen} toggle={this.toggleSnDropdown} direction="down">
                                         <DropdownToggle caret className='float-end' color='primary'>View in CellXGene</DropdownToggle>
                                         <DropdownMenu>
@@ -282,10 +284,8 @@ class DataTypeSelector extends Component {
                                             </DropdownItem>
                                         </DropdownMenu>
                                     </Dropdown>
-                                    // <span><a class='btn btn-primary float-end btn-sm' rel='noreferrer' target='_blank' href=''>Disease-specific DiffEx in cellxgene</a> </span>
+                                    </Col>
                                 }
-                            </div>
-                            }
                         </Col>
                     </Row>
                     <Row xs="12" className='mt-1 ps-0' >
