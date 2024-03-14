@@ -30,7 +30,7 @@ class DataTypeSelector extends Component {
         }
     }
 
-    toggleSnDropdown() {
+    toggleSnDropdown = () => {
         this.setState({snDropdownOpen: !this.state.snDropdownOpen});
     }
 
@@ -271,7 +271,7 @@ class DataTypeSelector extends Component {
                                 }
                                 {
                                     (this.props.dataType === 'sn') &&
-                                    <Dropdown isOpen={this.state.snDropdownOpen} toggle={this.toggleSnDropdown()} direction="down">
+                                    <Dropdown isOpen={this.state.snDropdownOpen} toggle={this.toggleSnDropdown} direction="down">
                                         <DropdownToggle caret>View in CellXGene</DropdownToggle>
                                         <DropdownMenu>
                                             <DropdownItem>
