@@ -272,17 +272,17 @@ class DataTypeSelector extends Component {
                                 {
                                     (this.props.dataType === 'sn') &&
                                     <Dropdown isOpen={this.state.snDropdownOpen} toggle={this.toggleSnDropdown} direction="down">
-                                        <DropdownToggle caret>View in CellXGene</DropdownToggle>
+                                        <DropdownToggle caret class='float-end'>View in CellXGene</DropdownToggle>
                                         <DropdownMenu>
-                                            <DropdownItem>
-                                                Some Action
+                                            <DropdownItem tag="a" target="_blank" rel="noopener noreferrer" href="https://cellxgene.cziscience.com/e/07854d9c-5375-4a9b-ac34-fa919d3c3686.cxg/">
+                                                Version 1.0
                                             </DropdownItem>
                                             <DropdownItem>
-                                                Some Action
+                                                Version 1.5 (Coming Soon)
                                             </DropdownItem>
                                         </DropdownMenu>
                                     </Dropdown>
-                                    // <span><a class='btn btn-primary float-end btn-sm' rel='noreferrer' target='_blank' href='https://cellxgene.cziscience.com/e/07854d9c-5375-4a9b-ac34-fa919d3c3686.cxg/'>Disease-specific DiffEx in cellxgene</a> </span>
+                                    // <span><a class='btn btn-primary float-end btn-sm' rel='noreferrer' target='_blank' href=''>Disease-specific DiffEx in cellxgene</a> </span>
                                 }
                             </div>
                             }
