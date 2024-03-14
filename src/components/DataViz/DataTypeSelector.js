@@ -261,31 +261,30 @@ class DataTypeSelector extends Component {
 
                         <Col lg="12" className='d-table ps-2'>
                             {dataInfo &&
-                                <Col lg="6" className='d-table ps-2'>
+                            <div>
                                 {this.state.datasetToggle === 'collapsed'
                                     ? <span className="a-button" onClick={this.toggleDataset}>Show dataset details <FontAwesomeIcon icon={faChevronDown} /></span>
                                     : <span className="a-button" onClick={this.toggleDataset}>Hide dataset details <FontAwesomeIcon icon={faChevronUp} /></span>
                                 }
-                                </Col>
-                            }
                                 {(this.props.dataType === 'sc' ) &&
                                     <span><a class='btn btn-primary float-end btn-sm' rel='noreferrer'target='_blank' href='https://cellxgene.cziscience.com/e/32b9bdce-2481-4c85-ba1b-6ad5fcea844c.cxg/'>Disease-specific DiffEx in cellxgene</a> </span>
                                 }
                                 { (this.props.dataType === 'sn') &&
-                                    <Col lg="6" className="d-table ps-2">
                                     <Dropdown isOpen={this.state.snDropdownOpen} toggle={this.toggleSnDropdown} direction="down">
                                         <DropdownToggle caret className='float-end' color='primary'>View in CellXGene</DropdownToggle>
                                         <DropdownMenu>
                                             <DropdownItem tag="a" target="_blank" rel="noopener noreferrer" href="https://cellxgene.cziscience.com/e/07854d9c-5375-4a9b-ac34-fa919d3c3686.cxg/">
-                                                Version 1.0
+                                                Nature 2023 v1.0
                                             </DropdownItem>
                                             <DropdownItem>
-                                                Version 1.5 (Coming Soon)
+                                                v1.5 (Coming Soon)
                                             </DropdownItem>
                                         </DropdownMenu>
                                     </Dropdown>
-                                    </Col>
+
                                 }
+                            </div>
+                            }
                         </Col>
                     </Row>
                     <Row xs="12" className='mt-1 ps-0' >
