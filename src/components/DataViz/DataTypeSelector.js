@@ -7,6 +7,7 @@ import { fetchDataTypeSummaryInformation } from '../../helpers/ApolloClient';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {CellXGeneDropdown} from './CellXGeneDropdown';
 
 class DataTypeSelector extends Component {
     constructor(props) {
@@ -267,21 +268,10 @@ class DataTypeSelector extends Component {
                                     : <span className="a-button" onClick={this.toggleDataset}>Hide dataset details <FontAwesomeIcon icon={faChevronUp} /></span>
                                 }
                                 {(this.props.dataType === 'sc' ) &&
-                                    <span><a class='btn btn-primary float-end btn-sm' rel='noreferrer'target='_blank' href='https://cellxgene.cziscience.com/e/32b9bdce-2481-4c85-ba1b-6ad5fcea844c.cxg/'>Disease-specific DiffEx in cellxgene</a> </span>
+                                    <CellXGeneDropdown v1="https://cellxgene.cziscience.com/e/32b9bdce-2481-4c85-ba1b-6ad5fcea844c.cxg/"/>
                                 }
                                 { (this.props.dataType === 'sn') &&
-                                    <Dropdown isOpen={this.state.snDropdownOpen} toggle={this.toggleSnDropdown} direction="down" className="cellxgene-dropdown">
-                                        <DropdownToggle caret className='float-end' color='primary'>View DiffEx in CellXGene</DropdownToggle>
-                                        <DropdownMenu>
-                                            <DropdownItem tag="a" target="_blank" rel="noopener noreferrer" href="https://cellxgene.cziscience.com/e/07854d9c-5375-4a9b-ac34-fa919d3c3686.cxg/">
-                                                Version 1.0 (Nature 2023)
-                                            </DropdownItem>
-                                            <DropdownItem disabled>
-                                                Version 1.5 (Coming Soon)
-                                            </DropdownItem>
-                                        </DropdownMenu>
-                                    </Dropdown>
-
+                                    <CellXGeneDropdown v1="https://cellxgene.cziscience.com/e/07854d9c-5375-4a9b-ac34-fa919d3c3686.cxg/"/>
                                 }
                             </div>
                             }
