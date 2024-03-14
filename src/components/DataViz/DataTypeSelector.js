@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Select from "react-select";
-import { Row, Col, Container } from 'reactstrap';
+import { Row, Col, Container, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer';
 import { getTissueTypeOptions, getAllDataTypeOptions, getDataTypeOptionsWithTissueType } from "../../helpers/Utils";
 import { fetchDataTypeSummaryInformation } from '../../helpers/ApolloClient';
@@ -23,12 +23,17 @@ class DataTypeSelector extends Component {
                 akiCount: '-',
                 ckdCount: '-',
                 dmrCount: '-',
-                participantsCount: '-',
+                participantsCount: '-'
             },
-            datasetToggle: 'collapsed'
+            datasetToggle: 'collapsed', 
+            snDropdownOpen: false,
+            snSetDropdownOpen: false
         }
     }
 
+    toggleSnDropdown() {
+        this.setState({snDropdownOpen: !this.state.snDropdownOpen});
+    }
 
     componentDidUpdate(prevProps) {
         if ((this.props.gene.symbol !== prevProps.gene.symbol
@@ -267,7 +272,18 @@ class DataTypeSelector extends Component {
                                 }
                                 {
                                     (this.props.dataType === 'sn') &&
-                                    <span><a class='btn btn-primary float-end btn-sm' rel='noreferrer' target='_blank' href='https://cellxgene.cziscience.com/e/07854d9c-5375-4a9b-ac34-fa919d3c3686.cxg/'>Disease-specific DiffEx in cellxgene</a> </span>
+                                    <Dropdown isOpen={dropdownOpen} toggle={toggleSnDropdown} direction="down">
+                                        <DropdownToggle caret>View in CellXGene</DropdownToggle>
+                                        <DropdownMenu>
+                                            <DropdownItem>
+                                                Some Action
+                                            </DropdownItem>
+                                            <DropdownItem>
+                                                Some Action
+                                            </DropdownItem>
+                                        </DropdownMenu>
+                                    </Dropdown>
+                                    // <span><a class='btn btn-primary float-end btn-sm' rel='noreferrer' target='_blank' href='https://cellxgene.cziscience.com/e/07854d9c-5375-4a9b-ac34-fa919d3c3686.cxg/'>Disease-specific DiffEx in cellxgene</a> </span>
                                 }
                             </div>
                             }
