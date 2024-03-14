@@ -270,13 +270,13 @@ class DataTypeSelector extends Component {
                                     <span><a class='btn btn-primary float-end btn-sm' rel='noreferrer'target='_blank' href='https://cellxgene.cziscience.com/e/32b9bdce-2481-4c85-ba1b-6ad5fcea844c.cxg/'>Disease-specific DiffEx in cellxgene</a> </span>
                                 }
                                 { (this.props.dataType === 'sn') &&
-                                    <Dropdown isOpen={this.state.snDropdownOpen} toggle={this.toggleSnDropdown} direction="down">
-                                        <DropdownToggle caret className='float-end' color='primary'>View in CellXGene</DropdownToggle>
+                                    <Dropdown isOpen={this.state.snDropdownOpen} toggle={this.toggleSnDropdown} direction="down" className="cellxgene-dropdown">
+                                        <DropdownToggle caret className='float-end' color='primary'>Condition-specific DiffEx in CellXGene</DropdownToggle>
                                         <DropdownMenu>
                                             <DropdownItem tag="a" target="_blank" rel="noopener noreferrer" href="https://cellxgene.cziscience.com/e/07854d9c-5375-4a9b-ac34-fa919d3c3686.cxg/">
                                                 Nature 2023 v1.0
                                             </DropdownItem>
-                                            <DropdownItem>
+                                            <DropdownItem disabled>
                                                 v1.5 (Coming Soon)
                                             </DropdownItem>
                                         </DropdownMenu>
