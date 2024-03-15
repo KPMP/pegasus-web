@@ -156,6 +156,7 @@ class RegionalProteomics extends Component {
                               {plot}
                               <hr/>
                           </Row>
+                          <Row cs='12' className='mt-3 mb-4 footnote'/>
                           <Row xs='12'>
                               <Col lg='11'>
                                   <h5>{this.props.gene.symbol} expression comparison between Glomerulus and Tubulo-interstitium in {formatTissueType(this.props.tissueType)}</h5>
