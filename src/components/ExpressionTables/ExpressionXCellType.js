@@ -189,7 +189,7 @@ class ExpressionXCellType extends Component {
                     <Row xs='12' className='mt-5'>
                         <Col xs='11'>
                             <h5><span>{this.props.gene}</span> Expression Comparison across Cell Clusters in {formatTissueType(this.props.tissueType)}</h5>
-                            <h6>NS = Not Significant { (this.props.dataType == "sn" && this.props.tissueType == "dmr") && "|  - = Not Calculated" }</h6>
+                            <h6>NS = Not Significant { (this.props.dataType === "sn" && this.props.tissueType === "dmr") && "|  - = Not Calculated" }</h6>
                         </Col>
                         <Col xs='1' className='text-end'>
                             <CSVLink
