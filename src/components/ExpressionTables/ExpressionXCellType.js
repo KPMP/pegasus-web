@@ -227,7 +227,8 @@ class ExpressionXCellType extends Component {
                         </small>
                             <p></p>
                             <small>
-                                For more information about the cell type, cluster, and state definitions, see the following publication: <a target="_blank" rel="noreferrer" href="https://rdcu.be/dx5m9">Nature 619, 585–594 (2023)</a>
+                                For more information about the cell type, cluster, and state definitions, see the following publication: <a target="_blank" rel="noreferrer" href="https://www.nature.com/articles/s41586-023-05769-3.epdf?sharing_token=Spx_P4nt7zZHsLLSY9e2LdRgN0jAjWel9jnR3ZoTv0PaidibcPeEnF5pxLAlUc7O8m3PseMIO5fUB7cMtt6dAwpWcad3ICgRlIsFG_WdWn03mDwEfbTTRq8tbSRPDY7FzUyENuviMut8j_yKE4G2p5vr5jurqEEqKwNi2XosEBg%3D">Nature 619, 585–594 (2023)</a> 
+                                and <a target="_blank" rel='noreferrer' href="https://github.com/KPMP/Cell-State-Atlas-2022/">github pipelines</a>
                             </small>
                         </Col>
                     </Row>
