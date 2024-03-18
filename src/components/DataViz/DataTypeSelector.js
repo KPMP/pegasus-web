@@ -1,12 +1,13 @@
 import React, { Component } from "react";
 import Select from "react-select";
-import { Row, Col, Container } from 'reactstrap';
+import { Row, Col, Container} from 'reactstrap';
 import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer';
 import { getTissueTypeOptions, getAllDataTypeOptions, getDataTypeOptionsWithTissueType } from "../../helpers/Utils";
 import { fetchDataTypeSummaryInformation } from '../../helpers/ApolloClient';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import CellXGeneDropdown from './CellXGeneDropdown';
 
 class DataTypeSelector extends Component {
     constructor(props) {
@@ -23,12 +24,11 @@ class DataTypeSelector extends Component {
                 akiCount: '-',
                 ckdCount: '-',
                 dmrCount: '-',
-                participantsCount: '-',
+                participantsCount: '-'
             },
-            datasetToggle: 'collapsed'
+            datasetToggle: 'collapsed', 
         }
     }
-
 
     componentDidUpdate(prevProps) {
         if ((this.props.gene.symbol !== prevProps.gene.symbol
@@ -263,11 +263,10 @@ class DataTypeSelector extends Component {
                                     : <span className="a-button" onClick={this.toggleDataset}>Hide dataset details <FontAwesomeIcon icon={faChevronUp} /></span>
                                 }
                                 {(this.props.dataType === 'sc' ) &&
-                                    <span><a class='btn btn-primary float-end btn-sm' rel='noreferrer'target='_blank' href='https://cellxgene.cziscience.com/e/32b9bdce-2481-4c85-ba1b-6ad5fcea844c.cxg/'>Disease-specific DiffEx in cellxgene</a> </span>
+                                    <CellXGeneDropdown v1="https://cellxgene.cziscience.com/e/32b9bdce-2481-4c85-ba1b-6ad5fcea844c.cxg/"/>
                                 }
-                                {
-                                    (this.props.dataType === 'sn') &&
-                                    <span><a class='btn btn-primary float-end btn-sm' rel='noreferrer' target='_blank' href='https://cellxgene.cziscience.com/e/07854d9c-5375-4a9b-ac34-fa919d3c3686.cxg/'>Disease-specific DiffEx in cellxgene</a> </span>
+                                { (this.props.dataType === 'sn') &&
+                                    <CellXGeneDropdown v1="https://cellxgene.cziscience.com/e/07854d9c-5375-4a9b-ac34-fa919d3c3686.cxg/"/>
                                 }
                             </div>
                             }
