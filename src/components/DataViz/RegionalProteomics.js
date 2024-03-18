@@ -156,18 +156,7 @@ class RegionalProteomics extends Component {
                               {plot}
                               <hr/>
                           </Row>
-                          <Row cs='12' className='mt-3 mb-4 footnote'>
-                              <Col>
-                                  <small>
-                                      The comparisons in the plot and data table were performed across different
-                                      segments in the same condition. The plot data should be read and interpreted
-                                      following the horizontal guides. The fold change and significance of a segment are
-                                      related to the average expression of all segments in the same condition. Due to
-                                      the experiment design, it is not possible to draw direct comparisons in the same
-                                      segment across conditions.
-                                  </small>
-                              </Col>
-                          </Row>
+                          <Row cs='12' className='mt-3 mb-4 footnote'/>
                           <Row xs='12'>
                               <Col lg='11'>
                                   <h5>{this.props.gene.symbol} expression comparison between Glomerulus and Tubulo-interstitium in {formatTissueType(this.props.tissueType)}</h5>
