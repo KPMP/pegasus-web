@@ -226,9 +226,15 @@ class ExpressionXCellType extends Component {
                             <sup>4</sup>transitional: Represented by an intermediate state showing markers of cells sharing the same parental lineage. &nbsp;
                         </small>
                             <p></p>
+                            {this.props.dataType === "sn" ? 
                             <small>
-                                For more information about the cell type, cluster, and state definitions, see the following publication: <a target="_blank" rel="noreferrer" href="https://rdcu.be/dx5m9">Nature 619, 585–594 (2023)</a>
-                            </small>
+                            For more information about the cell type, cluster, and state definitions, see the following publication: <a target="_blank" rel="noreferrer" href="https://rdcu.be/dx5m9">Nature 619, 585–594 (2023)</a> 
+                             and <a target="_blank" rel='noreferrer' href="https://github.com/KPMP/Cell-State-Atlas-2022/">github pipelines</a>
+                          </small> :
+                          <small>
+                          For more information about the cell type, cluster, and state definitions, see the following publication: <a target="_blank" rel="noreferrer" href="https://rdcu.be/dx5m9">Nature 619, 585–594 (2023)</a>
+                          </small>
+                          }
                         </Col>
                     </Row>
                 </React.Fragment>
