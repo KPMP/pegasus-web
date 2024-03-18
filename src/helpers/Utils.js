@@ -1,11 +1,14 @@
 import { fetchDataTypesForConcept } from './ApolloClient';
 
-export const formatNumberToPrecision = (number, precision, keepAsInt = false) => {
+export const formatNumberToPrecision = (number, precision, keepAsInt = false, dataType = "", tissueType = "") => {
     if (number) {
         return number.toPrecision(precision)
     } else if (number === 0) {
         return 0
     } else {
+        if (dataType === "sn" && tissueType === "dmr") {
+            return "-"
+        }
         return "NS"
     }
 };

@@ -31,11 +31,11 @@ class ExpressionXCellType extends Component {
                     clusterAbbrev: cluster,
                     clusterName: clusterName,
                     cellCount: cellCount ? cellCount : 0,
-                    meanExp: formatNumberToPrecision(avgExp, 3),
-                    pctCellsExpressing: formatNumberToPrecision(pct1Value, 3),
-                    foldChange: formatNumberToPrecision(foldChange, 3),
-                    pVal: formatNumberToPrecision(pVal, 3),
-                    pValAdj: formatNumberToPrecision(pValAdj, 3)
+                    meanExp: formatNumberToPrecision(avgExp, 3, false, this.props.dataType, this.props.tissueType),
+                    pctCellsExpressing: formatNumberToPrecision(pct1Value, 3, false, this.props.dataType, this.props.tissueType),
+                    foldChange: formatNumberToPrecision(foldChange, 3, false, this.props.dataType, this.props.tissueType),
+                    pVal: formatNumberToPrecision(pVal, 3, false, this.props.dataType, this.props.tissueType),
+                    pValAdj: formatNumberToPrecision(pValAdj, 3, false, this.props.dataType, this.props.tissueType)
                 }
             });
     };
@@ -85,14 +85,14 @@ class ExpressionXCellType extends Component {
                         Averaged expression values (logarithmic) for each cell cluster
                     </UncontrolledTooltip></span>,
                 name: 'avgExp',
-                getCellValue: row => formatNumberToPrecision(row.avgExp, 3)
+                getCellValue: row => formatNumberToPrecision(row.avgExp, 3, false, this.props.dataType, this.props.tissueType)
             },
             {
                 title: <span>% CELLS<br />EXPRESSING</span>,
                 name: 'pct1',
                 getCellValue: row => {
                     let newValue = (row.pct1 > 0) ? (row.pct1 * 100) : row.pct1;
-                    return formatNumberToPrecision(newValue, 3);
+                    return formatNumberToPrecision(newValue, 3, false, this.props.dataType, this.props.tissueType);
                 }
             },
             {
@@ -101,7 +101,7 @@ class ExpressionXCellType extends Component {
                         Log fold-change of the average expression between this cell cluster and all others. Positive values indicate that the feature is more highly expressed in this cell cluster.
                     </UncontrolledTooltip></span>,
                 name: 'foldChange',
-                getCellValue: row => formatNumberToPrecision(row.foldChange, 3)
+                getCellValue: row => formatNumberToPrecision(row.foldChange, 3, false, this.props.dataType, this.props.tissueType)
             },
             {
                 title: <span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
@@ -109,7 +109,7 @@ class ExpressionXCellType extends Component {
                         p-value (unadjusted)
                     </UncontrolledTooltip></span>,
                 name: 'pVal',
-                getCellValue: row => formatNumberToPrecision(row.pVal, 3)
+                getCellValue: row => formatNumberToPrecision(row.pVal, 3, false, this.props.dataType, this.props.tissueType)
             },
             {
                 title: <span>ADJ<br />P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
@@ -117,7 +117,7 @@ class ExpressionXCellType extends Component {
                         Adjusted p-value, based on bonferroni correction using all features in the dataset.
                     </UncontrolledTooltip></span>,
                 name: 'pValAdj',
-                getCellValue: row => formatNumberToPrecision(row.pValAdj, 3)
+                getCellValue: row => formatNumberToPrecision(row.pValAdj, 3, false, this.props.dataType, this.props.tissueType)
             }
         ]
     };
@@ -189,7 +189,7 @@ class ExpressionXCellType extends Component {
                     <Row xs='12' className='mt-5'>
                         <Col xs='11'>
                             <h5><span>{this.props.gene}</span> Expression Comparison across Cell Clusters in {formatTissueType(this.props.tissueType)}</h5>
-                            <h6>NS = Not Significant</h6>
+                            <h6>NS = Not Significant { (this.props.dataType === "sn" && this.props.tissueType === "dmr") && "|  - = Not Calculated" }</h6>
                         </Col>
                         <Col xs='1' className='text-end'>
                             <CSVLink
