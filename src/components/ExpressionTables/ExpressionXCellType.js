@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Grid, TableColumnResizing, TableHeaderRow, 
+import { Grid, TableColumnResizing, TableHeaderRow,
     Table, TableSummaryRow, TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
 import { Col, Row, UncontrolledTooltip, Spinner } from "reactstrap";
 import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils"
@@ -72,7 +72,7 @@ class ExpressionXCellType extends Component {
                 title: <span>CELL CLUSTER (<i>predicted state</i>)</span>,
                 name: 'clusterName',
                 getCellValue: row => this.parseClusterName(row)
-                
+
             },
             {
                 title: <span># CELLS IN<br />CELL CLUSTER</span>,
@@ -151,7 +151,7 @@ class ExpressionXCellType extends Component {
 
     getColumnBands() {
         return [
-            { 
+            {
                 title: "CELL CLUSTER VS ALL OTHERS",
                 children: [
                     { columnName: 'foldChange'},
@@ -166,7 +166,7 @@ class ExpressionXCellType extends Component {
     render() {
         const BandCell = ({ children, tableRow, tableColumn, column, ...restProps }) => {
             return (
-                <TableBandHeader.Cell {...restProps} column={column} 
+                <TableBandHeader.Cell {...restProps} column={column}
                     className="text-center cluster_v_others cluster_v_others_container">
                     {children}
                 </TableBandHeader.Cell>
@@ -181,7 +181,7 @@ class ExpressionXCellType extends Component {
         } else if (this.props.data.length === 0) {
             return (<div></div>)
         } else {
-            const totalSummaryItems = [ 
+            const totalSummaryItems = [
                 { columnName: 'cellCount', type: 'sum' }
             ]
             return (
@@ -226,11 +226,11 @@ class ExpressionXCellType extends Component {
                             <sup>4</sup>transitional: Represented by an intermediate state showing markers of cells sharing the same parental lineage. &nbsp;
                         </small>
                             <p></p>
-                            {this.props.dataType === "sn" ? 
+                            {this.props.dataType === "sn" ?
                             <small>
-                              For more information about the cell type, cluster, and state definitions, see the following publication: 
-                              <a target="_blank" rel="noreferrer" href="https://rdcu.be/dx5m9">Nature 619, 585–594 (2023) </a> 
-                              and <a target="_blank" rel='noreferrer' href="https://github.com/KPMP/Cell-State-Atlas-2022/">github pipelines</a>
+                              For more information about the cell type, cluster, and state definitions, see the following publication:
+                              <a target="_blank" rel="noreferrer" href="https://rdcu.be/dx5m9"> Nature 619, 585–594 (2023) </a>
+                              and <a target="_blank" rel='noreferrer' href="https://github.com/KPMP/Cell-State-Atlas-2022/">GitHub pipelines</a>
                           </small> :
                           <small>
                           For more information about the cell type, cluster, and state definitions, see the following publication: <a target="_blank" rel="noreferrer" href="https://rdcu.be/dx5m9">Nature 619, 585–594 (2023)</a>
