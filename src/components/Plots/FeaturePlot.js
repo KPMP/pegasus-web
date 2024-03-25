@@ -46,7 +46,7 @@ class FeaturePlot extends Component {
         if (window.innerWidth > 1200) {
             return { plotHeight: 600, plotWidth: 600 };
         } else if (window.innerWidth > 1197 && window.innerWidth <= 1200) {
-            return { plotHeight: 500, plotWidth: 500};
+            return { plotHeight: 450, plotWidth: 450};
         } else if (window.innerWidth > 991 && window.innerWidth <= 1197) {
             return { plotHeight: 450, plotWidth: 450 }
         } else if (window.innerWidth > 767 && window.innerWidth <= 991) {
