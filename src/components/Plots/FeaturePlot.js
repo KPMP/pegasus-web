@@ -42,6 +42,7 @@ class FeaturePlot extends Component {
         this.setState({ plotHeight, plotWidth })
     }
     getPlotSize() {
+        console.log(window.innerWidth)
         if (window.innerWidth > 1197) {
             return { plotHeight: 600, plotWidth: 600 };
         } else if (window.innerWidth > 991 && window.innerWidth <= 1197) {
