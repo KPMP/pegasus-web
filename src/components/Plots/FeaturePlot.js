@@ -43,11 +43,11 @@ class FeaturePlot extends Component {
     }
     getPlotSize() {
         if (window.innerWidth > 1197) {
-            return { plotHeight: 500, plotWidth: 530 };
+            return { plotHeight: 600, plotWidth: 600 };
         } else if (window.innerWidth > 991 && window.innerWidth <= 1197) {
-            return { plotHeight: 350, plotWidth: 410 }
+            return { plotHeight: 600, plotWidth: 600 }
         } else if (window.innerWidth > 767 && window.innerWidth <= 991) {
-            return { plotHeight: 600, plotWidth: 660 }
+            return { plotHeight: 600, plotWidth: 600 }
         } else if (window.innerWidth > 508 && window.innerWidth <= 767) {
             return { plotHeight: 400, plotWidth: 430 }
         } else if (window.innerWidth > 408 && window.innerWidth <= 508) {

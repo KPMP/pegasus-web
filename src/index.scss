@@ -357,14 +357,14 @@ tr.MuiTableRow-root:nth-child(even) {
 
 }
 #umapPlot {
-  width: 538px;
-  height: 500px;
+  width: 600px;
+  height: 600px;
   @media (max-width: 1198px) {
-    width: 380px;
-    height: 350px;
+    width: 600px;
+    height: 600px;
   }
   @media (max-width: 991px) {
-    width: 630px;
+    width: 600px;
     height: 600px;
   }
   @media (max-width: 768px) {
