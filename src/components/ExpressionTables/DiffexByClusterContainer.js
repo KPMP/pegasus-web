@@ -2,13 +2,14 @@ import { connect } from "react-redux";
 import DiffexByCluster from "./DiffexByCluster";
 import { withRouter } from 'react-router';
 import { setGene } from "../../actions/Gene/geneActions";
+import { setAccession } from "../../actions/Accession/accessionActions";
 import { setDataType } from "../../actions/DataType/dataTypeActions";
 
 const mapStateToProps = (state, props) =>
 ({
     dataType: state.dataType,
     cluster: state.cluster,
-    tissueType: state.tissueType
+    tissueType: state.tissueType,
 });
 
 const mapDispatchToProps = (dispatch, props) =>
@@ -25,6 +26,9 @@ const mapDispatchToProps = (dispatch, props) =>
         },
         setDataType(dataType) {
             dispatch(setDataType(dataType));
+        },
+        setAccession(accession){
+          dispatch(setAccession(accession));
         }
     });
 

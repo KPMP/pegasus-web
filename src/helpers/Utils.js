@@ -1,11 +1,14 @@
 import { fetchDataTypesForConcept } from './ApolloClient';
 
-export const formatNumberToPrecision = (number, precision, keepAsInt = false) => {
+export const formatNumberToPrecision = (number, precision, keepAsInt = false, dataType = "", tissueType = "") => {
     if (number) {
         return number.toPrecision(precision)
     } else if (number === 0) {
         return 0
     } else {
+        if (dataType === "sn" && tissueType === "dmr") {
+            return "-"
+        }
         return "NS"
     }
 };
@@ -57,7 +60,7 @@ export const sum = (array, property) => {
     return array.reduce((finalSum, item) => finalSum + item[property], 0);
 };
 
-export const getTissueTypeOptions = (datasetSummary, geneSymbol) => {
+export const getTissueTypeOptions = (datasetSummary, geneSymbol, dataType) => {
     const options = [
         {
             label: "All samples",
@@ -68,22 +71,22 @@ export const getTissueTypeOptions = (datasetSummary, geneSymbol) => {
         {
             label: "Healthy Reference",
             value: "hrt",
-            isDisabled: !geneSymbol || !datasetSummary.hrtCount > 0 || typeof datasetSummary.hrtCount !== 'number'
+            isDisabled: !geneSymbol || !datasetSummary.hrtCount > 0 || typeof datasetSummary.hrtCount !== 'number' || dataType === "rp"
         },
         {
             label: "AKI",
             value: "aki",
-            isDisabled: !geneSymbol || !datasetSummary.akiCount > 0 || typeof datasetSummary.akiCount !== 'number'
+            isDisabled: !geneSymbol || !datasetSummary.akiCount > 0 || typeof datasetSummary.akiCount !== 'number' || dataType === "rp"
         },
         {
             label: "CKD",
             value: "ckd",
-            isDisabled: !geneSymbol || !datasetSummary.ckdCount > 0 || typeof datasetSummary.ckdCount !== 'number'
+            isDisabled: !geneSymbol || !datasetSummary.ckdCount > 0 || typeof datasetSummary.ckdCount !== 'number' || dataType === "rp"
         },
         {
             label: "DM-R",
             value: "dmr",
-            isDisabled: !geneSymbol || !datasetSummary.dmrCount > 0 || typeof datasetSummary.dmrCount !== 'number'
+            isDisabled: !geneSymbol || !datasetSummary.dmrCount > 0 || typeof datasetSummary.dmrCount !== 'number' || dataType === "rp"
         }
     ];
 
@@ -113,9 +116,6 @@ export const getAllDataTypeOptions = () => {
           isDisabled: false
         }
     ];
-    if (process.env.REACT_APP_PROTEOMICS === "off") {
-        return options.filter((el) => { return el.value !== "rp" });
-    }
     return options;
 };
 
@@ -144,9 +144,6 @@ export const getDataTypeOptions = async (geneSymbol, cluster) => {
                 isDisabled: !dataTypes.includes("rp")
             }
         ];
-        if (process.env.REACT_APP_PROTEOMICS === "off") {
-            return options.filter((el) => { return el.value !== "rp" });
-        }
         return options;
     });
     return options;

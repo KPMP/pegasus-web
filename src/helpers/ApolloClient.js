@@ -98,7 +98,7 @@ export const fetchCellTypeHierarchy = async () => {
                             }
                         }
                     }
-                } 
+                }
             }`
     });
 
@@ -157,11 +157,6 @@ export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') 
         fetchPolicy: fetchPolicy
     });
     if (response.data && response.data.getDataTypeSummaryInformation) {
-        if (process.env.REACT_APP_PROTEOMICS === "off") {
-            return response.data.getDataTypeSummaryInformation.filter((data) => {
-                return data?.dataTypeShort !== "rp"
-            })
-        }
         return response.data.getDataTypeSummaryInformation;
     } else {
         console.log('response.error',response.error)
@@ -208,7 +203,7 @@ export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
     const response = await apolloClient.query({
         query: gql`
             query{
-                dataTypesForConcept(geneSymbol:"${geneSymbol}", clusterName: "${clusterName}") 
+                dataTypesForConcept(geneSymbol:"${geneSymbol}", clusterName: "${clusterName}")
             }`
     });
     if (response.data && response.data) {
@@ -272,6 +267,8 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
                     stdDev
                     sampleCount
                     tissueType
+                    pValAdj: adjPVal
+
                 }
                 ckd {
                     id
@@ -284,6 +281,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
                     stdDev
                     sampleCount
                     tissueType
+                    pValAdj: adjPVal
                 }
                 all {
                     id
@@ -296,6 +294,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
                     stdDev
                     sampleCount
                     tissueType
+                    pValAdj: adjPVal
                 }
                 hrt {
                     id
@@ -308,6 +307,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
                     stdDev
                     sampleCount
                     tissueType
+                    pValAdj: adjPVal
                 }
             }
         }`;
@@ -345,75 +345,11 @@ export const fetchRegionalProteomics = async (geneSymbol) => {
                         foldChange
                         pValLog10: adjPVal
                         tissueType
-                        sampleCount       
-                  }
-                  hrt{
-                        id
-                        geneSymbol
-                        fdrConfidence
-                        accession
-                        description
-                        coveragePct
-                        numPeptides
-                        numUniquePeptides
-                        comparison
-                        segment: region
-                        foldChange
-                        pValLog10: adjPVal
-                        tissueType
-                        sampleCount       
-                  }
-                  ckd{
-                        id
-                        geneSymbol
-                        fdrConfidence
-                        accession
-                        description
-                        coveragePct
-                        numPeptides
-                        numUniquePeptides
-                        comparison
-                        segment: region
-                        foldChange
-                        pValLog10: adjPVal
-                        tissueType
-                        sampleCount       
-                  }
-                  dmr{
-                        id
-                        geneSymbol
-                        fdrConfidence
-                        accession
-                        description
-                        coveragePct
-                        numPeptides
-                        numUniquePeptides
-                        comparison
-                        segment: region
-                        foldChange
-                        pValLog10: adjPVal
-                        tissueType
-                        sampleCount       
-                  }
-                  aki{
-                        id
-                        geneSymbol
-                        fdrConfidence
-                        accession
-                        description
-                        coveragePct
-                        numPeptides
-                        numUniquePeptides
-                        comparison
-                        segment: region
-                        foldChange
-                        pValLog10: adjPVal
-                        tissueType
-                        sampleCount       
+                        sampleCount
                   }
                 }
-  }
-}`;
+            }
+        }`;
 
     const response = await apolloClient.query({
         query: query,
@@ -435,13 +371,14 @@ export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
                 id
                 segment
                 segmentName
-                gene: geneSymbol 
+                gene: geneSymbol
                 pVal
                 foldChange
-                pValAdj: pValLog10 
+                pValLog10
                 stdDev
                 sampleCount
                 tissueType
+                pValAdj: adjPVal
             }
         }`;
 
@@ -470,7 +407,7 @@ export const fetchRegionalProteomicsByStructure = async (structure) => {
                 numPeptides
                 numUniquePeptides
                 comparison
-                segment: region 
+                segment: region
                 foldChange
                 pValAdj: adjPVal
                 tissueType
@@ -511,11 +448,6 @@ export const fetchSummaryData = async (dataType) => {
     });
 
     if (response.data && response.data.getSummaryData) {
-        if (process.env.REACT_APP_PROTEOMICS === "off") {
-            return response.data.getSummaryData.filter((data) => {
-                return data?.dataTypeShort !== "rp"
-            })
-        }
         return response.data.getSummaryData;
     } else {
         store.dispatch(sendMessageToBackend("Could not retrieve summary: " + response.error));
@@ -546,18 +478,20 @@ export const fetchTissueTypeSummaryCounts = async () => {
 export const fetchAtlasSummaryRows = async () => {
     let query = gql`
         query {
-            getAtlasSummaryRows{
-                totalFiles
-                summaryRows {
-                    openCount
-                    controlledCount
-                    omicsType
-                    linkInformation {
-                        linkType
-                        linkValue
-                    }
-                }
+          getAtlasSummaryRows {
+            totalFiles
+            summaryRows {
+              akiCount
+              ckdCount
+              hrtCount
+              dmrCount
+              omicsType
+              linkInformation {
+                linkType
+                linkValue
+              }
             }
+          }
         }`;
     const response = await apolloClient.query({
         query: query,

@@ -5,10 +5,11 @@ import { withRouter } from 'react-router';
 
 const mapStateToProps = (state, props) =>
 ({
-    selectedDataType: state.selectedDataType,
-    openCount: state.openCount,
-    controlledCount: state.controlledCount,
     omicsType: state.omicsType,
+    hrtCount: state.hrtCount,
+    dmrCount: state.dmrCount,
+    akiCount: state.akiCount,
+    ckdCount: state.ckdCount,
     linkType: state.linkType,
     linkValue: state.linkValue
 });

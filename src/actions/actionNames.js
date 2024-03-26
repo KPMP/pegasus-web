@@ -6,7 +6,8 @@ const actionNames = {
   SET_TISSUE_TYPE: 'SET_TISSUE_TYPE',
   SET_CLUSTER: 'SET_CLUSTER',
   SET_CELL_TYPE: 'SET_CELL_TYPE',
-  SET_GENE: 'SET_GENE'
+  SET_GENE: 'SET_GENE',
+  SET_ACCESSION: 'SET_ACCESSION'
 };
 
 export default actionNames;

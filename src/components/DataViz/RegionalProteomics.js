@@ -27,6 +27,7 @@ class RegionalProteomics extends Component {
     };
 
     componentDidMount() {
+
         if (this.props.gene.symbol) {
             this.getRPData();
         }
@@ -43,7 +44,11 @@ class RegionalProteomics extends Component {
 
     getRPData = () => {
         fetchRegionalProteomics(this.props.gene.symbol).then((result) => {
-                this.setState({ selectedAccession: result[0]["accession"]});
+                if (this.props.accession){
+                  this.setState({ selectedAccession: this.props.accession});
+                }else{
+                  this.setState({ selectedAccession: result[0]["accession"]})
+                }
                 this.mapPlotData(result);
             }
         );
@@ -64,6 +69,7 @@ class RegionalProteomics extends Component {
     }
 
     handleAccessionChange = (accession) => {
+        this.props.setAccession(accession)
         this.setState({ selectedAccession: accession })
         this.setState({ plotData: this.state.allData[accession]})
         this.setState({ tableData: this.state.allData[accession][this.props.tissueType]})
@@ -72,7 +78,7 @@ class RegionalProteomics extends Component {
     getTabGroup = (accessionNums) => {
         let tabs = []
         for (let accession of accessionNums) {
-            tabs.push(<Button color="primary" onClick={() => this.handleAccessionChange(accession)} active={this.state.selectedAccession === accession}>{accession}</Button>)
+          tabs.push(<Button color="primary" onClick={() => this.handleAccessionChange(accession)} active={this.state.selectedAccession === accession}>{accession}</Button>)
         }
         return(<ButtonGroup>
             {tabs}
@@ -105,6 +111,7 @@ class RegionalProteomics extends Component {
 
     render() {
         let plot = <LMDDotPlot data={this.state.plotData} calcLog10={true}/>
+
         let table = <RegionalProteomicsTable data={this.state.tableData}/>
         let tabs = this.getTabGroup(this.state.accessionNums);
         let cleanDownloadData = [];
@@ -149,18 +156,7 @@ class RegionalProteomics extends Component {
                               {plot}
                               <hr/>
                           </Row>
-                          <Row cs='12' className='mt-3 mb-4 footnote'>
-                              <Col>
-                                  <small>
-                                      The comparisons in the plot and data table were performed across different
-                                      segments in the same condition. The plot data should be read and interpreted
-                                      following the horizontal guides. The fold change and significance of a segment are
-                                      related to the average expression of all segments in the same condition. Due to
-                                      the experiment design, it is not possible to draw direct comparisons in the same
-                                      segment across conditions.
-                                  </small>
-                              </Col>
-                          </Row>
+                          <Row cs='12' className='mt-3 mb-4 footnote'/>
                           <Row xs='12'>
                               <Col lg='11'>
                                   <h5>{this.props.gene.symbol} expression comparison between Glomerulus and Tubulo-interstitium in {formatTissueType(this.props.tissueType)}</h5>

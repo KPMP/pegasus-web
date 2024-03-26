@@ -64,22 +64,42 @@ class DiffexByCluster extends Component {
         }
     }
 
+    getAccessionLink = (gene, accession) => {
+        return <button onClick={() => this.handleClick(gene, accession)} type='button' className='table-column btn btn-link text-start p-0'>{accession}</button>
+    }
+
     getGeneLink = (gene) => {
         return <button onClick={() => this.handleClick(gene)} type='button' className='table-column btn btn-link text-start p-0'>{gene}</button>
     };
 
     getColumns = () => {
         let columns = [];
+        if (this.props.dataType === 'rp') {
+            columns.push(
+                {
+                    title: 'PROTEIN',
+                    field: 'accession',
+                    align: 'left',
+                    width: "15%",
+                    headerStyle: { fontSize: "15px" },
+                    cellStyle: { fontSize: '14px', padding: "2px" },
+                    render: rowData => this.getAccessionLink(rowData.gene, rowData.accession)
+                }
+            );
+        } else {
+            columns.push(
+                {
+                    title: 'GENE',
+                    field: 'gene',
+                    align: 'left',
+                    width: "15%",
+                    headerStyle: { fontSize: "15px" },
+                    cellStyle: { fontSize: '14px', padding: "2px" },
+                    render: rowData => this.getGeneLink(rowData.gene)
+                }
+            );
+        }
         columns.push(
-            {
-                title: 'GENE',
-                field: 'gene',
-                align: 'left',
-                width: "15%",
-                headerStyle: { fontSize: "11px" },
-                cellStyle: { fontSize: '14px', padding: "2px" },
-                render: rowData => this.getGeneLink(rowData.gene)
-            },
             {
                 title: <span>FOLD CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
                 <UncontrolledTooltip placement='bottom' target='fold-change-info' >
@@ -119,10 +139,7 @@ class DiffexByCluster extends Component {
         }
         columns.push(
             {
-                title: <span>ADJ P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
-                <UncontrolledTooltip placement='bottom' target='pvalue-adj-info' >
-                    Adjusted p-value, based on bonferroni correction using all features in the dataset.
-                </UncontrolledTooltip></span>,
+                title: <span>ADJ P VALUE</span>,
                 field: 'pValAdj',
                 align: 'right',
                 width: "15%",
@@ -145,23 +162,35 @@ class DiffexByCluster extends Component {
         return columns
     }
 
-    handleClick = (gene) => {
+    handleClick = (gene, accession) => {
         this.props.setGene({ symbol: gene, name: '' }, this.props.dataType);
+        this.props.setAccession(accession);
     };
 
     getExportFilename = () => {
         return 'KPMP_' + formatDataType(this.props.dataType) + '-diffex_' + this.props.cluster + '_all-samples.csv';
     };
 
-    cleanResults = (results) => {
-        return results.map(({ gene, foldChange, pVal, pValAdj }) => {
-            return {
-                gene: gene,
-                foldChange: formatNumberToPrecision(foldChange, 3),
-                pVal: formatNumberToPrecision(pVal, 3),
-                pValAdj: formatNumberToPrecision(pValAdj, 3, true)
-            }
+    cleanResults = (results, dataType) => {
+      if (dataType === "rp"){
+        return results.map(({ accession, foldChange, pValAdj }) => {
+          return {
+              protein: accession,
+              foldChange: formatNumberToPrecision(foldChange, 3),
+              pValAdj: formatNumberToPrecision(pValAdj, 3, true)
+          }
         });
+      }
+      else {
+        return results.map(({ gene, foldChange, pVal, pValAdj }) => {
+          return {
+              gene: gene,
+              foldChange: formatNumberToPrecision(foldChange, 3),
+              pVal: formatNumberToPrecision(pVal, 3),
+              pValAdj: formatNumberToPrecision(pValAdj, 3, true)
+          }
+      });
+      }
     };
 
     render() {
@@ -181,7 +210,7 @@ class DiffexByCluster extends Component {
                                         <Col xs='12' className='text-end'>
                                             <CSVLink
                                                 onClick={() => handleGoogleAnalyticsEvent('Explorer', 'Download', this.getExportFilename())}
-                                                data={this.cleanResults(this.state.diffexData)}
+                                                data={this.cleanResults(this.state.diffexData, this.props.dataType)}
                                                 filename={this.getExportFilename()}
                                                 target='_blank'
                                                 className='text-body icon-container'
@@ -217,6 +246,14 @@ class DiffexByCluster extends Component {
                                         </Col>
                                     </Row>
                                 </React.Fragment>
+                        }
+                        { this.props.dataType === 'rt' ?
+                            <Row>
+                                <Col lg='12' className='text-start small'>
+                                    NOTE: Results limited to the first 1000 based on highest fold change.
+                                </Col>
+                            </Row> :
+                            ""
                         }
                     </Container>
                 </Container>

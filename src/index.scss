@@ -357,27 +357,27 @@ tr.MuiTableRow-root:nth-child(even) {
 
 }
 #umapPlot {
-  width: 430px;
-  height: 400px;
-  @media (max-width: 1198px) {
-    width: 380px;
-    height: 350px;
+  width: 600px;
+  height: 600px;
+  @media (max-width: 1200px) {
+    width: 450px;
+    height: 450px;
   }
   @media (max-width: 991px) {
-    width: 630px;
+    width: 600px;
     height: 600px;
   }
   @media (max-width: 768px) {
-    width: 430px;
-    height: 400px;
+    width: 500px;
+    height: 500px;
   }
-  @media (max-width: 768px) {
+  @media (max-width: 508px) {
     width: 330px;
     height: 300px;
   }
   @media (max-width: 409px) {
-    width: 25px;
-    height: 225px;
+    width: 350px;
+    height: 350px;
   }
 }
 #featurePlot {
@@ -954,4 +954,8 @@ tr.MuiTableRow-root:nth-child(even) {
 
 .nav-link{
   color: rgba(0,0,0,.55)
+}
+
+.cellxgene-dropdown {
+  margin-top: -21px;
 }
