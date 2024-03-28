@@ -173,8 +173,8 @@ class DataTypeSelector extends Component {
 
     getRepositoryLink = () => {
         const linkMapping = {
-            'sn': '/repository/?size=n_20_n&filters%5B0%5D%5Bfield%5D=dois&filters%5B0%5D%5Bvalues%5D%5B0%5D=10.48698%2Fyyvc-ak78&filters%5B0%5D%5Btype%5D=any',
-            'sc': '/repository/?size=n_20_n&filters%5B0%5D%5Bfield%5D=dois&filters%5B0%5D%5Bvalues%5D%5B0%5D=10.48698%2F92nk-e805&filters%5B0%5D%5Btype%5D=any',
+            'sn': '/repository/?size=n_20_n&filters%5B0%5D%5Bfield%5D=dois&filters%5B0%5D%5Bvalues%5D%5B0%5D=10.48698%2Fmg7h-bc51&filters%5B0%5D%5Btype%5D=any',
+            'sc': '/repository/?size=n_20_n&filters%5B0%5D%5Bfield%5D=dois&filters%5B0%5D%5Bvalues%5D%5B0%5D=10.48698%2Fmgd0-gz70&filters%5B0%5D%5Btype%5D=any',
             'rt': '/repository/?size=n_20_n&filters%5B0%5D%5Bfield%5D=dois&filters%5B0%5D%5Bvalues%5D%5B0%5D=10.48698%2Ft9fh-qn48&filters%5B0%5D%5Btype%5D=any',
             'rp': '/repository/?size=n_20_n&filters%5B0%5D%5Bfield%5D=workflow_type&filters%5B0%5D%5Bvalues%5D%5B0%5D=Aggregated%20Regional%20Proteomics%20data&filters%5B0%5D%5Btype%5D=any',
             'default': '/repository',
