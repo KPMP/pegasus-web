@@ -18,13 +18,14 @@ class SamplesByDataTypeTable extends Component {
     async componentDidMount(){
 
         let spatialSummary = await fetchSummaryData("spatialViewerSummary");
-        console.log(spatialSummary)
         spatialSummary = spatialSummary.sort(this.compare)
         spatialSummary = spatialSummary.filter(availableDataVisibilityFilter)
+        console.log(spatialSummary)
 
         let explorerSummary = await fetchDataTypeSummaryInformation();
         explorerSummary = explorerSummary.sort(this.compare)
         explorerSummary = explorerSummary.filter(availableDataVisibilityFilter)
+        console.log(explorerSummary)
 
         // adding lines to separate the sections in the table
         explorerSummary.unshift({dataType: "Explorer"})
