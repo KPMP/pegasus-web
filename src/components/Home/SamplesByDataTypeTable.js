@@ -32,6 +32,7 @@ class SamplesByDataTypeTable extends Component {
 
         const summaryData = explorerSummary.concat(spatialSummary)
         this.setState({dataTable: summaryData});
+        console.log(this.state.dataTable)
     }
 
     compare( a, b ) {
