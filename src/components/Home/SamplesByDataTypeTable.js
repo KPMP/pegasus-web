@@ -18,6 +18,7 @@ class SamplesByDataTypeTable extends Component {
     async componentDidMount(){
 
         let spatialSummary = await fetchSummaryData("spatialViewerSummary");
+        console.log(spatialSummary)
         spatialSummary = spatialSummary.sort(this.compare)
         spatialSummary = spatialSummary.filter(availableDataVisibilityFilter)
 
@@ -56,7 +57,8 @@ class SamplesByDataTypeTable extends Component {
             'Spatial Metabolomics': 'sm',
             'Spatial Lipidomics': 'sl',
             'Spatial N-glycomics': 'sng',
-            'Spatial Transcriptomics': 'st'
+            'Spatial Transcriptomics': 'st',
+            'Imaging Mass Cytometry': 'imc'
         };
         if (dataLinkageMapping[dataType]) {
             this.props.setDataType(dataLinkageMapping[dataType], this.props);
@@ -67,6 +69,7 @@ class SamplesByDataTypeTable extends Component {
     }
 
     formatDataTypeCell(row) {
+        console.log(row)
         let value = row.dataType;
         if (value === 'Explorer' || value === 'Spatial Viewer') {
             return (
