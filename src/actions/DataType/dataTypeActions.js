@@ -58,7 +58,7 @@ export const setDataTypeAndRedirect = (dataType, props) => {
                 window.open('/spatial-viewer/?size=n_20_n&filters[0][field]=datatype&filters[0][values][0]=Spatial Transcriptomics&filters[0][type]=any', '_self')
                 break
             case "imc":
-                window.open("https://dev-atlas.kpmp.org/spatial-viewer/?size=n_20_n&filters%5B0%5D%5Bfield%5D=datatype&filters%5B0%5D%5Bvalues%5D%5B0%5D=Imaging%20Mass%20Cytometry&filters%5B0%5D%5Btype%5D=any", "_self")
+                window.open("/spatial-viewer/?size=n_20_n&filters%5B0%5D%5Bfield%5D=datatype&filters%5B0%5D%5Bvalues%5D%5B0%5D=Imaging%20Mass%20Cytometry&filters%5B0%5D%5Btype%5D=any", "_self")
                 break;
             case "sm":
                 window.open('https://metaspace2020.eu/datasets?prj=0d9a6710-8389-11eb-96db-73c89a357a89&q=_SM_', '_blank');
