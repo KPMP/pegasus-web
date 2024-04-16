@@ -11,7 +11,6 @@ type Query {
   getDataSummary(dataType: String): [SummaryData]
   getTissueTypeSummaryData: [getTissueTypeSummaryData]
   getAtlasSummaryRows: [getAtlasSummaryRows]
-  getSummaryData: [getDataTypeSummaryInformation]
 }
 
 type getAtlasSummaryRows{
