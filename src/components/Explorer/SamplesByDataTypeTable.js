@@ -54,7 +54,8 @@ class SamplesByDataTypeTable extends Component {
             'Spatial Metabolomics': 'sm',
             'Spatial Lipidomics': 'sl',
             'Spatial N-glycomics': 'sng',
-            'Spatial Transcriptomics': 'st'
+            'Spatial Transcriptomics': 'st',
+            "Imaging Mass Cytometry": 'imc',
         };
         if (dataLinkageMapping[dataType]) {
             this.props.setSelectedConcept(dataLinkageMapping[dataType], this.props);
