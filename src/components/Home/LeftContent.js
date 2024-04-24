@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Button } from 'reactstrap';
+import { Container, Button } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
 class LeftContent extends Component {
