@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, Row, Button } from 'reactstrap';
+import { Container, Button } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
 class LeftContent extends Component {
@@ -13,7 +13,7 @@ class LeftContent extends Component {
   }
   render() {
     return (
-      <Row>
+      <div style={{marginRight: '15px'}}>
         <Container className="mt-3 rounded border p-3 shadow-sm">
           <h5>Explorer</h5>
           <div>
@@ -60,7 +60,7 @@ class LeftContent extends Component {
             <Button className="w-100" color='primary' href='https://www.kpmp.org/collaboration' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Atlas Home', 'Navigation', 'collaborate') }}>Collaborate with us</Button>
           </div>
         </Container>
-      </Row>
+      </div>
     );
   }
 }
