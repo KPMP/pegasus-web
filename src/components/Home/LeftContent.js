@@ -13,7 +13,7 @@ class LeftContent extends Component {
   }
   render() {
     return (
-      <div style={{marginRight: '15px'}}>
+      <div id="leftcontent">
         <Container className="mt-3 rounded border p-3 shadow-sm">
           <h5>Explorer</h5>
           <div>
