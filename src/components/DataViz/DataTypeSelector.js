@@ -268,7 +268,7 @@ class DataTypeSelector extends Component {
                                 }
                                 { (this.props.dataType === 'sn') &&
                                     <CellXGeneDropdown v1="https://cellxgene.cziscience.com/e/07854d9c-5375-4a9b-ac34-fa919d3c3686.cxg/"
-                                                       v1_5="https://cellxgene.cziscience.com/e/dea717d4-7bc0-4e46-950f-fd7e1cc8df7d.cxg/"/>
+                                                       v1_5="https://cellxgene.cziscience.com/e/a12ccb9b-4fbe-457d-8590-ac78053259ef.cxg/"/>
                                 }
                             </div>
                             }
