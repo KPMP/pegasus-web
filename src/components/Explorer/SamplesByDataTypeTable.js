@@ -54,7 +54,8 @@ class SamplesByDataTypeTable extends Component {
             'Spatial Metabolomics': 'sm',
             'Spatial Lipidomics': 'sl',
             'Spatial N-glycomics': 'sng',
-            'Spatial Transcriptomics': 'st'
+            'Spatial Transcriptomics': 'st',
+            "Imaging Mass Cytometry": 'imc',
         };
         if (dataLinkageMapping[dataType]) {
             this.props.setSelectedConcept(dataLinkageMapping[dataType], this.props);
@@ -158,7 +159,7 @@ class SamplesByDataTypeTable extends Component {
                 </Row>
                 <Row>
                     <Col xs='12'>
-                        <small><span style={{color: 'red'}}>*</span> Additional information available in <a rel='noreferrer' target='_blank' href='https://cellxgene.cziscience.com/collections/bcb61471-2a44-4d00-a0af-ff085512674c'>cellxgene</a></small>
+                        <small><span style={{color: 'red'}}>*</span> Additional information available in <a rel='noreferrer' target='_blank' href='https://cellxgene.cziscience.com/collections/0f528c8a-a25c-4840-8fa3-d156fa11086f?utm_campaign=partner&utm_source=publisher'>cellxgene</a></small>
                     </Col>
                 </Row>
             </article>
