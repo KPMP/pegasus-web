@@ -964,3 +964,8 @@ tr.MuiTableRow-root:nth-child(even) {
     margin-right: 15px;
   }
 }
+
+.select__menu {
+  position: relative !important;
+  z-index: 100 !important;
+}

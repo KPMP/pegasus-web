@@ -228,6 +228,7 @@ class DataTypeSelector extends Component {
                                 inputValue={this.getInputValue()}
                                 onFocus={() => this.setState({ tissueInputValue: '' })}
                                 className='select d-table-cell w-100 ps-2'
+                                classNamePrefix="select"
                                 isDisabled={this.state.isDatasetSummaryLoading ? true : false}
                             />
                         </Col>
@@ -238,6 +239,7 @@ class DataTypeSelector extends Component {
                                 options={this.state.dataTypeOptions}
                                 onChange={this.handleInputChange.bind(this)}
                                 className='select d-table-cell w-100 ps-2'
+                                classNamePrefix="select"
                                 styles={{ menu: provided => ({ ...provided, zIndex: 999 }) }}
                                 isDisabled={this.state.isDatasetSummaryLoading ? true : false}
                             />
