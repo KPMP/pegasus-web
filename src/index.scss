@@ -966,6 +966,6 @@ tr.MuiTableRow-root:nth-child(even) {
 }
 
 .select__menu {
-  position: relative !important;
+  top: auto !important;
   z-index: 100 !important;
 }
