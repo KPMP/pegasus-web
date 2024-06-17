@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import { Row, Col, UncontrolledTooltip } from 'reactstrap';
 import { fetchAtlasSummaryRows } from '../../helpers/ApolloClient';
+import { getAllCount } from '../../helpers/Utils';
 
 class AvailableDatasetsTable extends Component {
 
@@ -32,7 +33,10 @@ class AvailableDatasetsTable extends Component {
     handleDataTypeValueClick(row, tissueType) {
         let linkType = row.linkInformation.linkType;
         let linkValue = row.linkInformation.linkValue.replace('&', '%26');
-        let mapping = `/repository/?size=n_20_n&filters[0][field]=${linkType}&filters[0][values][0]=${linkValue}&filters[0][type]=any&filters[1][field]=tissue_type&filters[1][values][0]=${tissueType}&filters[1][type]=any`
+        let mapping = `/repository/?size=n_20_n&filters[0][field]=${linkType}&filters[0][values][0]=${linkValue}&filters[0][type]=any`
+        if(tissueType){
+            mapping += `&filters[1][field]=tissue_type&filters[1][values][0]=${tissueType}&filters[1][type]=any`
+        }
         if(linkType && linkValue){
             return encodeURI(mapping).replace('%2526', '%26');
         } else {
@@ -59,6 +63,7 @@ class AvailableDatasetsTable extends Component {
             { columnName: 'hrtCount', width: 'auto', align: 'center'},
             { columnName: 'ckdCount', width: 'auto', align: 'center'},
             { columnName: 'dmrCount', width: 'auto', align: 'center'},
+            { columnName: 'allCount', width: 'auto', align: 'center'}
         ]
     }
 
@@ -132,7 +137,16 @@ class AvailableDatasetsTable extends Component {
               ,
               getCellValue: row => this.handleEmptyCounts(row.dmrCount, row, "DM-R"),
               name: 'dmrCount',
-          }
+          },   
+          {
+              title: 
+                  <span className="table-header data-type-table-header" id="AllHeader">
+                    ALL
+                  </span>
+              ,
+              name: 'allCount',
+              getCellValue: row => this.handleEmptyCounts(getAllCount(row), row, null),
+          }   
       ]
   };
 

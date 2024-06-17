@@ -175,3 +175,9 @@ export const availableDataVisibilityFilter = (data) => {
     }
     return undefined;
 }
+
+
+export const getAllCount = (row) =>  {
+    let allCount = row.akiCount + row.ckdCount + row.hrtCount + row.dmrCount;
+    return allCount ? allCount : "";
+}

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
-import { availableDataVisibilityFilter } from '../../helpers/Utils';
+import { availableDataVisibilityFilter, getAllCount } from '../../helpers/Utils';
 import { fetchSummaryData, fetchDataTypeSummaryInformation} from '../../helpers/ApolloClient';
 import { Row, Col, UncontrolledTooltip } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
@@ -153,6 +153,15 @@ class SamplesByDataTypeTable extends Component {
                     </span>
                 ,
                 name: 'dmrCount',
+            },   
+            {
+                title: 
+                    <span className="table-header data-type-table-header" id="allHeader">
+                      ALL
+                    </span>
+                ,
+                name: 'allCount',
+                getCellValue: row => getAllCount(row)
             }   
         ]
     };
@@ -165,6 +174,7 @@ class SamplesByDataTypeTable extends Component {
             { columnName: 'ckdCount', width: 'auto', align: 'center' },
             { columnName: 'akiCount', width: 'auto', align: 'center' },
             { columnName: 'dmrCount', width: 'auto', align: 'center' },
+            { columnName: 'allCount', width: 'auto', align: 'center' },
         ]
     }
 
