@@ -148,10 +148,7 @@ class AvailableDatasetsTable extends Component {
                       target="AllHeader">
                         Repository files including KPMP and non-KPMP data
                     </UncontrolledTooltip>
-                </span>
-                  
-                  
-              ,
+                </span>,
               name: 'totalCount',
               getCellValue: row => this.handleEmptyCounts(row.totalCount, row, null),
           }   
