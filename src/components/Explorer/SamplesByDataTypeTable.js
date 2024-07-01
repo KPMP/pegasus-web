@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
-import { availableDataVisibilityFilter, getAllCount } from '../../helpers/Utils';
+import { availableDataVisibilityFilter } from '../../helpers/Utils';
 import { fetchSummaryData, fetchDataTypeSummaryInformation} from '../../helpers/ApolloClient';
 import { Grid, TableHeaderRow, Table, TableColumnResizing} from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
@@ -120,8 +120,9 @@ class SamplesByDataTypeTable extends Component {
             }, 
             {
                 title: 'ALL',
-                name: 'allCount',
-                getCellValue: row => getAllCount(row)
+                name: 'totalCount',
+                sortable: false,
+                hideable: false
             }   
         ]
     };
@@ -134,7 +135,7 @@ class SamplesByDataTypeTable extends Component {
             { columnName: 'ckdCount', align: 'center' },
             { columnName: 'akiCount', align: 'center' },
             { columnName: 'dmrCount', align: 'center' },
-            { columnName: 'allCount', align: 'center' },
+            { columnName: 'totalCount', align: 'center' },
         ]
     }
 
@@ -145,7 +146,7 @@ class SamplesByDataTypeTable extends Component {
             { columnName: 'ckdCount', width: 85 },
             { columnName: 'akiCount', width: 85 },
             { columnName: 'dmrCount', width: 85 },
-            { columnName: 'allCount', width: 85 },
+            { columnName: 'totalCount', width: 85 },
         ]
     }
 
