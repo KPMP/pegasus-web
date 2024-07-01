@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import { Row, Col, UncontrolledTooltip } from 'reactstrap';
 import { fetchAtlasSummaryRows } from '../../helpers/ApolloClient';
-import { getAllCount } from '../../helpers/Utils';
 
 class AvailableDatasetsTable extends Component {
 
@@ -63,7 +62,7 @@ class AvailableDatasetsTable extends Component {
             { columnName: 'hrtCount', width: 'auto', align: 'center'},
             { columnName: 'ckdCount', width: 'auto', align: 'center'},
             { columnName: 'dmrCount', width: 'auto', align: 'center'},
-            { columnName: 'allCount', width: 'auto', align: 'center'}
+            { columnName: 'totalCount', width: 'auto', align: 'center'}
         ]
     }
 
@@ -140,12 +139,21 @@ class AvailableDatasetsTable extends Component {
           },   
           {
               title: 
-                  <span className="table-header data-type-table-header" id="AllHeader">
+                <span>
+                    <span className="table-header data-type-table-header" id="AllHeader">
                     ALL
-                  </span>
+                    </span> 
+                    <UncontrolledTooltip
+                      placement="bottom"
+                      target="AllHeader">
+                        Repository files including KPMP and non-KPMP data
+                    </UncontrolledTooltip>
+                </span>
+                  
+                  
               ,
-              name: 'allCount',
-              getCellValue: row => this.handleEmptyCounts(getAllCount(row), row, null),
+              name: 'totalCount',
+              getCellValue: row => this.handleEmptyCounts(row.totalCount, row, null),
           }   
       ]
   };
