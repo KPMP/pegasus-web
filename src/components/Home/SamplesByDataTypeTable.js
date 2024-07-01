@@ -157,16 +157,15 @@ class SamplesByDataTypeTable extends Component {
             {
                 title: 
                     <span>
-                        <span className="table-header data-type-table-header" id="AllHeader">
+                        <span className="table-header data-type-table-header" id="AllParticipantsHeader">
                         ALL
                         </span> 
                         <UncontrolledTooltip
                         placement="bottom"
-                        target="AllHeader">
-                            Repository files including KPMP and non-KPMP data
+                        target="AllParticipantsHeader">
+                            All Participants
                         </UncontrolledTooltip>
-                    </span>
-                ,
+                    </span>,
                 name: 'totalCount'
             }   
         ]
