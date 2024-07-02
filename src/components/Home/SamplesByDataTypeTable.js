@@ -18,11 +18,11 @@ class SamplesByDataTypeTable extends Component {
     async componentDidMount(){
 
         let spatialSummary = await fetchSummaryData("spatialViewerSummary");
-        spatialSummary = spatialSummary.sort(this.compare)
+        spatialSummary = [...spatialSummary].sort(this.compare)
         spatialSummary = spatialSummary.filter(availableDataVisibilityFilter)
 
         let explorerSummary = await fetchDataTypeSummaryInformation();
-        explorerSummary = explorerSummary.sort(this.compare)
+        explorerSummary = [...explorerSummary].sort(this.compare)
         explorerSummary = explorerSummary.filter(availableDataVisibilityFilter)
 
         // adding lines to separate the sections in the table
@@ -153,6 +153,20 @@ class SamplesByDataTypeTable extends Component {
                     </span>
                 ,
                 name: 'dmrCount',
+            },   
+            {
+                title: 
+                    <span>
+                        <span className="table-header data-type-table-header" id="AllParticipantsHeader">
+                        ALL
+                        </span> 
+                        <UncontrolledTooltip
+                        placement="bottom"
+                        target="AllParticipantsHeader">
+                            All Participants
+                        </UncontrolledTooltip>
+                    </span>,
+                name: 'totalCount'
             }   
         ]
     };
@@ -165,6 +179,7 @@ class SamplesByDataTypeTable extends Component {
             { columnName: 'ckdCount', width: 'auto', align: 'center' },
             { columnName: 'akiCount', width: 'auto', align: 'center' },
             { columnName: 'dmrCount', width: 'auto', align: 'center' },
+            { columnName: 'totalCount', width: 'auto', align: 'center' },
         ]
     }
 

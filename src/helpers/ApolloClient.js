@@ -149,6 +149,7 @@ export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') 
                     akiCount
                     ckdCount
                     dmrCount
+                    totalCount
                     participantCount
                 }
             }`;
@@ -438,6 +439,7 @@ export const fetchSummaryData = async (dataType) => {
                 akiCount
                 ckdCount
                 dmrCount
+                totalCount
                 participantCount
             }
         }`;
@@ -485,6 +487,7 @@ export const fetchAtlasSummaryRows = async () => {
               ckdCount
               hrtCount
               dmrCount
+              totalCount
               omicsType
               linkInformation {
                 linkType

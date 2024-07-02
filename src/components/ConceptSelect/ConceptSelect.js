@@ -124,7 +124,8 @@ class ConceptSelect extends Component {
         if (this.props.smallFormat) {
             customStyles["menu"] = styles => ({
                 ...styles,
-                width: '460px'
+                width: '460px',
+                zIndex: '100'
             })
         }
 

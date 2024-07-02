@@ -32,7 +32,10 @@ class AvailableDatasetsTable extends Component {
     handleDataTypeValueClick(row, tissueType) {
         let linkType = row.linkInformation.linkType;
         let linkValue = row.linkInformation.linkValue.replace('&', '%26');
-        let mapping = `/repository/?size=n_20_n&filters[0][field]=${linkType}&filters[0][values][0]=${linkValue}&filters[0][type]=any&filters[1][field]=tissue_type&filters[1][values][0]=${tissueType}&filters[1][type]=any`
+        let mapping = `/repository/?size=n_20_n&filters[0][field]=${linkType}&filters[0][values][0]=${linkValue}&filters[0][type]=any`
+        if(tissueType){
+            mapping += `&filters[1][field]=tissue_type&filters[1][values][0]=${tissueType}&filters[1][type]=any`
+        }
         if(linkType && linkValue){
             return encodeURI(mapping).replace('%2526', '%26');
         } else {
@@ -59,6 +62,7 @@ class AvailableDatasetsTable extends Component {
             { columnName: 'hrtCount', width: 'auto', align: 'center'},
             { columnName: 'ckdCount', width: 'auto', align: 'center'},
             { columnName: 'dmrCount', width: 'auto', align: 'center'},
+            { columnName: 'totalCount', width: 'auto', align: 'center'}
         ]
     }
 
@@ -132,7 +136,22 @@ class AvailableDatasetsTable extends Component {
               ,
               getCellValue: row => this.handleEmptyCounts(row.dmrCount, row, "DM-R"),
               name: 'dmrCount',
-          }
+          },   
+          {
+              title: 
+                <span>
+                    <span className="table-header data-type-table-header" id="AllHeader">
+                    ALL
+                    </span> 
+                    <UncontrolledTooltip
+                      placement="bottom"
+                      target="AllHeader">
+                        Repository files including KPMP and non-KPMP data
+                    </UncontrolledTooltip>
+                </span>,
+              name: 'totalCount',
+              getCellValue: row => this.handleEmptyCounts(row.totalCount, row, null),
+          }   
       ]
   };
 
