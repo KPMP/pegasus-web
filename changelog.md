@@ -2,7 +2,8 @@
 
 ## Release 2.4 [unreleased]
 Brief summary of what's in this release:
-
+- fix minor overlay issue in Explorer when gene not found
+- added new "All" column to Atlas home page and Explorer home page tables
 
 ### Breaking changes
 
