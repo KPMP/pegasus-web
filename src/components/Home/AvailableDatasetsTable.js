@@ -57,7 +57,7 @@ class AvailableDatasetsTable extends Component {
     getColumnExtensions() {
 
         return [
-            { columnName: 'omicsType', width: 265},
+            { columnName: 'omicsType', width: 285},
             { columnName: 'akiCount', width: 'auto', align: 'center'},
             { columnName: 'hrtCount', width: 'auto', align: 'center'},
             { columnName: 'ckdCount', width: 'auto', align: 'center'},
