@@ -6,7 +6,7 @@ const mapStateToProps = (state, props) =>
     conceptSummary: state.conceptSummary,
     gene: state.gene,
     dataType: state.dataType,
-    tissueType: state.tissueType
+    enrollmentCategory: state.enrollmentCategory
 });
 
 const mapDispatchToProps = (dispatch, props) =>

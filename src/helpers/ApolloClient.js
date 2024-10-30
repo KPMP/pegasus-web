@@ -456,7 +456,7 @@ export const fetchSummaryData = async (dataType) => {
     }
 }
 
-export const fetchTissueTypeSummaryCounts = async () => {
+export const fetchEnrollmentCategorySummaryCounts = async () => {
     let query = gql`
         query {
             getEnrollmentCategorySummaryData {

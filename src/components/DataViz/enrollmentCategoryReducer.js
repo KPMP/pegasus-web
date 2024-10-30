@@ -1,8 +1,8 @@
 import actionNames from '../../actions/actionNames';
 
-export const tissueType = ( state = "", action ) => {
+export const enrollmentCategory = ( state = "", action ) => {
     switch(action.type) {
-        case actionNames.SET_TISSUE_TYPE:
+        case actionNames.SET_ENROLLMENT_CATEGORY:
             return action.payload;
         default:
             return state;

@@ -1,12 +1,12 @@
 import { connect } from 'react-redux';
 import DataTypeSelector from './DataTypeSelector';
 import { withRouter } from 'react-router';
-import { setTissueType } from '../../actions/TissueType/tissueTypeActions'
+import { setEnrollmentCategory } from '../../actions/EnrollmentCategory/enrollmentCategoryActions'
 import { setDataType } from "../../actions/DataType/dataTypeActions";
 
 const mapStateToProps = (state, props) =>
 ({
-    tissueType: state.tissueType,
+    enrollmentCategory: state.enrollmentCategory,
     dataType: state.dataType,
     gene: state.gene,
     isLoadingUmap: props.isLoadingUmap
@@ -14,8 +14,8 @@ const mapStateToProps = (state, props) =>
 
 const mapDispatchToProps = (dispatch, props) =>
 ({
-    setTissueType(tissueType) {
-        dispatch(setTissueType(tissueType));
+    setEnrollmentCategory(enrollmentCategory) {
+        dispatch(setEnrollmentCategory(enrollmentCategory));
     },
     setDataType(dataType) {
         dispatch(setDataType(dataType));

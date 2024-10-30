@@ -22,7 +22,7 @@ class UMAP extends Component {
 
     componentDidMount() {
         window.addEventListener("resize", this.setPlotSize);
-        this.getUmapPoints(this.props.dataType, this.props.gene.symbol, this.props.tissueType, 'network-only');
+        this.getUmapPoints(this.props.dataType, this.props.gene.symbol, this.props.enrollmentCategory, 'network-only');
     
     }
 
@@ -63,8 +63,8 @@ class UMAP extends Component {
         this.setState({ plotData: clusterData, plotAnnotations: annotations, isLoading: false });
     };
 
-    getUmapPoints = async (dataType, gene, tissueType, fetchPolicy) => {
-        const results = await fetchPlotlyData(dataType, gene, tissueType, fetchPolicy);
+    getUmapPoints = async (dataType, gene, enrollmentCategory, fetchPolicy) => {
+        const results = await fetchPlotlyData(dataType, gene, enrollmentCategory, fetchPolicy);
         this.setData(results);
     };
 

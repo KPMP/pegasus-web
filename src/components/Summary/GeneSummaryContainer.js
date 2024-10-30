@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import GeneSummary from './GeneSummary';
 import { setDataTypeAndRedirect } from '../../actions/DataType/dataTypeActions'
-import { setTissueType } from "../../actions/TissueType/tissueTypeActions";
+import { setEnrollmentCategory } from "../../actions/EnrollmentCategory/enrollmentCategoryActions";
 import { withRouter } from 'react-router';
 
 const mapStateToProps = (state, props) =>
@@ -13,7 +13,7 @@ const mapStateToProps = (state, props) =>
 const mapDispatchToProps = (dispatch, props) =>
     ({
         setDataType(dataType) {
-            dispatch(setTissueType("all"));
+            dispatch(setEnrollmentCategory("all"));
             dispatch(setDataTypeAndRedirect(dataType, props));
         }
 

@@ -4,7 +4,7 @@ import DataSelectorContainer from './DataSelectorContainer';
 import NephronSchemaCardContainer from './NephronSchemaCardContainer';
 import { setSelectedConcept } from '../../actions/Concepts/conceptActions';
 import { setGene } from '../../actions/Gene/geneActions';
-import { setTissueType } from '../../actions/TissueType/tissueTypeActions';
+import { setEnrollmentCategory } from '../../actions/EnrollmentCategory/enrollmentCategoryActions';
 import { setDataType } from '../../actions/DataType/dataTypeActions';
 import { setAccession } from '../../actions/Accession/accessionActions';
 
@@ -15,7 +15,7 @@ class Explorer extends Component {
     render() {
         this.props.setAccession(initialState.accession)
         this.props.setGene("");
-        this.props.setTissueType("");
+        this.props.setEnrollmentCategory("");
         this.props.setDataType("");
         this.props.setSelectedConcept(initialState.selectedConcept);
         return (
@@ -33,8 +33,8 @@ const mapDispatchToProps = (dispatch, props) =>
     setGene(gene) {
         dispatch(setGene(gene));
     },
-    setTissueType(tissueType) {
-        dispatch(setTissueType(tissueType));
+    setEnrollmentCategory(enrollmentCategory) {
+        dispatch(setEnrollmentCategory(enrollmentCategory));
     },
     setDataType(dataType) {
         dispatch(setDataType(dataType));
