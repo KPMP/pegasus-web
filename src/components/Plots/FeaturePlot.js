@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Plotly from '../../helpers/Plotly';
 import createPlotlyComponent from 'react-plotly.js/factory';
 import { Spinner } from "reactstrap";
-import { formatDataType, formatTissueType } from "../../helpers/Utils";
+import { formatDataType, formatEnrollmentCategory } from "../../helpers/Utils";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShare } from "@fortawesome/free-solid-svg-icons";
 
@@ -95,8 +95,8 @@ class FeaturePlot extends Component {
     };
 
     getExportFilename = () => {
-        const tissueType = formatTissueType(this.props.tissueType).toLowerCase().replace(" ", "-");
-        return "KPMP_" + formatDataType(this.props.dataType) + '_feature-plot_' + this.props.gene + '_' + tissueType;
+        const enrollmentCategory = formatEnrollmentCategory(this.props.enrollmentCategory).toLowerCase().replace(" ", "-");
+        return "KPMP_" + formatDataType(this.props.dataType) + '_feature-plot_' + this.props.gene + '_' + enrollmentCategory;
     };
 
     render() {

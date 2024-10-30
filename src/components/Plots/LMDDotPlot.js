@@ -42,7 +42,7 @@ class LMDDotPlot extends Component {
 
     sortByTissueFunc = (resultA, resultB) => {
         let tissueMap = new Map([['all', 4], ['hrt', 3], ['aki', 2], ['ckd', 1]]);
-        return (tissueMap.get(resultA.tissueType) - tissueMap.get(resultB.tissueType));
+        return (tissueMap.get(resultA.enrollmentCategory) - tissueMap.get(resultB.enrollmentCategory));
     };
 
     getSizeLegendPlot = (bubbles) => {
@@ -70,8 +70,8 @@ class LMDDotPlot extends Component {
 
     };
 
-    abbreviate = (tissueType) => {
-        return tissueType === 'Healthy Reference'?'hrt':tissueType;
+    abbreviate = (enrollmentCategory) => {
+        return enrollmentCategory === 'Healthy Reference'?'hrt':enrollmentCategory;
     };
 
     setData = (data) => {
@@ -87,7 +87,7 @@ class LMDDotPlot extends Component {
         if (data) {
             resultArr.forEach((row) => {
                 xValues.push(row.segment);
-                yValues.push(this.abbreviate(row.tissueType).toUpperCase());
+                yValues.push(this.abbreviate(row.enrollmentCategory).toUpperCase());
                 let pValLog10 = row.pValLog10
                 if(this.props.calcLog10) {
                     pValLog10 = -1 * Math.log10(row.pValLog10);

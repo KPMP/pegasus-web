@@ -7,7 +7,7 @@ import queryString from 'query-string';
 import {fetchRegionalProteomics} from "../../helpers/ApolloClient";
 import LMDDotPlot from "../Plots/LMDDotPlot";
 import RegionalProteomicsTable from "../ExpressionTables/RegionalProteomicsTable";
-import {formatTissueType, formatNumberToPrecision} from "../../helpers/Utils";
+import {formatEnrollmentCategory, formatNumberToPrecision} from "../../helpers/Utils";
 import { CSVLink } from "react-csv";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
@@ -16,8 +16,8 @@ class RegionalProteomics extends Component {
         super(props);
         this.state = { allData: {}, accessionNums: [], selectedAccession: "", tableData: [], plotData: {}};
         const queryParam = queryString.parse(props.location.search);
-        if (!this.props.tissueType) {
-          this.props.setTissueType('all')
+        if (!this.props.enrollmentCategory) {
+          this.props.setEnrollmentCategory('all')
         }
         if (queryParam && queryParam.dataType) {
             this.props.resetState();
@@ -37,8 +37,8 @@ class RegionalProteomics extends Component {
         if (this.props.gene !== prevProps.gene) {
             this.getRPData();
         }
-        if (this.props.tissueType !== prevProps.tissueType) {
-            this.setState({ tableData: this.state.plotData[this.props.tissueType] });
+        if (this.props.enrollmentCategory !== prevProps.enrollmentCategory) {
+            this.setState({ tableData: this.state.plotData[this.props.enrollmentCategory] });
         }
     };
 
@@ -57,22 +57,22 @@ class RegionalProteomics extends Component {
     mapPlotData = (result) => {
         let allData = {};
         let accessionNums = [];
-        for (let {accession, rpExpressionByTissueType} of result) {
-            allData[accession] = rpExpressionByTissueType;
+        for (let {accession, rpExpressionByEnrollmentCategory} of result) {
+            allData[accession] = rpExpressionByEnrollmentCategory;
             accessionNums.push(accession);
         }
         this.setState({ allData: allData });
         this.setState({ accessionNums: accessionNums })
         let plotData = allData[this.state.selectedAccession];
         this.setState({ plotData: plotData})
-        this.setState({ tableData: plotData[this.props.tissueType]})
+        this.setState({ tableData: plotData[this.props.enrollmentCategory]})
     }
 
     handleAccessionChange = (accession) => {
         this.props.setAccession(accession)
         this.setState({ selectedAccession: accession })
         this.setState({ plotData: this.state.allData[accession]})
-        this.setState({ tableData: this.state.allData[accession][this.props.tissueType]})
+        this.setState({ tableData: this.state.allData[accession][this.props.enrollmentCategory]})
     }
 
     getTabGroup = (accessionNums) => {
@@ -86,8 +86,8 @@ class RegionalProteomics extends Component {
     }
 
     getExportFilename = () => {
-      const tissueType = formatTissueType(this.props.tissueType).toLowerCase().replace(" ", "-");
-      return "KPMP_Regional_proteomics_gene-comparison_" + this.props.gene.symbol + '_' + this.state.selectedAccession + '_' + tissueType + '.csv';
+      const enrollmentCategory = formatEnrollmentCategory(this.props.enrollmentCategory).toLowerCase().replace(" ", "-");
+      return "KPMP_Regional_proteomics_gene-comparison_" + this.props.gene.symbol + '_' + this.state.selectedAccession + '_' + enrollmentCategory + '.csv';
   };
 
     cleanResults = (results) => {
@@ -159,7 +159,7 @@ class RegionalProteomics extends Component {
                           <Row cs='12' className='mt-3 mb-4 footnote'/>
                           <Row xs='12'>
                               <Col lg='11'>
-                                  <h5>{this.props.gene.symbol} expression comparison between Glomerulus and Tubulo-interstitium in {formatTissueType(this.props.tissueType)}</h5>
+                                  <h5>{this.props.gene.symbol} expression comparison between Glomerulus and Tubulo-interstitium in {formatEnrollmentCategory(this.props.enrollmentCategory)}</h5>
                                   <h6>NS = Not Significant</h6>
                               </Col>
                               <Col xs='1' className='text-end'>

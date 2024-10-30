@@ -25,16 +25,16 @@ class AvailableDatasetsTable extends Component {
 
     }
 
-    handleEmptyCounts(count, row, tissueType){
-        return count === 0 ? "" : this.formatDataTypeValueCell(count, row, tissueType)
+    handleEmptyCounts(count, row, enrollmentCategory){
+        return count === 0 ? "" : this.formatDataTypeValueCell(count, row, enrollmentCategory)
     }
 
-    handleDataTypeValueClick(row, tissueType) {
+    handleDataTypeValueClick(row, enrollmentCategory) {
         let linkType = row.linkInformation.linkType;
         let linkValue = row.linkInformation.linkValue.replace('&', '%26');
         let mapping = `/repository/?size=n_20_n&filters[0][field]=${linkType}&filters[0][values][0]=${linkValue}&filters[0][type]=any`
-        if(tissueType){
-            mapping += `&filters[1][field]=tissue_type&filters[1][values][0]=${tissueType}&filters[1][type]=any`
+        if(enrollmentCategory){
+            mapping += `&filters[1][field]=enrollment_category&filters[1][values][0]=${enrollmentCategory}&filters[1][type]=any`
         }
         if(linkType && linkValue){
             return encodeURI(mapping).replace('%2526', '%26');
@@ -44,9 +44,9 @@ class AvailableDatasetsTable extends Component {
         }
     }
 
-    formatDataTypeValueCell(value, row, tissueType) {
+    formatDataTypeValueCell(value, row, enrollmentCategory) {
         return (
-            <a href={`${this.handleDataTypeValueClick(row, tissueType)}`}>
+            <a href={`${this.handleDataTypeValueClick(row, enrollmentCategory)}`}>
                 <span className="buttonhref">
                     {value}
                 </span>

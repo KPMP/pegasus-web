@@ -31,12 +31,12 @@ class RNASeqViz extends Component {
         const queryParam = queryString.parse(this.props.location.search);
         if (this.props.gene.symbol !== undefined && this.props.gene.symbol !== '' && (!queryParam || !queryParam.dataType)) {
             await this.fetchDataType(this.props.gene.symbol)
-            if (!this.props.tissueType) {
-                this.props.setTissueType('all')
+            if (!this.props.enrollmentCategory) {
+                this.props.setEnrollmentCategory('all')
             }
             if (this.props.dataType) {
-                this.getGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType, 'network-only');
-                this.getUmapPoints(this.props.dataType, this.props.gene.symbol, this.props.tissueType, 'network-only');
+                this.getGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.enrollmentCategory, 'network-only');
+                this.getUmapPoints(this.props.dataType, this.props.gene.symbol, this.props.enrollmentCategory, 'network-only');
             }
         } else {
             this.setState({ isLoading: false, isLoadingUmap: false })
@@ -44,16 +44,16 @@ class RNASeqViz extends Component {
     }
 
     async componentDidUpdate(prevProps) {
-        if (this.props.tissueType !== prevProps.tissueType
+        if (this.props.enrollmentCategory !== prevProps.enrollmentCategory
             || this.props.dataType !== prevProps.dataType
             || this.props.gene.symbol !== prevProps.gene.symbol) {
             if (this.props.gene.symbol && this.props.dataType) {
                 this.setState({ plotData: [], geneExpressionData: [], isLoading: true, isLoadingUmap: true });
-                if (!this.props.tissueType) {
-                    this.props.setTissueType('all')
+                if (!this.props.enrollmentCategory) {
+                    this.props.setEnrollmentCategory('all')
                 }
-                this.getGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.tissueType);
-                this.getUmapPoints(this.props.dataType, this.props.gene.symbol, this.props.tissueType);
+                this.getGeneExpression(this.props.dataType, this.props.gene.symbol, "", this.props.enrollmentCategory);
+                this.getUmapPoints(this.props.dataType, this.props.gene.symbol, this.props.enrollmentCategory);
             }
         }
     }
@@ -79,14 +79,14 @@ class RNASeqViz extends Component {
         }
     }
 
-    getGeneExpression = async (dataType, gene, cellType, tissueType, fetchPolicy) => {
-        const results = await fetchGeneExpression(dataType, gene, cellType, tissueType, fetchPolicy);
+    getGeneExpression = async (dataType, gene, cellType, enrollmentCategory, fetchPolicy) => {
+        const results = await fetchGeneExpression(dataType, gene, cellType, enrollmentCategory, fetchPolicy);
         const cleanResults = this.cleanResults(results);
         this.setState({ geneExpressionData: cleanResults, isLoading: false });
     }
 
-    getUmapPoints = async (dataType, gene, tissueType, fetchPolicy) => {
-        const results = await fetchPlotlyData(dataType, gene, tissueType, fetchPolicy);
+    getUmapPoints = async (dataType, gene, enrollmentCategory, fetchPolicy) => {
+        const results = await fetchPlotlyData(dataType, gene, enrollmentCategory, fetchPolicy);
         this.setState({ plotData: results, isLoadingUmap: false });
     };
 
@@ -107,7 +107,7 @@ class RNASeqViz extends Component {
                             </Row>
                             <Row>
                                 <Col lg='6' className="umapPlot-container">
-                                    <UMAPPlot data={this.state.plotData} dataType={this.props.dataType ? this.props.dataType : 'sc'} tissueType={this.props.tissueType} />
+                                    <UMAPPlot data={this.state.plotData} dataType={this.props.dataType ? this.props.dataType : 'sc'} enrollmentCategory={this.props.enrollmentCategory} />
                                 </Col>
                             </Row>
                         </Col>
@@ -120,7 +120,7 @@ class RNASeqViz extends Component {
                             </Row>
                             <Row className={(!this.state.isLoadingUmap && !this.props.gene.symbol && this.state.plotData.length >= 0) ? 'featurePlot-loader-background' : ''}>
                                 <Col lg='12' className="featurePlot-container">
-                                    <FeaturePlot data={this.state.plotData} dataType={this.props.dataType} isLoading={this.state.isLoadingUmap} gene={this.props.gene.symbol} tissueType={this.props.tissueType} />
+                                    <FeaturePlot data={this.state.plotData} dataType={this.props.dataType} isLoading={this.state.isLoadingUmap} gene={this.props.gene.symbol} enrollmentCategory={this.props.enrollmentCategory} />
                                 </Col>
                             </Row>
                         </Col>
@@ -130,7 +130,7 @@ class RNASeqViz extends Component {
                             {(!this.state.isLoading && this.state.geneExpressionData.length > 0) && <hr />}
                         </Col>
                     </Row>
-                    <ExpressionXCellType dataType={this.props.dataType} data={this.state.geneExpressionData} isLoading={this.state.isLoading} gene={this.props.gene.symbol} tissueType={this.props.tissueType} />
+                    <ExpressionXCellType dataType={this.props.dataType} data={this.state.geneExpressionData} isLoading={this.state.isLoading} gene={this.props.gene.symbol} enrollmentCategory={this.props.enrollmentCategory} />
                 </Container>
             </Container>
             </div>
