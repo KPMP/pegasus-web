@@ -60,6 +60,18 @@ class LeftContent extends Component {
             <Button className="w-100" color='primary' href='https://www.kpmp.org/collaboration' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Atlas Home', 'Navigation', 'collaborate') }}>Collaborate with us</Button>
           </div>
         </Container>
+        <Container className="mt-3 rounded border p-3 shadow-sm">
+          <h5>KPMP Collaborator Sites & Tools</h5>
+          <div>
+            <p>
+                <a target="_blank" href='example.com'>ASCT+B Reporter</a>
+                <a target="_blank" href='example.com'>Function Tissue Unit (FTU) Explorer</a>
+                <a target="_blank" href='example.com'>HuBmap Consortium</a>
+                <a target="_blank" href='example.com'>Human Cell Atlas</a>
+                <a target="_blank" href='example.com'>Human Reference Atlas Portal</a>
+            </p>
+          </div>
+        </Container>
       </div>
     );
   }
