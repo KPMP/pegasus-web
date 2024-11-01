@@ -71,6 +71,7 @@ class LeftContent extends Component {
                 <a target="_blank" href='example.com'>HuBMap Consortium</a>
                 <br/>
                 <a target="_blank" href='example.com'>Human Cell Atlas</a>
+                <br />
                 <a target="_blank" href='example.com'>Human Reference Atlas Portal</a>
             </p>
           </div>
