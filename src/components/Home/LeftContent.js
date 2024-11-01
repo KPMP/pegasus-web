@@ -65,8 +65,11 @@ class LeftContent extends Component {
           <div>
             <p>
                 <a target="_blank" href='example.com'>ASCT+B Reporter</a>
-                <a target="_blank" href='example.com'>Function Tissue Unit (FTU) Explorer</a>
-                <a target="_blank" href='example.com'>HuBmap Consortium</a>
+                <br/>
+                <a target="_blank" href='example.com'>Functional Tissue Unit (FU) Explorer</a>
+                <br/>
+                <a target="_blank" href='example.com'>HuBMap Consortium</a>
+                <br/>
                 <a target="_blank" href='example.com'>Human Cell Atlas</a>
                 <a target="_blank" href='example.com'>Human Reference Atlas Portal</a>
             </p>
