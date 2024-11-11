@@ -256,7 +256,7 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enroll
 export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) => {
     let query = gql`
         query {
-            getRTGeneExpressionByTissue(comparisonType:"${comparisonType}", geneSymbol: "${geneSymbol}") {
+            getRTGeneExpressionByEnrollment(comparisonType:"${comparisonType}", geneSymbol: "${geneSymbol}") {
                 aki {
                     id
                     segment
@@ -318,8 +318,8 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
         fetchPolicy: 'cache-first'
     });
 
-    if (response.data && response.data.getRTGeneExpressionByTissue) {
-        return response.data.getRTGeneExpressionByTissue;
+    if (response.data && response.data.getRTGeneExpressionByEnrollment) {
+        return response.data.getRTGeneExpressionByEnrollment;
     } else {
         store.dispatch(sendMessageToBackend("Could not retrieve regional transcriptomics data: " + response.error));
     }
@@ -329,7 +329,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
 export const fetchRegionalProteomics = async (geneSymbol) => {
     let query = gql`
         query {
-            getRPGeneExpressionByTissue(geneSymbol: "${geneSymbol}") {
+            getRPGeneExpressionByEnrollment(geneSymbol: "${geneSymbol}") {
                 accession
                 rpExpressionByEnrollmentCategory {
                   all {
@@ -357,8 +357,8 @@ export const fetchRegionalProteomics = async (geneSymbol) => {
         fetchPolicy: 'cache-first'
     });
 
-    if (response.data && response.data.getRPGeneExpressionByTissue) {
-        return response.data.getRPGeneExpressionByTissue;
+    if (response.data && response.data.getRPGeneExpressionByEnrollment) {
+        return response.data.getRPGeneExpressionByEnrollment;
     } else {
         store.dispatch(sendMessageToBackend("Could not retrieve regional proteomics  data: " + response.error));
     }
@@ -473,7 +473,7 @@ export const fetchEnrollmentCategorySummaryCounts = async () => {
     if (response.data && response.data.getEnrollmentCategorySummaryData) {
         return response.data.getEnrollmentCategorySummaryData[0];
     }else {
-        store.dispatch(sendMessageToBackend("Could not retrieve tissue summary: " + response.error));
+        store.dispatch(sendMessageToBackend("Could not retrieve enrollment category summary: " + response.error));
     }
 }
 
