@@ -60,6 +60,24 @@ class LeftContent extends Component {
             <Button className="w-100" color='primary' href='https://www.kpmp.org/collaboration' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Atlas Home', 'Navigation', 'collaborate') }}>Collaborate with us</Button>
           </div>
         </Container>
+        <Container className="mt-3 rounded border p-3 shadow-sm">
+          <h5>KPMP Collaborator Sites & Tools</h5>
+          <div>
+            <p>
+                <a target="_blank" rel="noreferrer" href='https://hubmapconsortium.org/'>The Human BioMolecular Atlas Program (HuBMAP)</a>
+                <br/>
+                <a target="_blank" rel="noreferrer" href='https://humanatlas.io/'>HuBMAP Human Reference Atlas (HRA)</a>
+                <br/>
+                <a target="_blank" rel="noreferrer" href='https://apps.humanatlas.io/eui/kpmp.html'>HuBMAP HRA Explorer for KPMP</a>
+                <br/>
+                <a target="_blank" rel="noreferrer" href='https://www.humancellatlas.org/'>Human Cell Atlas (HCA)</a>
+                <br />
+                <a target="_blank" rel="noreferrer" href='https://data.humancellatlas.org/'>HCA Data Portal</a>
+                <br />
+                <a target="_blank" rel="noreferrer" href='https://data.humancellatlas.org/hca-bio-networks/kidney/datasets'>HCA Kidney Network Datasets</a>
+            </p>
+          </div>
+        </Container>
       </div>
     );
   }
