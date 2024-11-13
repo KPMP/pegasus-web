@@ -64,15 +64,17 @@ class LeftContent extends Component {
           <h5>KPMP Collaborator Sites & Tools</h5>
           <div>
             <p>
-                <a target="_blank" href='example.com'>ASCT+B Reporter</a>
+                <a target="_blank" rel="noreferrer" href='https://hubmapconsortium.org/'>The Human BioMolecular Atlas Program (HuBMAP)</a>
                 <br/>
-                <a target="_blank" href='example.com'>Functional Tissue Unit (FU) Explorer</a>
+                <a target="_blank" rel="noreferrer" href='https://humanatlas.io/'>HuBMAP Human Reference Atlas (HRA)</a>
                 <br/>
-                <a target="_blank" href='example.com'>HuBMap Consortium</a>
+                <a target="_blank" rel="noreferrer" href='https://apps.humanatlas.io/eui/kpmp.html'>HuBMAP HRA Explorer for KPMP</a>
                 <br/>
-                <a target="_blank" href='example.com'>Human Cell Atlas</a>
+                <a target="_blank" rel="noreferrer" href='https://www.humancellatlas.org/'>Human Cell Atlas (HCA)</a>
                 <br />
-                <a target="_blank" href='example.com'>Human Reference Atlas Portal</a>
+                <a target="_blank" rel="noreferrer" href='https://data.humancellatlas.org/'>HCA Data Portal</a>
+                <br />
+                <a target="_blank" rel="noreferrer" href='https://data.humancellatlas.org/hca-bio-networks/kidney/datasets'>HCA Kidney Network Datasets</a>
             </p>
           </div>
         </Container>
