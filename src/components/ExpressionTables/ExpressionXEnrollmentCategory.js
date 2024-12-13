@@ -3,7 +3,7 @@ import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-re
 import initialState from "../../initialState";
 import {Col, Row} from "reactstrap";
 
-class ExpressionXTissueType extends Component {
+class ExpressionXEnrollmentCategory extends Component {
     constructor(props) {
         super(props);
         this.getColumns = this.getColumns.bind(this);
@@ -86,4 +86,4 @@ class ExpressionXTissueType extends Component {
     }
 }
 
-export default ExpressionXTissueType;
+export default ExpressionXEnrollmentCategory;

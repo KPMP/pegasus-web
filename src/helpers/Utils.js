@@ -1,19 +1,19 @@
 import { fetchDataTypesForConcept } from './ApolloClient';
 
-export const formatNumberToPrecision = (number, precision, keepAsInt = false, dataType = "", tissueType = "") => {
+export const formatNumberToPrecision = (number, precision, keepAsInt = false, dataType = "", enrollmentCategory = "") => {
     if (number) {
         return number.toPrecision(precision)
     } else if (number === 0) {
         return 0
     } else {
-        if (dataType === "sn" && tissueType === "dmr") {
+        if (dataType === "sn" && enrollmentCategory === "dmr") {
             return "-"
         }
         return "NS"
     }
 };
-export const formatTissueType = (tissueType) => {
-    switch (tissueType) {
+export const formatEnrollmentCategory = (enrollmentCategory) => {
+    switch (enrollmentCategory) {
         case "all":
             return "All samples";
         case "hrt":
@@ -25,7 +25,7 @@ export const formatTissueType = (tissueType) => {
         case "dmr":
             return "DM-R";
         default:
-            return tissueType
+            return enrollmentCategory
 
     }
 };
@@ -60,7 +60,7 @@ export const sum = (array, property) => {
     return array.reduce((finalSum, item) => finalSum + item[property], 0);
 };
 
-export const getTissueTypeOptions = (datasetSummary, geneSymbol, dataType) => {
+export const getEnrollmentCategoryOptions = (datasetSummary, geneSymbol, dataType) => {
     const options = [
         {
             label: "All samples",
@@ -149,7 +149,7 @@ export const getDataTypeOptions = async (geneSymbol, cluster) => {
     return options;
 };
 
-export const getDataTypeOptionsWithTissueType = async (geneSymbol, cluster, datasetSummary, currentTissueType) => {
+export const getDataTypeOptionsWithEnrollmentCategory = async (geneSymbol, cluster, datasetSummary, currentEnrollmentCategory) => {
     let options = await getDataTypeOptions(geneSymbol, cluster, datasetSummary);
     for (let index in options) {
         for (let indexDS in datasetSummary) {
@@ -159,7 +159,7 @@ export const getDataTypeOptionsWithTissueType = async (geneSymbol, cluster, data
                 "hrt": datasetSummary[indexDS].hrtCount,
                 "dmr": datasetSummary[indexDS].dmrCount
             }
-            if (options[index].value === datasetSummary[indexDS].dataTypeShort && tissues[currentTissueType] === 0) {
+            if (options[index].value === datasetSummary[indexDS].dataTypeShort && tissues[currentEnrollmentCategory] === 0) {
                 options[index].isDisabled = true
             }
         }

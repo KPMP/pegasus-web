@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {Row, Col, UncontrolledTooltip } from 'reactstrap';
-import { fetchTissueTypeSummaryCounts } from '../../helpers/ApolloClient';
+import { fetchEnrollmentCategorySummaryCounts } from '../../helpers/ApolloClient';
 class ParticipantSummary extends Component {
   constructor(props) {
       super(props);
@@ -11,7 +11,7 @@ class ParticipantSummary extends Component {
   };
 
   getTissueCounts = () => {
-    fetchTissueTypeSummaryCounts().then((result) => {
+    fetchEnrollmentCategorySummaryCounts().then((result) => {
       this.setState({akiCount: result.akiCount})
       this.setState({ckdCount: result.ckdCount})
       this.setState({hrtCount: result.hrtCount})

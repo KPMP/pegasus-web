@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Select from "react-select";
 import { Row, Col, Container} from 'reactstrap';
 import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer';
-import { getTissueTypeOptions, getAllDataTypeOptions, getDataTypeOptionsWithTissueType } from "../../helpers/Utils";
+import { getEnrollmentCategoryOptions, getAllDataTypeOptions, getDataTypeOptionsWithEnrollmentCategory } from "../../helpers/Utils";
 import { fetchDataTypeSummaryInformation } from '../../helpers/ApolloClient';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
@@ -13,7 +13,7 @@ class DataTypeSelector extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            tissueInputValue: this.props.tissueType ? this.props.tissueType : "all",
+            tissueInputValue: this.props.enrollmentCategory ? this.props.enrollmentCategory : "all",
             isDatasetSummaryLoading: false,
             tissueValue: null,
             dataTypeInputValue: null,
@@ -33,7 +33,7 @@ class DataTypeSelector extends Component {
     componentDidUpdate(prevProps) {
         if ((this.props.gene.symbol !== prevProps.gene.symbol
             || this.props.dataType !== prevProps.dataType
-            || this.props.tissueType !== prevProps.tissueType)) {
+            || this.props.enrollmentCategory !== prevProps.enrollmentCategory)) {
             if (this.props.gene.symbol) {
                 this.reloadPageData(this.props.gene.symbol);
             } else {
@@ -44,11 +44,11 @@ class DataTypeSelector extends Component {
 
     componentDidMount() {
         let options = getAllDataTypeOptions()
-        let tissueTypeOptions = getTissueTypeOptions(this.state.selectedDataset, this.props.gene.symbol);
+        let enrollmentCategoryOptions = getEnrollmentCategoryOptions(this.state.selectedDataset, this.props.gene.symbol);
 
         let selectedOption = options.find(item => this.props.dataType === item.value);
-        let selectedTissueType = tissueTypeOptions.find(item => this.state.tissueInputValue === item.value)
-        this.setState({ dataTypeOptions: options, dataTypeInputValue: selectedOption, tissueValue: selectedTissueType })
+        let selectedEnrollmentCategory = enrollmentCategoryOptions.find(item => this.state.tissueInputValue === item.value)
+        this.setState({ dataTypeOptions: options, dataTypeInputValue: selectedOption, tissueValue: selectedEnrollmentCategory })
 
         if (this.props.gene.symbol) {
             this.reloadPageData(this.props.gene.symbol);
@@ -61,14 +61,14 @@ class DataTypeSelector extends Component {
         // Coming from homepage search (no datatype yet)
         if (!dataTypeShort && availableData && availableData.length > 0) {
             this.props.setDataType(availableData[0].dataTypeShort);
-            this.props.setTissueType(this.props.tissueType ? this.props.tissueType : "all");
+            this.props.setEnrollmentCategory(this.props.enrollmentCategory ? this.props.enrollmentCategory : "all");
             this.setState({ selectedDataset: availableData[0], tissueInputValue: "all"})
             return
         }
         // Coming from search on viz page (has datatype)
         for (const [, dataset] of availableData.entries()) {
             if (dataset["dataTypeShort"] === dataTypeShort) {
-                this.props.setTissueType(this.props.tissueType ? this.props.tissueType : "all");
+                this.props.setEnrollmentCategory(this.props.enrollmentCategory ? this.props.enrollmentCategory : "all");
                 this.setState({ selectedDataset: dataset, })
                 return
             }
@@ -117,13 +117,13 @@ class DataTypeSelector extends Component {
                 if (datasetSummary) {
                     datasetSummary = this.formatGeneDataset(datasetSummary)
                     this.setSelectedDatasetSummary(this.props.dataType, datasetSummary)
-                    getDataTypeOptionsWithTissueType(this.props.gene.symbol, "", datasetSummary, this.props.tissueType).then(
+                    getDataTypeOptionsWithEnrollmentCategory(this.props.gene.symbol, "", datasetSummary, this.props.enrollmentCategory).then(
                         (options) => {
                             let selectedOption = options.find(item => this.props.dataType === item.value);
-                            let tissueTypeOptions = getTissueTypeOptions(this.state.selectedDataset, this.props.gene.symbol);
+                            let enrollmentCategoryOptions = getEnrollmentCategoryOptions(this.state.selectedDataset, this.props.gene.symbol);
 
-                            let selectedTissueType = tissueTypeOptions.find(item => this.state.tissueInputValue === item.value)
-                            this.setState({ dataTypeOptions: options, dataTypeInputValue: selectedOption, availableData: datasetSummary, tissueValue: selectedTissueType })
+                            let selectedEnrollmentCategory = enrollmentCategoryOptions.find(item => this.state.tissueInputValue === item.value)
+                            this.setState({ dataTypeOptions: options, dataTypeInputValue: selectedOption, availableData: datasetSummary, tissueValue: selectedEnrollmentCategory })
                         },
                         (error) => {
                             this.setState({ dataTypeOptions: [] });
@@ -149,8 +149,8 @@ class DataTypeSelector extends Component {
 
 
     handleTissueSelect = (selected, actionMeta) => {
-        handleGoogleAnalyticsEvent('Explorer', 'Filter', `tissueType: ${selected.value}`);
-        this.props.setTissueType(selected.value);
+        handleGoogleAnalyticsEvent('Explorer', 'Filter', `enrollmentCategory: ${selected.value}`);
+        this.props.setEnrollmentCategory(selected.value);
         this.setState({ tissueValue: selected });
     };
 
@@ -163,7 +163,7 @@ class DataTypeSelector extends Component {
     };
 
     getInputValue = () => {
-        let options = getTissueTypeOptions(this.state.selectedDataset, this.props.gene.symbol);
+        let options = getEnrollmentCategoryOptions(this.state.selectedDataset, this.props.gene.symbol);
         try {
             return options.find(element => element.value === this.state.tissueInputValue).label
         } catch (e) {
@@ -222,7 +222,7 @@ class DataTypeSelector extends Component {
                             <span className='d-table-cell text-bigger pe-2'>in:</span>
                             <Select
                                 allowClear
-                                options={getTissueTypeOptions(this.state.selectedDataset, this.props.gene.symbol, this.props.dataType)}
+                                options={getEnrollmentCategoryOptions(this.state.selectedDataset, this.props.gene.symbol, this.props.dataType)}
                                 onChange={this.handleTissueSelect}
                                 value={this.state.tissueValue}
                                 inputValue={this.getInputValue()}

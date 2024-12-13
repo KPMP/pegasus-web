@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import CellTypeSummary from './CellTypeSummary';
 import { setDataType } from "../../actions/DataType/dataTypeActions";
-import { setTissueType } from "../../actions/TissueType/tissueTypeActions";
+import { setEnrollmentCategory } from "../../actions/EnrollmentCategory/enrollmentCategoryActions";
 import { setCluster } from "../../actions/Cluster/clusterActions"
 import { withRouter } from 'react-router';
 
@@ -16,7 +16,7 @@ const mapDispatchToProps = (dispatch, props) =>
     ({
         setDataTypeAndCluster(dataType, cluster) {
             dispatch(setDataType(dataType));
-            dispatch(setTissueType("all"));
+            dispatch(setEnrollmentCategory("all"));
             dispatch(setCluster(cluster));
             dispatch((dispatch) => window.open("/explorer/diffex", '_self'));
         }

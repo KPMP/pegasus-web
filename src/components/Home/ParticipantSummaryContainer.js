@@ -1,16 +1,16 @@
 import {connect} from "react-redux";
 import ParticipantSummary from "./ParticipantSummary";
-import { setTissueType } from '../../actions/TissueType/tissueTypeActions'
+import { setEnrollmentCategory } from '../../actions/EnrollmentCategory/enrollmentCategoryActions'
 
 const mapStateToProps = (state, props) =>
     ({
-        tissueType: state.tissueType
+        enrollmentCategory: state.enrollmentCategory
     });
 
 const mapDispatchToProps = (dispatch, props) =>
     ({
-        setTissueType(tissueType) {
-            dispatch(setTissueType(tissueType));
+        setEnrollmentCategory(enrollmentCategory) {
+            dispatch(setEnrollmentCategory(enrollmentCategory));
         },
     });
 

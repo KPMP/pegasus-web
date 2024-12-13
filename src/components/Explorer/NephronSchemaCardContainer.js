@@ -2,7 +2,7 @@ import { connect } from 'react-redux';
 import NephronSchemaCard from './NephronSchemaCard';
 import { setSelectedConceptAndRedirect } from '../../actions/Concepts/conceptActions'
 import { withRouter } from 'react-router';
-import { setTissueType } from '../../actions/TissueType/tissueTypeActions'
+import { setEnrollmentCategory } from '../../actions/EnrollmentCategory/enrollmentCategoryActions'
 
 const mapStateToProps = (state, props) =>
 ({
@@ -12,7 +12,7 @@ const mapStateToProps = (state, props) =>
 const mapDispatchToProps = (dispatch, props) =>
 ({
     setSelectedConcept(concept) {
-        dispatch(setTissueType('all'))
+        dispatch(setEnrollmentCategory('all'))
         dispatch(setSelectedConceptAndRedirect(concept, props));
     }
 });

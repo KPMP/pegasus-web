@@ -1,15 +1,15 @@
 type Query {
   autocomplete(searchTerm: String): [AutoCompleteResult]
   cellTypeHierarchy: CellTypeHierarchy
-  geneExpressionSummary(dataType: String, geneSymbol: String, cellType: String, tissueType: String) : [GeneExpressionSummary]
+  geneExpressionSummary(dataType: String, geneSymbol: String, cellType: String, enrollmentCategory: String) : [GeneExpressionSummary]
   getClusterHieararchies(cellType: String!): [ClusterHierarchy]
-  getUmapPlotData(dataType: String!, geneSymbol: String!, tissueType: String): PlotData
+  getUmapPlotData(dataType: String!, geneSymbol: String!, enrollmentCategory: String): PlotData
   dataTypesForConcept(geneSymbol: String, clusterName: String): [String]
   getDataTypeSummaryInformation: [getDataTypeSummaryInformation]
   getRTGeneExpressionByTissue(comparisonType: String, geneSymbol: String): RTGeneExpressionByTissue
   getRTGeneExpressionByStructure(structure: String): [RTGeneExpression]
   getDataSummary(dataType: String): [SummaryData]
-  getTissueTypeSummaryData: [getTissueTypeSummaryData]
+  getEnrollmentCategorySummaryData: [getEnrollmentCategorySummaryData]
   getAtlasSummaryRows: [getAtlasSummaryRows]
 }
 
@@ -32,7 +32,7 @@ type LinkInformation{
   linkValue: String
 }
 
-type getTissueTypeSummaryData{
+type getEnrollmentCategorySummaryData{
   akiCount: Long,
   ckdCount: Long,
   hrtCount: Long,
@@ -78,7 +78,7 @@ type CellType {
 
 type GeneExpressionSummary {
     id: ID
-    tissueType: String
+    enrollmentCategory: String
     gene: String
     pVal: Float
     pValAdj: Float
@@ -134,7 +134,7 @@ type RTGeneExpression {
     pVal: Float
     stdDev: Float
     pValLog10: Float
-    tissueType: String
+    enrollmentCategory: String
     sampleCount: Int
 }
 

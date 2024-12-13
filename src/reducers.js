@@ -1,14 +1,14 @@
 import { combineReducers } from 'redux';
 import { selectedConcept, gene, cluster, cellType } from "./components/ConceptSelect/conceptReducer";
 import { dataType } from "./components/DataViz/dataTypeReducer"
-import { tissueType } from "./components/DataViz/tissueTypeReducer"
+import { enrollmentCategory } from "./components/DataViz/enrollmentCategoryReducer"
 import { accession } from "./components/DataViz/accessionReducer";
 
 
 const appReducer = combineReducers({
   selectedConcept,
   dataType,
-  tissueType,
+  enrollmentCategory,
   gene,
   cluster,
   cellType,

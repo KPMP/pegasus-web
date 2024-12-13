@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Container, Row, Col, Button, ButtonGroup } from 'reactstrap';
 import DataTypeSelectorContainer from './DataTypeSelectorContainer';
-import { formatTissueType, formatNumberToPrecision } from "../../helpers/Utils";
+import { formatEnrollmentCategory, formatNumberToPrecision } from "../../helpers/Utils";
 import LMDDotPlot from "../Plots/LMDDotPlot";
 import { fetchRegionalTranscriptomics } from "../../helpers/ApolloClient";
 import RegionalTranscriptomicsTable from "../ExpressionTables/RegionalTranscriptomicsTable";
@@ -16,8 +16,8 @@ class RegionalViz extends Component {
     constructor(props) {
         super(props);
         this.state = { rtAllPlotData: [], rtAllTableData: [], rtGTPlotData: [], rtGTTableData: [], selectedComparison: 'all_segments', selectedPlot: 'box' };
-        if (!this.props.tissueType) {
-            this.props.setTissueType('all')
+        if (!this.props.enrollmentCategory) {
+            this.props.setEnrollmentCategory('all')
         }
         const queryParam = queryString.parse(props.location.search);
         if (queryParam && queryParam.dataType) {
@@ -34,9 +34,9 @@ class RegionalViz extends Component {
     };
 
     componentDidUpdate(prevProps, prevState, snapShot) {
-        if (this.props.tissueType !== prevProps.tissueType) {
-            this.setState({ rtAllTableData: this.state.rtAllPlotData[this.props.tissueType] });
-            this.setState({ rtGTTableData: this.state.rtGTPlotData[this.props.tissueType] });
+        if (this.props.enrollmentCategory !== prevProps.enrollmentCategory) {
+            this.setState({ rtAllTableData: this.state.rtAllPlotData[this.props.enrollmentCategory] });
+            this.setState({ rtGTTableData: this.state.rtGTPlotData[this.props.enrollmentCategory] });
         }
         if (this.props.gene !== prevProps.gene) {
             this.getRTData();
@@ -46,20 +46,20 @@ class RegionalViz extends Component {
     getRTData = () => {
         fetchRegionalTranscriptomics('all_segments', this.props.gene.symbol).then((result) => {
             this.setState({ rtAllPlotData: result });
-            this.setState({ rtAllTableData: result[this.props.tissueType] });
+            this.setState({ rtAllTableData: result[this.props.enrollmentCategory] });
         }
         );
         fetchRegionalTranscriptomics('glom_tub', this.props.gene.symbol).then((result) => {
             this.setState({ rtGTPlotData: result })
-            this.setState({ rtGTTableData: result[this.props.tissueType] });
+            this.setState({ rtGTTableData: result[this.props.enrollmentCategory] });
         }
         );
     };
 
     getExportFilename = () => {
         const grouping = this.state.selectedComparison === 'glom_tub' ? 'GlomVsTI' : 'Regions';
-        const tissueType = formatTissueType(this.props.tissueType).toLowerCase().replace(" ", "-");
-        return "KPMP_" + formatDataType(this.props.dataType) + '_gene-comparison_' + this.props.gene.symbol + '_' + tissueType + '_' + grouping + '.csv';
+        const enrollmentCategory = formatEnrollmentCategory(this.props.enrollmentCategory).toLowerCase().replace(" ", "-");
+        return "KPMP_" + formatDataType(this.props.dataType) + '_gene-comparison_' + this.props.gene.symbol + '_' + enrollmentCategory + '_' + grouping + '.csv';
     };
 
     cleanResults = (results) => {
@@ -146,7 +146,7 @@ class RegionalViz extends Component {
                             </Row>
                             <Row xs='12'>
                                 <Col lg='11'>
-                                    <h5>{this.props.gene.symbol} expression comparison across regions in {formatTissueType(this.props.tissueType)}</h5>
+                                    <h5>{this.props.gene.symbol} expression comparison across regions in {formatEnrollmentCategory(this.props.enrollmentCategory)}</h5>
                                     <h6>NS = Not Significant</h6>
                                 </Col>
                                 <Col xs='1' className='text-end'>

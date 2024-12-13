@@ -1,6 +1,6 @@
 {
   "name": "pegasus-web",
-  "version": "2.5.0",
+  "version": "2.6.0",
   "private": true,
   "homepage": "/",
   "dependencies": {
@@ -32,7 +32,7 @@
     "history": "5.0.0",
     "html-react-parser": "1.4.0",
     "isomorphic-unfetch": "3.1.0",
-    "kpmp-common-components": "1.2.14",
+    "kpmp-common-components": "1.2.16",
     "kpmp-common-styles": "1.0.13",
     "material-table": "1.69.3",
     "npm-run-all": "4.1.5",

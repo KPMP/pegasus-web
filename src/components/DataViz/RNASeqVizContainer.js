@@ -1,6 +1,6 @@
 import { connect } from "react-redux";
 import RNASeqViz from "./RNASeqViz";
-import { setTissueType } from '../../actions/TissueType/tissueTypeActions'
+import { setEnrollmentCategory } from '../../actions/EnrollmentCategory/enrollmentCategoryActions'
 import { setDataType } from "../../actions/DataType/dataTypeActions";
 import { resetState } from "../../actions/resetAction";
 
@@ -9,7 +9,7 @@ const mapStateToProps = (state, props) =>
     conceptSummary: state.conceptSummary,
     gene: state.gene,
     dataType: state.dataType,
-    tissueType: state.tissueType
+    enrollmentCategory: state.enrollmentCategory
 });
 
 const mapDispatchToProps = (dispatch, props) =>
@@ -17,8 +17,8 @@ const mapDispatchToProps = (dispatch, props) =>
     setDataType(dataType) {
         dispatch(setDataType(dataType));
     },
-    setTissueType(tissueType) {
-        dispatch(setTissueType(tissueType));
+    setEnrollmentCategory(enrollmentCategory) {
+        dispatch(setEnrollmentCategory(enrollmentCategory));
     },
     resetState() {
         dispatch(resetState());

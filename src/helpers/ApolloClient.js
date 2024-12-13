@@ -20,7 +20,7 @@ const getBaseURL = () => {
 
 const typePolicies = {
     GeneExpressionSummary: {
-        keyFields: ["gene", "tissueType", "cluster", "dataType"]
+        keyFields: ["gene", "enrollmentCategory", "cluster", "dataType"]
     }
 };
 
@@ -167,11 +167,11 @@ export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') 
     return undefined;
 }
 
-export const fetchPlotlyData = async (dataType, geneSymbol, tissueType, fetchPolicy = 'cache-first') => {
+export const fetchPlotlyData = async (dataType, geneSymbol, enrollmentCategory, fetchPolicy = 'cache-first') => {
 
     const query = gql`
         query {
-            getUmapPlotData(dataType: "${dataType}", geneSymbol: "${geneSymbol}", tissueType: "${tissueType}") {
+            getUmapPlotData(dataType: "${dataType}", geneSymbol: "${geneSymbol}", enrollmentCategory: "${enrollmentCategory}") {
                 referenceData {
                     xValues
                     yValues
@@ -214,7 +214,7 @@ export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
     }
 }
 
-export const fetchGeneExpression = async (dataType, geneSymbol, cellType, tissueType) => {
+export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enrollmentCategory) => {
 	const response = await axios({
 		url: getBaseURL() + '/graphql',
 		method: 'post',
@@ -226,10 +226,10 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, tissue
 				dataType: "${dataType}"
 				geneSymbol: "${geneSymbol}"
 				cellType: "${cellType}"
-				tissueType: "${tissueType}"
+				enrollmentCategory: "${enrollmentCategory}"
 				) {
 					id
-					tissueType
+					enrollmentCategory
 					gene
 					pVal
 					pValAdj
@@ -256,7 +256,7 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, tissue
 export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) => {
     let query = gql`
         query {
-            getRTGeneExpressionByTissue(comparisonType:"${comparisonType}", geneSymbol: "${geneSymbol}") {
+            getRTGeneExpressionByEnrollment(comparisonType:"${comparisonType}", geneSymbol: "${geneSymbol}") {
                 aki {
                     id
                     segment
@@ -267,7 +267,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
                     pValLog10
                     stdDev
                     sampleCount
-                    tissueType
+                    enrollmentCategory
                     pValAdj: adjPVal
 
                 }
@@ -281,7 +281,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
                     pValLog10
                     stdDev
                     sampleCount
-                    tissueType
+                    enrollmentCategory
                     pValAdj: adjPVal
                 }
                 all {
@@ -294,7 +294,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
                     pValLog10
                     stdDev
                     sampleCount
-                    tissueType
+                    enrollmentCategory
                     pValAdj: adjPVal
                 }
                 hrt {
@@ -307,7 +307,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
                     pValLog10
                     stdDev
                     sampleCount
-                    tissueType
+                    enrollmentCategory
                     pValAdj: adjPVal
                 }
             }
@@ -318,8 +318,8 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
         fetchPolicy: 'cache-first'
     });
 
-    if (response.data && response.data.getRTGeneExpressionByTissue) {
-        return response.data.getRTGeneExpressionByTissue;
+    if (response.data && response.data.getRTGeneExpressionByEnrollment) {
+        return response.data.getRTGeneExpressionByEnrollment;
     } else {
         store.dispatch(sendMessageToBackend("Could not retrieve regional transcriptomics data: " + response.error));
     }
@@ -329,9 +329,9 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
 export const fetchRegionalProteomics = async (geneSymbol) => {
     let query = gql`
         query {
-            getRPGeneExpressionByTissue(geneSymbol: "${geneSymbol}") {
+            getRPGeneExpressionByEnrollment(geneSymbol: "${geneSymbol}") {
                 accession
-                rpExpressionByTissueType {
+                rpExpressionByEnrollmentCategory {
                   all {
                         id
                         geneSymbol
@@ -345,7 +345,7 @@ export const fetchRegionalProteomics = async (geneSymbol) => {
                         segment: region
                         foldChange
                         pValLog10: adjPVal
-                        tissueType
+                        enrollmentCategory
                         sampleCount
                   }
                 }
@@ -357,8 +357,8 @@ export const fetchRegionalProteomics = async (geneSymbol) => {
         fetchPolicy: 'cache-first'
     });
 
-    if (response.data && response.data.getRPGeneExpressionByTissue) {
-        return response.data.getRPGeneExpressionByTissue;
+    if (response.data && response.data.getRPGeneExpressionByEnrollment) {
+        return response.data.getRPGeneExpressionByEnrollment;
     } else {
         store.dispatch(sendMessageToBackend("Could not retrieve regional proteomics  data: " + response.error));
     }
@@ -378,7 +378,7 @@ export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
                 pValLog10
                 stdDev
                 sampleCount
-                tissueType
+                enrollmentCategory
                 pValAdj: adjPVal
             }
         }`;
@@ -411,7 +411,7 @@ export const fetchRegionalProteomicsByStructure = async (structure) => {
                 segment: region
                 foldChange
                 pValAdj: adjPVal
-                tissueType
+                enrollmentCategory
                 sampleCount
             }
         }`;
@@ -456,10 +456,10 @@ export const fetchSummaryData = async (dataType) => {
     }
 }
 
-export const fetchTissueTypeSummaryCounts = async () => {
+export const fetchEnrollmentCategorySummaryCounts = async () => {
     let query = gql`
         query {
-            getTissueTypeSummaryData {
+            getEnrollmentCategorySummaryData {
                 akiCount
                 ckdCount
                 hrtCount
@@ -470,10 +470,10 @@ export const fetchTissueTypeSummaryCounts = async () => {
         query: query,
         fetchPolicy: 'cache-first'
     });
-    if (response.data && response.data.getTissueTypeSummaryData) {
-        return response.data.getTissueTypeSummaryData[0];
+    if (response.data && response.data.getEnrollmentCategorySummaryData) {
+        return response.data.getEnrollmentCategorySummaryData[0];
     }else {
-        store.dispatch(sendMessageToBackend("Could not retrieve tissue summary: " + response.error));
+        store.dispatch(sendMessageToBackend("Could not retrieve enrollment category summary: " + response.error));
     }
 }
 
