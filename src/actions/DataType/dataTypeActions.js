@@ -33,7 +33,7 @@ export const setDataTypeAndRedirect = (dataType, props) => {
                 dispatch(setDataType("sc"));
                 window.open('/explorer/dataviz', '_self');
                 break;
-            case "Single-nucleus RNA-seq (snRNA-seq)	":
+            case "Single-nucleus RNA-seq (snRNA-seq)":
                 dispatch(setDataType("sn"));
                 window.open('/explorer/dataviz', '_self');
                 break;
