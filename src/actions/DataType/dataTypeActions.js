@@ -55,8 +55,9 @@ export const setDataTypeAndRedirect = (dataType, props) => {
                 window.open('https://metaspace2020.eu/datasets?prj=8f102fc4-62a8-11ec-89bf-bba413a122a2&q=_glyc', '_blank');
                 break
             case "Segmentation Masks & Pathomics Vectors":
-                var linkVariable = "PAS%20(Segmentation%20Masks)";
-                window.open('/spatial-viewer/size=n_20_n&filters%5B0%5D%5Bfield%5D=imagetype&filters%5B0%5D%5Bvalues%5D%5B0%5D=' + linkVariable +'&filters%5B0%5D%5Btype%5D=any', '_self')
+                var linkVariable = "PAS%20%28Segmentation%20Masks%29";
+                window.open('/spatial-viewer/?size=n_20_n&filters%5B0%5D%5Bfield%5D=imagetype&filters%5B0%5D%5Bvalues%5D%5B0%5D=' + linkVariable +'&filters%5B0%5D%5Btype%5D=any', '_self')
+                break
             default:
                 var linkVariable = dataType.replaceAll(" ", "%20")
                 window.open('/spatial-viewer/?size=n_20_n&filters%5B0%5D%5Bfield%5D=datatype&filters%5B0%5D%5Bvalues%5D%5B0%5D='+ linkVariable +'&filters%5B0%5D%5Btype%5D=any', '_self')
