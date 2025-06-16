@@ -59,7 +59,7 @@ export const setDataTypeAndRedirect = (dataType, props) => {
                 window.open('/spatial-viewer/?size=n_20_n&filters%5B0%5D%5Bfield%5D=imagetype&filters%5B0%5D%5Bvalues%5D%5B0%5D=' + linkVariable +'&filters%5B0%5D%5Btype%5D=any', '_self')
                 break
             default:
-                var linkVariable = dataType.replaceAll(" ", "%20")
+                linkVariable = dataType.replaceAll(" ", "%20")
                 window.open('/spatial-viewer/?size=n_20_n&filters%5B0%5D%5Bfield%5D=datatype&filters%5B0%5D%5Bvalues%5D%5B0%5D='+ linkVariable +'&filters%5B0%5D%5Btype%5D=any', '_self')
                 break
         }
