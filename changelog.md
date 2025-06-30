@@ -1,6 +1,32 @@
 # Changelog
 
-## Release 2.5 (unreleased)
+## Release 2.8 (unreleased)
+Brief summary:
+- update to common components to get new help menu options
+- updates to the -omics type table to include more data and be more data driven
+
+### Breking changes
+n/a
+
+---
+
+## Release 2.7 (SKIPPED)
+We are skipping this release version to keep the release version numbers more in sync with one another
+
+---
+
+## Release 2.6 (12/19/2024)
+Brief summary:
+- Fix bug in the tubule schematic
+- update backend variable names to be in line with new nomenclature
+- Added Collaborator Sites section on home page
+
+### Breaking changes
+n/a
+
+---
+
+## Release 2.5 (10/10/2024)
 Brief summary of what's in this release:
 - updated to use 'enrollmentCategory' instead of 'tissueType' in variables
 - updated code to call new graphql endpoints (because of renames)
@@ -9,7 +35,6 @@ Brief summary of what's in this release:
 
 ### Breaking changes
 This won't work with previous versions of pegasus-data because the names and structure of underlying graphql queries have been updated
-
 
 -----
 
