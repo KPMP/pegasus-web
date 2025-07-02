@@ -66,9 +66,9 @@ class GeneSummary extends Component {
         );
     }
 
-    handleLinkClick = (dataType) => {
-        handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene.symbol}`);
-        this.props.setDataType(dataType)
+    handleLinkClick = (dataTypeShort, dataType) => {
+        handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataTypeShort} and gene: ${this.props.gene.symbol}`);
+        this.props.setDataType(dataType, this.props);
     };
 
     getColumnExtensions() {
@@ -153,7 +153,7 @@ class GeneSummary extends Component {
 
     linkDataTypeCells(row) {
         if (this.dataTypeHasData(row) && this.dataTypeIsClickable(row.dataTypeShort)) {
-            return <button onClick={() => this.handleLinkClick(row.dataTypeShort)}
+            return <button onClick={() => this.handleLinkClick(row.dataTypeShort, row.dataType)}
                 type="button"
                 className="btn btn-link text-start p-0 table-column">
                 {row.dataType}
