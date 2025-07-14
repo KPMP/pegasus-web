@@ -97,7 +97,6 @@ import {
  ModuleRegistry.registerModules([ AllCommunityModule ]);
 
 const Grid = (rowData) => {
-    console.log(rowData)
     const [colDefs, setColDefs] = useState ([
         { headerName: "ABBR", field: "segment" },
         { headerName: "REGION", field: "segmentName"},
@@ -112,15 +111,24 @@ const Grid = (rowData) => {
         };
     }, []);
 
-    return (
-        <div style={{ width: "100%", height: "100%" }}>
-        <AgGridReact
-            rowData={rowData}
-            columnDefs={colDefs}
-            defaultColDef={defaultColDef}
-        />
-        </div>
-    );
+    if (rowData.length === 0) {
+        return (
+            <div style={{ width: "100%", height: "100%" }}>
+                Loading...
+            </div>
+        )
+
+    } else {
+        return (
+            <div style={{ width: "100%", height: "100%" }}>
+                <AgGridReact
+                    rowData={rowData}
+                    columnDefs={colDefs}
+                    defaultColDef={defaultColDef}
+                />
+            </div>
+        );
+    }
 }
 
 class RegionalTranscriptomicsTable extends Component {
