@@ -91,7 +91,11 @@ import { AgGridReact } from "ag-grid-react";
 import React, {Component, useState, useMemo} from "react";
 import { formatNumberToPrecision } from "../../helpers/Utils";
 import {Col} from "reactstrap";
-
+import {
+  ModuleRegistry, AllCommunityModule
+} from "ag-grid-community";
+ ModuleRegistry.registerModules([ AllCommunityModule ]);
+ 
 const Grid = (rowData) => {
     const [colDefs, setColDefs] = useState ([
         { headerName: "ABBR", field: "segment" },
