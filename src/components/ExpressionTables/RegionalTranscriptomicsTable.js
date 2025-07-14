@@ -95,7 +95,7 @@ import {
   ModuleRegistry, AllCommunityModule
 } from "ag-grid-community";
  ModuleRegistry.registerModules([ AllCommunityModule ]);
- 
+
 const Grid = (rowData) => {
     const [colDefs, setColDefs] = useState ([
         { headerName: "ABBR", field: "segment" },
@@ -124,6 +124,7 @@ const Grid = (rowData) => {
 
 class RegionalTranscriptomicsTable extends Component {
     render() {
+        console.log(this.props.data);
         return (
             <React.Fragment>
                 <Col lg='12'>
