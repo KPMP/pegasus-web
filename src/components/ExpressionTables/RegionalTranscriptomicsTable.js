@@ -92,7 +92,7 @@ import React, {Component, useState, useMemo} from "react";
 import { formatNumberToPrecision } from "../../helpers/Utils";
 import {Col} from "reactstrap";
 
-const Grid = () => {
+const Grid = (rowData) => {
     const [colDefs, setColDefs] = useState ([
         { headerName: "ABBR", field: "segment" },
         { headerName: "REGION", field: "segmentName"},
@@ -110,7 +110,7 @@ const Grid = () => {
     return (
         <div style={{ width: "100%", height: "100%" }}>
         <AgGridReact
-            rowData={this.props.data}
+            rowData={rowData}
             columnDefs={colDefs}
             defaultColDef={defaultColDef}
         />
@@ -124,7 +124,7 @@ class RegionalTranscriptomicsTable extends Component {
             <React.Fragment>
                 <Col lg='12'>
                     <div className="ag-theme-material img-fluid" style={{height: '100%', width: '100%'}}>
-                        <Grid />
+                        <Grid rowData={this.props.data}/>
                     </div>
                 </Col>
             </React.Fragment>
