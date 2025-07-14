@@ -1,6 +1,6 @@
 @import "kpmp-base.scss";
 @import "info-schematics.scss";
-@import "../node_modules/ag-grid-community/src/styles/ag-theme-alpine/sass/ag-theme-alpine-mixin";
+@import "../node_modules/ag-grid-community/styles/ag-theme-alpine.min.css";
 @import "../node_modules/kpmp-common-styles/index.scss";
 
 //importing pieces of bootstrap instead of importing all of bootstrap
@@ -8,7 +8,8 @@
 
 //pass variable overrides
 @import "../node_modules/bootstrap/scss/variables";
-@import "../node_modules/bootstrap/scss/mixins";
+
+@include ag.grid-styles();
 
 .hidden {
   display: none;

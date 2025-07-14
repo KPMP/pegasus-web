@@ -2,7 +2,7 @@ import React, {Component} from "react";
 
 import { AgGridColumn, AgGridReact } from 'ag-grid-react';
 import {Col} from "reactstrap";
-import 'ag-grid-community/dist/styles/ag-grid.css';
+import 'ag-grid-community/dist/ag-grid-community.js';
 import 'ag-grid-community/dist/styles/ag-theme-alpine.css';
 import 'ag-grid-community/dist/styles/ag-theme-bootstrap.css';
 import 'ag-grid-community/dist/styles/ag-theme-material.css';
