@@ -97,6 +97,7 @@ import {
  ModuleRegistry.registerModules([ AllCommunityModule ]);
 
 const Grid = (rowData) => {
+    console.log(rowData)
     const [colDefs, setColDefs] = useState ([
         { headerName: "ABBR", field: "segment" },
         { headerName: "REGION", field: "segmentName"},
@@ -124,7 +125,6 @@ const Grid = (rowData) => {
 
 class RegionalTranscriptomicsTable extends Component {
     render() {
-        console.log(this.props.data);
         return (
             <React.Fragment>
                 <Col lg='12'>
