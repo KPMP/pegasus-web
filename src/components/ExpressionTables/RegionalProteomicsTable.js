@@ -157,8 +157,8 @@ class RegionalProteomicsTable extends Component {
     }
 
     render() {
-        console.log(this.props.data)
         if (this.props.data && this.props.data.length > 0) {
+            console.log("first")
             return (
                 <React.Fragment>
                     <Col lg='12'>
@@ -169,6 +169,7 @@ class RegionalProteomicsTable extends Component {
                 </React.Fragment>
             );    
         } else {
+            console.log("last")
             return (
                 <React.Fragment>
                     <Col lg='12'>
