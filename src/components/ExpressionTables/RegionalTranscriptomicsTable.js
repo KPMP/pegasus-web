@@ -131,10 +131,16 @@ class RegionalTranscriptomicsTable extends Component {
             { headerName: "FOLD CHANGE", field: "foldChange", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175,
                 headerTooltip: 'Fold change of a gene is calculated by dividing the average expression of the gene in the segment of interest by its average expression in all other segments being compared.',
                 headerComponentParams: {
-                    icon: 'fa-circle-info'
-                }
+                    icon: 'fa-user',
+                },
+                sort: 'desc'
             },
-            { headerName: "ADJ P VALUE", field: "pValLog10", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175 },
+            { headerName: "ADJ P VALUE", field: "pValLog10", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175,
+                 headerTooltip: 'P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment of interest and its expression in all other segments.',
+                headerComponentParams: {
+                    icon: 'fa-cog',
+                }
+             },
         ];
     }
 
