@@ -114,12 +114,7 @@ import {
 
 class RegionalProteomicsTable extends Component {
     constructor(props) {
-        super(props);
-        // let rowData = [{segment:"", fdrConfidence: "", coveragePct:"", numPeptides: "", sampleCount: "", foldChange: 0, pValLog10: 0}]
-        // if (props.data.length > 0) {
-        //     rowData = props.data;
-        // } 
-        
+        super(props);        
         this.state = {
             columnDefs: this.createColumnDefs(),
             gridApi: null,
@@ -134,7 +129,6 @@ class RegionalProteomicsTable extends Component {
     }
 
     onGridReady= (params) => {
-        console.log(params)
         this.setState({gridApi: params.api, columnApi: params.columnApi})
         this.state.gridApi.sizeColumnsToFit();
         this.state.gridApi.refreshCells();
@@ -154,30 +148,16 @@ class RegionalProteomicsTable extends Component {
     }
 
     render() {
-        // if (this.props.data && this.props.data.length > 0) {
-            console.log(this.props.data)
-            return (
-                <React.Fragment>
-                    <Col lg='12'>
-                        <div style={{ width: "100%", height: "100%" }}>
-                            <AgGridReact columnDefs={this.state.columnDefs} rowData={this.props.data} onGridReady={this.onGridReady} debug
-                                showGrid={true} domLayout='autoHeight' />
-                        </div>
-                    </Col>
-                </React.Fragment>
-            );    
-        // } else {
-        //     return (
-        //         <React.Fragment>
-        //             <Col lg='12'>
-        //                 <div className="ag-theme-material img-fluid" style={{height: '100%', width: '100%'}}>
-        //                     Loading...
-        //                 </div>
-        //             </Col>
-        //         </React.Fragment>
-        //     );
-        // }
-
+        return (
+            <React.Fragment>
+                <Col lg='12'>
+                    <div style={{ width: "100%", height: "100%" }}>
+                        <AgGridReact columnDefs={this.state.columnDefs} rowData={this.props.data} onGridReady={this.onGridReady}
+                            showGrid={true} domLayout='autoHeight' />
+                    </div>
+                </Col>
+            </React.Fragment>
+        );    
     }
 }
 

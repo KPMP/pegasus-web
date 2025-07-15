@@ -96,48 +96,47 @@ import {
 } from "ag-grid-community";
  ModuleRegistry.registerModules([ AllCommunityModule ]);
 
-const Grid = (rowData) => {
-    const [colDefs, setColDefs] = useState ([
-        { headerName: "ABBR", field: "segment" },
-        { headerName: "REGION", field: "segmentName"},
-        { headerName: "# SAMPLES", field: "sampleCount"},
-        { headerName: "FOLD CHANGE", field: "foldChange", valueFormatter: params => formatNumberToPrecision(params.value, 3) },
-        { headerName: "ADJ P VALUE", field: "pValLog10", valueFormatter: params => formatNumberToPrecision(params.value, 3) },
-    ]);
-
-    const defaultColDef = useMemo(() => {
-        return {
-        flex: 1,
-        };
-    }, []);
-
-    if (rowData.length === 0) {
-        return (
-            <div style={{ width: "100%", height: "100%" }}>
-                Loading...
-            </div>
-        )
-
-    } else {
-        return (
-            <div style={{ width: "100%", height: "100%" }}>
-                <AgGridReact
-                    rowData={rowData}
-                    columnDefs={colDefs}
-                    defaultColDef={defaultColDef}
-                />
-            </div>
-        );
-    }
-}
 
 class RegionalTranscriptomicsTable extends Component {
+
+    constructor(props) {
+        super(props);        
+        this.state = {
+            columnDefs: this.createColumnDefs(),
+            gridApi: null,
+            columnApi: null,
+        }
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.data !== this.props.data && this.props.data.length > 0) {
+            this.state.gridApi.refreshCells()
+        }
+    }
+
+    onGridReady= (params) => {
+        this.setState({gridApi: params.api, columnApi: params.columnApi})
+        this.state.gridApi.sizeColumnsToFit();
+        this.state.gridApi.refreshCells();
+    }
+
+    createColumnDefs() {
+        return [
+            { headerName: "ABBR", field: "segment" },
+            { headerName: "REGION", field: "segmentName"},
+            { headerName: "# SAMPLES", field: "sampleCount"},
+            { headerName: "FOLD CHANGE", field: "foldChange", valueFormatter: params => formatNumberToPrecision(params.value, 3) },
+            { headerName: "ADJ P VALUE", field: "pValLog10", valueFormatter: params => formatNumberToPrecision(params.value, 3) },
+        ];
+    }
+
     render() {
         return (
             <React.Fragment>
                 <Col lg='12'>
-                    <div className="ag-theme-material img-fluid" style={{height: '100%', width: '100%'}}>
-                        <Grid rowData={this.props.data}/>
+                    <div className="ag-theme-material img-fluid">
+                        <AgGridReact columnDefs={this.state.columnDefs} rowData={this.props.data} onGridReady={this.onGridReady}
+                            showGrid={true} domLayout='autoHeight' />
                     </div>
                 </Col>
             </React.Fragment>
