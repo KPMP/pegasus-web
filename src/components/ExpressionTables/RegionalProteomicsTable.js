@@ -159,7 +159,7 @@ class RegionalProteomicsTable extends Component {
             return (
                 <React.Fragment>
                     <Col lg='12'>
-                        <div className="ag-material">
+                        <div className="ag-theme-material img-fluid">
                             <AgGridReact columnDefs={this.state.columnDefs} rowData={this.props.data} onGridReady={this.onGridReady} debug
                                 showGrid={true} />
                         </div>
