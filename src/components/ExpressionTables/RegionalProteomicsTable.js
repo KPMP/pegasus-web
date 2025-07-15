@@ -143,16 +143,13 @@ const Grid = () => {
 
 class RegionalProteomicsTable extends Component {
 
-    componentDidUpdate() {
-        Grid.setRowData(this.props.data)
-    }
 
     render() {
         return (
             <React.Fragment>
                 <Col lg='12'>
                     <div className="ag-theme-material img-fluid" style={{height: '100%', width: '100%'}}>
-                        <Grid />
+                        <Grid rowData={this.props.data}/>
                     </div>
                 </Col>
             </React.Fragment>
