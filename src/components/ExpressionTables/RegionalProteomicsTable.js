@@ -158,8 +158,8 @@ class RegionalProteomicsTable extends Component {
 
     render() {
         if (this.props.data && this.props.data.length > 0) {
+            console.log(this.props.data)
             return (
-                console.log(this.props.data)
                 <React.Fragment>
                     <Col lg='12'>
                         <div className="ag-theme-material img-fluid" style={{height: '100%', width: '100%'}}>
