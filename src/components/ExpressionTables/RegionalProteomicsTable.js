@@ -123,6 +123,9 @@ class RegionalProteomicsTable extends Component {
     }
 
     componentDidUpdate(prevProps) {
+        console.log("BEFORE")
+        console.log(this.props.data)
+        console.log(prevProps.data);
         if (prevProps.data !== this.props.data && this.props.data.length > 0) {
             console.log(this.props.data)
             this.setState({rowData: this.props.data})
