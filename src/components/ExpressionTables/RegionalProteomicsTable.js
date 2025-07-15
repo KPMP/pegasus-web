@@ -136,6 +136,7 @@ class RegionalProteomicsTable extends Component {
         console.log(params)
         this.setState({gridApi: params.api, columnApi: params.columnApi})
         this.state.gridApi.sizeColumnsToFit();
+        this.state.gridApi.refreshCells();
     }
 
     createColumnDefs() {
