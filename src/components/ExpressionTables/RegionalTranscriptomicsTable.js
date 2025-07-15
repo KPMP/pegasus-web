@@ -135,18 +135,20 @@ class RegionalTranscriptomicsTable extends Component {
     createColumnDefs() {
 
         return [
-            { headerName: "ABBR", field: "segment", width: 100 },
-            { headerName: "REGION", field: "segmentName", width: 255},
-            { headerName: "# SAMPLES", field: "sampleCount", width: 175},
-            { headerName: "STD DEVIATION", field: "stdDev", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175},
+            { headerName: "ABBR", field: "segment", width: 100, sortable: false },
+            { headerName: "REGION", field: "segmentName", width: 255, sortable: false},
+            { headerName: "# SAMPLES", field: "sampleCount", width: 175, sortable: false},
+            { headerName: "STD DEVIATION", field: "stdDev", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175, sortable: false},
             { headerName: "FOLD CHANGE", field: "foldChange", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175,
                 headerTooltip: 'Fold change of a gene is calculated by dividing the average expression of the gene in the segment of interest by its average expression in all other segments being compared.',
                 headerComponent: CustomHeader,
-                sort: 'desc'
+                sort: 'desc',
+                sortable: false
             },
             { headerName: "ADJ P VALUE", field: "pValLog10", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175,
                 headerTooltip: 'P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment of interest and its expression in all other segments.',
                 headerComponent: CustomHeader,
+                sortable: false
              },
         ];
     }
