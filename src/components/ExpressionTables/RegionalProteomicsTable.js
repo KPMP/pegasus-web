@@ -118,11 +118,11 @@ class RegionalProteomicsTable extends Component {
         }
     }
 
-    onGridReady(params) {
-        this.gridApi = params.api;
-        this.columnApi = params.columnApi;
-        this.gridApi.sizeColumnsToFit();
-    }
+    // onGridReady(params) {
+    //     this.gridApi = params.api;
+    //     this.columnApi = params.columnApi;
+    //     this.gridApi.sizeColumnsToFit();
+    // }
 
     createColumnDefs() {
         return [
@@ -142,7 +142,7 @@ class RegionalProteomicsTable extends Component {
             <React.Fragment>
                 <Col lg='12'>
                     <div className="ag-theme-material img-fluid" style={{height: '100%', width: '100%'}}>
-                        <AgGridReact columnDefs={this.state.columnDefs} rowData={this.props.data} onGridReady={this.onGridReady}/>
+                        <AgGridReact columnDefs={this.state.columnDefs} rowData={this.props.data} />
                     </div>
                 </Col>
             </React.Fragment>
