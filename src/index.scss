@@ -816,13 +816,6 @@ tr.MuiTableRow-root:nth-child(even) {
     background-color: white;
   }
 
-  .ag-row {
-    height: $cell-height !important;
-  }
-
-  .ag-cell {
-    line-height: $cell-height !important;
-  }
 
   .ag-row-odd {
     background-color: $odd-cell-background-color !important;
