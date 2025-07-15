@@ -110,46 +110,39 @@ import {
 } from "ag-grid-community";
  ModuleRegistry.registerModules([ AllCommunityModule ]);
 
-const Grid = () => {
-    const [colDefs, setColDefs] = useState ([
-        { headerName: "REGION", field: "segment" },
-        { headerName: "FDR CONFIDENCE", field: "fdrConfidence"},
-        { headerName: "COVERAGE %", field: "coveragePct"},
-        { headerName: "# PEPTIDES", field: "numPeptides"},
-        { headerName: "# UNIQUE PEPTIDES", field: "numUniquePeptides"},
-        { headerName: "# SAMPLES", field: "sampleCount"},
-        { headerName: "FOLD CHANGE", field: "foldChange", valueFormatter: params => formatNumberToPrecision(params.value, 3) },
-        { headerName: "ADJ P VALUE", field: "pValLog10", valueFormatter: params => formatNumberToPrecision(params.value, 3) },
-    ]);
-
-    const defaultColDef = useMemo(() => {
-        return {
-        flex: 1,
-        };
-    }, []);
-
-    const [rowData, setRowData] = useState([]);
-
-    return (
-        <div style={{ width: "100%", height: "100%" }}>
-        <AgGridReact
-            rowData={rowData}
-            columnDefs={colDefs}
-            defaultColDef={defaultColDef}
-        />
-        </div>
-    );
-}
-
 class RegionalProteomicsTable extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            columnDefs: this.createColumnDefs()
+        }
+    }
 
+    onGridReady(params) {
+        this.gridApi = params.api;
+        this.columnApi = params.columnApi;
+        this.gridApi.sizeColumnsToFit();
+    }
+
+    createColumnDefs() {
+        return [
+            { headerName: "REGION", field: "segment" },
+            { headerName: "FDR CONFIDENCE", field: "fdrConfidence"},
+            { headerName: "COVERAGE %", field: "coveragePct"},
+            { headerName: "# PEPTIDES", field: "numPeptides"},
+            { headerName: "# UNIQUE PEPTIDES", field: "numUniquePeptides"},
+            { headerName: "# SAMPLES", field: "sampleCount"},
+            { headerName: "FOLD CHANGE", field: "foldChange", valueFormatter: params => formatNumberToPrecision(params.value, 3) },
+            { headerName: "ADJ P VALUE", field: "pValLog10", valueFormatter: params => formatNumberToPrecision(params.value, 3) },
+        ];
+    }
 
     render() {
         return (
             <React.Fragment>
                 <Col lg='12'>
                     <div className="ag-theme-material img-fluid" style={{height: '100%', width: '100%'}}>
-                        <Grid rowData={this.props.data}/>
+                        <AgGridReact columnDefs={this.state.columnDefs} rowData={this.props.data} onGridReady={this.onGridReady}/>
                     </div>
                 </Col>
             </React.Fragment>
