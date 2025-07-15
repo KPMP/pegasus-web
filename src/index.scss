@@ -9,7 +9,6 @@
 //pass variable overrides
 @import "../node_modules/bootstrap/scss/variables";
 
-@include ag.grid-styles();
 
 .hidden {
   display: none;
