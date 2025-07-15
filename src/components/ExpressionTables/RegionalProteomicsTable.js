@@ -114,29 +114,29 @@ import { parseValue } from "graphql";
 class RegionalProteomicsTable extends Component {
     constructor(props) {
         super(props);
-        let rowData = [{segment:"", fdrConfidence: "", coveragePct:"", numPeptides: "", sampleCount: "", foldChange: 0, pValLog10: 0}]
-        if (props.data.length > 0) {
-            rowData = props.data;
-        } 
+        // let rowData = [{segment:"", fdrConfidence: "", coveragePct:"", numPeptides: "", sampleCount: "", foldChange: 0, pValLog10: 0}]
+        // if (props.data.length > 0) {
+        //     rowData = props.data;
+        // } 
         
         this.state = {
             columnDefs: this.createColumnDefs(),
             gridApi: null,
             columnApi: null,
-            rowData: rowData
+            // rowData: rowData
         }
     }
 
-    componentDidUpdate(prevProps) {
-        console.log("BEFORE")
-        console.log(this.props.data)
-        console.log(prevProps.data);
-        if (prevProps.data !== this.props.data && this.props.data.length > 0) {
-            console.log("AFTER")
-            console.log(this.props.data)
-            this.setState({rowData: this.props.data})
-        }
-    }
+    // componentDidUpdate(prevProps) {
+    //     console.log("BEFORE")
+    //     console.log(this.props.data)
+    //     console.log(prevProps.data);
+    //     if (prevProps.data !== this.props.data && this.props.data.length > 0) {
+    //         console.log("AFTER")
+    //         console.log(this.props.data)
+    //         this.setState({rowData: this.props.data})
+    //     }
+    // }
 
     onGridReady= (params) => {
         this.setState({gridApi: params.api, columnApi: params.columnApi})
@@ -157,6 +157,7 @@ class RegionalProteomicsTable extends Component {
     }
 
     render() {
+        console.log(this.props.data)
         if (this.props.data && this.props.data.length > 0) {
             return (
                 <React.Fragment>
