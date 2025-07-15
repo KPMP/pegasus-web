@@ -80,9 +80,13 @@ class RNASeqViz extends Component {
     }
 
     getGeneExpression = async (dataType, gene, cellType, enrollmentCategory, fetchPolicy) => {
+        console.log("fetching gene expression data")
         const results = await fetchGeneExpression(dataType, gene, cellType, enrollmentCategory, fetchPolicy);
+        console.log("got results")
         const cleanResults = this.cleanResults(results);
+        console.log("cleaned results")
         this.setState({ geneExpressionData: cleanResults, isLoading: false });
+        console.log("set state")
     }
 
     getUmapPoints = async (dataType, gene, enrollmentCategory, fetchPolicy) => {
