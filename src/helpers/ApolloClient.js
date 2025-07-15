@@ -4,6 +4,7 @@ import packageJson from '../../package.json';
 import 'isomorphic-unfetch';
 import { sendMessageToBackend } from '../actions/Error/errorActions';
 import { store } from '../App'
+import { data } from "autoprefixer";
 
 const axios = require('axios').default;
 
@@ -215,35 +216,57 @@ export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
 }
 
 export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enrollmentCategory) => {
-	const response = await axios({
-		url: getBaseURL() + '/graphql',
-		method: 'post',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		data: {
-			query: `{geneExpressionSummary(
-				dataType: "${dataType}"
-				geneSymbol: "${geneSymbol}"
-				cellType: "${cellType}"
-				enrollmentCategory: "${enrollmentCategory}"
-				) {
-					id
-					enrollmentCategory
-					gene
-					pVal
-					pValAdj
-					foldChange
-					pct1
-					pct2
-					avgExp
-					cluster
-					clusterName
-					cellCount
-					dataType
-				}
-		}`,variables:{}}
-	})
+    let query = gql`
+        query {
+            geneExpressionSummary(dataType:"${dataType}", geneSymbol:"${geneSymbol}", cellType: "${cellType}", enrollmentCategory: ${enrollmentCategory}") {
+                id
+                enrollmentCategory
+                gene
+                pVal
+                pValAdj
+                foldChange
+                pct1
+                pct2
+                avgExp
+                cluster
+                clusterName
+                cellCount
+            }
+        }
+    `;
+	// const response = await axios({
+	// 	url: getBaseURL() + '/graphql',
+	// 	method: 'post',
+	// 	headers: {
+	// 		'Content-Type': 'application/json',
+	// 	},
+	// 	data: {
+	// 		query: `{geneExpressionSummary(
+	// 			dataType: "${dataType}"
+	// 			geneSymbol: "${geneSymbol}"
+	// 			cellType: "${cellType}"
+	// 			enrollmentCategory: "${enrollmentCategory}"
+	// 			) {
+	// 				id
+	// 				enrollmentCategory
+	// 				gene
+	// 				pVal
+	// 				pValAdj
+	// 				foldChange
+	// 				pct1
+	// 				pct2
+	// 				avgExp
+	// 				cluster
+	// 				clusterName
+	// 				cellCount
+	// 				dataType
+	// 			}
+	// 	}`,variables:{}}
+	// })
+    const response = await apolloClient.query({
+        query: query,
+        fetchPolicy: 'cache-first'
+    });
 	if(response.data && response.data.data && response.data.data.geneExpressionSummary) {
 		return response.data.data.geneExpressionSummary;
 	} else {
