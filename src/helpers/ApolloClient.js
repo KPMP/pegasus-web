@@ -232,37 +232,8 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enroll
                 clusterName
                 cellCount
             }
-        }
-    `;
-	// const response = await axios({
-	// 	url: getBaseURL() + '/graphql',
-	// 	method: 'post',
-	// 	headers: {
-	// 		'Content-Type': 'application/json',
-	// 	},
-	// 	data: {
-	// 		query: `{geneExpressionSummary(
-	// 			dataType: "${dataType}"
-	// 			geneSymbol: "${geneSymbol}"
-	// 			cellType: "${cellType}"
-	// 			enrollmentCategory: "${enrollmentCategory}"
-	// 			) {
-	// 				id
-	// 				enrollmentCategory
-	// 				gene
-	// 				pVal
-	// 				pValAdj
-	// 				foldChange
-	// 				pct1
-	// 				pct2
-	// 				avgExp
-	// 				cluster
-	// 				clusterName
-	// 				cellCount
-	// 				dataType
-	// 			}
-	// 	}`,variables:{}}
-	// })
+        }`;
+	
     const response = await apolloClient.query({
         query: query,
         fetchPolicy: 'cache-first'
