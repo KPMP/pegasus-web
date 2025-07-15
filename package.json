@@ -6,7 +6,7 @@
   "dependencies": {
     "@apollo/client": "3.3.7",
     "@babel/polyfill": "7.12.1",
-    "@babel/runtime-corejs3": "7.22.6",
+    "@babel/runtime-corejs3": "7.28.0",
     "@devexpress/dx-react-core": "4.0.5",
     "@devexpress/dx-react-grid": "4.0.5",
     "@devexpress/dx-react-grid-bootstrap4": "4.0.5",
@@ -46,7 +46,6 @@
     "react-plotly.js": "2.6.0",
     "react-redux": "7.2.2",
     "react-router-dom": "5.2.0",
-    "react-scripts": "5.0.1",
     "react-select": "4.0.0",
     "reactstrap": "9.2.0",
     "redux": "4.0.5",
@@ -60,7 +59,8 @@
   "devDependencies": {
     "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "jest-canvas-mock": "^2.5.2",
-    "sass": "1.64.0"
+    "sass": "1.64.0",
+    "react-scripts": "5.0.1"
   },
   "scripts": {
     "start": "npm-run-all --max-old-space-size=8192 -p watch-css start-js",
