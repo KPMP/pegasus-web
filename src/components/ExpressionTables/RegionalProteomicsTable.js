@@ -157,15 +157,28 @@ class RegionalProteomicsTable extends Component {
     }
 
     render() {
-        return (
-            <React.Fragment>
-                <Col lg='12'>
-                    <div className="ag-theme-material img-fluid" style={{height: '100%', width: '100%'}}>
-                        <AgGridReact columnDefs={this.state.columnDefs} rowData={this.state.data} onGridReady={this.onGridReady}/>
-                    </div>
-                </Col>
-            </React.Fragment>
-        );
+        if (this.props.data && this.props.data.length > 0) {
+            return (
+                <React.Fragment>
+                    <Col lg='12'>
+                        <div className="ag-theme-material img-fluid" style={{height: '100%', width: '100%'}}>
+                            <AgGridReact columnDefs={this.state.columnDefs} rowData={this.props.data} onGridReady={this.onGridReady}/>
+                        </div>
+                    </Col>
+                </React.Fragment>
+            );    
+        } else {
+            return (
+                <React.Fragment>
+                    <Col lg='12'>
+                        <div className="ag-theme-material img-fluid" style={{height: '100%', width: '100%'}}>
+                            Loading...
+                        </div>
+                    </Col>
+                </React.Fragment>
+            );
+        }
+
     }
 }
 
