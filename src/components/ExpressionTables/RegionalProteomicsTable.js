@@ -102,7 +102,7 @@
 // }
 
 import { AgGridReact } from "ag-grid-react";
-import React, {Component, useState, useMemo} from "react";
+import React, {Component, useState, useMemo, useCallback} from "react";
 import { formatNumberToPrecision } from "../../helpers/Utils";
 import {Col} from "reactstrap";
 import {
@@ -110,7 +110,7 @@ import {
 } from "ag-grid-community";
  ModuleRegistry.registerModules([ AllCommunityModule ]);
 
-const Grid = (rowData) => {
+const Grid = () => {
     const [colDefs, setColDefs] = useState ([
         { headerName: "REGION", field: "segment" },
         { headerName: "FDR CONFIDENCE", field: "fdrConfidence"},
@@ -128,6 +128,8 @@ const Grid = (rowData) => {
         };
     }, []);
 
+    const [rowData, setRowData] = useState([]);
+
     return (
         <div style={{ width: "100%", height: "100%" }}>
         <AgGridReact
@@ -140,12 +142,17 @@ const Grid = (rowData) => {
 }
 
 class RegionalProteomicsTable extends Component {
+
+    componentDidUpdate() {
+        Grid.setRowData(this.props.data)
+    }
+
     render() {
         return (
             <React.Fragment>
                 <Col lg='12'>
                     <div className="ag-theme-material img-fluid" style={{height: '100%', width: '100%'}}>
-                        <Grid rowData={this.props.data}/>
+                        <Grid />
                     </div>
                 </Col>
             </React.Fragment>
