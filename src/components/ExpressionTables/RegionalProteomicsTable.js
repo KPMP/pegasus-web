@@ -161,7 +161,7 @@ class RegionalProteomicsTable extends Component {
                     <Col lg='12'>
                         <div style={{ width: "100%", height: "100%" }}>
                             <AgGridReact columnDefs={this.state.columnDefs} rowData={this.props.data} onGridReady={this.onGridReady} debug
-                                showGrid={true} />
+                                showGrid={true} domLayout='autoHeight' />
                         </div>
                     </Col>
                 </React.Fragment>
