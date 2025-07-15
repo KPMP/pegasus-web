@@ -108,6 +108,7 @@ import {Col} from "reactstrap";
 import {
   ModuleRegistry, AllCommunityModule
 } from "ag-grid-community";
+import { parseValue } from "graphql";
  ModuleRegistry.registerModules([ AllCommunityModule ]);
 
 class RegionalProteomicsTable extends Component {
@@ -117,12 +118,13 @@ class RegionalProteomicsTable extends Component {
             columnDefs: this.createColumnDefs(),
             gridApi: null,
             columnApi: null,
-            rowData: []
+            rowData: [{segment:"", fdrConfidence: "", coveragePct:"", numPeptides: "", sampleCount: "", foldChange: 0, pValLog10: 0}]
         }
     }
 
     componentDidUpdate(prevProps) {
         if (prevProps.data !== this.props.data) {
+            console.log(this.props.data)
             this.setState({rowData: this.props.data})
         }
     }
