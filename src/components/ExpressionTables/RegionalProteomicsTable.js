@@ -114,11 +114,10 @@ import { parseValue } from "graphql";
 class RegionalProteomicsTable extends Component {
     constructor(props) {
         super(props);
+        let rowData = [{segment:"", fdrConfidence: "", coveragePct:"", numPeptides: "", sampleCount: "", foldChange: 0, pValLog10: 0}]
         if (props.data.length > 0) {
             rowData = props.data;
-        } else {
-            rowData = [{segment:"", fdrConfidence: "", coveragePct:"", numPeptides: "", sampleCount: "", foldChange: 0, pValLog10: 0}]
-        }
+        } 
         
         this.state = {
             columnDefs: this.createColumnDefs(),
