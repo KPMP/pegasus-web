@@ -121,8 +121,10 @@ class RegionalProteomicsTable extends Component {
         }
     }
 
-    componentDidUpdate(props) {
-        this.setState({rowData: props.data})
+    componentDidUpdate(prevProps) {
+        if (prevProps.data !== this.props.data) {
+            this.setState({rowData: this.props.data})
+        }
     }
 
     onGridReady= (params) => {
