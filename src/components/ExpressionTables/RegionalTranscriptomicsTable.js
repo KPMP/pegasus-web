@@ -130,9 +130,10 @@ class RegionalTranscriptomicsTable extends Component {
                     <span data-ref="eSortAsc" class="ag-header-icon ag-sort-ascending-icon"></span>
                     <span data-ref="eSortDesc" class="ag-header-icon ag-sort-descending-icon"></span>
                     <span data-ref="eSortNone" class="ag-header-icon ag-sort-none-icon"></span>
-                    ** <span data-ref="eText" class="ag-header-cell-text" role="columnheader"></span>
-                    <span className="icon-info">
-                        <FontAwesomeIcon className='kpmp-light-blue'  id='fold-change-tt' icon={faInfoCircle} />
+                    <span data-ref="eText" class="ag-header-cell-text" role="columnheader">
+                        <span className="icon-info">
+                            <FontAwesomeIcon className='kpmp-light-blue'  id='fold-change-tt' icon={faInfoCircle} />
+                        </span>
                     </span>
                     <span data-ref="eFilter" class="ag-header-icon ag-filter-icon"></span>
                   </div>
