@@ -94,6 +94,9 @@ import {Col} from "reactstrap";
 import {
   ModuleRegistry, AllCommunityModule
 } from "ag-grid-community";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import {faInfoCircle} from "@fortawesome/free-solid-svg-icons";
+
  ModuleRegistry.registerModules([ AllCommunityModule ]);
 
 
@@ -121,12 +124,31 @@ class RegionalTranscriptomicsTable extends Component {
     }
 
     createColumnDefs() {
+        let infoColumnTemplate = `<div class="ag-cell-label-container" role="presentation">
+                  <span data-ref="eMenu" class="ag-header-icon ag-header-cell-menu-button"></span>
+                  <span data-ref="eFilterButton" class="ag-header-icon ag-header-cell-filter-button"></span>
+                  <div data-ref="eLabel" class="ag-header-cell-label" role="presentation">
+                    <span data-ref="eSortOrder" class="ag-header-icon ag-sort-order"></span>
+                    <span data-ref="eSortAsc" class="ag-header-icon ag-sort-ascending-icon"></span>
+                    <span data-ref="eSortDesc" class="ag-header-icon ag-sort-descending-icon"></span>
+                    <span data-ref="eSortNone" class="ag-header-icon ag-sort-none-icon"></span>
+                    ** <span data-ref="eText" class="ag-header-cell-text" role="columnheader"></span>
+                    <span className="icon-info">
+                        <FontAwesomeIcon className='kpmp-light-blue'  id='fold-change-tt' icon={faInfoCircle} />
+                    </span>
+                    <span data-ref="eFilter" class="ag-header-icon ag-filter-icon"></span>
+                  </div>
+                </div>`;
+
         return [
             { headerName: "ABBR", field: "segment", width: 100 },
             { headerName: "REGION", field: "segmentName", width: 255},
             { headerName: "# SAMPLES", field: "sampleCount", width: 175},
             { headerName: "STD DEVIATION", field: "stdDev", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175},
-            { headerName: "FOLD CHANGE", field: "foldChange", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175 },
+            { headerName: "FOLD CHANGE", field: "foldChange", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175,
+                headerTooltip: 'Fold change of a gene is calculated by dividing the average expression of the gene in the segment of interest by its average expression in all other segments being compared.',
+                template: infoColumnTemplate
+            },
             { headerName: "ADJ P VALUE", field: "pValLog10", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175 },
         ];
     }
