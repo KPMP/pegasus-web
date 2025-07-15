@@ -123,20 +123,14 @@ class RegionalProteomicsTable extends Component {
             columnDefs: this.createColumnDefs(),
             gridApi: null,
             columnApi: null,
-            // rowData: rowData
         }
     }
 
-    // componentDidUpdate(prevProps) {
-    //     console.log("BEFORE")
-    //     console.log(this.props.data)
-    //     console.log(prevProps.data);
-    //     if (prevProps.data !== this.props.data && this.props.data.length > 0) {
-    //         console.log("AFTER")
-    //         console.log(this.props.data)
-    //         this.setState({rowData: this.props.data})
-    //     }
-    // }
+    componentDidUpdate(prevProps) {
+        if (prevProps.data !== this.props.data && this.props.data.length > 0) {
+            this.state.gridApi.refreshCells()
+        }
+    }
 
     onGridReady= (params) => {
         this.setState({gridApi: params.api, columnApi: params.columnApi})
