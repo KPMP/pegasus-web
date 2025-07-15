@@ -122,11 +122,12 @@ class RegionalTranscriptomicsTable extends Component {
 
     createColumnDefs() {
         return [
-            { headerName: "ABBR", field: "segment" },
-            { headerName: "REGION", field: "segmentName"},
-            { headerName: "# SAMPLES", field: "sampleCount"},
-            { headerName: "FOLD CHANGE", field: "foldChange", valueFormatter: params => formatNumberToPrecision(params.value, 3) },
-            { headerName: "ADJ P VALUE", field: "pValLog10", valueFormatter: params => formatNumberToPrecision(params.value, 3) },
+            { headerName: "ABBR", field: "segment", width: 100 },
+            { headerName: "REGION", field: "segmentName", width: 255},
+            { headerName: "# SAMPLES", field: "sampleCount", width: 175},
+            { headerName: "STD DEVIATION", field: "stdDev", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175},
+            { headerName: "FOLD CHANGE", field: "foldChange", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175 },
+            { headerName: "ADJ P VALUE", field: "pValLog10", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175 },
         ];
     }
 

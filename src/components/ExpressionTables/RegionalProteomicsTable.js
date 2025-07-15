@@ -136,14 +136,14 @@ class RegionalProteomicsTable extends Component {
 
     createColumnDefs() {
         return [
-            { headerName: "REGION", field: "segment" },
-            { headerName: "FDR CONFIDENCE", field: "fdrConfidence"},
-            { headerName: "COVERAGE %", field: "coveragePct"},
-            { headerName: "# PEPTIDES", field: "numPeptides"},
-            { headerName: "# UNIQUE PEPTIDES", field: "numUniquePeptides"},
-            { headerName: "# SAMPLES", field: "sampleCount"},
-            { headerName: "FOLD CHANGE", field: "foldChange", valueFormatter: params => formatNumberToPrecision(params.value, 3) },
-            { headerName: "ADJ P VALUE", field: "pValLog10", valueFormatter: params => formatNumberToPrecision(params.value, 3) },
+            { headerName: "REGION", field: "segment", width: 125 },
+            { headerName: "FDR CONFIDENCE", field: "fdrConfidence", width: 150},
+            { headerName: "COVERAGE %", field: "coveragePct", width: 150},
+            { headerName: "# PEPTIDES", field: "numPeptides", width: 150},
+            { headerName: "# UNIQUE PEPTIDES", field: "numUniquePeptides", width: 175},
+            { headerName: "# SAMPLES", field: "sampleCount", width: 125},
+            { headerName: "FOLD CHANGE", field: "foldChange", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175 },
+            { headerName: "ADJ P VALUE", field: "pValLog10", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175 },
         ];
     }
 
