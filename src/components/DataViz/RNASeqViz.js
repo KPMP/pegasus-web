@@ -24,7 +24,7 @@ class RNASeqViz extends Component {
     };
 
     cleanResults = (results) => {
-        console.log(results.clusterName)
+        console.log(results)
         return results.filter((result) => result.clusterName !== "TOTAL CELLS: ");
     };
 
@@ -83,7 +83,7 @@ class RNASeqViz extends Component {
     getGeneExpression = async (dataType, gene, cellType, enrollmentCategory, fetchPolicy) => {
         console.log("fetching gene expression data")
         const results = await fetchGeneExpression(dataType, gene, cellType, enrollmentCategory, fetchPolicy);
-        console.log("got results")
+        console.log(results)
         const cleanResults = this.cleanResults(results);
         console.log("cleaned results")
         this.setState({ geneExpressionData: cleanResults, isLoading: false });
