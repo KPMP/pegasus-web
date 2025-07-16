@@ -139,6 +139,7 @@ export const fetchClusterHierarchy = async (cellType) => {
 }
 
 export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') => {
+    console.log("get data type summary info")
     const query = gql`
       query {
                 getDataTypeSummaryInformation
@@ -169,7 +170,7 @@ export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') 
 }
 
 export const fetchPlotlyData = async (dataType, geneSymbol, enrollmentCategory, fetchPolicy = 'cache-first') => {
-
+    console.log("Get plotly data")
     const query = gql`
         query {
             getUmapPlotData(dataType: "${dataType}", geneSymbol: "${geneSymbol}", enrollmentCategory: "${enrollmentCategory}") {
@@ -202,6 +203,7 @@ export const fetchPlotlyData = async (dataType, geneSymbol, enrollmentCategory, 
 }
 
 export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
+    console.log("get data types for concept")
     const response = await apolloClient.query({
         query: gql`
             query{
@@ -216,7 +218,7 @@ export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
 }
 
 export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enrollmentCategory) => {
-    console.log("in here")
+    console.log("in gene expression summary")
     let query = gql`
         query {
             geneExpressionSummary(dataType:"${dataType}", geneSymbol:"${geneSymbol}", cellType: "${cellType}", enrollmentCategory: ${enrollmentCategory}") {
