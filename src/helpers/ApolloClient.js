@@ -216,54 +216,54 @@ export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
 
 export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enrollmentCategory) => {
     console.log("in gene expression summary")
-    // const query = gql`
-    //     query {
-    //         { geneExpressionSummary(
-	// 			dataType: "${dataType}"
-	// 			geneSymbol: "${geneSymbol}"
-	// 			cellType: "${cellType}"
-	// 			enrollmentCategory: "${enrollmentCategory}"
-	// 			) {
-	// 				id
-	// 				enrollmentCategory
-	// 				gene
-	// 				pVal
-	// 				pValAdj
-	// 				foldChange
-	// 				pct1
-	// 				pct2
-	// 				avgExp
-	// 				cluster
-	// 				clusterName
-	// 				cellCount
-	// 				dataType
-	// 			}
-    //     }}`;
-
-      let query = gql`
+    const query = gql`
         query {
-            getRPGeneExpressionByEnrollment(geneSymbol: "${geneSymbol}") {
-                accession
-                rpExpressionByEnrollmentCategory {
-                  all {
-                        id
-                        geneSymbol
-                        fdrConfidence
-                        accession
-                        description
-                        coveragePct
-                        numPeptides
-                        numUniquePeptides
-                        comparison
-                        segment: region
-                        foldChange
-                        pValLog10: adjPVal
-                        enrollmentCategory
-                        sampleCount
-                  }
-                }
-            }
+             geneExpressionSummary(
+				dataType: "${dataType}"
+				geneSymbol: "${geneSymbol}"
+				cellType: "${cellType}"
+				enrollmentCategory: "${enrollmentCategory}"
+				) {
+					id
+					enrollmentCategory
+					gene
+					pVal
+					pValAdj
+					foldChange
+					pct1
+					pct2
+					avgExp
+					cluster
+					clusterName
+					cellCount
+					dataType
+				}
         }`;
+
+    //   let query = gql`
+    //     query {
+    //         geneExpressionSummary(geneSymbol: "${geneSymbol}") {
+    //             accession
+    //             rpExpressionByEnrollmentCategory {
+    //               all {
+    //                     id
+    //                     geneSymbol
+    //                     fdrConfidence
+    //                     accession
+    //                     description
+    //                     coveragePct
+    //                     numPeptides
+    //                     numUniquePeptides
+    //                     comparison
+    //                     segment: region
+    //                     foldChange
+    //                     pValLog10: adjPVal
+    //                     enrollmentCategory
+    //                     sampleCount
+    //               }
+    //             }
+    //         }
+    //     }`;
 
     console.log(query)
     const response = await apolloClient.query({
