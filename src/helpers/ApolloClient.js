@@ -222,32 +222,39 @@ export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
 
 export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enrollmentCategory) => {
     console.log("in gene expression summary")
-    let query = gql`
-        query {
-            geneExpressionSummary(dataType:"${dataType}", geneSymbol:"${geneSymbol}", cellType: "${cellType}", enrollmentCategory: ${enrollmentCategory}") {
-                id
-                enrollmentCategory
-                gene
-                pVal
-                pValAdj
-                foldChange
-                pct1
-                pct2
-                avgExp
-                cluster
-                clusterName
-                cellCount
-            }
-        }`;
-    const response = await apolloClient.query({
-        query: query,
-        fetchPolicy: 'cache-first'
-    });
+    const response = await axios({
+		url: getBaseURL() + '/graphql',
+		method: 'post',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		data: {
+			query: `{geneExpressionSummary(
+				dataType: "${dataType}"
+				geneSymbol: "${geneSymbol}"
+				cellType: "${cellType}"
+				enrollmentCategory: "${enrollmentCategory}"
+				) {
+					id
+					enrollmentCategory
+					gene
+					pVal
+					pValAdj
+					foldChange
+					pct1
+					pct2
+					avgExp
+					cluster
+					clusterName
+					cellCount
+					dataType
+				}
+		}`,variables:{}}
+	})
 	if(response.data && response.data.data && response.data.data.geneExpressionSummary) {
-        console.log("got gene expression summary info")
+        console.log("got gene expression summary")
 		return response.data.data.geneExpressionSummary;
 	} else {
-        console.log(response.error)
 		store.dispatch(sendMessageToBackend("Could not retrieve gene expression data: " + response.error));
 	}
 };
