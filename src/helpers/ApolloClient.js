@@ -171,7 +171,7 @@ export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') 
 }
 
 export const fetchPlotlyData = async (dataType, geneSymbol, enrollmentCategory, fetchPolicy = 'cache-first') => {
-    console.log("Get plotly data"))
+    console.log("Get plotly data")
     const query = gql`
         query {
             getUmapPlotData(dataType: "${dataType}", geneSymbol: "${geneSymbol}", enrollmentCategory: "${enrollmentCategory}") {
