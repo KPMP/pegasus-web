@@ -265,13 +265,14 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enroll
     //         }
     //     }`;
 
-    console.log(query)
     const response = await apolloClient.query({
-        query: query
+        query: query,
+        fetchPolicy: 'no-cache'
     });
 
 	if(response.data && response.data.data && response.data.data.geneExpressionSummary) {
         console.log("got gene expression summary")
+        console.log(response)
 		return response.data.data.geneExpressionSummary;
 	} else {
 		store.dispatch(sendMessageToBackend("Could not retrieve gene expression data: " + response.error));
