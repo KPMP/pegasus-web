@@ -219,9 +219,9 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enroll
     const query = gql`
         query {
              geneExpressionSummary(
-				dataType: "${dataType}"
-				geneSymbol: "${geneSymbol}"
-				cellType: "${cellType}"
+				dataType: "${dataType}",
+				geneSymbol: "${geneSymbol}",
+				cellType: "${cellType}",
 				enrollmentCategory: "${enrollmentCategory}"
 				) {
 					id
