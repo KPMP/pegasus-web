@@ -243,7 +243,7 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enroll
         query: query
     });
 
-	if(response.data && response.data.data && response.data.data.geneExpressionSummary) {
+	if(response.data && response.data.geneExpressionSummary) {
         console.log(response.data)
 		return response.data.data.geneExpressionSummary;
 	} else {
