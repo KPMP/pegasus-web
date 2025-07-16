@@ -218,7 +218,7 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enroll
     console.log("in gene expression summary")
     const query = gql`
         query {
-            {geneExpressionSummary(
+            { geneExpressionSummary(
 				dataType: "${dataType}"
 				geneSymbol: "${geneSymbol}"
 				cellType: "${cellType}"
@@ -238,7 +238,7 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enroll
 					cellCount
 					dataType
 				}
-		}`;
+        }}`;
 
     const response = await apolloClient.query({
         query: query
