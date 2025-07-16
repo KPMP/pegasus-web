@@ -160,6 +160,7 @@ export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') 
         fetchPolicy: fetchPolicy
     });
     if (response.data && response.data.getDataTypeSummaryInformation) {
+        console.log("got data type summary info")
         return response.data.getDataTypeSummaryInformation;
     } else {
         console.log('response.error',response.error)
@@ -170,10 +171,7 @@ export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') 
 }
 
 export const fetchPlotlyData = async (dataType, geneSymbol, enrollmentCategory, fetchPolicy = 'cache-first') => {
-    console.log("Get plotly data")
-    console.log(dataType)
-    console.log(geneSymbol)
-    console.log(enrollmentCategory)
+    console.log("Get plotly data"))
     const query = gql`
         query {
             getUmapPlotData(dataType: "${dataType}", geneSymbol: "${geneSymbol}", enrollmentCategory: "${enrollmentCategory}") {
@@ -199,6 +197,7 @@ export const fetchPlotlyData = async (dataType, geneSymbol, enrollmentCategory, 
     });
 
     if (response.data && response.data.getUmapPlotData) {
+        console.log("got plotly data")
         return response.data.getUmapPlotData;
     } else {
         store.dispatch(sendMessageToBackend("Could not retrieve UMAP plot data: " + response.error));
@@ -214,6 +213,7 @@ export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
             }`
     });
     if (response.data && response.data) {
+        console.log("got data types for concep")
         return response.data;
     } else {
         store.dispatch(sendMessageToBackend("Could not retrieve data types: " + response.error));
@@ -239,13 +239,12 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enroll
                 cellCount
             }
         }`;
-	console.log("before call to get data")
     const response = await apolloClient.query({
         query: query,
         fetchPolicy: 'cache-first'
     });
-    console.log("after call")
 	if(response.data && response.data.data && response.data.data.geneExpressionSummary) {
+        console.log("got gene expression summary info")
 		return response.data.data.geneExpressionSummary;
 	} else {
         console.log(response.error)
