@@ -240,6 +240,7 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enroll
 				}
         }}`;
 
+    console.log(query)
     const response = await apolloClient.query({
         query: query
     });
