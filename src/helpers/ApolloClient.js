@@ -279,7 +279,8 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enroll
         console.log(response)
 		return response.data.data.geneExpressionSummary;
 	} else {
-		store.dispatch(sendMessageToBackend("Could not retrieve gene expression data: " + response.error));
+        console.log(response)
+		// store.dispatch(sendMessageToBackend("Could not retrieve gene expression data: " + response.error));
 	}
 };
 
