@@ -216,10 +216,10 @@ export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
 
 export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enrollmentCategory) => {
     console.log("in gene expression summary")
-    console.log(dataType)
-    console.log(geneSymbol)
-    console.log(cellType)
-    console.log(enrollmentCategory)
+    console.log("[",dataType,"]")
+    console.log("[",geneSymbol,"]")
+    console.log("[",cellType,"]")
+    console.log("[",enrollmentCategory,"]")
     const query = gql`
         query {
              geneExpressionSummary(
