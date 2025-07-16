@@ -24,6 +24,7 @@ class RNASeqViz extends Component {
     };
 
     cleanResults = (results) => {
+        console.log(results.clusterName)
         return results.filter((result) => result.clusterName !== "TOTAL CELLS: ");
     };
 

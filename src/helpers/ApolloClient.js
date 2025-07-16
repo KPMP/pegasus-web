@@ -215,11 +215,6 @@ export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
 }
 
 export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enrollmentCategory) => {
-    console.log("in gene expression summary")
-    console.log("["+dataType+"]")
-    console.log("["+geneSymbol+"]")
-    console.log("["+cellType+"]")
-    console.log("["+enrollmentCategory+"]")
     const query = gql`
         query {
              geneExpressionSummary(
@@ -244,43 +239,15 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enroll
 				}
         }`;
 
-    //   let query = gql`
-    //     query {
-    //         geneExpressionSummary(geneSymbol: "${geneSymbol}") {
-    //             accession
-    //             rpExpressionByEnrollmentCategory {
-    //               all {
-    //                     id
-    //                     geneSymbol
-    //                     fdrConfidence
-    //                     accession
-    //                     description
-    //                     coveragePct
-    //                     numPeptides
-    //                     numUniquePeptides
-    //                     comparison
-    //                     segment: region
-    //                     foldChange
-    //                     pValLog10: adjPVal
-    //                     enrollmentCategory
-    //                     sampleCount
-    //               }
-    //             }
-    //         }
-    //     }`;
-
     const response = await apolloClient.query({
         query: query,
         fetchPolicy: 'no-cache'
     });
 
 	if(response.data && response.data.data && response.data.data.geneExpressionSummary) {
-        console.log("got gene expression summary")
-        console.log(response)
 		return response.data.data.geneExpressionSummary;
 	} else {
-        console.log(response)
-		// store.dispatch(sendMessageToBackend("Could not retrieve gene expression data: " + response.error));
+		store.dispatch(sendMessageToBackend("Could not retrieve gene expression data: " + response.error));
 	}
 };
 
