@@ -3,10 +3,7 @@ import { onError } from "@apollo/client/link/error";
 import packageJson from '../../package.json';
 import 'isomorphic-unfetch';
 import { sendMessageToBackend } from '../actions/Error/errorActions';
-import { store } from '../App'
-import { data } from "autoprefixer";
-
-const axios = require('axios').default;
+import { store } from '../App';
 
 const isDevelopment = () => {
     return process.env.NODE_ENV === "development";
@@ -244,7 +241,6 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enroll
     });
 
 	if(response.data && response.data.geneExpressionSummary) {
-        console.log(response.data)
 		return response.data.geneExpressionSummary;
 	} else {
 		store.dispatch(sendMessageToBackend("Could not retrieve gene expression data: " + response.error));
