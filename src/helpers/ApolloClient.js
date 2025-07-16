@@ -139,7 +139,6 @@ export const fetchClusterHierarchy = async (cellType) => {
 }
 
 export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') => {
-    console.log("get data type summary info")
     const query = gql`
       query {
                 getDataTypeSummaryInformation
@@ -160,7 +159,6 @@ export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') 
         fetchPolicy: fetchPolicy
     });
     if (response.data && response.data.getDataTypeSummaryInformation) {
-        console.log("got data type summary info")
         return response.data.getDataTypeSummaryInformation;
     } else {
         console.log('response.error',response.error)
@@ -203,7 +201,6 @@ export const fetchPlotlyData = async (dataType, geneSymbol, enrollmentCategory, 
 }
 
 export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
-    console.log("get data types for concept")
     const response = await apolloClient.query({
         query: gql`
             query{
@@ -211,7 +208,6 @@ export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
             }`
     });
     if (response.data && response.data) {
-        console.log("got data types for concept")
         return response.data;
     } else {
         store.dispatch(sendMessageToBackend("Could not retrieve data types: " + response.error));
@@ -220,20 +216,12 @@ export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
 
 export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enrollmentCategory) => {
     console.log("in gene expression summary")
-    const response = await axios({
-		url: getBaseURL() + '/graphql',
-		method: 'post',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		data: {
-			query: `{geneExpressionSummary(
-				dataType: "${dataType}"
-				geneSymbol: "${geneSymbol}"
-				cellType: "${cellType}"
-				enrollmentCategory: "${enrollmentCategory}"
-				) {
-					id
+    const query = gql`
+        query {
+            geneExpressionSummary (
+                dataType: "${dataType}", geneSymbol: "${geneSymbol}", cellType: "${cellType}", enrollmentCategory: "${enrollmentCategory}" )
+                {
+                    id
 					enrollmentCategory
 					gene
 					pVal
@@ -246,9 +234,14 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enroll
 					clusterName
 					cellCount
 					dataType
-				}
-		}`,variables:{}}
-	})
+                }
+            )
+        }`;
+
+    const response = await apolloClient.query({
+        query: query
+    });
+
 	if(response.data && response.data.data && response.data.data.geneExpressionSummary) {
         console.log("got gene expression summary")
 		return response.data.data.geneExpressionSummary;
