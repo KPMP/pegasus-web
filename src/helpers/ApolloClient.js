@@ -171,7 +171,6 @@ export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') 
 }
 
 export const fetchPlotlyData = async (dataType, geneSymbol, enrollmentCategory, fetchPolicy = 'cache-first') => {
-    console.log("Get plotly data")
     const query = gql`
         query {
             getUmapPlotData(dataType: "${dataType}", geneSymbol: "${geneSymbol}", enrollmentCategory: "${enrollmentCategory}") {
@@ -197,7 +196,6 @@ export const fetchPlotlyData = async (dataType, geneSymbol, enrollmentCategory, 
     });
 
     if (response.data && response.data.getUmapPlotData) {
-        console.log("got plotly data")
         return response.data.getUmapPlotData;
     } else {
         store.dispatch(sendMessageToBackend("Could not retrieve UMAP plot data: " + response.error));
@@ -213,7 +211,7 @@ export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
             }`
     });
     if (response.data && response.data) {
-        console.log("got data types for concep")
+        console.log("got data types for concept")
         return response.data;
     } else {
         store.dispatch(sendMessageToBackend("Could not retrieve data types: " + response.error));
