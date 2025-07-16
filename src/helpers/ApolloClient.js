@@ -216,6 +216,7 @@ export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
 }
 
 export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enrollmentCategory) => {
+    console.log("in here")
     let query = gql`
         query {
             geneExpressionSummary(dataType:"${dataType}", geneSymbol:"${geneSymbol}", cellType: "${cellType}", enrollmentCategory: ${enrollmentCategory}") {
@@ -233,11 +234,12 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enroll
                 cellCount
             }
         }`;
-	
+	console.log("before call to get data")
     const response = await apolloClient.query({
         query: query,
         fetchPolicy: 'cache-first'
     });
+    console.log("after call")
 	if(response.data && response.data.data && response.data.data.geneExpressionSummary) {
 		return response.data.data.geneExpressionSummary;
 	} else {
