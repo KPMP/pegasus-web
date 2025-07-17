@@ -3,9 +3,7 @@ import { onError } from "@apollo/client/link/error";
 import packageJson from '../../package.json';
 import 'isomorphic-unfetch';
 import { sendMessageToBackend } from '../actions/Error/errorActions';
-import { store } from '../App'
-
-const axios = require('axios').default;
+import { store } from '../App';
 
 const isDevelopment = () => {
     return process.env.NODE_ENV === "development";
@@ -168,7 +166,6 @@ export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') 
 }
 
 export const fetchPlotlyData = async (dataType, geneSymbol, enrollmentCategory, fetchPolicy = 'cache-first') => {
-
     const query = gql`
         query {
             getUmapPlotData(dataType: "${dataType}", geneSymbol: "${geneSymbol}", enrollmentCategory: "${enrollmentCategory}") {
@@ -215,17 +212,12 @@ export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
 }
 
 export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enrollmentCategory) => {
-	const response = await axios({
-		url: getBaseURL() + '/graphql',
-		method: 'post',
-		headers: {
-			'Content-Type': 'application/json',
-		},
-		data: {
-			query: `{geneExpressionSummary(
-				dataType: "${dataType}"
-				geneSymbol: "${geneSymbol}"
-				cellType: "${cellType}"
+    const query = gql`
+        query {
+             geneExpressionSummary(
+				dataType: "${dataType}",
+				geneSymbol: "${geneSymbol}",
+				cellType: "${cellType}",
 				enrollmentCategory: "${enrollmentCategory}"
 				) {
 					id
@@ -242,10 +234,14 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enroll
 					cellCount
 					dataType
 				}
-		}`,variables:{}}
-	})
-	if(response.data && response.data.data && response.data.data.geneExpressionSummary) {
-		return response.data.data.geneExpressionSummary;
+        }`;
+
+    const response = await apolloClient.query({
+        query: query
+    });
+
+	if(response.data && response.data.geneExpressionSummary) {
+		return response.data.geneExpressionSummary;
 	} else {
 		store.dispatch(sendMessageToBackend("Could not retrieve gene expression data: " + response.error));
 	}
