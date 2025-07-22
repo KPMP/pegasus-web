@@ -56,7 +56,7 @@ class RegionalTranscriptomicsTable extends Component {
                 sort: 'desc',
                 sortable: false
             },
-            { headerName: "P VALUE", field: "pValLog10", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175,
+            { headerName: "P VALUE", field: "pVal", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175,
                 headerTooltip: 'P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment of interest and its expression in all other segments.',
                 headerComponent: CustomHeader,
                 sortable: false
