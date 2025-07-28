@@ -2,11 +2,11 @@
 
 # Inital Setup
 - Install NVM (https://github.com/nvm-sh/nvm)
-- `nvm use v12.22.1` // Use Node.js version 12.22.1
-- (optional) `nvm alias default 12.22.1` // Set nvm to always use Node.js v12.22.1
+- `nvm use v20.19.0` // Use Node.js version 20.19.0
+- (optional) `nvm alias default 20.19.0` // Set nvm to always use Node.js v20.19.0
 - `npm i` // install required dependencies
 - Ensure you've setup heavans docker correctly (https://github.com/KPMP/heavens-docker)
-- `cd ~/{your-path}/heavans-docker/atlas && sh repository-explorer-dev.sh up -d` Starts docker services 
+- `cd ~/{your-path}/heavans-docker/atlas && sh repository-explorer-dev.sh up -d` Starts docker services
 
 # Send Build To Docker
 - `npm run build` // optimizes files for production and sends to docker instance
@@ -28,7 +28,7 @@ There are some potential issue with closing docker that are eliminated with the 
  7. Do a gene search
  8. Pick the dataset type you want to recreate
  9. Wait until it has loaded the expression plot
- 10. Change your url to `http://localhost/explorer/dataviz/umap` 
+ 10. Change your url to `http://localhost/explorer/dataviz/umap`
  11. The updated UMAP will load
  12. Download the image
  13. Provide the image to Michael to update as needed
