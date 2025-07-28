@@ -1,24 +1,18 @@
 import React, { Component } from 'react';
 import { AgGridReact } from "ag-grid-react";
-import { Col, Row, Container, Spinner, UncontrolledTooltip } from 'reactstrap';
+import { Col, Row, Container, Spinner } from 'reactstrap';
 import { formatNumberToPrecision, formatDataType } from '../../helpers/Utils'
 import { fetchGeneExpression, fetchRegionalTranscriptomicsByStructure, fetchRegionalProteomicsByStructure } from '../../helpers/ApolloClient';
 import { CSVLink } from 'react-csv';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import DiffexInfoBar from './DiffexInfoBar';
 import packageJson from '../../../package.json';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import InfoHeader from './InfoHeader';
 import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
+import geneButton from './geneButton';
 ModuleRegistry.registerModules([ AllCommunityModule ]);
-
-
-const GeneColumn =  (props) => {
-    return (<button onClick={() => console.log('Software Launched')}>
-            'hi'
-        </button>);
-};
 
 class DiffexByCluster extends Component {
 
@@ -107,7 +101,7 @@ class DiffexByCluster extends Component {
                 {
                     headerName: 'GENE',
                     field: 'gene',
-                    valueFormatter: params => this.getGeneLink(params.gene)
+                    cellRenderer: geneButton
                 }
             );
         }
