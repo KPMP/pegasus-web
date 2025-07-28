@@ -88,7 +88,6 @@ class DiffexByCluster extends Component {
     }
 
     getGeneLink = (data) => {
-        console.log(data)
         return (<a onclick={() => this.handleClick(data.gene)}>Hi there</a>);
         // return (<button onClick={() => this.handleClick(data.gene)} type='button' className='table-column btn btn-link text-start p-0'>{data.gene}</button>);
     };
@@ -221,7 +220,6 @@ class DiffexByCluster extends Component {
                                                     <AgGridReact
                                                         rowData={this.state.diffexData}
                                                         columnDefs={this.getColumns()}
-                                                        showGrid={true}
                                                         domLayout='autoHeight'
                                                         onGridReady={this.onGridReady}
                                                         autoSizeStrategy={{type: 'fitGridWidth'}}
