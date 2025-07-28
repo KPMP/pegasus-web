@@ -99,15 +99,15 @@ class DiffexByCluster extends Component {
                 {
                     headerName: 'PROTEIN',
                     field: 'accession',
-                    // valueFormatter: params => this.getAccessionLink(params.gene, params.accession)
+                    //valueFormatter: params => this.getAccessionLink(params.gene, params.accession)
                 }
             );
         } else {
             columns.push(
                 {
                     headerName: 'GENE',
-                    field: 'gene'
-                    // valueFormatter: params => this.getGeneLink(params.gene)
+                    field: 'gene',
+                    valueFormatter: params => this.getGeneLink(params.gene)
                 }
             );
         }
