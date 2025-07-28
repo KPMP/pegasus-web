@@ -248,18 +248,7 @@ class DiffexByCluster extends Component {
                                                     showGrid={true}
                                                     domLayout='autoHeight'
                                                     onGridReady={this.onGridReady}
-                                                    // options={{
-                                                    //     tableLayout: 'fixed',
-                                                    //     thirdSortClick: false,
-                                                    //     pageSize: 20,
-                                                    //     pageSizeOptions: [],
-                                                    //     rowStyle: row => {
-                                                    //         let style = {
-                                                    //             padding: '1px'
-                                                    //         };
-                                                    //         return style;
-                                                    //     }
-                                                    // }}
+                                                    autoSizeStrategy={{type: 'fitGridWidth'}}
                                                 />
                                             }
                                         </Col>
