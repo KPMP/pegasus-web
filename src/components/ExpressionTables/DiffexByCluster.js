@@ -9,18 +9,11 @@ import { faDownload, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import DiffexInfoBar from './DiffexInfoBar';
 import packageJson from '../../../package.json';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import InfoHeader from './InfoHeader';
 import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
+import InfoHeader from './InfoHeader';
 ModuleRegistry.registerModules([ AllCommunityModule ]);
 
-const CustomHeader = (props) => {
-     return (
-         <div className='ag-header-cell-text' style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-             <span>{props.displayName}</span>
-             <FontAwesomeIcon className='kpmp-light-blue' icon={faCircleInfo} style={{ marginLeft: '5px' }} />
-         </div>
-     );
- };
 
 const GeneColumn =  (props) => {
     return (<button onClick={() => console.log('Software Launched')}>
@@ -123,7 +116,7 @@ class DiffexByCluster extends Component {
         columns.push(
             {
                 headerName: 'FOLD CHANGE',
-                headerComponent: CustomHeader,
+                headerComponent: InfoHeader,
                 headerTooltip: 'Fold change of a gene is calculated by dividing the average expression of the gene in the segment/cluster of interest by its average expression in all other segments/clusters being compared.',
                 field: 'foldChange',
                 sortable: true, 
@@ -134,7 +127,7 @@ class DiffexByCluster extends Component {
             columns.push(
                 {
                     headerName: 'P VALUE',
-                    headerComponent: CustomHeader,
+                    headerComponent: InfoHeader,
                     headerTooltip: 'P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment/cluster of interest and its expression in all other segments/clusters.',
                     field: 'pVal',
                     sortable: true,
