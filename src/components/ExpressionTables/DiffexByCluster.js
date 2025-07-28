@@ -10,6 +10,17 @@ import DiffexInfoBar from './DiffexInfoBar';
 import packageJson from '../../../package.json';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
+const CustomHeader = (props) => {
+     return (
+         <div className='ag-header-cell-text' style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
+             <span>{props.displayName}</span>
+             <FontAwesomeIcon className='kpmp-light-blue' icon={faCircleInfo} style={{ marginLeft: '5px' }} />
+         </div>
+     );
+ };
+
+
+
 class DiffexByCluster extends Component {
 
     constructor(props) {
@@ -72,6 +83,8 @@ class DiffexByCluster extends Component {
         return <button onClick={() => this.handleClick(gene)} type='button' className='table-column btn btn-link text-start p-0'>{gene}</button>
     };
 
+
+    
     getColumns = () => {
 
         let columns = [];
@@ -102,10 +115,9 @@ class DiffexByCluster extends Component {
         }
         columns.push(
             {
-                headerName: <span>FOLD CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
-                <UncontrolledTooltip placement='bottom' target='fold-change-info' >
-                    Fold change of a gene is calculated by dividing the average expression of the gene in the segment/cluster of interest by its average expression in all other segments/clusters being compared.
-                </UncontrolledTooltip></span>,
+                headerName: 'FOLD CHANGE',
+                headerComponent: CustomHeader,
+                headerTooltip: 'Fold change of a gene is calculated by dividing the average expression of the gene in the segment/cluster of interest by its average expression in all other segments/clusters being compared.',
                 field: 'foldChange',
                 // align: 'right',
                 // width: "15%",
@@ -123,10 +135,9 @@ class DiffexByCluster extends Component {
         if (this.props.dataType !== 'rp') {
             columns.push(
                 {
-                    headerName: <span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
-                <UncontrolledTooltip placement='bottom' target='pvalue-info' >
-                    P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment/cluster of interest and its expression in all other segments/clusters.
-                </UncontrolledTooltip></span>,
+                    headerName: 'P VALUE',
+                    headerComponent: CustomHeader,
+                    headerTooltip: 'P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment/cluster of interest and its expression in all other segments/clusters.',
                     field: 'pVal',
                     // align: 'right',
                     // width: "15%",
