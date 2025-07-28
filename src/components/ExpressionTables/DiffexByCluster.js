@@ -94,7 +94,7 @@ class DiffexByCluster extends Component {
 
     
     getColumns = () => {
-
+        console.log(this.props.dataType)
         let columns = [];
         if (this.props.dataType === 'rp') {
             columns.push(
@@ -118,7 +118,8 @@ class DiffexByCluster extends Component {
                 headerComponent: InfoHeader,
                 headerTooltip: 'Fold change of a gene is calculated by dividing the average expression of the gene in the segment/cluster of interest by its average expression in all other segments/clusters being compared.',
                 field: 'foldChange',
-                sortable: true, 
+                sortable: true,
+                sort: "desc", 
                 valueFormatter: params => formatNumberToPrecision(params.foldChange, 3)
             }
         );
