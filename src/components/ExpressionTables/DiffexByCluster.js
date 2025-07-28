@@ -24,7 +24,7 @@ const CustomHeader = (props) => {
 
 const GeneColumn =  (props) => {
     return (<button onClick={() => console.log('Software Launched')}>
-            {props?.gene ? `Launch ${props.gene}!` : 'Launch!'}
+            'hi'
         </button>);
 };
 
