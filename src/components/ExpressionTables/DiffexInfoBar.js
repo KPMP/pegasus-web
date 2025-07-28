@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { getDataTypeOptions } from '../../helpers/Utils';
 import Select from 'react-select';

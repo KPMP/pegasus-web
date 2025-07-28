@@ -84,11 +84,11 @@ class DiffexByCluster extends Component {
     }
 
     getAccessionLink = (gene, accession) => {
-        return <button onClick={() => this.handleClick(gene, accession)} type='button' className='table-column btn btn-link text-start p-0'>{accession}</button>
+        return (<button onClick={() => this.handleClick(gene, accession)} type='button' className='table-column btn btn-link text-start p-0'>{accession}</button>);
     }
 
     getGeneLink = (gene) => {
-        return <button onClick={() => this.handleClick(gene)} type='button' className='table-column btn btn-link text-start p-0'>{gene}</button>
+        return (<button onClick={() => this.handleClick(gene)} type='button' className='table-column btn btn-link text-start p-0'>{gene}</button>);
     };
 
 
@@ -101,10 +101,6 @@ class DiffexByCluster extends Component {
                 {
                     headerName: 'PROTEIN',
                     field: 'accession',
-                    // align: 'left',
-                    // width: "15%",
-                    // headerStyle: { fontSize: "15px" },
-                    // cellStyle: { fontSize: '14px', padding: "2px" },
                     valueFormatter: params => this.getAccessionLink(params.gene, params.accession)
                 }
             );
@@ -113,10 +109,6 @@ class DiffexByCluster extends Component {
                 {
                     headerName: 'GENE',
                     field: 'gene',
-                    // align: 'left',
-                    // width: "15%",
-                    // headerStyle: { fontSize: "15px" },
-                    // cellStyle: { fontSize: '14px', padding: "2px" },
                     valueFormatter: params => this.getGeneLink(params.gene)
                 }
             );
@@ -127,16 +119,7 @@ class DiffexByCluster extends Component {
                 headerComponent: CustomHeader,
                 headerTooltip: 'Fold change of a gene is calculated by dividing the average expression of the gene in the segment/cluster of interest by its average expression in all other segments/clusters being compared.',
                 field: 'foldChange',
-                // align: 'right',
-                // width: "15%",
                 sortable: true, defaultSort: 'desc',
-                // headerStyle: { fontSize: '15px', textAlign: 'center' },
-                // cellStyle: {
-                //     fontSize: '14px',
-                //     padding: '2px',
-                //     textAlign: 'center'
-                // },
-                // type: 'numeric',
                 valueFormatter: params => formatNumberToPrecision(params.foldChange, 3)
             }
         );
@@ -147,12 +130,7 @@ class DiffexByCluster extends Component {
                     headerComponent: CustomHeader,
                     headerTooltip: 'P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment/cluster of interest and its expression in all other segments/clusters.',
                     field: 'pVal',
-                    // align: 'right',
-                    // width: "15%",
                     sortable: true,
-                    // type: 'numeric',
-                    // headerStyle: { fontSize: '15px', textAlign: 'right' },
-                    // cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'right' },
                     valueFormatter: params => formatNumberToPrecision(params.pVal, 3)
                 }
             );
@@ -161,12 +139,7 @@ class DiffexByCluster extends Component {
             {
                 headerName: 'ADJ P VALUE',
                 field: 'pValAdj',
-                // align: 'right',
-                // width: "15%",
                 sortable: true,
-                // type: 'numeric',
-                // headerStyle: { fontSize: '15px', textAlign: 'right' },
-                // cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'right' },
                 valeuFormatter: params => formatNumberToPrecision(params.pValAdj, 3, true)
             }
         );
