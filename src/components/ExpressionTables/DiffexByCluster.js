@@ -11,7 +11,6 @@ import packageJson from '../../../package.json';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import InfoHeader from './InfoHeader';
 import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
-import InfoHeader from './InfoHeader';
 ModuleRegistry.registerModules([ AllCommunityModule ]);
 
 
