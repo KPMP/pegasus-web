@@ -88,7 +88,8 @@ class DiffexByCluster extends Component {
     }
 
     getGeneLink = (gene) => {
-        return (<button onClick={() => this.handleClick(gene)} type='button' className='table-column btn btn-link text-start p-0'>{gene}</button>);
+        return (<i>HI there</i>);
+        // return (<button onClick={() => this.handleClick(gene)} type='button' className='table-column btn btn-link text-start p-0'>{gene}</button>);
     };
 
 
@@ -215,14 +216,16 @@ class DiffexByCluster extends Component {
                                                 process.env.NODE_ENV !== 'development' ||
                                                 packageJson.displayMaterialTable
                                             ) &&
-                                                <AgGridReact
-                                                    rowData={this.state.diffexData}
-                                                    columnDefs={this.getColumns()}
-                                                    showGrid={true}
-                                                    domLayout='autoHeight'
-                                                    onGridReady={this.onGridReady}
-                                                    autoSizeStrategy={{type: 'fitGridWidth'}}
-                                                />
+                                                <div className="ag-theme-material img-fluid">
+                                                    <AgGridReact
+                                                        rowData={this.state.diffexData}
+                                                        columnDefs={this.getColumns()}
+                                                        showGrid={true}
+                                                        domLayout='autoHeight'
+                                                        onGridReady={this.onGridReady}
+                                                        autoSizeStrategy={{type: 'fitGridWidth'}}
+                                                    />
+                                                </div>
                                             }
                                         </Col>
                                     </Row>
