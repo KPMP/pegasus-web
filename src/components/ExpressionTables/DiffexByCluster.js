@@ -10,6 +10,8 @@ import DiffexInfoBar from './DiffexInfoBar';
 import packageJson from '../../../package.json';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
+ModuleRegistry.registerModules([ AllCommunityModule ]);
 
 const CustomHeader = (props) => {
      return (
@@ -25,7 +27,10 @@ class DiffexByCluster extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            diffexData: [], isLoading: true
+            diffexData: [], isLoading: true,
+            columnDefs: this.getColumns(),
+            gradApi: null,
+            columnApi: null
         };
     };
 
@@ -68,6 +73,10 @@ class DiffexByCluster extends Component {
     };
 
     componentDidUpdate(prevProps) {
+       if (prevProps.data !== this.props.data && this.props.data.length > 0) {
+            this.state.gridApi.refreshCells()
+        }
+
         if (this.props.dataType !== prevProps.dataType) {
             this.setState({ diffexData: [], isLoading: true });
             this.fetchGeneExpression();
@@ -150,7 +159,7 @@ class DiffexByCluster extends Component {
         }
         columns.push(
             {
-                headerName: <span>ADJ P VALUE</span>,
+                headerName: 'ADJ P VALUE',
                 field: 'pValAdj',
                 // align: 'right',
                 // width: "15%",
@@ -159,15 +168,6 @@ class DiffexByCluster extends Component {
                 // headerStyle: { fontSize: '15px', textAlign: 'right' },
                 // cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'right' },
                 valeuFormatter: params => formatNumberToPrecision(params.pValAdj, 3, true)
-            },
-            {
-                headerName: 'hidden',
-                field: 'hidden',
-                sortable: false,
-                // width: "40%",
-                className: "diffex-hidden-column",
-                // headerStyle: { fontSize: '15px', textAlign: 'center', color: "rgba(0,0,0,0)" },
-                // cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'center', color: "rgba(0,0,0,0)" },
             }
         );
         return columns
@@ -203,6 +203,12 @@ class DiffexByCluster extends Component {
       });
       }
     };
+
+    onGridReady= (params) => {
+        this.setState({gridApi: params.api, columnApi: params.columnApi})
+        this.state.gridApi.sizeColumnsToFit();
+        this.state.gridApi.refreshCells();
+    }
 
     render() {
         return (
@@ -241,6 +247,7 @@ class DiffexByCluster extends Component {
                                                     columnDefs={this.getColumns()}
                                                     showGrid={true}
                                                     domLayout='autoHeight'
+                                                    onGridReady={this.onGridReady}
                                                     // options={{
                                                     //     tableLayout: 'fixed',
                                                     //     thirdSortClick: false,
