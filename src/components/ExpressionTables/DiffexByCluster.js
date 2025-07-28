@@ -116,8 +116,7 @@ class DiffexByCluster extends Component {
             columns.push(
                 {
                     headerName: 'GENE',
-                    field: 'gene',
-                    cellRenderer: GeneColumn
+                    field: 'gene'
                 }
             );
         }
