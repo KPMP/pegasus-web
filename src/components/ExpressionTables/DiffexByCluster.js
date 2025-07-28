@@ -85,23 +85,21 @@ class DiffexByCluster extends Component {
         return (<button onClick={() => this.handleClick(gene, accession)} type='button' className='table-column btn btn-link text-start p-0'>{accession}</button>);
     }
 
-    getGeneLink = ({data}) => {
-        return data
-        // return (<a onclick={() => this.handleClick(data.gene)}>{data}</a>);
+    getGeneLink = (gene) => {
+        return (<a onclick={() => this.handleClick(gene)}>Hi {gene}</a>);
         // return (<button onClick={() => this.handleClick(data.gene)} type='button' className='table-column btn btn-link text-start p-0'>{data.gene}</button>);
     };
 
 
     
     getColumns = () => {
-        console.log(this.props.dataType)
         let columns = [];
         if (this.props.dataType === 'rp') {
             columns.push(
                 {
                     headerName: 'PROTEIN',
                     field: 'accession',
-                    valueFormatter: params => this.getAccessionLink(params.gene, params.accession)
+                    // valueFormatter: params => this.getAccessionLink(params.gene, params.accession)
                 }
             );
         } else {
@@ -109,6 +107,7 @@ class DiffexByCluster extends Component {
                 {
                     headerName: 'GENE',
                     field: 'gene'
+                    // valueFormatter: params => this.getGeneLink(params.gene)
                 }
             );
         }
