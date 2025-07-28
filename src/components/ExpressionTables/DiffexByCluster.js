@@ -9,6 +9,7 @@ import { faDownload, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import DiffexInfoBar from './DiffexInfoBar';
 import packageJson from '../../../package.json';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
+import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 const CustomHeader = (props) => {
      return (
@@ -18,8 +19,6 @@ const CustomHeader = (props) => {
          </div>
      );
  };
-
-
 
 class DiffexByCluster extends Component {
 
