@@ -109,7 +109,7 @@ class DiffexByCluster extends Component {
                 {
                     headerName: 'GENE',
                     field: 'gene',
-                    valueFormatter: params => this.getGeneLink(params.gene)
+                    cellRenderer: params => this.getGeneLink(params.gene)
                 }
             );
         }
