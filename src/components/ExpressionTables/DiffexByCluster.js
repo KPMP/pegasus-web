@@ -88,7 +88,8 @@ class DiffexByCluster extends Component {
     }
 
     getGeneLink = (data) => {
-        return (<a onclick={() => this.handleClick(data.gene)}>{data}</a>);
+        return "hi"
+        // return (<a onclick={() => this.handleClick(data.gene)}>{data}</a>);
         // return (<button onClick={() => this.handleClick(data.gene)} type='button' className='table-column btn btn-link text-start p-0'>{data.gene}</button>);
     };
 
