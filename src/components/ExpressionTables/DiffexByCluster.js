@@ -22,6 +22,12 @@ const CustomHeader = (props) => {
      );
  };
 
+const GeneColumn =  (props) => {
+    return (<button onClick={() => console.log('Software Launched')}>
+            {props?.gene ? `Launch ${props.gene}!` : 'Launch!'}
+        </button>);
+};
+
 class DiffexByCluster extends Component {
 
     constructor(props) {
@@ -111,7 +117,7 @@ class DiffexByCluster extends Component {
                 {
                     headerName: 'GENE',
                     field: 'gene',
-                    cellRenderer: params => this.getGeneLink(params.gene)
+                    cellRenderer: GeneColumn
                 }
             );
         }
