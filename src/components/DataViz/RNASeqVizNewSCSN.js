@@ -149,7 +149,7 @@ class RNASeqVizNewSN extends Component {
   render() {
     return (
       <div className="height-wrapper mb-3">
-        {this.props.dataType === "sn" ? <h1>YOU ARE ON THE NEW SINGLE-NUC DATA VIZ PAGE</h1>: null}
+        <h1>YOU ARE ON THE NEW SINGLE-CELL/SINGLE-NUC DATA VIZ PAGE</h1>
         <Container id="outer-wrapper">
           <DataTypeSelectorContainer isLoadingUmap={this.state.isLoadingUmap} />
           <Container className="mt-3 rounded border p-3 shadow-sm mb-5">

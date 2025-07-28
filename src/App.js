@@ -18,7 +18,7 @@ import GeneSummaryContainer from './components/Summary/GeneSummaryContainer';
 import CellTypeSummaryContainer from './components/Summary/CellTypeSummaryContainer';
 import NotFoundPage from './components/Error/NotFoundPage';
 import RNASeqVizContainer from "./components/DataViz/RNASeqVizContainer";
-import RNASeqVizContainerNewSN from './components/DataViz/RNASeqVizContainerNewSN';
+import RNASeqVizContainerNewSNSC from './components/DataViz/RNASeqVizContainerNewSCSN';
 import DiffexByClusterContainer from "./components/ExpressionTables/DiffexByClusterContainer";
 import RegionalVizContainer from "./components/DataViz/RegionalVizContainer";
 import packageInfo from '../package.json';
@@ -66,7 +66,7 @@ class App extends Component {
   }
 
   render() {
-    if (loadedState.featureSNData){
+    if (loadedState.featureSNSCData){
       return (
         <Provider store={store}>
           <ApolloProvider client={apolloClient}>
@@ -78,7 +78,7 @@ class App extends Component {
                   <Route exact path='/explorer' component={Explorer} store={store} />
                   <Route exact path='/explorer/genesummary' component={GeneSummaryContainer} store={store} />
                   <Route exact path='/explorer/celltypesummary' component={CellTypeSummaryContainer} store={store} />
-                  <Route exact path='/explorer/dataViz' component={RNASeqVizContainerNewSN} store={store} />
+                  <Route exact path='/explorer/dataViz' component={RNASeqVizContainerNewSNSC} store={store} />
                   <Route exact path='/explorer/regionalviz' component={RegionalVizContainer} store={store} />
                   <Route exact path='/explorer/diffex' component={DiffexByClusterContainer} store={store} />
                   <Route exact path='/explorer/regionalpro' component={RegionalProteomicsContainer} store={store}/>

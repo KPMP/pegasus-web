@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import RNASeqVizNewSN from "./RNASeqVizNewSN";
+import RNASeqVizNewSN from "./RNASeqVizNewSCSN";
 import { setEnrollmentCategory } from "../../actions/EnrollmentCategory/enrollmentCategoryActions";
 import { setDataType } from "../../actions/DataType/dataTypeActions";
 import { resetState } from "../../actions/resetAction";
