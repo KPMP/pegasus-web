@@ -2,7 +2,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
 
 
-export const CustomHeader = (props) => {
+export default InfoHeader = (props) => {
      return (
          <div className='ag-header-cell-text' style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
              <span>{props.displayName}</span>
