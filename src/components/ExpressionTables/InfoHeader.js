@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useRef, useState } from 'react';
 
 export default (props) => {
@@ -42,18 +42,15 @@ export default (props) => {
     const getSortArrow = () => {
         if (currentSortOrder === 'asc') {
             return (
-                    <i className="fa fa-long-arrow-alt-down"></i>
+                <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='sortUp' icon={faArrowUp} /></span>
             );
         } else if (currentSortOrder === 'desc') {
             return (
-                    <i className="fa fa-long-arrow-alt-up"></i>
+                <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='sortDown' icon={faArrowDown} /></span>
             );
         } else {
-            return (
-                    <i className="fa fa-times"></i>
-            )
+            return '';
         }
-
   
     }
     
@@ -61,7 +58,7 @@ export default (props) => {
         let sortArrow = getSortArrow();
         return (
             <div>    
-                <div  onClick={(event) => onSortRequested(event)} className="customHeaderLabel"> <i className='fa fa-long-arrow-alt-down'></i> {props.displayName} {headerIcon}</div>
+                <div  onClick={(event) => onSortRequested(event)} className="customHeaderLabel"> {sortArrow} {props.displayName} {headerIcon}</div>
             </div>
         )
     } else {
