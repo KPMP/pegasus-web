@@ -3,8 +3,8 @@ import { faInfoCircle, faArrowDown, faArrowUp } from '@fortawesome/free-solid-sv
 import React, { useEffect, useRef, useState } from 'react';
 
 export default (props) => {
-    const sortOrder = props.defaultSort;
-        
+    let sortOrder = props.defaultSort; 
+    let sortArrow = '';
     const onSortChanged = () => {
 
     }
@@ -16,6 +16,14 @@ export default (props) => {
             sortOrder = 'desc'
         } else {
             sortOrder = 'asc'
+        }
+
+        if (sortOrder === 'asc') {
+            sortArrow = 
+                <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='sortUp' icon={faArrowUp} /></span>;
+        } else if (sortOrder === 'desc') {
+            sortArrow =
+                <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='sortDown' icon={faArrowDown} /></span>;
         }
     };
     
@@ -31,16 +39,6 @@ export default (props) => {
         )
     }
 
-    
-    let sortArrow = '';
-    if (sortOrder === 'asc') {
-        sortArrow = 
-            <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='sortUp' icon={faArrowUp} /></span>;
-    } else if (sortOrder === 'desc') {
-        sortArrow =
-            <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='sortDown' icon={faArrowDown} /></span>;
-    }
-  
     
     if (props.enableSorting) {
         
