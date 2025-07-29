@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 export default (props) => {
     let currentSortOrder = props.defaultSort;
+    let sortArrow = '';
     const [ascSort, setAscSort] = useState('inactive');
     const [descSort, setDescSort] = useState('inactive');
     const [noSort, setNoSort] = useState('inactive');
@@ -24,6 +25,7 @@ export default (props) => {
             currentSortOrder = 'asc'
         }
         props.setSort(currentSortOrder, event.shiftKey);
+        sortArrow = getSortArrow();
     };
     
     useEffect(() => {
@@ -55,10 +57,9 @@ export default (props) => {
     }
     
     if (props.enableSorting) {
-        let sortArrow = getSortArrow();
         return (
             <div>    
-                <div  onClick={(event) => onSortRequested(event)} className="customHeaderLabel"> {sortArrow} {props.displayName} {headerIcon}</div>
+                <div onClick={(event) => onSortRequested(event)} className="customHeaderLabel"> {sortArrow} {props.displayName} {headerIcon}</div>
             </div>
         )
     } else {
