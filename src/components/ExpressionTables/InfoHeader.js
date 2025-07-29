@@ -3,6 +3,7 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useRef, useState } from 'react';
 
 export default (props) => {
+
     const [ascSort, setAscSort] = useState('inactive');
     const [descSort, setDescSort] = useState('inactive');
     const [noSort, setNoSort] = useState('inactive');
@@ -48,7 +49,7 @@ export default (props) => {
     
     return (
         <div>
-            <div className="customHeaderLabel">{props.displayName} {headerIcon}</div>
             {sort}
+            <div className="customHeaderLabel">{props.displayName} {headerIcon}</div>
         </div>);
 };

@@ -104,7 +104,7 @@ class DiffexByCluster extends Component {
         columns.push(
             {
                 headerName: 'FOLD CHANGE',
-                headerComponentParams: {infoIcon: true, enableSorting: true},
+                headerComponentParams: {infoIcon: true, enableSorting: true, sort: 'desc'},
                 headerTooltip: 'Fold change of a gene is calculated by dividing the average expression of the gene in the segment/cluster of interest by its average expression in all other segments/clusters being compared.',
                 field: 'foldChange',
                 sort: "desc",
