@@ -62,7 +62,8 @@ import { faInfoCircle, faArrowDown, faArrowUp } from '@fortawesome/free-solid-sv
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const InfoHeader = (props) => {
-    const { displayName, enableSorting, column, setSort } = props;
+    
+    const { displayName, enableSorting, column, setSort, infoIcon } = props;
     const sortState = column.getSort();
 
     const toggleSort = () => {
@@ -83,7 +84,7 @@ const InfoHeader = (props) => {
     };
 
     let headerIcon = null;
-    if (props.infoIcon && props.infoIcon === true) {
+    if (infoIcon && infoIcon === true) {
         headerIcon = (
             <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
         )
