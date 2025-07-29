@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 export default (props) => {
     let currentSortOrder = props.defaultSort;
-    let sortArrow = getSortArrow();
+    let sortArrow = getSortArrow(currentSortOrder);
     const [ascSort, setAscSort] = useState('inactive');
     const [descSort, setDescSort] = useState('inactive');
     const [noSort, setNoSort] = useState('inactive');
@@ -54,7 +54,7 @@ export default (props) => {
     }
     
     if (props.enableSorting) {
-        sortArrow = getSortArrow(props.defaultSort);
+        
         return (
             <div>    
                 <div onClick={(event) => onSortRequested(event)} onTouchEnd={(event) =>
