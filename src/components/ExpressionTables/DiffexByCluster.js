@@ -104,7 +104,7 @@ class DiffexByCluster extends Component {
         columns.push(
             {
                 headerName: 'FOLD CHANGE',
-                headerComponentParams: {infoIcon: true},
+                headerComponentParams: {infoIcon: true, enableSorting: true},
                 headerTooltip: 'Fold change of a gene is calculated by dividing the average expression of the gene in the segment/cluster of interest by its average expression in all other segments/clusters being compared.',
                 field: 'foldChange',
                 sort: "desc",
@@ -115,10 +115,9 @@ class DiffexByCluster extends Component {
             columns.push(
                 {
                     headerName: 'P VALUE',
-                    headerComponentParams: {infoIcon: true},
+                    headerComponentParams: {infoIcon: true, enableSorting: true}, 
                     headerTooltip: 'P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment/cluster of interest and its expression in all other segments/clusters.',
                     field: 'pVal',
-                    sortable: true,
                     valueFormatter: params => formatNumberToPrecision(params.value, 3)
                 }
             );
@@ -127,7 +126,7 @@ class DiffexByCluster extends Component {
             {
                 headerName: 'ADJ P VALUE',
                 field: 'pValAdj',
-                sortable: true,
+                headerComponentParams: {enableSorting: true},
                 valueFormatter: params => formatNumberToPrecision(params.value, 3, true)
             }
         );
