@@ -14,6 +14,12 @@ import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
 import geneButton from './geneButton';
 ModuleRegistry.registerModules([ AllCommunityModule ]);
 
+const GeneButton = ({data}) => {
+    return (<button onClick={() => console.log('Software Launched')}  className='table-column btn btn-link text-start p-0'>
+            {data.gene}
+        </button>);
+}
+
 class DiffexByCluster extends Component {
 
     constructor(props) {
@@ -101,7 +107,11 @@ class DiffexByCluster extends Component {
                 {
                     headerName: 'GENE',
                     field: 'gene',
-                    cellRenderer: geneButton
+                    cellRenderer: props => {
+                        return (<button onClick={() => this.handleClick(props.gene)}  className='table-column btn btn-link text-start p-0'>
+                            {props.gene}
+                        </button>);
+                    }
                 }
             );
         }
