@@ -1,5 +1,5 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useRef, useState } from 'react';
 
 export default (props) => {
@@ -25,12 +25,12 @@ export default (props) => {
     }, []);
     
     let headerIcon = null;
-    if (props.icon) {
+    if (props.infoIcon && props.infoIcon === true) {
         headerIcon = (
-            <div className={'fa ${props.icon}'}/>
+            <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
         )
     }
-    
+
     let sort = null;
     if (props.enableSorting) {
         sort = (<div style={{ display: 'inline-block' }}>
@@ -48,7 +48,7 @@ export default (props) => {
     
     return (
         <div>
-            <div className="customHeaderLabel">{props.displayName} {headerIcon}}</div>
+            <div className="customHeaderLabel">{props.displayName} {headerIcon}</div>
             {sort}
         </div>);
 };
