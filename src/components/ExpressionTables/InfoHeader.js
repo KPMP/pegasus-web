@@ -17,18 +17,16 @@ export default (props) => {
     }
 
     const onSortChanged = () => {
-        setSortArrow()
+        setSortArrow();
     }
 
     const onSortRequested = (event) => {
-        
         console.log("sorting")
         if (sortOrder === 'asc') {
             sortOrder = 'desc'
         } else {
             sortOrder = 'asc'
         }
-        setSortArrow();
     };
     
     useEffect(() => {
