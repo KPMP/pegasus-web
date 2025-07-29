@@ -4,9 +4,20 @@ import React, { useEffect, useRef, useState } from 'react';
 
 export default (props) => {
     let sortOrder = props.defaultSort; 
-    let sortArrow = '';
-    const onSortChanged = () => {
+    let sortArrow = setSortArrow();
 
+    const setSortArrow = () => {
+        if (sortOrder === 'asc') {
+            sortArrow = 
+                <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='sortUp' icon={faArrowUp} /></span>;
+        } else if (sortOrder === 'desc') {
+            sortArrow =
+                <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='sortDown' icon={faArrowDown} /></span>;
+        }
+    }
+
+    const onSortChanged = () => {
+        setSortArrow()
     }
 
     const onSortRequested = (event) => {
@@ -17,14 +28,7 @@ export default (props) => {
         } else {
             sortOrder = 'asc'
         }
-
-        if (sortOrder === 'asc') {
-            sortArrow = 
-                <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='sortUp' icon={faArrowUp} /></span>;
-        } else if (sortOrder === 'desc') {
-            sortArrow =
-                <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='sortDown' icon={faArrowDown} /></span>;
-        }
+        setSortArrow();
     };
     
     useEffect(() => {
