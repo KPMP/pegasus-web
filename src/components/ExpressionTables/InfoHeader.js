@@ -62,7 +62,7 @@ import { faInfoCircle, faArrowDown, faArrowUp } from '@fortawesome/free-solid-sv
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const InfoHeader = (props) => {
-
+    console.log(props)
     const { displayName, enableSorting, column, setSort, infoIcon } = props;
     const sortState = column.getSort();
 
@@ -93,8 +93,7 @@ const InfoHeader = (props) => {
     return (
         <div style={{ display: 'flex', alignItems: 'center', cursor: enableSorting ? 'pointer' : 'default' }} onClick={enableSorting ? toggleSort : undefined}>
         <span style={{ marginRight: 4 }}>{getSortArrow()}</span>
-        <span>{displayName}</span>
-            {headerIcon}
+        <span> {displayName}  {headerIcon}</span>
         </div>
     );
 
