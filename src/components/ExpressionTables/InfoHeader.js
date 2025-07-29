@@ -3,7 +3,7 @@ import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import React, { useEffect, useRef, useState } from 'react';
 
 export default (props) => {
-
+    let currentSortOrder = props.defaultSort;
     const [ascSort, setAscSort] = useState('inactive');
     const [descSort, setDescSort] = useState('inactive');
     const [noSort, setNoSort] = useState('inactive');
@@ -16,8 +16,13 @@ export default (props) => {
         setNoSort(!sort ? 'active' : 'inactive');
     };
     
-    const onSortRequested = (order, event) => {
-        props.setSort(order, event.shiftKey);
+    const onSortRequested = (event) => {
+        if (currentSortOrder === 'asc') {
+            currentSortOrder = 'desc'
+        } else {
+            currentSortOrder = 'asc'
+        }
+        props.setSort(currentSortOrder, event.shiftKey);
     };
     
     useEffect(() => {
@@ -32,26 +37,45 @@ export default (props) => {
         )
     }
 
-    let sort = null;
-    console.log(props)
 
-    if (props.enableSorting) {
-        sort = (<div style={{ display: 'inline-block' }}>
-                <div onClick={(event) => onSortRequested('asc', event)} onTouchEnd={(event) => onSortRequested('asc', event)} className={`customSortDownLabel ${ascSort}`}>
-                    <i className="fa fa-long-arrow-alt-down"></i>
-                </div>
-                <div onClick={(event) => onSortRequested('desc', event)} onTouchEnd={(event) => onSortRequested('desc', event)} className={`customSortUpLabel ${descSort}`}>
-                    <i className="fa fa-long-arrow-alt-up"></i>
-                </div>
-                <div onClick={(event) => onSortRequested(null, event)} onTouchEnd={(event) => onSortRequested(null, event)} className={`customSortRemoveLabel ${noSort}`}>
-                    <i className="fa fa-times"></i>
-                </div>
-            </div>);
-    }
+    // const getSortDiv = () => {
+    //     if (currentSortOrder === 'asc') {
+    //         return (
+    //             <div onClick={(event) => onSortRequested(event)} onTouchEnd={(event) => onSortRequested('asc', event)} className={`customSortDownLabel ${ascSort}`}>
+    //                 <i className="fa fa-long-arrow-alt-down"></i>
+    //             </div>
+    //         );
+    //     } else if (currentSortOrder === 'desc') {
+    //         return (
+    //             <div onClick={(event) => onSortRequested(event)} onTouchEnd={(event) => onSortRequested('desc', event)} className={`customSortUpLabel ${descSort}`}>
+    //                 <i className="fa fa-long-arrow-alt-up"></i>
+    //             </div>
+    //         );
+    //     } else {
+    //         return (
+    //             <div onClick={(event) => onSortRequested(event)} onTouchEnd={(event) => onSortRequested(null, event)} className={`customSortRemoveLabel ${noSort}`}>
+    //                 <i className="fa fa-times"></i>
+    //             </div>
+    //         )
+    //     }
+
+  
+    // }
     
+    if (props.enableSorting) {
+        
+        return (
+            <div>
+                <div onClick={(event) => onSortRequested(event)}>
+                    <i className='fa fa-long-arrow-alt-down'></i>
+                    <div className="customHeaderLabel">{props.displayName} {headerIcon}</div>
+                </div>
+            </div>
+        )
+    } else {
     return (
         <div>
-            
-            <div className="customHeaderLabel">{sort} {props.displayName} {headerIcon}</div>
+            <div className="customHeaderLabel">{props.displayName} {headerIcon}</div>
         </div>);
+    }
 };
