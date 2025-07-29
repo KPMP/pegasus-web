@@ -105,7 +105,7 @@ class DiffexByCluster extends Component {
             {
                 headerName: 'FOLD CHANGE',
                 headerComponent: InfoHeader,
-                headerComponentParams: 'fa-circle-info',
+                headerComponentParams: {icon: 'fa-circle-info'},
                 headerTooltip: 'Fold change of a gene is calculated by dividing the average expression of the gene in the segment/cluster of interest by its average expression in all other segments/clusters being compared.',
                 field: 'foldChange',
                 sort: "desc",
@@ -117,7 +117,7 @@ class DiffexByCluster extends Component {
                 {
                     headerName: 'P VALUE',
                     headerComponent: InfoHeader,
-                    headerComponentParams: 'fa-circle-info',
+                    headerComponentParams: {icon: 'fa-circle-info'},
                     headerTooltip: 'P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment/cluster of interest and its expression in all other segments/clusters.',
                     field: 'pVal',
                     sortable: true,
