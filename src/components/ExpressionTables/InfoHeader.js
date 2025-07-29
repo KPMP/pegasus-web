@@ -8,10 +8,6 @@ export default (props) => {
     const [noSort, setNoSort] = useState('inactive');
     const refButton = useRef(null);
     
-    const onMenuClicked = () => {
-        props.showColumnMenu(refButton.current);
-    };
-    
     const onSortChanged = () => {
         const sort = props.column.getSort();
         setAscSort(sort === 'asc' ? 'active' : 'inactive');
@@ -28,12 +24,6 @@ export default (props) => {
         onSortChanged();
     }, []);
     
-    let menu = null;
-    if (props.enableFilterButton) {
-        menu = (<div ref={refButton} className="customHeaderMenuButton" onClick={() => onMenuClicked()}>
-                <i className={`fa ${props.icon}`}></i>
-            </div>);
-    }
     
     let sort = null;
     if (props.enableSorting) {
@@ -51,8 +41,7 @@ export default (props) => {
     }
     
     return (<div>
-            {menu}
-            <div className="customHeaderLabel">{props.displayName}</div>
+            <div className="customHeaderLabel">{props.displayName} <div className={'fa ${props.icon}'}></div></div>
             {sort}
         </div>);
 };
