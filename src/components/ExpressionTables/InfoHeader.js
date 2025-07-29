@@ -3,26 +3,25 @@ import { faInfoCircle, faArrowDown, faArrowUp } from '@fortawesome/free-solid-sv
 import React, { useEffect, useRef, useState } from 'react';
 
 export default (props) => {
-    let currentSortOrder = props.defaultSort;
-    let sortArrow = getSortArrow(currentSortOrder);
+    props.setSort(props.defaultSort);
     const [ascSort, setAscSort] = useState('inactive');
     const [descSort, setDescSort] = useState('inactive');
     const [noSort, setNoSort] = useState('inactive');
     const refButton = useRef(null);
     
     const onSortChanged = () => {
-        const sort = props.column.getSort();
-        sortArrow = getSortArrow(sort);
-    };
-    
+        
+    }
+
     const onSortRequested = (event) => {
+        let currentSort = props.column.getSort()
         console.log("sorting")
-        if (currentSortOrder === 'asc') {
-            currentSortOrder = 'desc'
+        if (currentSort === 'asc') {
+            currentSort = 'desc'
         } else {
-            currentSortOrder = 'asc'
+            currentSort = 'asc'
         }
-        props.setSort(currentSortOrder, event.shiftKey);
+        props.setSort(currentSort, event.shiftKey);
     };
     
     useEffect(() => {
@@ -37,28 +36,22 @@ export default (props) => {
         )
     }
 
-
-    const getSortArrow = (sort) => {
-        if (sort === 'asc') {
-            return (
-                <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='sortUp' icon={faArrowUp} /></span>
-            );
-        } else if (sort === 'desc') {
-            return (
-                <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='sortDown' icon={faArrowDown} /></span>
-            );
-        } else {
-            return '';
-        }
-  
+    
+    let sortArrow = '';
+    if (props.getSort() === 'asc') {
+        sortArrow = 
+            <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='sortUp' icon={faArrowUp} /></span>;
+    } else if (props.getSort() === 'desc') {
+        sortArrow =
+            <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='sortDown' icon={faArrowDown} /></span>;
     }
+  
     
     if (props.enableSorting) {
         
         return (
             <div>    
-                <div onClick={(event) => onSortRequested(event)} onTouchEnd={(event) =>
-                    onSortRequested(event)} className="customHeaderLabel"> {sortArrow} {props.displayName} {headerIcon}</div>
+                <div onClick={(event) => onSortRequested(event)} className="customHeaderLabel"> {sortArrow} {props.displayName} {headerIcon}</div>
             </div>
         )
     } else {
