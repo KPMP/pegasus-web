@@ -33,6 +33,8 @@ export default (props) => {
     }
 
     let sort = null;
+    console.log(props)
+
     if (props.enableSorting) {
         sort = (<div style={{ display: 'inline-block' }}>
                 <div onClick={(event) => onSortRequested('asc', event)} onTouchEnd={(event) => onSortRequested('asc', event)} className={`customSortDownLabel ${ascSort}`}>
