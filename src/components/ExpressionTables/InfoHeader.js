@@ -17,6 +17,7 @@ export default (props) => {
     };
     
     const onSortRequested = (event) => {
+        console.log("sorting")
         if (currentSortOrder === 'asc') {
             currentSortOrder = 'desc'
         } else {
@@ -38,38 +39,29 @@ export default (props) => {
     }
 
 
-    // const getSortDiv = () => {
-    //     if (currentSortOrder === 'asc') {
-    //         return (
-    //             <div onClick={(event) => onSortRequested(event)} onTouchEnd={(event) => onSortRequested('asc', event)} className={`customSortDownLabel ${ascSort}`}>
-    //                 <i className="fa fa-long-arrow-alt-down"></i>
-    //             </div>
-    //         );
-    //     } else if (currentSortOrder === 'desc') {
-    //         return (
-    //             <div onClick={(event) => onSortRequested(event)} onTouchEnd={(event) => onSortRequested('desc', event)} className={`customSortUpLabel ${descSort}`}>
-    //                 <i className="fa fa-long-arrow-alt-up"></i>
-    //             </div>
-    //         );
-    //     } else {
-    //         return (
-    //             <div onClick={(event) => onSortRequested(event)} onTouchEnd={(event) => onSortRequested(null, event)} className={`customSortRemoveLabel ${noSort}`}>
-    //                 <i className="fa fa-times"></i>
-    //             </div>
-    //         )
-    //     }
+    const getSortArrow = () => {
+        if (currentSortOrder === 'asc') {
+            return (
+                    <i className="fa fa-long-arrow-alt-down"></i>
+            );
+        } else if (currentSortOrder === 'desc') {
+            return (
+                    <i className="fa fa-long-arrow-alt-up"></i>
+            );
+        } else {
+            return (
+                    <i className="fa fa-times"></i>
+            )
+        }
 
   
-    // }
+    }
     
     if (props.enableSorting) {
-        
+        let sortArrow = getSortArrow();
         return (
-            <div>
-                <div onClick={(event) => onSortRequested(event)}>
-                    <i className='fa fa-long-arrow-alt-down'></i>
-                    <div className="customHeaderLabel">{props.displayName} {headerIcon}</div>
-                </div>
+            <div>    
+                <div  onClick={(event) => onSortRequested(event)} className="customHeaderLabel"> <i className='fa fa-long-arrow-alt-down'></i> {props.displayName} {headerIcon}</div>
             </div>
         )
     } else {
