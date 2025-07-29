@@ -3,18 +3,13 @@ import { faInfoCircle, faArrowDown, faArrowUp } from '@fortawesome/free-solid-sv
 import React, { useEffect, useRef, useState } from 'react';
 
 export default (props) => {
-    props.setSort(props.defaultSort);
-    const [ascSort, setAscSort] = useState('inactive');
-    const [descSort, setDescSort] = useState('inactive');
-    const [noSort, setNoSort] = useState('inactive');
-    const refButton = useRef(null);
-    
+    props.setSort(props.defaultSort);    
     const onSortChanged = () => {
-        
+
     }
 
     const onSortRequested = (event) => {
-        let currentSort = props.column.getSort()
+        let currentSort = props.getSort()
         console.log("sorting")
         if (currentSort === 'asc') {
             currentSort = 'desc'
