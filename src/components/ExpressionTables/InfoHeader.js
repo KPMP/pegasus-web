@@ -24,6 +24,12 @@ export default (props) => {
         onSortChanged();
     }, []);
     
+    let headerIcon = null;
+    if (props.icon) {
+        headerIcon = (
+            <div className={'fa ${props.icon}'}/>
+        )
+    }
     
     let sort = null;
     if (props.enableSorting) {
@@ -40,8 +46,9 @@ export default (props) => {
             </div>);
     }
     
-    return (<div>
-            <div className="customHeaderLabel">{props.displayName} <div className={'fa ${props.icon}'}></div></div>
+    return (
+        <div>
+            <div className="customHeaderLabel">{props.displayName} {headerIcon}}</div>
             {sort}
         </div>);
 };
