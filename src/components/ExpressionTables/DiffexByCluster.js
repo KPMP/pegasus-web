@@ -107,9 +107,9 @@ class DiffexByCluster extends Component {
                 {
                     headerName: 'GENE',
                     field: 'gene',
-                    cellRenderer: props => {
-                        return (<button onClick={() => this.handleClick(params.gene)}  className='table-column btn btn-link text-start p-0'>
-                            {params.gene}
+                    cellRenderer: params => {
+                        return (<button onClick={() => this.handleClick(params.data.gene)}  className='table-column btn btn-link text-start p-0'>
+                            {params.data.gene}
                         </button>);
                     }
                 }
