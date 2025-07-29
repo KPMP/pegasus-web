@@ -104,6 +104,7 @@ class DiffexByCluster extends Component {
         columns.push(
             {
                 headerName: 'FOLD CHANGE',
+                headerComponent: InfoHeader,
                 headerTooltip: 'Fold change of a gene is calculated by dividing the average expression of the gene in the segment/cluster of interest by its average expression in all other segments/clusters being compared.',
                 field: 'foldChange',
                 sort: "desc",
@@ -116,6 +117,7 @@ class DiffexByCluster extends Component {
             columns.push(
                 {
                     headerName: 'P VALUE',
+                    headerComponent: InfoHeader,
                     infoIcon: true,
                     sortable: true, 
                     headerTooltip: 'P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment/cluster of interest and its expression in all other segments/clusters.',
@@ -128,7 +130,9 @@ class DiffexByCluster extends Component {
             {
                 headerName: 'ADJ P VALUE',
                 field: 'pValAdj',
+                headerComponent: InfoHeader,
                 sortable: true,
+                infoIcon: false,
                 valueFormatter: params => formatNumberToPrecision(params.value, 3, true)
             }
         );
@@ -172,16 +176,6 @@ class DiffexByCluster extends Component {
         this.state.gridApi.refreshCells();
     }
 
-    getDefaultColDef = () => {
-        return {
-            editable: false,
-            filter: false,
-            headerComponent: InfoHeader,
-            headerComponentParams: {
-                icon: ''
-            }
-        }
-    }
 
     render() {
         return (
@@ -222,7 +216,6 @@ class DiffexByCluster extends Component {
                                                         domLayout='autoHeight'
                                                         onGridReady={this.onGridReady}
                                                         autoSizeStrategy={{type: 'fitGridWidth'}}
-                                                        defaultColDef={this.getDefaultColDef()}
                                                     />
                                                 </div>
                                             }
