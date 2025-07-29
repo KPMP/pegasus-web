@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from 'react';
 
 export default (props) => {
     let currentSortOrder = props.defaultSort;
-    let sortArrow = '';
+    let sortArrow = getSortArrow();
     const [ascSort, setAscSort] = useState('inactive');
     const [descSort, setDescSort] = useState('inactive');
     const [noSort, setNoSort] = useState('inactive');
@@ -12,9 +12,7 @@ export default (props) => {
     
     const onSortChanged = () => {
         const sort = props.column.getSort();
-        setAscSort(sort === 'asc' ? 'active' : 'inactive');
-        setDescSort(sort === 'desc' ? 'active' : 'inactive');
-        setNoSort(!sort ? 'active' : 'inactive');
+        sortArrow = getSortArrow(sort);
     };
     
     const onSortRequested = (event) => {
@@ -25,7 +23,6 @@ export default (props) => {
             currentSortOrder = 'asc'
         }
         props.setSort(currentSortOrder, event.shiftKey);
-        sortArrow = getSortArrow();
     };
     
     useEffect(() => {
@@ -41,12 +38,12 @@ export default (props) => {
     }
 
 
-    const getSortArrow = () => {
-        if (currentSortOrder === 'asc') {
+    const getSortArrow = (sort) => {
+        if (sort === 'asc') {
             return (
                 <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='sortUp' icon={faArrowUp} /></span>
             );
-        } else if (currentSortOrder === 'desc') {
+        } else if (sort === 'desc') {
             return (
                 <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='sortDown' icon={faArrowDown} /></span>
             );
@@ -57,9 +54,11 @@ export default (props) => {
     }
     
     if (props.enableSorting) {
+        sortArrow = getSortArrow(props.defaultSort);
         return (
             <div>    
-                <div onClick={(event) => onSortRequested(event)} className="customHeaderLabel"> {sortArrow} {props.displayName} {headerIcon}</div>
+                <div onClick={(event) => onSortRequested(event)} onTouchEnd={(event) =>
+                    onSortRequested(event)} className="customHeaderLabel"> {sortArrow} {props.displayName} {headerIcon}</div>
             </div>
         )
     } else {
