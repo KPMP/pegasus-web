@@ -104,7 +104,6 @@ class DiffexByCluster extends Component {
         columns.push(
             {
                 headerName: 'FOLD CHANGE',
-                headerComponent: InfoHeader,
                 headerComponentParams: {icon: 'fa-circle-info'},
                 headerTooltip: 'Fold change of a gene is calculated by dividing the average expression of the gene in the segment/cluster of interest by its average expression in all other segments/clusters being compared.',
                 field: 'foldChange',
@@ -116,7 +115,6 @@ class DiffexByCluster extends Component {
             columns.push(
                 {
                     headerName: 'P VALUE',
-                    headerComponent: InfoHeader,
                     headerComponentParams: {icon: 'fa-circle-info'},
                     headerTooltip: 'P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment/cluster of interest and its expression in all other segments/clusters.',
                     field: 'pVal',
@@ -173,6 +171,17 @@ class DiffexByCluster extends Component {
         this.state.gridApi.refreshCells();
     }
 
+    getDefaultColDef = () => {
+        return {
+            editable: false,
+            filter: false,
+            headerComponent: InfoHeader,
+            headerComponentParams: {
+                icon: ''
+            }
+        }
+    }
+
     render() {
         return (
             <div className='height-wrapper mb-3 mt-3'>
@@ -212,6 +221,7 @@ class DiffexByCluster extends Component {
                                                         domLayout='autoHeight'
                                                         onGridReady={this.onGridReady}
                                                         autoSizeStrategy={{type: 'fitGridWidth'}}
+                                                        defaultColDef={this.getDefaultColDef()}
                                                     />
                                                 </div>
                                             }

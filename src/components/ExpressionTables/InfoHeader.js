@@ -31,7 +31,7 @@ export default (props) => {
     let menu = null;
     if (props.enableFilterButton) {
         menu = (<div ref={refButton} className="customHeaderMenuButton" onClick={() => onMenuClicked()}>
-                <i className={`fa ${props.menuIcon}`}></i>
+                <i className={`fa ${props.icon}`}></i>
             </div>);
     }
     
