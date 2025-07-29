@@ -109,7 +109,7 @@ class DiffexByCluster extends Component {
                 field: 'foldChange',
                 sortable: true,
                 sortingOrder: ["desc","asc"], 
-                valueFormatter: params => formatNumberToPrecision(params.foldChange, 3)
+                valueFormatter: params => formatNumberToPrecision(params.value, 3)
             }
         );
         if (this.props.dataType !== 'rp') {
@@ -120,7 +120,7 @@ class DiffexByCluster extends Component {
                     headerTooltip: 'P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment/cluster of interest and its expression in all other segments/clusters.',
                     field: 'pVal',
                     sortable: true,
-                    valueFormatter: params => formatNumberToPrecision(params.pVal, 3)
+                    valueFormatter: params => formatNumberToPrecision(params.value, 3)
                 }
             );
         }
@@ -129,7 +129,7 @@ class DiffexByCluster extends Component {
                 headerName: 'ADJ P VALUE',
                 field: 'pValAdj',
                 sortable: true,
-                valueFormatter: params => formatNumberToPrecision(params.pValAdj, 3, true)
+                valueFormatter: params => formatNumberToPrecision(params.value, 3, true)
             }
         );
         return columns
