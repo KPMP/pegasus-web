@@ -51,7 +51,7 @@ export default (props) => {
     
     return (
         <div>
-            {sort}
-            <div className="customHeaderLabel">{props.displayName} {headerIcon}</div>
+            
+            <div className="customHeaderLabel">{sort} {props.displayName} {headerIcon}</div>
         </div>);
 };
