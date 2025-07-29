@@ -11,14 +11,8 @@ import packageJson from '../../../package.json';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import InfoHeader from './InfoHeader';
 import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
-import geneButton from './geneButton';
 ModuleRegistry.registerModules([ AllCommunityModule ]);
 
-const GeneButton = ({data}) => {
-    return (<button onClick={() => console.log('Software Launched')}  className='table-column btn btn-link text-start p-0'>
-            {data.gene}
-        </button>);
-}
 
 class DiffexByCluster extends Component {
 
@@ -80,17 +74,6 @@ class DiffexByCluster extends Component {
             this.fetchGeneExpression();
         }
     }
-
-    getAccessionLink = (gene, accession) => {
-        return (<button onClick={() => this.handleClick(gene, accession)} type='button' className='table-column btn btn-link text-start p-0'>{accession}</button>);
-    }
-
-    getGeneLink = (gene) => {
-        return (<a onclick={() => this.handleClick(gene)}>Hi {gene}</a>);
-        // return (<button onClick={() => this.handleClick(data.gene)} type='button' className='table-column btn btn-link text-start p-0'>{data.gene}</button>);
-    };
-
-
     
     getColumns = () => {
         let columns = [];
@@ -99,7 +82,10 @@ class DiffexByCluster extends Component {
                 {
                     headerName: 'PROTEIN',
                     field: 'accession',
-                    //valueFormatter: params => this.getAccessionLink(params.gene, params.accession)
+                    cellRenderer: params => {
+                        return (<button onClick={() => this.handleClick(params.data.gene, params.data.accession)} 
+                        type='button' className='table-column btn btn-link text-start p-0'>{params.data.accession}</button>);
+                    }
                 }
             );
         } else {
@@ -122,7 +108,7 @@ class DiffexByCluster extends Component {
                 headerTooltip: 'Fold change of a gene is calculated by dividing the average expression of the gene in the segment/cluster of interest by its average expression in all other segments/clusters being compared.',
                 field: 'foldChange',
                 sortable: true,
-                sort: "desc", 
+                sortingOrder: ["desc","asc"], 
                 valueFormatter: params => formatNumberToPrecision(params.foldChange, 3)
             }
         );
