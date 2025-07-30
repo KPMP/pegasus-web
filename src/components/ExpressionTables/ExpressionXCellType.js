@@ -124,8 +124,7 @@ class ExpressionXCellType extends Component {
                     return formatNumberToPrecision(newValue, 3, false, this.props.dataType, this.props.enrollmentCategory);
                 },
                 width: 106,
-                headerClass: 'dataVizTableHeader',
-                aggFunc: "sum"
+                headerClass: 'dataVizTableHeader'
             },
             {
                 headerName: "CELL CLUSTER VS ALL OTHERS",
