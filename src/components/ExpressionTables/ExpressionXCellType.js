@@ -30,7 +30,7 @@ class ExpressionXCellType extends Component {
 
     componentDidMount() {
         this.setState({
-            pinnedBottomRowData: this.calculatePinnedBottomRow(this.props.data),
+            pinnedBottomRowData: this.totalSummaryItems(this.props.data),
         });
     }
 
