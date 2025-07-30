@@ -99,14 +99,14 @@ class ExpressionXCellType extends Component {
                     <span>CELL CLUSTER (<i>predicted state</i>),</span>
                 ),
                 field: 'clusterName',
+                wrapHeaderText: true,
                 cellRenderer: row => this.parseClusterName(row.value),
                 width: 500
                 
             },
             {
-                headerComponent: () => (
-                    <span># CELLS IN<br />CELL CLUSTER</span>
-                ),
+                headerName: "# CELLS IN CELL CLUSTER",
+                wrapHeaderText: true,
                 field: 'cellCount',
                 valueFormatter: row => row.value ? row.value : 0,
                 width: 110
@@ -115,6 +115,7 @@ class ExpressionXCellType extends Component {
                 headerName: 'MEAN EXPRESSION',
                 headerComponent: InfoHeader,
                 headerComponentParams: { infoIcon: true },
+                wrapHeaderText: true,
                 headerTooltip: 'Averaged expression values (logarithmic) for each cell cluster',
                 field: 'avgExp',
                 valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
@@ -123,6 +124,7 @@ class ExpressionXCellType extends Component {
             {
                 headerName: '% CELLS EXPRESSING',
                 field: 'pct1',
+                wrapHeaderText: true,
                 valueFormatter: row => {
                     let newValue = (row.value > 0) ? (row.value * 100) : row.value;
                     return formatNumberToPrecision(newValue, 3, false, this.props.dataType, this.props.enrollmentCategory);
@@ -130,32 +132,42 @@ class ExpressionXCellType extends Component {
                 width: 106
             },
             {
-                headerName: 'FOLD CHANGE', 
-                headerComponent: InfoHeader,
-                headerComponentParams: { infoIcon: true},
-                headerTooltip: 'Log fold-change of the average expression between this cell cluster and all others. Positive values indicate that the feature is more highly expressed in this cell cluster.',
-                field: 'foldChange',
-                valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
-                width: 100
-            },
-            {
-                headerName: 'P VALUE',
-                headerComponent: InfoHeader,
-                headerComponentParams: { infoIcon: true },
-                headerTooltip: 'p-value (unadjusted)',
-                field: 'pVal',
-                valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
-                width: 106
-            },
-            {
-                headerName: 'ADJ P VALUE',
-                headerComponent: InfoHeader,
-                headerComponentParams: { infoIcon: true },
-                headerTooltip: 'Adjusted p-value, based on bonferroni correction using all features in the dataset.',
-                field: 'pValAdj',
-                valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
-                width: 100
+                headerName: "CELL CLUSTER VS ALL OTHERS",
+                backgroundColor: "#cee5ff",
+                children: [
+                    {
+                        headerName: 'FOLD CHANGE', 
+                        headerComponent: InfoHeader,
+                        headerComponentParams: { infoIcon: true},
+                        wrapHeaderText: true,
+                        headerTooltip: 'Log fold-change of the average expression between this cell cluster and all others. Positive values indicate that the feature is more highly expressed in this cell cluster.',
+                        field: 'foldChange',
+                        valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
+                        width: 100
+                    },
+                    {
+                        headerName: 'P VALUE',
+                        headerComponent: InfoHeader,
+                        headerComponentParams: { infoIcon: true },
+                        wrapHeaderText: true,
+                        headerTooltip: 'p-value (unadjusted)',
+                        field: 'pVal',
+                        valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
+                        width: 106
+                    },
+                    {
+                        headerName: 'ADJ P VALUE',
+                        headerComponent: InfoHeader,
+                        headerComponentParams: { infoIcon: true },
+                        wrapHeaderText: true,
+                        headerTooltip: 'Adjusted p-value, based on bonferroni correction using all features in the dataset.',
+                        field: 'pValAdj',
+                        valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
+                        width: 100
+                    }
+                ]
             }
+            
         ]
     };
 
