@@ -23,7 +23,7 @@ const CustomHeader = (props) => {
 class RegionalTranscriptomicsTable extends Component {
 
     constructor(props) {
-        super(props);        
+        super(props);
         this.state = {
             columnDefs: this.createColumnDefs(),
             gridApi: null,
