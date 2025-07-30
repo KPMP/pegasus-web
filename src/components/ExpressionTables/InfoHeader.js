@@ -69,6 +69,7 @@ const InfoHeader = (props) => {
     const toggleSort = () => {
         const nextSort = sortState === 'asc' ? 'desc' : sortState === 'desc' ? null : 'asc';
         setSort(nextSort, false);
+        props.api.onSortChanged();
     }
 
     const getSortArrow = () => {
