@@ -214,9 +214,15 @@ class ExpressionXCellType extends Component {
                         <Col xs='12'>
                             <React.Fragment>
                                 <div className="ag-theme-material img-fluid">
-                                    <AgGridReact rowData={this.props.data} columnDefs={this.getColumns()}
-                                        domLayout='autoHeight' onGridReady={this.onGridReady} autoSizeStrategy={{type: 'fitGridWidth'}} 
-                                        headerHeight={60}/>
+                                    <AgGridReact 
+                                        rowData={this.props.data} 
+                                        columnDefs={this.getColumns()}
+                                        domLayout='autoHeight' 
+                                        onGridReady={this.onGridReady} 
+                                        autoSizeStrategy={{type: 'fitGridWidth'}} 
+                                        headerHeight={null}
+                                        groupHeaderHeight={null}
+                                        autoHeaderHeight={true}/>
 
                                 </div>
                             </React.Fragment>
