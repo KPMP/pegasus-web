@@ -174,7 +174,7 @@ class ExpressionXCellType extends Component {
         const { data } = this.props;
         const total = data.reduce((sum, row) => {
             const value = Number(row.cellCount);
-            return isNan(value) ? sum: sum + value;
+            return sum + value;
         },0);
         return [...data, {
             cluster: '',
