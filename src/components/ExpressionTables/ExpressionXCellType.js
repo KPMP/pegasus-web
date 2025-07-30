@@ -79,7 +79,7 @@ class ExpressionXCellType extends Component {
             {
                 headerName: 'CELL CLUSTER (<i>predicted state</i>)',
                 field: 'clusterName',
-                valueFormatter: row => this.parseClusterName(row.value),
+                cellRenderer: row => this.parseClusterName(row.value),
                 width: 500
                 
             },
