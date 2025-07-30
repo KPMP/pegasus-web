@@ -216,9 +216,7 @@ class ExpressionXCellType extends Component {
                             <React.Fragment>
                                 <div className="ag-theme-material img-fluid">
                                     <AgGridReact rowData={this.props.data} columnDefs={this.getColumns()}
-                                        domLayout='autoHeight' onGridReady={this.onGridReady} statusBar={{
-                                            statusPanels: [ { statusPanel: 'agAggregationComponent' }, ]
-                                        }}/>
+                                        domLayout='autoHeight' onGridReady={this.onGridReady} />
 
                                 </div>
                             </React.Fragment>
