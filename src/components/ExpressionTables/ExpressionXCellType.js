@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, useMemo } from 'react';
 import { TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
 import { Col, Row, Spinner } from "reactstrap";
 import { formatEnrollmentCategory, formatNumberToPrecision } from "../../helpers/Utils"
@@ -15,15 +15,10 @@ import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
 ModuleRegistry.registerModules([ AllCommunityModule ]);
 
 
-const CustomHeader = (props) => {
-     return (
-         <div className='ag-header-cell-text' style={{ display: 'flex', alignItems: 'center', height: '100%' }}>
-             <span>{props.displayName}</span>
-             <FontAwesomeIcon className='kpmp-light-blue' icon={faCircleInfo} style={{ marginLeft: '5px' }} />
-         </div>
-     );
- };
-
+const totalSummaryItems = useMemo(() => {
+        const totalAmount = rowData.reduce((sum, row) => sum + (row.cellCount || 0 ), 0);
+        return[ {cluster: '', clusterName: '', cellCount: 'Sum: ' + totalAmount, avgExp:'', pct1: '', foldChange:'', pval: '', pValAdj:''}]
+    }, [rowData]);
 
 class ExpressionXCellType extends Component {
 
@@ -238,8 +233,9 @@ class ExpressionXCellType extends Component {
                     <Row xs='12' id='expression-by-cell-type'>
                         <Col xs='12'>
                             <React.Fragment>
-                                <AgGridReact rowData={this.props.data} columnDefs={this.getColumns()}
-                                    domLayout='autoHeight' onGridReady={this.onGridReady}/>
+                                <div className="ag-theme-material img-fluid">
+                                    <AgGridReact rowData={this.props.data} columnDefs={this.getColumns()}
+                                        domLayout='autoHeight' onGridReady={this.onGridReady} pinnedBottomRowData={totalSummaryItems}/>
                                     {/* <SummaryState totalItems={totalSummaryItems}/>
                                     <IntegratedSummary />
                                     <Table columnExtensions={this.getColumnExtensions()}/>
@@ -247,6 +243,7 @@ class ExpressionXCellType extends Component {
                                     <TableHeaderRow/>
                                     <TableBandHeader columnBands={this.getColumnBands()} cellComponent={BandCell}/>
                                     <TableSummaryRow /> */}
+                                </div>
                             </React.Fragment>
                         </Col>
                     </Row>
