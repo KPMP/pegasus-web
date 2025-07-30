@@ -10,6 +10,7 @@ import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper'
 import Parser from 'html-react-parser';
 import { stripHtml } from "string-strip-html";
 import { AgGridReact } from "ag-grid-react";
+import InfoHeader from './InfoHeader';
 import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
 ModuleRegistry.registerModules([ AllCommunityModule ]);
 
@@ -95,60 +96,66 @@ class ExpressionXCellType extends Component {
             },
             {
                 headerComponent: () => (
-                    <span>'CELL CLUSTER (<i>predicted state</i>)',</span>
+                    <span>CELL CLUSTER (<i>predicted state</i>),</span>
                 ),
                 field: 'clusterName',
                 cellRenderer: row => this.parseClusterName(row.value),
                 width: 500
                 
             },
-            // {
-            //     headerName: <span># CELLS IN<br />CELL CLUSTER</span>,
-            //     field: 'cellCount',
-            //     valueFormatter: row => row.value ? row.value : 0,
-            //     width: 110
-            // },
-            // {
-            //     headerName: 'MEAN EXPRESSION',
-            //     headerComponent: CustomHeader,
-            //     headerTooltip: 'Averaged expression values (logarithmic) for each cell cluster',
-            //     field: 'avgExp',
-            //     valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
-            //     width: 125
-            // },
-            // {
-            //     headerName: '% CELLS EXPRESSING',
-            //     field: 'pct1',
-            //     valueFormatter: row => {
-            //         let newValue = (row.value > 0) ? (row.value * 100) : row.value;
-            //         return formatNumberToPrecision(newValue, 3, false, this.props.dataType, this.props.enrollmentCategory);
-            //     },
-            //     width: 106
-            // },
-            // {
-            //     headerName: 'FOLD CHANGE', 
-            //     headerComponent: CustomHeader,
-            //     headerTooltip: 'Log fold-change of the average expression between this cell cluster and all others. Positive values indicate that the feature is more highly expressed in this cell cluster.',
-            //     field: 'foldChange',
-            //     valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
-            //     width: 100
-            // },
-            // {
-            //     headerName: 'P VALUE',
-            //     headerComponent: CustomHeader,
-            //     headerTooltip: 'p-value (unadjusted)',
-            //     field: 'pVal',
-            //     valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
-            //     width: 106
-            // },
-            // {
-            //     headerName: 'ADJ P VALUE',
-            //     headerComponent: CustomHeader,
-            //     headerTooltip: 'Adjusted p-value, based on bonferroni correction using all features in the dataset.',
-            //     field: 'pValAdj',
-            //     valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
-            //     width: 100
-            // }
+            {
+                headerComponent: () => (
+                    <span># CELLS IN<br />CELL CLUSTER</span>,
+                ),
+                field: 'cellCount',
+                valueFormatter: row => row.value ? row.value : 0,
+                width: 110
+            },
+            {
+                headerName: 'MEAN EXPRESSION',
+                headerComponent: InfoHeader,
+                headerComponentParams: { infoIcon: true },
+                headerTooltip: 'Averaged expression values (logarithmic) for each cell cluster',
+                field: 'avgExp',
+                valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
+                width: 125
+            },
+            {
+                headerName: '% CELLS EXPRESSING',
+                field: 'pct1',
+                valueFormatter: row => {
+                    let newValue = (row.value > 0) ? (row.value * 100) : row.value;
+                    return formatNumberToPrecision(newValue, 3, false, this.props.dataType, this.props.enrollmentCategory);
+                },
+                width: 106
+            },
+            {
+                headerName: 'FOLD CHANGE', 
+                headerComponent: InfoHeader,
+                headerComponentParams: { infoIcon: true},
+                headerTooltip: 'Log fold-change of the average expression between this cell cluster and all others. Positive values indicate that the feature is more highly expressed in this cell cluster.',
+                field: 'foldChange',
+                valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
+                width: 100
+            },
+            {
+                headerName: 'P VALUE',
+                headerComponent: InfoHeader,
+                headerComponentParams: { infoIcon: true },
+                headerTooltip: 'p-value (unadjusted)',
+                field: 'pVal',
+                valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
+                width: 106
+            },
+            {
+                headerName: 'ADJ P VALUE',
+                headerComponent: InfoHeader,
+                headerComponentParams: { infoIcon: true },
+                headerTooltip: 'Adjusted p-value, based on bonferroni correction using all features in the dataset.',
+                field: 'pValAdj',
+                valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
+                width: 100
+            }
         ]
     };
 
