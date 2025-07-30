@@ -108,7 +108,7 @@ class ExpressionXCellType extends Component {
                 width: 106
             },
             {
-                headername: 'FOLD CHANGE', 
+                headerName: 'FOLD CHANGE', 
                 headerComponent: CustomHeader,
                 headerTooltip: 'Log fold-change of the average expression between this cell cluster and all others. Positive values indicate that the feature is more highly expressed in this cell cluster.',
                 field: 'foldChange',
