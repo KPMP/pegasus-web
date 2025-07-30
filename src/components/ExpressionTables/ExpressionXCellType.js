@@ -26,6 +26,16 @@ const CustomHeader = (props) => {
 
 class ExpressionXCellType extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoading: true,
+            columnDefs: this.getColumns(),
+            gradApi: null,
+            columnApi: null
+        };
+    };
+
     getExportFilename = () => {
         const enrollmentCategory = formatEnrollmentCategory(this.props.enrollmentCategory).toLowerCase().replace(" ", "-");
         return "KPMP_" + formatDataType(this.props.dataType) + '-seq_gene-comparison_' + this.props.gene + '_' + enrollmentCategory + '.csv';
@@ -68,6 +78,13 @@ class ExpressionXCellType extends Component {
             return ''
         }
     };
+
+    
+    onGridReady= (params) => {
+        this.setState({gridApi: params.api, columnApi: params.columnApi})
+        this.state.gridApi.sizeColumnsToFit();
+        this.state.gridApi.refreshCells();
+    }
 
     getColumns = () => {
         return [
@@ -191,7 +208,8 @@ class ExpressionXCellType extends Component {
                     <Row xs='12' id='expression-by-cell-type'>
                         <Col xs='12'>
                             <React.Fragment>
-                                <AgGridReact rowData={this.props.data} columnDefs={this.getColumns()}>
+                                <AgGridReact rowData={this.props.data} columnDefs={this.getColumns()}
+                                    domLayout='autoHeight' onGridReady={this.onGridReady()}/>
                                     {/* <SummaryState totalItems={totalSummaryItems}/>
                                     <IntegratedSummary />
                                     <Table columnExtensions={this.getColumnExtensions()}/>
@@ -199,7 +217,6 @@ class ExpressionXCellType extends Component {
                                     <TableHeaderRow/>
                                     <TableBandHeader columnBands={this.getColumnBands()} cellComponent={BandCell}/>
                                     <TableSummaryRow /> */}
-                                </AgGridReact>
                             </React.Fragment>
                         </Col>
                     </Row>
