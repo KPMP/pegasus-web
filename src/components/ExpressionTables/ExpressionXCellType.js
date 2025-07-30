@@ -105,7 +105,7 @@ class ExpressionXCellType extends Component {
             },
             {
                 headerComponent: () => (
-                    <span># CELLS IN<br />CELL CLUSTER</span>,
+                    <span># CELLS IN<br />CELL CLUSTER</span>
                 ),
                 field: 'cellCount',
                 valueFormatter: row => row.value ? row.value : 0,
