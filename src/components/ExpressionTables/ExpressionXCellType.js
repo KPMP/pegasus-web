@@ -209,7 +209,7 @@ class ExpressionXCellType extends Component {
                         <Col xs='12'>
                             <React.Fragment>
                                 <AgGridReact rowData={this.props.data} columnDefs={this.getColumns()}
-                                    domLayout='autoHeight' onGridReady={this.onGridReady()}/>
+                                    domLayout='autoHeight' onGridReady={this.onGridReady}/>
                                     {/* <SummaryState totalItems={totalSummaryItems}/>
                                     <IntegratedSummary />
                                     <Table columnExtensions={this.getColumnExtensions()}/>
