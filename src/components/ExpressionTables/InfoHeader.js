@@ -57,19 +57,30 @@
 //     }
 // };
 
-import React from 'react';
+import React, { useEffect, useState }from 'react';
 import { faInfoCircle, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const InfoHeader = (props) => {
     console.log(props)
-    const { displayName, enableSorting, column, setSort, infoIcon } = props;
-    const sortState = column.getSort();
+    const { displayName, enableSorting, column, setSort, infoIcon, api } = props;
+    const [ sortState, setSortState ] = useState(column.getSort());
+
+    useEffect(() => {
+        const listener = () => {
+            setSortState(column.getSort());
+        }
+
+        api.addEventListener('sortChanged', listener);
+        return () => {
+            api.removeEventListener('sortChanged', listener);
+        }
+    }, [api, column]);
 
     const toggleSort = () => {
         const nextSort = sortState === 'asc' ? 'desc' : sortState === 'desc' ? null : 'asc';
         setSort(nextSort, false);
-        props.api.onSortChanged();
+        api.onSortChanged();
     }
 
     const getSortArrow = () => {

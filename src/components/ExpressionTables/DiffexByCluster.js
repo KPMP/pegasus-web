@@ -81,6 +81,7 @@ class DiffexByCluster extends Component {
             columns.push(
                 {
                     headerName: 'PROTEIN',
+                    headerComponent: InfoHeader,
                     field: 'accession',
                     sortable: false,
                     cellRenderer: params => {
@@ -93,6 +94,7 @@ class DiffexByCluster extends Component {
             columns.push(
                 {
                     headerName: 'GENE',
+                    headerComponent: InfoHeader,
                     field: 'gene',
                     sortable: false,
                     cellRenderer: params => {
