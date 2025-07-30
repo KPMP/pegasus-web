@@ -56,15 +56,6 @@ class ExpressionXCellType extends Component {
             });
     };
 
-    getTrProps = (state, rowInfo, instance) => {
-        if (rowInfo && rowInfo.row.clusterName === "TOTAL CELLS: ") {
-            return {
-                id: "total-row"
-            }
-        }
-        return {};
-    };
-
     parseClusterName = (value) => {
         if (value !== null) {
             const regex = /<sup>*.<\/sup>/i;
@@ -178,8 +169,9 @@ class ExpressionXCellType extends Component {
     };
 
     totalSummaryItems = (rowData) => {
+        console.log(rowData)
         const totalAmount = rowData.reduce((sum, row) => sum + (row.cellCount || 0 ), 0);
-        return[ {cluster: '', clusterName: '', cellCount: 'Sum: ' + totalAmount, avgExp:'', pct1: '', foldChange:'', pval: '', pValAdj:''}]
+        return[ {cluster: '', clusterName: '', cellCount: 'Sum: ' + totalAmount }]
     };
 
     render() {
