@@ -80,14 +80,14 @@ class ExpressionXCellType extends Component {
             {
                 headerName: 'CELL CLUSTER (<i>predicted state</i>)',
                 field: 'clusterName',
-                valueFormatter: row => this.parseClusterName(row),
+                valueFormatter: row => this.parseClusterName(row.value),
                 width: 500
                 
             },
             {
                 headerName: <span># CELLS IN<br />CELL CLUSTER</span>,
                 field: 'cellCount',
-                valueFormatter: row => row.cellCount ? row.cellCount : 0,
+                valueFormatter: row => row.value ? row.value : 0,
                 width: 110
             },
             {
@@ -95,14 +95,14 @@ class ExpressionXCellType extends Component {
                 headerComponent: CustomHeader,
                 headerTooltip: 'Averaged expression values (logarithmic) for each cell cluster',
                 field: 'avgExp',
-                valueFormatter: row => formatNumberToPrecision(row.avgExp, 3, false, this.props.dataType, this.props.enrollmentCategory),
+                valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
                 width: 125
             },
             {
                 headerName: '% CELLS EXPRESSING',
                 field: 'pct1',
                 valueFormatter: row => {
-                    let newValue = (row.pct1 > 0) ? (row.pct1 * 100) : row.pct1;
+                    let newValue = (row.value > 0) ? (row.value * 100) : row.value;
                     return formatNumberToPrecision(newValue, 3, false, this.props.dataType, this.props.enrollmentCategory);
                 },
                 width: 106
@@ -112,7 +112,7 @@ class ExpressionXCellType extends Component {
                 headerComponent: CustomHeader,
                 headerTooltip: 'Log fold-change of the average expression between this cell cluster and all others. Positive values indicate that the feature is more highly expressed in this cell cluster.',
                 field: 'foldChange',
-                valueFormatter: row => formatNumberToPrecision(row.foldChange, 3, false, this.props.dataType, this.props.enrollmentCategory),
+                valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
                 width: 100
             },
             {
@@ -120,7 +120,7 @@ class ExpressionXCellType extends Component {
                 headerComponent: CustomHeader,
                 headerTooltip: 'p-value (unadjusted)',
                 field: 'pVal',
-                valueFormatter: row => formatNumberToPrecision(row.pVal, 3, false, this.props.dataType, this.props.enrollmentCategory),
+                valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
                 width: 106
             },
             {
@@ -128,7 +128,7 @@ class ExpressionXCellType extends Component {
                 headerComponent: CustomHeader,
                 headerTooltip: 'Adjusted p-value, based on bonferroni correction using all features in the dataset.',
                 field: 'pValAdj',
-                valueFormatter: row => formatNumberToPrecision(row.pValAdj, 3, false, this.props.dataType, this.props.enrollmentCategory),
+                valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
                 width: 100
             }
         ]
