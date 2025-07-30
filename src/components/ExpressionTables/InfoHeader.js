@@ -43,7 +43,8 @@ const InfoHeader = (props) => {
     }
 
     return (
-        <div style={{ display: 'flex', alignItems: 'center', cursor: enableSorting ? 'pointer' : 'default' }} onClick={enableSorting ? toggleSort : undefined}>
+        <div style={{ whiteSpace: 'normal', lineHeight: 1.2, display: 'flex', alignItems: 'center', cursor: enableSorting ? 'pointer' : 'default' }} 
+            onClick={enableSorting ? toggleSort : undefined}>
         <span style={{ marginRight: 4 }}>{getSortArrow()}</span>
         <span> {displayName}  {headerIcon}</span>
         </div>
