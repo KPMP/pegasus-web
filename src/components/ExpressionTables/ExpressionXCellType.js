@@ -3,7 +3,7 @@ import { TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
 import { Col, Row, Spinner } from "reactstrap";
 import { formatEnrollmentCategory, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { faDownload, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDataType } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
@@ -24,15 +24,15 @@ class ExpressionXCellType extends Component {
             columnDefs: this.getColumns(),
             gradApi: null,
             columnApi: null,
-            pinnedBottomRowData: []
+            pinnedBottomRowData: this.totalSummaryItems(this.props.data)
         };
     };
 
-    componentDidMount() {
-        this.setState({
-            pinnedBottomRowData: this.totalSummaryItems(this.props.data),
-        });
-    }
+      componentDidMount() {
+    this.setState({
+      pinnedBottomRowData: this.calculatePinnedBottomRow(this.state.rowData),
+    });
+  }
 
     getExportFilename = () => {
         const enrollmentCategory = formatEnrollmentCategory(this.props.enrollmentCategory).toLowerCase().replace(" ", "-");
@@ -54,6 +54,15 @@ class ExpressionXCellType extends Component {
                     pValAdj: formatNumberToPrecision(pValAdj, 3, false, this.props.dataType, this.props.enrollmentCategory)
                 }
             });
+    };
+
+    getTrProps = (state, rowInfo, instance) => {
+        if (rowInfo && rowInfo.row.clusterName === "TOTAL CELLS: ") {
+            return {
+                id: "total-row"
+            }
+        }
+        return {};
     };
 
     parseClusterName = (value) => {
@@ -168,12 +177,6 @@ class ExpressionXCellType extends Component {
         ]
     };
 
-    totalSummaryItems = (rowData) => {
-        console.log(rowData)
-        const totalAmount = rowData.reduce((sum, row) => sum + (row.cellCount || 0 ), 0);
-        return[ {cluster: '', clusterName: '', cellCount: 'Sum: ' + totalAmount }]
-    };
-
     render() {
         const BandCell = ({ children, tableRow, tableColumn, column, ...restProps }) => {
             return (
@@ -192,6 +195,9 @@ class ExpressionXCellType extends Component {
         } else if (this.props.data.length === 0) {
             return (<div></div>)
         } else {
+            const totalSummaryItems = [ 
+                { columnName: 'cellCount', type: 'sum' }
+            ]
             return (
                 <React.Fragment>
                     <Row xs='12' className='mt-5'>
@@ -217,6 +223,10 @@ class ExpressionXCellType extends Component {
                                 <div className="ag-theme-material img-fluid">
                                     <AgGridReact rowData={this.props.data} columnDefs={this.getColumns()}
                                         domLayout='autoHeight' onGridReady={this.onGridReady} pinnedBottomRowData={this.state.pinnedBottomRowData}/>
+                                    <div className="grid-footer">
+                                        Sum: {totalSummaryItems}
+                                    </div>
+
                                 </div>
                             </React.Fragment>
                         </Col>
