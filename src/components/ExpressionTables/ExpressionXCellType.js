@@ -103,6 +103,7 @@ class ExpressionXCellType extends Component {
                 valueFormatter: row => row.value ? row.value : 0,
                 width: 110,
                 headerClass: 'dataVizTableHeader',
+                enableValue: true,
                 aggFunc: 'sum'
             },
             {
