@@ -102,7 +102,8 @@ class ExpressionXCellType extends Component {
                 field: 'cellCount',
                 valueFormatter: row => row.value ? row.value : 0,
                 width: 110,
-                headerClass: 'dataVizTableHeader'
+                headerClass: 'dataVizTableHeader',
+                aggFunc: 'sum'
             },
             {
                 headerName: 'MEAN EXPRESSION',
@@ -222,7 +223,12 @@ class ExpressionXCellType extends Component {
                                         autoSizeStrategy={{type: 'fitGridWidth'}} 
                                         headerHeight={null}
                                         groupHeaderHeight={null}
-                                        autoHeaderHeight={true}/>
+                                        autoHeaderHeight={true}
+                                        statusBar = {{
+                                            statusPanels: [
+                                                { statusPanel: 'agAggregationComponent' },
+                                            ],
+                                        }}/>
 
                                 </div>
                             </React.Fragment>
