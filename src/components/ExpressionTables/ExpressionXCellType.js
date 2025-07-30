@@ -94,7 +94,9 @@ class ExpressionXCellType extends Component {
                 width: 106
             },
             {
-                headerName: 'CELL CLUSTER (<i>predicted state</i>)',
+                headerComponent: () => (
+                    <span>'CELL CLUSTER (<i>predicted state</i>)',</span>
+                ),
                 field: 'clusterName',
                 cellRenderer: row => this.parseClusterName(row.value),
                 width: 500
