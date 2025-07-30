@@ -24,15 +24,8 @@ class ExpressionXCellType extends Component {
             columnDefs: this.getColumns(),
             gradApi: null,
             columnApi: null,
-            pinnedBottomRowData: this.totalSummaryItems(this.props.data)
         };
     };
-
-      componentDidMount() {
-    this.setState({
-      pinnedBottomRowData: this.calculatePinnedBottomRow(this.state.rowData),
-    });
-  }
 
     getExportFilename = () => {
         const enrollmentCategory = formatEnrollmentCategory(this.props.enrollmentCategory).toLowerCase().replace(" ", "-");
