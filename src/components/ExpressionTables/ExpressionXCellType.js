@@ -92,7 +92,8 @@ class ExpressionXCellType extends Component {
             {
                 headerName: "ABBR",
                 field: 'cluster',
-                width: 106
+                width: 106,
+                headerClass: 'dataVizTableHeader'
             },
             {
                 headerComponent: () => (
@@ -101,7 +102,8 @@ class ExpressionXCellType extends Component {
                 field: 'clusterName',
                 wrapHeaderText: true,
                 cellRenderer: row => this.parseClusterName(row.value),
-                width: 500
+                width: 500,
+                headerClass: 'dataVizTableHeader'
                 
             },
             {
@@ -109,7 +111,8 @@ class ExpressionXCellType extends Component {
                 wrapHeaderText: true,
                 field: 'cellCount',
                 valueFormatter: row => row.value ? row.value : 0,
-                width: 110
+                width: 110,
+                headerClass: 'dataVizTableHeader'
             },
             {
                 headerName: 'MEAN EXPRESSION',
@@ -119,7 +122,8 @@ class ExpressionXCellType extends Component {
                 headerTooltip: 'Averaged expression values (logarithmic) for each cell cluster',
                 field: 'avgExp',
                 valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
-                width: 125
+                width: 125,
+                headerClass: 'dataVizTableHeader'
             },
             {
                 headerName: '% CELLS EXPRESSING',
@@ -129,11 +133,13 @@ class ExpressionXCellType extends Component {
                     let newValue = (row.value > 0) ? (row.value * 100) : row.value;
                     return formatNumberToPrecision(newValue, 3, false, this.props.dataType, this.props.enrollmentCategory);
                 },
-                width: 106
+                width: 106,
+                headerClass: 'dataVizTableHeader'
             },
             {
                 headerName: "CELL CLUSTER VS ALL OTHERS",
-                backgroundColor: "#cee5ff",
+                headerStyle: { backgroundColor: "#cee5ff" },
+                headerClass: 'dataVizTableHeader',
                 children: [
                     {
                         headerName: 'FOLD CHANGE', 
@@ -143,7 +149,8 @@ class ExpressionXCellType extends Component {
                         headerTooltip: 'Log fold-change of the average expression between this cell cluster and all others. Positive values indicate that the feature is more highly expressed in this cell cluster.',
                         field: 'foldChange',
                         valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
-                        width: 100
+                        width: 100,
+                        headerClass: 'dataVizTableHeader'
                     },
                     {
                         headerName: 'P VALUE',
@@ -153,7 +160,8 @@ class ExpressionXCellType extends Component {
                         headerTooltip: 'p-value (unadjusted)',
                         field: 'pVal',
                         valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
-                        width: 106
+                        width: 106,
+                        headerClass: 'dataVizTableHeader'
                     },
                     {
                         headerName: 'ADJ P VALUE',
@@ -163,7 +171,8 @@ class ExpressionXCellType extends Component {
                         headerTooltip: 'Adjusted p-value, based on bonferroni correction using all features in the dataset.',
                         field: 'pValAdj',
                         valueFormatter: row => formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory),
-                        width: 100
+                        width: 100,
+                        headerClass: 'dataVizTableHeader'
                     }
                 ]
             }
