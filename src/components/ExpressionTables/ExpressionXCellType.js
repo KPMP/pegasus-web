@@ -93,13 +93,13 @@ class ExpressionXCellType extends Component {
                 field: 'cluster',
                 width: 106
             },
-            // {
-            //     headerName: 'CELL CLUSTER (<i>predicted state</i>)',
-            //     field: 'clusterName',
-            //     cellRenderer: row => this.parseClusterName(row.value),
-            //     width: 500
+            {
+                headerName: 'CELL CLUSTER (<i>predicted state</i>)',
+                field: 'clusterName',
+                cellRenderer: row => this.parseClusterName(row.value),
+                width: 500
                 
-            // },
+            },
             // {
             //     headerName: <span># CELLS IN<br />CELL CLUSTER</span>,
             //     field: 'cellCount',
