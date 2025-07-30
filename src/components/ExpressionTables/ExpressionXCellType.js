@@ -12,7 +12,8 @@ import { stripHtml } from "string-strip-html";
 import { AgGridReact } from "ag-grid-react";
 import InfoHeader from './InfoHeader';
 import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
-ModuleRegistry.registerModules([ AllCommunityModule ]);
+import { StatusBarModule } from 'ag-grid-enterprise';
+ModuleRegistry.registerModules([ AllCommunityModule, StatusBarModule ]);
 
 
 class ExpressionXCellType extends Component {
