@@ -15,10 +15,7 @@ import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
 ModuleRegistry.registerModules([ AllCommunityModule ]);
 
 
-const totalSummaryItems = useMemo(() => {
-        const totalAmount = rowData.reduce((sum, row) => sum + (row.cellCount || 0 ), 0);
-        return[ {cluster: '', clusterName: '', cellCount: 'Sum: ' + totalAmount, avgExp:'', pct1: '', foldChange:'', pval: '', pValAdj:''}]
-    }, [rowData]);
+
 
 class ExpressionXCellType extends Component {
 
@@ -175,6 +172,10 @@ class ExpressionXCellType extends Component {
         ]
     };
 
+    totalSummaryItems = () => {
+        const totalAmount = rowData.reduce((sum, row) => sum + (row.cellCount || 0 ), 0);
+        return[ {cluster: '', clusterName: '', cellCount: 'Sum: ' + totalAmount, avgExp:'', pct1: '', foldChange:'', pval: '', pValAdj:''}]
+    };
 
     getColumnBands() {
         return [
@@ -235,7 +236,7 @@ class ExpressionXCellType extends Component {
                             <React.Fragment>
                                 <div className="ag-theme-material img-fluid">
                                     <AgGridReact rowData={this.props.data} columnDefs={this.getColumns()}
-                                        domLayout='autoHeight' onGridReady={this.onGridReady} pinnedBottomRowData={totalSummaryItems}/>
+                                        domLayout='autoHeight' onGridReady={this.onGridReady} pinnedBottomRowData={this.totalSummaryItems}/>
                                     {/* <SummaryState totalItems={totalSummaryItems}/>
                                     <IntegratedSummary />
                                     <Table columnExtensions={this.getColumnExtensions()}/>
