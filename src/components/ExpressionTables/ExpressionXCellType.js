@@ -59,16 +59,17 @@ class ExpressionXCellType extends Component {
 
     parseClusterName = (row) => {
         console.log(row)
-        let value = row.clusterName;
-        if (value !== null) {
-            const regex = /<sup>*.<\/sup>/i;
-            let titleVal = stripHtml(value.replace(regex, '')).result
-                .replace('( ', '(')
-                .replace(' )', ')');
-            return <span title={titleVal}>{Parser(value)}</span>
-        } else {
-            return ''
-        }
+        // let value = row.clusterName;
+        // if (value !== null) {
+        //     const regex = /<sup>*.<\/sup>/i;
+        //     let titleVal = stripHtml(value.replace(regex, '')).result
+        //         .replace('( ', '(')
+        //         .replace(' )', ')');
+        //     return <span title={titleVal}>{Parser(value)}</span>
+        // } else {
+        //     return ''
+        // }
+        return ''
     };
 
     getColumns = () => {
