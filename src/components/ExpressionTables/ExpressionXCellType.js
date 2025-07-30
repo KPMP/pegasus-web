@@ -58,6 +58,7 @@ class ExpressionXCellType extends Component {
     };
 
     parseClusterName = (row) => {
+        console.log(row)
         let value = row.clusterName;
         if (value !== null) {
             const regex = /<sup>*.<\/sup>/i;
@@ -80,7 +81,7 @@ class ExpressionXCellType extends Component {
             {
                 headerName: 'CELL CLUSTER (<i>predicted state</i>)',
                 field: 'clusterName',
-                valueFormatter: row => this.parseClusterName(row.value),
+                valueFormatter: row => this.parseClusterName(row),
                 width: 500
                 
             },
