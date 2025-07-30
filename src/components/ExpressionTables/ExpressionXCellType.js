@@ -57,19 +57,16 @@ class ExpressionXCellType extends Component {
         return {};
     };
 
-    parseClusterName = (row) => {
-        console.log(row)
-        // let value = row.clusterName;
-        // if (value !== null) {
-        //     const regex = /<sup>*.<\/sup>/i;
-        //     let titleVal = stripHtml(value.replace(regex, '')).result
-        //         .replace('( ', '(')
-        //         .replace(' )', ')');
-        //     return <span title={titleVal}>{Parser(value)}</span>
-        // } else {
-        //     return ''
-        // }
-        return ''
+    parseClusterName = (value) => {
+        if (value !== null) {
+            const regex = /<sup>*.<\/sup>/i;
+            let titleVal = stripHtml(value.replace(regex, '')).result
+                .replace('( ', '(')
+                .replace(' )', ')');
+            return <span title={titleVal}>{Parser(value)}</span>
+        } else {
+            return ''
+        }
     };
 
     getColumns = () => {
@@ -82,7 +79,7 @@ class ExpressionXCellType extends Component {
             {
                 headerName: 'CELL CLUSTER (<i>predicted state</i>)',
                 field: 'clusterName',
-                valueFormatter: row => this.parseClusterName(row),
+                valueFormatter: row => this.parseClusterName(row.value),
                 width: 500
                 
             },
