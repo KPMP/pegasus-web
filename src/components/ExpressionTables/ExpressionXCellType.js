@@ -12,8 +12,7 @@ import { stripHtml } from "string-strip-html";
 import { AgGridReact } from "ag-grid-react";
 import InfoHeader from './InfoHeader';
 import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
-import { StatusBarModule } from 'ag-grid-enterprise';
-ModuleRegistry.registerModules([ AllCommunityModule, StatusBarModule ]);
+ModuleRegistry.registerModules([ AllCommunityModule ]);
 
 
 class ExpressionXCellType extends Component {
@@ -103,9 +102,7 @@ class ExpressionXCellType extends Component {
                 field: 'cellCount',
                 valueFormatter: row => row.value ? row.value : 0,
                 width: 110,
-                headerClass: 'dataVizTableHeader',
-                enableValue: true,
-                aggFunc: 'sum'
+                headerClass: 'dataVizTableHeader'
             },
             {
                 headerName: 'MEAN EXPRESSION',
@@ -173,6 +170,20 @@ class ExpressionXCellType extends Component {
         ]
     };
 
+    getRowDataWithTotal = () => {
+        const { data } = this.props;
+        const total = data.reduce((sum, row) => {
+            const value = Number(row.cellCount);
+            return isNan(value) ? sum: sum + value;
+        },0);
+        return [...data, {
+            cluster: '',
+            clusterName: 'Total cells:',
+            cellCount: total,
+            isTotal: true
+        }]
+    }
+
     render() {
         const BandCell = ({ children, tableRow, tableColumn, column, ...restProps }) => {
             return (
@@ -218,7 +229,7 @@ class ExpressionXCellType extends Component {
                             <React.Fragment>
                                 <div className="ag-theme-material img-fluid">
                                     <AgGridReact 
-                                        rowData={this.props.data} 
+                                        rowData={this.getRowDataWithTotal()} 
                                         columnDefs={this.getColumns()}
                                         domLayout='autoHeight' 
                                         onGridReady={this.onGridReady} 
@@ -226,11 +237,8 @@ class ExpressionXCellType extends Component {
                                         headerHeight={null}
                                         groupHeaderHeight={null}
                                         autoHeaderHeight={true}
-                                        statusBar = {{
-                                            statusPanels: [
-                                                { statusPanel: 'agAggregationComponent' },
-                                            ],
-                                        }}/>
+                                        getRowClass={params => (params.data?.isTotal ? 'total-row': '')}
+                                    />
 
                                 </div>
                             </React.Fragment>

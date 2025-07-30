@@ -842,6 +842,11 @@ tr.MuiTableRow-root:nth-child(even) {
     sans-serif;
   }
 
+  .total-row {
+    font-weight: bold;
+    background-color: #f4f4f4;
+  }
+
   .ag-header {
     min-height: 40px !important;
   }
