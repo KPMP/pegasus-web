@@ -131,7 +131,8 @@ class ExpressionXCellType extends Component {
                     return formatNumberToPrecision(newValue, 3, false, this.props.dataType, this.props.enrollmentCategory);
                 },
                 width: 106,
-                headerClass: 'dataVizTableHeader'
+                headerClass: 'dataVizTableHeader',
+                aggFunc: "sum"
             },
             {
                 headerName: "CELL CLUSTER VS ALL OTHERS",
@@ -222,10 +223,9 @@ class ExpressionXCellType extends Component {
                             <React.Fragment>
                                 <div className="ag-theme-material img-fluid">
                                     <AgGridReact rowData={this.props.data} columnDefs={this.getColumns()}
-                                        domLayout='autoHeight' onGridReady={this.onGridReady} pinnedBottomRowData={this.state.pinnedBottomRowData}/>
-                                    <div className="grid-footer">
-                                        Sum: {totalSummaryItems}
-                                    </div>
+                                        domLayout='autoHeight' onGridReady={this.onGridReady} statusBar={{
+                                            statusPanels: [ { statusPanel: 'agAggregationComponent' }, ]
+                                        }}/>
 
                                 </div>
                             </React.Fragment>
