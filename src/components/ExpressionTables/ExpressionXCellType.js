@@ -1,9 +1,9 @@
-import React, { Component, useMemo } from 'react';
+import React, { Component } from 'react';
 import { TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
 import { Col, Row, Spinner } from "reactstrap";
 import { formatEnrollmentCategory, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
-import { faDownload, faCircleInfo } from "@fortawesome/free-solid-svg-icons";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDataType } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
@@ -198,14 +198,7 @@ class ExpressionXCellType extends Component {
     }
 
     render() {
-        const BandCell = ({ children, tableRow, tableColumn, column, ...restProps }) => {
-            return (
-                <TableBandHeader.Cell {...restProps} column={column} 
-                    className="text-center cluster_v_others cluster_v_others_container">
-                    {children}
-                </TableBandHeader.Cell>
-            )
-        }
+
         if (this.props.isLoading) {
             return (
                 <div className='viz-spinner text-center'>
@@ -215,9 +208,6 @@ class ExpressionXCellType extends Component {
         } else if (this.props.data.length === 0) {
             return (<div></div>)
         } else {
-            const totalSummaryItems = [ 
-                { columnName: 'cellCount', type: 'sum' }
-            ]
             return (
                 <React.Fragment>
                     <Row xs='12' className='mt-5'>
