@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
 import { Col, Row, Spinner } from "reactstrap";
 import { formatEnrollmentCategory, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
