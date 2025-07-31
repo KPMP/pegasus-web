@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import SamplesByDataTypeTable from './SamplesByDataTypeTable';
-import { setDataTypeAndRedirect, setDataTypeAndRedirectFeatureData } from '../../actions/DataType/dataTypeActions'
+import { setDataTypeAndRedirect } from '../../actions/DataType/dataTypeActions'
 import { withRouter } from 'react-router';
 import { resetState } from "../../actions/resetAction";
 
