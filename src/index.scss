@@ -331,6 +331,10 @@ tr.MuiTableRow-root:nth-child(even) {
   font-weight: 400;
 }
 
+.dataVizTableHeader {
+  font-size: 11px;
+}
+
 @media (max-width: 992px) {
   #concept-selector {
     padding-left: -5px !important;
@@ -838,8 +842,12 @@ tr.MuiTableRow-root:nth-child(even) {
     sans-serif;
   }
 
+  .total-row {
+    font-weight: bold;
+    background-color: #f4f4f4;
+  }
+
   .ag-header {
-    height: 40px !important;
     min-height: 40px !important;
   }
 

@@ -1,21 +1,28 @@
 import React, { Component } from 'react';
-import MaterialTable from 'material-table';
-import { Col, Row, Container, Spinner, UncontrolledTooltip } from 'reactstrap';
+import { AgGridReact } from "ag-grid-react";
+import { Col, Row, Container, Spinner } from 'reactstrap';
 import { formatNumberToPrecision, formatDataType } from '../../helpers/Utils'
 import { fetchGeneExpression, fetchRegionalTranscriptomicsByStructure, fetchRegionalProteomicsByStructure } from '../../helpers/ApolloClient';
 import { CSVLink } from 'react-csv';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDownload, faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { faDownload } from '@fortawesome/free-solid-svg-icons';
 import DiffexInfoBar from './DiffexInfoBar';
 import packageJson from '../../../package.json';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
+import InfoHeader from './InfoHeader';
+import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
+ModuleRegistry.registerModules([ AllCommunityModule ]);
+
 
 class DiffexByCluster extends Component {
 
     constructor(props) {
         super(props);
         this.state = {
-            diffexData: [], isLoading: true
+            diffexData: [], isLoading: true,
+            columnDefs: this.getColumns(),
+            gradApi: null,
+            columnApi: null
         };
     };
 
@@ -58,105 +65,79 @@ class DiffexByCluster extends Component {
     };
 
     componentDidUpdate(prevProps) {
+       if (prevProps.data !== this.props.data && this.props.data.length > 0) {
+            this.state.gridApi.refreshCells()
+        }
+
         if (this.props.dataType !== prevProps.dataType) {
             this.setState({ diffexData: [], isLoading: true });
             this.fetchGeneExpression();
         }
     }
-
-    getAccessionLink = (gene, accession) => {
-        return <button onClick={() => this.handleClick(gene, accession)} type='button' className='table-column btn btn-link text-start p-0'>{accession}</button>
-    }
-
-    getGeneLink = (gene) => {
-        return <button onClick={() => this.handleClick(gene)} type='button' className='table-column btn btn-link text-start p-0'>{gene}</button>
-    };
-
+    
     getColumns = () => {
         let columns = [];
         if (this.props.dataType === 'rp') {
             columns.push(
                 {
-                    title: 'PROTEIN',
+                    headerName: 'PROTEIN',
+                    headerComponent: InfoHeader,
                     field: 'accession',
-                    align: 'left',
-                    width: "15%",
-                    headerStyle: { fontSize: "15px" },
-                    cellStyle: { fontSize: '14px', padding: "2px" },
-                    render: rowData => this.getAccessionLink(rowData.gene, rowData.accession)
+                    sortable: false,
+                    cellRenderer: params => {
+                        return (<button onClick={() => this.handleClick(params.data.gene, params.data.accession)} 
+                        type='button' className='table-column btn btn-link text-start p-0'>{params.data.accession}</button>);
+                    }
                 }
             );
         } else {
             columns.push(
                 {
-                    title: 'GENE',
+                    headerName: 'GENE',
+                    headerComponent: InfoHeader,
                     field: 'gene',
-                    align: 'left',
-                    width: "15%",
-                    headerStyle: { fontSize: "15px" },
-                    cellStyle: { fontSize: '14px', padding: "2px" },
-                    render: rowData => this.getGeneLink(rowData.gene)
+                    sortable: false,
+                    cellRenderer: params => {
+                        return (<button onClick={() => this.handleClick(params.data.gene)}  className='table-column btn btn-link text-start p-0'>
+                            {params.data.gene}
+                        </button>);
+                    }
                 }
             );
         }
         columns.push(
             {
-                title: <span>FOLD CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
-                <UncontrolledTooltip placement='bottom' target='fold-change-info' >
-                    Fold change of a gene is calculated by dividing the average expression of the gene in the segment/cluster of interest by its average expression in all other segments/clusters being compared.
-                </UncontrolledTooltip></span>,
+                headerName: 'FOLD CHANGE',
+                headerComponent: InfoHeader,
+                headerComponentParams: { infoIcon: true },
+                headerTooltip: 'Fold change of a gene is calculated by dividing the average expression of the gene in the segment/cluster of interest by its average expression in all other segments/clusters being compared.',
                 field: 'foldChange',
-                align: 'right',
-                width: "15%",
-                sorting: true, defaultSort: 'desc',
-                headerStyle: { fontSize: '15px', textAlign: 'center' },
-                cellStyle: {
-                    fontSize: '14px',
-                    padding: '2px',
-                    textAlign: 'center'
-                },
-                type: 'numeric',
-                render: rowData => formatNumberToPrecision(rowData.foldChange, 3)
+                sort: "desc",
+                sortable: true,
+                valueFormatter: params => formatNumberToPrecision(params.value, 3)
             }
         );
         if (this.props.dataType !== 'rp') {
             columns.push(
                 {
-                    title: <span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
-                <UncontrolledTooltip placement='bottom' target='pvalue-info' >
-                    P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment/cluster of interest and its expression in all other segments/clusters.
-                </UncontrolledTooltip></span>,
+                    headerName: 'P VALUE',
+                    headerComponent: InfoHeader,
+                    headerComponentParams: { infoIcon: true },
+                    sortable: true, 
+                    headerTooltip: 'P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment/cluster of interest and its expression in all other segments/clusters.',
                     field: 'pVal',
-                    align: 'right',
-                    width: "15%",
-                    sorting: true,
-                    type: 'numeric',
-                    headerStyle: { fontSize: '15px', textAlign: 'right' },
-                    cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'right' },
-                    render: rowData => formatNumberToPrecision(rowData.pVal, 3)
+                    valueFormatter: params => formatNumberToPrecision(params.value, 3)
                 }
             );
         }
         columns.push(
             {
-                title: <span>ADJ P VALUE</span>,
+                headerName: 'ADJ P VALUE',
                 field: 'pValAdj',
-                align: 'right',
-                width: "15%",
-                sorting: true,
-                type: 'numeric',
-                headerStyle: { fontSize: '15px', textAlign: 'right' },
-                cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'right' },
-                render: rowData => formatNumberToPrecision(rowData.pValAdj, 3, true)
-            },
-            {
-                title: 'hidden',
-                field: 'hidden',
-                sorting: false,
-                width: "40%",
-                className: "diffex-hidden-column",
-                headerStyle: { fontSize: '15px', textAlign: 'center', color: "rgba(0,0,0,0)" },
-                cellStyle: { fontSize: '14px', padding: '2px', textAlign: 'center', color: "rgba(0,0,0,0)" },
+                headerComponent: InfoHeader,
+                sortable: true,
+                infoIcon: false,
+                valueFormatter: params => formatNumberToPrecision(params.value, 3, true)
             }
         );
         return columns
@@ -193,6 +174,13 @@ class DiffexByCluster extends Component {
       }
     };
 
+    onGridReady= (params) => {
+        this.setState({gridApi: params.api, columnApi: params.columnApi})
+        this.state.gridApi.sizeColumnsToFit();
+        this.state.gridApi.refreshCells();
+    }
+
+
     render() {
         return (
             <div className='height-wrapper mb-3 mt-3'>
@@ -225,23 +213,15 @@ class DiffexByCluster extends Component {
                                                 process.env.NODE_ENV !== 'development' ||
                                                 packageJson.displayMaterialTable
                                             ) &&
-                                                <MaterialTable
-                                                    data={this.state.diffexData}
-                                                    title=''
-                                                    columns={this.getColumns()}
-                                                    options={{
-                                                        tableLayout: 'fixed',
-                                                        thirdSortClick: false,
-                                                        pageSize: 20,
-                                                        pageSizeOptions: [],
-                                                        rowStyle: row => {
-                                                            let style = {
-                                                                padding: '1px'
-                                                            };
-                                                            return style;
-                                                        }
-                                                    }}
-                                                />
+                                                <div className="ag-theme-material img-fluid">
+                                                    <AgGridReact
+                                                        rowData={this.state.diffexData}
+                                                        columnDefs={this.getColumns()}
+                                                        domLayout='autoHeight'
+                                                        onGridReady={this.onGridReady}
+                                                        autoSizeStrategy={{type: 'fitGridWidth'}}
+                                                    />
+                                                </div>
                                             }
                                         </Col>
                                     </Row>

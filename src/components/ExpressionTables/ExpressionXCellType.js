@@ -1,22 +1,30 @@
 import React, { Component } from 'react';
-import { Grid, TableColumnResizing, TableHeaderRow, 
-    Table, TableSummaryRow, TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
-import { Col, Row, UncontrolledTooltip, Spinner } from "reactstrap";
+import { Col, Row, Spinner } from "reactstrap";
 import { formatEnrollmentCategory, formatNumberToPrecision } from "../../helpers/Utils"
 import { CSVLink } from "react-csv";
-import { faDownload, faInfoCircle } from "@fortawesome/free-solid-svg-icons";
+import { faDownload } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { formatDataType } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import Parser from 'html-react-parser';
 import { stripHtml } from "string-strip-html";
-import {
-    SummaryState,
-    IntegratedSummary,
-  } from '@devexpress/dx-react-grid';
+import { AgGridReact } from "ag-grid-react";
+import InfoHeader from './InfoHeader';
+import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
+ModuleRegistry.registerModules([ AllCommunityModule ]);
 
 
 class ExpressionXCellType extends Component {
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            isLoading: true,
+            columnDefs: this.getColumns(),
+            gradApi: null,
+            columnApi: null,
+        };
+    };
 
     getExportFilename = () => {
         const enrollmentCategory = formatEnrollmentCategory(this.props.enrollmentCategory).toLowerCase().replace(" ", "-");
@@ -49,8 +57,7 @@ class ExpressionXCellType extends Component {
         return {};
     };
 
-    parseClusterName = (row) => {
-        let value = row.clusterName;
+    parseClusterName = (value) => {
         if (value !== null) {
             const regex = /<sup>*.<\/sup>/i;
             let titleVal = stripHtml(value.replace(regex, '')).result
@@ -62,116 +69,135 @@ class ExpressionXCellType extends Component {
         }
     };
 
+    
+    onGridReady= (params) => {
+        this.setState({gridApi: params.api, columnApi: params.columnApi})
+        this.state.gridApi.sizeColumnsToFit();
+        this.state.gridApi.refreshCells();
+    }
+
     getColumns = () => {
         return [
             {
-                title: "ABBR",
-                name: 'cluster',
+                headerName: "ABBR",
+                field: 'cluster',
+                width: 106,
+                headerClass: 'dataVizTableHeader'
             },
             {
-                title: <span>CELL CLUSTER (<i>predicted state</i>)</span>,
-                name: 'clusterName',
-                getCellValue: row => this.parseClusterName(row)
+                headerComponent: () => (
+                    <span>CELL CLUSTER (<i>predicted state</i>),</span>
+                ),
+                field: 'clusterName',
+                wrapHeaderText: true,
+                cellRenderer: row => this.parseClusterName(row.value),
+                width: 500,
+                headerClass: 'dataVizTableHeader'
                 
             },
             {
-                title: <span># CELLS IN<br />CELL CLUSTER</span>,
-                name: 'cellCount',
-                getCellValue: row => row.cellCount ? row.cellCount : 0
+                headerName: "# CELLS IN CELL CLUSTER",
+                wrapHeaderText: true,
+                field: 'cellCount',
+                valueFormatter: row => row.value ? row.value : 0,
+                width: 110,
+                headerClass: 'dataVizTableHeader'
             },
             {
-                title: <span>MEAN<br />EXPRESSION <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='mean-expression-info' icon={faInfoCircle} /></span>
-                    <UncontrolledTooltip placement='bottom' target='mean-expression-info' >
-                        Averaged expression values (logarithmic) for each cell cluster
-                    </UncontrolledTooltip></span>,
-                name: 'avgExp',
-                getCellValue: row => formatNumberToPrecision(row.avgExp, 3, false, this.props.dataType, this.props.enrollmentCategory)
+                headerName: 'MEAN EXPRESSION',
+                headerComponent: InfoHeader,
+                headerComponentParams: { infoIcon: true },
+                wrapHeaderText: true,
+                headerTooltip: 'Averaged expression values (logarithmic) for each cell cluster',
+                field: 'avgExp',
+                valueFormatter: row => {
+                    if (row.data?.isTotal) return '';
+                    return formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory);
+                },
+                width: 125,
+                headerClass: 'dataVizTableHeader'
             },
             {
-                title: <span>% CELLS<br />EXPRESSING</span>,
-                name: 'pct1',
-                getCellValue: row => {
-                    let newValue = (row.pct1 > 0) ? (row.pct1 * 100) : row.pct1;
+                headerName: '% CELLS EXPRESSING',
+                field: 'pct1',
+                wrapHeaderText: true,
+                 valueFormatter: row => {
+                    if (row.data?.isTotal) return '';
+                    let newValue = (row.value > 0) ? (row.value * 100) : row.value;
                     return formatNumberToPrecision(newValue, 3, false, this.props.dataType, this.props.enrollmentCategory);
-                }
+                },
+                width: 106,
+                headerClass: 'dataVizTableHeader'
             },
             {
-                title: <span>FOLD<br />CHANGE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='fold-change-info' icon={faInfoCircle} /></span>
-                    <UncontrolledTooltip placement='bottom' target='fold-change-info' >
-                        Log fold-change of the average expression between this cell cluster and all others. Positive values indicate that the feature is more highly expressed in this cell cluster.
-                    </UncontrolledTooltip></span>,
-                name: 'foldChange',
-                getCellValue: row => formatNumberToPrecision(row.foldChange, 3, false, this.props.dataType, this.props.enrollmentCategory)
-            },
-            {
-                title: <span>P VALUE <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='pvalue-info' icon={faInfoCircle} /></span>
-                    <UncontrolledTooltip placement='bottom' target='pvalue-info' >
-                        p-value (unadjusted)
-                    </UncontrolledTooltip></span>,
-                name: 'pVal',
-                getCellValue: row => formatNumberToPrecision(row.pVal, 3, false, this.props.dataType, this.props.enrollmentCategory)
-            },
-            {
-                title: <span>ADJ<br />P VALUE <span className="icon-info"><FontAwesomeIcon id='pvalue-adj-info' className='kpmp-light-blue' icon={faInfoCircle} /></span>
-                    <UncontrolledTooltip placement='bottom' target='pvalue-adj-info' >
-                        Adjusted p-value, based on bonferroni correction using all features in the dataset.
-                    </UncontrolledTooltip></span>,
-                name: 'pValAdj',
-                getCellValue: row => formatNumberToPrecision(row.pValAdj, 3, false, this.props.dataType, this.props.enrollmentCategory)
+                headerName: "CELL CLUSTER VS ALL OTHERS",
+                headerStyle: { backgroundColor: "#cee5ff" },
+                headerClass: 'dataVizTableHeader',
+                children: [
+                    {
+                        headerName: 'FOLD CHANGE', 
+                        headerComponent: InfoHeader,
+                        headerComponentParams: { infoIcon: true},
+                        wrapHeaderText: true,
+                        headerTooltip: 'Log fold-change of the average expression between this cell cluster and all others. Positive values indicate that the feature is more highly expressed in this cell cluster.',
+                        field: 'foldChange',
+                        valueFormatter: row => {
+                            if (row.data?.isTotal) return '';
+                            return formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory);
+                        },
+                        width: 100,
+                        headerClass: 'dataVizTableHeader'
+                    },
+                    {
+                        headerName: 'P VALUE',
+                        headerComponent: InfoHeader,
+                        headerComponentParams: { infoIcon: true },
+                        wrapHeaderText: true,
+                        headerTooltip: 'p-value (unadjusted)',
+                        field: 'pVal',
+                        valueFormatter: row => {
+                            if (row.data?.isTotal) return '';
+                            return formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory);
+                        },
+                        width: 106,
+                        headerClass: 'dataVizTableHeader'
+                    },
+                    {
+                        headerName: 'ADJ P VALUE',
+                        headerComponent: InfoHeader,
+                        headerComponentParams: { infoIcon: true },
+                        wrapHeaderText: true,
+                        headerTooltip: 'Adjusted p-value, based on bonferroni correction using all features in the dataset.',
+                        field: 'pValAdj',
+                        valueFormatter: row => {
+                            if (row.data?.isTotal) return '';
+                            return formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory);
+                        },
+                        width: 100,
+                        headerClass: 'dataVizTableHeader'
+                    }
+                ]
             }
+            
         ]
     };
 
-    getColumnExtensions() {
-
-        return [
-            { columnName: 'cluster', align: 'left'},
-            { columnName: 'clusterName', align: 'left'},
-            { columnName: 'cellCount', align: 'left' },
-            { columnName: 'avgExp', align: 'left' },
-            { columnName: 'pct1', align: 'left' },
-            { columnName: 'foldChange', align: 'left' },
-            { columnName: 'pVal', align: 'left' },
-            { columnName: 'pValAdj', align: 'left' },
-        ]
+    getRowDataWithTotal = () => {
+        const { data } = this.props;
+        const total = data.reduce((sum, row) => {
+            const value = Number(row.cellCount);
+            return sum + value;
+        },0);
+        return [...data, {
+            cluster: '',
+            clusterName: 'Total cells:',
+            cellCount: total,
+            isTotal: true
+        }]
     }
-
-    getDefaultColumnWidths () {
-        return [
-            { columnName: 'cluster', width: 106},
-            { columnName: 'clusterName', width: 500},
-            { columnName: 'cellCount', width: 110 },
-            { columnName: 'avgExp', width: 125 },
-            { columnName: 'pct1', width: 106 },
-            { columnName: 'foldChange', width: 100 },
-            { columnName: 'pVal', width: 106 },
-            { columnName: 'pValAdj', width: 100 },
-        ]
-    }
-
-    getColumnBands() {
-        return [
-            { 
-                title: "CELL CLUSTER VS ALL OTHERS",
-                children: [
-                    { columnName: 'foldChange'},
-                    { columnName: 'pVal' },
-                    { columnName: 'pValAdj',}
-                ]
-            }
-        ];
-    }
-
 
     render() {
-        const BandCell = ({ children, tableRow, tableColumn, column, ...restProps }) => {
-            return (
-                <TableBandHeader.Cell {...restProps} column={column} 
-                    className="text-center cluster_v_others cluster_v_others_container">
-                    {children}
-                </TableBandHeader.Cell>
-            )
-        }
+
         if (this.props.isLoading) {
             return (
                 <div className='viz-spinner text-center'>
@@ -181,9 +207,6 @@ class ExpressionXCellType extends Component {
         } else if (this.props.data.length === 0) {
             return (<div></div>)
         } else {
-            const totalSummaryItems = [ 
-                { columnName: 'cellCount', type: 'sum' }
-            ]
             return (
                 <React.Fragment>
                     <Row xs='12' className='mt-5'>
@@ -206,15 +229,20 @@ class ExpressionXCellType extends Component {
                     <Row xs='12' id='expression-by-cell-type'>
                         <Col xs='12'>
                             <React.Fragment>
-                                <Grid rows={this.props.data} columns={this.getColumns()}>
-                                    <SummaryState totalItems={totalSummaryItems}/>
-                                    <IntegratedSummary />
-                                    <Table columnExtensions={this.getColumnExtensions()}/>
-                                    <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={100}/>
-                                    <TableHeaderRow/>
-                                    <TableBandHeader columnBands={this.getColumnBands()} cellComponent={BandCell}/>
-                                    <TableSummaryRow />
-                                </Grid>
+                                <div className="ag-theme-material img-fluid">
+                                    <AgGridReact 
+                                        rowData={this.getRowDataWithTotal()} 
+                                        columnDefs={this.getColumns()}
+                                        domLayout='autoHeight' 
+                                        onGridReady={this.onGridReady} 
+                                        autoSizeStrategy={{type: 'fitGridWidth'}} 
+                                        headerHeight={null}
+                                        groupHeaderHeight={null}
+                                        autoHeaderHeight={true}
+                                        getRowClass={params => (params.data?.isTotal ? 'total-row': '')}
+                                    />
+
+                                </div>
                             </React.Fragment>
                         </Col>
                     </Row>
