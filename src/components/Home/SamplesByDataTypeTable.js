@@ -16,7 +16,6 @@ class SamplesByDataTypeTable extends Component {
     }
 
     async componentDidMount(){
-      console.log(this.props)
 
         let spatialSummary = await fetchSummaryData("spatialViewerSummary");
         spatialSummary = [...spatialSummary].sort(this.compare)

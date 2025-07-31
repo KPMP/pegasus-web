@@ -28,7 +28,6 @@ class RNASeqViz extends Component {
     };
 
     async componentDidMount() {
-      console.log("You're on the OG page")
         const queryParam = queryString.parse(this.props.location.search);
         if (this.props.gene.symbol !== undefined && this.props.gene.symbol !== '' && (!queryParam || !queryParam.dataType)) {
             await this.fetchDataType(this.props.gene.symbol)

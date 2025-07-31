@@ -66,7 +66,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(loadedState)
       return (
         <Provider store={store}>
           <ApolloProvider client={apolloClient}>

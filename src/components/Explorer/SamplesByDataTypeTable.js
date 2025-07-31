@@ -132,7 +132,6 @@ class SamplesByDataTypeTable extends Component {
     }
 
     render() {
-      console.log(this.props)
         return (
             <article id='summary-plot'>
                 <h5>Select a data type</h5>

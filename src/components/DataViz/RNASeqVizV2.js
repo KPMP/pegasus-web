@@ -155,7 +155,6 @@ class RNASeqVizV2 extends Component {
   render() {
     return (
       <div className="height-wrapper mb-3">
-        {console.log(this.props.featureSNData)}
         {this.props.dataType === "sn" && this.props.featureSNData ? <h1>YOU ARE ON THE NEW SINGLE-NUC DATA VIZ PAGE</h1>: null}
         {this.props.dataType === "sc" && this.props.featureSCData ? <h1>YOU ARE ON THE NEW SINGLE-CELL DATA VIZ PAGE</h1>: null}
         <Container id="outer-wrapper">
