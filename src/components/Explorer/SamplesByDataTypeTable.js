@@ -29,8 +29,8 @@ class SamplesByDataTypeTable extends Component {
         }
         return 0;
     }
-      
-      
+
+
     async componentDidMount() {
         let summary = await fetchSummaryData("explorerHomepageSummary")
         const geneDatasetSummary = await fetchDataTypeSummaryInformation()
@@ -43,7 +43,7 @@ class SamplesByDataTypeTable extends Component {
 
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
-        this.props.setSelectedConcept(dataType, this.props);
+        this.props.setSelectedConcept(dataType, this.props.featureSNData, this.props.featureSCData, this.props);
     }
 
     formatDataTypeCell(row) {
@@ -98,13 +98,13 @@ class SamplesByDataTypeTable extends Component {
                 name: 'dmrCount',
                 sortable: false,
                 hideable: false
-            }, 
+            },
             {
                 title: 'ALL',
                 name: 'totalCount',
                 sortable: false,
                 hideable: false
-            }   
+            }
         ]
     };
 
@@ -132,6 +132,7 @@ class SamplesByDataTypeTable extends Component {
     }
 
     render() {
+      console.log(this.props)
         return (
             <article id='summary-plot'>
                 <h5>Select a data type</h5>

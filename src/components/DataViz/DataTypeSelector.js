@@ -26,7 +26,7 @@ class DataTypeSelector extends Component {
                 dmrCount: '-',
                 participantsCount: '-'
             },
-            datasetToggle: 'collapsed', 
+            datasetToggle: 'collapsed',
         }
     }
 
@@ -60,7 +60,7 @@ class DataTypeSelector extends Component {
     setSelectedDatasetSummary(dataTypeShort, availableData) {
         // Coming from homepage search (no datatype yet)
         if (!dataTypeShort && availableData && availableData.length > 0) {
-            this.props.setDataType(availableData[0].dataTypeShort);
+            this.props.setDataType(availableData[0].dataTypeShort, this.props.featureSNData, this.props.featureSCData);
             this.props.setEnrollmentCategory(this.props.enrollmentCategory ? this.props.enrollmentCategory : "all");
             this.setState({ selectedDataset: availableData[0], tissueInputValue: "all"})
             return
@@ -157,7 +157,7 @@ class DataTypeSelector extends Component {
     handleInputChange(inputValue, action) {
         if (action.action !== "input-blur" && action.action !== "menu-close") {
             handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${inputValue.value} and gene: ${this.props.gene.symbol}`);
-            this.props.setDataType(inputValue.value);
+          this.props.setDataType(inputValue.value, this.props.featureSNData, this.props.featureSCData);
             this.setState({ dataTypeInputValue: inputValue });
         }
     };
