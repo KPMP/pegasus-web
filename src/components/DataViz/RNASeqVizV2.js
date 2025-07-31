@@ -11,7 +11,7 @@ import {
 import { getDataTypeOptions } from "../../helpers/Utils";
 import queryString from "query-string";
 
-class RNASeqVizNewSN extends Component {
+class RNASeqVizV2 extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -36,6 +36,12 @@ class RNASeqVizNewSN extends Component {
   };
 
   async componentDidMount() {
+    if (this.props.featureSCData) {
+      this.props.setFeatureSCData(this.props.featureSCData)
+    }
+    if (this.props.featureSNData) {
+      this.props.setFeatureSNData(this.props.featureSNData)
+    }
     const queryParam = queryString.parse(this.props.location.search);
     if (
       this.props.gene.symbol !== undefined &&
@@ -149,7 +155,8 @@ class RNASeqVizNewSN extends Component {
   render() {
     return (
       <div className="height-wrapper mb-3">
-        {this.props.dataType === "sn" ? <h1>YOU ARE ON THE NEW SINGLE-NUC DATA VIZ PAGE</h1>: null}
+        {this.props.dataType === "sn" && this.props.featureSNData ? <h1>YOU ARE ON THE NEW SINGLE-NUC DATA VIZ PAGE</h1>: null}
+        {this.props.dataType === "sc" && this.props.featureSCData ? <h1>YOU ARE ON THE NEW SINGLE-CELL DATA VIZ PAGE</h1>: null}
         <Container id="outer-wrapper">
           <DataTypeSelectorContainer isLoadingUmap={this.state.isLoadingUmap} />
           <Container className="mt-3 rounded border p-3 shadow-sm mb-5">
@@ -230,4 +237,4 @@ class RNASeqVizNewSN extends Component {
   }
 }
 
-export default RNASeqVizNewSN;
+export default RNASeqVizV2;

@@ -25,7 +25,7 @@ class ConceptSelect extends Component {
                     (results) => {
                         let hasResults = results.dataTypesForConcept.length > 0;
                         if (hasResults && !this.props.dataType) {
-                            this.props.setDataType(results.dataTypesForConcept[0])
+                            this.props.setDataType(results.dataTypesForConcept[0], this.props.featureSNData, this.props.featureSCData)
                         }
                         let hasResultsWithDataType = this.props.dataType ? results.dataTypesForConcept.includes(this.props.dataType) : true;
                         if (hasResults && hasResultsWithDataType) {

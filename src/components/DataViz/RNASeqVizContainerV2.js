@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
-import RNASeqVizNewSN from "./RNASeqVizNewSN";
+import RNASeqVizV2 from "./RNASeqVizV2";
 import { setEnrollmentCategory } from "../../actions/EnrollmentCategory/enrollmentCategoryActions";
+import { setFeatureSNData, setFeatureSCData } from "../../actions/FeatureSwitch/featureSwitchActions";
 import { setDataType } from "../../actions/DataType/dataTypeActions";
 import { resetState } from "../../actions/resetAction";
 
@@ -9,11 +10,19 @@ const mapStateToProps = (state, props) => ({
   gene: state.gene,
   dataType: state.dataType,
   enrollmentCategory: state.enrollmentCategory,
+  featureSNData: state.featureSNData,
+  featureSCData: state.featureSCData
 });
 
 const mapDispatchToProps = (dispatch, props) => ({
   setDataType(dataType) {
     dispatch(setDataType(dataType));
+  },
+  setFeatureSNData(featureSNData) {
+    dispatch(setFeatureSNData(featureSNData))
+  },
+  setFeatureSCData(featureSCData) {
+    dispatch(setFeatureSCData(featureSCData))
   },
   setEnrollmentCategory(enrollmentCategory) {
     dispatch(setEnrollmentCategory(enrollmentCategory));
@@ -23,4 +32,4 @@ const mapDispatchToProps = (dispatch, props) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RNASeqVizNewSN);
+export default connect(mapStateToProps, mapDispatchToProps)(RNASeqVizV2);

@@ -9,7 +9,7 @@ class SamplesByDataTypeTable extends Component {
 
     constructor(props) {
         super(props);
-        this.getColumns = this.getColumns.bind(this); 
+        this.getColumns = this.getColumns.bind(this);
         this.state = {
             dataTable: []
         }
@@ -46,12 +46,12 @@ class SamplesByDataTypeTable extends Component {
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
 
-        this.props.setDataType(dataType, this.props);
-        
+        this.props.setDataType(dataType, this.props.featureSNData, this.props.featureSCData, this.props);
+
     }
 
     formatDataTypeCell(row) {
-        
+
         let value = row.dataType;
         if (value === 'Explorer' || value === 'Spatial Viewer') {
             return (
@@ -78,12 +78,12 @@ class SamplesByDataTypeTable extends Component {
                 getCellValue: row => this.formatDataTypeCell(row)
             },
             {
-                title: 
+                title:
                     <span>
                       <span className="table-header data-type-table-header" id="HealthyReferenceHeader">
                        REFERENCE
                       </span>
-                      <UncontrolledTooltip 
+                      <UncontrolledTooltip
                         placement="bottom"
                         target="HealthyReferenceHeader">
                       Healthy Reference
@@ -98,7 +98,7 @@ class SamplesByDataTypeTable extends Component {
                       <span className="table-header data-type-table-header" id="CKDHeader">
                       CKD
                       </span>
-                      <UncontrolledTooltip 
+                      <UncontrolledTooltip
                         placement="bottom"
                         target="CKDHeader">
                       Chronic Kidney Disease
@@ -108,12 +108,12 @@ class SamplesByDataTypeTable extends Component {
                 name: 'ckdCount',
             },
             {
-                title: 
+                title:
                     <span>
                       <span className="table-header data-type-table-header" id="AKIHeader">
                       AKI
                       </span>
-                      <UncontrolledTooltip 
+                      <UncontrolledTooltip
                         placement="bottom"
                         target="AKIHeader">
                       Acute Kidney Injury
@@ -123,12 +123,12 @@ class SamplesByDataTypeTable extends Component {
                 name: 'akiCount',
             },
             {
-                title: 
+                title:
                     <span>
                       <span className="table-header data-type-table-header" id="ResistorHeader">
                       DM-R
                       </span>
-                      <UncontrolledTooltip 
+                      <UncontrolledTooltip
                         placement="bottom"
                         target="ResistorHeader">
                       Diabetes Mellitus - Resilient
@@ -136,13 +136,13 @@ class SamplesByDataTypeTable extends Component {
                     </span>
                 ,
                 name: 'dmrCount',
-            },   
+            },
             {
-                title: 
+                title:
                     <span>
                         <span className="table-header data-type-table-header" id="AllParticipantsHeader">
                         ALL
-                        </span> 
+                        </span>
                         <UncontrolledTooltip
                         placement="bottom"
                         target="AllParticipantsHeader">
@@ -150,7 +150,7 @@ class SamplesByDataTypeTable extends Component {
                         </UncontrolledTooltip>
                     </span>,
                 name: 'totalCount'
-            }   
+            }
         ]
     };
 
@@ -178,7 +178,7 @@ class SamplesByDataTypeTable extends Component {
                         </Grid>
 
                     </Col>
-                </Row>                        
+                </Row>
             </article>
         );
     }

@@ -18,7 +18,7 @@ import GeneSummaryContainer from './components/Summary/GeneSummaryContainer';
 import CellTypeSummaryContainer from './components/Summary/CellTypeSummaryContainer';
 import NotFoundPage from './components/Error/NotFoundPage';
 import RNASeqVizContainer from "./components/DataViz/RNASeqVizContainer";
-import RNASeqVizContainerNewSN from './components/DataViz/RNASeqVizContainerNewSN';
+import RNASeqVizContainerV2 from './components/DataViz/RNASeqVizContainerV2';
 import DiffexByClusterContainer from "./components/ExpressionTables/DiffexByClusterContainer";
 import RegionalVizContainer from "./components/DataViz/RegionalVizContainer";
 import packageInfo from '../package.json';
@@ -66,7 +66,6 @@ class App extends Component {
   }
 
   render() {
-    if (loadedState.featureSNData){
       return (
         <Provider store={store}>
           <ApolloProvider client={apolloClient}>
@@ -78,33 +77,8 @@ class App extends Component {
                   <Route exact path='/explorer' component={Explorer} store={store} />
                   <Route exact path='/explorer/genesummary' component={GeneSummaryContainer} store={store} />
                   <Route exact path='/explorer/celltypesummary' component={CellTypeSummaryContainer} store={store} />
-                  <Route exact path='/explorer/dataViz' component={RNASeqVizContainerNewSN} store={store} />
-                  <Route exact path='/explorer/regionalviz' component={RegionalVizContainer} store={store} />
-                  <Route exact path='/explorer/diffex' component={DiffexByClusterContainer} store={store} />
-                  <Route exact path='/explorer/regionalpro' component={RegionalProteomicsContainer} store={store}/>
-                  <Route exact path='/oops' component={Oops} />
-                  <PrivateUmapRoute exact path='/explorer/dataViz/umap' component={UMAPContainer} store={store} />
-                  <Route path='*' component={NotFoundPage} />
-                </Switch>
-                <NavFooter app='atlas' />
-              </ErrorBoundaryContainer>
-            </BrowserRouter>
-          </ApolloProvider>
-        </Provider>
-      )
-    }else {
-      return (
-        <Provider store={store}>
-          <ApolloProvider client={apolloClient}>
-            <BrowserRouter basename={packageInfo.baseURL} history={history}>
-              <ErrorBoundaryContainer>
-                <NavBar app='atlas' />
-                <Switch>
-                  <Route exact path='/' history={this.props.history}  component={Home} store={store} />
-                  <Route exact path='/explorer' component={Explorer} store={store} />
-                  <Route exact path='/explorer/genesummary' component={GeneSummaryContainer} store={store} />
-                  <Route exact path='/explorer/celltypesummary' component={CellTypeSummaryContainer} store={store} />
-                  <Route exact path='/explorer/dataViz' component={RNASeqVizContainer} store={store} />
+                  <Route exact path='/explorer/dataviz' component={RNASeqVizContainer} store={store} />
+                  <Route exact path='/explorer/dataviz2' component={RNASeqVizContainerV2} store={store} />
                   <Route exact path='/explorer/regionalviz' component={RegionalVizContainer} store={store} />
                   <Route exact path='/explorer/diffex' component={DiffexByClusterContainer} store={store} />
                   <Route exact path='/explorer/regionalpro' component={RegionalProteomicsContainer} store={store}/>
@@ -120,6 +94,5 @@ class App extends Component {
       );
     }
   }
-}
 
 export default App;

@@ -20,7 +20,7 @@ class RNASeqViz extends Component {
             window.open(props.location.pathname, '_self');
             this.setState({isLoading: false, isLoadingUmap: false})
         }
-        
+
     };
 
     cleanResults = (results) => {
