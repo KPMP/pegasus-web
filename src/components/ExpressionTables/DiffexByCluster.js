@@ -221,6 +221,7 @@ class DiffexByCluster extends Component {
                                                         onGridReady={this.onGridReady}
                                                         autoSizeStrategy={{type: 'fitGridWidth'}}
                                                         pagination={true}
+                                                        paginationPageSize={20}
                                                     />
                                                 </div>
                                             }
