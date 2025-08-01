@@ -96,7 +96,7 @@ class DiffexByCluster extends Component {
                     headerName: 'GENE',
                     headerComponent: InfoHeader,
                     field: 'gene',
-                    sortable: false,
+                    sortable: true,
                     cellRenderer: params => {
                         return (<button onClick={() => this.handleClick(params.data.gene)}  className='table-column btn btn-link text-start p-0'>
                             {params.data.gene}
@@ -220,6 +220,8 @@ class DiffexByCluster extends Component {
                                                         domLayout='autoHeight'
                                                         onGridReady={this.onGridReady}
                                                         autoSizeStrategy={{type: 'fitGridWidth'}}
+                                                        pagination={true}
+                                                        paginationPageSize={20}
                                                     />
                                                 </div>
                                             }
