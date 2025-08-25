@@ -7,7 +7,6 @@ import { CSVLink } from 'react-csv';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import DiffexInfoBar from './DiffexInfoBar';
-import packageJson from '../../../package.json';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import InfoHeader from './InfoHeader';
 import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
