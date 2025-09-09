@@ -21,7 +21,7 @@ class SamplesByDataTypeTable extends Component {
         spatialSummary = [...spatialSummary].sort(this.compare)
         spatialSummary = spatialSummary.filter(availableDataVisibilityFilter)
 
-        let explorerSummary = '';
+        let explorerSummary = this.fetchDataTypeSummaryLocal();
         if (this.props.featureSCData || this.props.featureSNData) {
             explorerSummary = await fetchDataTypeSummaryInformation2025();    
         } else {
@@ -37,6 +37,14 @@ class SamplesByDataTypeTable extends Component {
 
         const summaryData = explorerSummary.concat(spatialSummary)
         this.setState({dataTable: summaryData});
+    }
+
+    async fetchDataTypeSummaryLocal() {
+       if (this.props.featureSCData || this.props.featureSNData) {
+            return await fetchDataTypeSummaryInformation2025();    
+        } else {
+            return await fetchDataTypeSummaryInformation();
+        }
     }
 
     compare( a, b ) {
