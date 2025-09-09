@@ -159,6 +159,7 @@ export const fetchDataTypeSummaryInformation2025 = async (fetchPolicy = 'no-cach
         return response.data.getDataTypeSummaryInformation;
     } else {
         console.log('response.error',response.error)
+        console.log(response)
         store.dispatch(sendMessageToBackend("Could not retrieve Gene Dataset: " + response.error));
     }
 
