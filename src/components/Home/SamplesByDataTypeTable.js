@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
-import { fetchSummaryData, fetchDataTypeSummaryInformation} from '../../helpers/ApolloClient';
+import { fetchSummaryData, fetchDataTypeSummaryInformation, fetchDataTypeSummaryInformation2025} from '../../helpers/ApolloClient';
 import { Row, Col, UncontrolledTooltip } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
@@ -21,7 +21,13 @@ class SamplesByDataTypeTable extends Component {
         spatialSummary = [...spatialSummary].sort(this.compare)
         spatialSummary = spatialSummary.filter(availableDataVisibilityFilter)
 
-        let explorerSummary = await fetchDataTypeSummaryInformation();
+        let explorerSummary = '';
+        if (this.props.featureSCData || this.props.featureSNData) {
+            explorerSummary = await fetchDataTypeSummaryInformation2025();    
+        } else {
+            explorerSummary = await fetchDataTypeSummaryInformation();
+        }
+        
         explorerSummary = [...explorerSummary].sort(this.compare)
         explorerSummary = explorerSummary.filter(availableDataVisibilityFilter)
 

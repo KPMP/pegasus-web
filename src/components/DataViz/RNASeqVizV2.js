@@ -5,8 +5,8 @@ import ExpressionXCellType from "../ExpressionTables/ExpressionXCellType";
 import UMAPPlot from "../Plots/UMAPPlot";
 import FeaturePlot from "../Plots/FeaturePlot";
 import {
-  fetchGeneExpression,
-  fetchPlotlyData,
+  fetchGeneExpression2025,
+  fetchPlotlyData2025,
 } from "../../helpers/ApolloClient";
 import { getDataTypeOptions } from "../../helpers/Utils";
 import queryString from "query-string";
@@ -131,7 +131,7 @@ class RNASeqVizV2 extends Component {
     enrollmentCategory,
     fetchPolicy,
   ) => {
-    const results = await fetchGeneExpression(
+    const results = await fetchGeneExpression2025(
       dataType,
       gene,
       cellType,
@@ -143,7 +143,7 @@ class RNASeqVizV2 extends Component {
   };
 
   getUmapPoints = async (dataType, gene, enrollmentCategory, fetchPolicy) => {
-    const results = await fetchPlotlyData(
+    const results = await fetchPlotlyData2025(
       dataType,
       gene,
       enrollmentCategory,

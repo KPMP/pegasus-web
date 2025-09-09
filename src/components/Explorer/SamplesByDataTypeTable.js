@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
-import { fetchSummaryData, fetchDataTypeSummaryInformation} from '../../helpers/ApolloClient';
+import { fetchSummaryData, fetchDataTypeSummaryInformation, fetchDataTypeSummaryInformation2025} from '../../helpers/ApolloClient';
 import { Grid, TableHeaderRow, Table, TableColumnResizing} from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
@@ -33,7 +33,13 @@ class SamplesByDataTypeTable extends Component {
 
     async componentDidMount() {
         let summary = await fetchSummaryData("explorerHomepageSummary")
-        const geneDatasetSummary = await fetchDataTypeSummaryInformation()
+        const geneDatasetSummary = ''
+        if (this.props.featureSCData || this.props.featureSNData) {
+            geneDatasetSummary = await fetchDataTypeSummaryInformation2025()
+        } else {
+            geneDatasetSummary = await fetchDataTypeSummaryInformation()
+        }
+        
         summary = summary.concat(geneDatasetSummary)
         summary = summary.slice()
                         .sort( this.compare )
