@@ -33,18 +33,22 @@ class SamplesByDataTypeTable extends Component {
 
     async componentDidMount() {
         let summary = await fetchSummaryData("explorerHomepageSummary")
-        let geneDatasetSummary = ''
-        if (this.props.featureSCData || this.props.featureSNData) {
-            geneDatasetSummary = await fetchDataTypeSummaryInformation2025()
-        } else {
-            geneDatasetSummary = await fetchDataTypeSummaryInformation()
-        }
+        const geneDatasetSummary = this.getDatasetSummaryLocal();
+
         
         summary = summary.concat(geneDatasetSummary)
         summary = summary.slice()
                         .sort( this.compare )
                         .filter(availableDataVisibilityFilter)
         this.setState({summary})
+    }
+
+    async getDatasetSummaryLocal() {
+        if (this.props.featureSCData || this.props.featureSNData) {
+            return await fetchDataTypeSummaryInformation2025()
+        } else {
+            return await fetchDataTypeSummaryInformation()
+        }
     }
 
     handleDataTypeClick(dataType) {
