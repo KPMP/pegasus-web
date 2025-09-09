@@ -22,11 +22,6 @@ class SamplesByDataTypeTable extends Component {
         spatialSummary = spatialSummary.filter(availableDataVisibilityFilter)
 
         let explorerSummary = this.fetchDataTypeSummaryLocal();
-        if (this.props.featureSCData || this.props.featureSNData) {
-            explorerSummary = await fetchDataTypeSummaryInformation2025();    
-        } else {
-            explorerSummary = await fetchDataTypeSummaryInformation();
-        }
         
         explorerSummary = [...explorerSummary].sort(this.compare)
         explorerSummary = explorerSummary.filter(availableDataVisibilityFilter)
