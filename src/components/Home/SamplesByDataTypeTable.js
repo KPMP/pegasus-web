@@ -24,7 +24,7 @@ class SamplesByDataTypeTable extends Component {
         let explorerSummary = await this.fetchDataTypeSummaryLocal();
         console.log(explorerSummary)
         
-        explorerSummary = [...explorerSummary].sort(this.compare)
+        explorerSummary = [...explorerSummary.getDataTypeSummaryInformation2025].sort(this.compare)
         explorerSummary = explorerSummary.filter(availableDataVisibilityFilter)
 
         // adding lines to separate the sections in the table
