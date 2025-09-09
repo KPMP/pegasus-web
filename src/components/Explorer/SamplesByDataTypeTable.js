@@ -33,9 +33,8 @@ class SamplesByDataTypeTable extends Component {
 
     async componentDidMount() {
         let summary = await fetchSummaryData("explorerHomepageSummary")
-        const geneDatasetSummary = this.getDatasetSummaryLocal();
+        const geneDatasetSummary = await this.getDatasetSummaryLocal();
 
-        
         summary = summary.concat(geneDatasetSummary)
         summary = summary.slice()
                         .sort( this.compare )
