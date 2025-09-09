@@ -33,7 +33,7 @@ class SamplesByDataTypeTable extends Component {
 
     async componentDidMount() {
         let summary = await fetchSummaryData("explorerHomepageSummary")
-        const geneDatasetSummary = ''
+        let geneDatasetSummary = ''
         if (this.props.featureSCData || this.props.featureSNData) {
             geneDatasetSummary = await fetchDataTypeSummaryInformation2025()
         } else {
