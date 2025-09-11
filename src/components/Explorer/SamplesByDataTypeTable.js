@@ -40,7 +40,6 @@ class SamplesByDataTypeTable extends Component {
                         .sort( this.compare )
                         .filter(availableDataVisibilityFilter)
         this.setState({summary})
-        console.log(summary)
     }
 
     async getDatasetSummaryLocal() {

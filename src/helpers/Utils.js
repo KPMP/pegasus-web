@@ -168,6 +168,7 @@ export const getDataTypeOptionsWithEnrollmentCategory = async (geneSymbol, clust
 };
 
 export const availableDataVisibilityFilter = (data) => {
+    console.log(data)
     if ('hrtCount' in data && 'akiCount' in data && 'ckdCount' in data) {
         if (data.hrtCount > 0 || data.akiCount > 0 || data.ckdCount > 0 || data.dmrCount > 0) {
             return data;
