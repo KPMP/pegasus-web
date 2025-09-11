@@ -34,12 +34,13 @@ class SamplesByDataTypeTable extends Component {
     async componentDidMount() {
         let summary = await fetchSummaryData("explorerHomepageSummary")
         const geneDatasetSummary = await this.getDatasetSummaryLocal();
-
+        console.log(geneDatasetSummary);
         summary = summary.concat(geneDatasetSummary)
         summary = summary.slice()
                         .sort( this.compare )
                         .filter(availableDataVisibilityFilter)
         this.setState({summary})
+        console.log(summary)
     }
 
     async getDatasetSummaryLocal() {
@@ -57,6 +58,7 @@ class SamplesByDataTypeTable extends Component {
 
     formatDataTypeCell(row) {
         let value = row['dataType']
+        console.log(value)
         if (value === 'Single-cell RNA-seq (scRNA-seq)' || value === 'Single-nucleus RNA-seq (snRNA-seq)') {
 
             return (
