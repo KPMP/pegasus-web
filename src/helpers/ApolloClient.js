@@ -221,8 +221,8 @@ export const fetchPlotlyData2025 = async(dataType, geneSymbol, enrollmentCategor
         fetchPolicy: fetchPolicy
     });
 
-    if (response.data && response.data.getUmapPlotData) {
-        return response.data.getUmapPlotData;
+    if (response.data && response.data.getUmapPlotData2025) {
+        return response.data.getUmapPlotData2025;
     } else {
         store.dispatch(sendMessageToBackend("Could not retrieve UMAP plot data: " + response.error));
     }
