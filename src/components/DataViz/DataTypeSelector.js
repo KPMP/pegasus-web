@@ -38,9 +38,9 @@ class DataTypeSelector extends Component {
                 this.reloadPageData(this.props.gene.symbol);
             } else {
                 if (this.props.featureSCData || this.props.featureSNData) {
-                    this.fetchDataTypeSummaryInformation2025();
+                    fetchDataTypeSummaryInformation2025();
                 } else {
-                    this.fetchDataTypeSummaryInformation();
+                    fetchDataTypeSummaryInformation();
                 }
                 
             }
