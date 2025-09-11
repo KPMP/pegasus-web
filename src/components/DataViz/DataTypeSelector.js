@@ -37,12 +37,7 @@ class DataTypeSelector extends Component {
             if (this.props.gene.symbol) {
                 this.reloadPageData(this.props.gene.symbol);
             } else {
-                if (this.props.featureSCData || this.props.featureSNData) {
-                    fetchDataTypeSummaryInformation2025();
-                } else {
-                    fetchDataTypeSummaryInformation();
-                }
-                
+                this.fetchDataTypeSummaryInformation();
             }
         }
     }
@@ -90,6 +85,7 @@ class DataTypeSelector extends Component {
         }
         return datasetSummary
     }
+
     fetchDataTypeSummaryInformation = async (geneSymbol) => {
         this.setState({ isDatasetSummaryLoading: true, datasetToggle: 'collapsed' });
         if ((this.props.dataType === "sc" && this.props.featureSCData) || (this.props.dataType === "sn" && this.props.featureSNData)) {
