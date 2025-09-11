@@ -155,8 +155,8 @@ export const fetchDataTypeSummaryInformation2025 = async (fetchPolicy = 'no-cach
         query: query,
         fetchPolicy: fetchPolicy
     });
-    if (response.data) {
-        return response.data;
+    if (response.data && response.data.getDataTypeSummaryInformation2025) {
+        return response.data.getDataTypeSummaryInformation2025;
     } else {
         console.log('response.error',response.error)
         console.log(response)
