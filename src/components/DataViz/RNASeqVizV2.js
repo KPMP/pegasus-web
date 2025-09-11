@@ -32,6 +32,7 @@ class RNASeqVizV2 extends Component {
   }
 
   cleanResults = (results) => {
+    console.log(results)
     return results.filter((result) => result.clusterName !== "TOTAL CELLS: ");
   };
 
@@ -138,6 +139,7 @@ class RNASeqVizV2 extends Component {
       enrollmentCategory,
       fetchPolicy,
     );
+    console.log(results)
     const cleanResults = this.cleanResults(results);
     this.setState({ geneExpressionData: cleanResults, isLoading: false });
   };
