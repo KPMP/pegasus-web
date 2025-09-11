@@ -342,8 +342,8 @@ export const fetchGeneExpression2025 = async (dataType, geneSymbol, cellType, en
         query: query
     });
 
-	if(response.data && response.data.geneExpressionSummary) {
-		return response.data.geneExpressionSummary;
+	if(response.data && response.data.geneExpressionSummary2025) {
+		return response.data.geneExpressionSummary2025;
 	} else {
 		store.dispatch(sendMessageToBackend("Could not retrieve gene expression data: " + response.error));
 	}

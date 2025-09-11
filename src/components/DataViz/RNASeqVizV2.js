@@ -125,13 +125,7 @@ class RNASeqVizV2 extends Component {
     }
   };
 
-  getGeneExpression = async (
-    dataType,
-    gene,
-    cellType,
-    enrollmentCategory,
-    fetchPolicy,
-  ) => {
+  getGeneExpression = async (dataType, gene, cellType, enrollmentCategory, fetchPolicy) => {
     const results = await fetchGeneExpression2025(
       dataType,
       gene,
