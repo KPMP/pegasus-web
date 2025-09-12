@@ -132,7 +132,6 @@ class RNASeqVizV2 extends Component {
       enrollmentCategory,
       fetchPolicy,
     );
-    console.log(results)
     const cleanResults = this.cleanResults(results);
     this.setState({ geneExpressionData: cleanResults, isLoading: false });
   };
