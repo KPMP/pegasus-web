@@ -135,6 +135,37 @@ export const fetchClusterHierarchy = async (cellType) => {
     }
 }
 
+export const fetchDataTypeSummaryInformation2025 = async (fetchPolicy = 'no-cache') => {
+    const query = gql`
+      query {
+                getDataTypeSummaryInformation2025
+                 {
+                    omicsType
+                    dataType
+                    dataTypeShort
+                    hrtCount
+                    akiCount
+                    ckdCount
+                    dmrCount
+                    totalCount
+                    participantCount
+                }
+            }`;
+    const response = await apolloClient.query({
+        query: query,
+        fetchPolicy: fetchPolicy
+    });
+    if (response.data && response.data.getDataTypeSummaryInformation2025) {
+        return response.data.getDataTypeSummaryInformation2025;
+    } else {
+        console.log('response.error',response.error)
+        console.log(response)
+        store.dispatch(sendMessageToBackend("Could not retrieve Gene Dataset: " + response.error));
+    }
+
+    return undefined;
+}
+
 export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') => {
     const query = gql`
       query {
@@ -164,6 +195,40 @@ export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') 
 
     return undefined;
 }
+
+export const fetchPlotlyData2025 = async(dataType, geneSymbol, enrollmentCategory, fetchPolicy='cache-first') => {
+     const query = gql`
+            query {
+            getUmapPlotData2025(dataType: "${dataType}", geneSymbol: "${geneSymbol}", enrollmentCategory: "${enrollmentCategory}") {
+                referenceData {
+                    xValues
+                    yValues
+                    clusterName
+                    color
+                    clusterAbbreviation
+                }
+                featureData {
+                    xValues
+                    yValues
+                    expression
+                    hoverDisplay
+                }
+            }
+        }`;
+
+    const response = await apolloClient.query({
+        query: query,
+        fetchPolicy: fetchPolicy
+    });
+
+    if (response.data && response.data.getUmapPlotData2025) {
+        return response.data.getUmapPlotData2025;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve UMAP plot data: " + response.error));
+    }
+}
+
+
 
 export const fetchPlotlyData = async (dataType, geneSymbol, enrollmentCategory, fetchPolicy = 'cache-first') => {
     const query = gql`
@@ -247,6 +312,42 @@ export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enroll
 	}
 };
 
+
+export const fetchGeneExpression2025 = async (dataType, geneSymbol, cellType, enrollmentCategory) => {
+    const query = gql`
+        query {
+             geneExpressionSummary2025(
+				dataType: "${dataType}",
+				geneSymbol: "${geneSymbol}",
+				cellType: "${cellType}",
+				enrollmentCategory: "${enrollmentCategory}"
+				) {
+					id
+					enrollmentCategory
+					gene
+					pVal
+					pValAdj
+					foldChange
+					pct1
+					pct2
+					avgExp
+					cluster
+					clusterName
+					cellCount
+					dataType
+				}
+        }`;
+
+    const response = await apolloClient.query({
+        query: query
+    });
+
+	if(response.data && response.data.geneExpressionSummary2025) {
+		return response.data.geneExpressionSummary2025;
+	} else {
+		store.dispatch(sendMessageToBackend("Could not retrieve gene expression data: " + response.error));
+	}
+};
 
 
 export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) => {

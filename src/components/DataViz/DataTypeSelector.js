@@ -3,7 +3,7 @@ import Select from "react-select";
 import { Row, Col, Container} from 'reactstrap';
 import ConceptSelectContainer from '../ConceptSelect/ConceptSelectContainer';
 import { getEnrollmentCategoryOptions, getAllDataTypeOptions, getDataTypeOptionsWithEnrollmentCategory } from "../../helpers/Utils";
-import { fetchDataTypeSummaryInformation } from '../../helpers/ApolloClient';
+import { fetchDataTypeSummaryInformation, fetchDataTypeSummaryInformation2025 } from '../../helpers/ApolloClient';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { faChevronDown, faChevronUp } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -85,29 +85,55 @@ class DataTypeSelector extends Component {
         }
         return datasetSummary
     }
+
     fetchDataTypeSummaryInformation = async (geneSymbol) => {
         this.setState({ isDatasetSummaryLoading: true, datasetToggle: 'collapsed' });
-        return fetchDataTypeSummaryInformation(geneSymbol).then(
-            (datasetSummary) => {
-                if (datasetSummary) {
-                    datasetSummary = this.formatGeneDataset(datasetSummary)
-                    this.setSelectedDatasetSummary(this.props.dataType, datasetSummary)
-                    this.setState({ isDatasetSummaryLoading: false });
-                    return datasetSummary
-                }
-            },
-            (error) => {
-                let selectedDataset = {
-                    participantCount: '-',
-                    hrtCount: '-',
-                    akiCount: '-',
-                    ckdCount: '-'
-                }
+        if ((this.props.dataType === "sc" && this.props.featureSCData) || (this.props.dataType === "sn" && this.props.featureSNData)) {
+            return fetchDataTypeSummaryInformation2025(geneSymbol).then(
+                    (datasetSummary) => {
+                        if (datasetSummary) {
+                            datasetSummary = this.formatGeneDataset(datasetSummary)
+                            this.setSelectedDatasetSummary(this.props.dataType, datasetSummary)
+                            this.setState({ isDatasetSummaryLoading: false });
+                            return datasetSummary
+                        }
+                    },
+                    (error) => {
+                        let selectedDataset = {
+                            participantCount: '-',
+                            hrtCount: '-',
+                            akiCount: '-',
+                            ckdCount: '-'
+                        }
 
-                console.log('There was a problem fetching the gene summary data: ' + error)
-                this.setState({ selectedDataset, isDatasetSummaryLoading: false });
-            }
-        );
+                        console.log('There was a problem fetching the gene summary data: ' + error)
+                        this.setState({ selectedDataset, isDatasetSummaryLoading: false });
+                    }
+                );
+        } else {
+            return fetchDataTypeSummaryInformation(geneSymbol).then(
+                    (datasetSummary) => {
+                        if (datasetSummary) {
+                            datasetSummary = this.formatGeneDataset(datasetSummary)
+                            this.setSelectedDatasetSummary(this.props.dataType, datasetSummary)
+                            this.setState({ isDatasetSummaryLoading: false });
+                            return datasetSummary
+                        }
+                    },
+                    (error) => {
+                        let selectedDataset = {
+                            participantCount: '-',
+                            hrtCount: '-',
+                            akiCount: '-',
+                            ckdCount: '-'
+                        }
+
+                        console.log('There was a problem fetching the gene summary data: ' + error)
+                        this.setState({ selectedDataset, isDatasetSummaryLoading: false });
+                    }
+                );
+        }
+
     }
 
 

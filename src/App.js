@@ -20,10 +20,12 @@ import NotFoundPage from './components/Error/NotFoundPage';
 import RNASeqVizContainer from "./components/DataViz/RNASeqVizContainer";
 import RNASeqVizContainerV2 from './components/DataViz/RNASeqVizContainerV2';
 import DiffexByClusterContainer from "./components/ExpressionTables/DiffexByClusterContainer";
+import DiffexByClusterContainerV2 from "./components/ExpressionTables/DiffexByClusterContainerV2";
 import RegionalVizContainer from "./components/DataViz/RegionalVizContainer";
 import packageInfo from '../package.json';
 import { PrivateUmapRoute } from './PrivateRoutes';
 import UMAPContainer from './components/DataViz/UMAPContainer';
+import UMAPContainerV2 from './components/DataViz/UMAPContainerV2';
 import RegionalProteomicsContainer from './components/DataViz/RegionalProteomicsContainer';
 
 const cacheStore = window.sessionStorage.getItem('redux-store');
@@ -81,9 +83,11 @@ class App extends Component {
                   <Route exact path='/explorer/dataviz2' component={RNASeqVizContainerV2} store={store} />
                   <Route exact path='/explorer/regionalviz' component={RegionalVizContainer} store={store} />
                   <Route exact path='/explorer/diffex' component={DiffexByClusterContainer} store={store} />
+                  <Route exact path='/explorer/diffex2' component={DiffexByClusterContainerV2} store={store} />
                   <Route exact path='/explorer/regionalpro' component={RegionalProteomicsContainer} store={store}/>
                   <Route exact path='/oops' component={Oops} />
                   <PrivateUmapRoute exact path='/explorer/dataViz/umap' component={UMAPContainer} store={store} />
+                  <PrivateUmapRoute exact path='/explorer/dataViz/umap2' component={UMAPContainerV2} store={store} />
                   <Route path='*' component={NotFoundPage} />
                 </Switch>
                 <NavFooter app='atlas' />
