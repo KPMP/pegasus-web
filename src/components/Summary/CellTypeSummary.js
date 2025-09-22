@@ -173,10 +173,11 @@ class CellTypeSummary extends Component {
                         </Row>
                         <Row xs='12'>
                             <Col><small>
-                                <sup>1</sup>adaptive/maladaptive/repairing: Represented by cells that retain differentiation markers of reference states, albeit at lower levels, but also show expression of known injury associated genes, mesenchymal markers or factors promoting inflammation or fibrosis. &nbsp;
-                                <sup>2</sup>cycling: Represented by enrichment of cell cycle genes. &nbsp;
-                                <sup>3</sup>degenerative: Marked loss of differentiation markers, and/or increased %ERT, %MT, and/or marked decrease in genes detected. These cells could represent an early injury state or cells that will not recover function. &nbsp;
-                                <sup>4</sup>transitional: Represented by an intermediate state showing markers of cells sharing the same parental lineage.
+                                <sup>1</sup>adaptive/maladaptive: In relation to nephron cell states, these cells are adapting to their altered environment or injury to either undergo recovery or progress to an unresolved or maladaptive epithelial state. These cells may retain differentiation markers of reference states, albeit at lower levels, but also show expression of known injury or repair-associated genes, mesenchymal markers or factors promoting inflammation or fibrosis. For fibroblasts, this may represent an activated state to produce increased matrix or cytokines.<br/>
+                                <sup>2</sup>cycling: Represented by enrichment of cell cycle genes.<br/>
+                                <sup>3</sup>degenerative: Marked loss of differentiation markers, and/or increased %ERT, %MT, and/or marked decrease in genes detected. These cells could represent an early injury state or cells that will not recover function.<br/>
+                                <sup>4</sup>transitional: Represented by an intermediate state showing markers of cells sharing the same parental lineage but may shift functional roles depending on physiological demands.<br/>
+                                <sup>5</sup>failed repair: Related to nephron cell states, these are cells that are in advanced states of injury that have adopted a mesenchymal phenotype, lost their canonical functional roles, may have activated factors that attempt to repair but are not able to recover.   These cells may express profibrogenic and immune-modulating factors that result in fibrosis.
                             </small>
                                 <p></p>
 
