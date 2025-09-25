@@ -7,6 +7,7 @@ import { setEnrollmentCategory } from '../../actions/EnrollmentCategory/enrollme
 const mapStateToProps = (state, props) =>
 ({
     selectedConcept: state.selectedConcept,
+    featureNewCellClusterData: state.featureNewCellClusterData
 });
 
 const mapDispatchToProps = (dispatch, props) =>

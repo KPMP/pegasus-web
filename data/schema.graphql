@@ -1,12 +1,15 @@
 type Query {
   autocomplete(searchTerm: String): [AutoCompleteResult]
   cellTypeHierarchy: CellTypeHierarchy
+  cellTypeHierarchy2025: CellTypeHierarchy
   geneExpressionSummary(dataType: String, geneSymbol: String, cellType: String, enrollmentCategory: String) : [GeneExpressionSummary]
   geneExpressionSummary2025(dataType: String, geneSymbol: String, cellType: String, enrollmentCategory: String) : [GeneExpressionSummary]
   getClusterHieararchies(cellType: String!): [ClusterHierarchy]
+  getClusterHieararchies2025(cellType: String!): [ClusterHierarchy]
   getUmapPlotData(dataType: String!, geneSymbol: String!, enrollmentCategory: String): PlotData
   getUmapPlotData2025(dataType: String!, geneSymbol: String!, enrollmentCategory: String): PlotData
   dataTypesForConcept(geneSymbol: String, clusterName: String): [String]
+  dataTypesForConcept2025(geneSymbol: String, clusterName: String): [String]
   getDataTypeSummaryInformation: [getDataTypeSummaryInformation]
   getDataTypeSummaryInformation2025: [getDataTypeSummaryInformation]
   getRTGeneExpressionByTissue(comparisonType: String, geneSymbol: String): RTGeneExpressionByTissue

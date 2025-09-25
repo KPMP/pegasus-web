@@ -79,6 +79,7 @@ class App extends Component {
                   <Route exact path='/explorer' component={Explorer} store={store} />
                   <Route exact path='/explorer/genesummary' component={GeneSummaryContainer} store={store} />
                   <Route exact path='/explorer/celltypesummary' component={CellTypeSummaryContainer} store={store} />
+                  <Route exact path='/explorer/celltypesummary2' component={CellTypeSummaryContainerV2} store={store} />
                   <Route exact path='/explorer/dataviz' component={RNASeqVizContainer} store={store} />
                   <Route exact path='/explorer/dataviz2' component={RNASeqVizContainerV2} store={store} />
                   <Route exact path='/explorer/regionalviz' component={RegionalVizContainer} store={store} />

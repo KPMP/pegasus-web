@@ -8,5 +8,6 @@
   "cellType": "",
   "accession": "",
   "featureSNData": true,
-  "featureSCData": true
+  "featureSCData": true,
+  "featureNewCellClusterData": true
 }

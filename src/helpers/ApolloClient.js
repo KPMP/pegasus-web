@@ -108,6 +108,32 @@ export const fetchCellTypeHierarchy = async () => {
     }
 };
 
+export const fetchCellTypeHierarchy2025 = async () => {
+    const response = await apolloClient.query({
+        query: gql`
+            query {
+                cellTypeHierarchy2025 {
+                    cellTypeRegions {
+                        regionName
+                        cellTypeSubregions {
+                            subregionName
+                            cellTypes {
+                                cellType
+                            }
+                        }
+                    }
+                }
+            }`
+    });
+
+    if (response.data && response.data.cellTypeHierarchy2025) {
+        return response.data.cellTypeHierarchy2025;
+    }
+    else {
+        store.dispatch(sendMessageToBackend("Could not retrieve cell type hierarchy 2025 data: " + response.error));
+    }
+};
+
 export const fetchClusterHierarchy = async (cellType) => {
     const response = await apolloClient.query({
         query: gql`
@@ -267,6 +293,20 @@ export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
         query: gql`
             query{
                 dataTypesForConcept(geneSymbol:"${geneSymbol}", clusterName: "${clusterName}")
+            }`
+    });
+    if (response.data && response.data) {
+        return response.data;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve data types: " + response.error));
+    }
+}
+
+export const fetchDataTypesForConcept2025 = async (geneSymbol, clusterName) => {
+    const response = await apolloClient.query({
+        query: gql`
+            query{
+                dataTypesForConcept2025(geneSymbol:"${geneSymbol}", clusterName: "${clusterName}")
             }`
     });
     if (response.data && response.data) {

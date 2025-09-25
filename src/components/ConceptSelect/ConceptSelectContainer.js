@@ -10,7 +10,8 @@ const mapStateToProps = (state, props) => {
         selectedConcept: selectedConcept,
         gene: state.gene,
         featureSCData: state.featureSCData,
-        featureSNData: state.featureSNData
+        featureSNData: state.featureSNData,
+        featureNewCellClusterData: state.featureNewCellClusterData,
     }
 };
 
