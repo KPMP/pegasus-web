@@ -1,4 +1,4 @@
-import { fetchDataTypesForConcept } from './ApolloClient';
+import { fetchDataTypesForConcept, fetchDataTypesForConcept2025 } from './ApolloClient';
 
 export const formatNumberToPrecision = (number, precision, keepAsInt = false, dataType = "", enrollmentCategory = "") => {
     if (number) {

@@ -161,6 +161,33 @@ export const fetchClusterHierarchy = async (cellType) => {
     }
 }
 
+export const fetchClusterHierarchy2025 = async (cellType) => {
+    const response = await apolloClient.query({
+        query: gql`
+            query {
+                getClusterHieararchies2025(cellType: "${cellType}") {
+                   cellType
+                   clusterName
+                   structureRegion
+                   structureSubregion
+                   isSingleNucCluster
+                   isSingleCellCluster
+                   isRegionalTranscriptomics
+                   isRegionalProteomics
+                   cellTypeId
+                   clusterId
+                   cellTypeOrder
+                }
+            }`
+    });
+
+    if (response.data && response.data.getClusterHieararchies2025) {
+        return response.data.getClusterHieararchies2025;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve cluster 2025 data: " + response.error));
+    }
+}
+
 export const fetchDataTypeSummaryInformation2025 = async (fetchPolicy = 'no-cache') => {
     const query = gql`
       query {

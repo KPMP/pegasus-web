@@ -16,6 +16,7 @@ import { ApolloProvider } from '@apollo/client';
 import { apolloClient } from './helpers/ApolloClient';
 import GeneSummaryContainer from './components/Summary/GeneSummaryContainer';
 import CellTypeSummaryContainer from './components/Summary/CellTypeSummaryContainer';
+import CellTypeSummaryContainerV2 from './components/Summary/CellTypeSummaryContainerV2';
 import NotFoundPage from './components/Error/NotFoundPage';
 import RNASeqVizContainer from "./components/DataViz/RNASeqVizContainer";
 import RNASeqVizContainerV2 from './components/DataViz/RNASeqVizContainerV2';
