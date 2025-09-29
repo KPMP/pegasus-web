@@ -31,7 +31,7 @@ class ConceptSelect extends Component {
                         }
                         let hasResultsWithDataType = this.props.dataType ? results.dataTypesForConcept2025.includes(this.props.dataType) : true;
                         if (hasResults && hasResultsWithDataType) {
-                            this.props.setSelectedConcept(selected.value);
+                            this.props.setSelectedConcept(selected.value, this.props.featureNewCellClusterData);
                             this.setState({ value: { label: selected.value.value, value: selected.value }, hasResults, hasResultsWithDataType, noResultValue: '', alertVisible: false });
                         } else {
                             this.setState({ value: { label: selected.value.value, value: selected.value }, hasResults, hasResultsWithDataType, noResultValue: selected.value.value, alertVisible: true });
