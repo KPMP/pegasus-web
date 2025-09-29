@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { Grid, TableColumnResizing, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
-import { fetchClusterHierarchy } from '../../helpers/ApolloClient';
+import { fetchClusterHierarchy, fetchClusterHierarchy2025 } from '../../helpers/ApolloClient';
 import { Spinner } from "reactstrap";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import Parser from 'html-react-parser';
@@ -13,7 +13,6 @@ class CellTypeSummary extends Component {
     constructor(props) {
         super(props);
         this.getColumns = this.getColumns.bind(this);
-
         this.state = {
             cellTypeSummary: [],
             isLoading: true
@@ -32,8 +31,15 @@ class CellTypeSummary extends Component {
 
     fetchClusterHierarchy = async () => {
         this.setState({ isLoading: true });
-        let results = await fetchClusterHierarchy(this.props.cellType);
-        this.setState({ cellTypeSummary: results, isLoading: false });
+        if (this.props.featureNewCellClusterData){
+            console.log("Using 2025 query for cluster hierarchy");
+            let results = await fetchClusterHierarchy2025(this.props.cellType);
+
+            this.setState({ cellTypeSummary: results, isLoading: false });
+        }else {
+            let results = await fetchClusterHierarchy(this.props.cellType);
+            this.setState({ cellTypeSummary: results, isLoading: false });
+        }
     };
 
     handleLinkClick = (dataType, row) => {
@@ -46,7 +52,7 @@ class CellTypeSummary extends Component {
             }
         }
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and cluster: ${cluster}`);
-        this.props.setDataTypeAndCluster(dataType, cluster);
+        this.props.setDataTypeAndCluster(dataType, cluster, this.props.featureSCData, this.props.featureSNData);
     };
 
     parseClusterName = (value) => {
@@ -193,3 +199,4 @@ class CellTypeSummary extends Component {
     }
 }
 export default CellTypeSummary;
+

@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import DiffexByClusterV2 from "./DiffexByClusterV2";
+import DiffexByCluster from "./DiffexByCluster";
 import { withRouter } from 'react-router';
 import { setGene } from "../../actions/Gene/geneActions";
 import { setAccession } from "../../actions/Accession/accessionActions";
@@ -10,6 +10,8 @@ const mapStateToProps = (state, props) =>
     dataType: state.dataType,
     cluster: state.cluster,
     enrollmentCategory: state.enrollmentCategory,
+    featureSNData: state.featureSNData,
+    feautreSCData: state.featureSNData
 });
 
 const mapDispatchToProps = (dispatch, props) =>
@@ -21,7 +23,7 @@ const mapDispatchToProps = (dispatch, props) =>
             } else if (dataType === 'rp') {
                 dispatch((dispatch) => window.open("/explorer/regionalpro", '_self'));
             } else {
-                dispatch((dispatch) => window.open("/explorer/dataviz", '_self'));
+                dispatch((dispatch) => window.open("/explorer/diffex2", '_self'));
             }
         },
         setDataType(dataType) {
@@ -32,4 +34,4 @@ const mapDispatchToProps = (dispatch, props) =>
         }
     });
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DiffexByClusterV2))
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(DiffexByCluster))

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Col, Container, Row, Spinner } from 'reactstrap';
-import { fetchCellTypeHierarchy } from "../../helpers/ApolloClient";
+import { fetchCellTypeHierarchy, fetchCellTypeHierarchy2025 } from "../../helpers/ApolloClient";
 import CellTypeTabs from './CellTypeTabs';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
@@ -23,13 +23,24 @@ class NephronSchemaCard extends Component {
     }
 
     getCellTypeHierarchy = async () => {
-        const results = await fetchCellTypeHierarchy();
-        this.setState({ cellTypeHierarchy: results, isProcessing: false });
+        if (this.props.featureNewCellClusterData){
+            console.log("Using 2025 query for cell type hierarchy");
+            const results = await fetchCellTypeHierarchy2025();
+            this.setState({ cellTypeHierarchy: results, isProcessing: false });
+            return results;
+        }else{
+            const results = await fetchCellTypeHierarchy();
+            this.setState({ cellTypeHierarchy: results, isProcessing: false });
+        }
     };
 
     handleCellTypeClick = (cellType) => {
         handleGoogleAnalyticsEvent('Explorer', 'Search', `cellType: ${cellType}`);
-        this.props.setSelectedConcept({ type: 'cell_type', value: cellType });
+        if (this.props.featureNewCellClusterData) {
+            this.props.setSelectedConcept({type: 'cell_type', value: cellType}, this.props.featureNewCellClusterData)
+        }else{
+            this.props.setSelectedConcept({ type: 'cell_type', value: cellType });
+        }
     };
 
     processHierarchyText = () => {

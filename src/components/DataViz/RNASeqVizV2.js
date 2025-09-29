@@ -3,6 +3,7 @@ import { Container, Row, Col } from "reactstrap";
 import DataTypeSelectorContainer from "./DataTypeSelectorContainer";
 import ExpressionXCellType from "../ExpressionTables/ExpressionXCellType";
 import UMAPPlot from "../Plots/UMAPPlot";
+import UMAPPlot2 from "../Plots/UMAPPlot2";
 import FeaturePlot from "../Plots/FeaturePlot";
 import {
   fetchGeneExpression2025,
@@ -149,8 +150,6 @@ class RNASeqVizV2 extends Component {
   render() {
     return (
       <div className="height-wrapper mb-3">
-        {this.props.dataType === "sn" && this.props.featureSNData ? <h1>YOU ARE ON THE NEW SINGLE-NUC DATA VIZ PAGE</h1>: null}
-        {this.props.dataType === "sc" && this.props.featureSCData ? <h1>YOU ARE ON THE NEW SINGLE-CELL DATA VIZ PAGE</h1>: null}
         <Container id="outer-wrapper">
           <DataTypeSelectorContainer isLoadingUmap={this.state.isLoadingUmap} />
           <Container className="mt-3 rounded border p-3 shadow-sm mb-5">
@@ -164,13 +163,25 @@ class RNASeqVizV2 extends Component {
                 </Row>
                 <Row>
                   <Col lg="6" className="umapPlot-container">
-                    <UMAPPlot
-                      data={this.state.plotData}
-                      dataType={
-                        this.props.dataType ? this.props.dataType : "sc"
-                      }
-                      enrollmentCategory={this.props.enrollmentCategory}
-                    />
+                    {
+                        this.props.featureSCData || this.props.featureSNData ? 
+
+                            <UMAPPlot2
+                            data={this.state.plotData}
+                            dataType={
+                                this.props.dataType ? this.props.dataType : "sc"
+                            }
+                            enrollmentCategory={this.props.enrollmentCategory}
+                            />
+                        :
+                            <UMAPPlot
+                            data={this.state.plotData}
+                            dataType={
+                                this.props.dataType ? this.props.dataType : "sc"
+                            }
+                            enrollmentCategory={this.props.enrollmentCategory}
+                            />
+                    }
                   </Col>
                 </Row>
               </Col>

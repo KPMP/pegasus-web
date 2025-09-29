@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AgGridReact } from "ag-grid-react";
 import { Col, Row, Container, Spinner, Input, Form, InputGroup } from 'reactstrap';
 import { formatNumberToPrecision, formatDataType } from '../../helpers/Utils'
-import { fetchGeneExpression, fetchRegionalTranscriptomicsByStructure, fetchRegionalProteomicsByStructure } from '../../helpers/ApolloClient';
+import { fetchGeneExpression, fetchGeneExpression2025, fetchRegionalTranscriptomicsByStructure, fetchRegionalProteomicsByStructure } from '../../helpers/ApolloClient';
 import { CSVLink } from 'react-csv';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -53,15 +53,29 @@ class DiffexByCluster extends Component {
                 }
             );
         } else {
-            fetchGeneExpression(this.props.dataType, '', this.props.cluster, 'all').then(
-                (geneExpressionData) => {
-                    this.setState({ diffexData: geneExpressionData, isLoading: false, filteredData: geneExpressionData })
-                },
-                (error) => {
-                    this.setState({ diffexData: [] });
-                    console.log('There was a problem getting the data: ' + error)
-                }
-            );
+            if (this.props.featureSCData || this.props.featureSNData){
+                fetchGeneExpression2025(this.props.dataType, '', this.props.cluster, 'all').then(
+                    (geneExpressionData) => {
+                        this.setState({ diffexData: geneExpressionData, isLoading: false, filteredData: geneExpressionData })
+                    },
+                    (error) => {
+                        this.setState({ diffexData: [] });
+                        console.log('There was a problem getting the data: ' + error)
+                    }
+                );
+
+            }else{
+                fetchGeneExpression(this.props.dataType, '', this.props.cluster, 'all').then(
+                    (geneExpressionData) => {
+                        this.setState({ diffexData: geneExpressionData, isLoading: false, filteredData: geneExpressionData })
+                    },
+                    (error) => {
+                        this.setState({ diffexData: [] });
+                        console.log('There was a problem getting the data: ' + error)
+                    }
+                );
+                
+            }
         };
     };
 

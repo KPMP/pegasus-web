@@ -17,11 +17,11 @@ const mapStateToProps = (state, props) =>
 const mapDispatchToProps = (dispatch, props) =>
 
     ({
-        setDataTypeAndCluster(dataType, cluster) {
+        setDataTypeAndCluster(dataType, cluster, featureSCData, featureSNData) {
             dispatch(setDataType(dataType));
             dispatch(setEnrollmentCategory("all"));
             dispatch(setCluster(cluster));
-            if ((dataType === 'sc' && props.featureSCData) || (dataType === 'sn' && props.featureSNData)) {
+            if ((dataType === 'sc' && featureSCData) || (dataType === 'sn' && featureSNData)) {
                   dispatch((dispatch) => window.open("/explorer/diffex2", '_self'));
             } else {
                 dispatch((dispatch) => window.open("/explorer/diffex", '_self'));
