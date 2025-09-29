@@ -150,11 +150,6 @@ class CellTypeSummary extends Component {
     }
 
     render() {
-        if (this.props.featureNewCellClusterData) {
-            return (
-                <p>YOU ARE ON THE NEW CELL TYPE SUMMERY PAGE</p>
-            )
-        }
         let cellType = this.props.cellType;
         if (this.state.isLoading) {
             return (
@@ -165,6 +160,7 @@ class CellTypeSummary extends Component {
         } else {
             return (
                 <div className='height-wrapper mb-3'>
+                    {this.props.featureNewCellClusterData ? <p>YOU ARE ON THE NEW CELL TYPE SUMMARY PAGE</p> : null}
                     <Container className='mt-3 rounded border p-3 shadow-sm'>
                         <ConceptSelectFullWidth overflowWarningContainer={true} useRedirection={true} />
                     </Container>

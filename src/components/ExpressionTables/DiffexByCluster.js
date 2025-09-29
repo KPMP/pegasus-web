@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AgGridReact } from "ag-grid-react";
 import { Col, Row, Container, Spinner, Input, Form, InputGroup } from 'reactstrap';
 import { formatNumberToPrecision, formatDataType } from '../../helpers/Utils'
-import { fetchGeneExpression, fetchRegionalTranscriptomicsByStructure, fetchRegionalProteomicsByStructure } from '../../helpers/ApolloClient';
+import { fetchGeneExpression, fetchGeneExpression2025, fetchRegionalTranscriptomicsByStructure, fetchRegionalProteomicsByStructure } from '../../helpers/ApolloClient';
 import { CSVLink } from 'react-csv';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -53,15 +53,29 @@ class DiffexByCluster extends Component {
                 }
             );
         } else {
-            fetchGeneExpression(this.props.dataType, '', this.props.cluster, 'all').then(
-                (geneExpressionData) => {
-                    this.setState({ diffexData: geneExpressionData, isLoading: false, filteredData: geneExpressionData })
-                },
-                (error) => {
-                    this.setState({ diffexData: [] });
-                    console.log('There was a problem getting the data: ' + error)
-                }
-            );
+            if (this.props.featureSCData || this.props.featureSNData){
+                fetchGeneExpression2025(this.props.dataType, '', this.props.cluster, 'all').then(
+                    (geneExpressionData) => {
+                        this.setState({ diffexData: geneExpressionData, isLoading: false, filteredData: geneExpressionData })
+                    },
+                    (error) => {
+                        this.setState({ diffexData: [] });
+                        console.log('There was a problem getting the data: ' + error)
+                    }
+                );
+
+            }else{
+                fetchGeneExpression(this.props.dataType, '', this.props.cluster, 'all').then(
+                    (geneExpressionData) => {
+                        this.setState({ diffexData: geneExpressionData, isLoading: false, filteredData: geneExpressionData })
+                    },
+                    (error) => {
+                        this.setState({ diffexData: [] });
+                        console.log('There was a problem getting the data: ' + error)
+                    }
+                );
+                
+            }
         };
     };
 
@@ -200,6 +214,7 @@ class DiffexByCluster extends Component {
     render() {
         return (
             <div className='height-wrapper mb-3 mt-3'>
+                {this.props.featureSCData || this.props.featureSNData ? <p>yYOU ARE ON THE NEW DIFF EX PAGE</p> : null}
                 <Container id='outer-wrapper'>
                     <DiffexInfoBar cluster={this.props.cluster} dataType={this.props.dataType} setDataType={this.props.setDataType} />
                     <Container className='rounded border p-3 shadow-sm mb-5'>

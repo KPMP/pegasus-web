@@ -193,11 +193,6 @@ class GeneSummary extends Component {
     }
 
     render() {
-        if (this.props.featureSCData || this.props.featureSNData){
-            return (
-                <p>YOU ARE ON THE NEW GENE SUMMARY PAGE</p>
-            )
-        }
         const BandCell = ({ children, tableRow, tableColumn, column, ...restProps }) => {
             return (
                 <TableBandHeader.Cell {...restProps} column={column}
@@ -210,6 +205,7 @@ class GeneSummary extends Component {
         let { name, symbol } = this.props.gene;
         return (
             <div className='height-wrapper mb-3'>
+                {this.props.featureSCData || this.props.featureSNData ? <p>YOU ARE ON THE NEW GENE SUMMARY PAGE</p>: null}
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
                     <ConceptSelectFullWidth overflowWarningContainer={true} useRedirection={true} />
                 </Container>
