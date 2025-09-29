@@ -214,7 +214,6 @@ class DiffexByCluster extends Component {
     render() {
         return (
             <div className='height-wrapper mb-3 mt-3'>
-                {this.props.featureSCData || this.props.featureSNData ? <p>yYOU ARE ON THE NEW DIFF EX PAGE</p> : null}
                 <Container id='outer-wrapper'>
                     <DiffexInfoBar cluster={this.props.cluster} dataType={this.props.dataType} setDataType={this.props.setDataType} />
                     <Container className='rounded border p-3 shadow-sm mb-5'>

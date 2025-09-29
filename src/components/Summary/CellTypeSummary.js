@@ -160,7 +160,6 @@ class CellTypeSummary extends Component {
         } else {
             return (
                 <div className='height-wrapper mb-3'>
-                    {this.props.featureNewCellClusterData ? <p>YOU ARE ON THE NEW CELL TYPE SUMMARY PAGE</p> : null}
                     <Container className='mt-3 rounded border p-3 shadow-sm'>
                         <ConceptSelectFullWidth overflowWarningContainer={true} useRedirection={true} />
                     </Container>
