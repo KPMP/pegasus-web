@@ -24,6 +24,7 @@ class NephronSchemaCard extends Component {
 
     getCellTypeHierarchy = async () => {
         if (this.props.featureNewCellClusterData){
+            console.log("Using 2025 query for cell type hierarchy");
             const results = await fetchCellTypeHierarchy2025();
             this.setState({ cellTypeHierarchy: results, isProcessing: false });
             return results;

@@ -33,6 +33,7 @@ class CellTypeSummary extends Component {
     fetchClusterHierarchy = async () => {
         this.setState({ isLoading: true });
         if (this.props.featureNewCellClusterData){
+            console.log("Using 2025 query for cluster hierarchy");
             let results = await fetchClusterHierarchy2025(this.props.cellType);
 
             this.setState({ cellTypeSummary: results, isLoading: false });

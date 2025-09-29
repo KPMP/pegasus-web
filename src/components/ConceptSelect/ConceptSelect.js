@@ -22,6 +22,7 @@ class ConceptSelect extends Component {
         if (selected !== null) {
             if (selected.value.type === 'gene') {
                 if (this.props.featureNewCellClusterData){
+                    console.log("Using 2025 query for data types");
                     fetchDataTypesForConcept2025(selected.value.value, "").then(
                     (results) => {
                         let hasResults = results.dataTypesForConcept.length > 0;
