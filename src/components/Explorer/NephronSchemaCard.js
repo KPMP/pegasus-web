@@ -36,7 +36,11 @@ class NephronSchemaCard extends Component {
 
     handleCellTypeClick = (cellType) => {
         handleGoogleAnalyticsEvent('Explorer', 'Search', `cellType: ${cellType}`);
-        this.props.setSelectedConcept({ type: 'cell_type', value: cellType });
+        if (this.props.featureNewCellClusterData) {
+            this.props.setSelectedConcept({type: 'cell_type', value: cellType})
+        }else{
+            this.props.setSelectedConcept({ type: 'cell_type', value: cellType });
+        }
     };
 
     processHierarchyText = () => {
