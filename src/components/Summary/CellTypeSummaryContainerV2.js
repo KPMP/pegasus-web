@@ -17,7 +17,7 @@ const mapStateToProps = (state, props) =>
 const mapDispatchToProps = (dispatch, props) =>
 
     ({
-        setDataTypeAndCluster(dataType, cluster) {
+        setDataTypeAndCluster(dataType, cluster, featureSCData, featureSNData) {
             dispatch(setDataType(dataType));
             dispatch(setEnrollmentCategory("all"));
             dispatch(setCluster(cluster));
