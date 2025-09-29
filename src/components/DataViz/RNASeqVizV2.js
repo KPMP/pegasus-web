@@ -3,6 +3,7 @@ import { Container, Row, Col } from "reactstrap";
 import DataTypeSelectorContainer from "./DataTypeSelectorContainer";
 import ExpressionXCellType from "../ExpressionTables/ExpressionXCellType";
 import UMAPPlot from "../Plots/UMAPPlot";
+import UMAPPlot2 from "../Plots/UMAPPlot2";
 import FeaturePlot from "../Plots/FeaturePlot";
 import {
   fetchGeneExpression2025,
@@ -162,13 +163,25 @@ class RNASeqVizV2 extends Component {
                 </Row>
                 <Row>
                   <Col lg="6" className="umapPlot-container">
-                    <UMAPPlot
-                      data={this.state.plotData}
-                      dataType={
-                        this.props.dataType ? this.props.dataType : "sc"
-                      }
-                      enrollmentCategory={this.props.enrollmentCategory}
-                    />
+                    {
+                        this.props.featureSCData || this.props.featureSNData ? 
+
+                            <UMAPPlot2
+                            data={this.state.plotData}
+                            dataType={
+                                this.props.dataType ? this.props.dataType : "sc"
+                            }
+                            enrollmentCategory={this.props.enrollmentCategory}
+                            />
+                        :
+                            <UMAPPlot
+                            data={this.state.plotData}
+                            dataType={
+                                this.props.dataType ? this.props.dataType : "sc"
+                            }
+                            enrollmentCategory={this.props.enrollmentCategory}
+                            />
+                    }
                   </Col>
                 </Row>
               </Col>
