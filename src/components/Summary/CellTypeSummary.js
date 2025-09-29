@@ -13,7 +13,6 @@ class CellTypeSummary extends Component {
     constructor(props) {
         super(props);
         this.getColumns = this.getColumns.bind(this);
-        console.log(this.props)
         this.state = {
             cellTypeSummary: [],
             isLoading: true
@@ -200,3 +199,4 @@ class CellTypeSummary extends Component {
     }
 }
 export default CellTypeSummary;
+
