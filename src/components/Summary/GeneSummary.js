@@ -193,6 +193,11 @@ class GeneSummary extends Component {
     }
 
     render() {
+        if (this.props.featureSCData || this.props.featureSNData){
+            return (
+                <p>YOU ARE ON THE NEW GENE SUMMARY PAGE</p>
+            )
+        }
         const BandCell = ({ children, tableRow, tableColumn, column, ...restProps }) => {
             return (
                 <TableBandHeader.Cell {...restProps} column={column}

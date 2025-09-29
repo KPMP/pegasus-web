@@ -150,6 +150,11 @@ class CellTypeSummary extends Component {
     }
 
     render() {
+        if (this.props.featureNewCellClusterData) {
+            return (
+                <p>YOU ARE ON THE NEW CELL TYPE SUMMERY PAGE</p>
+            )
+        }
         let cellType = this.props.cellType;
         if (this.state.isLoading) {
             return (
