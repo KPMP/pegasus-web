@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch, props) =>
             } else if (dataType === 'rp') {
                 dispatch((dispatch) => window.open("/explorer/regionalpro", '_self'));
             } else {
-                dispatch((dispatch) => window.open("/explorer/dataviz", '_self'));
+                dispatch((dispatch) => window.open("/explorer/dataviz2", '_self'));
             }
         },
         setDataType(dataType) {
