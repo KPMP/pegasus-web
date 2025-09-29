@@ -25,7 +25,7 @@ class ConceptSelect extends Component {
                     console.log("Using 2025 query for data types");
                     fetchDataTypesForConcept2025(selected.value.value, "").then(
                     (results) => {
-                        let hasResults = results.dataTypesForConcept.length > 0;
+                        let hasResults = results.dataTypesForConcept2025.length > 0;
                         if (hasResults && !this.props.dataType) {
                             this.props.setDataType(results.dataTypesForConcept[0], this.props.featureSNData, this.props.featureSCData)
                         }
