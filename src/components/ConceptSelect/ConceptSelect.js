@@ -27,9 +27,9 @@ class ConceptSelect extends Component {
                     (results) => {
                         let hasResults = results.dataTypesForConcept2025.length > 0;
                         if (hasResults && !this.props.dataType) {
-                            this.props.setDataType(results.dataTypesForConcept[0], this.props.featureSNData, this.props.featureSCData)
+                            this.props.setDataType(results.dataTypesForConcept2025[0], this.props.featureSNData, this.props.featureSCData)
                         }
-                        let hasResultsWithDataType = this.props.dataType ? results.dataTypesForConcept.includes(this.props.dataType) : true;
+                        let hasResultsWithDataType = this.props.dataType ? results.dataTypesForConcept2025.includes(this.props.dataType) : true;
                         if (hasResults && hasResultsWithDataType) {
                             this.props.setSelectedConcept(selected.value);
                             this.setState({ value: { label: selected.value.value, value: selected.value }, hasResults, hasResultsWithDataType, noResultValue: '', alertVisible: false });
