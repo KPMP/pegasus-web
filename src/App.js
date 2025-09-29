@@ -28,6 +28,7 @@ import { PrivateUmapRoute } from './PrivateRoutes';
 import UMAPContainer from './components/DataViz/UMAPContainer';
 import UMAPContainerV2 from './components/DataViz/UMAPContainerV2';
 import RegionalProteomicsContainer from './components/DataViz/RegionalProteomicsContainer';
+import GeneSummaryContainerV2 from './components/Summary/GeneSummaryContainerV2';
 
 const cacheStore = window.sessionStorage.getItem('redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
@@ -79,7 +80,7 @@ class App extends Component {
                   <Route exact path='/' history={this.props.history}  component={Home} store={store} />
                   <Route exact path='/explorer' component={Explorer} store={store} />
                   <Route exact path='/explorer/genesummary' component={GeneSummaryContainer} store={store} />
-                  <Route exact path='explorer/genesummary2' component={} store={store}
+                  <Route exact path='explorer/genesummary2' component={GeneSummaryContainerV2} store={store} />
                   <Route exact path='/explorer/celltypesummary' component={CellTypeSummaryContainer} store={store} />
                   <Route exact path='/explorer/celltypesummary2' component={CellTypeSummaryContainerV2} store={store} />
                   <Route exact path='/explorer/dataviz' component={RNASeqVizContainer} store={store} />
