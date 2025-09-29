@@ -20,9 +20,9 @@ const mapDispatchToProps = (dispatch, props) =>
     setDataType(dataType, featureSNData, featureSCData) {
         dispatch(setDataTypeAndRedirect(dataType, featureSNData, featureSCData, props));
     },
-    setSelectedConcept(concept) {
+    setSelectedConcept(concept, featureNewCellClusterData) {
         const action = props.useRedirection
-            ? setSelectedConceptAndRedirect(concept, props)
+            ? setSelectedConceptAndRedirect(concept, featureNewCellClusterData, props)
             : setSelectedConcept(concept)
         dispatch(action);
     }
