@@ -27,7 +27,7 @@ class UMAPPlot2 extends Component {
                         <img
                             id="umapPlot"
                             alt="all samples of single nucleus UMAP"
-                            src="/img/sn_reference-UMAP_all-samples_2024-02-06.svg" />
+                            src="/img/KPMP_SN_reference-UMAP_v3.svg" />
                     }
 
                 </div>
