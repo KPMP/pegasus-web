@@ -22,7 +22,7 @@ class ExpressionXCellType extends Component {
             isLoading: true,
             columnDefs: this.getColumns(),
             gradApi: null,
-            columnApi: null,
+            columnApi: null
         };
     };
 
@@ -79,55 +79,64 @@ class ExpressionXCellType extends Component {
     getColumns = () => {
         return [
             {
-                headerName: "ABBR",
-                field: 'cluster',
-                width: 106,
-                headerClass: 'dataVizTableHeader'
-            },
-            {
-                headerComponent: () => (
-                    <span>CELL CLUSTER (<i>predicted state</i>)</span>
-                ),
-                field: 'clusterName',
-                wrapHeaderText: true,
-                cellRenderer: row => this.parseClusterName(row.value),
-                width: 500,
-                headerClass: 'dataVizTableHeader'
-                
-            },
-            {
-                headerName: "# CELLS IN CELL CLUSTER",
-                wrapHeaderText: true,
-                field: 'cellCount',
-                valueFormatter: row => row.value ? row.value : 0,
-                width: 110,
-                headerClass: 'dataVizTableHeader'
-            },
-            {
-                headerName: 'MEAN EXPRESSION',
-                headerComponent: InfoHeader,
-                headerComponentParams: { infoIcon: true },
-                wrapHeaderText: true,
-                headerTooltip: 'Averaged expression values (logarithmic) for each cell cluster',
-                field: 'avgExp',
-                valueFormatter: row => {
-                    if (row.data?.isTotal) return '';
-                    return formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory);
-                },
-                width: 125,
-                headerClass: 'dataVizTableHeader'
-            },
-            {
-                headerName: '% CELLS EXPRESSING',
-                field: 'pct1',
-                wrapHeaderText: true,
-                 valueFormatter: row => {
-                    if (row.data?.isTotal) return '';
-                    let newValue = (row.value > 0) ? (row.value * 100) : row.value;
-                    return formatNumberToPrecision(newValue, 3, false, this.props.dataType, this.props.enrollmentCategory);
-                },
-                width: 106,
-                headerClass: 'dataVizTableHeader'
+                headerName: "",
+                headerStyle: { backgroundColor: "#ffffffff" },
+                headerClass: 'dataVizTableHeader',
+                resizable: false,
+                children: [
+                    {
+                        headerName: "ABBR",
+                        field: 'cluster',
+                        width: 106,
+                        headerClass: 'dataVizTableHeader'
+                    },
+                    {
+                        headerName: "CELL CLUSTER (predicted state)",
+                        headerComponent: InfoHeader,
+                        headerComponentParams: { infoIcon: false },
+                        field: 'clusterName',
+                        wrapHeaderText: true,
+                        cellRenderer: row => this.parseClusterName(row.value),
+                        width: 420,
+                        headerClass: 'dataVizTableHeader',
+                        sortable: true
+                        
+                    },
+                    {
+                        headerName: "# CELLS IN CELL CLUSTER",
+                        wrapHeaderText: true,
+                        field: 'cellCount',
+                        valueFormatter: row => row.value ? row.value : 0,
+                        width: 130,
+                        headerClass: 'dataVizTableHeader'
+                    },
+                    {
+                        headerName: 'MEAN EXPRESSION',
+                        headerComponent: InfoHeader,
+                        headerComponentParams: { infoIcon: true },
+                        wrapHeaderText: true,
+                        headerTooltip: 'Averaged expression values (logarithmic) for each cell cluster',
+                        field: 'avgExp',
+                        valueFormatter: row => {
+                            if (row.data?.isTotal) return '';
+                            return formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory);
+                        },
+                        width: 125,
+                        headerClass: 'dataVizTableHeader'
+                    },
+                    {
+                        headerName: '% CELLS EXPRESSING',
+                        field: 'pct1',
+                        wrapHeaderText: true,
+                         valueFormatter: row => {
+                            if (row.data?.isTotal) return '';
+                            let newValue = (row.value > 0) ? (row.value * 100) : row.value;
+                            return formatNumberToPrecision(newValue, 3, false, this.props.dataType, this.props.enrollmentCategory);
+                        },
+                        width: 128,
+                        headerClass: 'dataVizTableHeader'
+                    }
+                ]
             },
             {
                 headerName: "CELL CLUSTER VS ALL OTHERS",
@@ -145,7 +154,7 @@ class ExpressionXCellType extends Component {
                             if (row.data?.isTotal) return '';
                             return formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory);
                         },
-                        width: 100,
+                        width: 135,
                         headerClass: 'dataVizTableHeader'
                     },
                     {
@@ -159,7 +168,7 @@ class ExpressionXCellType extends Component {
                             if (row.data?.isTotal) return '';
                             return formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory);
                         },
-                        width: 106,
+                        width: 111,
                         headerClass: 'dataVizTableHeader'
                     },
                     {
@@ -182,18 +191,19 @@ class ExpressionXCellType extends Component {
         ]
     };
 
-    getRowDataWithTotal = () => {
+    getTotalCells = () => {
         const { data } = this.props;
         const total = data.reduce((sum, row) => {
             const value = Number(row.cellCount);
             return sum + value;
         },0);
-        return [...data, {
-            cluster: '',
-            clusterName: 'Total cells:',
-            cellCount: total,
-            isTotal: true
-        }]
+        return [
+            {
+                clusterName: "Total cells:",
+                cellCount: total,
+                isTotal: true
+            },
+        ];
     }
 
     render() {
@@ -231,14 +241,15 @@ class ExpressionXCellType extends Component {
                             <React.Fragment>
                                 <div className="ag-theme-material img-fluid">
                                     <AgGridReact 
-                                        rowData={this.getRowDataWithTotal()} 
+                                        rowData={this.props.data} 
                                         columnDefs={this.getColumns()}
                                         domLayout='autoHeight' 
                                         onGridReady={this.onGridReady} 
                                         autoSizeStrategy={{type: 'fitGridWidth'}} 
-                                        headerHeight={null}
-                                        groupHeaderHeight={null}
-                                        autoHeaderHeight={true}
+                                        headerHeight={45}
+                                        groupHeaderHeight={35}
+                                        autoHeaderHeight={false}
+                                        pinnedBottomRowData={this.getTotalCells()}
                                         getRowClass={params => (params.data?.isTotal ? 'total-row': '')}
                                     />
 

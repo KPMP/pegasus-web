@@ -1,5 +1,5 @@
 import { useEffect, useState }from 'react';
-import { faInfoCircle, faArrowDown, faArrowUp } from '@fortawesome/free-solid-svg-icons';
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 const InfoHeader = (props) => {
@@ -26,11 +26,11 @@ const InfoHeader = (props) => {
     const getSortArrow = () => {
         if (sortState === 'asc') {
             return ( 
-                <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='sortUp' icon={faArrowUp} /></span>
+                <span className="icon-info ag-icon ag-icon-asc" role="presentation" id='sortUp' unselectable="on"></span>
             )
         } else if (sortState === 'desc') {
             return (
-                <span className="icon-info"><FontAwesomeIcon className='kpmp-light-blue' id='sortDown' icon={faArrowDown} /></span>
+                <span className="icon-info ag-icon ag-icon-desc" role="presentation" id='sortDown' unselectable="on"></span>
             );
         }
     };
@@ -45,8 +45,8 @@ const InfoHeader = (props) => {
     return (
         <div style={{ whiteSpace: 'normal', lineHeight: 1.2, display: 'flex', alignItems: 'center', cursor: enableSorting ? 'pointer' : 'default' }} 
             onClick={enableSorting ? toggleSort : undefined}>
+        <span title={displayName}> {displayName}  {headerIcon}</span>
         <span style={{ marginRight: 4 }}>{getSortArrow()}</span>
-        <span> {displayName}  {headerIcon}</span>
         </div>
     );
 
