@@ -140,7 +140,7 @@ class RegionalProteomics extends Component {
                       : <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
                           <Row xs='12'>
                               <Col lg='12'>
-                                  <h5>{this.props.gene.symbol} expression comparison between Glomerulus and Tubulo-interstitium by condition</h5>
+                                  <h5>{this.props.gene.symbol} expression comparison between Glomerulus and Tubulo-interstitium in All samples</h5>
                                   <hr/>
                               </Col>
                           </Row>
@@ -156,6 +156,13 @@ class RegionalProteomics extends Component {
                               {plot}
                               <hr/>
                           </Row>
+                            <Row cs='12' className='mt-3 mb-4 footnote'>
+                            <Col>
+                                <small>
+                                    The comparisons in the plot and data table were performed across the Glomerulus and the Tubulo-interstitium in all conditions. The plot data should be read and interpreted following the horizontal guides. The fold change and significance of a segment are related to the average expression of all segments.
+                                </small>
+                            </Col>
+                            </Row>
                           <Row cs='12' className='mt-3 mb-4 footnote'/>
                           <Row xs='12'>
                               <Col lg='11'>
