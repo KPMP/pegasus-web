@@ -266,14 +266,9 @@ class ExpressionXCellType extends Component {
                             <sup>5</sup>failed repair: Related to nephron cell states, these are cells that are in advanced states of injury that have adopted a mesenchymal phenotype, lost their canonical functional roles, may have activated factors that attempt to repair but are not able to recover.   These cells may express profibrogenic and immune-modulating factors that result in fibrosis.
                         </small>
                             <p></p>
-                            {this.props.dataType === "sn" ? 
                             <small>
-                              For more information about the cell type, cluster, and state definitions, see the following publication: <a target="_blank" rel="noreferrer" href="https://www.biorxiv.org/content/10.1101/2025.09.26.678707v1">Cellular and Spatial Drivers of Unresolved Injury and Functional Decline in the Human Kidney</a> and <a target="_blank" rel='noreferrer' href="https://github.com/KPMP/Cell-State-Atlas-2022/">GitHub pipelines</a>
-                          </small> :
-                          <small>
-                          For more information about the cell type, cluster, and state definitions, see the following publication: <a target="_blank" rel="noreferrer" href="https://www.biorxiv.org/content/10.1101/2025.09.26.678707v1">Cellular and Spatial Drivers of Unresolved Injury and Functional Decline in the Human Kidney</a>
-                          </small>
-                          }
+                              For more information about the cell type, cluster, and state definitions, see the following publication: <a target="_blank" rel="noreferrer" href="https://www.biorxiv.org/content/10.1101/2025.09.26.678707v1">Cellular and Spatial Drivers of Unresolved Injury and Functional Decline in the Human Kidney</a> and <a target="_blank" rel='noreferrer' href="https://github.com/KPMP-Scientific/KPMP-Atlas-v2">the Atlas v2 GitHub</a>
+                            </small>
                         </Col>
                     </Row>
                 </React.Fragment>
