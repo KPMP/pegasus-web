@@ -1,6 +1,15 @@
 # Changelog
 
-## Release 2.8 (unreleased)
+## Release 2.9 (unreleased)
+Brief summary: 
+- Add new endpoints to retrieve new Single-Cell & Single-Nuc data
+- Implement feature switch to enable new data API calls
+- Fix Regional Proteomics/Transcriptomics Plot Labels
+- Add new SC & SN UMAPs
+- Update footers for dataViz & celltypesummary pages
+- Replace Material Table library
+
+## Release 2.8 (6/30/2025)
 Brief summary:
 - update to common components to get new help menu options
 - updates to the -omics type table to include more data and be more data driven
