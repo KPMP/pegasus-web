@@ -88,6 +88,7 @@ class ExpressionXCellType extends Component {
                         headerName: "ABBR",
                         field: 'cluster',
                         width: 106,
+                        minWidth: 100,
                         headerClass: 'dataVizTableHeader'
                     },
                     {
@@ -98,6 +99,7 @@ class ExpressionXCellType extends Component {
                         wrapHeaderText: true,
                         cellRenderer: row => this.parseClusterName(row.value),
                         width: 420,
+                        minWidth: 230,
                         headerClass: 'dataVizTableHeader',
                         sortable: true
                         
@@ -108,6 +110,7 @@ class ExpressionXCellType extends Component {
                         field: 'cellCount',
                         valueFormatter: row => row.value ? row.value : 0,
                         width: 130,
+                        minWidth: 100,
                         headerClass: 'dataVizTableHeader'
                     },
                     {
@@ -122,6 +125,7 @@ class ExpressionXCellType extends Component {
                             return formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory);
                         },
                         width: 125,
+                        minWidth: 120,
                         headerClass: 'dataVizTableHeader'
                     },
                     {
@@ -134,6 +138,7 @@ class ExpressionXCellType extends Component {
                             return formatNumberToPrecision(newValue, 3, false, this.props.dataType, this.props.enrollmentCategory);
                         },
                         width: 128,
+                        minWidth: 110,
                         headerClass: 'dataVizTableHeader'
                     }
                 ]
@@ -155,6 +160,7 @@ class ExpressionXCellType extends Component {
                             return formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory);
                         },
                         width: 135,
+                        minWidth: 100,
                         headerClass: 'dataVizTableHeader'
                     },
                     {
@@ -169,6 +175,7 @@ class ExpressionXCellType extends Component {
                             return formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory);
                         },
                         width: 111,
+                        minWidth: 100,
                         headerClass: 'dataVizTableHeader'
                     },
                     {
@@ -183,6 +190,7 @@ class ExpressionXCellType extends Component {
                             return formatNumberToPrecision(row.value, 3, false, this.props.dataType, this.props.enrollmentCategory);
                         },
                         width: 100,
+                        minWidth: 100,
                         headerClass: 'dataVizTableHeader'
                     }
                 ]
@@ -247,6 +255,7 @@ class ExpressionXCellType extends Component {
                                         onGridReady={this.onGridReady} 
                                         autoSizeStrategy={{type: 'fitGridWidth'}} 
                                         headerHeight={45}
+                                        rowHeight={28}
                                         groupHeaderHeight={35}
                                         autoHeaderHeight={false}
                                         pinnedBottomRowData={this.getTotalCells()}

@@ -289,6 +289,10 @@ tr.MuiTableRow-root:nth-child(even) {
   z-index: 1000;
 }
 
+.ag-header-group-cell .ag-header-cell-comp-wrapper-limited-height {
+  justify-content: center;
+}
+
 .tooltip-inner {
   background-color: white;
   color: black;
