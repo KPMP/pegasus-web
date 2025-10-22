@@ -7,11 +7,14 @@ const CellTypeEnum = {
     VISCERAL: 'Visceral Epithelial Cell',
     GLOMERULAR_MESANGIUM: 'Glomerular Mesangium',
     MESANGIUM: 'Mesangial Cell',
+    PODOCYTE: "Podocyte",
 
     PROXIMAL_TUBULEL: 'Proximal Tubule',
     PROXIMAL_TUBULE_EITHELIAL: 'Proximal Tubule Epithelial Cell',
     PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1: 'Proximal Tubule Epithelial Cell Segment 1',
+    PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1_2: 'Proximal Tubule Epithelial Cell Segment 1/Segment 2',
     PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_2: 'Proximal Tubule Epithelial Cell Segment 2',
+    PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_2_3: 'Proximal Tubule Epithelial Cell Segment 2/Segment 3',
     PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_3: 'Proximal Tubule Epithelial Cell Segment 3',
 
     LOOP_OF_HENLE_THIN: 'Loop of Henle (Thin Limb)',
@@ -20,18 +23,26 @@ const CellTypeEnum = {
     DESCENDING_THIN_LIMB_TYPE_2: 'Descending Thin Limb Cell Type 2',
     DESCENDING_THIN_LIMB_TYPE_3: 'Descending Thin Limb Cell Type 3',
     ASCENDING_THIN_LIMB: 'Ascending Thin Limb Cell',
+    
 
     DESCENDING_THIN_LIMB_CELL: 'Descending Thin Limb',
     DESCENDING_THIN_LIMB_CELL_TYPE_1: 'Descending Thin Limb Cell Type 1',
     DESCENDING_THIN_LIMB_CELL_TYPE_2: 'Descending Thin Limb Cell Type 2',
     DESCENDING_THIN_LIMB_CELL_TYPE_3: 'Descending Thin Limb Cell Type 3',
+    DESCENDING_THIN_LIMB_LOOP_OF_HENLE: 'Descending Thin Limb of Loop of Henle',
+    ASCENDING_THIN_LIMB_LOOP_OF_HENLE:'Ascending Thin Limb of Loop of Henle',
     ASCENDING_THIN_LIMB_CELL: 'Ascending Thin Limb Cell',
 
     LOOP_OF_HENLE_THICK: 'Loop of Henle (Thick Limb)',
     THICK_ASCENDING_LIMB_CELL: 'Thick Ascending Limb Cell',
+    THICK_ASCENDING_LIMB_LOOP_OF_HENLE: 'Thick Ascending Limb of Loop of Henle',
     CORTICAL_THICK_ASCENDING_LIMB_CELL: 'Cortical Thick Ascending Limb Cell',
+    CORTICAL_THICK_ASCENDING_LIMB_LOOP_OF_HENLE: 'Cortical Thick Ascending Limb of Loop of Henle',
+    CORTICAL_MEDULLARY_THICK_ASCENDING_LIMB_LOOP_OF_HENLE:'Cortico-Medullary Thick Ascending Limb of Loop of Henle Cell',
     MEDULLARY_THICK_ASCENDING_LIMB_CELL: 'Medullary Thick Ascending Limb Cell',
+    MEDULLARY_THICK_ASCENDING_LIMB_LOOP_OF_HENLE: 'Medullary Thick Ascending Limb of Loop of Henle Cell',
 
+    DISTAL_NEPHRON: 'Distal Nephron',
     DISTAL_CONVOLUTED: 'Distal Convolution',
     DISTAL_CONVOLUTED_TUBULE: 'Distal Convoluted Tubule Cell',
     DISTAL_CONVOLUTED_TUBULE_TYPE_1: 'Distal Convoluted Tubule Cell Type 1',
@@ -45,6 +56,8 @@ const CellTypeEnum = {
     CONNECTING_TUBULE_PRINCIPAL: 'Connecting Tubule Principal Cell',
     CONNECTING_TUBULE_INTERCALATED: 'Connecting Tubule Intercalated Cell',
     CONNECTING_TUBULE_INTERCALATED_TYPE_A: 'Connecting Tubule Intercalated Cell Type A',
+
+    PRINCIPAL_INTERCALATED_CELL: 'Principal-Intercalated Cell',
 
     GLOM: 'Glomerulus / Renal Corpuscle',
     GLOMERULAR_PARIETAL_EPITHELIUM: 'Glomerular Parietal Epithelium',
@@ -65,6 +78,7 @@ const CellTypeEnum = {
     COLLECTING_DUCT_INTERCALATED: 'Collecting Duct Intercalated Cell',
     COLLECTING_DUCT_INTERCALATED_TYPE_A: 'Collecting Duct Intercalated Cell Type A',
     OUTER_MEDULLARY_COLLECTING_DUCT_INTERCALATED: 'Outer Medullary Collecting Duct Intercalated Cell',
+    OUTER_MEDULLARY_COLLECTING_DUCT_PRINCIPAL_INTERCALATED: 'Outer Medullary Collecting Duct Principal-Intercalated Cell',
     OUTER_MEDULLARY_COLLECTING_DUCT_INTERCALATED_TYPE_A: 'Outer Medullary Collecting Duct Intercalated Cell Type A',
     OUTER_MEDULLARY_INTERCALATED: 'Outer Medullary Intercalated Cell',
     OUTER_MEDULLARY_INTERCALATED_TYPE_A: 'Outer Medullary Intercalated Cell Type A',
@@ -81,6 +95,8 @@ const CellTypeEnum = {
     RENIN_GRANULES: 'Renin Granules',
     PARIETAL_BASEMENT_MEMBRANE: 'parietal_basement_membrane',
     GLOMERULAR_BASEMENT_MEMBRANE: 'glomerular_basement_membrane',
+
+    MEDULLARY_PRINCIPAL_CELL: 'Medullary Principal Cell',
 
 
     VASCULAR_SMOOTH_MUSCLE_CELL: 'Vascular Smooth Muscle Cell',
