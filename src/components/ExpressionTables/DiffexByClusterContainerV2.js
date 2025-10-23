@@ -4,7 +4,6 @@ import { withRouter } from 'react-router';
 import { setGene } from "../../actions/Gene/geneActions";
 import { setAccession } from "../../actions/Accession/accessionActions";
 import { setDataType } from "../../actions/DataType/dataTypeActions";
-import { featureNewCellClusterData } from "../DataViz/featureSwitchReducer";
 
 const mapStateToProps = (state, props) =>
 ({
