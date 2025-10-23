@@ -11,7 +11,8 @@ const mapStateToProps = (state, props) =>
     cluster: state.cluster,
     enrollmentCategory: state.enrollmentCategory,
     featureSNData: state.featureSNData,
-    feautreSCData: state.featureSNData
+    feautreSCData: state.featureSNData,
+    featureNewCellClusterData: state.featureNewCellClusterData
 });
 
 const mapDispatchToProps = (dispatch, props) =>
