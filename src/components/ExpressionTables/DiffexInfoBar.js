@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
-import { getDataTypeOptions } from '../../helpers/Utils';
+import { getDataTypeOptions, getDataTypeOptions2025 } from '../../helpers/Utils';
 import Select from 'react-select';
 import Parser from "html-react-parser";
 
@@ -15,16 +15,30 @@ class DiffexInfoBar extends Component {
     }
 
     componentDidMount() {
-        getDataTypeOptions('', this.props.cluster).then(
-            (options) => {
-                let selectedOption = options.find(item => this.props.dataType === item.value);
-                this.setState({dataTypeOptions: options, dataTypeInputValue: selectedOption})
-            },
-            (error) => {
-                this.setState({dataTypeOptions: []});
-                console.log('There was a problem getting the data: ' + error)
-            }
+        if (this.props.featureNewCellClusterData) {
+            getDataTypeOptions2025('', this.props.cluster).then(
+                (options) => {
+                    let selectedOption = options.find(item => this.props.dataType === item.value);
+                    this.setState({dataTypeOptions: options, dataTypeInputValue: selectedOption})
+                },
+                (error) => {
+                    this.setState({dataTypeOptions: []});
+                    console.log('There was a problem getting the data: ' + error)
+                }
         );
+        } else {
+            getDataTypeOptions('', this.props.cluster).then(
+                (options) => {
+                    let selectedOption = options.find(item => this.props.dataType === item.value);
+                    this.setState({dataTypeOptions: options, dataTypeInputValue: selectedOption})
+                },
+                (error) => {
+                    this.setState({dataTypeOptions: []});
+                    console.log('There was a problem getting the data: ' + error)
+                }
+        );
+        }
+        
 
     }
 

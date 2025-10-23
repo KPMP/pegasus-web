@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import { setGene } from "../../actions/Gene/geneActions";
 import { setAccession } from "../../actions/Accession/accessionActions";
 import { setDataType } from "../../actions/DataType/dataTypeActions";
+import { featureNewCellClusterData } from "../DataViz/featureSwitchReducer";
 
 const mapStateToProps = (state, props) =>
 ({
@@ -11,7 +12,8 @@ const mapStateToProps = (state, props) =>
     cluster: state.cluster,
     enrollmentCategory: state.enrollmentCategory,
     featureSNData: state.featureSNData,
-    feautreSCData: state.featureSNData
+    feautreSCData: state.featureSNData,
+    featureNewCellClusterData: state.featureNewCellClusterData
 });
 
 const mapDispatchToProps = (dispatch, props) =>
