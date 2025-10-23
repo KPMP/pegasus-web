@@ -20,12 +20,21 @@ class CellTypeSummary extends Component {
     };
 
     async componentDidMount() {
-        await this.fetchClusterHierarchy();
+        if (this.props.featureNewCellClusterData) {
+            await this.fetchClusterHierarchy2025();
+        } else {
+            await this.fetchClusterHierarchy();
+        }
+        
     }
 
     async componentDidUpdate(prevProps, prevState, snapShot) {
         if (this.props.cellType !== prevProps.cellType) {
-            await this.fetchClusterHierarchy();
+            if (this.props.featureNewCellClusterData) {
+                await this.fetchClusterHierarchy2025();
+            } else {
+                await this.fetchClusterHierarchy();
+            }
         }
     }
 

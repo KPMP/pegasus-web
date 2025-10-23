@@ -13,6 +13,7 @@ const mapStateToProps = (state, props) =>
 const mapDispatchToProps = (dispatch, props) =>
 ({
     setSelectedConcept(concept, featureNewCellClusterData) {
+        console.log(featureNewCellClusterData)
         dispatch(setEnrollmentCategory('all'))
         dispatch(setSelectedConceptAndRedirect(concept, featureNewCellClusterData, props));
     }
