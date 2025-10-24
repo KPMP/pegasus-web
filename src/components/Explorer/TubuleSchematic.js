@@ -757,6 +757,7 @@ class TubuleSchematic extends Component {
                                     || this.props.activeCell === CellTypeEnum.CORTICAL_PRINCIPAL
                                     || this.props.activeCell === CellTypeEnum.CORTICAL_COLLECTING_DUCT_PRINCIPAL
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT
+                                    || this.props.activeCell === CellTypeEnum.PRINCIPAL_INTERCALATED_CELL
                                     || this.props.activeCell === CellTypeEnum.TRANSITIONAL_PRINCIPAL
                                     || this.props.activeCell === CellTypeEnum.INTERCALATED
                                     || this.props.activeCell === CellTypeEnum.INTERCALATED_TYPE_A
@@ -1055,6 +1056,7 @@ class TubuleSchematic extends Component {
                                     || this.props.activeCell === CellTypeEnum.INTERCALATED_TYPE_A
                                     || this.props.activeCell === CellTypeEnum.INTERCALATED_TYPE_B
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT
+                                    || this.props.activeCell === CellTypeEnum.PRINCIPAL_INTERCALATED_CELL
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_PRINCIPAL
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_INTERCALATED
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_INTERCALATED_TYPE_A
