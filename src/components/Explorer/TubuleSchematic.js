@@ -418,9 +418,9 @@ class TubuleSchematic extends Component {
                             <path className="cls-14" d="M98.7,12.72c.59.19,1.13.35,1.52.45" /></g>
 
                         <g id="descending_thin_limb"
-                            onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.DESCENDING_THIN_LIMB); }}
+                            onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.LOOP_OF_HENLE_THIN); }}
                             onMouseEnter={() => {
-                                this.props.handleSchematicHoverEnter(CellTypeEnum.DESCENDING_THIN_LIMB)
+                                this.props.handleSchematicHoverEnter(CellTypeEnum.LOOP_OF_HENLE_THIN)
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 1 } } })
                             }}
                             className={`hoverableSchematic ${(
