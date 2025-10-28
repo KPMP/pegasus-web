@@ -501,9 +501,9 @@ class TubuleSchematic extends Component {
                             <path className="cls-16" d="M232.91,489.6a16.8,16.8,0,0,1-2.34.2" /></g>
 
                         <g id="ascending_thin_limb"
-                            onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.ASCENDING_THIN_LIMB); }}
+                            onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.ASCENDING_THIN_LIMB_LOOP_OF_HENLE); }}
                             onMouseEnter={() => {
-                                this.props.handleSchematicHoverEnter(CellTypeEnum.ASCENDING_THIN_LIMB)
+                                this.props.handleSchematicHoverEnter(CellTypeEnum.ASCENDING_THIN_LIMB_LOOP_OF_HENLE)
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 1 } } })
                             }}
                             className={`hoverableSchematic ${(
@@ -1929,10 +1929,10 @@ class TubuleSchematic extends Component {
                             <path className="cls-40" d="M88.43,72.6c-1-4.39-.63-10.12,2.29-13.72l-.55-.42a5.33,5.33,0,0,1-5.1,2.4l-1.43,8.91a3.81,3.81,0,0,1,4.18,3.1S88.18,72.69,88.43,72.6Z" /></g>
 
                         <g id="thick_ascending_limb"
-                            onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.THICK_ASCENDING_LIMB_CELL); }}
+                            onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.LOOP_OF_HENLE_THICK); }}
                             onMouseEnter={() => {
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 2 } } })
-                                this.props.handleSchematicHoverEnter(CellTypeEnum.THICK_ASCENDING_LIMB_CELL)
+                                this.props.handleSchematicHoverEnter(CellTypeEnum.LOOP_OF_HENLE_THICK)
                             }}
                             className={`hoverableSchematic ${(
                                 this.props.activeCell === CellTypeEnum.THICK_ASCENDING_LIMB_CELL
