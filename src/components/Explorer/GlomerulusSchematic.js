@@ -416,9 +416,9 @@ class GlomerulusSchematic extends Component {
                         </g>
                         <g id="podocytes"
                             onClick={() => {
-                                this.props.handleCellTypeClick(CellTypeEnum.VISCERAL);
+                                this.props.handleCellTypeClick(CellTypeEnum.PODOCYTE);
                             }}
-                            onMouseEnter={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.VISCERAL) }}
+                            onMouseEnter={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.PODOCYTE) }}
                             className={`hoverableSchematic ${(
                                 this.props.activeCell === CellTypeEnum.VISCERAL
                                 || this.props.activeCell === CellTypeEnum.VISCERAL_EPITHELIUM
