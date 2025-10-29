@@ -156,7 +156,7 @@ class SamplesByDataTypeTable extends Component {
                 </Row>
                 <Row>
                     <Col xs='12'>
-                        <small><span style={{color: 'red'}}>*</span> Additional information available in <a rel='noreferrer' target='_blank' href='https://cellxgene.cziscience.com/collections/0f528c8a-a25c-4840-8fa3-d156fa11086f?utm_campaign=partner&utm_source=publisher'>cellxgene</a></small>
+                        <small><span style={{color: 'red'}}>*</span> Additional information available in <a rel='noreferrer' target='_blank' href='https://cellxgene.cziscience.com/collections/9c9d04c4-8899-417f-bb6f-6107dcadf14f'>cellxgene</a></small>
                     </Col>
                 </Row>
             </article>
