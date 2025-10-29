@@ -19,6 +19,9 @@ class CellXGeneDropdown extends Component {
             <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle} direction="down" className="cellxgene-dropdown">
                 <DropdownToggle caret className='float-end' color='primary'>View DiffEx in CellXGene</DropdownToggle>
                 <DropdownMenu>
+                    <DropdownItem tag='a' target="_blank" rel="noopener noreferrer" href={this.props.v2}>
+                        Version 2.0 (preprint)
+                    </DropdownItem>
                     <DropdownItem tag="a" target="_blank" rel="noopener noreferrer" href={this.props.v1_5}>
                         Version 1.5
                     </DropdownItem>
