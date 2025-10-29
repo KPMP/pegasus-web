@@ -745,9 +745,9 @@ class TubuleSchematic extends Component {
                         <g id="collecting_duct" data-name="collecting duct">
 
                             <g id="cortical_collecting_duct"
-                                onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.CORTICAL_COLLECTING_DUCT); }}
+                                onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.CORTICAL_COLLECTING_DUCT_PRINCIPAL); }}
                                 onMouseEnter={() => {
-                                    this.props.handleSchematicHoverEnter(CellTypeEnum.CORTICAL_COLLECTING_DUCT)
+                                    this.props.handleSchematicHoverEnter(CellTypeEnum.CORTICAL_COLLECTING_DUCT_PRINCIPAL)
                                     this.props.toggleCollapseTab({ target: { dataset: { event: 5 } } })
                                 }}
                                 className={`hoverableSchematic ${(
@@ -907,16 +907,11 @@ class TubuleSchematic extends Component {
                                 className={`hoverableSchematic ${(
                                     this.props.activeCell === CellTypeEnum.INNER_MEDULLARY_COLLECTING_DUCT
                                     || this.props.activeCell === CellTypeEnum.TRANSITIONAL_PRINCIPAL
-                                    || this.props.activeCell === CellTypeEnum.INTERCALATED
-                                    || this.props.activeCell === CellTypeEnum.INTERCALATED_TYPE_A
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT
                                     || this.props.activeCell === CellTypeEnum.DISTAL_NEPHRON
-                                    || this.props.activeCell === CellTypeEnum.PRINCIPAL_INTERCALATED_CELL
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_PRINCIPAL
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_INTERCALATED
-                                    || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_INTERCALATED_TYPE_A
                                     || this.props.activeCell === CellTypeEnum.INNER_MEDULLARY_COLLECTING_DUCT
-                                    || this.props.activeCell === CellTypeEnum.MEDULLARY_PRINCIPAL_CELL
                                     || this.props.activeCell === CellTypeEnum.MEDULLARY_COLLECTING_DUCT_INTERCALATED
                                     || this.props.activeCell === CellTypeEnum.MEDULLARY_MEDULLARY_COLLECTING_DUCT_INTERCALATED_TYPE_A
                                     || this.props.activeCell === CellTypeEnum.MEDULLARY_INTERCALATED
@@ -1043,9 +1038,9 @@ class TubuleSchematic extends Component {
                                 <path className="cls-23" d="M175,410.79a16.81,16.81,0,0,1,2.37-1.32" /><rect className="cls-22" x="163.77" y="356.39" width="7.16" height="17.6" transform="translate(4.4 -1.99) rotate(0.69)" /><rect className="cls-22" x="164.97" y="351.86" width="6.79" height="7.59" transform="translate(-9.17 4.49) rotate(-1.49)" /><polygon className="cls-22" points="172.28 400.23 163.38 399 163.6 381.66 172 382.04 172.28 400.23" /><polygon className="cls-22" points="172.13 458.95 160.44 453.06 161.63 440.43 171.17 440.67 172.13 458.95" /><polygon className="cls-22" points="173.21 428.89 163.13 429.85 163.15 410.87 172.49 410.69 173.21 428.89" /></g>
 
                             <g id="outer_medullary_collecting_duct"
-                                onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT); }}
+                                onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT_PRINCIPAL); }}
                                 onMouseEnter={() => {
-                                    this.props.handleSchematicHoverEnter(CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT)
+                                    this.props.handleSchematicHoverEnter(CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT_PRINCIPAL)
                                     this.props.toggleCollapseTab({ target: { dataset: { event: 5 } } })
                                 }}
                                 className={`hoverableSchematic ${(
@@ -1054,6 +1049,11 @@ class TubuleSchematic extends Component {
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_PRINCIPAL
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_INTERCALATED
+                                    || this.props.activeCell === CellTypeEnum.INTERCALATED
+                                    || this.props.activeCell === CellTypeEnum.MEDULLARY_PRINCIPAL_CELL
+                                    || this.props.activeCell === CellTypeEnum.INTERCALATED_TYPE_A
+                                    || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_INTERCALATED_TYPE_A
+                                    || this.props.activeCell === CellTypeEnum.PRINCIPAL_INTERCALATED_CELL
                                     || this.props.activeCell === CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT_INTERCALATED
                                     || this.props.activeCell === CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT_INTERCALATED_TYPE_A
                                     || this.props.activeCell === CellTypeEnum.OUTER_MEDULLARY_INTERCALATED
