@@ -118,7 +118,7 @@ class RegionalViz extends Component {
                         : <Container className='mt-3 rounded border p-3 shadow-sm mb-5'>
                             <Row xs='12'>
                                 <Col lg='12'>
-                                    <h5>{this.props.gene.symbol} expression comparison across regions in all tissue types</h5>
+                                    <h5>{this.props.gene.symbol} expression comparison across regions by condition</h5>
                                 <hr />
                                 </Col>
                             </Row>

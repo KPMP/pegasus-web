@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Spinner } from 'reactstrap';
 import { Grid, TableColumnResizing, TableHeaderRow, Table, TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
-import { fetchDataTypeSummaryInformation } from '../../helpers/ApolloClient';
+import { fetchDataTypeSummaryInformation, fetchDataTypeSummaryInformation2025 } from '../../helpers/ApolloClient';
 import { getDataTypeOptions } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from  '../../helpers/googleAnalyticsHelper';
 
@@ -53,7 +53,8 @@ class GeneSummary extends Component {
     }
 
     fetchDataTypeSummaryLocal = async () => {
-        await fetchDataTypeSummaryInformation().then(
+        if (this.props.featureSCData || this.props.featureSNData) {
+        await fetchDataTypeSummaryInformation2025().then(
             (dataSummary) => {
                 if (dataSummary) {
                     this.setState({ geneSummary: dataSummary, isLoading: false });
@@ -64,11 +65,25 @@ class GeneSummary extends Component {
                 console.log('There was a problem fetching the gene summary data: ' + error)
             }
         );
+        } else {
+            await fetchDataTypeSummaryInformation().then(
+                (dataSummary) => {
+                    if (dataSummary) {
+                        this.setState({ geneSummary: dataSummary, isLoading: false });
+                    }
+                },
+                (error) => {
+                    this.setState({ geneSummary: [], isLoading: false });
+                    console.log('There was a problem fetching the gene summary data: ' + error)
+                }
+            );
+        }
+        
     }
 
     handleLinkClick = (dataTypeShort, dataType) => {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataTypeShort} and gene: ${this.props.gene.symbol}`);
-        this.props.setDataType(dataType, this.props);
+        this.props.setDataType(dataType, this.props.featureSNData, this.props.featureSCData, this.props);
     };
 
     getColumnExtensions() {

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
-import { fetchSummaryData, fetchDataTypeSummaryInformation} from '../../helpers/ApolloClient';
+import { fetchSummaryData, fetchDataTypeSummaryInformation, fetchDataTypeSummaryInformation2025} from '../../helpers/ApolloClient';
 import { Grid, TableHeaderRow, Table, TableColumnResizing} from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
@@ -29,11 +29,11 @@ class SamplesByDataTypeTable extends Component {
         }
         return 0;
     }
-      
-      
+
+
     async componentDidMount() {
         let summary = await fetchSummaryData("explorerHomepageSummary")
-        const geneDatasetSummary = await fetchDataTypeSummaryInformation()
+        const geneDatasetSummary = await this.getDatasetSummaryLocal();
         summary = summary.concat(geneDatasetSummary)
         summary = summary.slice()
                         .sort( this.compare )
@@ -41,9 +41,17 @@ class SamplesByDataTypeTable extends Component {
         this.setState({summary})
     }
 
+    async getDatasetSummaryLocal() {
+        if (this.props.featureSCData || this.props.featureSNData) {
+            return await fetchDataTypeSummaryInformation2025()
+        } else {
+            return await fetchDataTypeSummaryInformation()
+        }
+    }
+
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
-        this.props.setSelectedConcept(dataType, this.props);
+        this.props.setSelectedConcept(dataType, this.props.featureSNData, this.props.featureSCData, this.props);
     }
 
     formatDataTypeCell(row) {
@@ -98,13 +106,13 @@ class SamplesByDataTypeTable extends Component {
                 name: 'dmrCount',
                 sortable: false,
                 hideable: false
-            }, 
+            },
             {
                 title: 'ALL',
                 name: 'totalCount',
                 sortable: false,
                 hideable: false
-            }   
+            }
         ]
     };
 
@@ -148,7 +156,7 @@ class SamplesByDataTypeTable extends Component {
                 </Row>
                 <Row>
                     <Col xs='12'>
-                        <small><span style={{color: 'red'}}>*</span> Additional information available in <a rel='noreferrer' target='_blank' href='https://cellxgene.cziscience.com/collections/0f528c8a-a25c-4840-8fa3-d156fa11086f?utm_campaign=partner&utm_source=publisher'>cellxgene</a></small>
+                        <small><span style={{color: 'red'}}>*</span> Additional information available in <a rel='noreferrer' target='_blank' href='https://cellxgene.cziscience.com/collections/9c9d04c4-8899-417f-bb6f-6107dcadf14f'>cellxgene</a></small>
                     </Col>
                 </Row>
             </article>

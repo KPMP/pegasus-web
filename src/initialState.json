@@ -6,5 +6,8 @@
   "gene": {},
   "cluster": "",
   "cellType": "",
-  "accession": ""
+  "accession": "",
+  "featureSNData": true,
+  "featureSCData": true,
+  "featureNewCellClusterData": true
 }

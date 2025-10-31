@@ -26,17 +26,25 @@ export const setDataType = (dataType) => {
     }
 };
 
-export const setDataTypeAndRedirect = (dataType, props) => {
+export const setDataTypeAndRedirect = (dataType, featureSNData, featureSCData, props) => {
     return (dispatch) => {
         switch (dataType) {
-            case "Single-cell RNA-seq (scRNA-seq)":
-                dispatch(setDataType("sc"));
+          case "Single-cell RNA-seq (scRNA-seq)":
+              dispatch(setDataType("sc"));
+              if (featureSCData) {
+                window.open('/explorer/dataviz2', '_self');
+              } else {
                 window.open('/explorer/dataviz', '_self');
-                break;
+              }
+              break;
             case "Single-nucleus RNA-seq (snRNA-seq)":
-                dispatch(setDataType("sn"));
+              dispatch(setDataType("sn"));
+              if (featureSNData) {
+                window.open('/explorer/dataviz2', '_self');
+              } else {
                 window.open('/explorer/dataviz', '_self');
-                break;
+              }
+              break;
             case "Regional transcriptomics":
                 dispatch(setDataType("rt"));
                 window.open('/explorer/regionalviz', '_self');

@@ -46,6 +46,7 @@ class TubuleSchematic extends Component {
                             className={`hoverableSchematic ${(
                                 this.props.activeCell === CellTypeEnum.DISTAL_CONVOLUTED_TUBULE
                                 || this.props.activeCell === CellTypeEnum.DISTAL_CONVOLUTED
+                                || this.props.activeCell === CellTypeEnum.DISTAL_NEPHRON
                                 || this.props.activeCell === CellTypeEnum.DISTAL_CONVOLUTED_TUBULE_TYPE_1
                                 || this.props.activeCell === CellTypeEnum.DISTAL_CONVOLUTED_TUBULE_TYPE_2
                                 || this.props.activeCell === CellTypeEnum.TUBULES
@@ -417,9 +418,9 @@ class TubuleSchematic extends Component {
                             <path className="cls-14" d="M98.7,12.72c.59.19,1.13.35,1.52.45" /></g>
 
                         <g id="descending_thin_limb"
-                            onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.DESCENDING_THIN_LIMB); }}
+                            onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.DESCENDING_THIN_LIMB_LOOP_OF_HENLE); }}
                             onMouseEnter={() => {
-                                this.props.handleSchematicHoverEnter(CellTypeEnum.DESCENDING_THIN_LIMB)
+                                this.props.handleSchematicHoverEnter(CellTypeEnum.DESCENDING_THIN_LIMB_LOOP_OF_HENLE)
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 1 } } })
                             }}
                             className={`hoverableSchematic ${(
@@ -428,6 +429,7 @@ class TubuleSchematic extends Component {
                                 || this.props.activeCell === CellTypeEnum.DESCENDING_THIN_LIMB_CELL_TYPE_1
                                 || this.props.activeCell === CellTypeEnum.DESCENDING_THIN_LIMB_CELL_TYPE_2
                                 || this.props.activeCell === CellTypeEnum.DESCENDING_THIN_LIMB_CELL_TYPE_3
+                                || this.props.activeCell === CellTypeEnum.DESCENDING_THIN_LIMB_LOOP_OF_HENLE
                                 || this.props.activeCell === CellTypeEnum.TUBULES
                                 || this.props.activeCell === '') ? '' : 'disabled'}`}
                             data-name="descending thin limb"><polygon className="cls-15" points="132.27 268.05 136.31 268.05 136.33 270.08 132.28 270.05 132.27 268.05" /><line className="cls-16" x1="132.04" y1="268.05" x2="132.05" y2="270.04" /><line className="cls-16" x1="136.54" y1="268.05" x2="136.55" y2="270.08" /><polygon className="cls-15" points="132.28 270.05 136.33 270.08 136.34 272.11 132.29 272.05 132.28 270.05" /><line className="cls-16" x1="132.05" y1="270.04" x2="132.06" y2="272.04" /><line className="cls-16" x1="136.55" y1="270.08" x2="136.56" y2="272.11" /><polygon className="cls-15" points="132.29 272.05 136.34 272.11 136.35 274.14 132.3 274.05 132.29 272.05" /><line className="cls-16" x1="132.06" y1="272.04" x2="132.08" y2="274.04" /><line className="cls-16" x1="136.56" y1="272.11" x2="136.58" y2="274.14" /><polygon className="cls-15" points="132.3 274.05 136.35 274.14 136.36 276.17 132.32 276.05 132.3 274.05" /><line className="cls-16" x1="132.08" y1="274.04" x2="132.09" y2="276.04" /><line className="cls-16" x1="136.58" y1="274.14" x2="136.59" y2="276.17" /><polygon className="cls-15" points="132.32 276.05 136.36 276.17 136.32 278.15 132.28 278.09 132.32 276.05" /><line className="cls-16" x1="132.09" y1="276.04" x2="132.05" y2="278.09" /><line className="cls-16" x1="136.59" y1="276.17" x2="136.55" y2="278.15" /><polygon className="cls-15" points="132.28 278.09 136.32 278.15 136.31 280.13 132.27 280.14 132.28 278.09" /><line className="cls-16" x1="132.05" y1="278.09" x2="132.04" y2="280.14" /><line className="cls-16" x1="136.55" y1="278.15" x2="136.54" y2="280.13" /><polygon className="cls-15" points="132.27 280.14 136.31 280.13 136.33 282.12 132.29 282.18 132.27 280.14" /><line className="cls-16" x1="132.04" y1="280.14" x2="132.06" y2="282.18" /><line className="cls-16" x1="136.54" y1="280.13" x2="136.56" y2="282.12" /><polygon className="cls-15" points="132.29 282.18 136.33 282.12 136.36 284.15 132.31 284.18 132.29 282.18" /><line className="cls-16" x1="132.06" y1="282.18" x2="132.09" y2="284.18" /><line className="cls-16" x1="136.56" y1="282.12" x2="136.59" y2="284.15" /><polygon className="cls-15" points="132.31 284.18 136.36 284.15 136.37 286.18 132.32 286.18 132.31 284.18" /><line className="cls-16" x1="132.09" y1="284.18" x2="132.09" y2="286.18" /><line className="cls-16" x1="136.59" y1="284.15" x2="136.59" y2="286.18" /><rect className="cls-15" x="132.32" y="286.18" width="4.05" height="2.01" /><line className="cls-16" x1="132.09" y1="286.18" x2="132.09" y2="288.19" /><line className="cls-16" x1="136.59" y1="286.18" x2="136.59" y2="288.19" /><rect className="cls-15" x="132.32" y="288.19" width="4.05" height="2.01" /><line className="cls-16" x1="132.09" y1="288.19" x2="132.09" y2="290.21" /><line className="cls-16" x1="136.59" y1="288.19" x2="136.59" y2="290.21" /><rect className="cls-15" x="132.32" y="290.21" width="4.05" height="2.01" /><line className="cls-16" x1="132.09" y1="290.21" x2="132.09" y2="292.22" /><line className="cls-16" x1="136.59" y1="290.21" x2="136.59" y2="292.22" /><rect className="cls-15" x="132.32" y="292.22" width="4.05" height="2.01" /><line className="cls-16" x1="132.09" y1="292.22" x2="132.09" y2="294.24" /><line className="cls-16" x1="136.59" y1="292.22" x2="136.59" y2="294.24" /><rect className="cls-15" x="132.32" y="294.24" width="4.05" height="2.01" /><line className="cls-16" x1="132.09" y1="294.24" x2="132.09" y2="296.25" /><line className="cls-16" x1="136.59" y1="294.24" x2="136.59" y2="296.25" /><rect className="cls-15" x="132.32" y="296.25" width="4.05" height="2.01" /><line className="cls-16" x1="132.09" y1="296.25" x2="132.09" y2="298.27" /><line className="cls-16" x1="136.59" y1="296.25" x2="136.59" y2="298.27" /><rect className="cls-15" x="132.32" y="298.27" width="4.05" height="2.01" /><line className="cls-16" x1="132.09" y1="298.27" x2="132.09" y2="300.28" /><line className="cls-16" x1="136.59" y1="298.27" x2="136.59" y2="300.28" /><rect className="cls-15" x="132.32" y="300.28" width="4.05" height="2.01" /><line className="cls-16" x1="132.09" y1="300.28" x2="132.09" y2="302.3" /><line className="cls-16" x1="136.59" y1="300.28" x2="136.59" y2="302.3" /><polygon className="cls-15" points="132.32 302.3 136.37 302.3 136.36 304.31 132.31 304.31 132.32 302.3" /><line className="cls-16" x1="132.09" y1="302.3" x2="132.09" y2="304.31" /><line className="cls-16" x1="136.59" y1="302.3" x2="136.59" y2="304.31" /><rect className="cls-15" x="133.33" y="303.29" width="2.01" height="4.05" transform="translate(-171.24 439.07) rotate(-89.89)" /><line className="cls-16" x1="132.09" y1="304.3" x2="132.08" y2="306.32" /><line className="cls-16" x1="136.59" y1="304.31" x2="136.58" y2="306.33" /><rect className="cls-15" x="133.32" y="305.31" width="2.01" height="4.05" transform="translate(-173.26 441.07) rotate(-89.89)" /><line className="cls-16" x1="132.08" y1="306.32" x2="132.08" y2="308.33" /><line className="cls-16" x1="136.58" y1="306.33" x2="136.58" y2="308.34" /><rect className="cls-15" x="133.32" y="307.32" width="2.01" height="4.05" transform="translate(-175.27 443.08) rotate(-89.89)" /><line className="cls-16" x1="132.08" y1="308.33" x2="132.08" y2="310.35" /><line className="cls-16" x1="136.58" y1="308.34" x2="136.58" y2="310.36" /><rect className="cls-15" x="133.32" y="309.34" width="2.01" height="4.05" transform="translate(-177.29 445.09) rotate(-89.89)" /><line className="cls-16" x1="132.08" y1="310.35" x2="132.07" y2="312.36" /><line className="cls-16" x1="136.58" y1="310.36" x2="136.57" y2="312.37" /><rect className="cls-15" x="133.31" y="311.35" width="2.01" height="4.05" transform="translate(-179.31 447.1) rotate(-89.89)" /><line className="cls-16" x1="132.07" y1="312.36" x2="132.07" y2="314.38" /><line className="cls-16" x1="136.57" y1="312.37" x2="136.57" y2="314.39" /><rect className="cls-15" x="133.31" y="313.37" width="2.01" height="4.05" transform="translate(-181.33 449.1) rotate(-89.89)" /><line className="cls-16" x1="132.07" y1="314.38" x2="132.06" y2="316.39" /><line className="cls-16" x1="136.57" y1="314.39" x2="136.56" y2="316.4" /><rect className="cls-15" x="133.31" y="315.38" width="2.01" height="4.05" transform="translate(-183.35 451.11) rotate(-89.89)" /><line className="cls-16" x1="132.06" y1="316.39" x2="132.06" y2="318.41" /><line className="cls-16" x1="136.56" y1="316.4" x2="136.56" y2="318.42" /><rect className="cls-15" x="133.3" y="317.4" width="2.01" height="4.05" transform="translate(-185.37 453.12) rotate(-89.89)" /><line className="cls-16" x1="132.06" y1="318.41" x2="132.06" y2="320.42" /><line className="cls-16" x1="136.56" y1="318.42" x2="136.56" y2="320.43" /><rect className="cls-15" x="133.3" y="319.41" width="2.01" height="4.05" transform="translate(-187.39 455.12) rotate(-89.89)" /><line className="cls-16" x1="132.06" y1="320.42" x2="132.05" y2="322.44" /><line className="cls-16" x1="136.56" y1="320.43" x2="136.55" y2="322.45" /><rect className="cls-15" x="133.29" y="321.43" width="2.01" height="4.05" transform="translate(-189.41 457.13) rotate(-89.89)" /><line className="cls-16" x1="132.05" y1="322.44" x2="132.05" y2="324.45" /><line className="cls-16" x1="136.55" y1="322.45" x2="136.55" y2="324.46" /><rect className="cls-15" x="133.29" y="323.44" width="2.01" height="4.05" transform="translate(-191.42 459.14) rotate(-89.89)" /><line className="cls-16" x1="132.05" y1="324.45" x2="132.05" y2="326.47" /><line className="cls-16" x1="136.55" y1="324.46" x2="136.55" y2="326.48" /><rect className="cls-15" x="133.29" y="325.46" width="2.01" height="4.05" transform="translate(-193.44 461.15) rotate(-89.89)" /><line className="cls-16" x1="132.05" y1="326.47" x2="132.04" y2="328.48" /><line className="cls-16" x1="136.55" y1="326.48" x2="136.54" y2="328.49" />
@@ -499,13 +501,14 @@ class TubuleSchematic extends Component {
                             <path className="cls-16" d="M232.91,489.6a16.8,16.8,0,0,1-2.34.2" /></g>
 
                         <g id="ascending_thin_limb"
-                            onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.ASCENDING_THIN_LIMB); }}
+                            onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.ASCENDING_THIN_LIMB_LOOP_OF_HENLE); }}
                             onMouseEnter={() => {
-                                this.props.handleSchematicHoverEnter(CellTypeEnum.ASCENDING_THIN_LIMB)
+                                this.props.handleSchematicHoverEnter(CellTypeEnum.ASCENDING_THIN_LIMB_LOOP_OF_HENLE)
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 1 } } })
                             }}
                             className={`hoverableSchematic ${(
                                 this.props.activeCell === CellTypeEnum.ASCENDING_THIN_LIMB
+                                || this.props.activeCell === CellTypeEnum.ASCENDING_THIN_LIMB_LOOP_OF_HENLE
                                 || this.props.activeCell === CellTypeEnum.LOOP_OF_HENLE_THIN
                                 || this.props.activeCell === CellTypeEnum.TUBULES
                                 || this.props.activeCell === '') ? '' : 'disabled'}`}
@@ -549,6 +552,7 @@ class TubuleSchematic extends Component {
                             className={`hoverableSchematic ${(
                                 this.props.activeCell === CellTypeEnum.CONNECTING_TUBULE
                                 || this.props.activeCell === CellTypeEnum.CONNECTING_TUBULES
+                                || this.props.activeCell === CellTypeEnum.DISTAL_NEPHRON
                                 || this.props.activeCell === CellTypeEnum.CONNECTING_TUBULE_PRINCIPAL
                                 || this.props.activeCell === CellTypeEnum.CONNECTING_TUBULE_INTERCALATED
                                 || this.props.activeCell === CellTypeEnum.CONNECTING_TUBULE_INTERCALATED_TYPE_A
@@ -741,9 +745,9 @@ class TubuleSchematic extends Component {
                         <g id="collecting_duct" data-name="collecting duct">
 
                             <g id="cortical_collecting_duct"
-                                onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.CORTICAL_COLLECTING_DUCT); }}
+                                onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.CORTICAL_COLLECTING_DUCT_PRINCIPAL); }}
                                 onMouseEnter={() => {
-                                    this.props.handleSchematicHoverEnter(CellTypeEnum.CORTICAL_COLLECTING_DUCT)
+                                    this.props.handleSchematicHoverEnter(CellTypeEnum.CORTICAL_COLLECTING_DUCT_PRINCIPAL)
                                     this.props.toggleCollapseTab({ target: { dataset: { event: 5 } } })
                                 }}
                                 className={`hoverableSchematic ${(
@@ -753,6 +757,7 @@ class TubuleSchematic extends Component {
                                     || this.props.activeCell === CellTypeEnum.CORTICAL_PRINCIPAL
                                     || this.props.activeCell === CellTypeEnum.CORTICAL_COLLECTING_DUCT_PRINCIPAL
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT
+                                    || this.props.activeCell === CellTypeEnum.PRINCIPAL_INTERCALATED_CELL
                                     || this.props.activeCell === CellTypeEnum.TRANSITIONAL_PRINCIPAL
                                     || this.props.activeCell === CellTypeEnum.INTERCALATED
                                     || this.props.activeCell === CellTypeEnum.INTERCALATED_TYPE_A
@@ -902,13 +907,10 @@ class TubuleSchematic extends Component {
                                 className={`hoverableSchematic ${(
                                     this.props.activeCell === CellTypeEnum.INNER_MEDULLARY_COLLECTING_DUCT
                                     || this.props.activeCell === CellTypeEnum.TRANSITIONAL_PRINCIPAL
-                                    || this.props.activeCell === CellTypeEnum.INTERCALATED
-                                    || this.props.activeCell === CellTypeEnum.INTERCALATED_TYPE_A
-                                    || this.props.activeCell === CellTypeEnum.INTERCALATED_TYPE_B
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT
+                                    || this.props.activeCell === CellTypeEnum.DISTAL_NEPHRON
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_PRINCIPAL
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_INTERCALATED
-                                    || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_INTERCALATED_TYPE_A
                                     || this.props.activeCell === CellTypeEnum.INNER_MEDULLARY_COLLECTING_DUCT
                                     || this.props.activeCell === CellTypeEnum.MEDULLARY_COLLECTING_DUCT_INTERCALATED
                                     || this.props.activeCell === CellTypeEnum.MEDULLARY_MEDULLARY_COLLECTING_DUCT_INTERCALATED_TYPE_A
@@ -1036,26 +1038,28 @@ class TubuleSchematic extends Component {
                                 <path className="cls-23" d="M175,410.79a16.81,16.81,0,0,1,2.37-1.32" /><rect className="cls-22" x="163.77" y="356.39" width="7.16" height="17.6" transform="translate(4.4 -1.99) rotate(0.69)" /><rect className="cls-22" x="164.97" y="351.86" width="6.79" height="7.59" transform="translate(-9.17 4.49) rotate(-1.49)" /><polygon className="cls-22" points="172.28 400.23 163.38 399 163.6 381.66 172 382.04 172.28 400.23" /><polygon className="cls-22" points="172.13 458.95 160.44 453.06 161.63 440.43 171.17 440.67 172.13 458.95" /><polygon className="cls-22" points="173.21 428.89 163.13 429.85 163.15 410.87 172.49 410.69 173.21 428.89" /></g>
 
                             <g id="outer_medullary_collecting_duct"
-                                onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT); }}
+                                onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT_PRINCIPAL); }}
                                 onMouseEnter={() => {
-                                    this.props.handleSchematicHoverEnter(CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT)
+                                    this.props.handleSchematicHoverEnter(CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT_PRINCIPAL)
                                     this.props.toggleCollapseTab({ target: { dataset: { event: 5 } } })
                                 }}
                                 className={`hoverableSchematic ${(
                                     this.props.activeCell === CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT
                                     || this.props.activeCell === CellTypeEnum.TRANSITIONAL_PRINCIPAL
-                                    || this.props.activeCell === CellTypeEnum.INTERCALATED
-                                    || this.props.activeCell === CellTypeEnum.INTERCALATED_TYPE_A
-                                    || this.props.activeCell === CellTypeEnum.INTERCALATED_TYPE_B
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_PRINCIPAL
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_INTERCALATED
+                                    || this.props.activeCell === CellTypeEnum.INTERCALATED
+                                    || this.props.activeCell === CellTypeEnum.MEDULLARY_PRINCIPAL_CELL
+                                    || this.props.activeCell === CellTypeEnum.INTERCALATED_TYPE_A
                                     || this.props.activeCell === CellTypeEnum.COLLECTING_DUCT_INTERCALATED_TYPE_A
+                                    || this.props.activeCell === CellTypeEnum.PRINCIPAL_INTERCALATED_CELL
                                     || this.props.activeCell === CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT_INTERCALATED
                                     || this.props.activeCell === CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT_INTERCALATED_TYPE_A
                                     || this.props.activeCell === CellTypeEnum.OUTER_MEDULLARY_INTERCALATED
                                     || this.props.activeCell === CellTypeEnum.OUTER_MEDULLARY_INTERCALATED_TYPE_A
                                     || this.props.activeCell === CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT
+                                    || this.props.activeCell === CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT_PRINCIPAL_INTERCALATED
                                     || this.props.activeCell === CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT_PRINCIPAL
                                     || this.props.activeCell === CellTypeEnum.MEDULLARY_COLLECTING_DUCT_INTERCALATED
                                     || this.props.activeCell === CellTypeEnum.MEDULLARY_MEDULLARY_COLLECTING_DUCT_INTERCALATED_TYPE_A
@@ -1079,6 +1083,7 @@ class TubuleSchematic extends Component {
                                 }}
                                 className={`hoverableSchematic ${(
                                     this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1
+                                    || this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1_2
                                     || this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL
                                     || this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULEL
                                     || this.props.activeCell === CellTypeEnum.TUBULES
@@ -1454,6 +1459,8 @@ class TubuleSchematic extends Component {
                                 className={`hoverableSchematic ${(
                                     this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_2
                                     || this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL
+                                    || this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1_2
+                                    || this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_2_3
                                     || this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULEL
                                     || this.props.activeCell === CellTypeEnum.TUBULES
                                     || this.props.activeCell === '') ? '' : 'disabled'}`}
@@ -1804,6 +1811,7 @@ class TubuleSchematic extends Component {
                                     this.props.toggleCollapseTab({ target: { dataset: { event: 0 } } })
                                 }}
                                 className={`hoverableSchematic ${(this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_3
+                                    || this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_2_3
                                     || this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULE_EITHELIAL
                                     || this.props.activeCell === CellTypeEnum.PROXIMAL_TUBULEL
                                     || this.props.activeCell === CellTypeEnum.TUBULES
@@ -1914,15 +1922,19 @@ class TubuleSchematic extends Component {
                             <path className="cls-40" d="M88.43,72.6c-1-4.39-.63-10.12,2.29-13.72l-.55-.42a5.33,5.33,0,0,1-5.1,2.4l-1.43,8.91a3.81,3.81,0,0,1,4.18,3.1S88.18,72.69,88.43,72.6Z" /></g>
 
                         <g id="thick_ascending_limb"
-                            onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.THICK_ASCENDING_LIMB_CELL); }}
+                            onClick={() => { this.props.handleCellTypeClick(CellTypeEnum.THICK_ASCENDING_LIMB_LOOP_OF_HENLE); }}
                             onMouseEnter={() => {
                                 this.props.toggleCollapseTab({ target: { dataset: { event: 2 } } })
-                                this.props.handleSchematicHoverEnter(CellTypeEnum.THICK_ASCENDING_LIMB_CELL)
+                                this.props.handleSchematicHoverEnter(CellTypeEnum.THICK_ASCENDING_LIMB_LOOP_OF_HENLE)
                             }}
                             className={`hoverableSchematic ${(
                                 this.props.activeCell === CellTypeEnum.THICK_ASCENDING_LIMB_CELL
                                 || this.props.activeCell === CellTypeEnum.LOOP_OF_HENLE_THICK
                                 || this.props.activeCell === CellTypeEnum.CORTICAL_THICK_ASCENDING_LIMB_CELL
+                                || this.props.activeCell === CellTypeEnum.CORTICAL_THICK_ASCENDING_LIMB_LOOP_OF_HENLE
+                                || this.props.activeCell === CellTypeEnum.CORTICAL_MEDULLARY_THICK_ASCENDING_LIMB_LOOP_OF_HENLE
+                                || this.props.activeCell === CellTypeEnum.MEDULLARY_THICK_ASCENDING_LIMB_LOOP_OF_HENLE
+                                || this.props.activeCell === CellTypeEnum.THICK_ASCENDING_LIMB_LOOP_OF_HENLE
                                 || this.props.activeCell === CellTypeEnum.MEDULLARY_THICK_ASCENDING_LIMB_CELL
                                 || this.props.activeCell === CellTypeEnum.TUBULES
                                 || this.props.activeCell === '') ? '' : 'disabled'}`}

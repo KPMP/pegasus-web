@@ -416,13 +416,14 @@ class GlomerulusSchematic extends Component {
                         </g>
                         <g id="podocytes"
                             onClick={() => {
-                                this.props.handleCellTypeClick(CellTypeEnum.VISCERAL);
+                                this.props.handleCellTypeClick(CellTypeEnum.PODOCYTE);
                             }}
-                            onMouseEnter={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.VISCERAL) }}
+                            onMouseEnter={() => { this.props.handleSchematicHoverEnter(CellTypeEnum.PODOCYTE) }}
                             className={`hoverableSchematic ${(
                                 this.props.activeCell === CellTypeEnum.VISCERAL
                                 || this.props.activeCell === CellTypeEnum.VISCERAL_EPITHELIUM
                                 || this.props.activeCell === CellTypeEnum.GLOM
+                                || this.props.activeCell === CellTypeEnum.PODOCYTE
                                 || this.props.activeCell === '') ? '' : 'disabled'}`}>
                             <path className="cls-22" d="M108.43,100.18c.69-.23,1-.9,1.61-1.31a.73.73,0,0,1,.51-.19c.08,0,.28-.12.34-.09a2.32,2.32,0,0,0,.42.32c.19.09.23.35.31.58s0,.37,0,.61a1.47,1.47,0,0,0,.17.55,1.8,1.8,0,0,1,.22.69c.07.25.33.38.55.56a1,1,0,0,1,.21.2c0,.08-.16.08-.26.1a1.46,1.46,0,0,1-.42,0,16.7,16.7,0,0,1-2.65-.68,5.72,5.72,0,0,1-1.06-.55,3.4,3.4,0,0,1-.79-.72c-.12-.23,0-.21.24-.17A2,2,0,0,0,108.43,100.18Z" />
                             <path className="cls-22" d="M116.49,100.35c-.09-.7-.22-1.47-.25-2.25a6.61,6.61,0,0,0-.15-.89.73.73,0,0,0-.39-.57.59.59,0,0,0-.67,0,1,1,0,0,0-.34.38,1.43,1.43,0,0,0-.29.64,4,4,0,0,0,0,1.58c.1.31.09.55.18.87a.8.8,0,0,1-.11.8,6,6,0,0,0-.54.92s-.09.16-.07.21.3,0,.42,0l2.25-.3c.43-.07.93,0,.81-.25S116.53,100.72,116.49,100.35Z" />

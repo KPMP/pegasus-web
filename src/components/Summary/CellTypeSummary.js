@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { Grid, TableColumnResizing, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
-import { fetchClusterHierarchy } from '../../helpers/ApolloClient';
+import { fetchClusterHierarchy, fetchClusterHierarchy2025 } from '../../helpers/ApolloClient';
 import { Spinner } from "reactstrap";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import Parser from 'html-react-parser';
@@ -13,7 +13,6 @@ class CellTypeSummary extends Component {
     constructor(props) {
         super(props);
         this.getColumns = this.getColumns.bind(this);
-
         this.state = {
             cellTypeSummary: [],
             isLoading: true
@@ -32,8 +31,15 @@ class CellTypeSummary extends Component {
 
     fetchClusterHierarchy = async () => {
         this.setState({ isLoading: true });
-        let results = await fetchClusterHierarchy(this.props.cellType);
-        this.setState({ cellTypeSummary: results, isLoading: false });
+        if (this.props.featureNewCellClusterData){
+            console.log("Using 2025 query for cluster hierarchy");
+            let results = await fetchClusterHierarchy2025(this.props.cellType);
+
+            this.setState({ cellTypeSummary: results, isLoading: false });
+        }else {
+            let results = await fetchClusterHierarchy(this.props.cellType);
+            this.setState({ cellTypeSummary: results, isLoading: false });
+        }
     };
 
     handleLinkClick = (dataType, row) => {
@@ -46,7 +52,7 @@ class CellTypeSummary extends Component {
             }
         }
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and cluster: ${cluster}`);
-        this.props.setDataTypeAndCluster(dataType, cluster);
+        this.props.setDataTypeAndCluster(dataType, cluster, this.props.featureSCData, this.props.featureSNData);
     };
 
     parseClusterName = (value) => {
@@ -173,15 +179,16 @@ class CellTypeSummary extends Component {
                         </Row>
                         <Row xs='12'>
                             <Col><small>
-                                <sup>1</sup>adaptive/maladaptive/repairing: Represented by cells that retain differentiation markers of reference states, albeit at lower levels, but also show expression of known injury associated genes, mesenchymal markers or factors promoting inflammation or fibrosis. &nbsp;
-                                <sup>2</sup>cycling: Represented by enrichment of cell cycle genes. &nbsp;
-                                <sup>3</sup>degenerative: Marked loss of differentiation markers, and/or increased %ERT, %MT, and/or marked decrease in genes detected. These cells could represent an early injury state or cells that will not recover function. &nbsp;
-                                <sup>4</sup>transitional: Represented by an intermediate state showing markers of cells sharing the same parental lineage.
+                                <sup>1</sup>adaptive/maladaptive: In relation to nephron cell states, these cells are adapting to their altered environment or injury to either undergo recovery or progress to an unresolved or maladaptive epithelial state. These cells may retain differentiation markers of reference states, albeit at lower levels, but also show expression of known injury or repair-associated genes, mesenchymal markers or factors promoting inflammation or fibrosis. For fibroblasts, this may represent an activated state to produce increased matrix or cytokines.<br/>
+                                <sup>2</sup>cycling: Represented by enrichment of cell cycle genes.<br/>
+                                <sup>3</sup>degenerative: Marked loss of differentiation markers, and/or increased %ERT, %MT, and/or marked decrease in genes detected. These cells could represent an early injury state or cells that will not recover function.<br/>
+                                <sup>4</sup>transitional: Represented by an intermediate state showing markers of cells sharing the same parental lineage but may shift functional roles depending on physiological demands.<br/>
+                                <sup>5</sup>failed repair: Related to nephron cell states, these are cells that are in advanced states of injury that have adopted a mesenchymal phenotype, lost their canonical functional roles, may have activated factors that attempt to repair but are not able to recover.   These cells may express profibrogenic and immune-modulating factors that result in fibrosis.
                             </small>
                                 <p></p>
 
                                 <small>
-                                  For more information about the cell type, cluster, and state definitions, see the following publication: <a target="_blank" rel="noreferrer" href="https://rdcu.be/dx5m9">Nature 619, 585–594 (2023)</a> and <a target="_blank" rel='noreferrer' href="https://github.com/KPMP/Cell-State-Atlas-2022/">GitHub pipelines</a>
+                                  For more information about the cell type, cluster, and state definitions, see the following publication: <a target="_blank" rel="noreferrer" href="https://www.biorxiv.org/content/10.1101/2025.09.26.678707v1">Cellular and Spatial Drivers of Unresolved Injury and Functional Decline in the Human Kidney</a> and <a target="_blank" rel='noreferrer' href="https://github.com/KPMP-Scientific/KPMP-Atlas-v2/">the Atlas v2 GitHub</a>
                                 </small>
                             </Col>
                         </Row>
@@ -192,3 +199,4 @@ class CellTypeSummary extends Component {
     }
 }
 export default CellTypeSummary;
+

@@ -8,18 +8,21 @@ const mapStateToProps = (state, props) => {
     let selectedConcept = props.selectedConcept ? props.selectedConcept : state.selectedConcept;
     return {
         selectedConcept: selectedConcept,
-        gene: state.gene
+        gene: state.gene,
+        featureSCData: state.featureSCData,
+        featureSNData: state.featureSNData,
+        featureNewCellClusterData: state.featureNewCellClusterData,
     }
 };
 
 const mapDispatchToProps = (dispatch, props) =>
 ({
-    setDataType(dataType) {
-        dispatch(setDataTypeAndRedirect(dataType, props));
+    setDataType(dataType, featureSNData, featureSCData) {
+        dispatch(setDataTypeAndRedirect(dataType, featureSNData, featureSCData, props));
     },
-    setSelectedConcept(concept) {
+    setSelectedConcept(concept, featureNewCellClusterData) {
         const action = props.useRedirection
-            ? setSelectedConceptAndRedirect(concept, props)
+            ? setSelectedConceptAndRedirect(concept, featureNewCellClusterData, props)
             : setSelectedConcept(concept)
         dispatch(action);
     }

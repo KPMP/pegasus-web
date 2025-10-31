@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
-import { fetchSummaryData, fetchDataTypeSummaryInformation} from '../../helpers/ApolloClient';
+import { fetchSummaryData, fetchDataTypeSummaryInformation, fetchDataTypeSummaryInformation2025} from '../../helpers/ApolloClient';
 import { Row, Col, UncontrolledTooltip } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
@@ -9,7 +9,7 @@ class SamplesByDataTypeTable extends Component {
 
     constructor(props) {
         super(props);
-        this.getColumns = this.getColumns.bind(this); 
+        this.getColumns = this.getColumns.bind(this);
         this.state = {
             dataTable: []
         }
@@ -21,7 +21,8 @@ class SamplesByDataTypeTable extends Component {
         spatialSummary = [...spatialSummary].sort(this.compare)
         spatialSummary = spatialSummary.filter(availableDataVisibilityFilter)
 
-        let explorerSummary = await fetchDataTypeSummaryInformation();
+        let explorerSummary = await this.fetchDataTypeSummaryLocal();
+        
         explorerSummary = [...explorerSummary].sort(this.compare)
         explorerSummary = explorerSummary.filter(availableDataVisibilityFilter)
 
@@ -31,6 +32,14 @@ class SamplesByDataTypeTable extends Component {
 
         const summaryData = explorerSummary.concat(spatialSummary)
         this.setState({dataTable: summaryData});
+    }
+
+    async fetchDataTypeSummaryLocal() {
+       if (this.props.featureSCData || this.props.featureSNData) {
+            return await fetchDataTypeSummaryInformation2025();    
+        } else {
+            return await fetchDataTypeSummaryInformation();
+        }
     }
 
     compare( a, b ) {
@@ -46,12 +55,12 @@ class SamplesByDataTypeTable extends Component {
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
 
-        this.props.setDataType(dataType, this.props);
-        
+        this.props.setDataType(dataType, this.props.featureSNData, this.props.featureSCData, this.props);
+
     }
 
     formatDataTypeCell(row) {
-        
+
         let value = row.dataType;
         if (value === 'Explorer' || value === 'Spatial Viewer') {
             return (
@@ -78,12 +87,12 @@ class SamplesByDataTypeTable extends Component {
                 getCellValue: row => this.formatDataTypeCell(row)
             },
             {
-                title: 
+                title:
                     <span>
                       <span className="table-header data-type-table-header" id="HealthyReferenceHeader">
                        REFERENCE
                       </span>
-                      <UncontrolledTooltip 
+                      <UncontrolledTooltip
                         placement="bottom"
                         target="HealthyReferenceHeader">
                       Healthy Reference
@@ -98,7 +107,7 @@ class SamplesByDataTypeTable extends Component {
                       <span className="table-header data-type-table-header" id="CKDHeader">
                       CKD
                       </span>
-                      <UncontrolledTooltip 
+                      <UncontrolledTooltip
                         placement="bottom"
                         target="CKDHeader">
                       Chronic Kidney Disease
@@ -108,12 +117,12 @@ class SamplesByDataTypeTable extends Component {
                 name: 'ckdCount',
             },
             {
-                title: 
+                title:
                     <span>
                       <span className="table-header data-type-table-header" id="AKIHeader">
                       AKI
                       </span>
-                      <UncontrolledTooltip 
+                      <UncontrolledTooltip
                         placement="bottom"
                         target="AKIHeader">
                       Acute Kidney Injury
@@ -123,12 +132,12 @@ class SamplesByDataTypeTable extends Component {
                 name: 'akiCount',
             },
             {
-                title: 
+                title:
                     <span>
                       <span className="table-header data-type-table-header" id="ResistorHeader">
                       DM-R
                       </span>
-                      <UncontrolledTooltip 
+                      <UncontrolledTooltip
                         placement="bottom"
                         target="ResistorHeader">
                       Diabetes Mellitus - Resilient
@@ -136,13 +145,13 @@ class SamplesByDataTypeTable extends Component {
                     </span>
                 ,
                 name: 'dmrCount',
-            },   
+            },
             {
-                title: 
+                title:
                     <span>
                         <span className="table-header data-type-table-header" id="AllParticipantsHeader">
                         ALL
-                        </span> 
+                        </span>
                         <UncontrolledTooltip
                         placement="bottom"
                         target="AllParticipantsHeader">
@@ -150,7 +159,7 @@ class SamplesByDataTypeTable extends Component {
                         </UncontrolledTooltip>
                     </span>,
                 name: 'totalCount'
-            }   
+            }
         ]
     };
 
@@ -178,7 +187,7 @@ class SamplesByDataTypeTable extends Component {
                         </Grid>
 
                     </Col>
-                </Row>                        
+                </Row>
             </article>
         );
     }
