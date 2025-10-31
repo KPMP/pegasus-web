@@ -274,7 +274,7 @@ class DataTypeSelector extends Component {
                     <Row xs="12" className='mt-1 ps-0' >
                         <Col lg="12" className='d-table ps-2'>
                             <span className='d-table-cell pt-1 dataset-info'>Dataset coverage: N={this.state.selectedDataset.participantCount} PARTICIPANTS; {this.state.selectedDataset.hrtCount} HEALTHY REFERENCE; {this.state.selectedDataset.ckdCount} CKD; {this.state.selectedDataset.akiCount} AKI; {this.state.selectedDataset.dmrCount} DM-R 
-                                {(this.props.dataType != 'sn' && this.props.dataType != 'sc') && 
+                                {(this.props.dataType !== 'sn' && this.props.dataType !== 'sc') && 
                                     <a rel="noreferrer" href={this.getRepositoryLink()}>
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                         xmlnsXlink="http://www.w3.org/1999/xlink"
