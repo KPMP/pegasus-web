@@ -21,16 +21,11 @@ export const setSelectedConcept = (concept) => {
 };
 
 export const setSelectedConceptAndRedirect = (concept, featureNewCellClusterData, props) => {
-    console.log(featureNewCellClusterData)
     return (dispatch) => {
         dispatch(setSelectedConcept(concept));
         switch (concept.type) {
             case "cell_type":
-                if(featureNewCellClusterData) {
-                    window.open('/explorer/celltypesummary2', '_self');
-                }else{
-                    window.open('/explorer/celltypesummary', '_self');
-                }
+                window.open('/explorer/celltypesummary2', '_self');
                 break;
             case "gene":
                 if(featureNewCellClusterData){
