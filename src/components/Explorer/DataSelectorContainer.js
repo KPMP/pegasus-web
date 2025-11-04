@@ -2,7 +2,6 @@ import { connect } from 'react-redux';
 import DataSelector from './DataSelector';
 import { setDataTypeAndRedirect } from '../../actions/DataType/dataTypeActions'
 import { withRouter } from 'react-router';
-import { featureNewCellClusterData } from '../DataViz/featureSwitchReducer';
 
 const mapStateToProps = (state, props) =>
 ({

@@ -19,6 +19,7 @@ class ConceptSelect extends Component {
     }
 
     handleSelect = (selected) => {
+        console.log(this.props.featureNewCellClusterData)
         if (selected !== null) {
             if (selected.value.type === 'gene') {
                 if (this.props.featureNewCellClusterData){
