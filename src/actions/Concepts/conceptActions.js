@@ -21,6 +21,7 @@ export const setSelectedConcept = (concept) => {
 };
 
 export const setSelectedConceptAndRedirect = (concept, featureNewCellClusterData, props) => {
+    console.log(featureNewCellClusterData)
     return (dispatch) => {
         dispatch(setSelectedConcept(concept));
         switch (concept.type) {
