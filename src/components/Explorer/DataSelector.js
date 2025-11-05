@@ -12,7 +12,7 @@ class WelcomeText extends Component {
                         <Container className="mt-3 rounded border p-3 shadow-sm expanded-search-container">
                             <Row className="mb-4">
                                 <Col>
-                                    <ConceptSelectFullWidth useRedirection={true} redirect="/summary" />
+                                    <ConceptSelectFullWidth useRedirection={true} redirect="/summary" featureNewCellClusterDate={this.props.featureNewCellClusterDate} />
                                 </Col>
                             </Row>
                         </Container>

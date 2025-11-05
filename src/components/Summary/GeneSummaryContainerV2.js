@@ -9,7 +9,8 @@ const mapStateToProps = (state, props) =>
         gene: state.gene,
         conceptSummary: state.conceptSummary,
         featureSNData: state.featureSNData,
-        featureSCData: state.featureSCData
+        featureSCData: state.featureSCData,
+        featureNewCellClusterData: state.featureNewCellClusterData
     });
 
 const mapDispatchToProps = (dispatch, props) =>
