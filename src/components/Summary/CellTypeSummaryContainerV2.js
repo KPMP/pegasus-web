@@ -21,12 +21,8 @@ const mapDispatchToProps = (dispatch, props) =>
             dispatch(setDataType(dataType));
             dispatch(setEnrollmentCategory("all"));
             dispatch(setCluster(cluster));
-            if ((dataType === 'sc' && featureSCData) || (dataType === 'sn' && featureSNData)) {
-                  dispatch((dispatch) => window.open("/explorer/diffex2", '_self'));
-            } else {
-                dispatch((dispatch) => window.open("/explorer/diffex", '_self'));
-            }
-
+            dispatch((dispatch) => window.open("/explorer/diffex2", '_self'));
+            
         }
     });
 
