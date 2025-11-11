@@ -6,7 +6,8 @@ import { withRouter } from 'react-router';
 const mapStateToProps = (state, props) =>
 ({
   featureSNData: state.featureSNData,
-  featureSCData: state.featureSCData
+  featureSCData: state.featureSCData,
+  featureNewCellClusterData: state.featureNewCellClusterData
 });
 
 const mapDispatchToProps = (dispatch, props) =>
