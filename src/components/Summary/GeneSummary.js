@@ -53,7 +53,6 @@ class GeneSummary extends Component {
     }
 
     fetchDataTypeSummaryLocal = async () => {
-        if (this.props.featureSCData || this.props.featureSNData) {
         await fetchDataTypeSummaryInformation2025().then(
             (dataSummary) => {
                 if (dataSummary) {
@@ -65,20 +64,6 @@ class GeneSummary extends Component {
                 console.log('There was a problem fetching the gene summary data: ' + error)
             }
         );
-        } else {
-            await fetchDataTypeSummaryInformation().then(
-                (dataSummary) => {
-                    if (dataSummary) {
-                        this.setState({ geneSummary: dataSummary, isLoading: false });
-                    }
-                },
-                (error) => {
-                    this.setState({ geneSummary: [], isLoading: false });
-                    console.log('There was a problem fetching the gene summary data: ' + error)
-                }
-            );
-        }
-        
     }
 
     handleLinkClick = (dataTypeShort, dataType) => {
