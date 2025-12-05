@@ -31,7 +31,7 @@ class GeneSummary extends Component {
 
     fetchPageData = async() => {
         await this.fetchDataTypeSummaryLocal(this.props.gene.symbol);
-        await getDataTypeOptions(this.props.gene.symbol, "").then(
+        await getDataTypeOptions2025(this.props.gene.symbol, "").then(
             (options) => {
                 this.setState({ dataTypeOptions: options, isLoading: false })
             },
