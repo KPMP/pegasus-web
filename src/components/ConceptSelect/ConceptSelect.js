@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import AsyncSelect from "react-select/async";
 import { Alert } from 'reactstrap';
-import { fetchAutoComplete, fetchDataTypesForConcept, fetchDataTypesForConcept2025 } from "../../helpers/ApolloClient";
+import { fetchAutoComplete, fetchDataTypesForConcept2025 } from "../../helpers/ApolloClient";
 import { default as ReactGA4 } from 'react-ga4';
 
 class ConceptSelect extends Component {
@@ -22,7 +22,6 @@ class ConceptSelect extends Component {
         console.log(this.props.featureNewCellClusterData)
         if (selected !== null) {
             if (selected.value.type === 'gene') {
-                if (this.props.featureNewCellClusterData){
                     console.log("Using 2025 query for data types");
                     fetchDataTypesForConcept2025(selected.value.value, "").then(
                     (results) => {
@@ -43,28 +42,7 @@ class ConceptSelect extends Component {
                         console.log("There was a problem getting the data: " + error)
                     }
                 );
-                }
-                else{
-                    fetchDataTypesForConcept(selected.value.value, "").then(
-                        (results) => {
-                            let hasResults = results.dataTypesForConcept.length > 0;
-                            if (hasResults && !this.props.dataType) {
-                                this.props.setDataType(results.dataTypesForConcept[0], this.props.featureSNData, this.props.featureSCData)
-                            }
-                            let hasResultsWithDataType = this.props.dataType ? results.dataTypesForConcept.includes(this.props.dataType) : true;
-                            if (hasResults && hasResultsWithDataType) {
-                                this.props.setSelectedConcept(selected.value, this.props.featureNewCellClusterData);
-                                this.setState({ value: { label: selected.value.value, value: selected.value }, hasResults, hasResultsWithDataType, noResultValue: '', alertVisible: false });
-                            } else {
-                                this.setState({ value: { label: selected.value.value, value: selected.value }, hasResults, hasResultsWithDataType, noResultValue: selected.value.value, alertVisible: true });
-                            }
-    
-                        },
-                        (error) => {
-                            console.log("There was a problem getting the data: " + error)
-                        }
-                    );
-                }
+
             } else {
                 this.props.setSelectedConcept(selected.value, this.featureNewCellClusterData);
                 this.setState({ value: { label: selected.value.value, value: selected.value }, hasResults: true, noResultsValue: '', alertVisible: false });
