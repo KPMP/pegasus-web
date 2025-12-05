@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Spinner } from 'reactstrap';
 import { Grid, TableColumnResizing, TableHeaderRow, Table, TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
-import { fetchDataTypeSummaryInformation, fetchDataTypeSummaryInformation2025 } from '../../helpers/ApolloClient';
+import { fetchDataTypeSummaryInformation2025 } from '../../helpers/ApolloClient';
 import { getDataTypeOptions } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from  '../../helpers/googleAnalyticsHelper';
 
