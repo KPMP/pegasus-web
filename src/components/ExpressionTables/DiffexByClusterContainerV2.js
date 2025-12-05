@@ -12,7 +12,6 @@ const mapStateToProps = (state, props) =>
     enrollmentCategory: state.enrollmentCategory,
     featureSNData: state.featureSNData,
     feautreSCData: state.featureSNData,
-    featureNewCellClusterData: state.featureNewCellClusterData
 });
 
 const mapDispatchToProps = (dispatch, props) =>

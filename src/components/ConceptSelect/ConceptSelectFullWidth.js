@@ -14,7 +14,7 @@ class ConceptSelectFullWidth extends Component {
                 </Row>
                 <Row xs="12">
                     <Col>
-                        <ConceptSelectContainer featureNewCellClusterData={this.props.featureNewCellClusterData} {...this.props}/>
+                        <ConceptSelectContainer {...this.props}/>
                     </Col>
                 </Row>
             </React.Fragment>

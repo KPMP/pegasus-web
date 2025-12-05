@@ -82,32 +82,6 @@ export const fetchAutoComplete = async (searchString) => {
     }
 };
 
-export const fetchCellTypeHierarchy = async () => {
-    const response = await apolloClient.query({
-        query: gql`
-            query {
-                cellTypeHierarchy {
-                    cellTypeRegions {
-                        regionName
-                        cellTypeSubregions {
-                            subregionName
-                            cellTypes {
-                                cellType
-                            }
-                        }
-                    }
-                }
-            }`
-    });
-
-    if (response.data && response.data.cellTypeHierarchy) {
-        return response.data.cellTypeHierarchy;
-    }
-    else {
-        store.dispatch(sendMessageToBackend("Could not retrieve cell type hierarchy data: " + response.error));
-    }
-};
-
 export const fetchCellTypeHierarchy2025 = async () => {
     const response = await apolloClient.query({
         query: gql`
@@ -133,33 +107,6 @@ export const fetchCellTypeHierarchy2025 = async () => {
         store.dispatch(sendMessageToBackend("Could not retrieve cell type hierarchy 2025 data: " + response.error));
     }
 };
-
-export const fetchClusterHierarchy = async (cellType) => {
-    const response = await apolloClient.query({
-        query: gql`
-            query {
-                getClusterHieararchies(cellType: "${cellType}") {
-                   cellType
-                   clusterName
-                   structureRegion
-                   structureSubregion
-                   isSingleNucCluster
-                   isSingleCellCluster
-                   isRegionalTranscriptomics
-                   isRegionalProteomics
-                   cellTypeId
-                   clusterId
-                   cellTypeOrder
-                }
-            }`
-    });
-
-    if (response.data && response.data.getClusterHieararchies) {
-        return response.data.getClusterHieararchies;
-    } else {
-        store.dispatch(sendMessageToBackend("Could not retrieve cluster data: " + response.error));
-    }
-}
 
 export const fetchClusterHierarchy2025 = async (cellType) => {
     const response = await apolloClient.query({
@@ -312,20 +259,6 @@ export const fetchPlotlyData = async (dataType, geneSymbol, enrollmentCategory, 
         return response.data.getUmapPlotData;
     } else {
         store.dispatch(sendMessageToBackend("Could not retrieve UMAP plot data: " + response.error));
-    }
-}
-
-export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
-    const response = await apolloClient.query({
-        query: gql`
-            query{
-                dataTypesForConcept(geneSymbol:"${geneSymbol}", clusterName: "${clusterName}")
-            }`
-    });
-    if (response.data && response.data) {
-        return response.data;
-    } else {
-        store.dispatch(sendMessageToBackend("Could not retrieve data types: " + response.error));
     }
 }
 

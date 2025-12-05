@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { Grid, TableColumnResizing, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
-import { fetchClusterHierarchy, fetchClusterHierarchy2025 } from '../../helpers/ApolloClient';
+import { fetchClusterHierarchy2025 } from '../../helpers/ApolloClient';
 import { Spinner } from "reactstrap";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import Parser from 'html-react-parser';
@@ -31,15 +31,8 @@ class CellTypeSummary extends Component {
 
     fetchClusterHierarchy = async () => {
         this.setState({ isLoading: true });
-        if (this.props.featureNewCellClusterData){
-            console.log("Using 2025 query for cluster hierarchy");
-            let results = await fetchClusterHierarchy2025(this.props.cellType);
-
-            this.setState({ cellTypeSummary: results, isLoading: false });
-        }else {
-            let results = await fetchClusterHierarchy(this.props.cellType);
-            this.setState({ cellTypeSummary: results, isLoading: false });
-        }
+        let results = await fetchClusterHierarchy2025(this.props.cellType);
+        this.setState({ cellTypeSummary: results, isLoading: false });
     };
 
     handleLinkClick = (dataType, row) => {
@@ -160,7 +153,7 @@ class CellTypeSummary extends Component {
             return (
                 <div className='height-wrapper mb-3'>
                     <Container className='mt-3 rounded border p-3 shadow-sm'>
-                        <ConceptSelectFullWidth overflowWarningContainer={true} useRedirection={true} featureNewCellClusterData={this.props.featureNewCellClusterData}/>
+                        <ConceptSelectFullWidth overflowWarningContainer={true} useRedirection={true} />
                     </Container>
                     <Container className='mt-3 rounded border p-3 shadow-sm'>
                         <Row xs='12'>

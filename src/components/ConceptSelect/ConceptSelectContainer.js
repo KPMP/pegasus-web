@@ -11,7 +11,6 @@ const mapStateToProps = (state, props) => {
         gene: state.gene,
         featureSCData: state.featureSCData,
         featureSNData: state.featureSNData,
-        featureNewCellClusterData: state.featureNewCellClusterData,
     }
 };
 
@@ -20,10 +19,9 @@ const mapDispatchToProps = (dispatch, props) =>
     setDataType(dataType, featureSNData, featureSCData) {
         dispatch(setDataTypeAndRedirect(dataType, featureSNData, featureSCData, props));
     },
-    setSelectedConcept(concept, featureNewCellClusterData) {
-        console.log(featureNewCellClusterData)
+    setSelectedConcept(concept) {
         const action = props.useRedirection
-            ? setSelectedConceptAndRedirect(concept, featureNewCellClusterData, props)
+            ? setSelectedConceptAndRedirect(concept, props)
             : setSelectedConcept(concept)
         dispatch(action);
     }

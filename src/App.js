@@ -18,7 +18,6 @@ import GeneSummaryContainer from './components/Summary/GeneSummaryContainer';
 import CellTypeSummaryContainer from './components/Summary/CellTypeSummaryContainer';
 import CellTypeSummaryContainerV2 from './components/Summary/CellTypeSummaryContainerV2';
 import NotFoundPage from './components/Error/NotFoundPage';
-import RNASeqVizContainer from "./components/DataViz/RNASeqVizContainer";
 import RNASeqVizContainerV2 from './components/DataViz/RNASeqVizContainerV2';
 import DiffexByClusterContainer from "./components/ExpressionTables/DiffexByClusterContainer";
 import DiffexByClusterContainerV2 from "./components/ExpressionTables/DiffexByClusterContainerV2";
@@ -84,7 +83,6 @@ class App extends Component {
                   <Route exact path='/explorer/genesummary2' component={GeneSummaryContainerV2} store={store} />
                   <Route exact path='/explorer/celltypesummary' component={CellTypeSummaryContainer} store={store} />
                   <Route exact path='/explorer/celltypesummary2' component={CellTypeSummaryContainerV2} store={store} />
-                  <Route exact path='/explorer/dataviz' component={RNASeqVizContainer} store={store} />
                   <Route exact path='/explorer/dataviz2' component={RNASeqVizContainerV2} store={store} />
                   <Route exact path='/explorer/regionalviz' component={RegionalVizContainer} store={store} />
                   <Route exact path='/explorer/diffex' component={DiffexByClusterContainer} store={store} />

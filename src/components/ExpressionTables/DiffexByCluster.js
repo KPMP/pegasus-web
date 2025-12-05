@@ -215,7 +215,7 @@ class DiffexByCluster extends Component {
         return (
             <div className='height-wrapper mb-3 mt-3'>
                 <Container id='outer-wrapper'>
-                    <DiffexInfoBar cluster={this.props.cluster} dataType={this.props.dataType} setDataType={this.props.setDataType} featureNewCellClusterData={this.props.featureNewCellClusterData} />
+                    <DiffexInfoBar cluster={this.props.cluster} dataType={this.props.dataType} setDataType={this.props.setDataType} />
                     <Container className='rounded border p-3 shadow-sm mb-5'>
                         {
                             this.state.isLoading ?

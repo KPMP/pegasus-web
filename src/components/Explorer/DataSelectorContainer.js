@@ -7,7 +7,6 @@ const mapStateToProps = (state, props) =>
 ({
   featureSNData: state.featureSNData,
   featureSCData: state.featureSCData,
-  featureNewCellClusterData: state.featureNewCellClusterData
 });
 
 const mapDispatchToProps = (dispatch, props) =>

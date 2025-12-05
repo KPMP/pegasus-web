@@ -11,7 +11,6 @@ const mapStateToProps = (state, props) =>
     conceptSummary: state.conceptSummary,
     featureSNData: state.featureSNData,
     featureSCData: state.featureSCData,
-    featureNewCellClusterData: state.featureNewCellClusterData
 });
 
 const mapDispatchToProps = (dispatch, props) =>

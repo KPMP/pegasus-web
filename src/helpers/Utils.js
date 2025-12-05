@@ -1,4 +1,4 @@
-import { fetchDataTypesForConcept, fetchDataTypesForConcept2025 } from './ApolloClient';
+import { fetchDataTypesForConcept2025 } from './ApolloClient';
 
 export const formatNumberToPrecision = (number, precision, keepAsInt = false, dataType = "", enrollmentCategory = "") => {
     if (number) {
@@ -119,36 +119,6 @@ export const getAllDataTypeOptions = () => {
     return options;
 };
 
-export const getDataTypeOptions = async (geneSymbol, cluster) => {
-    let options = await fetchDataTypesForConcept(geneSymbol, cluster).then((result) => {
-        let dataTypes = result.dataTypesForConcept;
-        const options = [
-            {
-                label: "snRNA-seq",
-                value: "sn",
-                isDisabled: !dataTypes.includes("sn")
-            },
-            {
-                label: "scRNA-seq",
-                value: "sc",
-                isDisabled: !dataTypes.includes("sc")
-            },
-            {
-                label: "Regional transcriptomics",
-                value: "rt",
-                isDisabled: !dataTypes.includes("rt")
-            },
-            {
-                label: "Regional proteomics",
-                value: "rp",
-                isDisabled: !dataTypes.includes("rp")
-            }
-        ];
-        return options;
-    });
-    return options;
-};
-
 export const getDataTypeOptions2025 = async (geneSymbol, cluster) => {
     let options = await fetchDataTypesForConcept2025(geneSymbol, cluster).then((result) => {
         let dataTypes = result.dataTypesForConcept2025;
@@ -180,7 +150,7 @@ export const getDataTypeOptions2025 = async (geneSymbol, cluster) => {
 };
 
 export const getDataTypeOptionsWithEnrollmentCategory = async (geneSymbol, cluster, datasetSummary, currentEnrollmentCategory) => {
-    let options = await getDataTypeOptions(geneSymbol, cluster, datasetSummary);
+    let options = await getDataTypeOptions2025(geneSymbol, cluster, datasetSummary);
     for (let index in options) {
         for (let indexDS in datasetSummary) {
             const tissues = {

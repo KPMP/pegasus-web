@@ -18,11 +18,3 @@ export const featureSCData = ( state = initialState.featureSCData, action ) => {
     }
 };
 
-export const featureNewCellClusterData = (state = initialState.featureNewCellClusterData, action) => {
-    switch(action.type) {
-        case actionNames.SET_NEW_CELL_CLUSTER_SWITCH:
-            return action.payload;
-        default:
-            return state;
-    }
-};

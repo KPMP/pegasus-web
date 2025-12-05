@@ -9,7 +9,7 @@ import {
   fetchGeneExpression2025,
   fetchPlotlyData2025,
 } from "../../helpers/ApolloClient";
-import { getDataTypeOptions } from "../../helpers/Utils";
+import { getDataTypeOptions2025 } from "../../helpers/Utils";
 import queryString from "query-string";
 
 class RNASeqVizV2 extends Component {
@@ -106,7 +106,7 @@ class RNASeqVizV2 extends Component {
 
   fetchDataType = async (geneSymbol) => {
     this.setState({ isLoading: true });
-    let options = await getDataTypeOptions(this.props.gene.symbol, "");
+    let options = await getDataTypeOptions2025(this.props.gene.symbol, "");
     let availableOption = options.find((e) => {
       if (!this.props.dataType) {
         if (e.isDisabled === false && (e.value === "sc" || e.value === "sn")) {
