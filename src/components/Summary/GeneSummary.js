@@ -3,7 +3,7 @@ import { Container, Row, Col, Spinner } from 'reactstrap';
 import { Grid, TableColumnResizing, TableHeaderRow, Table, TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchDataTypeSummaryInformation2025 } from '../../helpers/ApolloClient';
-import { getDataTypeOptions } from "../../helpers/Utils";
+import { getDataTypeOptions2025 } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from  '../../helpers/googleAnalyticsHelper';
 
 class GeneSummary extends Component {
@@ -31,7 +31,7 @@ class GeneSummary extends Component {
 
     fetchPageData = async() => {
         await this.fetchDataTypeSummaryLocal(this.props.gene.symbol);
-        await getDataTypeOptions(this.props.gene.symbol, "").then(
+        await getDataTypeOptions2025(this.props.gene.symbol, "").then(
             (options) => {
                 this.setState({ dataTypeOptions: options, isLoading: false })
             },
