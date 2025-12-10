@@ -9,7 +9,6 @@ const mapStateToProps = (state, props) =>
 ({
     cellType: state.cellType,
     conceptSummary: state.conceptSummary,
-    featureSNData: state.featureSNData,
     featureSCData: state.featureSCData,
 });
 

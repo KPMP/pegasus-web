@@ -53,7 +53,7 @@ class GeneSummary extends Component {
     }
 
     fetchDataTypeSummaryLocal = async () => {
-        if (this.props.featureSCData || this.props.featureSNData) {
+        if (this.props.featureSCData) {
         await fetchDataTypeSummaryInformation2025().then(
             (dataSummary) => {
                 if (dataSummary) {
@@ -83,7 +83,7 @@ class GeneSummary extends Component {
 
     handleLinkClick = (dataTypeShort, dataType) => {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataTypeShort} and gene: ${this.props.gene.symbol}`);
-        this.props.setDataType(dataType, this.props.featureSNData, this.props.featureSCData, this.props);
+        this.props.setDataType(dataType, this.props.featureSCData, this.props);
     };
 
     getColumnExtensions() {

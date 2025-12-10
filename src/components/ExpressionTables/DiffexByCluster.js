@@ -53,7 +53,7 @@ class DiffexByCluster extends Component {
                 }
             );
         } else {
-            if (this.props.featureSCData || this.props.featureSNData){
+            if (this.props.featureSCData){
                 fetchGeneExpression2025(this.props.dataType, '', this.props.cluster, 'all').then(
                     (geneExpressionData) => {
                         this.setState({ diffexData: geneExpressionData, isLoading: false, filteredData: geneExpressionData })

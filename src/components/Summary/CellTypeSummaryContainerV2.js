@@ -9,14 +9,13 @@ const mapStateToProps = (state, props) =>
 ({
     cellType: state.cellType,
     conceptSummary: state.conceptSummary,
-    featureSNData: state.featureSNData,
     featureSCData: state.featureSCData,
 });
 
 const mapDispatchToProps = (dispatch, props) =>
 
     ({
-        setDataTypeAndCluster(dataType, cluster, featureSCData, featureSNData) {
+        setDataTypeAndCluster(dataType, cluster, featureSCData) {
             dispatch(setDataType(dataType));
             dispatch(setEnrollmentCategory("all"));
             dispatch(setCluster(cluster));

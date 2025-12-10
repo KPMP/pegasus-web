@@ -5,14 +5,13 @@ import { withRouter } from 'react-router';
 
 const mapStateToProps = (state, props) =>
 ({
-  featureSNData: state.featureSNData,
   featureSCData: state.featureSCData,
 });
 
 const mapDispatchToProps = (dispatch, props) =>
 ({
-    setSelectedConcept(dataType, featureSNData, featureSCData) {
-        dispatch(setDataTypeAndRedirect(dataType, featureSNData, featureSCData, props));
+    setSelectedConcept(dataType, featureSCData) {
+        dispatch(setDataTypeAndRedirect(dataType, featureSCData, props));
     }
 });
 

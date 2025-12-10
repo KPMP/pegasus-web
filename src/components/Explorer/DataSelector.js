@@ -21,7 +21,7 @@ class WelcomeText extends Component {
                         <Container className="mt-3 rounded border p-3 shadow-sm">
                             <Row className="mb-4">
                                 <Col>
-                      <SamplesByDataTypeTable history={this.props.history} setSelectedConcept={this.props.setSelectedConcept} featureSCData={this.props.featureSCData} featureSNData={this.props.featureSNData}  />
+                      <SamplesByDataTypeTable history={this.props.history} setSelectedConcept={this.props.setSelectedConcept} featureSCData={this.props.featureSCData} />
                                 </Col>
                             </Row>
                         </Container>

@@ -60,7 +60,7 @@ class DataTypeSelector extends Component {
     setSelectedDatasetSummary(dataTypeShort, availableData) {
         // Coming from homepage search (no datatype yet)
         if (!dataTypeShort && availableData && availableData.length > 0) {
-            this.props.setDataType(availableData[0].dataTypeShort, this.props.featureSNData, this.props.featureSCData);
+            this.props.setDataType(availableData[0].dataTypeShort, this.props.featureSCData);
             this.props.setEnrollmentCategory(this.props.enrollmentCategory ? this.props.enrollmentCategory : "all");
             this.setState({ selectedDataset: availableData[0], tissueInputValue: "all"})
             return
@@ -88,7 +88,7 @@ class DataTypeSelector extends Component {
 
     fetchDataTypeSummaryInformation = async (geneSymbol) => {
         this.setState({ isDatasetSummaryLoading: true, datasetToggle: 'collapsed' });
-        if ((this.props.dataType === "sc" && this.props.featureSCData) || (this.props.dataType === "sn" && this.props.featureSNData)) {
+        if ((this.props.dataType === "sc" && this.props.featureSCData)) {
             return fetchDataTypeSummaryInformation2025(geneSymbol).then(
                     (datasetSummary) => {
                         if (datasetSummary) {
@@ -183,7 +183,7 @@ class DataTypeSelector extends Component {
     handleInputChange(inputValue, action) {
         if (action.action !== "input-blur" && action.action !== "menu-close") {
             handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${inputValue.value} and gene: ${this.props.gene.symbol}`);
-          this.props.setDataType(inputValue.value, this.props.featureSNData, this.props.featureSCData);
+            this.props.setDataType(inputValue.value, this.props.featureSCData);
             this.setState({ dataTypeInputValue: inputValue });
         }
     };

@@ -10,7 +10,6 @@ const mapStateToProps = (state, props) =>
     dataType: state.dataType,
     gene: state.gene,
     isLoadingUmap: props.isLoadingUmap,
-    featureSNData: state.featureSNData,
     featureSCData: state.featureSCData
 });
 
@@ -19,7 +18,7 @@ const mapDispatchToProps = (dispatch, props) =>
     setEnrollmentCategory(enrollmentCategory) {
         dispatch(setEnrollmentCategory(enrollmentCategory));
     },
-    setDataType(dataType, featureSNData, featureSCData) {
+    setDataType(dataType, featureSCData) {
         dispatch(setDataType(dataType));
         if (dataType === 'rt') {
             dispatch((dispatch) => window.open("/explorer/regionalviz", "_self"));
@@ -31,11 +30,7 @@ const mapDispatchToProps = (dispatch, props) =>
             }
         }
         else if (dataType === 'sn') {
-          if (featureSNData){
-            dispatch((dispatch) => window.open("/explorer/dataViz2", "_self"));
-          }else {
-            dispatch((dispatch) => window.open("/explorer/dataViz", "_self"));
-          }
+          dispatch((dispatch) => window.open("/explorer/dataViz2", "_self"));
         }
         else if(dataType === "rp"){
           dispatch((dispatch) => window.open("/explorer/regionalpro", "_self"));

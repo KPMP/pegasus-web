@@ -40,9 +40,6 @@ class RNASeqVizV2 extends Component {
     if (this.props.featureSCData) {
       this.props.setFeatureSCData(this.props.featureSCData)
     }
-    if (this.props.featureSNData) {
-      this.props.setFeatureSNData(this.props.featureSNData)
-    }
     const queryParam = queryString.parse(this.props.location.search);
     if (
       this.props.gene.symbol !== undefined &&
@@ -164,7 +161,7 @@ class RNASeqVizV2 extends Component {
                 <Row>
                   <Col lg="6" className="umapPlot-container">
                     {
-                        this.props.featureSCData || this.props.featureSNData ? 
+                        this.props.featureSCData ? 
 
                             <UMAPPlot2
                             data={this.state.plotData}

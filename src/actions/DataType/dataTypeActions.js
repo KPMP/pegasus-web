@@ -26,7 +26,7 @@ export const setDataType = (dataType) => {
     }
 };
 
-export const setDataTypeAndRedirect = (dataType, featureSNData, featureSCData, props) => {
+export const setDataTypeAndRedirect = (dataType, featureSCData, props) => {
     return (dispatch) => {
         switch (dataType) {
           case "Single-cell RNA-seq (scRNA-seq)":
@@ -39,11 +39,7 @@ export const setDataTypeAndRedirect = (dataType, featureSNData, featureSCData, p
               break;
             case "Single-nucleus RNA-seq (snRNA-seq)":
               dispatch(setDataType("sn"));
-              if (featureSNData) {
-                window.open('/explorer/dataviz2', '_self');
-              } else {
-                window.open('/explorer/dataviz', '_self');
-              }
+              window.open('/explorer/dataviz2', '_self');
               break;
             case "Regional transcriptomics":
                 dispatch(setDataType("rt"));

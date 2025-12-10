@@ -35,7 +35,7 @@ class SamplesByDataTypeTable extends Component {
     }
 
     async fetchDataTypeSummaryLocal() {
-       if (this.props.featureSCData || this.props.featureSNData) {
+       if (this.props.featureSCData) {
             return await fetchDataTypeSummaryInformation2025();    
         } else {
             return await fetchDataTypeSummaryInformation();
@@ -55,7 +55,7 @@ class SamplesByDataTypeTable extends Component {
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
 
-        this.props.setDataType(dataType, this.props.featureSNData, this.props.featureSCData, this.props);
+        this.props.setDataType(dataType, this.props.featureSCData, this.props);
 
     }
 
