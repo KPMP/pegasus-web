@@ -14,20 +14,16 @@ import Home from './components/Home/Home';
 import Explorer from './components/Explorer/Explorer';
 import { ApolloProvider } from '@apollo/client';
 import { apolloClient } from './helpers/ApolloClient';
-import GeneSummaryContainer from './components/Summary/GeneSummaryContainer';
 import CellTypeSummaryContainer from './components/Summary/CellTypeSummaryContainer';
-import CellTypeSummaryContainerV2 from './components/Summary/CellTypeSummaryContainerV2';
 import NotFoundPage from './components/Error/NotFoundPage';
-import RNASeqVizContainerV2 from './components/DataViz/RNASeqVizContainerV2';
+import RNASeqVizContainer from './components/DataViz/RNASeqVizContainer';
 import DiffexByClusterContainer from "./components/ExpressionTables/DiffexByClusterContainer";
-import DiffexByClusterContainerV2 from "./components/ExpressionTables/DiffexByClusterContainerV2";
 import RegionalVizContainer from "./components/DataViz/RegionalVizContainer";
 import packageInfo from '../package.json';
 import { PrivateUmapRoute } from './PrivateRoutes';
 import UMAPContainer from './components/DataViz/UMAPContainer';
-import UMAPContainerV2 from './components/DataViz/UMAPContainerV2';
 import RegionalProteomicsContainer from './components/DataViz/RegionalProteomicsContainer';
-import GeneSummaryContainerV2 from './components/Summary/GeneSummaryContainerV2';
+import GeneSummaryContainer from './components/Summary/GeneSummaryContainer';
 import STVizContainer from './components/DataViz/STVizContainer';
 
 const cacheStore = window.sessionStorage.getItem('redux-store');
@@ -80,18 +76,14 @@ class App extends Component {
                   <Route exact path='/' history={this.props.history}  component={Home} store={store} />
                   <Route exact path='/explorer' component={Explorer} store={store} />
                   <Route exact path='/explorer/genesummary' component={GeneSummaryContainer} store={store} />
-                  <Route exact path='/explorer/genesummary2' component={GeneSummaryContainerV2} store={store} />
                   <Route exact path='/explorer/celltypesummary' component={CellTypeSummaryContainer} store={store} />
-                  <Route exact path='/explorer/celltypesummary2' component={CellTypeSummaryContainerV2} store={store} />
-                  <Route exact path='/explorer/dataviz2' component={RNASeqVizContainerV2} store={store} />
+                  <Route exact path='/explorer/dataviz' component={RNASeqVizContainer} store={store} />
                   <Route exact path='/explorer/regionalviz' component={RegionalVizContainer} store={store} />
                   <Route exact path='/explorer/diffex' component={DiffexByClusterContainer} store={store} />
-                  <Route exact path='/explorer/diffex2' component={DiffexByClusterContainerV2} store={store} />
                   <Route exact path='/explorer/regionalpro' component={RegionalProteomicsContainer} store={store}/>
                   <Route exact path='/explorer/stviz' component={STVizContainer} store={store} />
                   <Route exact path='/oops' component={Oops} />
                   <PrivateUmapRoute exact path='/explorer/dataViz/umap' component={UMAPContainer} store={store} />
-                  <PrivateUmapRoute exact path='/explorer/dataViz/umap2' component={UMAPContainerV2} store={store} />
                   <Route path='*' component={NotFoundPage} />
                 </Switch>
                 <NavFooter app='atlas' />

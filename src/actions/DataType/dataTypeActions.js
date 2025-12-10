@@ -31,11 +31,11 @@ export const setDataTypeAndRedirect = (dataType, props) => {
         switch (dataType) {
           case "Single-cell RNA-seq (scRNA-seq)":
               dispatch(setDataType("sc"));
-              window.open('/explorer/dataviz2', '_self');
+              window.open('/explorer/dataviz', '_self');
               break;
             case "Single-nucleus RNA-seq (snRNA-seq)":
               dispatch(setDataType("sn"));
-              window.open('/explorer/dataviz2', '_self');
+              window.open('/explorer/dataviz', '_self');
               break;
             case "Regional transcriptomics":
                 dispatch(setDataType("rt"));

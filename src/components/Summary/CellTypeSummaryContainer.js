@@ -8,7 +8,7 @@ import { withRouter } from 'react-router';
 const mapStateToProps = (state, props) =>
 ({
     cellType: state.cellType,
-    conceptSummary: state.conceptSummary
+    conceptSummary: state.conceptSummary,
 });
 
 const mapDispatchToProps = (dispatch, props) =>
@@ -18,8 +18,8 @@ const mapDispatchToProps = (dispatch, props) =>
             dispatch(setDataType(dataType));
             dispatch(setEnrollmentCategory("all"));
             dispatch(setCluster(cluster));
-            dispatch((dispatch) => window.open("/explorer/diffex2", '_self'));
-
+            dispatch((dispatch) => window.open("/explorer/diffex", '_self'));
+            
         }
     });
 

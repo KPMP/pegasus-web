@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 import DataTypeSelectorContainer from "./DataTypeSelectorContainer";
 import ExpressionXCellType from "../ExpressionTables/ExpressionXCellType";
-import UMAPPlot2 from "../Plots/UMAPPlot2";
+import UMAPPlot from "../Plots/UMAPPlot";
 import FeaturePlot from "../Plots/FeaturePlot";
 import {
   fetchGeneExpression2025,
@@ -11,7 +11,7 @@ import {
 import { getDataTypeOptions2025 } from "../../helpers/Utils";
 import queryString from "query-string";
 
-class RNASeqVizV2 extends Component {
+class RNASeqViz extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -156,7 +156,7 @@ class RNASeqVizV2 extends Component {
                 </Row>
                 <Row>
                   <Col lg="6" className="umapPlot-container">
-                    <UMAPPlot2 data={this.state.plotData} dataType={ this.props.dataType ? this.props.dataType : "sc"} enrollmentCategory={this.props.enrollmentCategory}/>
+                    <UMAPPlot data={this.state.plotData} dataType={ this.props.dataType ? this.props.dataType : "sc"} enrollmentCategory={this.props.enrollmentCategory}/>
                   </Col>
                 </Row>
               </Col>
@@ -217,4 +217,4 @@ class RNASeqVizV2 extends Component {
   }
 }
 
-export default RNASeqVizV2;
+export default RNASeqViz;

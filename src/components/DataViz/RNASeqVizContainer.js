@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import RNASeqVizV2 from "./RNASeqVizV2";
+import RNASeqViz from "./RNASeqViz";
 import { setEnrollmentCategory } from "../../actions/EnrollmentCategory/enrollmentCategoryActions";
 import { setDataType } from "../../actions/DataType/dataTypeActions";
 import { resetState } from "../../actions/resetAction";
@@ -23,4 +23,4 @@ const mapDispatchToProps = (dispatch, props) => ({
   },
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(RNASeqVizV2);
+export default connect(mapStateToProps, mapDispatchToProps)(RNASeqViz);

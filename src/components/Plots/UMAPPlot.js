@@ -6,7 +6,7 @@ const DataTypeEnum = {
     SINGLE_CELL: 'sc'
 }
 
-class UMAPPlot2 extends Component {
+class UMAPPlot extends Component {
     render() {
         if (!this.props.dataType) {
             return (
@@ -36,4 +36,4 @@ class UMAPPlot2 extends Component {
     }
 }
 
-export default UMAPPlot2;
+export default UMAPPlot;

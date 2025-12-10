@@ -22,10 +22,10 @@ const mapDispatchToProps = (dispatch, props) =>
         if (dataType === 'rt') {
           dispatch((dispatch) => window.open("/explorer/regionalviz", "_self"));
         } else if (dataType === 'sc') {
-          dispatch((dispatch) => window.open("/explorer/dataViz2", "_self"));
+          dispatch((dispatch) => window.open("/explorer/dataViz", "_self"));
         }
         else if (dataType === 'sn') {
-          dispatch((dispatch) => window.open("/explorer/dataViz2", "_self"));
+          dispatch((dispatch) => window.open("/explorer/dataViz", "_self"));
         }
         else if(dataType === "rp"){
           dispatch((dispatch) => window.open("/explorer/regionalpro", "_self"));

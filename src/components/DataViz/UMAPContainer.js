@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import UMAP from "./UMAPViz";
+import UMAPViz from "./UMAPViz";
 
 const mapStateToProps = (state, props) =>
 ({
@@ -14,4 +14,4 @@ const mapDispatchToProps = (dispatch, props) =>
 
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(UMAP);
+export default connect(mapStateToProps, mapDispatchToProps)(UMAPViz);

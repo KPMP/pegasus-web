@@ -25,10 +25,10 @@ export const setSelectedConceptAndRedirect = (concept, props) => {
         dispatch(setSelectedConcept(concept));
         switch (concept.type) {
             case "cell_type":
-                window.open('/explorer/celltypesummary2', '_self');
+                window.open('/explorer/celltypesummary', '_self');
                 break;
             case "gene":
-                window.open('/explorer/genesummary2', '_self');
+                window.open('/explorer/genesummary', '_self');
                 break;
             default:
                 window.open('/explorer', '_self');
