@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { Container, Row, Col } from "reactstrap";
 import DataTypeSelectorContainer from "./DataTypeSelectorContainer";
 import ExpressionXCellType from "../ExpressionTables/ExpressionXCellType";
-import UMAPPlot from "../Plots/UMAPPlot";
 import UMAPPlot2 from "../Plots/UMAPPlot2";
 import FeaturePlot from "../Plots/FeaturePlot";
 import {
@@ -37,9 +36,6 @@ class RNASeqVizV2 extends Component {
   };
 
   async componentDidMount() {
-    if (this.props.featureSCData) {
-      this.props.setFeatureSCData(this.props.featureSCData)
-    }
     const queryParam = queryString.parse(this.props.location.search);
     if (
       this.props.gene.symbol !== undefined &&
@@ -160,25 +156,7 @@ class RNASeqVizV2 extends Component {
                 </Row>
                 <Row>
                   <Col lg="6" className="umapPlot-container">
-                    {
-                        this.props.featureSCData ? 
-
-                            <UMAPPlot2
-                            data={this.state.plotData}
-                            dataType={
-                                this.props.dataType ? this.props.dataType : "sc"
-                            }
-                            enrollmentCategory={this.props.enrollmentCategory}
-                            />
-                        :
-                            <UMAPPlot
-                            data={this.state.plotData}
-                            dataType={
-                                this.props.dataType ? this.props.dataType : "sc"
-                            }
-                            enrollmentCategory={this.props.enrollmentCategory}
-                            />
-                    }
+                    <UMAPPlot2 data={this.state.plotData} dataType={ this.props.dataType ? this.props.dataType : "sc"} enrollmentCategory={this.props.enrollmentCategory}/>
                   </Col>
                 </Row>
               </Col>

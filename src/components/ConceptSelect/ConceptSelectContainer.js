@@ -9,14 +9,13 @@ const mapStateToProps = (state, props) => {
     return {
         selectedConcept: selectedConcept,
         gene: state.gene,
-        featureSCData: state.featureSCData,
     }
 };
 
 const mapDispatchToProps = (dispatch, props) =>
 ({
-    setDataType(dataType, featureSCData) {
-        dispatch(setDataTypeAndRedirect(dataType, featureSCData, props));
+    setDataType(dataType) {
+        dispatch(setDataTypeAndRedirect(dataType, props));
     },
     setSelectedConcept(concept) {
         const action = props.useRedirection

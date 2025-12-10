@@ -8,8 +8,7 @@ import { withRouter } from 'react-router';
 const mapStateToProps = (state, props) =>
 ({
     cellType: state.cellType,
-    conceptSummary: state.conceptSummary,
-    featureSCData: state.featureSCData,
+    conceptSummary: state.conceptSummary
 });
 
 const mapDispatchToProps = (dispatch, props) =>

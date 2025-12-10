@@ -45,7 +45,7 @@ class CellTypeSummary extends Component {
             }
         }
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and cluster: ${cluster}`);
-        this.props.setDataTypeAndCluster(dataType, cluster, this.props.featureSCData);
+        this.props.setDataTypeAndCluster(dataType, cluster);
     };
 
     parseClusterName = (value) => {

@@ -166,36 +166,6 @@ export const fetchDataTypeSummaryInformation2025 = async (fetchPolicy = 'no-cach
     return undefined;
 }
 
-export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') => {
-    const query = gql`
-      query {
-                getDataTypeSummaryInformation
-                 {
-                    omicsType
-                    dataType
-                    dataTypeShort
-                    hrtCount
-                    akiCount
-                    ckdCount
-                    dmrCount
-                    totalCount
-                    participantCount
-                }
-            }`;
-    const response = await apolloClient.query({
-        query: query,
-        fetchPolicy: fetchPolicy
-    });
-    if (response.data && response.data.getDataTypeSummaryInformation) {
-        return response.data.getDataTypeSummaryInformation;
-    } else {
-        console.log('response.error',response.error)
-        store.dispatch(sendMessageToBackend("Could not retrieve Gene Dataset: " + response.error));
-    }
-
-    return undefined;
-}
-
 export const fetchPlotlyData2025 = async(dataType, geneSymbol, enrollmentCategory, fetchPolicy='cache-first') => {
      const query = gql`
             query {
@@ -275,43 +245,6 @@ export const fetchDataTypesForConcept2025 = async (geneSymbol, clusterName) => {
         store.dispatch(sendMessageToBackend("Could not retrieve data types: " + response.error));
     }
 }
-
-export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enrollmentCategory) => {
-    const query = gql`
-        query {
-             geneExpressionSummary(
-				dataType: "${dataType}",
-				geneSymbol: "${geneSymbol}",
-				cellType: "${cellType}",
-				enrollmentCategory: "${enrollmentCategory}"
-				) {
-					id
-					enrollmentCategory
-					gene
-					pVal
-					pValAdj
-					foldChange
-					pct1
-					pct2
-					avgExp
-					cluster
-					clusterName
-					cellCount
-					dataType
-				}
-        }`;
-
-    const response = await apolloClient.query({
-        query: query
-    });
-
-	if(response.data && response.data.geneExpressionSummary) {
-		return response.data.geneExpressionSummary;
-	} else {
-		store.dispatch(sendMessageToBackend("Could not retrieve gene expression data: " + response.error));
-	}
-};
-
 
 export const fetchGeneExpression2025 = async (dataType, geneSymbol, cellType, enrollmentCategory) => {
     const query = gql`

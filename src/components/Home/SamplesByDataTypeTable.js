@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
-import { fetchSummaryData, fetchDataTypeSummaryInformation, fetchDataTypeSummaryInformation2025} from '../../helpers/ApolloClient';
+import { fetchSummaryData, fetchDataTypeSummaryInformation2025} from '../../helpers/ApolloClient';
 import { Row, Col, UncontrolledTooltip } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 
@@ -35,11 +35,7 @@ class SamplesByDataTypeTable extends Component {
     }
 
     async fetchDataTypeSummaryLocal() {
-       if (this.props.featureSCData) {
-            return await fetchDataTypeSummaryInformation2025();    
-        } else {
-            return await fetchDataTypeSummaryInformation();
-        }
+        return await fetchDataTypeSummaryInformation2025();    
     }
 
     compare( a, b ) {
@@ -55,7 +51,7 @@ class SamplesByDataTypeTable extends Component {
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
 
-        this.props.setDataType(dataType, this.props.featureSCData, this.props);
+        this.props.setDataType(dataType, this.props);
 
     }
 

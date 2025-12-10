@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
-import { fetchSummaryData, fetchDataTypeSummaryInformation, fetchDataTypeSummaryInformation2025} from '../../helpers/ApolloClient';
+import { fetchSummaryData, fetchDataTypeSummaryInformation2025} from '../../helpers/ApolloClient';
 import { Grid, TableHeaderRow, Table, TableColumnResizing} from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
@@ -42,16 +42,12 @@ class SamplesByDataTypeTable extends Component {
     }
 
     async getDatasetSummaryLocal() {
-        if (this.props.featureSCData) {
-            return await fetchDataTypeSummaryInformation2025()
-        } else {
-            return await fetchDataTypeSummaryInformation()
-        }
+        return await fetchDataTypeSummaryInformation2025()
     }
 
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
-        this.props.setSelectedConcept(dataType, this.props.featureSCData, this.props);
+        this.props.setSelectedConcept(dataType, this.props);
     }
 
     formatDataTypeCell(row) {

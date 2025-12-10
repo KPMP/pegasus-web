@@ -9,8 +9,7 @@ const mapStateToProps = (state, props) =>
 ({
     dataType: state.dataType,
     cluster: state.cluster,
-    enrollmentCategory: state.enrollmentCategory,
-    feautreSCData: state.featureSCData,
+    enrollmentCategory: state.enrollmentCategory
 });
 
 const mapDispatchToProps = (dispatch, props) =>

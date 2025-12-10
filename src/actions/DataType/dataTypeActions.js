@@ -26,16 +26,12 @@ export const setDataType = (dataType) => {
     }
 };
 
-export const setDataTypeAndRedirect = (dataType, featureSCData, props) => {
+export const setDataTypeAndRedirect = (dataType, props) => {
     return (dispatch) => {
         switch (dataType) {
           case "Single-cell RNA-seq (scRNA-seq)":
               dispatch(setDataType("sc"));
-              if (featureSCData) {
-                window.open('/explorer/dataviz2', '_self');
-              } else {
-                window.open('/explorer/dataviz', '_self');
-              }
+              window.open('/explorer/dataviz2', '_self');
               break;
             case "Single-nucleus RNA-seq (snRNA-seq)":
               dispatch(setDataType("sn"));
