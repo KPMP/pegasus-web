@@ -44,7 +44,9 @@ class DataTypeSelector extends Component {
 
     componentDidMount() {
         let options = getAllDataTypeOptions()
+        console.log(this.state.selectedDataset)
         let enrollmentCategoryOptions = getEnrollmentCategoryOptions(this.state.selectedDataset, this.props.gene.symbol);
+        console.log(enrollmentCategoryOptions)
 
         let selectedOption = options.find(item => this.props.dataType === item.value);
         let selectedEnrollmentCategory = enrollmentCategoryOptions.find(item => this.state.tissueInputValue === item.value)
