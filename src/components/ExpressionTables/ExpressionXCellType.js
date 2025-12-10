@@ -225,6 +225,7 @@ class ExpressionXCellType extends Component {
         } else if (this.props.data.length === 0) {
             return (<div></div>)
         } else {
+            console.log(this.props.data)
             return (
                 <React.Fragment>
                     <Row xs='12' className='mt-5'>
