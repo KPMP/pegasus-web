@@ -58,6 +58,10 @@ export const setDataTypeAndRedirect = (dataType, props) => {
                 var linkVariable = "PAS%20%28Segmentation%20Masks%29";
                 window.open('/spatial-viewer/?size=n_20_n&filters%5B0%5D%5Bfield%5D=imagetype&filters%5B0%5D%5Bvalues%5D%5B0%5D=' + linkVariable +'&filters%5B0%5D%5Btype%5D=any', '_self')
                 break
+            case "Spatial Transcriptomics":
+                dispatch(setDataType("st"));
+                window.open("/explorer/dataViz2", "_self");
+                break
             default:
                 linkVariable = dataType.replaceAll(" ", "%20")
                 window.open('/spatial-viewer/?size=n_20_n&filters%5B0%5D%5Bfield%5D=datatype&filters%5B0%5D%5Bvalues%5D%5B0%5D='+ linkVariable +'&filters%5B0%5D%5Btype%5D=any', '_self')
