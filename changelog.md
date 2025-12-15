@@ -1,6 +1,21 @@
 # Changelog
 
-## Release 2.9 (unreleased)
+## Release 3.2 (unreleased)
+Brief summary:
+
+### Breaking changes:
+
+---
+
+## Release 3.1
+Brief summary:
+
+- Add protein sorting in diffex tables
+- Fixed issue with gene expression tables not showing up for some UMAPs
+
+---
+
+## Release 3.0 (11/13/2025)
 Brief summary: 
 - Add new endpoints to retrieve new Single-Cell & Single-Nuc data
 - Implement feature switch to enable new data API calls
@@ -8,6 +23,11 @@ Brief summary:
 - Add new SC & SN UMAPs
 - Update footers for dataViz & celltypesummary pages
 - Replace Material Table library
+
+### Breaking changes
+- some calls to endpoints and to new page flow hardcoded for time constraints
+
+---
 
 ## Release 2.8 (6/30/2025)
 Brief summary:
