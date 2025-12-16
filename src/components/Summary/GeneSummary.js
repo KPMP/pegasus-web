@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Spinner } from 'reactstrap';
 import { Grid, TableColumnResizing, TableHeaderRow, Table, TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
-import { fetchDataTypeSummaryInformation, fetchDataTypeSummaryInformation2025 } from '../../helpers/ApolloClient';
-import { getDataTypeOptions } from "../../helpers/Utils";
+import { fetchDataTypeSummaryInformation2025 } from '../../helpers/ApolloClient';
+import { getDataTypeOptions2025 } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from  '../../helpers/googleAnalyticsHelper';
 
 class GeneSummary extends Component {
@@ -31,7 +31,7 @@ class GeneSummary extends Component {
 
     fetchPageData = async() => {
         await this.fetchDataTypeSummaryLocal(this.props.gene.symbol);
-        await getDataTypeOptions(this.props.gene.symbol, "").then(
+        await getDataTypeOptions2025(this.props.gene.symbol, "").then(
             (options) => {
                 this.setState({ dataTypeOptions: options, isLoading: false })
             },
@@ -53,7 +53,6 @@ class GeneSummary extends Component {
     }
 
     fetchDataTypeSummaryLocal = async () => {
-        if (this.props.featureSCData || this.props.featureSNData) {
         await fetchDataTypeSummaryInformation2025().then(
             (dataSummary) => {
                 if (dataSummary) {
@@ -65,20 +64,6 @@ class GeneSummary extends Component {
                 console.log('There was a problem fetching the gene summary data: ' + error)
             }
         );
-        } else {
-            await fetchDataTypeSummaryInformation().then(
-                (dataSummary) => {
-                    if (dataSummary) {
-                        this.setState({ geneSummary: dataSummary, isLoading: false });
-                    }
-                },
-                (error) => {
-                    this.setState({ geneSummary: [], isLoading: false });
-                    console.log('There was a problem fetching the gene summary data: ' + error)
-                }
-            );
-        }
-        
     }
 
     handleLinkClick = (dataTypeShort, dataType) => {
