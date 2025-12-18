@@ -26,7 +26,7 @@ export const setDataType = (dataType) => {
     }
 };
 
-export const setDataTypeAndRedirect = (dataType, props) => {
+export const setDataTypeAndRedirect = (dataType, featureSTData, props) => {
     return (dispatch) => {
         switch (dataType) {
           case "Single-cell RNA-seq (scRNA-seq)":
@@ -45,6 +45,14 @@ export const setDataTypeAndRedirect = (dataType, props) => {
                 dispatch(setDataType("rp"));
                 window.open("/explorer/regionalpro", "_self");
                 break;
+            case "Spatial Transcriptomics":
+                if (featureSTData) {
+                    dispatch(setDataType("st"));
+                    window.open("/explorer/stViz", "_self");
+                }else {
+                    window.open('/spatial-viewer/?size=n_20_n&filters[0][field]=datatype&filters[0][values][0]=Spatial Transcriptomics&filters[0][type]=any')
+                }
+                break;
             case "Spatial Metabolomics":
                 window.open('https://metaspace2020.eu/datasets?prj=0d9a6710-8389-11eb-96db-73c89a357a89&q=_SM_', '_blank');
                 break
@@ -57,10 +65,6 @@ export const setDataTypeAndRedirect = (dataType, props) => {
             case "Segmentation Masks & Pathomics Vectors":
                 var linkVariable = "PAS%20%28Segmentation%20Masks%29";
                 window.open('/spatial-viewer/?size=n_20_n&filters%5B0%5D%5Bfield%5D=imagetype&filters%5B0%5D%5Bvalues%5D%5B0%5D=' + linkVariable +'&filters%5B0%5D%5Btype%5D=any', '_self')
-                break
-            case "Spatial Transcriptomics":
-                dispatch(setDataType("st"));
-                window.open("/explorer/dataViz2", "_self");
                 break
             default:
                 linkVariable = dataType.replaceAll(" ", "%20")

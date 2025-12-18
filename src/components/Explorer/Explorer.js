@@ -7,6 +7,7 @@ import { setGene } from '../../actions/Gene/geneActions';
 import { setEnrollmentCategory } from '../../actions/EnrollmentCategory/enrollmentCategoryActions';
 import { setDataType } from '../../actions/DataType/dataTypeActions';
 import { setAccession } from '../../actions/Accession/accessionActions';
+import { setFeatureSTData } from '../../actions/FeatureSwtich/featureSwitchActions';
 
 import initialState from '../../initialState';
 import { connect } from "react-redux";
@@ -18,6 +19,7 @@ class Explorer extends Component {
         this.props.setEnrollmentCategory("");
         this.props.setDataType("");
         this.props.setSelectedConcept(initialState.selectedConcept);
+        this.props.setFeatureSTData(initialState.featureSTData);
         return (
             <article>
                 <WelcomeText />
@@ -44,6 +46,9 @@ const mapDispatchToProps = (dispatch, props) =>
     },
     setAccession(accession){
       dispatch(setAccession(accession))
+    },
+    setFeatureSTData(featureSTData){
+        dispatch(setFeatureSTData(featureSTData))
     }
 });
 

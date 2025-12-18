@@ -7,6 +7,7 @@ import { Spinner } from "reactstrap";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import Parser from 'html-react-parser';
 import { stripHtml } from "string-strip-html";
+import initialState from '../../initialState';
 
 class CellTypeSummary extends Component {
 
@@ -85,7 +86,7 @@ class CellTypeSummary extends Component {
     }
 
     getColumns() {
-        return [
+        const columns = [
             {
                 title: <span className='cell-summary-table-header'>STRUCTURE/<br />REGION</span>,
                 name: 'structureRegion',
@@ -131,7 +132,19 @@ class CellTypeSummary extends Component {
                     this.linkDataTypeCells(row.isRegionalProteomics, 'rp', row)
                 )
             },
-        ]
+        ];
+
+        // if (this.props.featureSTData) {
+        //     columns.push({
+        //         title: <span>SPATIAL TRANSCRIPTOMICS</span>,
+        //         name: 'st',
+        //         getCellValue: row => (
+        //             this.linkDataTypeCells('N', 'st', row)
+        //         )
+        //     });
+        // }
+
+        return columns;
     };
 
     linkDataTypeCells(isOfType, dataType, row) {
@@ -142,6 +155,8 @@ class CellTypeSummary extends Component {
     }
 
     render() {
+        this.props.setFeatureSTData(initialState.featureSTData)
+        console.log(this.state.cellTypeSummary)
         let cellType = this.props.cellType;
         if (this.state.isLoading) {
             return (

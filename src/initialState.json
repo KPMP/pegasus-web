@@ -6,5 +6,6 @@
   "gene": {},
   "cluster": "",
   "cellType": "",
-  "accession": ""
+  "accession": "",
+  "featureSTData": true
 }

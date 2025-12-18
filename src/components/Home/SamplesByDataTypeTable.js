@@ -26,11 +26,19 @@ class SamplesByDataTypeTable extends Component {
         explorerSummary = [...explorerSummary].sort(this.compare)
         explorerSummary = explorerSummary.filter(availableDataVisibilityFilter)
 
+
         // adding lines to separate the sections in the table
         explorerSummary.unshift({dataType: "Explorer"})
         spatialSummary.unshift({dataType: "Spatial Viewer"})
-
-        const summaryData = explorerSummary.concat(spatialSummary)
+        
+        let filteredData = []
+        let summaryData = []
+        if (!this.props.featureSTData){ //if featureSTData is false, remove Spatial Transcriptomics from explorer summary
+            filteredData = explorerSummary.filter((item) => item.dataType !== "Spatial Transcriptomics")
+            summaryData = filteredData.concat(spatialSummary)
+        }else {
+            summaryData = explorerSummary.concat(spatialSummary)
+        }
         this.setState({dataTable: summaryData});
     }
 

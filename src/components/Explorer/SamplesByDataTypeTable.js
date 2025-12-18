@@ -38,7 +38,15 @@ class SamplesByDataTypeTable extends Component {
         summary = summary.slice()
                         .sort( this.compare )
                         .filter(availableDataVisibilityFilter)
-        this.setState({summary})
+        console.log(summary)
+        console.log(this.props.featureSTData)
+        let filteredData = []
+        if (!this.props.featureSTData){ //if featureSTData is false, remove Spatial Transcriptomics from explorer summary
+            filteredData = summary.filter((item) => !(item.dataType === "Spatial Transcriptomics" && item.hrtCount === 1000))
+            this.setState({summary: filteredData})
+        }else{
+            this.setState({summary})
+        }
     }
 
     async getDatasetSummaryLocal() {
@@ -47,7 +55,7 @@ class SamplesByDataTypeTable extends Component {
 
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
-        this.props.setSelectedConcept(dataType, this.props);
+        this.props.setSelectedConcept(dataType, this.props.featureSTData, this.props);
     }
 
     formatDataTypeCell(row) {

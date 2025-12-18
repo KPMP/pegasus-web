@@ -3,6 +3,7 @@ import { selectedConcept, gene, cluster, cellType } from "./components/ConceptSe
 import { dataType } from "./components/DataViz/dataTypeReducer"
 import { enrollmentCategory } from "./components/DataViz/enrollmentCategoryReducer"
 import { accession } from "./components/DataViz/accessionReducer";
+import { featureSTData } from './components/FeatureSwitch/featureSwitchReducer';
 
 
 const appReducer = combineReducers({
@@ -12,7 +13,8 @@ const appReducer = combineReducers({
   gene,
   cluster,
   cellType,
-  accession
+  accession,
+  featureSTData
 })
 
 const rootReducer = (state, action) => {
