@@ -199,8 +199,8 @@ class DataTypeSelector extends Component {
 
     getRepositoryLink = () => {
         const linkMapping = {
-            'sn': '/repository/?size=n_20_n&filters%5B0%5D%5Bfield%5D=dois&filters%5B0%5D%5Bvalues%5D%5B0%5D=10.48698%2Fmg7h-bc51&filters%5B0%5D%5Btype%5D=any',
-            'sc': '/repository/?size=n_20_n&filters%5B0%5D%5Bfield%5D=dois&filters%5B0%5D%5Bvalues%5D%5B0%5D=10.48698%2Fmgd0-gz70&filters%5B0%5D%5Btype%5D=any',
+            'sn': '/repository/?size=n_20_n&filters%5B0%5D%5Bfield%5D=workflow_type&filters%5B0%5D%5Bvalues%5D%5B0%5D=Aggregated%20Clustered%20Data&filters%5B0%5D%5Btype%5D=any&filters%5B1%5D%5Bfield%5D=dois&filters%5B1%5D%5Bvalues%5D%5B0%5D=10.48698%2F16dd-vj20&filters%5B1%5D%5Btype%5D=any&filters%5B2%5D%5Bfield%5D=experimental_strategy&filters%5B2%5D%5Bvalues%5D%5B0%5D=Single-nucleus%20RNA-Seq&filters%5B2%5D%5Btype%5D=any',
+            'sc': '/repository/?size=n_20_n&filters%5B0%5D%5Bfield%5D=workflow_type&filters%5B0%5D%5Bvalues%5D%5B0%5D=Aggregated%20Clustered%20Data&filters%5B0%5D%5Btype%5D=any&filters%5B1%5D%5Bfield%5D=dois&filters%5B1%5D%5Bvalues%5D%5B0%5D=10.48698%2F16dd-vj20&filters%5B1%5D%5Btype%5D=any&filters%5B2%5D%5Bfield%5D=experimental_strategy&filters%5B2%5D%5Bvalues%5D%5B0%5D=Single-cell%20RNA-Seq&filters%5B2%5D%5Btype%5D=any',
             'rt': '/repository/?size=n_20_n&filters%5B0%5D%5Bfield%5D=dois&filters%5B0%5D%5Bvalues%5D%5B0%5D=10.48698%2Ft9fh-qn48&filters%5B0%5D%5Btype%5D=any',
             'rp': '/repository/?size=n_20_n&filters%5B0%5D%5Bfield%5D=workflow_type&filters%5B0%5D%5Bvalues%5D%5B0%5D=Aggregated%20Regional%20Proteomics%20data&filters%5B0%5D%5Btype%5D=any',
             'default': '/repository',
@@ -274,7 +274,7 @@ class DataTypeSelector extends Component {
                     <Row xs="12" className='mt-1 ps-0' >
                         <Col lg="12" className='d-table ps-2'>
                             <span className='d-table-cell pt-1 dataset-info'>Dataset coverage: N={this.state.selectedDataset.participantCount} PARTICIPANTS; {this.state.selectedDataset.hrtCount} HEALTHY REFERENCE; {this.state.selectedDataset.ckdCount} CKD; {this.state.selectedDataset.akiCount} AKI; {this.state.selectedDataset.dmrCount} DM-R 
-                                {(this.props.dataType !== 'sn' && this.props.dataType !== 'sc') && 
+                                { 
                                     <a rel="noreferrer" href={this.getRepositoryLink()}>
                                         <svg xmlns="http://www.w3.org/2000/svg"
                                         xmlnsXlink="http://www.w3.org/1999/xlink"
