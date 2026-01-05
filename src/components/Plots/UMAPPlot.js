@@ -21,13 +21,13 @@ class UMAPPlot extends Component {
                         <img
                             id="umapPlot"
                             alt="all samples of single cell UMAP"
-                            src="/img/sc_reference-UMAP_all-samples_2024-01-12.svg" />
+                            src="/img/KPMP_SC_reference-UMAP_v3.png" />
                     }
                     { this.props.dataType === DataTypeEnum.SINGLE_NUCLEUS &&
                         <img
                             id="umapPlot"
                             alt="all samples of single nucleus UMAP"
-                            src="/img/sn_reference-UMAP_all-samples_2024-02-06.svg" />
+                            src="/img/KPMP_SN_reference-UMAP_v3.svg" />
                     }
 
                 </div>

@@ -7,16 +7,14 @@ import { withRouter } from 'react-router';
 const mapStateToProps = (state, props) =>
     ({
         gene: state.gene,
-        conceptSummary: state.conceptSummary,
-        featureSNData: state.featureSNData,
-        featureSCData: state.featureSCData
+        conceptSummary: state.conceptSummary
     });
 
 const mapDispatchToProps = (dispatch, props) =>
     ({
-        setDataType(dataType, featureSNData, featureSCData) {
+        setDataType(dataType) {
             dispatch(setEnrollmentCategory("all"));
-            dispatch(setDataTypeAndRedirect(dataType, featureSNData, featureSCData, props));
+            dispatch(setDataTypeAndRedirect(dataType, props));
         }
 
     });

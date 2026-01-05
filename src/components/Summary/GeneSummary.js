@@ -68,7 +68,7 @@ class GeneSummary extends Component {
 
     handleLinkClick = (dataTypeShort, dataType) => {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataTypeShort} and gene: ${this.props.gene.symbol}`);
-        this.props.setDataType(dataType, this.props.featureSNData, this.props.featureSCData, this.props);
+        this.props.setDataType(dataType, this.props);
     };
 
     getColumnExtensions() {
@@ -191,7 +191,7 @@ class GeneSummary extends Component {
         return (
             <div className='height-wrapper mb-3'>
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
-                    <ConceptSelectFullWidth overflowWarningContainer={true} useRedirection={true} featureNewCellClusterData={this.props.featureNewCellClusterData}/>
+                    <ConceptSelectFullWidth overflowWarningContainer={true} useRedirection={true} />
                 </Container>
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
                     <Row xs='12'>

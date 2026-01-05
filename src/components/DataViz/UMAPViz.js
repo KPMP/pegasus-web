@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Plotly from '../../helpers/Plotly';
 import createPlotlyComponent from 'react-plotly.js/factory';
 import { median } from '../../helpers/Utils';
-import { fetchPlotlyData } from "../../helpers/ApolloClient";
+import { fetchPlotlyData2025 } from "../../helpers/ApolloClient";
 import { Container, Row, Col } from 'reactstrap';
 import { Spinner } from "reactstrap";
 const Plot = createPlotlyComponent(Plotly);
@@ -64,7 +64,7 @@ class UMAP extends Component {
     };
 
     getUmapPoints = async (dataType, gene, enrollmentCategory, fetchPolicy) => {
-        const results = await fetchPlotlyData(dataType, gene, enrollmentCategory, fetchPolicy);
+        const results = await fetchPlotlyData2025(dataType, gene, enrollmentCategory, fetchPolicy);
         this.setData(results);
     };
 

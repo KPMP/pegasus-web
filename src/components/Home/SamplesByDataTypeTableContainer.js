@@ -6,16 +6,14 @@ import { resetState } from "../../actions/resetAction";
 
 const mapStateToProps = (state, props) =>
 ({
-    selectedDataType: state.selectedDataType,
-    featureSNData: state.featureSNData,
-    featureSCData: state.featureSCData
+    selectedDataType: state.selectedDataType
 });
 
 const mapDispatchToProps = (dispatch, props) =>
 ({
-    setDataType(concept, featureSNData, featureSCData) {
+    setDataType(concept) {
         dispatch(resetState());
-          dispatch(setDataTypeAndRedirect(concept, featureSNData, featureSCData, props));
+          dispatch(setDataTypeAndRedirect(concept, props));
     }
 });
 

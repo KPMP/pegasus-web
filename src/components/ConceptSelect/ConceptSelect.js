@@ -19,19 +19,17 @@ class ConceptSelect extends Component {
     }
 
     handleSelect = (selected) => {
-        console.log(this.props.featureNewCellClusterData)
         if (selected !== null) {
             if (selected.value.type === 'gene') {
-                    console.log("Using 2025 query for data types");
-                    fetchDataTypesForConcept2025(selected.value.value, "").then(
+                fetchDataTypesForConcept2025(selected.value.value, "").then(
                     (results) => {
                         let hasResults = results.dataTypesForConcept2025.length > 0;
                         if (hasResults && !this.props.dataType) {
-                            this.props.setDataType(results.dataTypesForConcept2025[0], this.props.featureSNData, this.props.featureSCData)
+                            this.props.setDataType(results.dataTypesForConcept2025[0])
                         }
                         let hasResultsWithDataType = this.props.dataType ? results.dataTypesForConcept2025.includes(this.props.dataType) : true;
                         if (hasResults && hasResultsWithDataType) {
-                            this.props.setSelectedConcept(selected.value, this.props.featureNewCellClusterData);
+                            this.props.setSelectedConcept(selected.value);
                             this.setState({ value: { label: selected.value.value, value: selected.value }, hasResults, hasResultsWithDataType, noResultValue: '', alertVisible: false });
                         } else {
                             this.setState({ value: { label: selected.value.value, value: selected.value }, hasResults, hasResultsWithDataType, noResultValue: selected.value.value, alertVisible: true });
@@ -44,7 +42,7 @@ class ConceptSelect extends Component {
                 );
 
             } else {
-                this.props.setSelectedConcept(selected.value, this.featureNewCellClusterData);
+                this.props.setSelectedConcept(selected.value);
                 this.setState({ value: { label: selected.value.value, value: selected.value }, hasResults: true, noResultsValue: '', alertVisible: false });
             }
             ReactGA4.event({
