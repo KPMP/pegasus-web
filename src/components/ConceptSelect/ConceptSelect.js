@@ -36,10 +36,11 @@ class ConceptSelect extends Component {
                         }
 
                     },
-                        (error) => {
-                            console.log("There was a problem getting the data: " + error)
+                    (error) => {
+                        console.log("There was a problem getting the data: " + error)
                     }
                 );
+
             } else {
                 this.props.setSelectedConcept(selected.value);
                 this.setState({ value: { label: selected.value.value, value: selected.value }, hasResults: true, noResultsValue: '', alertVisible: false });
