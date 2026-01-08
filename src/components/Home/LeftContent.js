@@ -53,7 +53,7 @@ class LeftContent extends Component {
           <h5>Comparator</h5>
           <div>
             <p>
-              Sample description text
+              Create comparative analyses from KPMP omics datasets.
             </p>
           </div>
           <div className='mt-3'>
