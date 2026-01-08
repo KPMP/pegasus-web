@@ -25,6 +25,7 @@ import UMAPContainer from './components/DataViz/UMAPContainer';
 import RegionalProteomicsContainer from './components/DataViz/RegionalProteomicsContainer';
 import GeneSummaryContainer from './components/Summary/GeneSummaryContainer';
 import STVizContainer from './components/DataViz/STVizContainer';
+import HubMapSchemaComponent from './components/Explorer/HubMapSchema';
 
 const cacheStore = window.sessionStorage.getItem('redux-store');
 const initialState = cacheStore ? JSON.parse(cacheStore) : loadedState;
@@ -82,6 +83,7 @@ class App extends Component {
                   <Route exact path='/explorer/diffex' component={DiffexByClusterContainer} store={store} />
                   <Route exact path='/explorer/regionalpro' component={RegionalProteomicsContainer} store={store}/>
                   <Route exact path='/explorer/stviz' component={STVizContainer} store={store} />
+                  <Route exact path="/explorer/hubmap" component={HubMapSchemaComponent} />
                   <Route exact path='/oops' component={Oops} />
                   <PrivateUmapRoute exact path='/explorer/dataViz/umap' component={UMAPContainer} store={store} />
                   <Route path='*' component={NotFoundPage} />
