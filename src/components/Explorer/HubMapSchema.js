@@ -9,7 +9,7 @@ function HubMapSchema(props) {
     if (!element) return;
 
     const handleClick = (event) => {
-      console.log('HubMapSchema clicked', event);
+      console.log('HubMapSchema clicked', event.explicitOriginalTarget.id);
     };
 
     element.addEventListener('click', handleClick);
