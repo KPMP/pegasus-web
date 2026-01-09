@@ -74,7 +74,7 @@
     "extends": "react-app",
     "parser": "@babel/eslint-parser"
   },
-  "proxy": "https://qa-atlas.kpmp.org/",
+  "proxy": "http://localhost:3030",
   "baseURL": "/",
   "browserslist": {
     "production": [
