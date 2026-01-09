@@ -9,13 +9,13 @@ function HubMapSchema(props) {
     if (!element) return;
 
     const handleClick = (event) => {
-      console.log('HubMapSchema clicked', event.explicitOriginalTarget.id);
+      console.log('HubMapSchema clicked', event.detail);
     };
 
-    element.addEventListener('click', handleClick);
+    element.addEventListener('cell-click', handleClick);
 
     return () => {
-      element.removeEventListener('click', handleClick);
+      element.removeEventListener('cell-click', handleClick);
     };
   }, []);
 
@@ -24,7 +24,7 @@ function HubMapSchema(props) {
   return (
     <hra-medical-illustration
       ref={ref}
-      selected-illustration="https://purl.humanatlas.io/2d-ftu/kidney-renal-corpuscle"
+      selected-illustration="https://purl.humanatlas.io/2d-ftu/kidney-nephron"
       illustrations="https://cdn.humanatlas.io/digital-objects/graph/2d-ftu-illustrations/latest/assets/2d-ftu-illustrations.jsonld"
     />
   );
