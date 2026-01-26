@@ -17,6 +17,9 @@ export const setDataType = (dataType) => {
         case "rp":
             shortDataType = "rp";
             break;
+        case "st":
+            shortDataType = "st";
+            break;
         default:
             shortDataType = "sc"
     }
