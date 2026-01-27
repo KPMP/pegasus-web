@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import { Col, Container, Row, Spinner } from 'reactstrap';
 import { fetchCellTypeHierarchy2025 } from "../../helpers/ApolloClient";
 import CellTypeTabs from './CellTypeTabs';
