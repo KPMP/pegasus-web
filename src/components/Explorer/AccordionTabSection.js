@@ -114,13 +114,7 @@ class AccordionTabSection extends Component {
                     <Col sm="6">
                         {this.props.isNephronSchematic ?
                             <TubuleSchematic
-                                activeCell={this.props.activeCell}
-                                handleCellTypeClick={this.props.handleCellTypeClick}
-                                setActiveTab={this.props.setActiveTab}
-                                setActiveCell={this.props.setActiveCell}
-                                toggleCollapseTab={this.toggleWithoutResetting}
-                                handleSchematicHoverEnter={this.handleSchematicHoverEnter}
-                                handleSchematicHoverLeave={this.handleSchematicHoverLeave}
+                                
                             /> :
                             <div className='tbd-schema'> Schematic TBD</div>
                         }

@@ -8,23 +8,24 @@ function HubMapTubuleSchema(props) {
         const schemaElement = schemaRef.current;
         if (!schemaElement) return;
         
-        const handleCellTypeClick = (event) => { 
-            console.log('TubuleSchematic clicked', event.target.id);
-            // props.onCellTypeSelected(event.target.id);
+        const handleClick = (event) => { 
+            // this is needed to support shadow DOM
+            const target = event.composedPath?.()?.[0] || event.target;
+            console.log('HubMapSchema clicked', target.id);
         }
-        schemaElement.addEventListener('cell-type-click', handleCellTypeClick);
+        schemaElement.addEventListener('click', handleClick);
 
         return () => {
-            schemaElement.removeEventListener('cell-type-click', handleCellTypeClick);
+            schemaElement.removeEventListener('click', handleClick);
         };
     }, [props.onCellTypeSelected]);
 
     return (
-        <hubmap-medical-illustration
+        <hra-medical-illustration
             ref={schemaRef}
             selected-illustration="https://purl.humanatlas.io/2d-ftu/kidney-nephron"
             illustrations="https://cdn.humanatlas.io/digital-objects/graph/2d-ftu-illustrations/latest/assets/2d-ftu-illustrations.jsonld"
-        ></hubmap-medical-illustration>
+        ></hra-medical-illustration>
     );
 }
 
@@ -32,7 +33,7 @@ function HubMapTubuleSchema(props) {
 class TubuleSchematic extends Component {
     render() {
         return (
-            <HubMapTubuleSchema/>
+            <HubMapTubuleSchema />
         );
     }
 }
