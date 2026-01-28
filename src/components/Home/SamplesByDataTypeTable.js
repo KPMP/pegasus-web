@@ -4,7 +4,7 @@ import { availableDataVisibilityFilter } from '../../helpers/Utils';
 import { fetchSummaryData, fetchDataTypeSummaryInformation2025} from '../../helpers/ApolloClient';
 import { Row, Col, UncontrolledTooltip } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
-
+import initialState from '../../initialState';
 class SamplesByDataTypeTable extends Component {
 
     constructor(props) {
@@ -16,7 +16,7 @@ class SamplesByDataTypeTable extends Component {
     }
 
     async componentDidMount(){
-
+        this.props.setFeatureSTData(initialState.featureSTData);
         let spatialSummary = await fetchSummaryData("spatialViewerSummary");
         spatialSummary = [...spatialSummary].sort(this.compare)
         spatialSummary = spatialSummary.filter(availableDataVisibilityFilter)
@@ -59,7 +59,7 @@ class SamplesByDataTypeTable extends Component {
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
 
-        this.props.setDataType(dataType, this.props);
+        this.props.setDataType(dataType, this.props.featureSTData, this.props);
 
     }
 

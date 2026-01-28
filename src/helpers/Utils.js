@@ -119,7 +119,7 @@ export const getAllDataTypeOptions = () => {
     return options;
 };
 
-export const getDataTypeOptions2025 = async (geneSymbol, cluster) => {
+export const getDataTypeOptions2025 = async (geneSymbol, cluster, featureSTData) => {
     let options = await fetchDataTypesForConcept2025(geneSymbol, cluster).then((result) => {
         let dataTypes = result.dataTypesForConcept2025;
         const options = [
@@ -142,8 +142,16 @@ export const getDataTypeOptions2025 = async (geneSymbol, cluster) => {
                 label: "Regional proteomics",
                 value: "rp",
                 isDisabled: !dataTypes.includes("rp")
-            }
+            },
+            
         ];
+        if (featureSTData) {
+            options.push({
+                label: "Spatial Transcriptomics",
+                value: "st",
+                isDisabled: false
+            })
+        }
         return options;
     });
     return options;

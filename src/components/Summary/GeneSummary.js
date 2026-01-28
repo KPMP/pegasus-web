@@ -22,19 +22,18 @@ class GeneSummary extends Component {
 
     async componentDidMount() {
         await this.fetchPageData();
-        console.log(this.props)
+        this.props.setFeatureSTData(initialState.featureSTData);
     }
 
     async componentDidUpdate(prevProps) {
         if (this.props.gene.symbol !== prevProps.gene.symbol) {
             await this.fetchPageData();
-            console.log(this.fetchPageData())
         }
     }
 
     fetchPageData = async() => {
         await this.fetchDataTypeSummaryLocal(this.props.gene.symbol);
-        await getDataTypeOptions2025(this.props.gene.symbol, "").then(
+        await getDataTypeOptions2025(this.props.gene.symbol, "", this.props.featureSTData).then(
             (options) => {
                 this.setState({ dataTypeOptions: options, isLoading: false })
             },
@@ -184,7 +183,7 @@ class GeneSummary extends Component {
     }
 
     render() {
-        this.props.setFeatureSTData(initialState.featureSTData);
+        
         const BandCell = ({ children, tableRow, tableColumn, column, ...restProps }) => {
             return (
                 <TableBandHeader.Cell {...restProps} column={column}
