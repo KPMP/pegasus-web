@@ -23,7 +23,6 @@ class CellTypeSummary extends Component {
     async componentDidMount() {
         this.props.setFeatureSTData(initialState.featureSTData)
         await this.fetchClusterHierarchy();
-        this.handleSpatialTranscriptomicsRow();
     }
     
     async componentDidUpdate(prevProps, prevState, snapShot) {

@@ -53,7 +53,7 @@ export const setDataTypeAndRedirect = (dataType, featureSTData, props) => {
                     dispatch(setDataType("st"));
                     window.open("/explorer/stViz", "_self");
                 }else {
-                    window.open('/spatial-viewer/?size=n_20_n&filters[0][field]=datatype&filters[0][values][0]=Spatial Transcriptomics&filters[0][type]=any')
+                    window.open('/spatial-viewer/?size=n_20_n&filters[0][field]=datatype&filters[0][values][0]=Spatial Transcriptomics&filters[0][type]=any', '_self');
                 }
                 break;
             case "Spatial Metabolomics":

@@ -37,12 +37,10 @@ class SamplesByDataTypeTable extends Component {
         summary = summary.concat(geneDatasetSummary)
         summary = summary.slice()
                         .sort( this.compare )
-                        .filter(availableDataVisibilityFilter)
-        console.log(summary)
-        console.log(this.props.featureSTData)
+                        .filter(availableDataVisibilityFilter);
         let filteredData = []
         if (!this.props.featureSTData){ //if featureSTData is false, remove Spatial Transcriptomics from explorer summary
-            filteredData = summary.filter((item) => !(item.dataType === "Spatial Transcriptomics" && item.hrtCount === 1000))
+            filteredData = summary.filter((item) => !(item.dataType === "Spatial Transcriptomics"))
             this.setState({summary: filteredData})
         }else{
             this.setState({summary})

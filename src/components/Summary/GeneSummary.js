@@ -21,8 +21,8 @@ class GeneSummary extends Component {
     };
 
     async componentDidMount() {
-        await this.fetchPageData();
         this.props.setFeatureSTData(initialState.featureSTData);
+        await this.fetchPageData();
     }
 
     async componentDidUpdate(prevProps) {
