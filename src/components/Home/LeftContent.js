@@ -50,6 +50,17 @@ class LeftContent extends Component {
         </Container>
         }
         <Container className="mt-3 rounded border p-3 shadow-sm">
+          <h5>Comparator</h5>
+          <div>
+            <p>
+              Compare in a case versus control style along attributes of KPMP data.
+            </p>
+          </div>
+          <div className='mt-3'>
+            <Button className="w-100" color='primary' href='/comparator' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Atlas Home', 'Navigation', 'comparator home') }}>Go to Comparator</Button>
+          </div>
+        </Container>
+        <Container className="mt-3 rounded border p-3 shadow-sm">
           <h5>KPMP Central Biorepository</h5>
           <div>
             <p>
