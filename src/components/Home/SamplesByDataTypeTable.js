@@ -59,7 +59,7 @@ class SamplesByDataTypeTable extends Component {
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
 
-        this.props.setDataType(dataType, this.props.featureSTData, this.props);
+        this.props.setDataType(dataType, this.props.featureSTData);
 
     }
 
