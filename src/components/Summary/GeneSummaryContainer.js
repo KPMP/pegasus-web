@@ -3,7 +3,7 @@ import GeneSummary from './GeneSummary';
 import { setDataTypeAndRedirect } from '../../actions/DataType/dataTypeActions'
 import { setEnrollmentCategory } from "../../actions/EnrollmentCategory/enrollmentCategoryActions";
 import { withRouter } from 'react-router';
-import { setFeatureSTData } from '../../actions/FeatureSwtich/featureSwitchActions';
+import { setFeatureSTData } from '../../actions/FeatureSwitch/featureSwitchActions';
 
 const mapStateToProps = (state, props) =>
     ({

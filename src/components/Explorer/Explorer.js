@@ -7,7 +7,7 @@ import { setGene } from '../../actions/Gene/geneActions';
 import { setEnrollmentCategory } from '../../actions/EnrollmentCategory/enrollmentCategoryActions';
 import { setDataType } from '../../actions/DataType/dataTypeActions';
 import { setAccession } from '../../actions/Accession/accessionActions';
-import { setFeatureSTData } from '../../actions/FeatureSwtich/featureSwitchActions';
+import { setFeatureSTData } from '../../actions/FeatureSwitch/featureSwitchActions';
 
 import initialState from '../../initialState';
 import { connect } from "react-redux";

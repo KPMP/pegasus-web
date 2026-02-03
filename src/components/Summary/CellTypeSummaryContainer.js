@@ -4,7 +4,7 @@ import { setDataType } from "../../actions/DataType/dataTypeActions";
 import { setEnrollmentCategory } from "../../actions/EnrollmentCategory/enrollmentCategoryActions";
 import { setCluster } from "../../actions/Cluster/clusterActions"
 import { withRouter } from 'react-router';
-import { setFeatureSTData } from '../../actions/FeatureSwtich/featureSwitchActions';
+import { setFeatureSTData } from '../../actions/FeatureSwitch/featureSwitchActions';
 
 const mapStateToProps = (state, props) =>
 ({
