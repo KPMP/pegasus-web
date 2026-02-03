@@ -7,6 +7,7 @@ import { Spinner } from "reactstrap";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import Parser from 'html-react-parser';
 import { stripHtml } from "string-strip-html";
+import initialState from '../../initialState';
 
 class CellTypeSummary extends Component {
 
@@ -20,18 +21,24 @@ class CellTypeSummary extends Component {
     };
 
     async componentDidMount() {
+        this.props.setFeatureSTData(initialState.featureSTData)
         await this.fetchClusterHierarchy();
     }
-
+    
     async componentDidUpdate(prevProps, prevState, snapShot) {
         if (this.props.cellType !== prevProps.cellType) {
             await this.fetchClusterHierarchy();
+            this.handleSpatialTranscriptomicsRow();
         }
     }
 
     fetchClusterHierarchy = async () => {
         this.setState({ isLoading: true });
         let results = await fetchClusterHierarchy2025(this.props.cellType);
+        if (this.props.featureSTData === false) {
+            results = results.slice(1);
+
+        }
         this.setState({ cellTypeSummary: results, isLoading: false });
     };
 
@@ -69,6 +76,7 @@ class CellTypeSummary extends Component {
             { columnName: 'sc', width: 'auto', align: 'center', wordWrapEnabled: true  },
             { columnName: 'rt', width: 'auto', align: 'center',  wordWrapEnabled: true  },
             { columnName: 'rp', width: 'auto', align: 'center',  wordWrapEnabled: true  },
+            { columnName: 'st', width: 'auto', align: 'center',  wordWrapEnabled: true  },
         ]
     }
 
@@ -81,11 +89,12 @@ class CellTypeSummary extends Component {
             { columnName: 'sc', width: 135},
             { columnName: 'rt', width: 135 },
             { columnName: 'rp', width: 135 },
+            { columnName: 'st', width: 135 },
         ]
     }
 
     getColumns() {
-        return [
+        const columns = [
             {
                 title: <span className='cell-summary-table-header'>STRUCTURE/<br />REGION</span>,
                 name: 'structureRegion',
@@ -129,9 +138,20 @@ class CellTypeSummary extends Component {
                 name: 'rp',
                 getCellValue: row => (
                     this.linkDataTypeCells(row.isRegionalProteomics, 'rp', row)
-                )
+                ),
             },
-        ]
+        ];
+
+        if (this.props.featureSTData){
+            columns.push({
+                title: <span>SPATIAL<br/>TRANSCRIPTOMICS</span>,
+                name: 'st',
+                getCellValue: row => (
+                    this.linkDataTypeCells(row.isSpatialTranscriptomics, 'st', row)
+                ),
+            })
+        }
+        return columns;
     };
 
     linkDataTypeCells(isOfType, dataType, row) {

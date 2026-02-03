@@ -5,13 +5,14 @@ import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 import { fetchDataTypeSummaryInformation2025 } from '../../helpers/ApolloClient';
 import { getDataTypeOptions2025 } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from  '../../helpers/googleAnalyticsHelper';
+import initialState from '../../initialState';
 
 class GeneSummary extends Component {
 
     constructor(props) {
         super(props);
         this.getColumns = this.getColumns.bind(this);
-
+        
         this.state = {
             geneSummary: [],
             dataTypeOptions: [],
@@ -20,6 +21,7 @@ class GeneSummary extends Component {
     };
 
     async componentDidMount() {
+        this.props.setFeatureSTData(initialState.featureSTData);
         await this.fetchPageData();
     }
 
@@ -31,7 +33,7 @@ class GeneSummary extends Component {
 
     fetchPageData = async() => {
         await this.fetchDataTypeSummaryLocal(this.props.gene.symbol);
-        await getDataTypeOptions2025(this.props.gene.symbol, "").then(
+        await getDataTypeOptions2025(this.props.gene.symbol, "", this.props.featureSTData).then(
             (options) => {
                 this.setState({ dataTypeOptions: options, isLoading: false })
             },
@@ -56,6 +58,9 @@ class GeneSummary extends Component {
         await fetchDataTypeSummaryInformation2025().then(
             (dataSummary) => {
                 if (dataSummary) {
+                    if (!this.props.featureSTData){
+                        dataSummary = dataSummary.filter((item) => item.dataType !== "Spatial Transcriptomics")
+                    }
                     this.setState({ geneSummary: dataSummary, isLoading: false });
                 }
             },
@@ -68,7 +73,7 @@ class GeneSummary extends Component {
 
     handleLinkClick = (dataTypeShort, dataType) => {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataTypeShort} and gene: ${this.props.gene.symbol}`);
-        this.props.setDataType(dataType, this.props);
+        this.props.setDataType(dataType, this.props.featureSTData);
     };
 
     getColumnExtensions() {
@@ -178,6 +183,7 @@ class GeneSummary extends Component {
     }
 
     render() {
+        
         const BandCell = ({ children, tableRow, tableColumn, column, ...restProps }) => {
             return (
                 <TableBandHeader.Cell {...restProps} column={column}

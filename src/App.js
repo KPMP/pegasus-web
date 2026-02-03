@@ -81,7 +81,9 @@ class App extends Component {
                   <Route exact path='/explorer/regionalviz' component={RegionalVizContainer} store={store} />
                   <Route exact path='/explorer/diffex' component={DiffexByClusterContainer} store={store} />
                   <Route exact path='/explorer/regionalpro' component={RegionalProteomicsContainer} store={store}/>
-                  <Route exact path='/explorer/stviz' component={STVizContainer} store={store} />
+                  {initialState.featureSTData ? 
+                    <Route exact path='/explorer/stviz' component={STVizContainer} store={store} />
+                  : null}
                   <Route exact path='/oops' component={Oops} />
                   <PrivateUmapRoute exact path='/explorer/dataViz/umap' component={UMAPContainer} store={store} />
                   <Route path='*' component={NotFoundPage} />
