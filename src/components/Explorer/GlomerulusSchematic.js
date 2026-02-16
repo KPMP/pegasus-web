@@ -9,13 +9,12 @@ function HubMapGlomSchema(props) {
         
         const handleClick = (event) => { 
             // this is needed to support shadow DOM
-            const target = event.composedPath?.()?.[0] || event.target;
-            console.log('HubMapSchema clicked', target.id);
+            console.log(event.detail.label);
         }
-        schemaElement.addEventListener('click', handleClick);
+        schemaElement.addEventListener('cell-click', handleClick);
 
         return () => {
-            schemaElement.removeEventListener('click', handleClick);
+            schemaElement.removeEventListener('cell-click', handleClick);
         };
     }, [props.onCellTypeSelected]);
 
