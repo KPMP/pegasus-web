@@ -108,6 +108,23 @@ export const fetchCellTypeHierarchy2025 = async () => {
     }
 };
 
+export const fetchHubmapTermMap= async () => {
+    const response = await apolloClient.query({
+        query: gql`
+            query {
+                getHubmapTermMap {
+                    JSON
+                }
+            }`
+    });
+
+    if (response.data && response.data.getHubmapTermMap) {
+        return response.data.getHubmapTermMap;
+    } else {
+        store.dispatch(sendMessageToBackend("Could not retrieve HuBMAP term map: " + response.error));
+    }
+};
+
 export const fetchClusterHierarchy2025 = async (cellType) => {
     const response = await apolloClient.query({
         query: gql`

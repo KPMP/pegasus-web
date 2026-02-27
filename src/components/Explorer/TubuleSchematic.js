@@ -9,8 +9,9 @@ function HubMapTubuleSchema(props) {
         if (!schemaElement) return;
         
         const handleClick = (event) => { 
-            // this is needed to support shadow DOM
-            console.log(event.detail.label);
+            let ontologyId = event.detail.representation_of;
+            ontologyId = ontologyId.replace('http://purl.obolibrary.org/obo/', '').replace(/_/g, ':');
+            props.handleCellTypeClick(ontologyId);
         }
         schemaElement.addEventListener('cell-click', handleClick);
 

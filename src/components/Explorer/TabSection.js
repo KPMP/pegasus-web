@@ -79,12 +79,8 @@ class TabSection extends Component {
 
                         {this.props.isGlomerulusSchematic ?
                             <GlomerulusSchematic
-                                setActiveTab={this.props.setActiveTab}
-                                activeCell={this.props.activeCell}
-                                setActiveCell={this.props.setActiveCell}
                                 handleCellTypeClick={this.props.handleCellTypeClick}
-                                handleSchematicHoverEnter={this.handleSchematicHoverEnter}
-                                handleSchematicHoverLeave={this.handleSchematicHoverLeave}
+                                hubmapTermMap={this.props.hubmapTermMap}s
                             />
                             :
                             <div className='tbd-schema'> Schematic TBD</div>

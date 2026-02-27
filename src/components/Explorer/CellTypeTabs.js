@@ -5,6 +5,7 @@ import TabSection from './TabSection';
 import AccordionTabSection from './AccordionTabSection';
 import '@fontsource/libre-franklin';
 import CellTypeEnum from './CellTypeEnum';
+
 const CellTypeTabs = (props) => {
   const [activeTab, setActiveTab] = useState('1');
   const [activeCell, setActiveCell] = useState(CellTypeEnum.ALL);
@@ -70,7 +71,8 @@ const CellTypeTabs = (props) => {
           setActiveTab={toggle}
           setActiveCell={setActiveCell}
           activeCell={activeCell}
-          topLevelLink='Glomerulus / Renal Corpuscle' />
+          topLevelLink='Glomerulus / Renal Corpuscle'
+          hubmapTermMap={props.hubmapTermMap} />
         <AccordionTabSection data={props.data.Tubules}
           tabId='2'
           isNephronSchematic={true}
@@ -78,8 +80,9 @@ const CellTypeTabs = (props) => {
           handleCellTypeClick={props.handleCellTypeClick}
           setActiveTab={toggle}
           setActiveCell={setActiveCell}
-          activeCell={activeCell}
-          topLevelLink='Tubules' />
+          activeCell={activeCell}s
+          topLevelLink='Tubules' 
+          hubmapTermMap={props.hubmapTermMap} />
         <AccordionTabSection data={props.data.Interstitium}
           tabId='3'
           handleCellTypeClick={props.handleCellTypeClick}
