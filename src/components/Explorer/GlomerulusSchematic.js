@@ -6,6 +6,7 @@ function HubMapGlomSchema(props) {
 
     useEffect(() => {
         const schemaElement = schemaRef.current;
+        
         if (!schemaElement) return;
         
         const handleClick = async (event) => { 
@@ -39,7 +40,7 @@ function HubMapGlomSchema(props) {
 class GlomerulusSchematic extends Component {
     render() {
         return (
-            <HubMapGlomSchema />
+            <HubMapGlomSchema handleCellTypeClick={this.props.handleCellTypeClick} />
         );
     }
 }
