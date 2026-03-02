@@ -15,11 +15,10 @@ function HubMapGlomSchema(props) {
             const hubmapTermMap = await fetchHubmapTermMap();
             console.log(hubmapTermMap);
             hubmapTermMap.forEach(obj => {
-                console.log(`Checking ${obj.hubmapOntologyId} against ${ontologyId}`);
+                if (obj.hubmapOntologyId === ontologyId) {
+                     props.handleCellTypeClick(obj.cellType);
+                }
             });
-            const match = hubmapTermMap.find(obj => obj.hubmapOntologyId === ontologyId);
-            const cellType = match ? match.cellType : null;
-            props.handleCellTypeClick(cellType);
         }
         schemaElement.addEventListener('cell-click', handleClick);
 
