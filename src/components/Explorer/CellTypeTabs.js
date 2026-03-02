@@ -71,8 +71,7 @@ const CellTypeTabs = (props) => {
           setActiveTab={toggle}
           setActiveCell={setActiveCell}
           activeCell={activeCell}
-          topLevelLink='Glomerulus / Renal Corpuscle'
-          hubmapTermMap={props.hubmapTermMap} />
+          topLevelLink='Glomerulus / Renal Corpuscle' />
         <AccordionTabSection data={props.data.Tubules}
           tabId='2'
           isNephronSchematic={true}
@@ -81,8 +80,7 @@ const CellTypeTabs = (props) => {
           setActiveTab={toggle}
           setActiveCell={setActiveCell}
           activeCell={activeCell}s
-          topLevelLink='Tubules' 
-          hubmapTermMap={props.hubmapTermMap} />
+          topLevelLink='Tubules' />
         <AccordionTabSection data={props.data.Interstitium}
           tabId='3'
           handleCellTypeClick={props.handleCellTypeClick}

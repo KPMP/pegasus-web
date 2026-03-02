@@ -81,7 +81,6 @@ class TabSection extends Component {
                             (this.props.hubmapTermMap ?
                                 <GlomerulusSchematic
                                     handleCellTypeClick={this.props.handleCellTypeClick}
-                                    hubmapTermMap={this.props.hubmapTermMap}
                                 />
                                 :
                                 <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%'}}>

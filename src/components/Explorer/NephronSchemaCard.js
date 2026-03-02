@@ -3,7 +3,6 @@ import { Col, Container, Row, Spinner } from 'reactstrap';
 import { fetchCellTypeHierarchy2025 } from "../../helpers/ApolloClient";
 import CellTypeTabs from './CellTypeTabs';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
-import { fetchHubmapTermMap } from '../../helpers/ApolloClient';
 
 class NephronSchemaCard extends Component {
 
@@ -13,16 +12,10 @@ class NephronSchemaCard extends Component {
         this.state = {
             cellTypeHierarchy: hierarchy,
             isProcessing: true,
-            activeTab: '1',
-            hubmapTermMap: null
+            activeTab: '1'
         }
     }
 
-    async componentDidMount() {
-        const hubmapTermMap = await fetchHubmapTermMap();
-        this.setState({ hubmapTermMap: hubmapTermMap });
-    }
-    s
     toggle = (tab) => {
         if (this.state.activeTab !== tab) {
             this.setState({ activeTab: tab });
@@ -36,6 +29,7 @@ class NephronSchemaCard extends Component {
     };
 
     handleCellTypeClick = (cellType) => {
+        console.log(cellType);
         handleGoogleAnalyticsEvent('Explorer', 'Search', `cellType: ${cellType}`);
         this.props.setSelectedConcept({type: 'cell_type', value: cellType});
     };
@@ -60,7 +54,7 @@ class NephronSchemaCard extends Component {
             tabs = <Spinner color='primary' />;
         } else {
             tabs = <Col xs="12">
-                <CellTypeTabs data={structures} handleCellTypeClick={this.handleCellTypeClick} hubmapTermMap={this.state.hubmapTermMap} />
+                <CellTypeTabs data={structures} handleCellTypeClick={this.handleCellTypeClick} />
             </Col>;
         }
         return (
