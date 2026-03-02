@@ -52,6 +52,9 @@ class NephronSchemaCard extends Component {
         let tabs = <Col xs="12">
             <CellTypeTabs data={structures} handleCellTypeClick={this.handleCellTypeClick} />
         </Col>;
+        if (this.state.isProcessing) {
+            tabs = <Spinner color='primary' />;
+        }
         return (
             <Container className="mt-3 rounded border p-3 shadow-sm search-container">
                 <Row>
