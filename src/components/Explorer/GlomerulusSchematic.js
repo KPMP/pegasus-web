@@ -16,7 +16,6 @@ function HubMapGlomSchema(props) {
             const hubmapTermMap = await fetchHubmapTermMap();
             hubmapTermMap.forEach(obj => {
                 if (obj.hubmapOntologyId === ontologyId) {
-                    console.log(props);
                     props.handleCellTypeClick(obj.cellType);
                 }
             });
