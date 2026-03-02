@@ -79,7 +79,7 @@ const CellTypeTabs = (props) => {
           handleCellTypeClick={props.handleCellTypeClick}
           setActiveTab={toggle}
           setActiveCell={setActiveCell}
-          activeCell={activeCell}s
+          activeCell={activeCell}
           topLevelLink='Tubules' />
         <AccordionTabSection data={props.data.Interstitium}
           tabId='3'

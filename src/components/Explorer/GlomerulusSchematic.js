@@ -1,6 +1,5 @@
 import React, { Component, useRef, useEffect } from 'react';
 import { fetchHubmapTermMap } from '../../helpers/ApolloClient';
-import { forEach } from 'core-js/core/array';
 
 function HubMapGlomSchema(props) {
     const schemaRef = useRef(null);
@@ -15,10 +14,8 @@ function HubMapGlomSchema(props) {
             // Find the matching object in hubmapTermMap
             const hubmapTermMap = await fetchHubmapTermMap();
             console.log(hubmapTermMap);
-            forEach(hubmapTermMap, (obj) => {
-                if (obj.hubmapOntologyId === ontologyId) {
-                    console.log(`Match found: ${obj.cellType} for ontologyId: ${ontologyId}`);
-                }
+            hubmapTermMap.forEach(obj => {
+                console.log(`Checking ${obj.hubmapOntologyId} against ${ontologyId}`);
             });
             const match = hubmapTermMap.find(obj => obj.hubmapOntologyId === ontologyId);
             const cellType = match ? match.cellType : null;
@@ -29,7 +26,7 @@ function HubMapGlomSchema(props) {
         return () => {
             schemaElement.removeEventListener('cell-click', handleClick);
         };
-    }, [props.onCellTypeSelected, props.hubmapTermMap]);
+    }, [props.onCellTypeSelected]);
 
     return (
         <hra-medical-illustration

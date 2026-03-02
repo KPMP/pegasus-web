@@ -9,13 +9,13 @@ function HubMapTubuleSchema(props) {
         if (!schemaElement) return;
         
         const handleClick = (event) => { 
-            let ontologyId = event.detail.representation_of;
-            ontologyId = ontologyId.replace('http://purl.obolibrary.org/obo/', '').replace(/_/g, ':');
-            // Find the matching object in hubmapTermMap
+            // let ontologyId = event.detail.representation_of;
+            // ontologyId = ontologyId.replace('http://purl.obolibrary.org/obo/', '').replace(/_/g, ':');
+            // // Find the matching object in hubmapTermMap
         
-            const match = props.hubmapTermMap.find(obj => obj.hubmapOntologyId === ontologyId);
-            const cellType = match ? match.cellType : null;
-            props.handleCellTypeClick(cellType);
+            // const match = props.hubmapTermMap.find(obj => obj.hubmapOntologyId === ontologyId);
+            // const cellType = match ? match.cellType : null;
+            // props.handleCellTypeClick(cellType);
         }
         schemaElement.addEventListener('cell-click', handleClick);
 
