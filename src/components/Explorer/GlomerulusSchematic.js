@@ -14,7 +14,7 @@ function HubMapGlomSchema(props) {
             // Find the matching object in hubmapTermMap
             const hubmapTermMap = await fetchHubmapTermMap();
             console.log(hubmapTermMap);
-            const match = props.hubmapTermMap.find(obj => obj.hubmapOntologyId === ontologyId);
+            const match = hubmapTermMap.find(obj => obj.hubmapOntologyId === ontologyId);
             const cellType = match ? match.cellType : null;
             props.handleCellTypeClick(cellType);
         }
