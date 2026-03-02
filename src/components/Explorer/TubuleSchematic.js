@@ -1,5 +1,5 @@
 import React, { Component, useRef, useEffect } from 'react';
-
+import { fetchHubmapTermMap } from '../../helpers/ApolloClient';
 
 function HubMapTubuleSchema(props) {
     const schemaRef = useRef(null);
@@ -24,7 +24,7 @@ function HubMapTubuleSchema(props) {
         return () => {
             schemaElement.removeEventListener('cell-click', handleClick);
         };
-    }, [props.handleCellTypeClick]);
+    }, [props.handleCellTypeClick, props]);
 
     return (
         <hra-medical-illustration

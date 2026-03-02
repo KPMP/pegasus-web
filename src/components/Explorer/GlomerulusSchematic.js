@@ -25,7 +25,7 @@ function HubMapGlomSchema(props) {
         return () => {
             schemaElement.removeEventListener('cell-click', handleClick);
         };
-    }, [props.handleCellTypeClick]);
+    }, [props.handleCellTypeClick, props]);
 
     return (
         <hra-medical-illustration
