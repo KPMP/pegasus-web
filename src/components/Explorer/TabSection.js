@@ -78,9 +78,9 @@ class TabSection extends Component {
                     <Col sm="6">
 
                         {this.props.isGlomerulusSchematic ?
-                                <GlomerulusSchematic
-                                    handleCellTypeClick={this.props.handleCellTypeClick}
-                                />
+                            <GlomerulusSchematic
+                                handleCellTypeClick={this.props.handleCellTypeClick}
+                            />
                             :
                             <div className='tbd-schema'> Schematic TBD</div>
                         }

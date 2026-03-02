@@ -13,12 +13,10 @@ function HubMapGlomSchema(props) {
             ontologyId = ontologyId.replace('http://purl.obolibrary.org/obo/', '').replace(/_/g, ':');
             // Find the matching object in hubmapTermMap
             const hubmapTermMap = await fetchHubmapTermMap();
-            console.log(hubmapTermMap);
             hubmapTermMap.forEach(obj => {
-                console.log(`Checking if [${obj.hubmapOntologyId}] matches [${ontologyId}]`);
                 if (obj.hubmapOntologyId === ontologyId) {
-                    console.log(`Matched ontologyId ${ontologyId} to cell type ${obj.cellType}`);
-                     props.handleCellTypeClick(obj.cellType);
+                    console.log(props);
+                    props.handleCellTypeClick(obj.cellType);
                 }
             });
         }
@@ -27,7 +25,7 @@ function HubMapGlomSchema(props) {
         return () => {
             schemaElement.removeEventListener('cell-click', handleClick);
         };
-    }, [props.onCellTypeSelected]);
+    }, [props.handleCellTypeClick]);
 
     return (
         <hra-medical-illustration
