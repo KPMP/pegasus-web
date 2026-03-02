@@ -113,7 +113,8 @@ export const fetchHubmapTermMap= async () => {
         query: gql`
             query {
                 getHubmapTermMap {
-                    JSON
+                    hubmapOntologyId
+                    cellType
                 }
             }`
     });
