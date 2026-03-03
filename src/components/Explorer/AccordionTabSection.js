@@ -113,9 +113,7 @@ class AccordionTabSection extends Component {
                     </Col>
                     <Col sm="6">
                         {this.props.isNephronSchematic ?
-                            <TubuleSchematic
-                                
-                            /> :
+                            <TubuleSchematic handleCellTypeClick={this.props.handleCellTypeClick} /> :
                             <div className='tbd-schema'> Schematic TBD</div>
                         }
                     </Col>

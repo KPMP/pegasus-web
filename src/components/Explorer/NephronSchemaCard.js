@@ -65,7 +65,6 @@ class NephronSchemaCard extends Component {
                     {tabs}
                 </Row>
             </Container>
-
         );
     }
 }

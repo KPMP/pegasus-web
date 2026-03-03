@@ -1,22 +1,31 @@
 import React, { Component, useRef, useEffect } from 'react';
+import { fetchHubmapTermMap } from '../../helpers/ApolloClient';
 
 function HubMapGlomSchema(props) {
     const schemaRef = useRef(null);
 
     useEffect(() => {
         const schemaElement = schemaRef.current;
+        
         if (!schemaElement) return;
         
-        const handleClick = (event) => { 
-            // this is needed to support shadow DOM
-            console.log(event.detail.label);
+        const handleClick = async (event) => { 
+            let ontologyId = event.detail.representation_of;
+            ontologyId = ontologyId.replace('http://purl.obolibrary.org/obo/', '').replace(/_/g, ':');
+            // Find the matching object in hubmapTermMap
+            const hubmapTermMap = await fetchHubmapTermMap();
+            hubmapTermMap.forEach(obj => {
+                if (obj.hubmapOntologyId === ontologyId) {
+                    props.handleCellTypeClick(obj.cellType);
+                }
+            });
         }
         schemaElement.addEventListener('cell-click', handleClick);
 
         return () => {
             schemaElement.removeEventListener('cell-click', handleClick);
         };
-    }, [props.onCellTypeSelected]);
+    }, [props.handleCellTypeClick, props]);
 
     return (
         <hra-medical-illustration
@@ -30,7 +39,7 @@ function HubMapGlomSchema(props) {
 class GlomerulusSchematic extends Component {
     render() {
         return (
-            <HubMapGlomSchema />
+            <HubMapGlomSchema handleCellTypeClick={this.props.handleCellTypeClick} />
         );
     }
 }

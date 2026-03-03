@@ -5,6 +5,7 @@ import TabSection from './TabSection';
 import AccordionTabSection from './AccordionTabSection';
 import '@fontsource/libre-franklin';
 import CellTypeEnum from './CellTypeEnum';
+
 const CellTypeTabs = (props) => {
   const [activeTab, setActiveTab] = useState('1');
   const [activeCell, setActiveCell] = useState(CellTypeEnum.ALL);

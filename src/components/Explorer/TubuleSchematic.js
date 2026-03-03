@@ -1,5 +1,5 @@
 import React, { Component, useRef, useEffect } from 'react';
-
+import { fetchHubmapTermMap } from '../../helpers/ApolloClient';
 
 function HubMapTubuleSchema(props) {
     const schemaRef = useRef(null);
@@ -8,16 +8,23 @@ function HubMapTubuleSchema(props) {
         const schemaElement = schemaRef.current;
         if (!schemaElement) return;
         
-        const handleClick = (event) => { 
-            // this is needed to support shadow DOM
-            console.log(event.detail.label);
+        const handleClick = async (event) => { 
+            let ontologyId = event.detail.representation_of;
+            ontologyId = ontologyId.replace('http://purl.obolibrary.org/obo/', '').replace(/_/g, ':');
+            // Find the matching object in hubmapTermMap
+            const hubmapTermMap = await fetchHubmapTermMap();
+            hubmapTermMap.forEach(obj => {
+                if (obj.hubmapOntologyId === ontologyId) {
+                    props.handleCellTypeClick(obj.cellType);
+                }
+            });
         }
         schemaElement.addEventListener('cell-click', handleClick);
 
         return () => {
             schemaElement.removeEventListener('cell-click', handleClick);
         };
-    }, [props.onCellTypeSelected]);
+    }, [props.handleCellTypeClick, props]);
 
     return (
         <hra-medical-illustration
@@ -32,7 +39,7 @@ function HubMapTubuleSchema(props) {
 class TubuleSchematic extends Component {
     render() {
         return (
-            <HubMapTubuleSchema />
+            <HubMapTubuleSchema handleCellTypeClick={this.props.handleCellTypeClick} />
         );
     }
 }
