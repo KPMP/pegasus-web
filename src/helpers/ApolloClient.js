@@ -108,21 +108,27 @@ export const fetchCellTypeHierarchy2025 = async () => {
     }
 };
 
+// This follows a new structure proposed by CodeRabbit to avoid returning undefined
 export const fetchHubmapTermMap= async () => {
-    const response = await apolloClient.query({
-        query: gql`
-            query {
-                getHubmapTermMap {
-                    hubmapOntologyId
-                    cellType
-                }
-            }`
-    });
+    try {
+        const response = await apolloClient.query({
+            query: gql`
+                query {
+                   getHubmapTermMap {
+                        hubmapOntologyId
+                        cellType
+                    }
+                }`
+        });
 
-    if (response.data && response.data.getHubmapTermMap) {
-        return response.data.getHubmapTermMap;
-    } else {
+        if (response.data && response.data.getHubmapTermMap) {
+            return response.data.getHubmapTermMap;
+        }
         store.dispatch(sendMessageToBackend("Could not retrieve HuBMAP term map: " + response.error));
+        return [];
+    } catch (error) {
+        store.dispatch(sendMessageToBackend("Could not retrieve HuBMAP term map: " + error));
+        return [];
     }
 };
 
@@ -555,3 +561,4 @@ export const fetchAtlasSummaryRows = async () => {
         store.dispatch(sendMessageToBackend("Could not retrieve file counts: " + response.error));
     }
 }
+
