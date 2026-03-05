@@ -183,3 +183,7 @@ export const availableDataVisibilityFilter = (data) => {
     }
     return undefined;
 }
+
+export const isSpatialData = (dataType) => {
+    const spatialDataTypes = ["Spatial Metabolomics"];
+}
