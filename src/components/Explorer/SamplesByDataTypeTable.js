@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
-import { fetchSummaryData, fetchDataTypeSummaryInformation2025} from '../../helpers/ApolloClient';
+import { fetchDataTypeSummaryInformation2025} from '../../helpers/ApolloClient';
 import { Grid, TableHeaderRow, Table, TableColumnResizing} from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
@@ -32,9 +32,7 @@ class SamplesByDataTypeTable extends Component {
 
 
     async componentDidMount() {
-        let summary = await fetchSummaryData("explorerHomepageSummary")
-        const geneDatasetSummary = await this.getDatasetSummaryLocal();
-        summary = summary.concat(geneDatasetSummary)
+        let summary = await this.getDatasetSummaryLocal();
         summary = summary.slice()
                         .sort( this.compare )
                         .filter(availableDataVisibilityFilter);
