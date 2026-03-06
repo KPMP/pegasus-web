@@ -271,7 +271,7 @@ export const fetchDataTypesForConcept2025 = async (geneSymbol, clusterName) => {
     }
 }
 
-export const fetchGeneExpression2025 = async (dataType, geneSymbol, cellType, enrollmentCategory) => {
+export const fetchGeneExpression2025 = async (dataType, geneSymbol, cellType, enrollmentCategory, fetchPolicy = 'no-cache') => {
     const query = gql`
         query {
              geneExpressionSummary2025(
@@ -561,4 +561,5 @@ export const fetchAtlasSummaryRows = async () => {
         store.dispatch(sendMessageToBackend("Could not retrieve file counts: " + response.error));
     }
 }
+
 
