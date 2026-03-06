@@ -132,7 +132,7 @@ export const fetchHubmapTermMap= async () => {
     }
 };
 
-export const fetchClusterHierarchy2025 = async (cellType) => {
+export const fetchClusterHierarchy2025 = async (cellType, fetchPolicy = 'no-cache') => {
     const response = await apolloClient.query({
         query: gql`
             query {
@@ -257,7 +257,7 @@ export const fetchPlotlyData = async (dataType, geneSymbol, enrollmentCategory, 
     }
 }
 
-export const fetchDataTypesForConcept2025 = async (geneSymbol, clusterName) => {
+export const fetchDataTypesForConcept2025 = async (geneSymbol, clusterName, fetchPolicy = 'no-cache') => {
     const response = await apolloClient.query({
         query: gql`
             query{
@@ -308,7 +308,7 @@ export const fetchGeneExpression2025 = async (dataType, geneSymbol, cellType, en
 };
 
 
-export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) => {
+export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol, fetchPolicy = 'no-cache') => {
     let query = gql`
         query {
             getRTGeneExpressionByEnrollment(comparisonType:"${comparisonType}", geneSymbol: "${geneSymbol}") {
@@ -381,7 +381,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
 
 };
 
-export const fetchRegionalProteomics = async (geneSymbol) => {
+export const fetchRegionalProteomics = async (geneSymbol, fetchPolicy = 'no-cache') => {
     let query = gql`
         query {
             getRPGeneExpressionByEnrollment(geneSymbol: "${geneSymbol}") {
@@ -420,7 +420,7 @@ export const fetchRegionalProteomics = async (geneSymbol) => {
 
 };
 
-export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
+export const fetchRegionalTranscriptomicsByStructure = async (structure, fetchPolicy = 'no-cache') => {
     let query = gql`
         query {
             getRTGeneExpressionByStructure(structure: "${structure}") {
@@ -450,7 +450,7 @@ export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
     }
 }
 
-export const fetchRegionalProteomicsByStructure = async (structure) => {
+export const fetchRegionalProteomicsByStructure = async (structure, fetchPolicy = 'no-cache') => {
     let query = gql`
         query {
             getRPGeneExpressionByStructure(structure: "${structure}") {
@@ -561,5 +561,6 @@ export const fetchAtlasSummaryRows = async () => {
         store.dispatch(sendMessageToBackend("Could not retrieve file counts: " + response.error));
     }
 }
+
 
 
