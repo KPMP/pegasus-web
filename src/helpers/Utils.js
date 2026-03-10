@@ -6,7 +6,7 @@ export const formatNumberToPrecision = (number, precision, keepAsInt = false, da
     } else if (number === 0) {
         return 0
     } else {
-        if (dataType === "sn" && enrollmentCategory === "dmr") {
+        if ((dataType === "sn" && enrollmentCategory === "dmr") || (dataType === "sc" && enrollmentCategory === "dmr")) {
             return "-"
         }
         return "NS"
