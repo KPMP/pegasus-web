@@ -44,7 +44,6 @@ class RegionalProteomicsTable extends Component {
     createColumnDefs() {
         return [
             { headerName: "REGION", field: "segment", width: 125, sortable: false },
-            { headerName: "FDR CONFIDENCE", field: "fdrConfidence", width: 150, sortable: false},
             { headerName: "COVERAGE %", field: "coveragePct", width: 150, sortable: false},
             { headerName: "# PEPTIDES", field: "numPeptides", width: 150, sortable: false},
             { headerName: "# UNIQUE PEPTIDES", field: "numUniquePeptides", width: 175, sortable: false},
