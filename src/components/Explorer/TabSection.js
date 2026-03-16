@@ -19,7 +19,7 @@ class TabSection extends Component {
                 return <li key={cellType.cellType} className='indent-2'>
                     <button
                         onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
-                        onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType); this.setState({ activeCell: cellType.cellType }) }}
+                        onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType); this.setState({ activeCell: cellType.cellType })}}
                         type="button"
                         className={`btn btn-link text-start p-0 ${(this.props.activeCell === cellType.cellType) ? 'pseudohover' : ''}`} >
                         {cellType.cellType}
@@ -79,7 +79,11 @@ class TabSection extends Component {
 
                         {this.props.isGlomerulusSchematic ?
                             <GlomerulusSchematic
-                                handleCellTypeClick={this.props.handleCellTypeClick}
+                                handleCellTypeClick={this.props.handleCellTypeClick} 
+                                handleSchematicHoverEnter={this.handleSchematicHoverEnter} 
+                                cellType={this.props.topLevelLink} 
+                                activeCell={this.props.activeCell}
+                                setActiveCell={this.props.setActiveCell}
                             />
                             :
                             <div className='tbd-schema'> Schematic TBD</div>

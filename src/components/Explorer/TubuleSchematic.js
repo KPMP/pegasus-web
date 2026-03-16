@@ -19,10 +19,17 @@ function HubMapTubuleSchema(props) {
                 }
             });
         }
+        const handleHover = (event) => {
+            if (event.detail){
+                console.log(event.detail)
+            }
+        }
         schemaElement.addEventListener('cell-click', handleClick);
+        schemaElement.addEventListener("cell-hover", handleHover);
 
         return () => {
             schemaElement.removeEventListener('cell-click', handleClick);
+            schemaElement.addEventListener("cell-hover", handleHover);
         };
     }, [props.handleCellTypeClick, props]);
 

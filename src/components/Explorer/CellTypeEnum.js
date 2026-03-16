@@ -135,6 +135,7 @@ const CellTypeEnum = {
     PERITUBULAR_CAPILLARY_ENDOTHELIAL_CELL: 'Peritubular Capillary Endothelial Cell',
     ASCENDING_VASCA_RECTA_ENDOTHELIAL_CELL: 'Ascending Vasa Recta Endothelial Cell',
     LYMPHATIC_ENDOTHELIAL_CELL: 'Lymphatic Endothelial Cell',
+
 }
 
 export default CellTypeEnum;
