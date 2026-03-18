@@ -440,7 +440,7 @@ export const fetchRegionalTranscriptomicsByStructure = async (structure, fetchPo
 
     const response = await apolloClient.query({
         query: query,
-        fetchPolicy: 'cache-first'
+        fetchPolicy: 'no-cache'
     });
 
     if (response.data && response.data.getRTGeneExpressionByStructure) {
