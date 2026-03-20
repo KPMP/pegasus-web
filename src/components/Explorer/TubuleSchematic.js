@@ -7,7 +7,8 @@ import { svgToCellMap, cellMapToOntologyId } from '../../helpers/Utils';
 function HubMapTubuleSchema({
     handleCellTypeClick,
     setActiveCell,
-    activeCell
+    activeCell,
+    toggleCollapseTab
 }) {
     const schemaRef = useRef(null);
 
@@ -28,7 +29,7 @@ function HubMapTubuleSchema({
             }
         }
 
-        schemaElement.setAttribute("highlight", "UBERON:0001291")
+        // schemaElement.setAttribute("highlight", "UBERON:0001291")
 
         const handleHover = (event) => {
             if (event.detail){
@@ -40,9 +41,35 @@ function HubMapTubuleSchema({
 
             if(!svgId) return;
 
+            
             const cellType = svgToCellMap[svgId];
             console.log(cellType);
             if(cellType){
+                switch (cellType) {
+                    case CellTypeEnum.PROXIMAL_TUBULEL:
+                        toggleCollapseTab({target: {dataset: {event: 0}}})
+                        break;
+                    case CellTypeEnum.DESCENDING_THIN_LIMB_LOOP_OF_HENLE:
+                        toggleCollapseTab({target: {dataset: {event: 1 }}})
+                        break;
+                    case CellTypeEnum.ASCENDING_THIN_LIMB_LOOP_OF_HENLE:
+                        toggleCollapseTab({target: {dataset: {event : 1}}})
+                        break;
+                    case CellTypeEnum.THICK_ASCENDING_LIMB_LOOP_OF_HENLE:
+                        toggleCollapseTab({target: {dataset : {event: 2}}})
+                        break;
+                    case CellTypeEnum.CONNECTING_TUBULE:
+                        toggleCollapseTab({target: { dataset: {event: 4}}})
+                        break;
+                    case CellTypeEnum.COLLECTING_DUCT:
+                        toggleCollapseTab({target:{ dataset: {event: 5}}})
+                        break;
+                    default:
+                        toggleCollapseTab({target: {dataset: {event: -1 }}})
+                }
+                if(cellType === CellTypeEnum.CONNECTING_TUBULE) {
+                }
+
                 setActiveCell(cellType)
             }
             else {
@@ -62,7 +89,7 @@ function HubMapTubuleSchema({
             schemaElement.removeEventListener('cell-click', handleClick);
             schemaElement.addEventListener("cell-hover", handleHover);
         };
-    }, [handleCellTypeClick, setActiveCell, activeCell]);
+    }, [handleCellTypeClick, setActiveCell, activeCell, toggleCollapseTab]);
 
     useEffect(() => {
         const schemaElement = schemaRef.current;

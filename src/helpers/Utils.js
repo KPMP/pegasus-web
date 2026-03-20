@@ -199,7 +199,6 @@ export const svgToCellMap = {
     "Descending_Thin_Limb_Of_Loop_Of_Henle": CellTypeEnum.DESCENDING_THIN_LIMB_LOOP_OF_HENLE,
     "Ascending_Thin_Limb_Of_Loop_Of_Henle": CellTypeEnum.ASCENDING_THIN_LIMB_LOOP_OF_HENLE,
     "Thick_Ascending_Limb_Of_Loop_Of_Henle": CellTypeEnum.THICK_ASCENDING_LIMB_LOOP_OF_HENLE,
-
 };
 
 export const cellMapToOntologyId = {
@@ -223,6 +222,7 @@ export const cellMapToOntologyId = {
     "Descending Thin Limb of Loop of Henle": "UBERON_0005096",
     "Ascending Thin Limb of Loop of Henle": "UBERON_0004193",
     "Loop of Henle (Thick Limb)": "UBERON_0001291",
+    "Thick Ascending Limb of Loop of Henle": "UBERON_0001291",
     "Cortical Thick Ascending Limb of Loop of Henle": "UBERON_0001291",
     "Cortico-Medullary Thick Ascending Limb of Loop of Henle Cell":"UBERON_0001291",
     "Medullary Thick Ascending Limb of Loop of Henle Cell": "UBERON_0001291",

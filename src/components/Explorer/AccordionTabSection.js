@@ -120,6 +120,7 @@ class AccordionTabSection extends Component {
                                 handleCellTypeClick={this.props.handleCellTypeClick}
                                 setActiveCell={this.props.setActiveCell}
                                 activeCell={this.state.activeCell}
+                                toggleCollapseTab={this.toggleWithoutResetting}
                             /> 
                             :
                             <div className='tbd-schema'> Schematic TBD</div>
