@@ -52,6 +52,7 @@ class AccordionTabSection extends Component {
 
     handleSchematicHoverLeave = (cellType) => {
         if(this.props.setActiveCell) {
+            console.log("setting to empty string")
             this.props.setActiveCell(CellTypeEnum.ALL);
         }
     }
@@ -64,7 +65,8 @@ class AccordionTabSection extends Component {
                 return <li key={cellType.cellType}>
                     <button
                         onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
-                        onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType) }}
+                        onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType); this.setState({activeCell: cellType.cellType})}}
+                        onMouseLeave={() => {this.handleSchematicHoverLeave(cellType.cellType); this.setState({activeCell: CellTypeEnum.ALL})}}
                         type="button"
                         className={`btn btn-link text-start p-0 ${(this.props.activeCell === cellType.cellType) ? 'pseudohover' : ''}`}>
                         {cellType.cellType}</button>
@@ -79,7 +81,8 @@ class AccordionTabSection extends Component {
                             <FontAwesomeIcon  className={`${collapsed === index ? "hidden" : ""}`} icon={faChevronRight} />
                         </span>
                         <span onClick={() => this.props.handleCellTypeClick(subregion.subregionName)}
-                             onMouseEnter={() => { this.handleSchematicHoverEnter(subregion.subregionName) }}
+                             onMouseEnter={() => { this.handleSchematicHoverEnter(subregion.subregionName); this.setState({activeCell: subregion.subregionName}) }}
+                             onMouseLeave={() => {this.handleSchematicHoverLeave(subregion.subregionName); this.setState({activeCell: CellTypeEnum.ALL})}}
                              type='button'
                              className={`btn-link text-start p-0 ${(this.props.activeCell === subregion.subregionName) ? 'pseudohover' : ''}`}>
                                  {subregion.subregionName}</span>
@@ -113,7 +116,12 @@ class AccordionTabSection extends Component {
                     </Col>
                     <Col sm="8">
                         {this.props.isNephronSchematic ?
-                            <TubuleSchematic handleCellTypeClick={this.props.handleCellTypeClick} /> :
+                            <TubuleSchematic 
+                                handleCellTypeClick={this.props.handleCellTypeClick}
+                                setActiveCell={this.props.setActiveCell}
+                                activeCell={this.state.activeCell}
+                            /> 
+                            :
                             <div className='tbd-schema'> Schematic TBD</div>
                         }
                     </Col>

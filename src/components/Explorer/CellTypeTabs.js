@@ -83,6 +83,8 @@ const CellTypeTabs = (props) => {
           topLevelLink='Tubules' />
         <AccordionTabSection data={props.data.Interstitium}
           tabId='3'
+          setActiveCell={setActiveCell}
+          activeCell={activeCell}
           handleCellTypeClick={props.handleCellTypeClick}
           topLevelLink='Interstitium' />
         <TabSection data={props.data.Vessels}

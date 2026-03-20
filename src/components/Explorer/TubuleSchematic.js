@@ -1,7 +1,14 @@
 import React, { Component, useRef, useEffect } from 'react';
 import { fetchHubmapTermMap } from '../../helpers/ApolloClient';
+import CellTypeEnum from './CellTypeEnum';
+import { svgToCellMap, cellMapToOntologyId } from '../../helpers/Utils';
 
-function HubMapTubuleSchema(props) {
+
+function HubMapTubuleSchema({
+    handleCellTypeClick,
+    setActiveCell,
+    activeCell
+}) {
     const schemaRef = useRef(null);
 
     useEffect(() => {
@@ -13,18 +20,62 @@ function HubMapTubuleSchema(props) {
             ontologyId = ontologyId.replace('http://purl.obolibrary.org/obo/', '').replace(/_/g, ':');
             // Find the matching object in hubmapTermMap
             const hubmapTermMap = await fetchHubmapTermMap();
-            hubmapTermMap.forEach(obj => {
-                if (obj.hubmapOntologyId === ontologyId) {
-                    props.handleCellTypeClick(obj.cellType);
-                }
-            });
+            const match = hubmapTermMap.find(
+                obj => obj.hubmapOntologyId === ontologyId
+            );
+            if (match) {
+                handleCellTypeClick(match.cellType);
+            }
         }
+
+        schemaElement.setAttribute("highlight", "UBERON:0001291")
+
+        const handleHover = (event) => {
+            if (event.detail){
+                console.log(event.detail.representation_of)
+                console.log(event.detail.svg_group_id);
+                console.log(event.detail)
+            }
+            let svgId = event?.detail?.svg_group_id;
+
+            if(!svgId) return;
+
+            const cellType = svgToCellMap[svgId];
+            console.log(cellType);
+            if(cellType){
+                setActiveCell(cellType)
+            }
+            else {
+                setActiveCell(CellTypeEnum.ALL);
+            }
+
+        }
+
+        if (activeCell === ""){
+            schemaElement.removeEventListener("cell-hover", handleHover);
+            schemaElement.setAttribute("highlight", "");
+        }
+        schemaElement.addEventListener("cell-hover", handleHover);
         schemaElement.addEventListener('cell-click', handleClick);
 
         return () => {
             schemaElement.removeEventListener('cell-click', handleClick);
+            schemaElement.addEventListener("cell-hover", handleHover);
         };
-    }, [props.handleCellTypeClick, props]);
+    }, [handleCellTypeClick, setActiveCell, activeCell]);
+
+    useEffect(() => {
+        const schemaElement = schemaRef.current;
+        if (!schemaElement || !activeCell) return;
+
+        const ontologyId = cellMapToOntologyId[activeCell]
+        if (ontologyId){
+
+            const purl = "http://purl.obolibrary.org/obo/"+ontologyId
+            schemaElement.setAttribute("highlight", purl);
+        }
+
+    }, [activeCell])
 
     return (
         <hra-medical-illustration
@@ -36,12 +87,4 @@ function HubMapTubuleSchema(props) {
 }
 
 
-class TubuleSchematic extends Component {
-    render() {
-        return (
-            <HubMapTubuleSchema handleCellTypeClick={this.props.handleCellTypeClick} />
-        );
-    }
-}
-
-export default TubuleSchematic;
+export default HubMapTubuleSchema;
