@@ -177,6 +177,17 @@ class DiffexByCluster extends Component {
           }
         });
       }
+      else if (dataType === "rt") {
+          return results.map(({ gene, segmentName, foldChange, pVal, pValAdj }) => {
+          return {
+              gene: gene,
+              comparison: segmentName === 'Glomerulus / Renal Corpuscle' ? 'to Glom/TI (only)' : 'to all regions',
+              foldChange: formatNumberToPrecision(foldChange, 3),
+              pVal: formatNumberToPrecision(pVal, 3),
+              pValAdj: formatNumberToPrecision(pValAdj, 3, true)
+          }
+          })
+      }
       else {
         return results.map(({ gene, foldChange, pVal, pValAdj }) => {
           return {
