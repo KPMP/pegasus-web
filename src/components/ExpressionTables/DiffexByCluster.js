@@ -107,6 +107,19 @@ class DiffexByCluster extends Component {
                 }
             );
         }
+        if (this.props.dataType === 'rt') {
+            columns.push(
+                {
+                    headerName: 'COMPARISON',
+                    headerComponent: InfoHeader,
+                    headerComponentParams: { infoIcon: true },
+                    sortable: true,
+                    headerTooltip: 'Expression measured against all regions or just Glomerulus vs Tubulo-interstitium.',
+                    field: 'segmentName',
+                    valueFormatter: params => params.value === 'Glomerulus / Renal Corpuscle' ? 'to Glom/TI (only)' : 'to all regions'
+                }
+            );
+        }
         columns.push(
             {
                 headerName: 'FOLD CHANGE',
