@@ -107,6 +107,19 @@ class DiffexByCluster extends Component {
                 }
             );
         }
+        if (this.props.dataType === 'rt') {
+            columns.push(
+                {
+                    headerName: 'COMPARISON',
+                    headerComponent: InfoHeader,
+                    headerComponentParams: { infoIcon: true },
+                    sortable: true,
+                    headerTooltip: 'Expression measured against all regions or just Glomerulus vs Tubulo-interstitium.',
+                    field: 'segmentName',
+                    valueFormatter: params => params.value === 'Glomerulus / Renal Corpuscle' ? 'to Glom/TI (only)' : 'to all regions'
+                }
+            );
+        }
         columns.push(
             {
                 headerName: 'FOLD CHANGE',
@@ -163,6 +176,17 @@ class DiffexByCluster extends Component {
               pValAdj: formatNumberToPrecision(pValAdj, 3, true)
           }
         });
+      }
+      else if (dataType === "rt") {
+          return results.map(({ gene, segmentName, foldChange, pVal, pValAdj }) => {
+          return {
+              gene: gene,
+              comparison: segmentName === 'Glomerulus / Renal Corpuscle' ? 'to Glom/TI (only)' : 'to all regions',
+              foldChange: formatNumberToPrecision(foldChange, 3),
+              pVal: formatNumberToPrecision(pVal, 3),
+              pValAdj: formatNumberToPrecision(pValAdj, 3, true)
+          }
+          })
       }
       else {
         return results.map(({ gene, foldChange, pVal, pValAdj }) => {
