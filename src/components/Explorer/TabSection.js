@@ -66,7 +66,7 @@ class TabSection extends Component {
         return (
             <TabPane tabId={this.props.tabId}>
                 <Row>
-                    <Col sm="5">
+                    <Col sm="4">
                         <div className='cell-type-list p-3'>
                             <button
                                 onClick={() => this.props.handleCellTypeClick(this.props.topLevelLink)}
@@ -79,7 +79,7 @@ class TabSection extends Component {
                             {cellTypes}
                         </div>
                     </Col>
-                    <Col sm="6">
+                    <Col sm="8">
 
                         {this.props.isGlomerulusSchematic ?
                             <HubMapGlomSchema
