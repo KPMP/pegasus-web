@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { Row, Col, Container } from 'reactstrap';
-import SamplesByDataTypeTable from './SamplesByDataTypeTable';
+import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
 
-class WelcomeText extends Component {
+class Search extends Component {
     render() {
         return (
             <Container className="multi-container-container">
@@ -11,7 +11,7 @@ class WelcomeText extends Component {
                         <Container className="mt-3 rounded border p-3 shadow-sm">
                             <Row className="mb-4">
                                 <Col>
-                      <SamplesByDataTypeTable history={this.props.history} setSelectedConcept={this.props.setSelectedConcept} featureSTData={this.props.featureSTData}/>
+                                    <ConceptSelectFullWidth useRedirection={true} redirect="/summary" featureNewCellClusterDate={this.props.featureNewCellClusterDate} />
                                 </Col>
                             </Row>
                         </Container>
@@ -22,4 +22,4 @@ class WelcomeText extends Component {
     }
 }
 
-export default WelcomeText;
+export default Search;
