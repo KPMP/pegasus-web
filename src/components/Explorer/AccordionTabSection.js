@@ -75,7 +75,7 @@ class AccordionTabSection extends Component {
             let collapsed = this.state.collapse;
             return (
                 <div className='cell-type-list mb-1 px-3 py-2 subregion-name' key={subregion.subregionName}>
-                    <span className={`d-flex align-items-center ${collapsed === index ? "open" : "collapsed"}`}>
+                    <span className={`${collapsed === index ? "open" : "collapsed"}`}>
                         <span onClick={() => {this.toggle(index)}} data-event={index}>
                             <FontAwesomeIcon  className={`${collapsed === index ? "" : "hidden"}`} icon={faChevronDown} />
                             <FontAwesomeIcon  className={`${collapsed === index ? "hidden" : ""}`} icon={faChevronRight} />
@@ -102,7 +102,7 @@ class AccordionTabSection extends Component {
         return (
             <TabPane tabId={this.props.tabId}>
                 <Row>
-                    <Col sm="4">
+                    <Col sm="5">
                         <div className='cell-type-list p-3'>
                             <button
                                 onClick={() => this.props.handleCellTypeClick(this.props.topLevelLink)}
@@ -114,7 +114,7 @@ class AccordionTabSection extends Component {
                             {cellTypes}
                         </div>
                     </Col>
-                    <Col sm="8">
+                    <Col sm="6">
                         {this.props.isNephronSchematic ?
                             <HubMapTubuleSchema
                                 activeCell={this.props.activeCell}
