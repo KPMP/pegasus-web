@@ -102,7 +102,7 @@ class AccordionTabSection extends Component {
         return (
             <TabPane tabId={this.props.tabId}>
                 <Row>
-                    <Col sm="4">
+                    <Col sm="5">
                         <div className='cell-type-list p-3'>
                             <button
                                 onClick={() => this.props.handleCellTypeClick(this.props.topLevelLink)}
@@ -114,7 +114,7 @@ class AccordionTabSection extends Component {
                             {cellTypes}
                         </div>
                     </Col>
-                    <Col sm="8">
+                    <Col sm="6">
                         {this.props.isNephronSchematic ?
                             <HubMapTubuleSchema
                                 activeCell={this.props.activeCell}

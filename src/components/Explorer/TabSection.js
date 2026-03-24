@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { TabPane, Row, Col } from 'reactstrap';
 import CellTypeEnum from './CellTypeEnum';
 import HubMapGlomSchema from './GlomerulusSchematic';
-// import GlomerulusSchematic from './GlomerulusSchematic';
 
 class TabSection extends Component {
 
@@ -66,7 +65,7 @@ class TabSection extends Component {
         return (
             <TabPane tabId={this.props.tabId}>
                 <Row>
-                    <Col sm="4">
+                    <Col sm="5">
                         <div className='cell-type-list p-3'>
                             <button
                                 onClick={() => this.props.handleCellTypeClick(this.props.topLevelLink)}
@@ -79,7 +78,7 @@ class TabSection extends Component {
                             {cellTypes}
                         </div>
                     </Col>
-                    <Col sm="8">
+                    <Col sm="6">
 
                         {this.props.isGlomerulusSchematic ?
                             <HubMapGlomSchema
