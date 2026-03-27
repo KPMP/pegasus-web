@@ -97,7 +97,14 @@ function HubMapTubuleSchema({
 
         const ontologyId = cellMapToOntologyId[activeCell]
         if (ontologyId){
-
+            console.log(ontologyId)
+            if (typeof ontologyId === 'object'){
+                const base = "http://purl.obolibrary.org/obo/"
+                const purlList = ontologyId.map(id => base+id);
+                console.log(purlList)
+                // console.log("object detected!")
+                schemaElement.setAttribute("highlight", JSON.stringify(purlList))
+            }
             const purl = "http://purl.obolibrary.org/obo/"+ontologyId
             schemaElement.setAttribute("highlight", purl);
         }
