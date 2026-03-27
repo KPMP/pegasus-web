@@ -227,7 +227,6 @@ export const cellMapToOntologyId = {
     "Cortico-Medullary Thick Ascending Limb of Loop of Henle Cell":"UBERON_0001291",
     "Medullary Thick Ascending Limb of Loop of Henle Cell": "UBERON_0001291",
     "Macula Densa Cell": "", //this doesn't have an ontologyId from HubMap yet. So we can't highlight this.
-    "Thick Ascending Limb of Loop of Henle": "UBERON_0001291",
     "Distal Convolution": "", //this doesn't have an ontologyId from HubMap yet. So we can't highlight this yet
     "Distal Convoluted Tubule Cell": "",
     "Distal Convoluted Tubule Cell Type 1":"",
@@ -235,9 +234,9 @@ export const cellMapToOntologyId = {
     "Connecting Tubule":"CL_1000768",
     "Connecting Tubule Cell":"CL_1000768",
     "Connecting Tubule Principal Cell":"CL_1000768",
-    "Collecting Duct":{"Inner Medullary Collecting Duct Cell":"CL_1000718",   "Outer Medullary Collecting Duct Cell":"CL_1000716",  "Cortical Collecting Duct Cell":"CL_1000714"   },
+    "Collecting Duct":["CL_1000718", "CL_1000716","CL_1000714"],
     "Cortical Principal Cell":"CL_1000714",
-    "Distal Nephron":{"Distal Convolution":"", "Connecting Tubule":"CL_1000768", "Inner Medullary Collecting Duct Cell":"CL_1000718"},
+    "Distal Nephron":["","CL_1000768", "CL_1000718"],
     "Cortical Collecting Duct Principal Cell":"CL_1000714",
     "Principal-Intercalated Cell": {"Outer Medullary Collecting Duct Cell":"CL_1000716", "Inner Medullary Collecting Duct Cell":"CL_1000718"},
     "Intercalated Cell":{"Outer Medullary Collecting Duct Cell":"CL_1000716", "Inner Medullary Collecting Duct Cell":"CL_1000718"},
