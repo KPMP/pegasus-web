@@ -1,7 +1,18 @@
 # Changelog
 
-## Release 3.2 (unreleased)
+## Release 3.3 (unreleased)
+
+----
+
+## Release 3.2
 Brief summary:
+- Fix sizing of schematics to take up full width of container
+- Updated common components
+- Return "-" for dmr enrollment category for Single-Cell and Single-Nuc
+- Remove caching for apollo client
+- Add new Regional Transcriptomics Comparison column
+- Removed FDR Confidence column from Regional Proteomics Table
+- Shuffle the layout of the Explorer home page
 
 ### Breaking changes:
 
