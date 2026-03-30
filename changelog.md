@@ -12,7 +12,6 @@ Brief summary:
 - Remove caching for apollo client
 - Add new Regional Transcriptomics Comparison column
 - Removed FDR Confidence column from Regional Proteomics Table
-- Shuffle the layout of the Explorer home page
 
 ### Breaking changes:
 
