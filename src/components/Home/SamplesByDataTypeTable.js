@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 import { Grid, TableFixedColumns, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
-import { fetchSummaryData, fetchDataTypeSummaryInformation, fetchDataTypeSummaryInformation2025} from '../../helpers/ApolloClient';
+import { fetchSummaryData, fetchDataTypeSummaryInformation2025} from '../../helpers/ApolloClient';
 import { Row, Col, UncontrolledTooltip } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
-
+import initialState from '../../initialState';
 class SamplesByDataTypeTable extends Component {
 
     constructor(props) {
@@ -16,7 +16,7 @@ class SamplesByDataTypeTable extends Component {
     }
 
     async componentDidMount(){
-
+        this.props.setFeatureSTData(initialState.featureSTData);
         let spatialSummary = await fetchSummaryData("spatialViewerSummary");
         spatialSummary = [...spatialSummary].sort(this.compare)
         spatialSummary = spatialSummary.filter(availableDataVisibilityFilter)
@@ -26,20 +26,24 @@ class SamplesByDataTypeTable extends Component {
         explorerSummary = [...explorerSummary].sort(this.compare)
         explorerSummary = explorerSummary.filter(availableDataVisibilityFilter)
 
+
         // adding lines to separate the sections in the table
         explorerSummary.unshift({dataType: "Explorer"})
         spatialSummary.unshift({dataType: "Spatial Viewer"})
-
-        const summaryData = explorerSummary.concat(spatialSummary)
+        
+        let filteredData = []
+        let summaryData = []
+        if (!this.props.featureSTData){ //if featureSTData is false, remove Spatial Transcriptomics from explorer summary
+            filteredData = explorerSummary.filter((item) => item.dataType !== "Spatial Transcriptomics")
+            summaryData = filteredData.concat(spatialSummary)
+        }else {
+            summaryData = explorerSummary.concat(spatialSummary)
+        }
         this.setState({dataTable: summaryData});
     }
 
     async fetchDataTypeSummaryLocal() {
-       if (this.props.featureSCData || this.props.featureSNData) {
-            return await fetchDataTypeSummaryInformation2025();    
-        } else {
-            return await fetchDataTypeSummaryInformation();
-        }
+        return await fetchDataTypeSummaryInformation2025();    
     }
 
     compare( a, b ) {
@@ -55,7 +59,7 @@ class SamplesByDataTypeTable extends Component {
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
 
-        this.props.setDataType(dataType, this.props.featureSNData, this.props.featureSCData, this.props);
+        this.props.setDataType(dataType, this.props.featureSTData);
 
     }
 

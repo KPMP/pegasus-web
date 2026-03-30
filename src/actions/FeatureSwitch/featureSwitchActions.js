@@ -1,15 +1,9 @@
-import actionNames from "../actionNames";
+import actionNames from "../actionNames"
 
-export const setFeatureSNData = (snSwitch) => {
+
+export const setFeatureSTData = (featureSTData) => {
     return {
-        type: actionNames.SET_SN_SWITCH,
-        payload: snSwitch
+        type: actionNames.SET_ST_SWITCH,
+        payload: featureSTData
     }
-};
-
-export const setFeatureSCData = (scSwitch) => {
-  return {
-    type: actionNames.SET_SC_SWITCH,
-    payload: scSwitch
-  }
 }

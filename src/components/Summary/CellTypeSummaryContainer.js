@@ -4,14 +4,13 @@ import { setDataType } from "../../actions/DataType/dataTypeActions";
 import { setEnrollmentCategory } from "../../actions/EnrollmentCategory/enrollmentCategoryActions";
 import { setCluster } from "../../actions/Cluster/clusterActions"
 import { withRouter } from 'react-router';
+import { setFeatureSTData } from '../../actions/FeatureSwitch/featureSwitchActions';
 
 const mapStateToProps = (state, props) =>
 ({
     cellType: state.cellType,
     conceptSummary: state.conceptSummary,
-    featureSNData: state.featureSNData,
-    featureSCData: state.featureSCData,
-    featureNewCellClusterData: state.featureNewCellClusterData
+    featureSTData:state.featureSTData,
 });
 
 const mapDispatchToProps = (dispatch, props) =>
@@ -21,8 +20,11 @@ const mapDispatchToProps = (dispatch, props) =>
             dispatch(setDataType(dataType));
             dispatch(setEnrollmentCategory("all"));
             dispatch(setCluster(cluster));
-            dispatch((dispatch) => window.open("/explorer/diffex2", '_self'));
-
+            dispatch((dispatch) => window.open("/explorer/diffex", '_self'));
+            
+        },
+        setFeatureSTData(featureSTData){
+            dispatch(setFeatureSTData(featureSTData))
         }
     });
 

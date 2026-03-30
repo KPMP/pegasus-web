@@ -1,4 +1,4 @@
-import { fetchDataTypesForConcept, fetchDataTypesForConcept2025 } from './ApolloClient';
+import { fetchDataTypesForConcept2025 } from './ApolloClient';
 
 export const formatNumberToPrecision = (number, precision, keepAsInt = false, dataType = "", enrollmentCategory = "") => {
     if (number) {
@@ -6,7 +6,7 @@ export const formatNumberToPrecision = (number, precision, keepAsInt = false, da
     } else if (number === 0) {
         return 0
     } else {
-        if (dataType === "sn" && enrollmentCategory === "dmr") {
+        if ((dataType === "sn" && enrollmentCategory === "dmr") || (dataType === "sc" && enrollmentCategory === "dmr")) {
             return "-"
         }
         return "NS"
@@ -119,37 +119,7 @@ export const getAllDataTypeOptions = () => {
     return options;
 };
 
-export const getDataTypeOptions = async (geneSymbol, cluster) => {
-    let options = await fetchDataTypesForConcept(geneSymbol, cluster).then((result) => {
-        let dataTypes = result.dataTypesForConcept;
-        const options = [
-            {
-                label: "snRNA-seq",
-                value: "sn",
-                isDisabled: !dataTypes.includes("sn")
-            },
-            {
-                label: "scRNA-seq",
-                value: "sc",
-                isDisabled: !dataTypes.includes("sc")
-            },
-            {
-                label: "Regional transcriptomics",
-                value: "rt",
-                isDisabled: !dataTypes.includes("rt")
-            },
-            {
-                label: "Regional proteomics",
-                value: "rp",
-                isDisabled: !dataTypes.includes("rp")
-            }
-        ];
-        return options;
-    });
-    return options;
-};
-
-export const getDataTypeOptions2025 = async (geneSymbol, cluster) => {
+export const getDataTypeOptions2025 = async (geneSymbol, cluster, featureSTData) => {
     let options = await fetchDataTypesForConcept2025(geneSymbol, cluster).then((result) => {
         let dataTypes = result.dataTypesForConcept2025;
         const options = [
@@ -172,15 +142,23 @@ export const getDataTypeOptions2025 = async (geneSymbol, cluster) => {
                 label: "Regional proteomics",
                 value: "rp",
                 isDisabled: !dataTypes.includes("rp")
-            }
+            },
+            
         ];
+        if (featureSTData) {
+            options.push({
+                label: "Spatial Transcriptomics",
+                value: "st",
+                isDisabled: false
+            })
+        }
         return options;
     });
     return options;
 };
 
 export const getDataTypeOptionsWithEnrollmentCategory = async (geneSymbol, cluster, datasetSummary, currentEnrollmentCategory) => {
-    let options = await getDataTypeOptions(geneSymbol, cluster, datasetSummary);
+    let options = await getDataTypeOptions2025(geneSymbol, cluster, datasetSummary);
     for (let index in options) {
         for (let indexDS in datasetSummary) {
             const tissues = {
@@ -205,3 +183,6 @@ export const availableDataVisibilityFilter = (data) => {
     }
     return undefined;
 }
+
+
+

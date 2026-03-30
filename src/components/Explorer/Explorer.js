@@ -7,10 +7,11 @@ import { setGene } from '../../actions/Gene/geneActions';
 import { setEnrollmentCategory } from '../../actions/EnrollmentCategory/enrollmentCategoryActions';
 import { setDataType } from '../../actions/DataType/dataTypeActions';
 import { setAccession } from '../../actions/Accession/accessionActions';
+import { setFeatureSTData } from '../../actions/FeatureSwitch/featureSwitchActions';
 
 import initialState from '../../initialState';
 import { connect } from "react-redux";
-
+import Search from './Search';
 class Explorer extends Component {
     render() {
         this.props.setAccession(initialState.accession)
@@ -18,11 +19,13 @@ class Explorer extends Component {
         this.props.setEnrollmentCategory("");
         this.props.setDataType("");
         this.props.setSelectedConcept(initialState.selectedConcept);
+        this.props.setFeatureSTData(initialState.featureSTData);
         return (
             <article>
                 <WelcomeText />
-                <DataSelectorContainer />
+                <Search />
                 <NephronSchemaCardContainer />
+                <DataSelectorContainer />
             </article>
         );
     }
@@ -44,6 +47,9 @@ const mapDispatchToProps = (dispatch, props) =>
     },
     setAccession(accession){
       dispatch(setAccession(accession))
+    },
+    setFeatureSTData(featureSTData){
+        dispatch(setFeatureSTData(featureSTData))
     }
 });
 

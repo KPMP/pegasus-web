@@ -20,20 +20,15 @@ export const setSelectedConcept = (concept) => {
     };
 };
 
-export const setSelectedConceptAndRedirect = (concept, featureNewCellClusterData, props) => {
+export const setSelectedConceptAndRedirect = (concept, props) => {
     return (dispatch) => {
         dispatch(setSelectedConcept(concept));
         switch (concept.type) {
             case "cell_type":
-                window.open('/explorer/celltypesummary2', '_self');
+                window.open('/explorer/celltypesummary', '_self');
                 break;
             case "gene":
-                if(featureNewCellClusterData){
-                    window.open('/explorer/genesummary2', '_self');
-                }
-                else{
-                    window.open('/explorer/genesummary', '_self');
-                }
+                window.open('/explorer/genesummary', '_self');
                 break;
             default:
                 window.open('/explorer', '_self');

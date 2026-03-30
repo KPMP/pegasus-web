@@ -17,6 +17,9 @@ export const setDataType = (dataType) => {
         case "rp":
             shortDataType = "rp";
             break;
+        case "st":
+            shortDataType = "st";
+            break;
         default:
             shortDataType = "sc"
     }
@@ -26,24 +29,16 @@ export const setDataType = (dataType) => {
     }
 };
 
-export const setDataTypeAndRedirect = (dataType, featureSNData, featureSCData, props) => {
+export const setDataTypeAndRedirect = (dataType, featureSTData, props) => {
     return (dispatch) => {
         switch (dataType) {
           case "Single-cell RNA-seq (scRNA-seq)":
               dispatch(setDataType("sc"));
-              if (featureSCData) {
-                window.open('/explorer/dataviz2', '_self');
-              } else {
-                window.open('/explorer/dataviz', '_self');
-              }
+              window.open('/explorer/dataviz', '_self');
               break;
             case "Single-nucleus RNA-seq (snRNA-seq)":
               dispatch(setDataType("sn"));
-              if (featureSNData) {
-                window.open('/explorer/dataviz2', '_self');
-              } else {
-                window.open('/explorer/dataviz', '_self');
-              }
+              window.open('/explorer/dataviz', '_self');
               break;
             case "Regional transcriptomics":
                 dispatch(setDataType("rt"));
@@ -52,6 +47,14 @@ export const setDataTypeAndRedirect = (dataType, featureSNData, featureSCData, p
             case "Regional proteomics":
                 dispatch(setDataType("rp"));
                 window.open("/explorer/regionalpro", "_self");
+                break;
+            case "Spatial Transcriptomics":
+                if (featureSTData) {
+                    dispatch(setDataType("st"));
+                    window.open("/explorer/stViz", "_self");
+                }else {
+                    window.open('/spatial-viewer/?size=n_20_n&filters[0][field]=datatype&filters[0][values][0]=Spatial Transcriptomics&filters[0][type]=any', '_self');
+                }
                 break;
             case "Spatial Metabolomics":
                 window.open('https://metaspace2020.eu/datasets?prj=0d9a6710-8389-11eb-96db-73c89a357a89&q=_SM_', '_blank');

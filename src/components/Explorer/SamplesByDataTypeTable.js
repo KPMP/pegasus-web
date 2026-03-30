@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Row, Col } from 'reactstrap';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import { availableDataVisibilityFilter } from '../../helpers/Utils';
-import { fetchSummaryData, fetchDataTypeSummaryInformation, fetchDataTypeSummaryInformation2025} from '../../helpers/ApolloClient';
+import { fetchDataTypeSummaryInformation2025} from '../../helpers/ApolloClient';
 import { Grid, TableHeaderRow, Table, TableColumnResizing} from '@devexpress/dx-react-grid-bootstrap4';
 import '@devexpress/dx-react-grid-bootstrap4/dist/dx-react-grid-bootstrap4.css';
 
@@ -32,26 +32,26 @@ class SamplesByDataTypeTable extends Component {
 
 
     async componentDidMount() {
-        let summary = await fetchSummaryData("explorerHomepageSummary")
-        const geneDatasetSummary = await this.getDatasetSummaryLocal();
-        summary = summary.concat(geneDatasetSummary)
+        let summary = await this.getDatasetSummaryLocal();
         summary = summary.slice()
                         .sort( this.compare )
-                        .filter(availableDataVisibilityFilter)
-        this.setState({summary})
+                        .filter(availableDataVisibilityFilter);
+        let filteredData = []
+        if (!this.props.featureSTData){ //if featureSTData is false, remove Spatial Transcriptomics from explorer summary
+            filteredData = summary.filter((item) => !(item.dataType === "Spatial Transcriptomics"))
+            this.setState({summary: filteredData})
+        }else{
+            this.setState({summary})
+        }
     }
 
     async getDatasetSummaryLocal() {
-        if (this.props.featureSCData || this.props.featureSNData) {
-            return await fetchDataTypeSummaryInformation2025()
-        } else {
-            return await fetchDataTypeSummaryInformation()
-        }
+        return await fetchDataTypeSummaryInformation2025()
     }
 
     handleDataTypeClick(dataType) {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and gene: ${this.props.gene}`);
-        this.props.setSelectedConcept(dataType, this.props.featureSNData, this.props.featureSCData, this.props);
+        this.props.setSelectedConcept(dataType, this.props.featureSTData, this.props);
     }
 
     formatDataTypeCell(row) {

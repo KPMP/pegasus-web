@@ -2,16 +2,17 @@ import React, { Component } from 'react';
 import { Container, Row, Col, Spinner } from 'reactstrap';
 import { Grid, TableColumnResizing, TableHeaderRow, Table, TableBandHeader} from '@devexpress/dx-react-grid-bootstrap4';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
-import { fetchDataTypeSummaryInformation, fetchDataTypeSummaryInformation2025 } from '../../helpers/ApolloClient';
-import { getDataTypeOptions } from "../../helpers/Utils";
+import { fetchDataTypeSummaryInformation2025 } from '../../helpers/ApolloClient';
+import { getDataTypeOptions2025 } from "../../helpers/Utils";
 import { handleGoogleAnalyticsEvent } from  '../../helpers/googleAnalyticsHelper';
+import initialState from '../../initialState';
 
 class GeneSummary extends Component {
 
     constructor(props) {
         super(props);
         this.getColumns = this.getColumns.bind(this);
-
+        
         this.state = {
             geneSummary: [],
             dataTypeOptions: [],
@@ -20,6 +21,7 @@ class GeneSummary extends Component {
     };
 
     async componentDidMount() {
+        this.props.setFeatureSTData(initialState.featureSTData);
         await this.fetchPageData();
     }
 
@@ -31,7 +33,7 @@ class GeneSummary extends Component {
 
     fetchPageData = async() => {
         await this.fetchDataTypeSummaryLocal(this.props.gene.symbol);
-        await getDataTypeOptions(this.props.gene.symbol, "").then(
+        await getDataTypeOptions2025(this.props.gene.symbol, "", this.props.featureSTData).then(
             (options) => {
                 this.setState({ dataTypeOptions: options, isLoading: false })
             },
@@ -53,10 +55,12 @@ class GeneSummary extends Component {
     }
 
     fetchDataTypeSummaryLocal = async () => {
-        if (this.props.featureSCData || this.props.featureSNData) {
         await fetchDataTypeSummaryInformation2025().then(
             (dataSummary) => {
                 if (dataSummary) {
+                    if (!this.props.featureSTData){
+                        dataSummary = dataSummary.filter((item) => item.dataType !== "Spatial Transcriptomics")
+                    }
                     this.setState({ geneSummary: dataSummary, isLoading: false });
                 }
             },
@@ -65,25 +69,11 @@ class GeneSummary extends Component {
                 console.log('There was a problem fetching the gene summary data: ' + error)
             }
         );
-        } else {
-            await fetchDataTypeSummaryInformation().then(
-                (dataSummary) => {
-                    if (dataSummary) {
-                        this.setState({ geneSummary: dataSummary, isLoading: false });
-                    }
-                },
-                (error) => {
-                    this.setState({ geneSummary: [], isLoading: false });
-                    console.log('There was a problem fetching the gene summary data: ' + error)
-                }
-            );
-        }
-        
     }
 
     handleLinkClick = (dataTypeShort, dataType) => {
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataTypeShort} and gene: ${this.props.gene.symbol}`);
-        this.props.setDataType(dataType, this.props.featureSNData, this.props.featureSCData, this.props);
+        this.props.setDataType(dataType, this.props.featureSTData);
     };
 
     getColumnExtensions() {
@@ -193,6 +183,7 @@ class GeneSummary extends Component {
     }
 
     render() {
+        
         const BandCell = ({ children, tableRow, tableColumn, column, ...restProps }) => {
             return (
                 <TableBandHeader.Cell {...restProps} column={column}
@@ -206,7 +197,7 @@ class GeneSummary extends Component {
         return (
             <div className='height-wrapper mb-3'>
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
-                    <ConceptSelectFullWidth overflowWarningContainer={true} useRedirection={true} featureNewCellClusterData={this.props.featureNewCellClusterData}/>
+                    <ConceptSelectFullWidth overflowWarningContainer={true} useRedirection={true} />
                 </Container>
                 <Container className='mt-3 rounded border p-3 shadow-sm'>
                     <Row xs='12'>

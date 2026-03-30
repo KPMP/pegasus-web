@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { AgGridReact } from "ag-grid-react";
 import { Col, Row, Container, Spinner, Input, Form, InputGroup } from 'reactstrap';
 import { formatNumberToPrecision, formatDataType } from '../../helpers/Utils'
-import { fetchGeneExpression, fetchGeneExpression2025, fetchRegionalTranscriptomicsByStructure, fetchRegionalProteomicsByStructure } from '../../helpers/ApolloClient';
+import { fetchGeneExpression2025, fetchRegionalTranscriptomicsByStructure, fetchRegionalProteomicsByStructure } from '../../helpers/ApolloClient';
 import { CSVLink } from 'react-csv';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDownload, faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
@@ -53,29 +53,16 @@ class DiffexByCluster extends Component {
                 }
             );
         } else {
-            if (this.props.featureSCData || this.props.featureSNData){
-                fetchGeneExpression2025(this.props.dataType, '', this.props.cluster, 'all').then(
-                    (geneExpressionData) => {
-                        this.setState({ diffexData: geneExpressionData, isLoading: false, filteredData: geneExpressionData })
-                    },
-                    (error) => {
-                        this.setState({ diffexData: [] });
-                        console.log('There was a problem getting the data: ' + error)
-                    }
-                );
+            fetchGeneExpression2025(this.props.dataType, '', this.props.cluster, 'all').then(
+                (geneExpressionData) => {
+                    this.setState({ diffexData: geneExpressionData, isLoading: false, filteredData: geneExpressionData })
+                },
+                (error) => {
+                    this.setState({ diffexData: [] });
+                    console.log('There was a problem getting the data: ' + error)
+                }
+            );
 
-            }else{
-                fetchGeneExpression(this.props.dataType, '', this.props.cluster, 'all').then(
-                    (geneExpressionData) => {
-                        this.setState({ diffexData: geneExpressionData, isLoading: false, filteredData: geneExpressionData })
-                    },
-                    (error) => {
-                        this.setState({ diffexData: [] });
-                        console.log('There was a problem getting the data: ' + error)
-                    }
-                );
-                
-            }
         };
     };
 
@@ -117,6 +104,19 @@ class DiffexByCluster extends Component {
                             {params.data.gene}
                         </button>);
                     }
+                }
+            );
+        }
+        if (this.props.dataType === 'rt') {
+            columns.push(
+                {
+                    headerName: 'COMPARISON',
+                    headerComponent: InfoHeader,
+                    headerComponentParams: { infoIcon: true },
+                    sortable: true,
+                    headerTooltip: 'Expression measured against all regions or just Glomerulus vs Tubulo-interstitium.',
+                    field: 'segmentName',
+                    valueFormatter: params => params.value === 'Glomerulus / Renal Corpuscle' ? 'to Glom/TI (only)' : 'to all regions'
                 }
             );
         }
@@ -177,6 +177,17 @@ class DiffexByCluster extends Component {
           }
         });
       }
+      else if (dataType === "rt") {
+          return results.map(({ gene, segmentName, foldChange, pVal, pValAdj }) => {
+          return {
+              gene: gene,
+              comparison: segmentName === 'Glomerulus / Renal Corpuscle' ? 'to Glom/TI (only)' : 'to all regions',
+              foldChange: formatNumberToPrecision(foldChange, 3),
+              pVal: formatNumberToPrecision(pVal, 3),
+              pValAdj: formatNumberToPrecision(pValAdj, 3, true)
+          }
+          })
+      }
       else {
         return results.map(({ gene, foldChange, pVal, pValAdj }) => {
           return {
@@ -215,7 +226,7 @@ class DiffexByCluster extends Component {
         return (
             <div className='height-wrapper mb-3 mt-3'>
                 <Container id='outer-wrapper'>
-                    <DiffexInfoBar cluster={this.props.cluster} dataType={this.props.dataType} setDataType={this.props.setDataType} featureNewCellClusterData={this.props.featureNewCellClusterData} />
+                    <DiffexInfoBar cluster={this.props.cluster} dataType={this.props.dataType} setDataType={this.props.setDataType} />
                     <Container className='rounded border p-3 shadow-sm mb-5'>
                         {
                             this.state.isLoading ?

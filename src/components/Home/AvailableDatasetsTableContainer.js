@@ -11,13 +11,14 @@ const mapStateToProps = (state, props) =>
     akiCount: state.akiCount,
     ckdCount: state.ckdCount,
     linkType: state.linkType,
-    linkValue: state.linkValue
+    linkValue: state.linkValue, 
+    featureSTData: state.featureSTData
 });
 
 const mapDispatchToProps = (dispatch, props) =>
 ({
-    setDataType(concept) {
-        dispatch(setDataTypeAndRedirect(concept, props));
+    setDataType(concept, featureSTData) {
+        dispatch(setDataTypeAndRedirect(concept, featureSTData, props));
     }
 });
 

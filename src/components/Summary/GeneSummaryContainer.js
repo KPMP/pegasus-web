@@ -3,20 +3,23 @@ import GeneSummary from './GeneSummary';
 import { setDataTypeAndRedirect } from '../../actions/DataType/dataTypeActions'
 import { setEnrollmentCategory } from "../../actions/EnrollmentCategory/enrollmentCategoryActions";
 import { withRouter } from 'react-router';
+import { setFeatureSTData } from '../../actions/FeatureSwitch/featureSwitchActions';
 
 const mapStateToProps = (state, props) =>
     ({
         gene: state.gene,
         conceptSummary: state.conceptSummary,
-        featureSNData: state.featureSNData,
-        featureSCData: state.featureSCData
+        featureSTData: state.featureSTData,
     });
 
 const mapDispatchToProps = (dispatch, props) =>
     ({
-        setDataType(dataType, featureSNData, featureSCData) {
+        setDataType(dataType, featureSTData) {
             dispatch(setEnrollmentCategory("all"));
-            dispatch(setDataTypeAndRedirect(dataType, featureSNData, featureSCData, props));
+            dispatch(setDataTypeAndRedirect(dataType, featureSTData, props));
+        },
+        setFeatureSTData(featureSTData){
+            dispatch(setFeatureSTData(featureSTData))
         }
 
     });

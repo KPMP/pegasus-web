@@ -82,32 +82,6 @@ export const fetchAutoComplete = async (searchString) => {
     }
 };
 
-export const fetchCellTypeHierarchy = async () => {
-    const response = await apolloClient.query({
-        query: gql`
-            query {
-                cellTypeHierarchy {
-                    cellTypeRegions {
-                        regionName
-                        cellTypeSubregions {
-                            subregionName
-                            cellTypes {
-                                cellType
-                            }
-                        }
-                    }
-                }
-            }`
-    });
-
-    if (response.data && response.data.cellTypeHierarchy) {
-        return response.data.cellTypeHierarchy;
-    }
-    else {
-        store.dispatch(sendMessageToBackend("Could not retrieve cell type hierarchy data: " + response.error));
-    }
-};
-
 export const fetchCellTypeHierarchy2025 = async () => {
     const response = await apolloClient.query({
         query: gql`
@@ -134,34 +108,31 @@ export const fetchCellTypeHierarchy2025 = async () => {
     }
 };
 
-export const fetchClusterHierarchy = async (cellType) => {
-    const response = await apolloClient.query({
-        query: gql`
-            query {
-                getClusterHieararchies(cellType: "${cellType}") {
-                   cellType
-                   clusterName
-                   structureRegion
-                   structureSubregion
-                   isSingleNucCluster
-                   isSingleCellCluster
-                   isRegionalTranscriptomics
-                   isRegionalProteomics
-                   cellTypeId
-                   clusterId
-                   cellTypeOrder
-                }
-            }`
-    });
+// This follows a new structure proposed by CodeRabbit to avoid returning undefined
+export const fetchHubmapTermMap= async () => {
+    try {
+        const response = await apolloClient.query({
+            query: gql`
+                query {
+                   getHubmapTermMap {
+                        hubmapOntologyId
+                        cellType
+                    }
+                }`
+        });
 
-    if (response.data && response.data.getClusterHieararchies) {
-        return response.data.getClusterHieararchies;
-    } else {
-        store.dispatch(sendMessageToBackend("Could not retrieve cluster data: " + response.error));
+        if (response.data && response.data.getHubmapTermMap) {
+            return response.data.getHubmapTermMap;
+        }
+        store.dispatch(sendMessageToBackend("Could not retrieve HuBMAP term map: " + response.error));
+        return [];
+    } catch (error) {
+        store.dispatch(sendMessageToBackend("Could not retrieve HuBMAP term map: " + error));
+        return [];
     }
-}
+};
 
-export const fetchClusterHierarchy2025 = async (cellType) => {
+export const fetchClusterHierarchy2025 = async (cellType, fetchPolicy = 'no-cache') => {
     const response = await apolloClient.query({
         query: gql`
             query {
@@ -174,6 +145,7 @@ export const fetchClusterHierarchy2025 = async (cellType) => {
                    isSingleCellCluster
                    isRegionalTranscriptomics
                    isRegionalProteomics
+                   isSpatialTranscriptomics
                    cellTypeId
                    clusterId
                    cellTypeOrder
@@ -213,36 +185,6 @@ export const fetchDataTypeSummaryInformation2025 = async (fetchPolicy = 'no-cach
     } else {
         console.log('response.error',response.error)
         console.log(response)
-        store.dispatch(sendMessageToBackend("Could not retrieve Gene Dataset: " + response.error));
-    }
-
-    return undefined;
-}
-
-export const fetchDataTypeSummaryInformation = async (fetchPolicy = 'no-cache') => {
-    const query = gql`
-      query {
-                getDataTypeSummaryInformation
-                 {
-                    omicsType
-                    dataType
-                    dataTypeShort
-                    hrtCount
-                    akiCount
-                    ckdCount
-                    dmrCount
-                    totalCount
-                    participantCount
-                }
-            }`;
-    const response = await apolloClient.query({
-        query: query,
-        fetchPolicy: fetchPolicy
-    });
-    if (response.data && response.data.getDataTypeSummaryInformation) {
-        return response.data.getDataTypeSummaryInformation;
-    } else {
-        console.log('response.error',response.error)
         store.dispatch(sendMessageToBackend("Could not retrieve Gene Dataset: " + response.error));
     }
 
@@ -315,21 +257,7 @@ export const fetchPlotlyData = async (dataType, geneSymbol, enrollmentCategory, 
     }
 }
 
-export const fetchDataTypesForConcept = async (geneSymbol, clusterName) => {
-    const response = await apolloClient.query({
-        query: gql`
-            query{
-                dataTypesForConcept(geneSymbol:"${geneSymbol}", clusterName: "${clusterName}")
-            }`
-    });
-    if (response.data && response.data) {
-        return response.data;
-    } else {
-        store.dispatch(sendMessageToBackend("Could not retrieve data types: " + response.error));
-    }
-}
-
-export const fetchDataTypesForConcept2025 = async (geneSymbol, clusterName) => {
+export const fetchDataTypesForConcept2025 = async (geneSymbol, clusterName, fetchPolicy = 'no-cache') => {
     const response = await apolloClient.query({
         query: gql`
             query{
@@ -343,44 +271,7 @@ export const fetchDataTypesForConcept2025 = async (geneSymbol, clusterName) => {
     }
 }
 
-export const fetchGeneExpression = async (dataType, geneSymbol, cellType, enrollmentCategory) => {
-    const query = gql`
-        query {
-             geneExpressionSummary(
-				dataType: "${dataType}",
-				geneSymbol: "${geneSymbol}",
-				cellType: "${cellType}",
-				enrollmentCategory: "${enrollmentCategory}"
-				) {
-					id
-					enrollmentCategory
-					gene
-					pVal
-					pValAdj
-					foldChange
-					pct1
-					pct2
-					avgExp
-					cluster
-					clusterName
-					cellCount
-					dataType
-				}
-        }`;
-
-    const response = await apolloClient.query({
-        query: query
-    });
-
-	if(response.data && response.data.geneExpressionSummary) {
-		return response.data.geneExpressionSummary;
-	} else {
-		store.dispatch(sendMessageToBackend("Could not retrieve gene expression data: " + response.error));
-	}
-};
-
-
-export const fetchGeneExpression2025 = async (dataType, geneSymbol, cellType, enrollmentCategory) => {
+export const fetchGeneExpression2025 = async (dataType, geneSymbol, cellType, enrollmentCategory, fetchPolicy = 'no-cache') => {
     const query = gql`
         query {
              geneExpressionSummary2025(
@@ -417,7 +308,7 @@ export const fetchGeneExpression2025 = async (dataType, geneSymbol, cellType, en
 };
 
 
-export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) => {
+export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol, fetchPolicy = 'no-cache') => {
     let query = gql`
         query {
             getRTGeneExpressionByEnrollment(comparisonType:"${comparisonType}", geneSymbol: "${geneSymbol}") {
@@ -490,7 +381,7 @@ export const fetchRegionalTranscriptomics = async (comparisonType, geneSymbol) =
 
 };
 
-export const fetchRegionalProteomics = async (geneSymbol) => {
+export const fetchRegionalProteomics = async (geneSymbol, fetchPolicy = 'no-cache') => {
     let query = gql`
         query {
             getRPGeneExpressionByEnrollment(geneSymbol: "${geneSymbol}") {
@@ -529,7 +420,7 @@ export const fetchRegionalProteomics = async (geneSymbol) => {
 
 };
 
-export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
+export const fetchRegionalTranscriptomicsByStructure = async (structure, fetchPolicy = 'no-cache') => {
     let query = gql`
         query {
             getRTGeneExpressionByStructure(structure: "${structure}") {
@@ -549,7 +440,7 @@ export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
 
     const response = await apolloClient.query({
         query: query,
-        fetchPolicy: 'cache-first'
+        fetchPolicy: 'no-cache'
     });
 
     if (response.data && response.data.getRTGeneExpressionByStructure) {
@@ -559,7 +450,7 @@ export const fetchRegionalTranscriptomicsByStructure = async (structure) => {
     }
 }
 
-export const fetchRegionalProteomicsByStructure = async (structure) => {
+export const fetchRegionalProteomicsByStructure = async (structure, fetchPolicy = 'no-cache') => {
     let query = gql`
         query {
             getRPGeneExpressionByStructure(structure: "${structure}") {
@@ -670,3 +561,6 @@ export const fetchAtlasSummaryRows = async () => {
         store.dispatch(sendMessageToBackend("Could not retrieve file counts: " + response.error));
     }
 }
+
+
+

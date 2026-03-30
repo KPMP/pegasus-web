@@ -3,19 +3,22 @@ import SamplesByDataTypeTable from './SamplesByDataTypeTable';
 import { setDataTypeAndRedirect } from '../../actions/DataType/dataTypeActions'
 import { withRouter } from 'react-router';
 import { resetState } from "../../actions/resetAction";
+import { setFeatureSTData } from '../../actions/FeatureSwitch/featureSwitchActions';
 
 const mapStateToProps = (state, props) =>
 ({
     selectedDataType: state.selectedDataType,
-    featureSNData: state.featureSNData,
-    featureSCData: state.featureSCData
+    featureSTData: state.featureSTData
 });
 
 const mapDispatchToProps = (dispatch, props) =>
 ({
-    setDataType(concept, featureSNData, featureSCData) {
+    setDataType(concept, featureSTData) {
         dispatch(resetState());
-          dispatch(setDataTypeAndRedirect(concept, featureSNData, featureSCData, props));
+          dispatch(setDataTypeAndRedirect(concept, featureSTData, props));
+    },
+    setFeatureSTData(featureSTData){
+        dispatch(setFeatureSTData(featureSTData))
     }
 });
 

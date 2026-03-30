@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import { Grid, TableColumnResizing, TableHeaderRow, Table} from '@devexpress/dx-react-grid-bootstrap4';
 import ConceptSelectFullWidth from '../ConceptSelect/ConceptSelectFullWidth';
-import { fetchClusterHierarchy, fetchClusterHierarchy2025 } from '../../helpers/ApolloClient';
+import { fetchClusterHierarchy2025 } from '../../helpers/ApolloClient';
 import { Spinner } from "reactstrap";
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import Parser from 'html-react-parser';
 import { stripHtml } from "string-strip-html";
+import initialState from '../../initialState';
 
 class CellTypeSummary extends Component {
 
@@ -20,26 +21,25 @@ class CellTypeSummary extends Component {
     };
 
     async componentDidMount() {
+        this.props.setFeatureSTData(initialState.featureSTData)
         await this.fetchClusterHierarchy();
     }
-
+    
     async componentDidUpdate(prevProps, prevState, snapShot) {
         if (this.props.cellType !== prevProps.cellType) {
             await this.fetchClusterHierarchy();
+            this.handleSpatialTranscriptomicsRow();
         }
     }
 
     fetchClusterHierarchy = async () => {
         this.setState({ isLoading: true });
-        if (this.props.featureNewCellClusterData){
-            console.log("Using 2025 query for cluster hierarchy");
-            let results = await fetchClusterHierarchy2025(this.props.cellType);
+        let results = await fetchClusterHierarchy2025(this.props.cellType);
+        if (this.props.featureSTData === false) {
+            results = results.slice(1);
 
-            this.setState({ cellTypeSummary: results, isLoading: false });
-        }else {
-            let results = await fetchClusterHierarchy(this.props.cellType);
-            this.setState({ cellTypeSummary: results, isLoading: false });
         }
+        this.setState({ cellTypeSummary: results, isLoading: false });
     };
 
     handleLinkClick = (dataType, row) => {
@@ -52,7 +52,7 @@ class CellTypeSummary extends Component {
             }
         }
         handleGoogleAnalyticsEvent('Explorer', 'Navigation', `data type: ${dataType} and cluster: ${cluster}`);
-        this.props.setDataTypeAndCluster(dataType, cluster, this.props.featureSCData, this.props.featureSNData);
+        this.props.setDataTypeAndCluster(dataType, cluster);
     };
 
     parseClusterName = (value) => {
@@ -76,6 +76,7 @@ class CellTypeSummary extends Component {
             { columnName: 'sc', width: 'auto', align: 'center', wordWrapEnabled: true  },
             { columnName: 'rt', width: 'auto', align: 'center',  wordWrapEnabled: true  },
             { columnName: 'rp', width: 'auto', align: 'center',  wordWrapEnabled: true  },
+            { columnName: 'st', width: 'auto', align: 'center',  wordWrapEnabled: true  },
         ]
     }
 
@@ -88,11 +89,12 @@ class CellTypeSummary extends Component {
             { columnName: 'sc', width: 135},
             { columnName: 'rt', width: 135 },
             { columnName: 'rp', width: 135 },
+            { columnName: 'st', width: 135 },
         ]
     }
 
     getColumns() {
-        return [
+        const columns = [
             {
                 title: <span className='cell-summary-table-header'>STRUCTURE/<br />REGION</span>,
                 name: 'structureRegion',
@@ -136,9 +138,20 @@ class CellTypeSummary extends Component {
                 name: 'rp',
                 getCellValue: row => (
                     this.linkDataTypeCells(row.isRegionalProteomics, 'rp', row)
-                )
+                ),
             },
-        ]
+        ];
+
+        if (this.props.featureSTData){
+            columns.push({
+                title: <span>SPATIAL<br/>TRANSCRIPTOMICS</span>,
+                name: 'st',
+                getCellValue: row => (
+                    this.linkDataTypeCells(row.isSpatialTranscriptomics, 'st', row)
+                ),
+            })
+        }
+        return columns;
     };
 
     linkDataTypeCells(isOfType, dataType, row) {
@@ -160,7 +173,7 @@ class CellTypeSummary extends Component {
             return (
                 <div className='height-wrapper mb-3'>
                     <Container className='mt-3 rounded border p-3 shadow-sm'>
-                        <ConceptSelectFullWidth overflowWarningContainer={true} useRedirection={true} featureNewCellClusterData={this.props.featureNewCellClusterData}/>
+                        <ConceptSelectFullWidth overflowWarningContainer={true} useRedirection={true} />
                     </Container>
                     <Container className='mt-3 rounded border p-3 shadow-sm'>
                         <Row xs='12'>

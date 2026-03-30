@@ -43,17 +43,16 @@ class RegionalProteomicsTable extends Component {
 
     createColumnDefs() {
         return [
-            { headerName: "REGION", field: "segment", width: 125, sortable: false },
-            { headerName: "FDR CONFIDENCE", field: "fdrConfidence", width: 150, sortable: false},
-            { headerName: "COVERAGE %", field: "coveragePct", width: 150, sortable: false},
-            { headerName: "# PEPTIDES", field: "numPeptides", width: 150, sortable: false},
-            { headerName: "# UNIQUE PEPTIDES", field: "numUniquePeptides", width: 175, sortable: false},
-            { headerName: "# SAMPLES", field: "sampleCount", width: 125, sortable: false},
-            { headerName: "FOLD CHANGE", field: "foldChange", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175, sortable: false,
+            { headerName: "REGION", field: "segment", width: 150, sortable: false },
+            { headerName: "COVERAGE %", field: "coveragePct", width: 175, sortable: false},
+            { headerName: "# PEPTIDES", field: "numPeptides", width: 175, sortable: false},
+            { headerName: "# UNIQUE PEPTIDES", field: "numUniquePeptides", width: 200, sortable: false},
+            { headerName: "# SAMPLES", field: "sampleCount", width: 150, sortable: false},
+            { headerName: "FOLD CHANGE", field: "foldChange", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 200, sortable: false,
                 headerComponentParams: {infoIcon: true},
                 headerTooltip: 'Fold change of a gene is calculated by dividing the average expression of the gene in the segment of interest by its average expression in all other segments being compared.'
             },
-            { headerName: "ADJ P VALUE", field: "pValLog10", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 175, sortable: false,
+            { headerName: "ADJ P VALUE", field: "pValLog10", valueFormatter: params => formatNumberToPrecision(params.value, 3), width: 200, sortable: false,
                 headerComponentParams: {infoIcon: true},
                 headerTooltip: 'P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment of interest and its expression in all other segments.'
             },

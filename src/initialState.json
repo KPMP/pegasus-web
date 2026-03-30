@@ -7,7 +7,5 @@
   "cluster": "",
   "cellType": "",
   "accession": "",
-  "featureSNData": true,
-  "featureSCData": true,
-  "featureNewCellClusterData": true
+  "featureSTData": false
 }
