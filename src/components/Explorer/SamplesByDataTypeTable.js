@@ -131,11 +131,11 @@ class SamplesByDataTypeTable extends Component {
     getDefaultColumnWidths() {
         return [
             { columnName: 'dataType', width: 295 },
-            { columnName: 'hrtCount', width: 190 },
-            { columnName: 'ckdCount', width: 85 },
-            { columnName: 'akiCount', width: 85 },
-            { columnName: 'dmrCount', width: 85 },
-            { columnName: 'totalCount', width: 85 },
+            { columnName: 'hrtCount', width: "auto" },
+            { columnName: 'ckdCount', width: "auto" },
+            { columnName: 'akiCount', width: "auto" },
+            { columnName: 'dmrCount', width: "auto" },
+            { columnName: 'totalCount', width:"auto" },
         ]
     }
 
@@ -148,7 +148,7 @@ class SamplesByDataTypeTable extends Component {
                         <React.Fragment>
                             <Grid rows={this.state.summary} columns={this.state.columns}>
                                 <Table columnExtensions={this.getColumnExtensions()}/>
-                                <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} minColumnWidth={88}/>
+                                <TableColumnResizing defaultColumnWidths={this.getDefaultColumnWidths()} resizingMode="nextColumn" minColumnWidth={88}/>
                                 <TableHeaderRow/>
                             </Grid>
                         </React.Fragment>
