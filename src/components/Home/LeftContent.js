@@ -88,7 +88,7 @@ class LeftContent extends Component {
                 <br />
                 <a target="_blank" rel="noreferrer" href='https://data.humancellatlas.org/'>HCA Data Portal</a>
                 <br />
-                <a target="_blank" rel="noreferrer" href="https://explore.data.humancellatlas.org/projects?filter=%5B%7B%22categoryKey%22%3A%22specimenOrgan%22%2C%22value%22%3A%5B%22kidney%22%2C%22mouse+kidney%22%5D%7D%5D">HCA Kidney Network Datasets</a>
+                <a target="_blank" rel="noreferrer" href="https://explore.data.humancellatlas.org/projects?filter=%5B%7B%22categoryKey%22%3A%22bionetworkName%22%2C%22value%22%3A%5B%22Kidney%22%5D%7D%5D">HCA Kidney Network Datasets</a>
             </p>
           </div>
         </Container>
