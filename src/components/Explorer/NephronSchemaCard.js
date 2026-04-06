@@ -55,7 +55,7 @@ class NephronSchemaCard extends Component {
             tabs = <Spinner color='primary' />;
         }
         return (
-            <Container className="mt-3 rounded border p-3 shadow-sm">
+            <Container className="mt-3 rounded border p-3 shadow-sm search-container">
                 <Row>
                     <Col md='12'>
                         <h5 className="mb-3">Select a cell type</h5>

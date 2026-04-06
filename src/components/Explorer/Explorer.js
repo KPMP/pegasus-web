@@ -11,7 +11,7 @@ import { setFeatureSTData } from '../../actions/FeatureSwitch/featureSwitchActio
 
 import initialState from '../../initialState';
 import { connect } from "react-redux";
-import Search from './Search';
+
 class Explorer extends Component {
     render() {
         this.props.setAccession(initialState.accession)
@@ -23,9 +23,8 @@ class Explorer extends Component {
         return (
             <article>
                 <WelcomeText />
-                <Search />
-                <NephronSchemaCardContainer />
                 <DataSelectorContainer />
+                <NephronSchemaCardContainer />
             </article>
         );
     }
