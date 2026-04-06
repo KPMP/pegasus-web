@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TabPane, Row, Col, Collapse } from 'reactstrap';
-import TubuleSchematic from './TubuleSchematic';
+import HubMapTubuleSchema from './TubuleSchematic';
 import CellTypeEnum from './CellTypeEnum';
 import { faChevronDown, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -116,7 +116,7 @@ class AccordionTabSection extends Component {
                     </Col>
                     <Col sm="8">
                         {this.props.isNephronSchematic ?
-                            <TubuleSchematic
+                            <HubMapTubuleSchema
                                 activeCell={this.props.activeCell}
                                 handleCellTypeClick={this.props.handleCellTypeClick}
                                 setActiveTab={this.props.setActiveTab}

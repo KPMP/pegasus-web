@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { TabPane, Row, Col } from 'reactstrap';
-import GlomerulusSchematic from './GlomerulusSchematic';
 import CellTypeEnum from './CellTypeEnum';
+import HubMapGlomSchema from './GlomerulusSchematic';
+// import GlomerulusSchematic from './GlomerulusSchematic';
 
 class TabSection extends Component {
 
@@ -81,7 +82,7 @@ class TabSection extends Component {
                     <Col sm="8">
 
                         {this.props.isGlomerulusSchematic ?
-                            <GlomerulusSchematic
+                            <HubMapGlomSchema
                                 setActiveTab={this.props.setActiveTab}
                                 activeCell={this.props.activeCell}
                                 setActiveCell={this.props.setActiveCell}

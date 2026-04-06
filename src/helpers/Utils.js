@@ -202,6 +202,7 @@ export const svgToCellMap = {
 };
 
 export const cellMapToOntologyId = {
+    "Glomerulus / Renal Corpuscle": "", 
     "Glomerular Parietal Epithelium": "CL_1000452",
     "Parietal Epithelial Cell": "CL_1000452",
     "Glomerular Mesangium": "CL_1000742",
@@ -214,9 +215,9 @@ export const cellMapToOntologyId = {
     "Proximal Tubule": "CL_4030009",
     "Proximal Tubule Epithelial Cell":"CL_4030009",
     "Proximal Tubule Epithelial Cell Segment 1": 'CL_4030009',
-    "Proximal Tubule Epithelial Cell Segment 1/Segment 2": "CL_4030009",
-    "Proximal Tubule Epithelial Cell Segment 2": "CL_4030009",
-    "Proximal Tubule Epithelial Cell Segment 2/Segment 3": "CL_4030009",
+    "Proximal Tubule Epithelial Cell Segment 1/Segment 2": ["CL_4030009", "UBERON_0004197"],
+    "Proximal Tubule Epithelial Cell Segment 2": "UBERON_0004197",
+    "Proximal Tubule Epithelial Cell Segment 2/Segment 3": ["CL_4030009", "UBERON_0004197"],
     "Proximal Tubule Epithelial Cell Segment 3":"UBERON_0001290",
     "Loop of Henle (Thin Limb)":["UBERON_0004193","UBERON_0005096"],
     "Descending Thin Limb of Loop of Henle": "UBERON_0005096",
@@ -226,11 +227,11 @@ export const cellMapToOntologyId = {
     "Cortical Thick Ascending Limb of Loop of Henle": "UBERON_0001291",
     "Cortico-Medullary Thick Ascending Limb of Loop of Henle Cell":"UBERON_0001291",
     "Medullary Thick Ascending Limb of Loop of Henle Cell": "UBERON_0001291",
-    "Macula Densa Cell": "", //this doesn't have an ontologyId from HubMap yet. So we can't highlight this.
-    "Distal Convolution": "", //this doesn't have an ontologyId from HubMap yet. So we can't highlight this yet
-    "Distal Convoluted Tubule Cell": "",
-    "Distal Convoluted Tubule Cell Type 1":"",
-    "Distal Convoluted Tubule Cell Type 2":"",
+    "Macula Densa Cell": "CL_1000850",
+    "Distal Convolution": "CL_1000849",
+    "Distal Convoluted Tubule Cell": "CL_1000849",
+    "Distal Convoluted Tubule Cell Type 1":"CL_1000849",
+    "Distal Convoluted Tubule Cell Type 2":"CL_1000849",
     "Connecting Tubule":"CL_1000768",
     "Connecting Tubule Cell":"CL_1000768",
     "Connecting Tubule Principal Cell":"CL_1000768",
