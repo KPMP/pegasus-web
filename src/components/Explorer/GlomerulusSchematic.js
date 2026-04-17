@@ -18,7 +18,7 @@ function HubMapGlomSchema({
         if (!schemaElement) return;
         
         const handleClick = async (event) => {
-            if(event?.svg_group_id === "Epithelial_Cell_Proximal_Tubule"){
+            if(event?.detail?.svg_group_id === "Epithelial_Cell_Proximal_Tubule"){
                 console.log("clicked on proximal tubule cell in glomerulus schematic, toggling to tubule schematic and highlighting proximal tubule cell")
                 setActiveCell(CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1);
                 setActiveTab('2');
@@ -52,7 +52,6 @@ function HubMapGlomSchema({
         };
 
         if (activeCell === ""){
-            schemaElement.removeEventListener("cell-hover", handleHover);
             schemaElement.setAttribute("highlight", "");
         }
         schemaElement.addEventListener('cell-hover', handleHover);
@@ -67,8 +66,10 @@ function HubMapGlomSchema({
     useEffect(() => {
             const schemaElement = schemaRef.current;
             if (!schemaElement || !activeCell) return;
+            console.log(activeCell);
     
             const ontologyId = cellMapToOntologyId[activeCell]
+            console.log(ontologyId)
 
             if (ontologyId) {
                 const base = "http://purl.obolibrary.org/obo/";
@@ -78,7 +79,8 @@ function HubMapGlomSchema({
                     console.log(purlList);
                     schemaElement.highlight = purlList;
                 } else {
-                    schemaElement.highlight = [base + ontologyId];
+                    schemaElement.highlight = base + ontologyId;
+                    console.log(schemaElement);
                 }
             }else {
                 schemaElement.highlight = "";

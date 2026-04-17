@@ -18,8 +18,8 @@ function HubMapTubuleSchema({
         if (!schemaElement) return;
         
         const handleClick = async (event) => {
-            if(event?.svg_group_id === "Epithelial_Cell_Proximal_Tubule"){
-                console.log("clicked on proximal tubule cell in glomerulus schematic, toggling to tubule schematic and highlighting proximal tubule cell")
+            if(event?.detail?.svg_group_id === "Epithelial_Cell_Proximal_Tubule"){
+                console.log("clicked on proximal tubule cell in tubule schematic, toggling to tubule schematic and highlighting proximal tubule cell")
                 setActiveCell(CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1);
                 setActiveTab('2');
             }

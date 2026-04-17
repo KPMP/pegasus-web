@@ -211,7 +211,7 @@ export const cellMapToOntologyId = {
     "Glomerular Capillary Endothelial Cell": "CL_1001005",
     "Proximal Tubule": "CL_0002306",
     "Glomerular Visceral Epithelium": "CL_0000653",
-    "Potocyte": "CL_000653",
+    "Podocyte": "CL_000653",
     "Proximal Tubule": "CL_4030009",
     "Proximal Tubule Epithelial Cell":"CL_4030009",
     "Proximal Tubule Epithelial Cell Segment 1": 'CL_4030009',
