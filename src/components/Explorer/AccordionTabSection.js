@@ -75,7 +75,7 @@ class AccordionTabSection extends Component {
             let collapsed = this.state.collapse;
             return (
                 <div className='cell-type-list mb-1 px-3 py-2 subregion-name' key={subregion.subregionName}>
-                    <span className={`${collapsed === index ? "open" : "collapsed"}`}>
+                    <span className={`d-flex align-items-center ${collapsed === index ? "open" : "collapsed"}`}>
                         <span onClick={() => {this.toggle(index)}} data-event={index}>
                             <FontAwesomeIcon  className={`${collapsed === index ? "" : "hidden"}`} icon={faChevronDown} />
                             <FontAwesomeIcon  className={`${collapsed === index ? "hidden" : ""}`} icon={faChevronRight} />
