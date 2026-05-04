@@ -73,8 +73,6 @@ function HubMapTubuleSchema({
                     default:
                         toggleCollapseTab({target: {dataset: {event: -1 }}})
                 }
-                if(cellType === CellTypeEnum.CONNECTING_TUBULE) {
-                }
 
                 setActiveCell(cellType)
             }

@@ -4,6 +4,7 @@ import { dataType } from "./components/DataViz/dataTypeReducer"
 import { enrollmentCategory } from "./components/DataViz/enrollmentCategoryReducer"
 import { accession } from "./components/DataViz/accessionReducer";
 import { featureSTData } from './components/FeatureSwitch/featureSwitchReducer';
+import { activeTab } from './components/Explorer/activeTabReducer';
 
 
 const appReducer = combineReducers({
@@ -14,7 +15,8 @@ const appReducer = combineReducers({
   cluster,
   cellType,
   accession,
-  featureSTData
+  featureSTData,
+  activeTab
 })
 
 const rootReducer = (state, action) => {

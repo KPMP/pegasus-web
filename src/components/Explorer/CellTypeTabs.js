@@ -7,13 +7,12 @@ import '@fontsource/libre-franklin';
 import CellTypeEnum from './CellTypeEnum';
 
 const CellTypeTabs = (props) => {
-  const [activeTab, setActiveTab] = useState('1');
+  const activeTab = props.activeTab || '1';
+  const toggle = props.toggle || ((tab) => {
+    if (activeTab !== tab) props.onToggleTab?.(tab);
+  });
   const [activeCell, setActiveCell] = useState(CellTypeEnum.ALL);
   console.log("active tab is tab: " + activeTab)
-
-  const toggle = tab => {
-    if (activeTab !== tab) setActiveTab(tab);
-  }
 
   return (
     <div id="cell-type-tabs">
