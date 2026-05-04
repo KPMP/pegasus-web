@@ -9,6 +9,7 @@ import CellTypeEnum from './CellTypeEnum';
 const CellTypeTabs = (props) => {
   const [activeTab, setActiveTab] = useState('1');
   const [activeCell, setActiveCell] = useState(CellTypeEnum.ALL);
+  console.log("active tab is tab: " + activeTab)
 
   const toggle = tab => {
     if (activeTab !== tab) setActiveTab(tab);

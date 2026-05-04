@@ -18,12 +18,11 @@ function HubMapTubuleSchema({
         if (!schemaElement) return;
         
         const handleClick = async (event) => {
-            if(event?.detail?.svg_group_id === "Epithelial_Cell_Proximal_Tubule"){
-                console.log("clicked on proximal tubule cell in tubule schematic, toggling to tubule schematic and highlighting proximal tubule cell")
-                setActiveCell(CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1);
-                setActiveTab('2');
-            }
-            else{
+            if (event?.detail?.svg_group_id === "Renal_Corpuscle"){
+                console.log("clicked on renal corpuscle in tubule schematic, toggling to glomerulus schematic and highlighting renal corpuscle")
+                setActiveCell(CellTypeEnum.ALL);
+                setActiveTab('1');
+            }else {
                 let ontologyId = event.detail.representation_of;
                 ontologyId = ontologyId.replace('http://purl.obolibrary.org/obo/', '').replace(/_/g, ':');
                 // Find the matching object in hubmapTermMap
@@ -33,10 +32,11 @@ function HubMapTubuleSchema({
                         handleCellTypeClick(obj.cellType);
                     }
                 });
+                setActiveTab('2');
             }
+                
+            
         }
-
-        // schemaElement.setAttribute("highlight", "UBERON:0001291")
 
         const handleHover = (event) => {
             if (event.detail){
