@@ -1,4 +1,4 @@
-import React, { Component, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { fetchHubmapTermMap } from '../../helpers/ApolloClient';
 import { svgToCellMap, cellMapToOntologyId } from '../../helpers/Utils';
 import CellTypeEnum from './CellTypeEnum';
