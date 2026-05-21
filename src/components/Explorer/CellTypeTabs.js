@@ -12,7 +12,6 @@ const CellTypeTabs = (props) => {
     if (activeTab !== tab) props.onToggleTab?.(tab);
   });
   const [activeCell, setActiveCell] = useState(CellTypeEnum.ALL);
-  console.log("active tab is tab: " + activeTab)
 
   return (
     <div id="cell-type-tabs">

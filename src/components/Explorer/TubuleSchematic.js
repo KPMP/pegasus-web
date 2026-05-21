@@ -19,7 +19,6 @@ function HubMapTubuleSchema({
         
         const handleClick = async (event) => {
             if (event?.detail?.svg_group_id === "Renal_Corpuscle"){
-                console.log("clicked on renal corpuscle in tubule schematic, toggling to glomerulus schematic and highlighting renal corpuscle")
                 setActiveCell(CellTypeEnum.ALL);
                 setActiveTab('1');
             }else {
@@ -39,17 +38,11 @@ function HubMapTubuleSchema({
         }
 
         const handleHover = (event) => {
-            if (event.detail){
-                console.log(event.detail.representation_of)
-                console.log(event.detail.svg_group_id);
-                console.log(event.detail)
-            }
             let svgId = event?.detail?.svg_group_id;
 
             if(!svgId) return;
 
             const cellType = svgToCellMap[svgId];
-            console.log(cellType);
             if(cellType){
                 switch (cellType) {
                     case CellTypeEnum.PROXIMAL_TUBULEL:
@@ -86,7 +79,7 @@ function HubMapTubuleSchema({
             schemaElement.removeEventListener("cell-hover", handleHover);
             schemaElement.setAttribute("highlight", "");
         }
-        schemaElement.addEventListener("cell-hover", handleHover);
+        // schemaElement.addEventListener("cell-hover", handleHover);
         schemaElement.addEventListener('cell-click', handleClick);
 
         return () => {
@@ -102,11 +95,10 @@ function HubMapTubuleSchema({
         const ontologyId = cellMapToOntologyId[activeCell]
         if (ontologyId) {
             const base = "http://purl.obolibrary.org/obo/";
-            console.log(ontologyId)
 
             if (Array.isArray(ontologyId)) {
                 const purlList = ontologyId.map(id => base + id);
-                console.log(purlList);
+
                 schemaElement.highlight = purlList;
             } else {
                 schemaElement.highlight = [base + ontologyId];

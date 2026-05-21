@@ -52,7 +52,6 @@ class AccordionTabSection extends Component {
 
     handleSchematicHoverLeave = (cellType) => {
         if(this.props.setActiveCell) {
-            console.log("setting to empty string")
             this.props.setActiveCell(CellTypeEnum.ALL);
         }
     }
