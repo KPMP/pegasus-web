@@ -1,4 +1,5 @@
 import { fetchDataTypesForConcept2025 } from './ApolloClient';
+import CellTypeEnum from '../components/Explorer/CellTypeEnum';
 
 export const formatNumberToPrecision = (number, precision, keepAsInt = false, dataType = "", enrollmentCategory = "") => {
     if (number) {
@@ -186,3 +187,68 @@ export const availableDataVisibilityFilter = (data) => {
 
 
 
+export const svgToCellMap = {
+    "Epithelial_Cell_Proximal_Tubule": CellTypeEnum.PROXIMAL_TUBULEL,
+    "Glomerular_Mesangial_Cell": CellTypeEnum.MESANGIUM,
+    "Parietal_Epithelial_Cell": CellTypeEnum.PARIETAL,
+    "Glomerular_Visceral_Epithelial_Cell": CellTypeEnum.VISCERAL_EPITHELIUM,
+    "Glomerular_Capillary_Endothelial_Cell": CellTypeEnum.GLOMERULAR,
+    "Proximal_Tubule": CellTypeEnum.PROXIMAL_TUBULEL,
+    "Connecting_Tubule": CellTypeEnum.CONNECTING_TUBULE,
+    "Collecting_Duct": CellTypeEnum.COLLECTING_DUCT,
+    "Descending_Thin_Limb_Of_Loop_Of_Henle": CellTypeEnum.DESCENDING_THIN_LIMB_LOOP_OF_HENLE,
+    "Ascending_Thin_Limb_Of_Loop_Of_Henle": CellTypeEnum.ASCENDING_THIN_LIMB_LOOP_OF_HENLE,
+    "Thick_Ascending_Limb_Of_Loop_Of_Henle": CellTypeEnum.THICK_ASCENDING_LIMB_LOOP_OF_HENLE,
+};
+
+export const cellMapToOntologyId = {
+    "Glomerulus / Renal Corpuscle": "", 
+    "Glomerular Parietal Epithelium": "CL_1000452",
+    "Parietal Epithelial Cell": "CL_1000452",
+    "Glomerular Mesangium": "CL_1000742",
+    "Mesangial Cell": "CL_1000742",
+    "Glomerular Capillary Endothelium": "CL_1001005",
+    "Glomerular Capillary Endothelial Cell": "CL_1001005",
+    "Glomerular Visceral Epithelium": "CL_0000653",
+    "Podocyte": "CL_0000653",
+    "Proximal Tubule": ["CL_4030009", "UBERON_0004197", "UBERON_0001290"],
+    "Proximal Tubule Epithelial Cell":["CL_4030009", "UBERON_0004197", "UBERON_0001290"],
+    "Proximal Tubule Epithelial Cell Segment 1": 'CL_4030009',
+    "Proximal Tubule Epithelial Cell Segment 1/Segment 2": ["CL_4030009", "UBERON_0004197"],
+    "Proximal Tubule Epithelial Cell Segment 2": "UBERON_0004197",
+    "Proximal Tubule Epithelial Cell Segment 2/Segment 3": ["UBERON_0004197", "UBERON_0001290"],
+    "Proximal Tubule Epithelial Cell Segment 3":"UBERON_0001290",
+    "Loop of Henle (Thin Limb)":["UBERON_0004193","UBERON_0005096"],
+    "Descending Thin Limb of Loop of Henle": "UBERON_0005096",
+    "Ascending Thin Limb of Loop of Henle": "UBERON_0004193",
+    "Loop of Henle (Thick Limb)": "UBERON_0001291",
+    "Thick Ascending Limb of Loop of Henle": "UBERON_0001291",
+    "Cortical Thick Ascending Limb of Loop of Henle": "UBERON_0001291",
+    "Cortico-Medullary Thick Ascending Limb of Loop of Henle Cell":"UBERON_0001291",
+    "Medullary Thick Ascending Limb of Loop of Henle Cell": "UBERON_0001291",
+    "Macula Densa Cell": "CL_1000850",
+    "Distal Convolution": "CL_1000849",
+    "Distal Convoluted Tubule Cell": "CL_1000849",
+    "Distal Convoluted Tubule Cell Type 1":"CL_1000849",
+    "Distal Convoluted Tubule Cell Type 2":"CL_1000849",
+    "Connecting Tubule":"CL_1000768",
+    "Connecting Tubule Cell":"CL_1000768",
+    "Connecting Tubule Principal Cell":"CL_1000768",
+    "Collecting Duct":["CL_1000714","CL_1000716","CL_1000718"],
+    "Cortical Principal Cell":"CL_1000714",
+    "Distal Nephron":["CL_1000768","CL_1000849", "UBERON_0004205"],
+    "Cortical Collecting Duct Principal Cell":"CL_1000714",
+    "Principal-Intercalated Cell": ["CL_1000716", "UBERON_0004203"],
+    "Intercalated Cell":["CL_1000716", "UBERON_0004203"],
+    "Intercalated Cell Type A":["CL_1000716","UBERON_0004203"],
+    "Intercalated Cell Type B": "CL_1000714",
+    "Cortical Collecting Duct Intercalated Cell Type A": "UBERON_0004203",
+    "Collecting Duct Intercalated Cell Type A":["UBERON_0004203", "UBERON_0004204"],
+    "Outer Medullary Collecting Duct Intercalated Cell Type A": "CL_1000716",
+    "Outer Medullary Collecting Duct Principal Cell":"CL_1000716",
+    "Outer Medullary Collecting Duct Principal-Intercalated Cell": "CL_1000716",
+    "Medullary Principal Cell": "CL_1000716",
+    "Inner Medullary Collecting Duct Cell":"CL_1000718",
+    "Papillary Tip Epithelial":"",
+    "Papillary Tip Epithelial Cell":""
+}

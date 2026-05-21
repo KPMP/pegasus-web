@@ -12,13 +12,12 @@ class NephronSchemaCard extends Component {
         this.state = {
             cellTypeHierarchy: hierarchy,
             isProcessing: true,
-            activeTab: '1'
         }
     }
 
     toggle = (tab) => {
-        if (this.state.activeTab !== tab) {
-            this.setState({ activeTab: tab });
+        if (this.props.activeTab !== tab) {
+            this.props.setActiveTab(tab);
         }
     }
 
@@ -49,7 +48,12 @@ class NephronSchemaCard extends Component {
     render() {
         let structures = this.processHierarchyText();
         let tabs = <Col xs="12">
-            <CellTypeTabs data={structures} handleCellTypeClick={this.handleCellTypeClick} />
+            <CellTypeTabs 
+              data={structures} 
+              handleCellTypeClick={this.handleCellTypeClick}
+              activeTab={this.props.activeTab}
+              toggle={this.toggle}
+            />
         </Col>;
         if (this.state.isProcessing) {
             tabs = <Spinner color='primary' />;

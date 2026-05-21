@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { TabPane, Row, Col } from 'reactstrap';
-import GlomerulusSchematic from './GlomerulusSchematic';
 import CellTypeEnum from './CellTypeEnum';
+import HubMapGlomSchema from './GlomerulusSchematic';
 
 class TabSection extends Component {
 
@@ -20,6 +20,7 @@ class TabSection extends Component {
                     <button
                         onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
                         onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType); this.setState({ activeCell: cellType.cellType }) }}
+                        onMouseLeave={() => { this.handleSchematicHoverLeave(cellType.cellType); this.setState({activeCell: CellTypeEnum.ALL})}}
                         type="button"
                         className={`btn btn-link text-start p-0 ${(this.props.activeCell === cellType.cellType) ? 'pseudohover' : ''}`} >
                         {cellType.cellType}
@@ -32,6 +33,7 @@ class TabSection extends Component {
                     <button
                         onClick={() => this.props.handleCellTypeClick(subregion.subregionName)}
                         onMouseEnter={() => { this.handleSchematicHoverEnter(subregion.subregionName); this.setState({ activeCell: subregion.subregionName }) }}
+                        onMouseLeave={() => { this.handleSchematicHoverLeave(subregion.subregionName); this.setState({activeCell: CellTypeEnum.ALL})}}
                         type="button"
                         className={`btn btn-link text-start p-0 ${(this.props.activeCell === subregion.subregionName) ? 'pseudohover' : ''}`} >
                             {subregion.subregionName}   
@@ -68,6 +70,7 @@ class TabSection extends Component {
                             <button
                                 onClick={() => this.props.handleCellTypeClick(this.props.topLevelLink)}
                                 onMouseEnter={() => { this.handleSchematicHoverEnter(this.props.topLevelLink); this.setState({ activeCell: this.props.topLevelLink }) }}
+                                onMouseLeave={() => { this.handleSchematicHoverLeave(this.props.topLevelLink); this.setState({activeCell: CellTypeEnum.ALL})}}
                                 type="button"
                                 className={`btn btn-link text-start p-0 ${(this.props.activeCell === this.props.topLevelLink) ? 'pseudohover' : ''}`}>
                                     {this.props.topLevelLink}
@@ -78,7 +81,7 @@ class TabSection extends Component {
                     <Col sm="8">
 
                         {this.props.isGlomerulusSchematic ?
-                            <GlomerulusSchematic
+                            <HubMapGlomSchema
                                 setActiveTab={this.props.setActiveTab}
                                 activeCell={this.props.activeCell}
                                 setActiveCell={this.props.setActiveCell}
