@@ -209,7 +209,6 @@ export const cellMapToOntologyId = {
     "Mesangial Cell": "CL_1000742",
     "Glomerular Capillary Endothelium": "CL_1001005",
     "Glomerular Capillary Endothelial Cell": "CL_1001005",
-    "Proximal Tubule": "CL_0002306",
     "Glomerular Visceral Epithelium": "CL_0000653",
     "Podocyte": "CL_0000653",
     "Proximal Tubule": ["CL_4030009", "UBERON_0004197", "UBERON_0001290"],
