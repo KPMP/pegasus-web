@@ -81,7 +81,10 @@ class TabSection extends Component {
                     <Col sm="8">
 
                         {this.props.isGlomerulusSchematic ?
-                            <GlomerulusSchematic
+                            <HubMapGlomSchema
+                                setActiveTab={this.props.setActiveTab}
+                                activeCell={this.props.activeCell}
+                                setActiveCell={this.props.setActiveCell}
                                 handleCellTypeClick={this.props.handleCellTypeClick}
                                 handleSchematicHoverEnter={this.handleSchematicHoverEnter}
                                 handleSchematicHoverLeave={this.handleSchematicHoverLeave}
