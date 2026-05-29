@@ -45,6 +45,13 @@ function HubMapTubuleSchema({
             const cellType = svgToCellMap[svgId];
             if(cellType){
                 switch (cellType) {
+                    case CellTypeEnum.MACULA_DENSA_CELL:
+                        toggleCollapseTab({target: {dataset: {event: 2}}})
+                        break;
+
+                    case CellTypeEnum.DISTAL_CONVOLUTED_TUBULE:
+                        toggleCollapseTab({target: {dataset: {event: 3}}})
+                        break;
                     case CellTypeEnum.PROXIMAL_TUBULEL:
                         toggleCollapseTab({target: {dataset: {event: 0}}})
                         break;
@@ -59,6 +66,15 @@ function HubMapTubuleSchema({
                         break;
                     case CellTypeEnum.CONNECTING_TUBULE:
                         toggleCollapseTab({target: { dataset: {event: 4}}})
+                        break;
+                    case CellTypeEnum.CORTICAL_COLLECTING_DUCT_PRINCIPAL:
+                        toggleCollapseTab({target: { dataset: {event: 5}}})
+                        break;
+                    case CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT_PRINCIPAL:
+                        toggleCollapseTab({target: { dataset: {event: 5}}})
+                        break;
+                    case CellTypeEnum.INNER_MEDULLARY_COLLECTING_DUCT:
+                         toggleCollapseTab({target: { dataset: {event: 5}}})
                         break;
                     case CellTypeEnum.COLLECTING_DUCT:
                         toggleCollapseTab({target:{ dataset: {event: 5}}})
@@ -79,7 +95,7 @@ function HubMapTubuleSchema({
             schemaElement.removeEventListener("cell-hover", handleHover);
             schemaElement.setAttribute("highlight", "");
         }
-        // schemaElement.addEventListener("cell-hover", handleHover);
+        schemaElement.addEventListener("cell-hover", handleHover);
         schemaElement.addEventListener('cell-click', handleClick);
 
         return () => {
