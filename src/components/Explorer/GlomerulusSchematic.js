@@ -18,20 +18,40 @@ function HubMapGlomSchema({
         if (!schemaElement) return;
         
         const handleClick = async (event) => {
-            if(event?.detail?.svg_group_id === "Epithelial_Cell_Proximal_Tubule"){
-                setActiveCell(CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1);
-                setActiveTab('2');
-            }
-            else{
-                let ontologyId = event.detail.representation_of;
-                ontologyId = ontologyId.replace('http://purl.obolibrary.org/obo/', '').replace(/_/g, ':');
-                // Find the matching object in hubmapTermMap
-                const hubmapTermMap = await fetchHubmapTermMap();
-                hubmapTermMap.forEach(obj => {
-                    if (obj.hubmapOntologyId === ontologyId) {
-                        handleCellTypeClick(obj.cellType);
-                    }
-                });
+            switch (event?.detail?.svg_group_id) {
+                case "Macula_Densa_Epithelial_Cell":
+                    setActiveCell(CellTypeEnum.MACULA_DENSA_CELL);
+                    setActiveTab('2');
+                    break;
+                case "Epithelial_Cell_Proximal_Tubule":
+                    setActiveCell(CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1);
+                    setActiveTab('2');
+                    break;
+                case "Afferent_Arteriole_Endothelial_Cell":
+                    console.log("Clicked on Afferent Arteriole Endothelial Cell");
+                    setActiveCell(CellTypeEnum.AFFERENT_ARTERY_ARTERIOLE_ENDOTHELIAL_CELL);
+                    setActiveTab('4');
+                    break;
+                case "Efferent_Arteriole_Endothelial_Cell":
+                    console.log("Clicked on Efferent Arteriole Endothelial Cell");
+                    setActiveCell(CellTypeEnum.EFFERENT_ARTERIOLE_ENDOTHELIAL_CELL);
+                    setActiveTab('4');
+                    break;
+                case "Juxtaglomerular_Granular_Cell":
+                    console.log("Clicked on Juxtaglomerular_Granular_Cell");
+                    setActiveCell(CellTypeEnum.JUXTAGLOMERULAR_GRANULAR_CELL);
+                    setActiveTab('4');
+                    break;
+                default:
+                    let ontologyId = event.detail.representation_of;
+                    ontologyId = ontologyId.replace('http://purl.obolibrary.org/obo/', '').replace(/_/g, ':');
+                    // Find the matching object in hubmapTermMap
+                    const hubmapTermMap = await fetchHubmapTermMap();
+                    hubmapTermMap.forEach(obj => {
+                        if (obj.hubmapOntologyId === ontologyId) {
+                            handleCellTypeClick(obj.cellType);
+                        }
+                    });
             }
         }
         const handleHover = (event) => {
@@ -39,6 +59,7 @@ function HubMapGlomSchema({
             if (!svgId) return;
         
             const cellType = svgToCellMap[svgId];
+            console.log(`Hovered over SVG group: ${svgId}, mapped to cell type: ${cellType}`);
         
             if (cellType) {
               setActiveCell(cellType);

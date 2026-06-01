@@ -89,6 +89,9 @@ const CellTypeTabs = (props) => {
         <TabSection data={props.data.Vessels}
           tabId='4'
           handleCellTypeClick={props.handleCellTypeClick}
+          setActiveTab={toggle}
+          setActiveCell={setActiveCell}
+          activeCell={activeCell}
           topLevelLink='Vessels' />
       </TabContent>
     </div>

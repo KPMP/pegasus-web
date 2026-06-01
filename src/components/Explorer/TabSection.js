@@ -69,8 +69,7 @@ class TabSection extends Component {
                         <div className='cell-type-list p-3'>
                             <button
                                 onClick={() => this.props.handleCellTypeClick(this.props.topLevelLink)}
-                                onMouseEnter={() => { this.handleSchematicHoverEnter(this.props.topLevelLink); this.setState({ activeCell: this.props.topLevelLink }) }}
-                                onMouseLeave={() => { this.handleSchematicHoverLeave(this.props.topLevelLink); this.setState({activeCell: CellTypeEnum.ALL})}}
+                                onMouseEnter={() => { this.handleSchematicHoverEnter(this.props.topLevelLink); }}
                                 type="button"
                                 className={`btn btn-link text-start p-0 ${(this.props.activeCell === this.props.topLevelLink) ? 'pseudohover' : ''}`}>
                                     {this.props.topLevelLink}
