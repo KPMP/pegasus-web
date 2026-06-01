@@ -43,12 +43,12 @@ function HubMapTubuleSchema({
             if(!svgId) return;
 
             const cellType = svgToCellMap[svgId];
+            console.log("Svg ID: ", svgId, " maps to cell type: ", cellType);
             if(cellType){
                 switch (cellType) {
                     case CellTypeEnum.MACULA_DENSA_CELL:
                         toggleCollapseTab({target: {dataset: {event: 2}}})
                         break;
-
                     case CellTypeEnum.DISTAL_CONVOLUTED_TUBULE:
                         toggleCollapseTab({target: {dataset: {event: 3}}})
                         break;
