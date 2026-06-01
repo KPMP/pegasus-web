@@ -206,7 +206,8 @@ export const svgToCellMap = {
     "Afferent_Arteriole_Endothelial_Cell": CellTypeEnum.AFFERENT_ARTERY_ARTERIOLE_ENDOTHELIAL_CELL,
     "Efferent_Arteriole_Endothelial_Cell": CellTypeEnum.EFFERENT_ARTERIOLE_ENDOTHELIAL_CELL,
     "Juxtaglomerular_Granular_Cell": CellTypeEnum.JUXTAGLOMERULAR_GRANULAR_CELL,
-    "Macula_Densa": CellTypeEnum.MACULA_DENSA_CELL
+    "Macula_Densa": CellTypeEnum.MACULA_DENSA_CELL,
+    "Papillary Tip Epithelial Cell": CellTypeEnum.PAPILLARY_EPITHELIAL_CELL
 };
 
 export const cellMapToOntologyId = {
@@ -257,9 +258,9 @@ export const cellMapToOntologyId = {
     "Outer Medullary Collecting Duct Principal-Intercalated Cell": "CL_1000716",
     "Medullary Principal Cell": "CL_1000716",
     "Inner Medullary Collecting Duct Cell":"CL_1000718",
-    "Papillary Tip Epithelial":"",
-    "Papillary Tip Epithelial Cell":"",
     "Afferent Artery / Arteriole Endothelial Cell": "CL_1001096",
     "Efferent Arteriole Endothelial Cell": "CL_1001099",
-    "Juxtaglomerular Granular Cell": "CL_0000648"
+    "Juxtaglomerular Granular Cell": "CL_0000648",
+    "Papillary Tip Epithelial": "UBERON_0004205",
+    "Papillary Tip Epithelial Cell": "UBERON_0004205"
 }
