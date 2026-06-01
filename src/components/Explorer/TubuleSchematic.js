@@ -39,11 +39,9 @@ function HubMapTubuleSchema({
 
         const handleHover = (event) => {
             let svgId = event?.detail?.svg_group_id;
-            console.log(event?.detail?.representation_of);
             if(!svgId) return;
 
             const cellType = svgToCellMap[svgId];
-            console.log("Svg ID: ", svgId, " maps to cell type: ", cellType);
             if(cellType){
                 switch (cellType) {
                     case CellTypeEnum.MACULA_DENSA_CELL:
