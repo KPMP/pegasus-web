@@ -191,14 +191,26 @@ export const svgToCellMap = {
     "Epithelial_Cell_Proximal_Tubule": CellTypeEnum.PROXIMAL_TUBULEL,
     "Glomerular_Mesangial_Cell": CellTypeEnum.MESANGIUM,
     "Parietal_Epithelial_Cell": CellTypeEnum.PARIETAL,
-    "Glomerular_Visceral_Epithelial_Cell": CellTypeEnum.VISCERAL_EPITHELIUM,
+    "Podocyte": CellTypeEnum.PODOCYTE,
     "Glomerular_Capillary_Endothelial_Cell": CellTypeEnum.GLOMERULAR,
     "Proximal_Tubule": CellTypeEnum.PROXIMAL_TUBULEL,
     "Connecting_Tubule": CellTypeEnum.CONNECTING_TUBULE,
     "Collecting_Duct": CellTypeEnum.COLLECTING_DUCT,
+    "Outer_Medullary_Collecting_Duct": CellTypeEnum.OUTER_MEDULLARY_COLLECTING_DUCT_PRINCIPAL,
+    "Cortical_Collecting_Duct": CellTypeEnum.CORTICAL_COLLECTING_DUCT_PRINCIPAL,
+    "Inner_Medullary_Collecting_Duct": CellTypeEnum.INNER_MEDULLARY_COLLECTING_DUCT,
+    "Distal_Convoluted_Tubule": CellTypeEnum.DISTAL_CONVOLUTED_TUBULE,
     "Descending_Thin_Limb_Of_Loop_Of_Henle": CellTypeEnum.DESCENDING_THIN_LIMB_LOOP_OF_HENLE,
     "Ascending_Thin_Limb_Of_Loop_Of_Henle": CellTypeEnum.ASCENDING_THIN_LIMB_LOOP_OF_HENLE,
     "Thick_Ascending_Limb_Of_Loop_Of_Henle": CellTypeEnum.THICK_ASCENDING_LIMB_LOOP_OF_HENLE,
+    "Afferent_Arteriole_Endothelial_Cell": CellTypeEnum.AFFERENT_ARTERY_ARTERIOLE_ENDOTHELIAL_CELL,
+    "Efferent_Arteriole_Endothelial_Cell": CellTypeEnum.EFFERENT_ARTERIOLE_ENDOTHELIAL_CELL,
+    "Juxtaglomerular_Granular_Cell": CellTypeEnum.JUXTAGLOMERULAR_GRANULAR_CELL,
+    "Macula_Densa": CellTypeEnum.MACULA_DENSA_CELL,
+    "Proximal_Tubule_S1": CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1,
+    "Proximal_Tubule_S2": CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_2,
+    "Proximal_Tubule_S3": CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_3,
+    "Papillary Tip Epithelial Cell": CellTypeEnum.PAPILLARY_EPITHELIAL_CELL
 };
 
 export const cellMapToOntologyId = {
@@ -249,6 +261,9 @@ export const cellMapToOntologyId = {
     "Outer Medullary Collecting Duct Principal-Intercalated Cell": "CL_1000716",
     "Medullary Principal Cell": "CL_1000716",
     "Inner Medullary Collecting Duct Cell":"CL_1000718",
-    "Papillary Tip Epithelial":"",
-    "Papillary Tip Epithelial Cell":""
+    "Afferent Artery / Arteriole Endothelial Cell": "CL_1001096",
+    "Efferent Arteriole Endothelial Cell": "CL_1001099",
+    "Juxtaglomerular Granular Cell": "CL_0000648",
+    "Papillary Tip Epithelial": "UBERON_0004205",
+    "Papillary Tip Epithelial Cell": "UBERON_0004205"
 }
