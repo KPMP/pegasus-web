@@ -39,7 +39,6 @@ function HubMapTubuleSchema({
 
         const handleHover = (event) => {
             let svgId = event?.detail?.svg_group_id;
-
             if(!svgId) return;
 
             const cellType = svgToCellMap[svgId];
@@ -48,11 +47,16 @@ function HubMapTubuleSchema({
                     case CellTypeEnum.MACULA_DENSA_CELL:
                         toggleCollapseTab({target: {dataset: {event: 2}}})
                         break;
-
                     case CellTypeEnum.DISTAL_CONVOLUTED_TUBULE:
                         toggleCollapseTab({target: {dataset: {event: 3}}})
                         break;
-                    case CellTypeEnum.PROXIMAL_TUBULEL:
+                    case CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1:
+                        toggleCollapseTab({target: {dataset: {event: 0}}})
+                        break;
+                    case CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_2:
+                        toggleCollapseTab({target: {dataset: {event: 0}}})
+                        break;
+                    case CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_3:
                         toggleCollapseTab({target: {dataset: {event: 0}}})
                         break;
                     case CellTypeEnum.DESCENDING_THIN_LIMB_LOOP_OF_HENLE:

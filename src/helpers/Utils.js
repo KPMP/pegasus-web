@@ -207,6 +207,9 @@ export const svgToCellMap = {
     "Efferent_Arteriole_Endothelial_Cell": CellTypeEnum.EFFERENT_ARTERIOLE_ENDOTHELIAL_CELL,
     "Juxtaglomerular_Granular_Cell": CellTypeEnum.JUXTAGLOMERULAR_GRANULAR_CELL,
     "Macula_Densa": CellTypeEnum.MACULA_DENSA_CELL,
+    "Proximal_Tubule_S1": CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1,
+    "Proximal_Tubule_S2": CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_2,
+    "Proximal_Tubule_S3": CellTypeEnum.PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_3,
     "Papillary Tip Epithelial Cell": CellTypeEnum.PAPILLARY_EPITHELIAL_CELL
 };
 
