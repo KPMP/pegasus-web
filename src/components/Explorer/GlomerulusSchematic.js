@@ -59,7 +59,7 @@ function HubMapGlomSchema({
             if (!svgId) return;
         
             const cellType = svgToCellMap[svgId];
-            console.log(`Hovered over SVG group: ${svgId}, mapped to cell type: ${cellType}`);
+            
         
             if (cellType) {
               setActiveCell(cellType);
