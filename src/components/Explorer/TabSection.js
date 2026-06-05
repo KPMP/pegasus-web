@@ -93,7 +93,7 @@ class TabSection extends Component {
                         }
                     </Col>
                 </Row>
-                <Row style={{padding: "2rem"}}>
+                <Row className="citation">
                     <Col>
                         <small>Schematics courtesy of Bajema, Rachel, Supriya Bidanta, Ellen M. Quardokus, Bruce W. Herr II, and Katy Börner. December 2025. https://humanatlas.io/2d-ftu-illustrations, Accessed on June 1, 2026.</small>
                     </Col>
