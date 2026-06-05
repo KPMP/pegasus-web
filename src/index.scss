@@ -859,7 +859,15 @@ tr.MuiTableRow-root:nth-child(even) {
     background-color: white !important;
   }
 
-
+   .ag-tooltip {
+    background-color: #ffffff;
+    color: #000;
+    border: 1px solid #ccc;
+    padding: 6px 8px;
+    border-radius: 4px;
+    opacity: 1;
+    white-space: pre-line;
+  }
 
   .custom-tooltip {
     position: absolute;
