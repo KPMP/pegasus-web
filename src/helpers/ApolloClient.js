@@ -145,7 +145,6 @@ export const fetchClusterHierarchy2025 = async (cellType, fetchPolicy = 'no-cach
                    isSingleCellCluster
                    isRegionalTranscriptomics
                    isRegionalProteomics
-                   isSpatialTranscriptomics
                    cellTypeId
                    clusterId
                    cellTypeOrder
