@@ -35,10 +35,7 @@ class CellTypeSummary extends Component {
     fetchClusterHierarchy = async () => {
         this.setState({ isLoading: true });
         let results = await fetchClusterHierarchy2025(this.props.cellType);
-        if (this.props.featureSTData === false) {
-            results = results.slice(1);
-
-        }
+  
         this.setState({ cellTypeSummary: results, isLoading: false });
     };
 
