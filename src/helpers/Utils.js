@@ -146,13 +146,13 @@ export const getDataTypeOptions2025 = async (geneSymbol, cluster, featureSTData)
             },
             
         ];
-        if (featureSTData) {
-            options.push({
-                label: "Spatial Transcriptomics",
-                value: "st",
-                isDisabled: false
-            })
-        }
+        // if (featureSTData) {
+        //     options.push({
+        //         label: "Spatial Transcriptomics",
+        //         value: "st",
+        //         isDisabled: false
+        //     })
+        // }
         return options;
     });
     return options;
