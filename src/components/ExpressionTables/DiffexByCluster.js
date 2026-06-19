@@ -116,7 +116,7 @@ class DiffexByCluster extends Component {
                     sortable: true,
                     headerTooltip: 'Expression measured against all regions or just Glomerulus vs Tubulo-interstitium.',
                     field: 'segmentName',
-                    valueFormatter: params => params.value === 'Glomerulus / Renal Corpuscle' ? 'to Glom/TI (only)' : 'to all regions'
+                    valueFormatter: params => params.value === 'Glomerulus / Renal Corpuscle' || params.value === 'Tubulo-interstitium' ? 'to Glom/TI (only)' : 'to all regions'
                 }
             );
         }
