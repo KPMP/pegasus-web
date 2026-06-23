@@ -25,6 +25,9 @@ class RegionalViz extends Component {
             props.setDataType('rt');
             window.open(props.location.pathname, '_self');
         }
+        if (queryParam && queryParam.comparison) {
+            this.state.selectedComparison = queryParam.comparison;
+        }
     };
 
     componentDidMount() {

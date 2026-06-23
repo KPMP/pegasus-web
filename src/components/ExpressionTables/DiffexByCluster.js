@@ -100,7 +100,7 @@ class DiffexByCluster extends Component {
                     field: 'gene',
                     sortable: true,
                     cellRenderer: params => {
-                        return (<button onClick={() => this.handleClick(params.data.gene)}  className='table-column btn btn-link text-start p-0'>
+                        return (<button onClick={() => this.handleClick(params.data.gene, params.data?.accession, params.data?.segmentName)}  className='table-column btn btn-link text-start p-0'>
                             {params.data.gene}
                         </button>);
                     }
@@ -168,9 +168,9 @@ class DiffexByCluster extends Component {
         return columns
     }
 
-    handleClick = (gene, accession) => {
-        this.props.setGene({ symbol: gene, name: '' }, this.props.dataType);
-        this.props.setAccession(accession);
+    handleClick = (gene, accession, comparison) => {
+        this.props.setGene({ symbol: gene, name: '' }, this.props.dataType, comparison);
+        if(accession) this.props.setAccession(accession);
     };
 
     getExportFilename = () => {
