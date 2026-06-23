@@ -918,6 +918,9 @@ tr.MuiTableRow-root:nth-child(even) {
 .lmd-plot-container {
   margin-top: -3.3rem;
   margin-bottom: -2rem !important;
+  hr {
+    box-sizing: inherit;
+  }
 }
 .footnote {
  line-height: 16px;
