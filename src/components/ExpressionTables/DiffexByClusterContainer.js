@@ -14,10 +14,11 @@ const mapStateToProps = (state, props) =>
 
 const mapDispatchToProps = (dispatch, props) =>
     ({
-        setGene(gene, dataType) {
+        setGene(gene, dataType, comparison) {
             dispatch(setGene(gene));
             if (dataType === 'rt') {
-                dispatch((dispatch) => window.open("/explorer/regionalviz", '_self'));
+                let route = (comparison && comparison === "Glomerulus / Renal Corpuscle") ? "/explorer/regionalviz?comparison=glom_tub" : "/explorer/regionalviz"
+                dispatch((dispatch) => window.open(route, '_self'));
             } else if (dataType === 'rp') {
                 dispatch((dispatch) => window.open("/explorer/regionalpro", '_self'));
             } else {
