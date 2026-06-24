@@ -131,7 +131,7 @@ function HubMapTubuleSchema({
         <hra-medical-illustration
             ref={schemaRef}
             selected-illustration="https://purl.humanatlas.io/2d-ftu/kidney-nephron"
-            illustrations="https://apps.humanatlas.io/api--staging/v1/ftu-illustrations"
+            illustrations="https://apps.humanatlas.io/api/v1/ftu-illustrations"
         ></hra-medical-illustration>
     );
 }
