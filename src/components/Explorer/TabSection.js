@@ -95,7 +95,7 @@ class TabSection extends Component {
                 </Row>
                 <Row className="citation">
                     <Col>
-                        <small>Functional Tissue Unit (FTU) Illustration courtesy of Rachel Bajema, Supriya Bidanta, Ellen M. Quardokus, Bruce W. Herr II, Katy B&#246;rner, and kidney domain expert Sanjay Jain. December 2025. <a href='https://humanatlas.io/2d-ftu-illustrations?releaseVersion=2.5' target='_blank'>https://humanatlas.io/2d-ftu-illustrations</a>, Accessed on June 1, 2026.</small>
+                        <small>Functional Tissue Unit (FTU) Illustration courtesy of Rachel Bajema, Supriya Bidanta, Ellen M. Quardokus, Bruce W. Herr II, Katy B&#246;rner, and kidney domain expert Sanjay Jain. December 2025. <a href='https://humanatlas.io/2d-ftu-illustrations?releaseVersion=2.5' target='_blank' rel='noreferrer'>https://humanatlas.io/2d-ftu-illustrations</a>, Accessed on June 1, 2026.</small>
                     </Col>
                 </Row>
             </TabPane >
