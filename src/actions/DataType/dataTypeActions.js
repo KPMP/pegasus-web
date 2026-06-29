@@ -60,7 +60,7 @@ export const setDataTypeAndRedirect = (dataType, featureSTData, props) => {
                 window.open('https://metaspace2020.eu/datasets?prj=0d9a6710-8389-11eb-96db-73c89a357a89&q=_SM_', '_blank');
                 break
             case "Spatial Lipidomics":
-                window.open('https://metaspace2020.eu/datasets?prj=0d9a6710-8389-11eb-96db-73c89a357a89&q=_lip_', '_blank');
+                window.open('/spatial-viewer/?size=n_20_n&filters[0][field]=datatype&filters[0][values][0]=Spatial Lipidomics&filters[0][type]=any', '_self');
                 break
             case "Spatial N-glycomics":
                 window.open('https://metaspace2020.eu/datasets?prj=8f102fc4-62a8-11ec-89bf-bba413a122a2&q=_glyc', '_blank');
