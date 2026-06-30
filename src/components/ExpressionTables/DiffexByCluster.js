@@ -10,6 +10,7 @@ import DiffexInfoBar from './DiffexInfoBar';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import InfoHeader from './InfoHeader';
 import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
+import CellTypeEnum from '../Explorer/CellTypeEnum';
 ModuleRegistry.registerModules([ AllCommunityModule ]);
 
 
@@ -116,7 +117,7 @@ class DiffexByCluster extends Component {
                     sortable: true,
                     headerTooltip: 'Expression measured against all regions or just Glomerulus vs Tubulo-interstitium.',
                     field: 'segmentName',
-                    valueFormatter: params => params.value === 'Glomerulus / Renal Corpuscle' || params.value === 'Tubulo-interstitium' ? 'to Glom/TI (only)' : 'to all regions'
+                    valueFormatter: params => (params.value === CellTypeEnum.GLOM|| params.value === CellTypeEnum.TUBULO_INTERSTITIUM) ? 'to Glom/TI (only)' : 'to all regions'
                 }
             );
         }
@@ -191,7 +192,7 @@ class DiffexByCluster extends Component {
           return results.map(({ gene, segmentName, foldChange, pVal, pValAdj }) => {
           return {
               gene: gene,
-              comparison: segmentName === 'Glomerulus / Renal Corpuscle' || segmentName === 'Tubulo-interstitium' ? 'to Glom/TI (only)' : 'to all regions',
+              comparison: (segmentName === CellTypeEnum.GLOM|| segmentName === CellTypeEnum.TUBULO_INTERSTITIUM) ? 'to Glom/TI (only)' : 'to all regions',
               foldChange: formatNumberToPrecision(foldChange, 3),
               pVal: formatNumberToPrecision(pVal, 3),
               pValAdj: formatNumberToPrecision(pValAdj, 3, true)

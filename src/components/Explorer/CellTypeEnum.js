@@ -9,6 +9,7 @@ const CellTypeEnum = {
     MESANGIUM: 'Mesangial Cell',
     PODOCYTE: "Podocyte",
 
+    TUBULO_INTERSTITIUM: 'Tubulo-interstitium',
     PROXIMAL_TUBULEL: 'Proximal Tubule',
     PROXIMAL_TUBULE_EITHELIAL: 'Proximal Tubule Epithelial Cell',
     PROXIMAL_TUBULE_EPITHELIAL_SEGMENT_1: 'Proximal Tubule Epithelial Cell Segment 1',
