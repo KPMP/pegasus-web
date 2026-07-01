@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { TabPane, Row, Col, Collapse } from 'reactstrap';
-import TubuleSchematic from './TubuleSchematic';
+import HubMapTubuleSchema from './TubuleSchematic';
 import CellTypeEnum from './CellTypeEnum';
 import { faChevronDown, faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -64,7 +64,8 @@ class AccordionTabSection extends Component {
                 return <li key={cellType.cellType}>
                     <button
                         onClick={() => this.props.handleCellTypeClick(cellType.cellType)}
-                        onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType) }}
+                        onMouseEnter={() => { this.handleSchematicHoverEnter(cellType.cellType); this.setState({activeCell: cellType.cellType})}}
+                        onMouseLeave={() => {this.handleSchematicHoverLeave(cellType.cellType); this.setState({activeCell: CellTypeEnum.ALL})}}
                         type="button"
                         className={`btn btn-link text-start p-0 ${(this.props.activeCell === cellType.cellType) ? 'pseudohover' : ''}`}>
                         {cellType.cellType}</button>
@@ -73,13 +74,14 @@ class AccordionTabSection extends Component {
             let collapsed = this.state.collapse;
             return (
                 <div className='cell-type-list mb-1 px-3 py-2 subregion-name' key={subregion.subregionName}>
-                    <span className={`${collapsed === index ? "open" : "collapsed"}`}>
+                    <span className={`d-flex align-items-center ${collapsed === index ? "open" : "collapsed"}`}>
                         <span onClick={() => {this.toggle(index)}} data-event={index}>
                             <FontAwesomeIcon  className={`${collapsed === index ? "" : "hidden"}`} icon={faChevronDown} />
                             <FontAwesomeIcon  className={`${collapsed === index ? "hidden" : ""}`} icon={faChevronRight} />
                         </span>
                         <span onClick={() => this.props.handleCellTypeClick(subregion.subregionName)}
-                             onMouseEnter={() => { this.handleSchematicHoverEnter(subregion.subregionName) }}
+                             onMouseEnter={() => { this.handleSchematicHoverEnter(subregion.subregionName); this.setState({activeCell: subregion.subregionName}) }}
+                             onMouseLeave={() => {this.handleSchematicHoverLeave(subregion.subregionName); this.setState({activeCell: CellTypeEnum.ALL})}}
                              type='button'
                              className={`btn-link text-start p-0 ${(this.props.activeCell === subregion.subregionName) ? 'pseudohover' : ''}`}>
                                  {subregion.subregionName}</span>
@@ -113,7 +115,7 @@ class AccordionTabSection extends Component {
                     </Col>
                     <Col sm="8">
                         {this.props.isNephronSchematic ?
-                            <TubuleSchematic
+                            <HubMapTubuleSchema
                                 activeCell={this.props.activeCell}
                                 handleCellTypeClick={this.props.handleCellTypeClick}
                                 setActiveTab={this.props.setActiveTab}
@@ -121,9 +123,15 @@ class AccordionTabSection extends Component {
                                 toggleCollapseTab={this.toggleWithoutResetting}
                                 handleSchematicHoverEnter={this.handleSchematicHoverEnter}
                                 handleSchematicHoverLeave={this.handleSchematicHoverLeave}
-                            /> :
+                            /> 
+                            :
                             <div className='tbd-schema'> Schematic TBD</div>
                         }
+                    </Col>
+                </Row>
+               <Row className="citation">
+                    <Col>
+                        <small>Functional Tissue Unit (FTU) Illustration courtesy of Rachel Bajema, Supriya Bidanta, Ellen M. Quardokus, Bruce W. Herr II, Katy B&#246;rner, and kidney domain expert Sanjay Jain. December 2025. <a href='https://humanatlas.io/2d-ftu-illustrations?releaseVersion=2.5' target='_blank' rel='noreferrer' >https://humanatlas.io/2d-ftu-illustrations</a>, Accessed on June 1, 2026.</small>
                     </Col>
                 </Row>
             </TabPane >

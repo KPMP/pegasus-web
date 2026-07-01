@@ -7,12 +7,11 @@ import '@fontsource/libre-franklin';
 import CellTypeEnum from './CellTypeEnum';
 
 const CellTypeTabs = (props) => {
-  const [activeTab, setActiveTab] = useState('1');
+  const activeTab = props.activeTab || '1';
+  const toggle = props.toggle || ((tab) => {
+    if (activeTab !== tab) props.onToggleTab?.(tab);
+  });
   const [activeCell, setActiveCell] = useState(CellTypeEnum.ALL);
-
-  const toggle = tab => {
-    if (activeTab !== tab) setActiveTab(tab);
-  }
 
   return (
     <div id="cell-type-tabs">
@@ -83,11 +82,16 @@ const CellTypeTabs = (props) => {
           topLevelLink='Tubules' />
         <AccordionTabSection data={props.data.Interstitium}
           tabId='3'
+          setActiveCell={setActiveCell}
+          activeCell={activeCell}
           handleCellTypeClick={props.handleCellTypeClick}
           topLevelLink='Interstitium' />
         <TabSection data={props.data.Vessels}
           tabId='4'
           handleCellTypeClick={props.handleCellTypeClick}
+          setActiveTab={toggle}
+          setActiveCell={setActiveCell}
+          activeCell={activeCell}
           topLevelLink='Vessels' />
       </TabContent>
     </div>

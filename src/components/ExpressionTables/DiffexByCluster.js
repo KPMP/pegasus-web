@@ -10,6 +10,7 @@ import DiffexInfoBar from './DiffexInfoBar';
 import { handleGoogleAnalyticsEvent } from '../../helpers/googleAnalyticsHelper';
 import InfoHeader from './InfoHeader';
 import { ModuleRegistry, AllCommunityModule } from "ag-grid-community";
+import CellTypeEnum from '../Explorer/CellTypeEnum';
 ModuleRegistry.registerModules([ AllCommunityModule ]);
 
 
@@ -100,7 +101,7 @@ class DiffexByCluster extends Component {
                     field: 'gene',
                     sortable: true,
                     cellRenderer: params => {
-                        return (<button onClick={() => this.handleClick(params.data.gene)}  className='table-column btn btn-link text-start p-0'>
+                        return (<button onClick={() => this.handleClick(params.data.gene, params.data?.accession, params.data?.segmentName)}  className='table-column btn btn-link text-start p-0'>
                             {params.data.gene}
                         </button>);
                     }
@@ -116,7 +117,7 @@ class DiffexByCluster extends Component {
                     sortable: true,
                     headerTooltip: 'Expression measured against all regions or just Glomerulus vs Tubulo-interstitium.',
                     field: 'segmentName',
-                    valueFormatter: params => params.value === 'Glomerulus / Renal Corpuscle' ? 'to Glom/TI (only)' : 'to all regions'
+                    valueFormatter: params => (params.value === CellTypeEnum.GLOM|| params.value === CellTypeEnum.TUBULO_INTERSTITIUM) ? 'to Glom/TI (only)' : 'to all regions'
                 }
             );
         }
@@ -125,7 +126,12 @@ class DiffexByCluster extends Component {
                 headerName: 'FOLD CHANGE',
                 headerComponent: InfoHeader,
                 headerComponentParams: { infoIcon: true },
-                headerTooltip: 'Fold change of a gene is calculated by dividing the average expression of the gene in the segment/cluster of interest by its average expression in all other segments/clusters being compared.',
+                headerTooltip: `Fold change of a gene is 
+                    calculated by dividing the 
+                    average expression of the 
+                    gene in the segment/cluster of interest by 
+                    its average expression in all 
+                    other segments/clusters being compared.`,
                 field: 'foldChange',
                 sort: "desc",
                 sortable: true,
@@ -139,7 +145,12 @@ class DiffexByCluster extends Component {
                     headerComponent: InfoHeader,
                     headerComponentParams: { infoIcon: true },
                     sortable: true, 
-                    headerTooltip: 'P value was calculated using a Wilcoxon rank sum test between the expression of the gene in the segment/cluster of interest and its expression in all other segments/clusters.',
+                    headerTooltip: `P value was calculated using a 
+                        Wilcoxon rank sum test 
+                        between the expression of the 
+                        gene in the segment/cluster of interest 
+                        and its expression in all other 
+                        segments/clusters.`,
                     field: 'pVal',
                     valueFormatter: params => formatNumberToPrecision(params.value, 3)
                 }
@@ -158,9 +169,9 @@ class DiffexByCluster extends Component {
         return columns
     }
 
-    handleClick = (gene, accession) => {
-        this.props.setGene({ symbol: gene, name: '' }, this.props.dataType);
-        this.props.setAccession(accession);
+    handleClick = (gene, accession, comparison) => {
+        this.props.setGene({ symbol: gene, name: '' }, this.props.dataType, comparison);
+        if(accession) this.props.setAccession(accession);
     };
 
     getExportFilename = () => {
@@ -181,7 +192,7 @@ class DiffexByCluster extends Component {
           return results.map(({ gene, segmentName, foldChange, pVal, pValAdj }) => {
           return {
               gene: gene,
-              comparison: segmentName === 'Glomerulus / Renal Corpuscle' ? 'to Glom/TI (only)' : 'to all regions',
+              comparison: (segmentName === CellTypeEnum.GLOM|| segmentName === CellTypeEnum.TUBULO_INTERSTITIUM) ? 'to Glom/TI (only)' : 'to all regions',
               foldChange: formatNumberToPrecision(foldChange, 3),
               pVal: formatNumberToPrecision(pVal, 3),
               pValAdj: formatNumberToPrecision(pValAdj, 3, true)

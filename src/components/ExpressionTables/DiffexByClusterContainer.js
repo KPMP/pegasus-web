@@ -4,6 +4,7 @@ import { withRouter } from 'react-router';
 import { setGene } from "../../actions/Gene/geneActions";
 import { setAccession } from "../../actions/Accession/accessionActions";
 import { setDataType } from "../../actions/DataType/dataTypeActions";
+import CellTypeEnum from "../Explorer/CellTypeEnum";
 
 const mapStateToProps = (state, props) =>
 ({
@@ -14,10 +15,11 @@ const mapStateToProps = (state, props) =>
 
 const mapDispatchToProps = (dispatch, props) =>
     ({
-        setGene(gene, dataType) {
+        setGene(gene, dataType, comparison) {
             dispatch(setGene(gene));
             if (dataType === 'rt') {
-                dispatch((dispatch) => window.open("/explorer/regionalviz", '_self'));
+                let route = (comparison && (comparison === CellTypeEnum.GLOM|| comparison === CellTypeEnum.TUBULO_INTERSTITIUM)) ? "/explorer/regionalviz?comparison=glom_tub" : "/explorer/regionalviz"
+                dispatch((dispatch) => window.open(route, '_self'));
             } else if (dataType === 'rp') {
                 dispatch((dispatch) => window.open("/explorer/regionalpro", '_self'));
             } else {
