@@ -71,7 +71,7 @@ class LeftContent extends Component {
                   </p>
               </div>
               <div className='mt-3'>
-                  <Button className="w-100" color='primary' href='https://enclave.kpmp.org' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Atlas Home', 'Navigation', 'Data2Evidence') }}>Go to D2E</Button>
+                  <Button className="w-100" color='primary' target="_blank" href='https://enclave.kpmp.org' size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Atlas Home', 'Navigation', 'Data2Evidence') }}>Go to D2E</Button>
               </div>
           </Container>
         <Container className="mt-3 rounded border p-3 shadow-sm">
