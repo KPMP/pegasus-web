@@ -63,6 +63,17 @@ class LeftContent extends Component {
             </div>
           </Container>
         }
+          <Container className="mt-3 rounded border p-3 shadow-sm">
+              <h5>Data2Evidence</h5>
+              <div>
+                  <p>
+                      Build cohorts from KPMP EHR and core clinical data.
+                  </p>
+              </div>
+              <div className='mt-3'>
+                  <Button className="w-100" color='primary' rel="noopener noreferrer" target="_blank" href={process.env.REACT_APP_D2E_URL} size='lg' block onClick={() => { this.handleGoogleAnalyticsEvent('Atlas Home', 'Navigation', 'Data2Evidence') }}>Go to D2E</Button>
+              </div>
+          </Container>
         <Container className="mt-3 rounded border p-3 shadow-sm">
           <h5>KPMP Central Biorepository</h5>
           <div>
