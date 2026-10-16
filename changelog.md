@@ -18,6 +18,8 @@ Brief summary:
 - Removed FDR Confidence column from Regional Proteomics Table
 - Shuffle the layout of the Explorer home page
 - Increased the width of the omicsType column to fit `Spatial Transcriptomics Xenium RNA + Protein` without overflowing
+- Fixed a bug where the user was unable to view the `Spatial Transcriptomics Xenium RNA + Protein` due to wrong encoding to the URL
+
 ### Breaking changes:
 
 ---
