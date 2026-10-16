@@ -30,14 +30,14 @@ class AvailableDatasetsTable extends Component {
     }
 
     handleDataTypeValueClick(row, enrollmentCategory) {
-        let linkType = row.linkInformation.linkType;
-        let linkValue = row.linkInformation.linkValue.replace('&', '%26');
-        let mapping = `/repository/?size=n_20_n&filters[0][field]=${linkType}&filters[0][values][0]=${linkValue}&filters[0][type]=any`
+        const linkType = row.linkInformation.linkType;
+        const linkValue = row.linkInformation.linkValue;
+        let mapping = `/repository/?size=n_20_n&filters[0][field]=${encodeURIComponent(linkType)}&filters[0][values][0]=${encodeURIComponent(linkValue)}&filters[0][type]=any`
         if(enrollmentCategory){
-            mapping += `&filters[1][field]=enrollment_category&filters[1][values][0]=${enrollmentCategory}&filters[1][type]=any`
+            mapping += `&filters[1][field]=enrollment_category&filters[1][values][0]=${encodeURIComponent(enrollmentCategory)}&filters[1][type]=any`
         }
         if(linkType && linkValue){
-            return encodeURI(mapping).replace('%2526', '%26');
+            return mapping;
         } else {
             this.props.history.push('/oops');
             throw new Error('Datatype not found', row.omicsType)
