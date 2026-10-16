@@ -18,6 +18,8 @@ Brief summary:
 - Removed FDR Confidence column from Regional Proteomics Table
 - Shuffle the layout of the Explorer home page
 
+- Fixed a bug where the user was unable to view the `Spatial Transcriptomics Xenium RNA + Protein` due to wrong encoding to the URL
+
 ### Breaking changes:
 
 ---
