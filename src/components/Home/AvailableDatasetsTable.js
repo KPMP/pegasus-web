@@ -32,10 +32,10 @@ class AvailableDatasetsTable extends Component {
     handleDataTypeValueClick(row, enrollmentCategory) {
         let linkType = row.linkInformation.linkType;
         let linkValue = row.linkInformation.linkValue;
-        if (linkValue.contains("+")){
+        if (linkValue.includes("+")){
             linkValue = row.linkInformation.linkValue.replace('+', '%2B');
         }
-        else if (linkValue.contains("&")){
+        else if (linkValue.includes("&")){
             linkValue = row.linkInformation.linkValue.replace('&', '%26');
         }
         let mapping = `/repository/?size=n_20_n&filters[0][field]=${linkType}&filters[0][values][0]=${linkValue}&filters[0][type]=any`
