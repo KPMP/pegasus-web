@@ -264,6 +264,4 @@ export const cellMapToOntologyId = {
     "Afferent Artery / Arteriole Endothelial Cell": "CL_1001096",
     "Efferent Arteriole Endothelial Cell": "CL_1001099",
     "Juxtaglomerular Granular Cell": "CL_0000648",
-    "Papillary Tip Epithelial": "UBERON_0004205",
-    "Papillary Tip Epithelial Cell": "UBERON_0004205"
 }
